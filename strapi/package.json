@@ -1,0 +1,50 @@
+{
+  "name": "template-strapi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Strapi CMS for Bratislava template app",
+  "license": "EPL-2.0",
+  "author": {
+    "name": "City of Bratislava"
+  },
+  "scripts": {
+    "build": "strapi build",
+    "dev": "yarn develop",
+    "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
+    "postinstall": "patch-package",
+    "start": "strapi start",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/plugin-graphql": "4.21.0",
+    "@strapi/plugin-i18n": "4.21.0",
+    "@strapi/plugin-users-permissions": "4.21.0",
+    "@strapi/strapi": "4.21.0",
+    "patch-package": "^6.5.1",
+    "pg": "^8.11.3",
+    "postinstall-postinstall": "^2.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "5.3.4",
+    "strapi-provider-upload-ts-minio": "^3.1.0",
+    "styled-components": "5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/eslint-parser": "^7.19.1",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-scope": "^7.1.1"
+  },
+  "engines": {
+    "node": ">=18.x.x",
+    "npm": ">=9.8.1",
+    "yarn": "1.22"
+  },
+  "volta": {
+    "node": "18.17.1"
+  },
+  "strapi": {
+    "uuid": "61130046-63b5-40a0-a617-713763ba3913"
+  }
+}

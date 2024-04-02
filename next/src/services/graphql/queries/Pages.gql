@@ -1,0 +1,23 @@
+fragment PageEntity on PageEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+query Pages {
+  pages {
+    data {
+      ...PageEntity
+    }
+  }
+}
+
+query PageBySlug($slug: String!) {
+  pages(filters: { slug: { eq: $slug } }) {
+    data {
+      ...PageEntity
+    }
+  }
+}

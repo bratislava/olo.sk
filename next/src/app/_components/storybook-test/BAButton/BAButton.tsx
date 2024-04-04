@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import { ArrowRightIcon, ExportIcon } from '@assets/ui-icons'
+import { ArrowRightIcon, ExportIcon } from './ui-icons'
 import cx from 'classnames'
 import Spinner from './Spinner'
 import NextLink from 'next/link'
@@ -9,6 +9,8 @@ import { Button as RACButton, ButtonProps as RACButtonProps } from 'react-aria-c
 import { twMerge } from 'tailwind-merge'
 
 import MLink, { LinkPlausibleProps } from './MLink'
+
+// This component is copied from bratislava.sk repository (https://github.com/bratislava/bratislava.sk)
 
 type ButtonOrIconButton =
   | {

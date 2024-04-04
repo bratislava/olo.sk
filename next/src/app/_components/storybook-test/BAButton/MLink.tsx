@@ -4,6 +4,8 @@ import NextLink from 'next/link'
 import { ComponentProps, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+// This component is copied from bratislava.sk repository (https://github.com/bratislava/bratislava.sk)
+
 export type LinkPlausibleProps = { id: string }
 
 export type LinkProps = Omit<ComponentProps<typeof NextLink>, 'as' | 'passHref'> & {

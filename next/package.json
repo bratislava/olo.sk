@@ -23,7 +23,8 @@
     "react": "^18",
     "react-aria-components": "^1.1.1",
     "react-dom": "^18",
-    "storybook": "^8.0.5"
+    "storybook": "^8.0.5",
+    "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "1.2.26",

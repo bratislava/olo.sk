@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc",
-    "lint": "next lint",
+    "lint": "eslint src",
     "prettier": "prettier --write .",
     "gen": "graphql-codegen && prettier --write ./src/services/graphql/index.ts"
   },

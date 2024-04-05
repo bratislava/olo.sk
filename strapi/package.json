@@ -1,8 +1,8 @@
 {
-  "name": "template-strapi",
+  "name": "olo-strapi",
   "version": "1.0.0",
   "private": true,
-  "description": "Strapi CMS for Bratislava template app",
+  "description": "Strapi CMS for olo.sk website",
   "license": "EPL-2.0",
   "author": {
     "name": "City of Bratislava"

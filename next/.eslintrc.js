@@ -29,6 +29,7 @@ module.exports = {
     'xss/no-mixed-html': 'off',
 
     // TODO: Turned off because of some missing setup
+    'import/extensions': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     // Solve warning "Promise-returning function provided to attribute where a void return was expected."

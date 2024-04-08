@@ -6,8 +6,8 @@ on:
       - 'staging**'
       - 'prod**'
 #  uncomment this to get automatic deploys on master branch ("branches" should be on same indent as "tags")
-#    branches:
-#     - master
+    branches:
+     - master
 jobs:
   conditions:
     name: Check for cluster conditions

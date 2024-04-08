@@ -1,4 +1,4 @@
-# next-strapi-template
+# olo.sk
 
 ## How to use this template
 
@@ -10,9 +10,8 @@ Copy the template repo and change the following:
   - `template-strapi-database-secret` in `strapi/kubernetes/base/secrets/database.yml`
   - `template-strapi-internals-secret` in `strapi/kubernetes/base/secrets/strapi.yml`
 - update envs in `strapi/kubernetes/base/.env`
-  - `DATABASE_HOST=template-strapi-database`
-  - `MINIO_BUCKET=template-strapi`
-    - this is used in `strapi/config/env/production/plugins.js`
+  - `DATABASE_HOST=template-database`
+  - `MINIO_BUCKET=template-strapi` - this is used in `strapi/config/env/production/plugins.js`
 
 What is set up manually (this is WIP list):
 - `strapi/config/env/production/plugins.ts` - upload provider is set to minio

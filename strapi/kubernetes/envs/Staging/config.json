@@ -2,7 +2,11 @@
   "envs": {
     "STRAPI_CPU_REQUESTS": "10m",
     "STRAPI_MEMORY_REQUESTS": "128Mi",
+    "STRAPI_CPU_LIMITS": "500m",
+    "STRAPI_MEMORY_LIMITS": "512Mi",
     "DB_CPU_REQUESTS": "10m",
-    "DB_MEMORY_REQUESTS": "128Mi"
+    "DB_MEMORY_REQUESTS": "128Mi",
+    "DB_CPU_LIMITS": "1",
+    "DB_MEMORY_LIMITS": "1Gi"
   }
 }

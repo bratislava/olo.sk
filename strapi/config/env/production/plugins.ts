@@ -5,7 +5,7 @@ export default ({ env }) => ({
       providerOptions: {
         accessKey: env('MINIO_ACCESS_KEY', 'AKIAIOSFODNN7EXAMPLE'),
         secretKey: env('MINIO_SECRET_KEY', 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'),
-        bucket: env('MINIO_BUCKET', 'template-strapi'),
+        bucket: env('MINIO_BUCKET', 'olo-strapi'),
         endPoint: env('MINIO_ENDPOINT', 'localhost'),
         port: env.int('MINIO_PORT', 9000),
         useSSL: env('MINIO_USE_SSL', false),

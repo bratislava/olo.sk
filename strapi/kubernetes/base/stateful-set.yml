@@ -21,8 +21,8 @@ spec:
           name: database
           resources:
             limits:
-              cpu: 500m
-              memory: 1Gi
+              cpu: ${DB_CPU_LIMITS}
+              memory: ${DB_MEMORY_LIMITS}
             requests:
               cpu: ${DB_CPU_REQUESTS}
               memory: ${DB_MEMORY_REQUESTS}

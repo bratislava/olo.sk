@@ -1,5 +1,3 @@
-import cx from 'classnames'
-
 // type ChipProps = TagProps & {
 //   variant?: 'large' | 'small'
 // }

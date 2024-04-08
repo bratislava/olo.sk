@@ -1,7 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import { ArrowRightIcon, ExportIcon } from './ui-icons'
+/* eslint-disable sonarjs/cognitive-complexity */
 import cx from 'classnames'
-import Spinner from './Spinner'
 import NextLink from 'next/link'
 import { ComponentProps, forwardRef, PropsWithChildren, ReactNode, RefObject } from 'react'
 import { AriaButtonProps } from 'react-aria'
@@ -9,6 +8,8 @@ import { Button as RACButton, ButtonProps as RACButtonProps } from 'react-aria-c
 import { twMerge } from 'tailwind-merge'
 
 import MLink, { LinkPlausibleProps } from './MLink'
+import Spinner from './Spinner'
+import { ArrowRightIcon, ExportIcon } from './ui-icons'
 
 // This component is copied from bratislava.sk repository (https://github.com/bratislava/bratislava.sk)
 

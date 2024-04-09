@@ -1,4 +1,4 @@
-import * as Icons from '@/../public/assets/icons'
+import * as Icons from '@/assets/icons'
 
 const iconNameMap = {
   'chevron-dolava': 'ChevronLeftIcon',

@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['auto', 'plugin:@next/next/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'auto',
+    'plugin:@next/next/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+    'plugin:storybook/recommended',
+  ],
   rules: {
     /** Named export is easier to refactor automatically */
     'import/prefer-default-export': 'off',

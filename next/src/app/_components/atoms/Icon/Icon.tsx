@@ -64,9 +64,9 @@ type IconProps = {
   className?: string
 }
 
-const Icon = ({ name = 'disk', className = '' }: IconProps) => {
-  const IconFile: IconType = Icons[iconNameMap[name]]
-  return <IconFile className={className} />
+const Icon = ({ name, className }: IconProps) => {
+  const IconComponent: IconType = Icons[iconNameMap[name]]
+  return <IconComponent className={className} />
 }
 
 export default Icon

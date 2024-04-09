@@ -1,4 +1,8 @@
+'use client'
+
 import * as Icons from '@/assets/icons'
+
+// TODO make it generic and typesafe (allow only defined filenames/components)
 
 const iconNameMap = {
   'chevron-dolava': 'ChevronLeftIcon',
@@ -66,6 +70,7 @@ type IconProps = {
 
 const Icon = ({ name, className }: IconProps) => {
   const IconComponent: IconType = Icons[iconNameMap[name]]
+
   return <IconComponent className={className} />
 }
 

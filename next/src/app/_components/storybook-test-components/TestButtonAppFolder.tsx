@@ -4,7 +4,7 @@
 
 const Chip = () => {
   return (
-    <button type="button" className="border-4 bg-red-400">
+    <button type="button" className="bg-red-400 border-4">
       Hello
     </button>
   )

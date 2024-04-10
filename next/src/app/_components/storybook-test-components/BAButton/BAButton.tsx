@@ -169,13 +169,13 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
                 'border-category-700 bg-category-700 text-font-contrast pressed:border-category-800 pressed:bg-category-800':
                   variant === 'category-solid',
 
-                'border-category-700 bg-transparent text-gray-700 pressed:border-category-800 pressed:text-gray-800':
+                'border-category-700 text-gray-700 pressed:border-category-800 pressed:text-gray-800 bg-transparent':
                   variant === 'category-outline',
-                'border-gray-700 bg-gray-700 text-white pressed:border-gray-800 pressed:bg-gray-800':
+                'border-gray-700 bg-gray-700 pressed:border-gray-800 pressed:bg-gray-800 text-white':
                   variant === 'black-solid',
-                'border-gray-200 bg-transparent text-gray-700 pressed:border-gray-300 pressed:text-gray-800':
+                'border-gray-200 text-gray-700 pressed:border-gray-300 pressed:text-gray-800 bg-transparent':
                   variant === 'black-outline',
-                'border-negative-700 bg-negative-700 text-white pressed:border-negative-800 pressed:bg-negative-800':
+                'border-negative-700 bg-negative-700 pressed:border-negative-800 pressed:bg-negative-800 text-white':
                   variant === 'negative-solid',
 
                 'text-category-700 pressed:bg-category-200 pressed:text-category-800':

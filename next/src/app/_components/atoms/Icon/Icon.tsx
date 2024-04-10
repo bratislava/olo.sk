@@ -1,5 +1,3 @@
-'use client'
-
 import * as Icons from '@/assets/icons'
 
 // TODO make it generic and typesafe (allow only defined filenames/components)

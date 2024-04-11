@@ -1,30 +1,5 @@
 # olo.sk
 
-## How to use this template
-
-Copy the template repo and change the following:
-- `name` in `package.json` for both `strapi` and `next` - this will be used by deploy pipeline
-  - `"name": "template-strapi"` in `strapi/package.json`
-  - `"name": "template-next"` in `next/package.json`
-- generate secrets and change the secrets name in `strapi/kubernetes/base/secrets`
-  - `template-strapi-database-secret` in `strapi/kubernetes/base/secrets/database.yml`
-  - `template-strapi-internals-secret` in `strapi/kubernetes/base/secrets/strapi.yml`
-- update envs in `strapi/kubernetes/base/.env`
-  - `DATABASE_HOST=template-database`
-  - `MINIO_BUCKET=template-strapi` - this is used in `strapi/config/env/production/plugins.js`
-
-What is set up manually (this is WIP list):
-- `strapi/config/env/production/plugins.ts` - upload provider is set to minio
-- custom `strapi::security` middleware is added to `strapi/config/middleware.js`
-- custom `app.ts` in `strapi/src/admin` - add SK language to admin panel, disable tutorials and release notifications
-- custom schema for User content type added as extention in `strapi/src/extensions/users-permissions/content-types/user/schema.json` to hide Users from admin panel
-    - the base is the original shema file from strapi repo, only change is adding `pluginOptions.content-manager.visible: false`
-- env `STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=sk` to set default strapi content locale to SK
-    - in `strapi/env.example` and `strapi/kubernetes/base/.env`
-    - docs: https://docs.strapi.io/dev-docs/plugins/i18n#configuration-of-the-default-locale
-
-After changing all of this, remove "How to use this template" part from readme.
-
 ## Introduction
 
 This project is led by the [Department of Innovation and Technology of the City of Bratislava](https://inovacie.bratislava.sk). We’re making it entirely open-source as we believe this promotes [savings, collaboration, auditability and innovation](https://publiccode.eu) in the public sector.

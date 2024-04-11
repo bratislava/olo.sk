@@ -4,7 +4,18 @@ import svgoConfig from './svgo.config.mjs'
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-api.bratislava.sk',
+      },
+    ],
+  },
   // Docs: https://react-svgr.com/docs/next/
   webpack(config) {
     // Grab the existing rule that handles SVG imports

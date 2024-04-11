@@ -1,4 +1,4 @@
-import Icon from '@/app/_components/atoms/Icon/Icon'
+import Icon from '@/app/_components/common/Icon/Icon'
 
 const Home = async () => (
   <main className="flex min-h-screen flex-col items-center justify-between p-24">

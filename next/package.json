@@ -10,6 +10,8 @@
     "start": "next start",
     "typecheck": "tsc",
     "lint": "eslint src",
+    "lint:quiet": "yarn lint --quiet",
+    "lint:fix": "yarn lint --fix",
     "prettier": "prettier --write .",
     "gen": "graphql-codegen && prettier --write ./src/services/graphql/index.ts",
     "storybook": "storybook dev -p 6006",

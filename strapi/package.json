@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Strapi CMS for olo.sk website",
-  "license": "EPL-2.0",
+  "license": "MIT",
   "author": {
     "name": "City of Bratislava"
   },

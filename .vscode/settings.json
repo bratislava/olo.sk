@@ -1,4 +1,5 @@
 {
   "eslint.workingDirectories": ["./next"],
-  "typescript.tsdk": "./next/node_modules/typescript/lib"
+  "typescript.tsdk": "./next/node_modules/typescript/lib",
+  "tailwindCSS.classAttributes": ["class", "className", "className_onlyWhenNecessary"]
 }

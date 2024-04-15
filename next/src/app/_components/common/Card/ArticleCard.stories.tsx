@@ -11,13 +11,6 @@ const meta: Meta<typeof ArticleCardComponent> = {
     title: 'Article headline',
   },
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <div className="flex justify-center bg-[rgb(245,245,245)] py-10">
-        <Story />
-      </div>
-    ),
-  ],
 }
 
 export default meta
@@ -25,19 +18,8 @@ type Story = StoryObj<typeof ArticleCardComponent>
 
 export const ArticleCard: Story = {
   args: {
-    size: 'small',
-    className: '',
+    linkHref: '#',
+    tagText: 'CATEGORY',
   },
   render: (args) => <ArticleCardComponent {...args} />,
-}
-
-export const ArticleCardsAll: Story = {
-  name: 'Article Card - all sizes',
-  render: (args) => (
-    <div className="flex flex-row gap-8 [&>*]:self-start">
-      <ArticleCardComponent {...args} size="small" />
-      <ArticleCardComponent {...args} size="medium" />
-      <ArticleCardComponent {...args} size="large" />
-    </div>
-  ),
 }

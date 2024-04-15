@@ -15,7 +15,10 @@ type TagProps = {
 
 const Tag = ({ variant, text }: TagProps) => {
   return variant === 'without-bg' ? (
-    <Typography variant="p-small-black" className_onlyWhenNecessary="uppercase tracking-wide">
+    <Typography
+      variant="p-small-black"
+      className_onlyWhenNecessary="uppercase tracking-wide text-success"
+    >
       {text}
     </Typography>
   ) : (

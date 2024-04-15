@@ -10,15 +10,8 @@ type TagProps = {
 }
 
 const Tag = ({ variant, text }: TagProps) => {
-  // eslint-disable-next-line sonarjs/no-duplicate-string
   return variant === 'without-bg' ? (
-    <Typography
-      variant="p-small-black"
-      className_onlyWhenNecessary={cx('uppercase tracking-wide', {
-        'text-success': variant === 'without-bg',
-        'text-white': variant !== 'without-bg',
-      })}
-    >
+    <Typography variant="p-small-black" className_onlyWhenNecessary="uppercase tracking-wide">
       {text}
     </Typography>
   ) : (

@@ -8,6 +8,7 @@ import Icon from '@/app/_components/common/Icon/Icon'
 import MLink from '@/app/_components/common/Link/Link'
 import Tag from '@/app/_components/common/Tag/Tag'
 import Typography from '@/app/_components/common/Typography/Typography'
+import { generateImageSizes } from '@/app/_utils/generateImageSizes'
 import templateImage from '@/assets/images/olo-truck.jpg'
 
 type ArticleCardProps = {
@@ -22,14 +23,16 @@ type ArticleCardProps = {
  * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=8-4117&mode=dev
  */
 
+const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw' })
+
 const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCardProps) => {
   return (
     <CardBase className={twMerge('gap-4', className)}>
       <div className="relative aspect-article-card shrink-0 overflow-hidden rounded-lg">
         {imgSrc ? (
-          <Image src={imgSrc} alt="" className="object-cover" />
+          <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
         ) : (
-          <Image src={templateImage} alt="" fill className="object-cover" />
+          <Image src={templateImage} sizes={imageSizes} alt="" fill className="object-cover" />
         )}
       </div>
       <div className="flex grow flex-col justify-between gap-6">

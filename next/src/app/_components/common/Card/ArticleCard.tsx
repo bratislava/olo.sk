@@ -21,7 +21,7 @@ type ArticleCardProps = {
 const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCardProps) => {
   return (
     <CardBase className={twMerge('gap-4', className)}>
-      <div className="aspect-article-card relative shrink-0 overflow-hidden rounded-lg">
+      <div className="relative aspect-article-card shrink-0 overflow-hidden rounded-lg">
         {imgSrc ? (
           <Image src={imgSrc} alt="" className="object-cover" />
         ) : (

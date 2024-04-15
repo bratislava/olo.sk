@@ -135,6 +135,9 @@ const config: Config = {
         1: '1px',
         3: '3px',
       },
+      borderRadius: {
+        4: '4px',
+      },
     },
   },
 }

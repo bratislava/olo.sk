@@ -9,6 +9,10 @@ type TagProps = {
   text: string
 }
 
+/*
+ * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=42-2980&mode=dev
+ */
+
 const Tag = ({ variant, text }: TagProps) => {
   return variant === 'without-bg' ? (
     <Typography variant="p-small-black" className_onlyWhenNecessary="uppercase tracking-wide">

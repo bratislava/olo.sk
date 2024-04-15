@@ -18,6 +18,10 @@ type ArticleCardProps = {
   imgSrc?: string
 }
 
+/*
+ * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=8-4117&mode=dev
+ */
+
 const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCardProps) => {
   return (
     <CardBase className={twMerge('gap-4', className)}>

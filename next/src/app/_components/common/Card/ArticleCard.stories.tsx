@@ -23,3 +23,18 @@ export const ArticleCard: Story = {
   },
   render: (args) => <ArticleCardComponent {...args} />,
 }
+
+export const ArticleCardRows: Story = {
+  args: {
+    linkHref: '#',
+    tagText: 'category',
+  },
+  render: (args) => (
+    <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
+      <ArticleCardComponent {...args} />
+      <ArticleCardComponent {...args} />
+      <ArticleCardComponent {...args} />
+      <ArticleCardComponent {...args} />
+    </div>
+  ),
+}

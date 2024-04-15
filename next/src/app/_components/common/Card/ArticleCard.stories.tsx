@@ -19,7 +19,7 @@ type Story = StoryObj<typeof ArticleCardComponent>
 export const ArticleCard: Story = {
   args: {
     linkHref: '#',
-    tagText: 'CATEGORY',
+    tagText: 'category',
   },
   render: (args) => <ArticleCardComponent {...args} />,
 }

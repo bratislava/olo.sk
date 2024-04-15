@@ -5,10 +5,10 @@ import React, { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export type CardBaseProps = {
-  variant?: 'border'
+  variant?: 'border' | 'plain'
 } & HTMLAttributes<HTMLDivElement>
 
-const CardBase = ({ variant, children, className, ...rest }: CardBaseProps) => {
+const CardBase = ({ variant = 'plain', children, className, ...rest }: CardBaseProps) => {
   return (
     <div
       // overflow-hidden ensures image not to overlap with rounded corners

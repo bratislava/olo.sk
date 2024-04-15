@@ -13,7 +13,7 @@ const Tag = ({ variant, text }: TagProps) => {
   return (
     <Typography
       variant="p-small-black"
-      className_onlyWhenNecessary={cx('tracking-wide ', {
+      className_onlyWhenNecessary={cx('uppercase tracking-wide', {
         'text-success': variant === 'without-bg',
       })}
     >

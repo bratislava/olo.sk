@@ -12,10 +12,10 @@ import templateImage from '@/assets/images/olo-truck.jpg'
 
 type ArticleCardProps = {
   title: string
-  className?: string
   linkHref: string
-  imgSrc?: string
   tagText: string
+  className?: string
+  imgSrc?: string
 }
 
 const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCardProps) => {
@@ -39,6 +39,7 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
           <MLink href={linkHref} variant="underlined" className="group-hover/CardBase:underline">
             Čítať viac
           </MLink>
+          {/* TODO Arrow icon should be implemented in button component */}
           <Icon name="sipka-doprava" className="size-5 self-center" />
         </div>
       </div>

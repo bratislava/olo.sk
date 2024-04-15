@@ -83,6 +83,7 @@ const config: Config = {
       transparent: 'transparent',
       current: 'currentColor',
       white: 'rgb(var(--color-grey-0))',
+      success: 'rgb(var(--color-success-700))',
       background: {
         primary: 'rgb(var(--token-background-primary))',
         secondary: 'rgb(var(--token-background-secondary))',
@@ -128,7 +129,7 @@ const config: Config = {
     },
     extend: {
       aspectRatio: {
-        '70/39': '70 / 39',
+        'article-card': '70 / 39',
       },
       borderWidth: {
         1: '1px',

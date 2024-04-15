@@ -2,7 +2,7 @@
   "name": "olo-next",
   "version": "0.1.0",
   "private": true,
-  "license": "EPL-2.0",
+  "license": "EUPL-1.2",
   "scripts": {
     "dev": "next dev",
     "develop": "yarn dev",
@@ -10,6 +10,8 @@
     "start": "next start",
     "typecheck": "tsc",
     "lint": "eslint src",
+    "lint:quiet": "yarn lint --quiet",
+    "lint:fix": "yarn lint --fix",
     "prettier": "prettier --write .",
     "gen": "graphql-codegen && prettier --write ./src/services/graphql/index.ts",
     "storybook": "storybook dev -p 6006",

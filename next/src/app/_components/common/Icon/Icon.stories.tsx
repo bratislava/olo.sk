@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
-import { twMerge } from 'tailwind-merge'
 
 import IconComponent from './Icon'
 
@@ -23,7 +22,5 @@ type Story = StoryObj<typeof IconComponent>
 export const Icon: Story = {
   args: {
     name: 'domcek',
-    className: '',
   },
-  render: (args) => <IconComponent {...args} className={twMerge('w-12', args.className)} />,
 }

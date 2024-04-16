@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import screens from './tailwind.config.screens'
 import plugin from 'tailwindcss/plugin'
+import pluginRAC from 'tailwindcss-react-aria-components'
 
 /**
  * This plugin remove X button and decorations in native search input.
@@ -26,16 +27,11 @@ const getFontSize = (size: [number, number]) =>
   [toRem(size[0]), toRem(size[1])] satisfies [fontSize: string, lineHeight: string]
 
 const config: Config = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/stories/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   plugins: [
     removeNativeSearchInputStyling,
     // require('tailwind-scrollbar-hide'),
-    // require('tailwindcss-react-aria-components'),
+    pluginRAC,
     // require('tailwindcss-animate'),
   ],
   corePlugins: {

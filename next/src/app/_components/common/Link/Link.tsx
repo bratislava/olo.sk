@@ -18,7 +18,7 @@ export type LinkProps = Omit<ComponentProps<typeof NextLink>, 'as' | 'passHref'>
   stretched?: boolean
 }
 
-const MLink = forwardRef<HTMLAnchorElement, LinkProps>(
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     { href, children, className, variant = 'unstyled', stretched, plausibleProps, ...rest },
     ref,
@@ -53,4 +53,4 @@ const MLink = forwardRef<HTMLAnchorElement, LinkProps>(
   },
 )
 
-export default MLink
+export default Link

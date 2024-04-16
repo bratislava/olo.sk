@@ -19,7 +19,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: ['../public'],
+  staticDirs: ['../public', '../src/assets/images'],
   webpackFinal: async (config) => {
     const imageRule = config.module?.rules?.find((rule) => {
       const test = (rule as { test: RegExp }).test

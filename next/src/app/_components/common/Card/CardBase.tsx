@@ -14,7 +14,7 @@ const CardBase = ({ variant = 'plain', children, className, ...rest }: CardBaseP
       // overflow-hidden ensures image not to overlap with rounded corners
       className={twMerge(
         cx('group/CardBase relative flex flex-col overflow-hidden rounded-lg', {
-          'border ': variant === 'border',
+          'border border-border': variant === 'border',
         }),
         className,
       )}

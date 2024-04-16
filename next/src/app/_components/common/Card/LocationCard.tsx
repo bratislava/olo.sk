@@ -37,7 +37,7 @@ const LocationCardImage = ({ imgSrc }: { imgSrc?: string }) => {
   const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw' })
 
   return (
-    <div className="relative aspect-article-card size-[64px] shrink-0 overflow-hidden rounded-lg lg:size-[128px]">
+    <div className="relative aspect-square size-[64px] shrink-0 overflow-hidden rounded-lg lg:size-[128px]">
       {imgSrc ? (
         <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
       ) : (

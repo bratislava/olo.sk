@@ -5,7 +5,7 @@ import ArticleCardComponent from './ArticleCard'
 
 const meta: Meta<typeof ArticleCardComponent> = {
   component: ArticleCardComponent,
-  title: 'Components/ArticleCard',
+  title: 'Components/Cards/ArticleCard',
   args: {
     title: 'Article headline',
   },

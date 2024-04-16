@@ -4,7 +4,7 @@ import BasicCardComponent from './BasicCard'
 
 const meta: Meta<typeof BasicCardComponent> = {
   component: BasicCardComponent,
-  title: 'Components/BasicCard',
+  title: 'Components/Cards/BasicCard',
   args: {
     title: 'Basic card title',
     linkHref: '#',

@@ -6,7 +6,7 @@ import LocationCardComponent from './LocationCard'
 
 const meta: Meta<typeof LocationCardComponent> = {
   component: LocationCardComponent,
-  title: 'Components/LocationCard',
+  title: 'Components/Cards/LocationCard',
   args: {
     title: 'Location card',
     linkHref: '#',

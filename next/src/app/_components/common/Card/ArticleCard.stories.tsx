@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
-import { twMerge } from 'tailwind-merge'
 
 import ArticleCardComponent from './ArticleCard'
 

@@ -4,12 +4,11 @@ import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
 import CardBase from '@/app/_components/common/Card/CardBase'
-import Icon from '@/app/_components/common/Icon/Icon'
-import MLink from '@/app/_components/common/Link/Link'
+import CardLink from '@/app/_components/common/Card/CardLink'
+import ImagePlaceholder from '@/app/_components/common/ImagePlaceholder'
 import Tag from '@/app/_components/common/Tag/Tag'
 import Typography from '@/app/_components/common/Typography/Typography'
 import { generateImageSizes } from '@/app/_utils/generateImageSizes'
-import templateImage from '@/assets/images/olo-truck.jpg'
 
 type ArticleCardProps = {
   title: string
@@ -32,7 +31,7 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
         {imgSrc ? (
           <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
         ) : (
-          <Image src={templateImage} sizes={imageSizes} alt="" fill className="object-cover" />
+          <ImagePlaceholder />
         )}
       </div>
       <div className="flex grow flex-col justify-between gap-6">
@@ -42,13 +41,7 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
             {title}
           </Typography>
         </div>
-        <div className="flex gap-1">
-          <MLink href={linkHref} variant="underlined" className="group-hover/CardBase:underline">
-            Čítať viac
-          </MLink>
-          {/* TODO Arrow icon should be implemented in button component */}
-          <Icon name="sipka-doprava" className="size-5 self-center" />
-        </div>
+        <CardLink linkHref={linkHref} />
       </div>
     </CardBase>
   )

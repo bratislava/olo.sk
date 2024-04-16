@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     'auto',
     'plugin:@next/next/recommended',
+    // 'plugin:tailwindcss/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:storybook/recommended',
   ],

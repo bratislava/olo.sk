@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import CategoryCardComponent from './CategoryCard'
+import FaqCategoryCardComponent from './FaqCategoryCard'
 
-const meta: Meta<typeof CategoryCardComponent> = {
-  component: CategoryCardComponent,
-  title: 'Components/Cards/CategoryCard',
+const meta: Meta<typeof FaqCategoryCardComponent> = {
+  component: FaqCategoryCardComponent,
+  title: 'Components/Cards/FaqCategoryCard',
   args: {
     title: 'Basic card title',
     linkHref: '#',
@@ -14,19 +14,19 @@ const meta: Meta<typeof CategoryCardComponent> = {
 }
 
 export default meta
-type Story = StoryObj<typeof CategoryCardComponent>
+type Story = StoryObj<typeof FaqCategoryCardComponent>
 
-export const CategoryCard: Story = {
-  render: (args) => <CategoryCardComponent {...args} />,
+export const FaqCategoryCard: Story = {
+  render: (args) => <FaqCategoryCardComponent {...args} />,
 }
 
-export const CategoryCardRows: Story = {
+export const FaqCategoryCardRows: Story = {
   render: (args) => (
     <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
-      <CategoryCardComponent {...args} />
-      <CategoryCardComponent {...args} />
-      <CategoryCardComponent {...args} />
-      <CategoryCardComponent {...args} />
+      <FaqCategoryCardComponent {...args} />
+      <FaqCategoryCardComponent {...args} />
+      <FaqCategoryCardComponent {...args} />
+      <FaqCategoryCardComponent {...args} />
     </div>
   ),
 }

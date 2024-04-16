@@ -1,3 +1,4 @@
+import Button from '@/app/_components/common/Button/Button'
 import Icon from '@/app/_components/common/Icon/Icon'
 
 const Home = async () => (
@@ -9,6 +10,8 @@ const Home = async () => (
       <Icon name="pero" className="size-4" />
       <Icon name="pero" className="size-10" />
     </div>
+
+    <Button variant="category-solid">Button</Button>
   </main>
 )
 

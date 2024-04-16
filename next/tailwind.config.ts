@@ -128,9 +128,6 @@ const config: Config = {
       },
     },
     extend: {
-      aspectRatio: {
-        'article-card': '70 / 39',
-      },
       borderWidth: {
         1: '1px',
         3: '3px',

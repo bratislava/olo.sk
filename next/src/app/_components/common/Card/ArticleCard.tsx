@@ -27,7 +27,7 @@ const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw'
 const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCardProps) => {
   return (
     <CardBase className={twMerge('gap-4', className)}>
-      <div className="relative aspect-article-card shrink-0 overflow-hidden rounded-lg">
+      <div className="relative aspect-[70/39] shrink-0 overflow-hidden rounded-lg">
         {imgSrc ? (
           <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
         ) : (

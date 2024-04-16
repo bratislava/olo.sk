@@ -6,7 +6,7 @@ const meta: Meta<typeof FaqCategoryCardComponent> = {
   component: FaqCategoryCardComponent,
   title: 'Components/Cards/FaqCategoryCard',
   args: {
-    title: 'Basic card title',
+    title: 'FAQ category card title',
     linkHref: '#',
     iconName: 'domcek',
   },

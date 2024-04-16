@@ -6,7 +6,7 @@ const meta: Meta<typeof CategoryCardComponent> = {
   component: CategoryCardComponent,
   title: 'Components/Cards/CategoryCard',
   args: {
-    title: 'Basic card title',
+    title: 'Category card title',
     linkHref: '#',
   },
   tags: ['autodocs'],

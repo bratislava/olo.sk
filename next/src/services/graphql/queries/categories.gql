@@ -1,0 +1,24 @@
+fragment CategoryEntity on CategoryEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+
+query Categories {
+  categories {
+    data {
+      ...CategoryEntity
+    }
+  }
+}
+
+query CategoryBySlug($slug: String!) {
+  categories(filters: { slug: { eq: $slug } }) {
+    data {
+      ...CategoryEntity
+    }
+  }
+}

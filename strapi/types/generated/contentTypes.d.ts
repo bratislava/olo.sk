@@ -301,28 +301,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   }
 }
 
-export interface ApiPagePage extends Schema.CollectionType {
-  collectionName: 'pages'
-  info: {
-    singularName: 'page'
-    pluralName: 'pages'
-    displayName: 'Page'
-    description: ''
-  }
-  options: {
-    draftAndPublish: true
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required
-    createdAt: Attribute.DateTime
-    updatedAt: Attribute.DateTime
-    publishedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
-    updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
-  }
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files'
   info: {
@@ -683,6 +661,294 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   }
 }
 
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles'
+  info: {
+    singularName: 'article'
+    pluralName: 'articles'
+    displayName: '\u010Cl\u00E1nky'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::article.article', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    perex: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::article.article', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::article.article', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<'api::article.article', 'oneToMany', 'api::article.article'>
+    locale: Attribute.String
+  }
+}
+
+export interface ApiBranchBranch extends Schema.CollectionType {
+  collectionName: 'branches'
+  info: {
+    singularName: 'branch'
+    pluralName: 'branches'
+    displayName: 'Pobo\u010Dky'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::branch.branch', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    openingTimes: Attribute.Relation<
+      'api::branch.branch',
+      'manyToMany',
+      'api::opening-time.opening-time'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::branch.branch', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::branch.branch', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<'api::branch.branch', 'oneToMany', 'api::branch.branch'>
+    locale: Attribute.String
+  }
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories'
+  info: {
+    singularName: 'category'
+    pluralName: 'categories'
+    displayName: 'Kateg\u00F3rie'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::category.category', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::category.category', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::category.category', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::category.category'
+    >
+    locale: Attribute.String
+  }
+}
+
+export interface ApiContactContact extends Schema.CollectionType {
+  collectionName: 'contacts'
+  info: {
+    singularName: 'contact'
+    pluralName: 'contacts'
+    displayName: 'Kontakty'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::contact.contact', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::contact.contact', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
+export interface ApiDocumentDocument extends Schema.CollectionType {
+  collectionName: 'documents'
+  info: {
+    singularName: 'document'
+    pluralName: 'documents'
+    displayName: 'document'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    slug: Attribute.UID<'api::document.document', 'title'> & Attribute.Required
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::document.document', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::document.document', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
+export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
+  collectionName: 'opening_times'
+  info: {
+    singularName: 'opening-time'
+    pluralName: 'opening-times'
+    displayName: 'Otv\u00E1racie hodiny'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    internalName: Attribute.String & Attribute.Required
+    branches: Attribute.Relation<
+      'api::opening-time.opening-time',
+      'manyToMany',
+      'api::branch.branch'
+    >
+    openingHours: Attribute.Component<'items.opening-hours-item', true>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::opening-time.opening-time', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::opening-time.opening-time', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
+export interface ApiPagePage extends Schema.CollectionType {
+  collectionName: 'pages'
+  info: {
+    singularName: 'page'
+    pluralName: 'pages'
+    displayName: 'Str\u00E1nky'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required
+    header: Attribute.DynamicZone<['sections.section-1', 'sections.section-2']> &
+      Attribute.SetMinMax<
+        {
+          max: 1
+        },
+        number
+      >
+    sections: Attribute.DynamicZone<['sections.section-1', 'sections.section-2']>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
+  }
+}
+
+export interface ApiTagTag extends Schema.CollectionType {
+  collectionName: 'tags'
+  info: {
+    singularName: 'tag'
+    pluralName: 'tags'
+    displayName: 'Tagy'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::tag.tag', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<'api::tag.tag', 'oneToMany', 'api::tag.tag'>
+    locale: Attribute.String
+  }
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -693,7 +959,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission
       'admin::transfer-token': AdminTransferToken
       'admin::transfer-token-permission': AdminTransferTokenPermission
-      'api::page.page': ApiPagePage
       'plugin::upload.file': PluginUploadFile
       'plugin::upload.folder': PluginUploadFolder
       'plugin::content-releases.release': PluginContentReleasesRelease
@@ -702,6 +967,14 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
+      'api::article.article': ApiArticleArticle
+      'api::branch.branch': ApiBranchBranch
+      'api::category.category': ApiCategoryCategory
+      'api::contact.contact': ApiContactContact
+      'api::document.document': ApiDocumentDocument
+      'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
+      'api::page.page': ApiPagePage
+      'api::tag.tag': ApiTagTag
     }
   }
 }

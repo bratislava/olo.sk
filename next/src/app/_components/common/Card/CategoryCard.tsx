@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { twMerge } from 'tailwind-merge'
 
 import CardBase from '@/app/_components/common/Card/CardBase'
 import CardLink from '@/app/_components/common/Card/CardLink'
@@ -26,6 +25,7 @@ const CategoryCardTitle = ({ text }: { text: string }) => (
     {text}
   </Typography>
 )
+
 const CategoryCardImage = ({ imgSrc }: { imgSrc?: string }) => {
   const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw' })
 
@@ -42,11 +42,14 @@ const CategoryCardImage = ({ imgSrc }: { imgSrc?: string }) => {
 
 const CategoryCard = ({ title, className, linkHref, linkText, imgSrc }: CategoryCardProps) => {
   return (
-    <CardBase className={twMerge('gap-4 bg-white', className)}>
-      <CategoryCardImage imgSrc={imgSrc} />
-      <div className="flex flex-col gap-2 ">
-        <CategoryCardTitle text={title} />
-        <CardLink linkHref={linkHref} customText={linkText} />
+    <CardBase background="white" className={className}>
+      <div className="flex flex-col gap-4">
+        <CategoryCardImage imgSrc={imgSrc} />
+        <div className="flex flex-col gap-2 ">
+          <CategoryCardTitle text={title} />
+          {/* TODO Replace CardLink with button when ready */}
+          <CardLink linkHref={linkHref} customText={linkText} />
+        </div>
       </div>
     </CardBase>
   )

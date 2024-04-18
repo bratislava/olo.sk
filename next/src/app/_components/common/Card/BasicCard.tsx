@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { twMerge } from 'tailwind-merge'
 
 import CardBase from '@/app/_components/common/Card/CardBase'
 import CardLink from '@/app/_components/common/Card/CardLink'
@@ -59,17 +58,14 @@ const BasicCard = ({
   showBorder = true,
 }: BasicCardProps) => {
   return (
-    <CardBase
-      variant={showBorder ? 'border' : 'plain'}
-      className={twMerge('bg-white', className)}
-      // )}
-    >
+    <CardBase variant={showBorder ? 'solid' : 'plain'} background="white" className={className}>
       <BasicCardImage imgSrc={imgSrc} />
       <div className="flex flex-col gap-5 px-4 py-4 lg:px-5">
         <div className="flex flex-col gap-3">
           <BasicCardTitle text={title} />
           <BasicCardSubtitle text={subtext} />
         </div>
+        {/* TODO Replace CardLink with button when ready */}
         <CardLink linkHref={linkHref} customText={linkText} />
       </div>
     </CardBase>

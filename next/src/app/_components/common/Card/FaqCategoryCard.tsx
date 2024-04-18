@@ -1,7 +1,5 @@
 'use client'
 
-import { twMerge } from 'tailwind-merge'
-
 import CardBase from '@/app/_components/common/Card/CardBase'
 import CardLink from '@/app/_components/common/Card/CardLink'
 import Icon, { iconNameMap } from '@/app/_components/common/Icon/Icon'
@@ -40,13 +38,16 @@ const FaqCategoryCard = ({
   iconName,
 }: FaqCategoryCardProps) => {
   return (
-    <CardBase variant="border" className={twMerge('gap-8 bg-white p-5', className)}>
-      <div className="self-start">
-        <FaqCategoryCardIcon iconName={iconName} />
-      </div>
-      <div className="flex flex-col gap-4 ">
-        <FaqCategoryCardTitle text={title} />
-        <CardLink linkHref={linkHref} customText={linkText} />
+    <CardBase background="white" variant="solid" className={className}>
+      <div className="flex flex-col gap-8 p-5">
+        <div className="self-start">
+          <FaqCategoryCardIcon iconName={iconName} />
+        </div>
+        <div className="flex flex-col gap-4 ">
+          <FaqCategoryCardTitle text={title} />
+          {/* TODO Replace CardLink with button when ready */}
+          <CardLink linkHref={linkHref} customText={linkText} />
+        </div>
       </div>
     </CardBase>
   )

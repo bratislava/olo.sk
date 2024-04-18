@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { twMerge } from 'tailwind-merge'
 
 import CardBase from '@/app/_components/common/Card/CardBase'
 import CardLink from '@/app/_components/common/Card/CardLink'
@@ -26,22 +25,24 @@ const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw'
 
 const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCardProps) => {
   return (
-    <CardBase className={twMerge('gap-4', className)}>
-      <div className="relative aspect-[70/39] shrink-0 overflow-hidden rounded-lg">
-        {imgSrc ? (
-          <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
-        ) : (
-          <ImagePlaceholder />
-        )}
-      </div>
-      <div className="flex grow flex-col justify-between gap-6">
-        <div className="flex flex-col gap-2">
-          <Tag variant="without-bg" text={tagText} />
-          <Typography variant="h4" className_onlyWhenNecessary="line-clamp-3">
-            {title}
-          </Typography>
+    <CardBase className={className}>
+      <div className="flex flex-col gap-4">
+        <div className="relative aspect-[70/39] shrink-0 overflow-hidden rounded-lg">
+          {imgSrc ? (
+            <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
+          ) : (
+            <ImagePlaceholder />
+          )}
         </div>
-        <CardLink linkHref={linkHref} />
+        <div className="flex grow flex-col justify-between gap-6">
+          <div className="flex flex-col gap-2">
+            <Tag variant="without-bg" text={tagText} />
+            <Typography variant="h4" className_onlyWhenNecessary="line-clamp-3">
+              {title}
+            </Typography>
+          </div>
+          <CardLink linkHref={linkHref} />
+        </div>
       </div>
     </CardBase>
   )

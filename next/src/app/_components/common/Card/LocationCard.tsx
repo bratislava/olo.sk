@@ -37,7 +37,8 @@ const LocationCardImage = ({ imgSrc }: { imgSrc?: string }) => {
   const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw' })
 
   return (
-    <div className="relative aspect-square size-[64px] shrink-0 overflow-hidden rounded-lg lg:size-[128px]">
+    // 4 rem = 64px, 8 rem = 128px
+    <div className="relative aspect-square size-[4rem] shrink-0 overflow-hidden rounded-lg lg:size-[8rem]">
       {imgSrc ? (
         <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
       ) : (
@@ -47,16 +48,21 @@ const LocationCardImage = ({ imgSrc }: { imgSrc?: string }) => {
   )
 }
 
+// TODO: Still very not ready
+
 const LocationCard = ({ title, address, className, linkHref, imgSrc }: LocationCardProps) => {
   return (
-    <CardBase className={twMerge('gap-6 border border-border p-4 lg:flex-row lg:p-6 ', className)}>
-      <LocationCardImage imgSrc={imgSrc} />
-      <div className="flex flex-col gap-6 lg:justify-between lg:gap-0">
-        <div className="flex flex-col gap-2">
-          <LocationCardTitle text={title} />
-          <LocationCardSubtitle text={address} />
+    <CardBase variant="solid" className={twMerge(' ', className)}>
+      <div className="gap-6 p-4 lg:flex-row lg:p-6">
+        <LocationCardImage imgSrc={imgSrc} />
+        <div className="flex flex-col gap-6 lg:justify-between lg:gap-0">
+          <div className="flex flex-col gap-2">
+            <LocationCardTitle text={title} />
+            <LocationCardSubtitle text={address} />
+          </div>
+          {/* TODO Replace CardLink with button when ready */}
+          <CardLink linkHref={linkHref} />
         </div>
-        <CardLink linkHref={linkHref} />
       </div>
     </CardBase>
   )

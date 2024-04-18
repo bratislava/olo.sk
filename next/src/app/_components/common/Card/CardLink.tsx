@@ -11,7 +11,12 @@ type CardLinkProps = {
 const CardLink = ({ linkHref, customText }: CardLinkProps) => {
   return (
     <div className="flex gap-1">
-      <MLink href={linkHref} variant="underlined" className="group-hover/CardBase:underline">
+      <MLink
+        href={linkHref}
+        variant="underlined"
+        stretched
+        className="group-hover/CardBase:underline"
+      >
         {/* TODO Add translation */}
         {customText ?? 'Čítať viac'}
       </MLink>

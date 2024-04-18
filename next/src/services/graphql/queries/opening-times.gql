@@ -1,0 +1,15 @@
+fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
+  label
+  value
+}
+
+
+fragment OpeningTimeEntity on OpeningTimeEntity {
+  id
+  attributes {
+    internalName
+    openingHours {
+      ...OpeningHoursItem
+    }
+  }
+}

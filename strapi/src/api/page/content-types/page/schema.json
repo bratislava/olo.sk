@@ -4,7 +4,7 @@
   "info": {
     "singularName": "page",
     "pluralName": "pages",
-    "displayName": "Page",
+    "displayName": "Stránky",
     "description": ""
   },
   "options": {
@@ -23,18 +23,12 @@
     },
     "header": {
       "type": "dynamiczone",
-      "components": [
-        "sections.section-1",
-        "sections.section-2"
-      ],
+      "components": ["sections.section-1", "sections.section-2"],
       "max": 1
     },
     "sections": {
       "type": "dynamiczone",
-      "components": [
-        "sections.section-1",
-        "sections.section-2"
-      ]
+      "components": ["sections.section-1", "sections.section-2"]
     }
   }
 }

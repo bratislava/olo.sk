@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_items_opening_time_items",
+  "collectionName": "components_items_opening_hours_items",
   "info": {
-    "displayName": "opening time item"
+    "displayName": "opening hours item"
   },
   "options": {},
   "attributes": {

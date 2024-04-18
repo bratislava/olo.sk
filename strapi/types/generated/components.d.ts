@@ -16,10 +16,10 @@ export interface ItemsLink extends Schema.Component {
   }
 }
 
-export interface ItemsOpeningTimeItem extends Schema.Component {
-  collectionName: 'components_items_opening_time_items'
+export interface ItemsOpeningHoursItem extends Schema.Component {
+  collectionName: 'components_items_opening_hours_items'
   info: {
-    displayName: 'opening time item'
+    displayName: 'opening hours item'
   }
   attributes: {
     label: Attribute.String & Attribute.Required
@@ -51,7 +51,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'items.link': ItemsLink
-      'items.opening-time-item': ItemsOpeningTimeItem
+      'items.opening-hours-item': ItemsOpeningHoursItem
       'sections.section-1': SectionsSection1
       'sections.section-2': SectionsSection2
     }

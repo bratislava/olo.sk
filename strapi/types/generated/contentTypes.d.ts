@@ -666,7 +666,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   info: {
     singularName: 'article'
     pluralName: 'articles'
-    displayName: 'article'
+    displayName: '\u010Cl\u00E1nky'
     description: ''
   }
   options: {
@@ -715,7 +715,7 @@ export interface ApiBranchBranch extends Schema.CollectionType {
   info: {
     singularName: 'branch'
     pluralName: 'branches'
-    displayName: 'branch'
+    displayName: 'Pobo\u010Dky'
     description: ''
   }
   options: {
@@ -763,7 +763,8 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   info: {
     singularName: 'category'
     pluralName: 'categories'
-    displayName: 'category'
+    displayName: 'Kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -809,7 +810,7 @@ export interface ApiContactContact extends Schema.CollectionType {
   info: {
     singularName: 'contact'
     pluralName: 'contacts'
-    displayName: 'contact'
+    displayName: 'Kontakty'
     description: ''
   }
   options: {
@@ -855,7 +856,7 @@ export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
   info: {
     singularName: 'opening-time'
     pluralName: 'opening-times'
-    displayName: 'opening time'
+    displayName: 'Otv\u00E1racie hodiny'
     description: ''
   }
   options: {
@@ -863,12 +864,12 @@ export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
   }
   attributes: {
     internalName: Attribute.String & Attribute.Required
-    openingHours: Attribute.Component<'items.opening-time-item', true>
     branches: Attribute.Relation<
       'api::opening-time.opening-time',
       'manyToMany',
       'api::branch.branch'
     >
+    openingHours: Attribute.Component<'items.opening-hours-item', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::opening-time.opening-time', 'oneToOne', 'admin::user'> &
@@ -883,7 +884,7 @@ export interface ApiPagePage extends Schema.CollectionType {
   info: {
     singularName: 'page'
     pluralName: 'pages'
-    displayName: 'Page'
+    displayName: 'Str\u00E1nky'
     description: ''
   }
   options: {
@@ -913,7 +914,7 @@ export interface ApiTagTag extends Schema.CollectionType {
   info: {
     singularName: 'tag'
     pluralName: 'tags'
-    displayName: 'tag'
+    displayName: 'Tagy'
   }
   options: {
     draftAndPublish: true

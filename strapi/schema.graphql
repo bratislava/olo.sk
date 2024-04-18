@@ -206,21 +206,21 @@ input ComponentItemsLinkInput {
   url: String
 }
 
-type ComponentItemsOpeningTimeItem {
+type ComponentItemsOpeningHoursItem {
   id: ID!
   label: String!
   value: String!
 }
 
-input ComponentItemsOpeningTimeItemFiltersInput {
-  and: [ComponentItemsOpeningTimeItemFiltersInput]
+input ComponentItemsOpeningHoursItemFiltersInput {
+  and: [ComponentItemsOpeningHoursItemFiltersInput]
   label: StringFilterInput
-  not: ComponentItemsOpeningTimeItemFiltersInput
-  or: [ComponentItemsOpeningTimeItemFiltersInput]
+  not: ComponentItemsOpeningHoursItemFiltersInput
+  or: [ComponentItemsOpeningHoursItemFiltersInput]
   value: StringFilterInput
 }
 
-input ComponentItemsOpeningTimeItemInput {
+input ComponentItemsOpeningHoursItemInput {
   id: ID
   label: String
   value: String
@@ -441,7 +441,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentItemsLink | ComponentItemsOpeningTimeItem | ComponentSectionsSection1 | ComponentSectionsSection2 | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsSection1 | ComponentSectionsSection2 | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type I18NLocale {
   code: String
@@ -677,7 +677,7 @@ type OpeningTime {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   createdAt: DateTime
   internalName: String!
-  openingHours(filters: ComponentItemsOpeningTimeItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOpeningTimeItem]
+  openingHours(filters: ComponentItemsOpeningHoursItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOpeningHoursItem]
   updatedAt: DateTime
 }
 
@@ -702,7 +702,7 @@ input OpeningTimeFiltersInput {
   id: IDFilterInput
   internalName: StringFilterInput
   not: OpeningTimeFiltersInput
-  openingHours: ComponentItemsOpeningTimeItemFiltersInput
+  openingHours: ComponentItemsOpeningHoursItemFiltersInput
   or: [OpeningTimeFiltersInput]
   updatedAt: DateTimeFilterInput
 }
@@ -710,7 +710,7 @@ input OpeningTimeFiltersInput {
 input OpeningTimeInput {
   branches: [ID]
   internalName: String
-  openingHours: [ComponentItemsOpeningTimeItemInput]
+  openingHours: [ComponentItemsOpeningHoursItemInput]
 }
 
 type OpeningTimeRelationResponseCollection {

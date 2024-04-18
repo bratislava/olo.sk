@@ -254,22 +254,22 @@ export type ComponentItemsLink = {
   url?: Maybe<Scalars['String']['output']>
 }
 
-export type ComponentItemsOpeningTimeItem = {
-  __typename?: 'ComponentItemsOpeningTimeItem'
+export type ComponentItemsOpeningHoursItem = {
+  __typename?: 'ComponentItemsOpeningHoursItem'
   id: Scalars['ID']['output']
   label: Scalars['String']['output']
   value: Scalars['String']['output']
 }
 
-export type ComponentItemsOpeningTimeItemFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningTimeItemFiltersInput>>>
+export type ComponentItemsOpeningHoursItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningHoursItemFiltersInput>>>
   label?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<ComponentItemsOpeningTimeItemFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningTimeItemFiltersInput>>>
+  not?: InputMaybe<ComponentItemsOpeningHoursItemFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningHoursItemFiltersInput>>>
   value?: InputMaybe<StringFilterInput>
 }
 
-export type ComponentItemsOpeningTimeItemInput = {
+export type ComponentItemsOpeningHoursItemInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   label?: InputMaybe<Scalars['String']['input']>
   value?: InputMaybe<Scalars['String']['input']>
@@ -439,7 +439,7 @@ export type GenericMorph =
   | Branch
   | Category
   | ComponentItemsLink
-  | ComponentItemsOpeningTimeItem
+  | ComponentItemsOpeningHoursItem
   | ComponentSectionsSection1
   | ComponentSectionsSection2
   | Contact
@@ -879,7 +879,7 @@ export type OpeningTime = {
   branches?: Maybe<BranchRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   internalName: Scalars['String']['output']
-  openingHours?: Maybe<Array<Maybe<ComponentItemsOpeningTimeItem>>>
+  openingHours?: Maybe<Array<Maybe<ComponentItemsOpeningHoursItem>>>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
@@ -891,7 +891,7 @@ export type OpeningTimeBranchesArgs = {
 }
 
 export type OpeningTimeOpeningHoursArgs = {
-  filters?: InputMaybe<ComponentItemsOpeningTimeItemFiltersInput>
+  filters?: InputMaybe<ComponentItemsOpeningHoursItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
@@ -920,7 +920,7 @@ export type OpeningTimeFiltersInput = {
   id?: InputMaybe<IdFilterInput>
   internalName?: InputMaybe<StringFilterInput>
   not?: InputMaybe<OpeningTimeFiltersInput>
-  openingHours?: InputMaybe<ComponentItemsOpeningTimeItemFiltersInput>
+  openingHours?: InputMaybe<ComponentItemsOpeningHoursItemFiltersInput>
   or?: InputMaybe<Array<InputMaybe<OpeningTimeFiltersInput>>>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
@@ -928,7 +928,7 @@ export type OpeningTimeFiltersInput = {
 export type OpeningTimeInput = {
   branches?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   internalName?: InputMaybe<Scalars['String']['input']>
-  openingHours?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningTimeItemInput>>>
+  openingHours?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningHoursItemInput>>>
 }
 
 export type OpeningTimeRelationResponseCollection = {
@@ -1645,6 +1645,180 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>
 }
 
+export type ArticleEntityFragment = {
+  __typename?: 'ArticleEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Article'; title: string; slug: string; perex?: string | null } | null
+}
+
+export type ArticlesQueryVariables = Exact<{ [key: string]: never }>
+
+export type ArticlesQuery = {
+  __typename?: 'Query'
+  articles?: {
+    __typename?: 'ArticleEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ArticleEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Article'
+        title: string
+        slug: string
+        perex?: string | null
+      } | null
+    }>
+  } | null
+}
+
+export type ArticleBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type ArticleBySlugQuery = {
+  __typename?: 'Query'
+  articles?: {
+    __typename?: 'ArticleEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ArticleEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Article'
+        title: string
+        slug: string
+        perex?: string | null
+      } | null
+    }>
+  } | null
+}
+
+export type BranchEntityFragment = {
+  __typename?: 'BranchEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+}
+
+export type BranchesQueryVariables = Exact<{ [key: string]: never }>
+
+export type BranchesQuery = {
+  __typename?: 'Query'
+  branches?: {
+    __typename?: 'BranchEntityResponseCollection'
+    data: Array<{
+      __typename?: 'BranchEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type BranchBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type BranchBySlugQuery = {
+  __typename?: 'Query'
+  branches?: {
+    __typename?: 'BranchEntityResponseCollection'
+    data: Array<{
+      __typename?: 'BranchEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type CategoryEntityFragment = {
+  __typename?: 'CategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+}
+
+export type CategoriesQueryVariables = Exact<{ [key: string]: never }>
+
+export type CategoriesQuery = {
+  __typename?: 'Query'
+  categories?: {
+    __typename?: 'CategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'CategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type CategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type CategoryBySlugQuery = {
+  __typename?: 'Query'
+  categories?: {
+    __typename?: 'CategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'CategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type DocumentEntityFragment = {
+  __typename?: 'DocumentEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+}
+
+export type DocumentsQueryVariables = Exact<{ [key: string]: never }>
+
+export type DocumentsQuery = {
+  __typename?: 'Query'
+  documents?: {
+    __typename?: 'DocumentEntityResponseCollection'
+    data: Array<{
+      __typename?: 'DocumentEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type DocumentBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type DocumentBySlugQuery = {
+  __typename?: 'Query'
+  documents?: {
+    __typename?: 'DocumentEntityResponseCollection'
+    data: Array<{
+      __typename?: 'DocumentEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type OpeningHoursItemFragment = {
+  __typename?: 'ComponentItemsOpeningHoursItem'
+  label: string
+  value: string
+}
+
+export type OpeningTimeEntityFragment = {
+  __typename?: 'OpeningTimeEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'OpeningTime'
+    internalName: string
+    openingHours?: Array<{
+      __typename?: 'ComponentItemsOpeningHoursItem'
+      label: string
+      value: string
+    } | null> | null
+  } | null
+}
+
 export type PageEntityFragment = {
   __typename?: 'PageEntity'
   id?: string | null
@@ -1681,6 +1855,97 @@ export type PageBySlugQuery = {
   } | null
 }
 
+export type TagEntityFragment = {
+  __typename?: 'TagEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+}
+
+export type TagsQueryVariables = Exact<{ [key: string]: never }>
+
+export type TagsQuery = {
+  __typename?: 'Query'
+  tags?: {
+    __typename?: 'TagEntityResponseCollection'
+    data: Array<{
+      __typename?: 'TagEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type TagBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type TagBySlugQuery = {
+  __typename?: 'Query'
+  tags?: {
+    __typename?: 'TagEntityResponseCollection'
+    data: Array<{
+      __typename?: 'TagEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export const ArticleEntityFragmentDoc = gql`
+  fragment ArticleEntity on ArticleEntity {
+    id
+    attributes {
+      title
+      slug
+      perex
+    }
+  }
+`
+export const BranchEntityFragmentDoc = gql`
+  fragment BranchEntity on BranchEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const CategoryEntityFragmentDoc = gql`
+  fragment CategoryEntity on CategoryEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const DocumentEntityFragmentDoc = gql`
+  fragment DocumentEntity on DocumentEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const OpeningHoursItemFragmentDoc = gql`
+  fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
+    label
+    value
+  }
+`
+export const OpeningTimeEntityFragmentDoc = gql`
+  fragment OpeningTimeEntity on OpeningTimeEntity {
+    id
+    attributes {
+      internalName
+      openingHours {
+        ...OpeningHoursItem
+      }
+    }
+  }
+  ${OpeningHoursItemFragmentDoc}
+`
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
     id
@@ -1689,6 +1954,95 @@ export const PageEntityFragmentDoc = gql`
       slug
     }
   }
+`
+export const TagEntityFragmentDoc = gql`
+  fragment TagEntity on TagEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const ArticlesDocument = gql`
+  query Articles {
+    articles {
+      data {
+        ...ArticleEntity
+      }
+    }
+  }
+  ${ArticleEntityFragmentDoc}
+`
+export const ArticleBySlugDocument = gql`
+  query ArticleBySlug($slug: String!) {
+    articles(filters: { slug: { eq: $slug } }) {
+      data {
+        ...ArticleEntity
+      }
+    }
+  }
+  ${ArticleEntityFragmentDoc}
+`
+export const BranchesDocument = gql`
+  query Branches {
+    branches {
+      data {
+        ...BranchEntity
+      }
+    }
+  }
+  ${BranchEntityFragmentDoc}
+`
+export const BranchBySlugDocument = gql`
+  query BranchBySlug($slug: String!) {
+    branches(filters: { slug: { eq: $slug } }) {
+      data {
+        ...BranchEntity
+      }
+    }
+  }
+  ${BranchEntityFragmentDoc}
+`
+export const CategoriesDocument = gql`
+  query Categories {
+    categories {
+      data {
+        ...CategoryEntity
+      }
+    }
+  }
+  ${CategoryEntityFragmentDoc}
+`
+export const CategoryBySlugDocument = gql`
+  query CategoryBySlug($slug: String!) {
+    categories(filters: { slug: { eq: $slug } }) {
+      data {
+        ...CategoryEntity
+      }
+    }
+  }
+  ${CategoryEntityFragmentDoc}
+`
+export const DocumentsDocument = gql`
+  query Documents {
+    documents {
+      data {
+        ...DocumentEntity
+      }
+    }
+  }
+  ${DocumentEntityFragmentDoc}
+`
+export const DocumentBySlugDocument = gql`
+  query DocumentBySlug($slug: String!) {
+    documents(filters: { slug: { eq: $slug } }) {
+      data {
+        ...DocumentEntity
+      }
+    }
+  }
+  ${DocumentEntityFragmentDoc}
 `
 export const PagesDocument = gql`
   query Pages {
@@ -1710,6 +2064,26 @@ export const PageBySlugDocument = gql`
   }
   ${PageEntityFragmentDoc}
 `
+export const TagsDocument = gql`
+  query Tags {
+    tags {
+      data {
+        ...TagEntity
+      }
+    }
+  }
+  ${TagEntityFragmentDoc}
+`
+export const TagBySlugDocument = gql`
+  query TagBySlug($slug: String!) {
+    tags(filters: { slug: { eq: $slug } }) {
+      data {
+        ...TagEntity
+      }
+    }
+  }
+  ${TagEntityFragmentDoc}
+`
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
@@ -1723,6 +2097,126 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    Articles(
+      variables?: ArticlesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticlesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticlesQuery>(ArticlesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Articles',
+        'query',
+        variables,
+      )
+    },
+    ArticleBySlug(
+      variables: ArticleBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticleBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticleBySlugQuery>(ArticleBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ArticleBySlug',
+        'query',
+        variables,
+      )
+    },
+    Branches(
+      variables?: BranchesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<BranchesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<BranchesQuery>(BranchesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Branches',
+        'query',
+        variables,
+      )
+    },
+    BranchBySlug(
+      variables: BranchBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<BranchBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<BranchBySlugQuery>(BranchBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'BranchBySlug',
+        'query',
+        variables,
+      )
+    },
+    Categories(
+      variables?: CategoriesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<CategoriesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<CategoriesQuery>(CategoriesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Categories',
+        'query',
+        variables,
+      )
+    },
+    CategoryBySlug(
+      variables: CategoryBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<CategoryBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<CategoryBySlugQuery>(CategoryBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'CategoryBySlug',
+        'query',
+        variables,
+      )
+    },
+    Documents(
+      variables?: DocumentsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<DocumentsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<DocumentsQuery>(DocumentsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Documents',
+        'query',
+        variables,
+      )
+    },
+    DocumentBySlug(
+      variables: DocumentBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<DocumentBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<DocumentBySlugQuery>(DocumentBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'DocumentBySlug',
+        'query',
+        variables,
+      )
+    },
     Pages(
       variables?: PagesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
@@ -1749,6 +2243,36 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'PageBySlug',
+        'query',
+        variables,
+      )
+    },
+    Tags(
+      variables?: TagsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<TagsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<TagsQuery>(TagsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Tags',
+        'query',
+        variables,
+      )
+    },
+    TagBySlug(
+      variables: TagBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<TagBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<TagBySlugQuery>(TagBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'TagBySlug',
         'query',
         variables,
       )

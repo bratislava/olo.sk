@@ -4,7 +4,7 @@
   "info": {
     "singularName": "opening-time",
     "pluralName": "opening-times",
-    "displayName": "opening time",
+    "displayName": "Otváracie hodiny",
     "description": ""
   },
   "options": {
@@ -16,16 +16,16 @@
       "type": "string",
       "required": true
     },
-    "openingHours": {
-      "type": "component",
-      "repeatable": true,
-      "component": "items.opening-time-item"
-    },
     "branches": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::branch.branch",
       "mappedBy": "openingTimes"
+    },
+    "openingHours": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.opening-hours-item"
     }
   }
 }

@@ -15,17 +15,13 @@ type ListingCardProps = {
  * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1341-11042&mode=dev
  */
 
-const ListingCardTitle = ({ text }: { text: string }) => (
-  <Typography variant="h6" className_onlyWhenNecessary="line-clamp-3">
-    {text}
-  </Typography>
-)
-
 const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {
   return (
     <CardBase background="white" variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-4">
-        <ListingCardTitle text={title} />
+        <Typography variant="h6" className_onlyWhenNecessary="line-clamp-3">
+          {title}
+        </Typography>
         {/* TODO Replace this div with Button when ready */}
         <div className="flex items-center gap-6 lg:justify-between lg:gap-0">
           <MLink href={linkHref} stretched className="group-hover/CardBase:underline">

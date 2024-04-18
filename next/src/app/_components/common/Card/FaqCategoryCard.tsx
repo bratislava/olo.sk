@@ -17,19 +17,6 @@ type FaqCategoryCardProps = {
  * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=44-6280&mode=dev
  */
 
-const FaqCategoryCardTitle = ({ text }: { text: string }) => (
-  <Typography variant="h5" className_onlyWhenNecessary="line-clamp-3">
-    {text}
-  </Typography>
-)
-const FaqCategoryCardIcon = ({ iconName }: { iconName?: keyof typeof iconNameMap }) => {
-  return (
-    <div className="rounded-xl bg-background-secondary p-4">
-      {iconName ? <Icon name={iconName} className="size-6" /> : <div className="size-6" />}
-    </div>
-  )
-}
-
 const FaqCategoryCard = ({
   title,
   className,
@@ -40,11 +27,13 @@ const FaqCategoryCard = ({
   return (
     <CardBase background="white" variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-5">
-        <div className="self-start">
-          <FaqCategoryCardIcon iconName={iconName} />
+        <div className="self-start rounded-xl bg-background-secondary p-4">
+          {iconName ? <Icon name={iconName} className="size-6" /> : <div className="size-6" />}
         </div>
         <div className="flex flex-col gap-4 ">
-          <FaqCategoryCardTitle text={title} />
+          <Typography variant="h5" className_onlyWhenNecessary="line-clamp-3">
+            {title}
+          </Typography>
           {/* TODO Replace CardLink with button when ready */}
           <CardLink linkHref={linkHref} customText={linkText} />
         </div>

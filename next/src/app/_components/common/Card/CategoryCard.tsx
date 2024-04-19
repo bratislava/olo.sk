@@ -19,7 +19,7 @@ type CategoryCardProps = {
 
 const CategoryCard = ({ title, className, linkHref, linkText, imgSrc }: CategoryCardProps) => {
   return (
-    <CardBase background="white" className={className}>
+    <CardBase variant="plain" className={className}>
       <div className="flex flex-col gap-4">
         <CardImage imgSrc={imgSrc} className="aspect-square rounded-lg" />
         <div className="flex flex-col gap-2 ">

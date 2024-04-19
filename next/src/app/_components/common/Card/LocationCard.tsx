@@ -19,7 +19,7 @@ type LocationCardProps = {
 
 const LocationCard = ({ title, className, linkHref, address, iconName }: LocationCardProps) => {
   return (
-    <CardBase background="white" variant="solid" className={className}>
+    <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-5">
         <div className="self-start rounded-full bg-background-secondary p-4">
           {iconName ? (

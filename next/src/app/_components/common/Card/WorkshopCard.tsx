@@ -18,7 +18,7 @@ type WorkshopCardProps = {
 
 const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProps) => {
   return (
-    <CardBase background="white" variant="solid" className={className}>
+    <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-6 p-4 lg:p-6">
         <div className="self-start rounded-2xl bg-background-secondary p-4">
           {iconName ? <Icon name={iconName} className="size-6" /> : <div className="size-6" />}

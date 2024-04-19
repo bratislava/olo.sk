@@ -6,7 +6,6 @@ import { twMerge } from 'tailwind-merge'
 
 export type CardBaseProps = {
   variant?: 'solid' | 'plain'
-  background?: 'white' | 'transparent'
 } & HTMLAttributes<HTMLDivElement>
 
 const CardBase = ({ variant = 'plain', children, className, ...rest }: CardBaseProps) => {

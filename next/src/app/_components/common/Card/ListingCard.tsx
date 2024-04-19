@@ -17,7 +17,7 @@ type ListingCardProps = {
 
 const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {
   return (
-    <CardBase background="white" variant="solid" className={className}>
+    <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-4">
         <Typography variant="h6" className_onlyWhenNecessary="line-clamp-3">
           {title}

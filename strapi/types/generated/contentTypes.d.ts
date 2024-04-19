@@ -833,7 +833,8 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   info: {
     singularName: 'document'
     pluralName: 'documents'
-    displayName: 'document'
+    displayName: 'Dokumenty'
+    description: ''
   }
   options: {
     draftAndPublish: true

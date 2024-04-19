@@ -5,7 +5,7 @@ import * as Icons from '@/assets/icons'
 
 // TODO make it generic and typesafe (allow only defined filenames/components)
 
-const iconNameMap = {
+export const iconNameMap = {
   'chevron-dolava': 'ChevronLeftIcon',
   'chevron-dole': 'ChevronDownIcon',
   'chevron-dole-maly': 'ChevronDownSmallIcon',
@@ -64,7 +64,7 @@ const iconNameMap = {
 
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
-type IconProps = {
+export type IconProps = {
   name: keyof typeof iconNameMap
   className?: string
 }

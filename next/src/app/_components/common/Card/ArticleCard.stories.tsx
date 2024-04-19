@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
-import { twMerge } from 'tailwind-merge'
 
 import ArticleCardComponent from './ArticleCard'
 
 const meta: Meta<typeof ArticleCardComponent> = {
   component: ArticleCardComponent,
-  title: 'Components/ArticleCard',
+  title: 'Components/Cards/ArticleCard',
   args: {
     title: 'Article headline',
   },

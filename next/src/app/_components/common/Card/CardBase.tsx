@@ -5,7 +5,7 @@ import React, { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export type CardBaseProps = {
-  variant?: 'solid' | 'plain'
+  variant?: 'plain' | 'plain-white' | 'plain-brand' | 'solid'
 } & HTMLAttributes<HTMLDivElement>
 
 const CardBase = ({ variant = 'plain', children, className, ...rest }: CardBaseProps) => {
@@ -14,7 +14,9 @@ const CardBase = ({ variant = 'plain', children, className, ...rest }: CardBaseP
       // overflow-hidden ensures image not to overlap with rounded corners
       className={twMerge(
         cx('group/CardBase relative flex flex-col overflow-hidden rounded-lg', {
-          'border border-border bg-white': variant === 'solid',
+          'border border-border bg-background-primary': variant === 'solid',
+          'bg-background-primary': variant === 'plain-white',
+          'bg-background-secondary': variant === 'plain-brand',
         }),
         className,
       )}

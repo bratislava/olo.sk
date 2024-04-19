@@ -29,7 +29,7 @@ const BasicCard = ({
   showBorder = true,
 }: BasicCardProps) => {
   return (
-    <CardBase variant={showBorder ? 'solid' : 'plain'} background="white" className={className}>
+    <CardBase variant={showBorder ? 'solid' : 'plain'} className={className}>
       <CardImage imgSrc={imgSrc} className="aspect-[384/204] rounded-t-lg" />
       <div className="flex flex-col gap-5 px-4 py-4 lg:px-5">
         <div className="flex flex-col gap-3">

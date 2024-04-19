@@ -8,7 +8,7 @@ const meta: Meta<typeof BranchCardComponent> = {
   component: BranchCardComponent,
   title: 'Components/Cards/BranchCard',
   args: {
-    title: 'Branch card',
+    title: 'BranchCard title',
     linkHref: '#',
     address: 'Majerčíková 10',
   },

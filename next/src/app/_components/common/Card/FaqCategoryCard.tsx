@@ -8,7 +8,7 @@ import Typography from '@/app/_components/common/Typography/Typography'
 type FaqCategoryCardProps = {
   title: string
   linkHref: string
-  iconName: keyof typeof iconNameMap | undefined
+  iconName: keyof typeof iconNameMap
   linkText?: string
   className?: string
 }

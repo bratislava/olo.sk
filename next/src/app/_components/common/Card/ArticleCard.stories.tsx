@@ -7,7 +7,7 @@ const meta: Meta<typeof ArticleCardComponent> = {
   component: ArticleCardComponent,
   title: 'Components/Cards/ArticleCard',
   args: {
-    title: 'Article headline',
+    title: 'ArticleCard title',
   },
   tags: ['autodocs'],
 }

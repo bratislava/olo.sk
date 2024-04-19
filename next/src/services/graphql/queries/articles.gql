@@ -1,0 +1,25 @@
+fragment ArticleEntity on ArticleEntity {
+  id
+  attributes {
+    title
+    slug
+    perex
+  }
+}
+
+
+query Articles {
+  articles {
+    data {
+      ...ArticleEntity
+    }
+  }
+}
+
+query ArticleBySlug($slug: String!) {
+  articles(filters: { slug: { eq: $slug } }) {
+    data {
+      ...ArticleEntity
+    }
+  }
+}

@@ -1,0 +1,24 @@
+fragment DocumentEntity on DocumentEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+
+query Documents {
+  documents {
+    data {
+      ...DocumentEntity
+    }
+  }
+}
+
+query DocumentBySlug($slug: String!) {
+  documents(filters: { slug: { eq: $slug } }) {
+    data {
+      ...DocumentEntity
+    }
+  }
+}

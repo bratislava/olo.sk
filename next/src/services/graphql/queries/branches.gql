@@ -1,0 +1,24 @@
+fragment BranchEntity on BranchEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+
+query Branches {
+  branches {
+    data {
+      ...BranchEntity
+    }
+  }
+}
+
+query BranchBySlug($slug: String!) {
+  branches(filters: { slug: { eq: $slug } }) {
+    data {
+      ...BranchEntity
+    }
+  }
+}

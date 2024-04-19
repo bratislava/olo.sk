@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "opening_times",
+  "info": {
+    "singularName": "opening-time",
+    "pluralName": "opening-times",
+    "displayName": "Otváracie hodiny",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "branches": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::branch.branch",
+      "mappedBy": "openingTimes"
+    },
+    "openingHours": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.opening-hours-item"
+    }
+  }
+}

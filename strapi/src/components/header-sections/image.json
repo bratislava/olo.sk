@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_header_sections_images",
+  "info": {
+    "displayName": "Obrázok",
+    "icon": "picture",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

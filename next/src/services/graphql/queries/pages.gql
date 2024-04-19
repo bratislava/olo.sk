@@ -3,6 +3,10 @@ fragment PageEntity on PageEntity {
   attributes {
     title
     slug
+    perex
+    header {
+      ...HeaderSections
+    }
   }
 }
 

@@ -244,6 +244,37 @@ export type CategoryRelationResponseCollection = {
   data: Array<CategoryEntity>
 }
 
+export type ComponentHeaderSectionsBranchMap = {
+  __typename?: 'ComponentHeaderSectionsBranchMap'
+  branches?: Maybe<BranchRelationResponseCollection>
+  id: Scalars['ID']['output']
+}
+
+export type ComponentHeaderSectionsBranchMapBranchesArgs = {
+  filters?: InputMaybe<BranchFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentHeaderSectionsGallery = {
+  __typename?: 'ComponentHeaderSectionsGallery'
+  id: Scalars['ID']['output']
+  medias: UploadFileRelationResponseCollection
+}
+
+export type ComponentHeaderSectionsGalleryMediasArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentHeaderSectionsImage = {
+  __typename?: 'ComponentHeaderSectionsImage'
+  id: Scalars['ID']['output']
+  media: UploadFileEntityResponse
+}
+
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
@@ -438,6 +469,9 @@ export type GenericMorph =
   | Article
   | Branch
   | Category
+  | ComponentHeaderSectionsBranchMap
+  | ComponentHeaderSectionsGallery
+  | ComponentHeaderSectionsImage
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentSectionsSection1
@@ -938,13 +972,23 @@ export type OpeningTimeRelationResponseCollection = {
 
 export type Page = {
   __typename?: 'Page'
+  childPages?: Maybe<PageRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   header?: Maybe<Array<Maybe<PageHeaderDynamicZone>>>
+  parentPage?: Maybe<PageEntityResponse>
+  perex?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<PageSectionsDynamicZone>>>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type PageChildPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type PageEntity = {
@@ -966,24 +1010,39 @@ export type PageEntityResponseCollection = {
 
 export type PageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>
+  childPages?: InputMaybe<PageFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   not?: InputMaybe<PageFiltersInput>
   or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>
+  parentPage?: InputMaybe<PageFiltersInput>
+  perex?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
   slug?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
-export type PageHeaderDynamicZone = ComponentSectionsSection1 | ComponentSectionsSection2 | Error
+export type PageHeaderDynamicZone =
+  | ComponentHeaderSectionsBranchMap
+  | ComponentHeaderSectionsGallery
+  | ComponentHeaderSectionsImage
+  | Error
 
 export type PageInput = {
+  childPages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   header?: InputMaybe<Array<Scalars['PageHeaderDynamicZoneInput']['input']>>
+  parentPage?: InputMaybe<Scalars['ID']['input']>
+  perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['PageSectionsDynamicZoneInput']['input']>>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type PageRelationResponseCollection = {
+  __typename?: 'PageRelationResponseCollection'
+  data: Array<PageEntity>
 }
 
 export type PageSectionsDynamicZone = ComponentSectionsSection1 | ComponentSectionsSection2 | Error
@@ -1645,6 +1704,144 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>
 }
 
+export type UploadImageSrcEntityFragment = {
+  __typename?: 'UploadFileEntity'
+  id?: string | null
+  attributes?: { __typename?: 'UploadFile'; url: string } | null
+}
+
+export type UploadImageEntityFragment = {
+  __typename?: 'UploadFileEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'UploadFile'
+    url: string
+    width?: number | null
+    height?: number | null
+    caption?: string | null
+    alternativeText?: string | null
+    name: string
+  } | null
+}
+
+export type UploadFileEntityFragment = {
+  __typename?: 'UploadFileEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'UploadFile'
+    url: string
+    name: string
+    ext?: string | null
+    size: number
+    createdAt?: any | null
+    updatedAt?: any | null
+  } | null
+}
+
+export type ImageHeaderSectionFragment = {
+  __typename?: 'ComponentHeaderSectionsImage'
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+}
+
+export type GalleryHeaderSectionFragment = {
+  __typename?: 'ComponentHeaderSectionsGallery'
+  medias: {
+    __typename?: 'UploadFileRelationResponseCollection'
+    data: Array<{
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    }>
+  }
+}
+
+export type BranchMapHeaderSectionFragment = {
+  __typename?: 'ComponentHeaderSectionsBranchMap'
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{ __typename?: 'BranchEntity'; id?: string | null }>
+  } | null
+}
+
+type HeaderSections_ComponentHeaderSectionsBranchMap_Fragment = {
+  __typename: 'ComponentHeaderSectionsBranchMap'
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{ __typename?: 'BranchEntity'; id?: string | null }>
+  } | null
+}
+
+type HeaderSections_ComponentHeaderSectionsGallery_Fragment = {
+  __typename: 'ComponentHeaderSectionsGallery'
+  medias: {
+    __typename?: 'UploadFileRelationResponseCollection'
+    data: Array<{
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    }>
+  }
+}
+
+type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
+  __typename: 'ComponentHeaderSectionsImage'
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+}
+
+type HeaderSections_Error_Fragment = { __typename: 'Error' }
+
+export type HeaderSectionsFragment =
+  | HeaderSections_ComponentHeaderSectionsBranchMap_Fragment
+  | HeaderSections_ComponentHeaderSectionsGallery_Fragment
+  | HeaderSections_ComponentHeaderSectionsImage_Fragment
+  | HeaderSections_Error_Fragment
+
 export type ArticleEntityFragment = {
   __typename?: 'ArticleEntity'
   id?: string | null
@@ -1822,7 +2019,61 @@ export type OpeningTimeEntityFragment = {
 export type PageEntityFragment = {
   __typename?: 'PageEntity'
   id?: string | null
-  attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+  attributes?: {
+    __typename?: 'Page'
+    title: string
+    slug: string
+    perex?: string | null
+    header?: Array<
+      | {
+          __typename: 'ComponentHeaderSectionsBranchMap'
+          branches?: {
+            __typename?: 'BranchRelationResponseCollection'
+            data: Array<{ __typename?: 'BranchEntity'; id?: string | null }>
+          } | null
+        }
+      | {
+          __typename: 'ComponentHeaderSectionsGallery'
+          medias: {
+            __typename?: 'UploadFileRelationResponseCollection'
+            data: Array<{
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            }>
+          }
+        }
+      | {
+          __typename: 'ComponentHeaderSectionsImage'
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          }
+        }
+      | { __typename: 'Error' }
+      | null
+    > | null
+  } | null
 }
 
 export type PagesQueryVariables = Exact<{ [key: string]: never }>
@@ -1834,7 +2085,61 @@ export type PagesQuery = {
     data: Array<{
       __typename?: 'PageEntity'
       id?: string | null
-      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Page'
+        title: string
+        slug: string
+        perex?: string | null
+        header?: Array<
+          | {
+              __typename: 'ComponentHeaderSectionsBranchMap'
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{ __typename?: 'BranchEntity'; id?: string | null }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsGallery'
+              medias: {
+                __typename?: 'UploadFileRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                }>
+              }
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsImage'
+              media: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+            }
+          | { __typename: 'Error' }
+          | null
+        > | null
+      } | null
     }>
   } | null
 }
@@ -1850,7 +2155,61 @@ export type PageBySlugQuery = {
     data: Array<{
       __typename?: 'PageEntity'
       id?: string | null
-      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Page'
+        title: string
+        slug: string
+        perex?: string | null
+        header?: Array<
+          | {
+              __typename: 'ComponentHeaderSectionsBranchMap'
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{ __typename?: 'BranchEntity'; id?: string | null }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsGallery'
+              medias: {
+                __typename?: 'UploadFileRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                }>
+              }
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsImage'
+              media: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+            }
+          | { __typename: 'Error' }
+          | null
+        > | null
+      } | null
     }>
   } | null
 }
@@ -1891,6 +2250,27 @@ export type TagBySlugQuery = {
   } | null
 }
 
+export const UploadImageSrcEntityFragmentDoc = gql`
+  fragment UploadImageSrcEntity on UploadFileEntity {
+    id
+    attributes {
+      url
+    }
+  }
+`
+export const UploadFileEntityFragmentDoc = gql`
+  fragment UploadFileEntity on UploadFileEntity {
+    id
+    attributes {
+      url
+      name
+      ext
+      size
+      createdAt
+      updatedAt
+    }
+  }
+`
 export const ArticleEntityFragmentDoc = gql`
   fragment ArticleEntity on ArticleEntity {
     id
@@ -1946,14 +2326,78 @@ export const OpeningTimeEntityFragmentDoc = gql`
   }
   ${OpeningHoursItemFragmentDoc}
 `
+export const UploadImageEntityFragmentDoc = gql`
+  fragment UploadImageEntity on UploadFileEntity {
+    id
+    attributes {
+      url
+      width
+      height
+      caption
+      alternativeText
+      name
+    }
+  }
+`
+export const ImageHeaderSectionFragmentDoc = gql`
+  fragment ImageHeaderSection on ComponentHeaderSectionsImage {
+    media {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
+export const GalleryHeaderSectionFragmentDoc = gql`
+  fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
+    medias(pagination: { limit: -1 }) {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
+export const BranchMapHeaderSectionFragmentDoc = gql`
+  fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
+    branches(pagination: { limit: -1 }) {
+      data {
+        id
+      }
+    }
+  }
+`
+export const HeaderSectionsFragmentDoc = gql`
+  fragment HeaderSections on PageHeaderDynamicZone {
+    __typename
+    ... on ComponentHeaderSectionsImage {
+      ...ImageHeaderSection
+    }
+    ... on ComponentHeaderSectionsGallery {
+      ...GalleryHeaderSection
+    }
+    ... on ComponentHeaderSectionsBranchMap {
+      ...BranchMapHeaderSection
+    }
+  }
+  ${ImageHeaderSectionFragmentDoc}
+  ${GalleryHeaderSectionFragmentDoc}
+  ${BranchMapHeaderSectionFragmentDoc}
+`
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
     id
     attributes {
       title
       slug
+      perex
+      header {
+        ...HeaderSections
+      }
     }
   }
+  ${HeaderSectionsFragmentDoc}
 `
 export const TagEntityFragmentDoc = gql`
   fragment TagEntity on TagEntity {

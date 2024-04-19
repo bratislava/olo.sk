@@ -1,0 +1,40 @@
+fragment ImageHeaderSection on ComponentHeaderSectionsImage {
+  media {
+    data {
+      ...UploadImageEntity
+    }
+  }
+}
+
+fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
+  medias(pagination: { limit: -1 }) {
+    data {
+      ...UploadImageEntity
+    }
+  }
+}
+
+fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
+  branches(pagination: { limit: -1 }) {
+    data {
+      id
+      # TODO fragment
+    }
+  }
+}
+
+fragment HeaderSections on PageHeaderDynamicZone {
+  __typename
+
+  ... on ComponentHeaderSectionsImage {
+    ...ImageHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsGallery {
+    ...GalleryHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsBranchMap {
+    ...BranchMapHeaderSection
+  }
+}

@@ -1,8 +1,8 @@
 'use client'
 
+import Button from '@/app/_components/common/Button/Button'
 import CardBase from '@/app/_components/common/Card/CardBase'
 import CardImage from '@/app/_components/common/Card/CardImage'
-import CardLink from '@/app/_components/common/Card/CardLink'
 import Typography from '@/app/_components/common/Typography/Typography'
 
 type BranchCardProps = {
@@ -35,8 +35,10 @@ const BranchCard = ({ title, address, className, linkHref, imgSrc }: BranchCardP
               {address}
             </Typography>
           </div>
-          {/* TODO Replace CardLink with Button when ready */}
-          <CardLink linkHref={linkHref} />
+          {/* TODO Change text to dynamic translation */}
+          <Button variant="black-link" href={linkHref} asLink>
+            Čítať viac
+          </Button>
         </div>
       </div>
     </CardBase>

@@ -7,8 +7,9 @@ const meta: Meta<typeof BasicCardComponent> = {
   title: 'Components/Cards/BasicCard',
   args: {
     title: 'BasicCard title',
-    linkHref: '#',
     subtext: 'subtext',
+    linkHref: '#',
+    linkText: 'Link value',
     showBorder: true,
   },
   tags: ['autodocs'],

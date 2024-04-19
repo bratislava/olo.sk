@@ -1,8 +1,8 @@
 'use client'
 
+import Button from '@/app/_components/common/Button/Button'
 import CardBase from '@/app/_components/common/Card/CardBase'
 import CardImage from '@/app/_components/common/Card/CardImage'
-import CardLink from '@/app/_components/common/Card/CardLink'
 import Typography from '@/app/_components/common/Typography/Typography'
 
 type BasicCardProps = {
@@ -10,7 +10,7 @@ type BasicCardProps = {
   subtext: string
   linkHref: string
   showBorder?: boolean
-  linkText?: string
+  linkText: string
   className?: string
   imgSrc?: string
 }
@@ -40,8 +40,9 @@ const BasicCard = ({
             {subtext}
           </Typography>
         </div>
-        {/* TODO Replace CardLink with button when ready */}
-        <CardLink linkHref={linkHref} customText={linkText} />
+        <Button variant="black-link" href={linkHref} asLink>
+          {linkText}
+        </Button>
       </div>
     </CardBase>
   )

@@ -1,7 +1,7 @@
 'use client'
 
+import Button from '@/app/_components/common/Button/Button'
 import CardBase from '@/app/_components/common/Card/CardBase'
-import CardLink from '@/app/_components/common/Card/CardLink'
 import Icon, { iconNameMap } from '@/app/_components/common/Icon/Icon'
 import Typography from '@/app/_components/common/Typography/Typography'
 
@@ -9,15 +9,14 @@ type WorkshopCardProps = {
   title: string
   linkHref: string
   iconName: keyof typeof iconNameMap
-  linkText?: string
   className?: string
 }
 
 /*
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=44-6280&mode=dev
+ * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
  */
 
-const WorkshopCard = ({ title, className, linkHref, linkText, iconName }: WorkshopCardProps) => {
+const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProps) => {
   return (
     <CardBase background="white" variant="solid" className={className}>
       <div className="flex flex-col gap-6 p-4 lg:p-6">
@@ -28,8 +27,10 @@ const WorkshopCard = ({ title, className, linkHref, linkText, iconName }: Worksh
           <Typography variant="h4" className_onlyWhenNecessary="line-clamp-3">
             {title}
           </Typography>
-          {/* TODO Replace CardLink with button when ready */}
-          <CardLink linkHref={linkHref} customText={linkText} />
+          {/* TODO Change text to dynamic translation */}
+          <Button variant="black-link" href={linkHref} asLink>
+            Čítať viac
+          </Button>
         </div>
       </div>
     </CardBase>

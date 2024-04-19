@@ -1,14 +1,14 @@
 'use client'
 
+import Button from '@/app/_components/common/Button/Button'
 import CardBase from '@/app/_components/common/Card/CardBase'
 import CardImage from '@/app/_components/common/Card/CardImage'
-import CardLink from '@/app/_components/common/Card/CardLink'
 import Typography from '@/app/_components/common/Typography/Typography'
 
 type CategoryCardProps = {
   title: string
   linkHref: string
-  linkText?: string
+  linkText: string
   className?: string
   imgSrc?: string
 }
@@ -26,8 +26,9 @@ const CategoryCard = ({ title, className, linkHref, linkText, imgSrc }: Category
           <Typography variant="h5" className_onlyWhenNecessary="line-clamp-3">
             {title}
           </Typography>
-          {/* TODO Replace CardLink with button when ready */}
-          <CardLink linkHref={linkHref} customText={linkText} />
+          <Button variant="black-link" href={linkHref} asLink>
+            {linkText}
+          </Button>
         </div>
       </div>
     </CardBase>

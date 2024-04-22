@@ -24,7 +24,10 @@ const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProp
           {iconName ? <Icon name={iconName} className="size-6" /> : <div className="size-6" />}
         </div>
         <div className="flex flex-col gap-4 lg:gap-10 ">
-          <Typography variant="h4" className_onlyWhenNecessary="line-clamp-3">
+          <Typography
+            variant="h4"
+            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+          >
             {title}
           </Typography>
           {/* TODO Change text to dynamic translation */}

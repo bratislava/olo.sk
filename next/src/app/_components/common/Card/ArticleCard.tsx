@@ -26,7 +26,10 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
         <div className="flex grow flex-col justify-between gap-6">
           <div className="flex flex-col gap-2">
             <Tag variant="without-bg" text={tagText} />
-            <Typography variant="h4" className_onlyWhenNecessary="line-clamp-3">
+            <Typography
+              variant="h4"
+              className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+            >
               {title}
             </Typography>
           </div>

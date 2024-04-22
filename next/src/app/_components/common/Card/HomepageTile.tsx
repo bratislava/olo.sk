@@ -50,7 +50,10 @@ const HomepageTile = ({
           <Typography variant="p-default">{text}</Typography>
         ) : null}
         <div className="flex flex-col gap-4">
-          <Typography variant="h6" className_onlyWhenNecessary="line-clamp-3">
+          <Typography
+            variant="h6"
+            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+          >
             {title}
           </Typography>
           {/* TODO Probably needs aria label because link button has no text */}

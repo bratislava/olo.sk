@@ -19,7 +19,10 @@ const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {
   return (
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-4">
-        <Typography variant="h6" className_onlyWhenNecessary="line-clamp-3">
+        <Typography
+          variant="h6"
+          className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+        >
           {title}
         </Typography>
         {/* TODO Change text to dynamic translation */}

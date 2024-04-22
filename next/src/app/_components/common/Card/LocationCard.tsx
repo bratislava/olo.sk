@@ -30,7 +30,10 @@ const LocationCard = ({ title, className, linkHref, address, iconName }: Locatio
         </div>
         <div className="flex flex-col gap-4 ">
           <div className="flex flex-col gap-2 lg:gap-3">
-            <Typography variant="h5" className_onlyWhenNecessary="line-clamp-3">
+            <Typography
+              variant="h5"
+              className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+            >
               {title}
             </Typography>
             <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">

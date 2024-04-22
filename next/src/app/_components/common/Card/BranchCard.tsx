@@ -28,7 +28,10 @@ const BranchCard = ({ title, address, className, linkHref, imgSrc }: BranchCardP
         />
         <div className="flex flex-col gap-6 lg:justify-between lg:gap-0">
           <div className="flex flex-col gap-2">
-            <Typography variant="h4" className_onlyWhenNecessary="line-clamp-3">
+            <Typography
+              variant="h4"
+              className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+            >
               {title}
             </Typography>
             <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">

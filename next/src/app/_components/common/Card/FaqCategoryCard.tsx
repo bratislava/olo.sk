@@ -21,14 +21,17 @@ const FaqCategoryCard = ({ title, className, linkHref, iconName }: FaqCategoryCa
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-5">
         <div className="self-start rounded-[20px] bg-background-secondary p-4">
-          {iconName ? <Icon name={iconName} className="size-6" /> : <div className="size-6" />}
+          <Icon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col gap-4 ">
-          <Typography variant="h5" className_onlyWhenNecessary="line-clamp-3">
+          <Typography
+            variant="h5"
+            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+          >
             {title}
           </Typography>
           {/* TODO Change text to dynamic translation */}
-          <Button variant="black-link" href={linkHref} asLink>
+          <Button variant="black-link" href={linkHref} stretched asLink>
             Zobraziť viac
           </Button>
         </div>

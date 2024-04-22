@@ -33,7 +33,10 @@ const BasicCard = ({
       <CardImage imgSrc={imgSrc} className="aspect-[384/204] rounded-t-lg" />
       <div className="flex flex-col gap-5 px-4 py-4 lg:px-5">
         <div className="flex flex-col gap-3">
-          <Typography variant="h5" className_onlyWhenNecessary="line-clamp-3">
+          <Typography
+            variant="h5"
+            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+          >
             {title}
           </Typography>
           <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">

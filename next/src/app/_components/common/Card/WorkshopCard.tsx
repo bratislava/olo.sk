@@ -21,7 +21,7 @@ const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProp
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-6 p-4 lg:p-6">
         <div className="self-start rounded-2xl bg-background-secondary p-4">
-          {iconName ? <Icon name={iconName} className="size-6" /> : <div className="size-6" />}
+          <Icon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col gap-4 lg:gap-10 ">
           <Typography

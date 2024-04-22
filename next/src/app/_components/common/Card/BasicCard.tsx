@@ -9,8 +9,8 @@ type BasicCardProps = {
   title: string
   subtext: string
   linkHref: string
-  showBorder?: boolean
   linkText: string
+  showBorder?: boolean
   className?: string
   imgSrc?: string
 }

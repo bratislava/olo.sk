@@ -8,7 +8,7 @@ import Typography from '@/app/_components/common/Typography/Typography'
 type HomepageSmallTileProps = {
   title: string
   iconName: keyof typeof iconNameMap
-  linkHref?: string
+  linkHref: string
   className?: string
 }
 

@@ -9,8 +9,8 @@ import Typography from '@/app/_components/common/Typography/Typography'
 type HomepageMainTileProps = {
   variant: 'background-white' | 'background-yellow'
   title: string
-  text?: string
-  linkHref?: string
+  text: string
+  linkHref: string
   className?: string
 }
 
@@ -27,7 +27,7 @@ const HomepageMainTile = ({ variant, title, text, className, linkHref }: Homepag
   return (
     <CardBase variant={cardBaseVariantMap[variant]} className={className}>
       <div className="flex flex-col items-start gap-8 p-4 lg:gap-12 lg:p-6">
-        {text ? <Typography variant="p-default">{text}</Typography> : null}
+        <Typography variant="p-default">{text}</Typography>
         <div className="flex flex-col gap-4">
           <Typography
             variant="h6"

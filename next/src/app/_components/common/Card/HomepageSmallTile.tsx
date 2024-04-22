@@ -1,8 +1,8 @@
 'use client'
 
-import Button from '@/app/_components/common/Button/Button'
 import CardBase from '@/app/_components/common/Card/CardBase'
 import Icon, { iconNameMap } from '@/app/_components/common/Icon/Icon'
+import Link from '@/app/_components/common/Link/Link'
 import Typography from '@/app/_components/common/Typography/Typography'
 
 type HomepageSmallTileProps = {
@@ -24,14 +24,14 @@ const HomepageSmallTile = ({ title, className, linkHref, iconName }: HomepageSma
           <Icon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col gap-4">
-          <Button variant="unstyled" href={linkHref} stretched className="[&>svg]:hidden" asLink>
+          <Link variant="unstyled" href={linkHref} stretched>
             <Typography
               variant="h6"
               className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
             >
               {title}
             </Typography>
-          </Button>
+          </Link>
         </div>
       </div>
     </CardBase>

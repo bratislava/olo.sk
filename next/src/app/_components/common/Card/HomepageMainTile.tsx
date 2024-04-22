@@ -2,8 +2,9 @@
 
 import cx from 'classnames'
 
-import Button from '@/app/_components/common/Button/Button'
 import CardBase, { CardBaseProps } from '@/app/_components/common/Card/CardBase'
+import Icon from '@/app/_components/common/Icon/Icon'
+import Link from '@/app/_components/common/Link/Link'
 import Typography from '@/app/_components/common/Typography/Typography'
 
 type HomepageMainTileProps = {
@@ -35,19 +36,19 @@ const HomepageMainTile = ({ variant, title, text, className, linkHref }: Homepag
           >
             {title}
           </Typography>
-          {/* TODO Probably needs aria label because link button has no text */}
-          <Button
-            variant="black-link"
+          <Link
+            variant="unstyled"
             href={linkHref}
             stretched
-            className={cx('size-[40px] rounded-lg p-4', {
+            /* 2.5rem = 40px */
+            className={cx('flex size-[2.5rem] items-center justify-center rounded-lg', {
               'bg-background-secondary': variant === 'background-white',
               'bg-background-primary': variant === 'background-yellow',
             })}
-            asLink
           >
-            {' '}
-          </Button>
+            {/* 1.5rem  = 24px */}
+            <Icon name="sipka-doprava" className="size-[1.5rem]" />
+          </Link>
         </div>
       </div>
     </CardBase>

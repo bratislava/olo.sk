@@ -8,10 +8,14 @@ type Props = {
 }
 
 const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
+  // eslint-disable-next-line sonarjs/no-small-switch
   switch (section.__typename) {
     // TODO to be removed, just as example
     case 'ComponentSectionsSection1':
       return <Section1 section={section} />
+
+    default:
+      return null
   }
 }
 
@@ -19,6 +23,7 @@ const Sections = ({ sections }: Props) => {
   return (
     <>
       {sections.map((section, index) => (
+        // eslint-disable-next-line react/no-array-index-key
         <SectionContent key={index} section={section} />
       ))}
     </>

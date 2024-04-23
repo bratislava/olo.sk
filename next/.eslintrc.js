@@ -21,7 +21,7 @@ module.exports = {
       { allow: ['__NEXT_DATA__', '__NEXT_LOADED_PAGES__', '__typename'] },
     ],
     /** Links get confused for secrets */
-    'no-secrets/no-secrets': ['warn', { ignoreContent: '^http' }],
+    'no-secrets/no-secrets': ['warn', { ignoreContent: 'http' }],
     /** Too tedious */
     'eslint-comments/disable-enable-pair': 'off',
     /** We specify default props in props decomposition */

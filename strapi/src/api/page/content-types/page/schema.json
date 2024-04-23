@@ -21,9 +21,28 @@
       "targetField": "title",
       "required": true
     },
+    "perex": {
+      "type": "text"
+    },
+    "parentPage": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::page.page",
+      "inversedBy": "childPages"
+    },
+    "childPages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page.page",
+      "mappedBy": "parentPage"
+    },
     "header": {
       "type": "dynamiczone",
-      "components": ["sections.section-1", "sections.section-2"],
+      "components": [
+        "header-sections.image",
+        "header-sections.gallery",
+        "header-sections.branch-map"
+      ],
       "max": 1
     },
     "sections": {

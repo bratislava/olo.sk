@@ -177,6 +177,55 @@ type CategoryRelationResponseCollection {
   data: [CategoryEntity!]!
 }
 
+type ComponentHeaderSectionsBranchMap {
+  branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
+  id: ID!
+}
+
+input ComponentHeaderSectionsBranchMapFiltersInput {
+  and: [ComponentHeaderSectionsBranchMapFiltersInput]
+  branches: BranchFiltersInput
+  not: ComponentHeaderSectionsBranchMapFiltersInput
+  or: [ComponentHeaderSectionsBranchMapFiltersInput]
+}
+
+input ComponentHeaderSectionsBranchMapInput {
+  branches: [ID]
+  id: ID
+}
+
+type ComponentHeaderSectionsGallery {
+  id: ID!
+  medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
+}
+
+input ComponentHeaderSectionsGalleryFiltersInput {
+  and: [ComponentHeaderSectionsGalleryFiltersInput]
+  not: ComponentHeaderSectionsGalleryFiltersInput
+  or: [ComponentHeaderSectionsGalleryFiltersInput]
+}
+
+input ComponentHeaderSectionsGalleryInput {
+  id: ID
+  medias: [ID]
+}
+
+type ComponentHeaderSectionsImage {
+  id: ID!
+  media: UploadFileEntityResponse!
+}
+
+input ComponentHeaderSectionsImageFiltersInput {
+  and: [ComponentHeaderSectionsImageFiltersInput]
+  not: ComponentHeaderSectionsImageFiltersInput
+  or: [ComponentHeaderSectionsImageFiltersInput]
+}
+
+input ComponentHeaderSectionsImageInput {
+  id: ID
+  media: ID
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -441,7 +490,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsSection1 | ComponentSectionsSection2 | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsSection1 | ComponentSectionsSection2 | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type I18NLocale {
   code: String
@@ -718,8 +767,11 @@ type OpeningTimeRelationResponseCollection {
 }
 
 type Page {
+  childPages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageRelationResponseCollection
   createdAt: DateTime
   header: [PageHeaderDynamicZone]
+  parentPage: PageEntityResponse
+  perex: String
   publishedAt: DateTime
   sections: [PageSectionsDynamicZone]
   slug: String!
@@ -743,22 +795,28 @@ type PageEntityResponseCollection {
 
 input PageFiltersInput {
   and: [PageFiltersInput]
+  childPages: PageFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   not: PageFiltersInput
   or: [PageFiltersInput]
+  parentPage: PageFiltersInput
+  perex: StringFilterInput
   publishedAt: DateTimeFilterInput
   slug: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentSectionsSection1 | ComponentSectionsSection2 | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | Error
 
 scalar PageHeaderDynamicZoneInput
 
 input PageInput {
+  childPages: [ID]
   header: [PageHeaderDynamicZoneInput!]
+  parentPage: ID
+  perex: String
   publishedAt: DateTime
   sections: [PageSectionsDynamicZoneInput!]
   slug: String

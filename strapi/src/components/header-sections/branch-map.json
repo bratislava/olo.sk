@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_header_sections_branch_maps",
+  "info": {
+    "displayName": "Mapa pobočiek",
+    "icon": "pinMap",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "branches": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::branch.branch"
+    }
+  }
+}

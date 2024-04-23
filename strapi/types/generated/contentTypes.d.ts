@@ -894,7 +894,12 @@ export interface ApiPagePage extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required
-    header: Attribute.DynamicZone<['sections.section-1', 'sections.section-2']> &
+    perex: Attribute.Text
+    parentPage: Attribute.Relation<'api::page.page', 'manyToOne', 'api::page.page'>
+    childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
+    header: Attribute.DynamicZone<
+      ['header-sections.image', 'header-sections.gallery', 'header-sections.branch-map']
+    > &
       Attribute.SetMinMax<
         {
           max: 1

@@ -1,5 +1,41 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
+export interface HeaderSectionsBranchMap extends Schema.Component {
+  collectionName: 'components_header_sections_branch_maps'
+  info: {
+    displayName: 'Mapa pobo\u010Diek'
+    icon: 'pinMap'
+    description: ''
+  }
+  attributes: {
+    branches: Attribute.Relation<'header-sections.branch-map', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
+export interface HeaderSectionsGallery extends Schema.Component {
+  collectionName: 'components_header_sections_galleries'
+  info: {
+    displayName: 'Gal\u00E9ria'
+    icon: 'landscape'
+    description: ''
+  }
+  attributes: {
+    medias: Attribute.Media & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsImage extends Schema.Component {
+  collectionName: 'components_header_sections_images'
+  info: {
+    displayName: 'Obr\u00E1zok'
+    icon: 'picture'
+    description: ''
+  }
+  attributes: {
+    media: Attribute.Media & Attribute.Required
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -50,6 +86,9 @@ export interface SectionsSection2 extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'header-sections.branch-map': HeaderSectionsBranchMap
+      'header-sections.gallery': HeaderSectionsGallery
+      'header-sections.image': HeaderSectionsImage
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'sections.section-1': SectionsSection1

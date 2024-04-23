@@ -1842,6 +1842,27 @@ export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
   | HeaderSections_Error_Fragment
 
+export type Section1Fragment = { __typename?: 'ComponentSectionsSection1'; title?: string | null }
+
+export type Section2Fragment = { __typename?: 'ComponentSectionsSection2'; title?: string | null }
+
+type PageSections_ComponentSectionsSection1_Fragment = {
+  __typename: 'ComponentSectionsSection1'
+  title?: string | null
+}
+
+type PageSections_ComponentSectionsSection2_Fragment = {
+  __typename: 'ComponentSectionsSection2'
+  title?: string | null
+}
+
+type PageSections_Error_Fragment = { __typename: 'Error' }
+
+export type PageSectionsFragment =
+  | PageSections_ComponentSectionsSection1_Fragment
+  | PageSections_ComponentSectionsSection2_Fragment
+  | PageSections_Error_Fragment
+
 export type ArticleEntityFragment = {
   __typename?: 'ArticleEntity'
   id?: string | null
@@ -2073,6 +2094,12 @@ export type PageEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    sections?: Array<
+      | { __typename: 'ComponentSectionsSection1'; title?: string | null }
+      | { __typename: 'ComponentSectionsSection2'; title?: string | null }
+      | { __typename: 'Error' }
+      | null
+    > | null
   } | null
 }
 
@@ -2136,6 +2163,12 @@ export type PagesQuery = {
                 } | null
               }
             }
+          | { __typename: 'Error' }
+          | null
+        > | null
+        sections?: Array<
+          | { __typename: 'ComponentSectionsSection1'; title?: string | null }
+          | { __typename: 'ComponentSectionsSection2'; title?: string | null }
           | { __typename: 'Error' }
           | null
         > | null
@@ -2206,6 +2239,12 @@ export type PageBySlugQuery = {
                 } | null
               }
             }
+          | { __typename: 'Error' }
+          | null
+        > | null
+        sections?: Array<
+          | { __typename: 'ComponentSectionsSection1'; title?: string | null }
+          | { __typename: 'ComponentSectionsSection2'; title?: string | null }
           | { __typename: 'Error' }
           | null
         > | null
@@ -2385,6 +2424,29 @@ export const HeaderSectionsFragmentDoc = gql`
   ${GalleryHeaderSectionFragmentDoc}
   ${BranchMapHeaderSectionFragmentDoc}
 `
+export const Section1FragmentDoc = gql`
+  fragment Section1 on ComponentSectionsSection1 {
+    title
+  }
+`
+export const Section2FragmentDoc = gql`
+  fragment Section2 on ComponentSectionsSection2 {
+    title
+  }
+`
+export const PageSectionsFragmentDoc = gql`
+  fragment PageSections on PageSectionsDynamicZone {
+    __typename
+    ... on ComponentSectionsSection1 {
+      ...Section1
+    }
+    ... on ComponentSectionsSection2 {
+      ...Section2
+    }
+  }
+  ${Section1FragmentDoc}
+  ${Section2FragmentDoc}
+`
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
     id
@@ -2395,9 +2457,13 @@ export const PageEntityFragmentDoc = gql`
       header {
         ...HeaderSections
       }
+      sections {
+        ...PageSections
+      }
     }
   }
   ${HeaderSectionsFragmentDoc}
+  ${PageSectionsFragmentDoc}
 `
 export const TagEntityFragmentDoc = gql`
   fragment TagEntity on TagEntity {

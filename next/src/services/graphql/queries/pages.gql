@@ -7,6 +7,9 @@ fragment PageEntity on PageEntity {
     header {
       ...HeaderSections
     }
+    sections {
+      ...PageSections
+    }
   }
 }
 

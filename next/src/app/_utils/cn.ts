@@ -1,7 +1,9 @@
 import clsx from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
-function cn(...args: any[]) {
+type CnArgs = (string | Record<string, boolean>)[]
+
+function cn(...args: CnArgs) {
   return twMerge(clsx(args))
 }
 

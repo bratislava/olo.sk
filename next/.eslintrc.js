@@ -21,7 +21,7 @@ module.exports = {
       { allow: ['__NEXT_DATA__', '__NEXT_LOADED_PAGES__', '__typename'] },
     ],
     /** Links get confused for secrets */
-    'no-secrets/no-secrets': ['warn', { ignoreContent: '^http' }],
+    'no-secrets/no-secrets': ['warn', { ignoreContent: 'http' }],
     /** Too tedious */
     'eslint-comments/disable-enable-pair': 'off',
     /** We specify default props in props decomposition */
@@ -47,5 +47,5 @@ module.exports = {
     'prettier/prettier': ['error', { endOfLine: 'auto' }], // TODO revisit, prettier should not be run by eslint
     'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
   },
-  ignorePatterns: ['*.config.*', '.eslintrc.js', 'src/services/graphql/index.ts'],
+  ignorePatterns: ['*.config.*', '.eslintrc.js', 'src/services/graphql/api.ts'],
 }

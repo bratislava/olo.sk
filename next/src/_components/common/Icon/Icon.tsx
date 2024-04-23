@@ -2,6 +2,7 @@ import cx from 'classnames'
 import { twMerge } from 'tailwind-merge'
 
 import * as Icons from '@/assets/icons'
+import * as Pictograms from '@/assets/pictograms'
 
 // TODO make it generic and typesafe (allow only defined filenames/components)
 
@@ -62,17 +63,37 @@ export const iconNameMap = {
   'zrusit-kruh': 'CrossInCircleIcon',
 } as const
 
+export const pictogramNameMap = {
+  paper: 'WastePaperIcon',
+  plastic: 'WastePlasticIcon',
+  glass: 'WasteGlassIcon',
+  civicAmenitySite: 'WasteCivicAmenitySiteIcon',
+  cookingOilsAndFats: 'WasteOilsAndFatsIcon',
+  kitchenWaste: 'WasteKitchenIcon',
+  organic: 'WasteOrganicIcon',
+  mixed: 'WasteMixedIcon',
+} as const
+
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
 export type IconProps = {
-  name: keyof typeof iconNameMap
+  name: keyof typeof iconNameMap | keyof typeof pictogramNameMap
   className?: string
 }
 
 const Icon = ({ name, className }: IconProps) => {
-  const IconComponent: IconType = Icons[iconNameMap[name]]
+  if (name in iconNameMap) {
+    const IconComponent: IconType = Icons[iconNameMap[name]]
 
-  return <IconComponent className={twMerge(cx('shrink-0', className))} />
+    return <IconComponent className={twMerge(cx('shrink-0', className))} />
+  }
+  if (name in pictogramNameMap) {
+    const IconComponent: IconType = Pictograms[pictogramNameMap[name]]
+
+    return <IconComponent className={twMerge(cx('shrink-0', className))} />
+  }
+
+  return null
 }
 
 export default Icon

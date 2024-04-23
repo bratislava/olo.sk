@@ -1,9 +1,7 @@
-import clsx from 'clsx'
+import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
-type CnArgs = (string | Record<string, boolean>)[]
-
-function cn(...args: CnArgs) {
+function cn(...args: ClassValue[]) {
   return twMerge(clsx(args))
 }
 

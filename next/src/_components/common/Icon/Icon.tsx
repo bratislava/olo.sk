@@ -2,8 +2,6 @@ import cx from 'classnames'
 import { twMerge } from 'tailwind-merge'
 
 import * as Icons from '@/assets/icons'
-import * as Pictograms from '@/assets/pictograms'
-
 // TODO make it generic and typesafe (allow only defined filenames/components)
 
 export const iconNameMap = {
@@ -63,36 +61,16 @@ export const iconNameMap = {
   'zrusit-kruh': 'CrossInCircleIcon',
 } as const
 
-export const pictogramNameMap = {
-  paper: 'WastePaperIcon',
-  plastic: 'WastePlasticIcon',
-  glass: 'WasteGlassIcon',
-  civicAmenitySite: 'WasteCivicAmenitySiteIcon',
-  cookingOilsAndFats: 'WasteOilsAndFatsIcon',
-  kitchenWaste: 'WasteKitchenIcon',
-  organic: 'WasteOrganicIcon',
-  mixed: 'WasteMixedIcon',
-} as const
-
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
 export type IconProps = {
-  name: keyof typeof iconNameMap | keyof typeof pictogramNameMap
+  name: keyof typeof iconNameMap
   className?: string
 }
 
-// TODO Icon now searches among icons and then among pictograms, but a more readable solution may be used here
 const Icon = ({ name, className }: IconProps) => {
-  if (!name || !(name in iconNameMap) || !(name in pictogramNameMap)) return null
-
   if (name in iconNameMap) {
     const IconComponent: IconType = Icons[iconNameMap[name as keyof typeof iconNameMap]]
-
-    return <IconComponent className={twMerge(cx('shrink-0', className))} />
-  }
-  if (name in pictogramNameMap) {
-    const IconComponent: IconType =
-      Pictograms[pictogramNameMap[name as keyof typeof pictogramNameMap]]
 
     return <IconComponent className={twMerge(cx('shrink-0', className))} />
   }

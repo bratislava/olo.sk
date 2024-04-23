@@ -13,42 +13,42 @@ const wasteTypesMap = {
   paper: {
     pictogramName: 'paper',
     className: 'bg-background-waste-paper',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-background-primary',
   },
   plastic: {
     pictogramName: 'plastic',
     className: 'bg-background-waste-plastic',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-content-secondary',
   },
   glass: {
     pictogramName: 'glass',
     className: 'bg-background-waste-glass',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-background-primary',
   },
   civicAmenitySite: {
     pictogramName: 'civicAmenitySite',
     className: 'bg-background-waste-civicAmenitySite',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-content-secondary',
   },
   cookingOilsAndFats: {
     pictogramName: 'cookingOilsAndFats',
     className: 'bg-background-waste-cookingOilsAndFats',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-background-primary',
   },
   kitchen: {
     pictogramName: 'kitchenWaste',
     className: 'bg-background-waste-kitchen',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-background-primary',
   },
   organic: {
     pictogramName: 'organic',
     className: 'bg-background-waste-organic',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-background-primary',
   },
   mixed: {
     pictogramName: 'mixed',
     className: 'bg-background-waste-mixed',
-    pictogramClassName: 'text-success',
+    pictogramClassName: 'text-background-primary',
   },
 } as const
 

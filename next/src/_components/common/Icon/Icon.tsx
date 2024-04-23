@@ -81,14 +81,18 @@ export type IconProps = {
   className?: string
 }
 
+// TODO Icon now searches among icons and then among pictograms, but a more readable solution may be used here
 const Icon = ({ name, className }: IconProps) => {
+  if (!name || !(name in iconNameMap) || !(name in pictogramNameMap)) return null
+
   if (name in iconNameMap) {
-    const IconComponent: IconType = Icons[iconNameMap[name]]
+    const IconComponent: IconType = Icons[iconNameMap[name as keyof typeof iconNameMap]]
 
     return <IconComponent className={twMerge(cx('shrink-0', className))} />
   }
   if (name in pictogramNameMap) {
-    const IconComponent: IconType = Pictograms[pictogramNameMap[name]]
+    const IconComponent: IconType =
+      Pictograms[pictogramNameMap[name as keyof typeof pictogramNameMap]]
 
     return <IconComponent className={twMerge(cx('shrink-0', className))} />
   }

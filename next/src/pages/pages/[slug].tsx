@@ -3,8 +3,8 @@ import Head from 'next/head'
 import * as React from 'react'
 
 import Typography from '@/_components/common/Typography/Typography'
-import { PageEntityFragment } from '@/services/graphql'
-import { client } from '@/services/graphql/gql'
+import { client } from '@/services/graphql'
+import { PageEntityFragment } from '@/services/graphql/api'
 
 type PageProps = {
   // general: GeneralQuery

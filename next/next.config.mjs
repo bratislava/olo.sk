@@ -4,9 +4,6 @@ import svgoConfig from './svgo.config.mjs'
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  serverRuntimeConfig: {
-    strapiUrl: process.env.STRAPI_URL,
-  },
   images: {
     remotePatterns: [
       {

@@ -167,9 +167,9 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
                 'p-2': size === 'large' && isIconButton && isPlainVariant,
 
                 // colors - bg, border, text - idle & focus
-                'pressed:border-action-background-pressed pressed:bg-action-background-pressed border-action-background bg-action-background text-content-secondary':
+                'border-action-background bg-action-background text-content-secondary pressed:border-action-background-pressed pressed:bg-action-background-pressed':
                   variant === 'category-solid',
-                'pressed:border-action-border-pressed border-action-border bg-transparent text-content-secondary':
+                'border-action-border bg-transparent text-content-secondary pressed:border-action-border-pressed':
                   variant === 'category-outline',
 
                 'border-gray-700 bg-gray-700 pressed:border-gray-800 pressed:bg-gray-800 text-white':
@@ -179,7 +179,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
                 'border-negative-700 bg-negative-700 pressed:border-negative-800 pressed:bg-negative-800 text-white':
                   variant === 'negative-solid',
 
-                'pressed:bg-action-softBackground-pressed text-content-secondary':
+                'text-content-secondary pressed:bg-action-softBackground-pressed':
                   variant === 'category-plain',
                 'text-gray-700 pressed:bg-gray-200 pressed:text-gray-800':
                   variant === 'black-plain',

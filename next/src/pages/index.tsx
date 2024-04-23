@@ -12,7 +12,8 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
   // eslint-disable-next-line no-console
   console.log(`Revalidating homepage ${locale}.`)
 
-  if (!locale) return { notFound: true }
+  // TODO locale
+  // if (!locale) return { notFound: true }
 
   // const [homepageContext, general, messages] = await Promise.all([
   //   homepageContextFetcher(locale),
@@ -36,7 +37,6 @@ const Homepage = (props: PageProps) => {
 
   return (
     <>
-      <Typography variant="h1-hero">Hello</Typography>
       {/* <GeneralContextProvider general={general}> */}
       {/*   <HomepageContextProvider homepageContext={homepageContext}> */}
       {/* <Head> */}
@@ -48,6 +48,10 @@ const Homepage = (props: PageProps) => {
       {/*     /> */}
       {/*   )} */}
       {/* </Head> */}
+
+      <div className="flex flex-col items-center">
+        <Typography variant="h1-hero">Hello world!</Typography>
+      </div>
 
       {/*     <PageLayout> */}
       {/*       <HomepageContent /> */}

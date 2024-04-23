@@ -1,27 +1,55 @@
+/* eslint-disable sonarjs/no-duplicate-string */
+
 'use client'
 
 import { twMerge } from 'tailwind-merge'
 
-import Button from '@/app/_components/common/Button/Button'
-import CardBase from '@/app/_components/common/Card/CardBase'
-import Icon from '@/app/_components/common/Icon/Icon'
-import Typography from '@/app/_components/common/Typography/Typography'
+import Button from '@/_components/common/Button/Button'
+import CardBase from '@/_components/common/Card/CardBase'
+import Pictogram from '@/_components/common/Icon/Pictogram'
+import Typography from '@/_components/common/Typography/Typography'
 
 const wasteTypesMap = {
-  paper: { iconName: 'paper', className: 'bg-background-waste-paper' },
-  plastic: { iconName: 'plastic', className: 'bg-background-waste-plastic' },
-  glass: { iconName: 'glass', className: 'bg-background-waste-glass' },
+  paper: {
+    pictogramName: 'paper',
+    className: 'bg-background-waste-paper',
+    pictogramClassName: 'text-success',
+  },
+  plastic: {
+    pictogramName: 'plastic',
+    className: 'bg-background-waste-plastic',
+    pictogramClassName: 'text-success',
+  },
+  glass: {
+    pictogramName: 'glass',
+    className: 'bg-background-waste-glass',
+    pictogramClassName: 'text-success',
+  },
   civicAmenitySite: {
-    iconName: 'civicAmenitySite',
+    pictogramName: 'civicAmenitySite',
     className: 'bg-background-waste-civicAmenitySite',
+    pictogramClassName: 'text-success',
   },
   cookingOilsAndFats: {
-    iconName: 'cookingOilsAndFats',
+    pictogramName: 'cookingOilsAndFats',
     className: 'bg-background-waste-cookingOilsAndFats',
+    pictogramClassName: 'text-success',
   },
-  kitchen: { iconName: 'kitchenWaste', className: 'bg-background-waste-kitchen' },
-  organic: { iconName: 'organic', className: 'bg-background-waste-organic' },
-  mixed: { iconName: 'mixed', className: 'bg-background-waste-mixed' },
+  kitchen: {
+    pictogramName: 'kitchenWaste',
+    className: 'bg-background-waste-kitchen',
+    pictogramClassName: 'text-success',
+  },
+  organic: {
+    pictogramName: 'organic',
+    className: 'bg-background-waste-organic',
+    pictogramClassName: 'text-success',
+  },
+  mixed: {
+    pictogramName: 'mixed',
+    className: 'bg-background-waste-mixed',
+    pictogramClassName: 'text-success',
+  },
 } as const
 
 type WasteSortingCardProps = {
@@ -45,7 +73,10 @@ const WasteSortingCard = ({ title, className, linkHref, wasteType }: WasteSortin
         )}
       >
         <div className="flex size-[124px] items-center justify-center">
-          <Icon name={wasteTypesMap[wasteType]?.iconName} className="text-white" />
+          <Pictogram
+            name={wasteTypesMap[wasteType]?.pictogramName}
+            className={wasteTypesMap[wasteType]?.pictogramClassName}
+          />
         </div>
       </div>
       <div className="flex flex-col gap-4 p-4 lg:gap-5 lg:px-5">

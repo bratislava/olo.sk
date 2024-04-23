@@ -2,7 +2,7 @@
 
 import cx from 'classnames'
 
-import Typography from '../Typography/Typography'
+import Typography from '@/_components/common/Typography/Typography'
 
 type TagProps = {
   variant: 'without-bg' | 'small' | 'large'

@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
-import { twMerge } from 'tailwind-merge'
 
 import LocationCardComponent from './LocationCard'
 
@@ -8,9 +6,10 @@ const meta: Meta<typeof LocationCardComponent> = {
   component: LocationCardComponent,
   title: 'Components/Cards/LocationCard',
   args: {
-    title: 'Location card',
+    title: 'LocationCard title',
     linkHref: '#',
-    address: 'Majerčíková 10',
+    iconName: 'domcek',
+    address: 'Vymyslená cesta 123/45',
   },
   tags: ['autodocs'],
 }

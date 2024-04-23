@@ -2,7 +2,9 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import * as React from 'react'
 
-import Typography from '@/_components/common/Typography/Typography'
+import Sections from '@/_components/layout/Sections'
+import PageHeaderSection from '@/_components/sections/PageHeaderSection'
+import { isDefined } from '@/_utils/isDefined'
 import { client } from '@/services/graphql'
 import { PageEntityFragment } from '@/services/graphql/api'
 
@@ -70,7 +72,7 @@ const Page = ({ page }: PageProps) => {
     return null
   }
 
-  const { title, perex } = page.attributes
+  const { title, perex, sections } = page.attributes
 
   // const title = useTitle(blogPostTitle)
 
@@ -81,7 +83,9 @@ const Page = ({ page }: PageProps) => {
         <title>{title}</title>
         {perex && <meta name="description" content={perex} />}
       </Head>
-      <Typography variant="h1">{title}</Typography>
+      <PageHeaderSection title={title} />
+
+      <Sections sections={sections?.filter(isDefined) ?? []} />
       {/* <GlobalCategoryColorProvider */}
       {/*   color={blogPost?.attributes?.tag?.data?.attributes?.pageCategory?.data?.attributes?.color} */}
       {/* /> */}

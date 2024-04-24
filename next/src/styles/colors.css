@@ -18,16 +18,16 @@
 
   /* OLO brand yellow */
   --color-brand-800: 202 151 44; /*#CA972C*/
-  --color-brand-700: 241 180 52;/*#F1B434*/
-  --color-brand-600: 244 195 93;/*#F4C35D*/
-  --color-brand-500: 247 210 133;/*#F7D285*/
+  --color-brand-700: 241 180 52; /*#F1B434*/
+  --color-brand-600: 244 195 93; /*#F4C35D*/
+  --color-brand-500: 247 210 133; /*#F7D285*/
   --color-brand-400: 248 217 153; /*#F8D999*/
-  --color-brand-300: 249 225 174;/*#F9E1AE*/
+  --color-brand-300: 249 225 174; /*#F9E1AE*/
   --color-brand-200: 252 240 214; /*#FCF0D6*/
-  --color-brand-100: 254 249 239;/*#FEF9EF*/
+  --color-brand-100: 254 249 239; /*#FEF9EF*/
 
-  --color-grey-800: 34 31 29 ; /*#221F1D*/
-  --color-grey-700: 45 41 38 ; /*#2D2926*/
+  --color-grey-800: 34 31 29; /*#221F1D*/
+  --color-grey-700: 45 41 38; /*#2D2926*/
   --color-grey-600: 66 62 60; /*#423E3C*/
   --color-grey-500: 87 84 81; /*#575451*/
   --color-grey-400: 150 148 147; /*#969493*/
@@ -67,6 +67,13 @@
   --color-warning-100: 252 242 230; /*#FCF2E6*/
   --color-warning-50: 253 248 242; /*#FDF8F2*/
 
+  /* OLO waste categories */
+  --color-waste-blue: 0 94 184; /*#005EB8*/
+  --color-waste-yellow: 254 219 0; /*#FEDB00*/
+  --color-waste-green: 0 156 79; /*#009C4F*/
+  --color-waste-red: 252 76 2; /*#FC4C02*/
+  --color-waste-brown: 116 79 40; /*#744F28*/
+
   /*--error-color: var(--color-negative-700);*/
 
   --token-background-primary: var(--color-grey-0);
@@ -103,7 +110,14 @@
   --token-action-border-hovered: var(--color-brand-600);
   --token-action-border-pressed: var(--color-brand-800);
 
-
+  --token-waste-paper: var(--color-waste-blue);
+  --token-waste-plastic: var(--color-waste-yellow);
+  --token-waste-glass: var(--color-waste-green);
+  --token-waste-civicAmenitySite: var(--color-brand-700);
+  --token-waste-cookingOilsAndFats: var(--color-waste-red);
+  --token-waste-kitchen: var(--color-waste-brown);
+  --token-waste-organic: var(--color-waste-brown);
+  --token-waste-mixed: var(--color-grey-700);
 
   /* These variables are overridden in pages to get custom colors for each category */
   --color-category-800: var(--color-brand-800);

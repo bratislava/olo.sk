@@ -2,7 +2,6 @@ import cx from 'classnames'
 import { twMerge } from 'tailwind-merge'
 
 import * as Icons from '@/assets/icons'
-
 // TODO make it generic and typesafe (allow only defined filenames/components)
 
 export const iconNameMap = {

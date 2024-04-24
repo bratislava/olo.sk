@@ -16,7 +16,8 @@
     "gen": "graphql-codegen && prettier --write src/services/graphql/api.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "update-i18next": "yarn add i18next@latest next-i18next@latest react-i18next@latest -E"
+    "parse-translations": "i18next",
+    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^5.0.2",
@@ -91,6 +92,7 @@
     "eslint-plugin-testing-library": "^6.2.0",
     "eslint-plugin-unicorn": "^50.0.1",
     "eslint-plugin-xss": "^0.1.12",
+    "i18next-parser": "^8.13.0",
     "postcss": "^8",
     "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.14",

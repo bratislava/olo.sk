@@ -74,8 +74,8 @@ const WasteSortingCard = ({ title, className, linkHref, wasteType }: WasteSortin
       >
         <div className="flex size-[124px] items-center justify-center">
           <Pictogram
-            name={wasteTypesMap[wasteType]?.pictogramName}
-            className={wasteTypesMap[wasteType]?.pictogramClassName}
+            name={wasteTypesMap[wasteType].pictogramName}
+            className={wasteTypesMap[wasteType].pictogramClassName}
           />
         </div>
       </div>

@@ -69,7 +69,7 @@ export type IconProps = {
 }
 
 const Icon = ({ name, className }: IconProps) => {
-  const IconComponent: IconType = Icons[iconNameMap[name as keyof typeof iconNameMap]]
+  const IconComponent: IconType = Icons[iconNameMap[name]]
 
   return <IconComponent className={twMerge(cx('shrink-0', className))} />
 }

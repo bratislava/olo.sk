@@ -24,8 +24,7 @@ export type PictogramProps = {
 }
 
 const Pictogram = ({ name, className }: PictogramProps) => {
-  const PictogramComponent: PictogramType =
-    Pictograms[pictogramNameMap[name as keyof typeof pictogramNameMap]]
+  const PictogramComponent: PictogramType = Pictograms[pictogramNameMap[name]]
 
   return <PictogramComponent className={twMerge(cx('shrink-0', className))} />
 }

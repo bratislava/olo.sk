@@ -1,0 +1,9 @@
+name: Validate
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  validate:
+    name: Validate typescript
+    uses: bratislava/github-actions/.github/workflows/validate-typescript.yml@stable

@@ -9,7 +9,12 @@ on:
     branches:
      - master
 jobs:
+  validate:
+    name: Validate typescript
+    uses: bratislava/github-actions/.github/workflows/validate-typescript.yml@stable
+
   conditions:
+    needs: validate
     name: Check for cluster conditions
     uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions-inhouse.yml@stable
 

@@ -178,7 +178,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
                 'border-gray-200 text-gray-700 pressed:border-gray-300 pressed:text-gray-800 bg-transparent':
                   variant === 'black-outline',
                 // 'border-gray-200 text-gray-700 pressed:border-gray-300 pressed:text-gray-800 bg-white':
-                'border-border bg-white': variant === 'grey-outline',
+                'border-1 border-border bg-white': variant === 'grey-outline',
                 'border-negative-700 bg-negative-700 pressed:border-negative-800 pressed:bg-negative-800 text-white':
                   variant === 'negative-solid',
 

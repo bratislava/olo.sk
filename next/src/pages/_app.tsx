@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
+import { appWithTranslation } from 'next-i18next'
 
 const inter = Inter({
   variable: '--inter-font',
@@ -56,4 +57,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

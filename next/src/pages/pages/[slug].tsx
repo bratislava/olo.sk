@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
 import Sections from '@/_components/layout/Sections'
@@ -48,11 +49,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   // console.log(`Revalidating blog ${locale === 'en' ? '/en' : ''}/blog/${slug}`)
 
   // TODO || !locale
-  if (!slug) {
+  if (!slug || !locale) {
     return { notFound: true }
   }
 
-  const [{ pages }] = await Promise.all([client.PageBySlug({ slug })])
+  const [{ pages }, translations] = await Promise.all([
+    client.PageBySlug({ slug }),
+    serverSideTranslations(locale),
+  ])
 
   const page = pages?.data[0]
   if (!page) {
@@ -62,6 +66,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   return {
     props: {
       page,
+      ...translations,
     },
     revalidate: 10,
   }

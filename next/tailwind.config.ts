@@ -86,6 +86,16 @@ const config: Config = {
         tertiary: 'rgb(var(--token-background-tertiary))',
         primaryInverted: 'rgb(var(--token-background-primary-inverted))',
         disabled: 'rgb(var(--token-background-disabled))',
+        waste: {
+          paper: 'rgb(var(--token-waste-paper))',
+          plastic: 'rgb(var(--token-waste-plastic))',
+          glass: 'rgb(var(--token-waste-glass))',
+          civicAmenitySite: 'rgb(var(--token-waste-civicAmenitySite))',
+          cookingOilsAndFats: 'rgb(var(--token-waste-cookingOilsAndFats))',
+          kitchen: 'rgb(var(--token-waste-kitchen))',
+          organic: 'rgb(var(--token-waste-organic))',
+          mixed: 'rgb(var(--token-waste-mixed))',
+        },
       },
       border: {
         DEFAULT: 'rgb(var(--token-border-default))',

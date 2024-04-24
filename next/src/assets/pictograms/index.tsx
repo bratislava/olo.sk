@@ -1,0 +1,8 @@
+export { default as WasteCivicAmenitySiteIcon } from './waste-civic-amenity-site.svg'
+export { default as WasteGlassIcon } from './waste-glass.svg'
+export { default as WasteKitchenIcon } from './waste-kitchen.svg'
+export { default as WasteMixedIcon } from './waste-mixed.svg'
+export { default as WasteOilsAndFatsIcon } from './waste-oils-and-fats.svg'
+export { default as WasteOrganicIcon } from './waste-organic.svg'
+export { default as WastePaperIcon } from './waste-paper.svg'
+export { default as WastePlasticIcon } from './waste-plastic.svg'

@@ -8,6 +8,7 @@ const meta: Meta<typeof WorkshopCardComponent> = {
   args: {
     title: 'WorkshopCard title',
     linkHref: '#',
+    iconName: 'disk', // temporary icon
   },
   tags: ['autodocs'],
 }

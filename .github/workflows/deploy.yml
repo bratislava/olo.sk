@@ -9,7 +9,17 @@ on:
     branches:
      - master
 jobs:
+  validate:
+    name: Validate typescript
+    uses: bratislava/github-actions/.github/workflows/validate-typescript.yml@stable
+# if you need different setting uncomment lines bellow
+#    with:
+#      node: 20
+#      workdir: './next'
+#      level: warning
+
   conditions:
+    needs: validate
     name: Check for cluster conditions
     uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions-inhouse.yml@stable
 

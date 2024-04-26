@@ -173,7 +173,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
 
                 // colors: idle & focus (background, border, text)
 
-                'bg-action-background-default border-action-background-default text-content-secondary pressed:border-action-background-pressed pressed:bg-action-background-pressed':
+                'border-action-background-default bg-action-background-default text-content-secondary pressed:border-action-background-pressed pressed:bg-action-background-pressed':
                   variant === 'category-solid',
                 'border-action-border-default bg-transparent text-content-secondary pressed:border-action-border-pressed':
                   variant === 'category-outline',
@@ -182,11 +182,11 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
 
                 'border-action-content-default bg-action-content-default text-content-primaryInverted pressed:border-action-content-pressed pressed:bg-action-content-pressed':
                   variant === 'black-solid',
-                'border-border-default text-action-content-default bg-transparent pressed:border-action-content-pressed pressed:text-border-dark':
+                'border-border-default bg-transparent text-action-content-default pressed:border-action-content-pressed pressed:text-border-dark':
                   variant === 'black-outline',
                 'text-action-content-default pressed:bg-border-hover': variant === 'black-plain',
 
-                'text-action-content-default pressed:text-gray-800': variant === 'black-link',
+                'pressed:text-gray-800 text-action-content-default': variant === 'black-link',
 
                 // 'border-border-default text-action-content-default pressed:border-border-hover pressed:text-gray-800 bg-white':
                 // 'border-negative-700 bg-negative-700 pressed:border-negative-800 pressed:bg-negative-800 text-content-primaryInverted':

@@ -102,12 +102,12 @@
   --token-action-content-hover: var(--color-grey-600);
   --token-action-content-pressed: var(--color-grey-800);
   --token-action-background-default: var(--color-brand-700);
-  --token-action-background-hovered: var(--color-brand-600);
+  --token-action-background-hover: var(--color-brand-600);
   --token-action-background-pressed: var(--color-brand-800);
-  --token-action-soft-background-hovered: var(--color-brand-200);
+  --token-action-soft-background-hover: var(--color-brand-200);
   --token-action-soft-background-pressed: var(--color-brand-300);
   --token-action-border-default: var(--color-brand-700);
-  --token-action-border-hovered: var(--color-brand-600);
+  --token-action-border-hover: var(--color-brand-600);
   --token-action-border-pressed: var(--color-brand-800);
 
   --token-waste-paper: var(--color-waste-blue);

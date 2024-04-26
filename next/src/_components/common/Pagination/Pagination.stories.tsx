@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useArgs } from '@storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react'
 

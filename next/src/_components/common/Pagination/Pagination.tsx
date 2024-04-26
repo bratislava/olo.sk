@@ -15,6 +15,7 @@ type PaginationProps = {
 
 /**
  * Inspired by bratislava.sk https://github.com/bratislava/bratislava.sk/tree/master/next/components/ui/Pagination
+ *
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=37-1730&mode=design&t=3OjB80TrL7MvAUkW-4
  *
  * @param selectedPage
@@ -40,7 +41,7 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
   return (
     <nav>
       <ul
-        className="flex flex-wrap items-center justify-center gap-1 lg:gap-2"
+        className={cn('flex flex-wrap items-center justify-center gap-1 lg:gap-2')}
         data-cy="pagination"
       >
         {items.map(
@@ -53,14 +54,15 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
             } else if (type === 'page') {
               children = (
                 <Button
-                  variant={selected ? 'category-solid' : 'grey-outline'}
+                  // variant="unstyled"
+                  variant={selected ? 'category-solid' : 'black-outline'}
                   isDisabled={disabled}
                   onPress={onPress}
                   aria-current={ariaCurrent}
                   // aria-label={t('aria.goToPage', { page })}
+                  // TODO this styling currently overrides current Button component to align with Figma Buttons
                   className={cn(
                     'flex h-10 w-10 shrink-0 grow-0 items-center justify-center rounded-full font-bold lg:h-12 lg:w-12',
-                    {},
                   )}
                 >
                   {page}

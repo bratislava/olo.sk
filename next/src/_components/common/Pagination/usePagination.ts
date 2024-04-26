@@ -10,10 +10,13 @@ const range = (start: number, end: number) => {
 }
 
 /**
+ * Inspired by bratislava.sk https://github.com/bratislava/bratislava.sk/tree/master/next/components/ui/Pagination
+ *
  * @mui/material contains a really useful hook for pagination, so this is a copied version with added types.
  *
  * https://github.com/mui/material-ui/blob/512896973499adbbda057e7f3685d1b23cc02de9/packages/mui-material/src/usePagination/usePagination.js
  */
+
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export default function usePagination(props: {
   boundaryCount?: number

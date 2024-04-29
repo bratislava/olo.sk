@@ -1,23 +1,29 @@
 import '../styles/globals.css'
 
 import { AppProps } from 'next/app'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 
-const inter = Inter({
-  variable: '--inter-font',
-  subsets: ['latin', 'latin-ext'],
+const frutigerFont = localFont({
+  // https://nextjs.org/docs/pages/building-your-application/optimizing/fonts#local-fonts
+  src: [
+    { path: './../../public/fonts/FrutigerLTPro-Light.otf', weight: '300', style: 'normal' },
+    // TODO weight 400
+    // TODO weight 500
+    // TODO weight 600
+    { path: './../../public/fonts/FrutigerLTPro-Bold.otf', weight: '700', style: 'normal' },
+    { path: './../../public/fonts/FrutigerLTPro-Black.otf', weight: '800', style: 'normal' },
+  ],
 })
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      {/* https://nextjs.org/docs/pages/building-your-application/optimizing/fonts#apply-the-font-in-head */}
       {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx global>{`
-        body {
-          font-family: ${inter.style.fontFamily};
+        html {
+          font-family: ${frutigerFont.style.fontFamily};
         }
       `}</style>
       <Head>

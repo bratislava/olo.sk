@@ -13,7 +13,7 @@ type MenuItemArticleCardProps = {
 }
 
 /**
- * FIGMA: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1949-19741&m=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1949-19741&m=dev
  */
 
 const MenuItemArticleCard = ({

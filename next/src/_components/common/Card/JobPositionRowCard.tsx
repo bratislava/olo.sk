@@ -11,7 +11,7 @@ type JobPositionRowCardProps = {
 }
 
 /**
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1949-19457&mode=dev
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1949-19457&mode=dev
  */
 
 const JobPositionRowCard = ({ title, className, linkHref, metaData }: JobPositionRowCardProps) => {

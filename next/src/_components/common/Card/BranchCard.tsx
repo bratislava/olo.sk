@@ -12,7 +12,7 @@ type BranchCardProps = {
 }
 
 /**
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1205-14699&mode=dev
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1205-14699&mode=dev
  */
 
 const BranchCard = ({ title, address, className, linkHref, imgSrc }: BranchCardProps) => {

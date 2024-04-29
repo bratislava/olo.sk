@@ -10,7 +10,7 @@ type ListingCardProps = {
 }
 
 /**
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1341-11042&mode=dev
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1341-11042&mode=dev
  */
 
 const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {

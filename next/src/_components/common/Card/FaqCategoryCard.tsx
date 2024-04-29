@@ -11,7 +11,7 @@ type FaqCategoryCardProps = {
 }
 
 /**
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=44-6280&mode=dev
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=44-6280&mode=dev
  */
 
 const FaqCategoryCard = ({ title, className, linkHref, iconName }: FaqCategoryCardProps) => {

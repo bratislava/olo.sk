@@ -14,7 +14,7 @@ type DocumentRowCardProps = {
 }
 
 /**
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=42-2223&mode=dev
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=42-2223&mode=dev
  */
 
 const DocumentRowCard = ({

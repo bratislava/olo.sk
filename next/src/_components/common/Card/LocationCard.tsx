@@ -12,7 +12,7 @@ type LocationCardProps = {
 }
 
 /**
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=2094-18340&mode=dev
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=2094-18340&mode=dev
  */
 
 const LocationCard = ({ title, className, linkHref, address, iconName }: LocationCardProps) => {

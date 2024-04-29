@@ -9,9 +9,7 @@ const frutigerFont = localFont({
   // https://nextjs.org/docs/pages/building-your-application/optimizing/fonts#local-fonts
   src: [
     { path: './../../public/fonts/FrutigerLTPro-Light.otf', weight: '300', style: 'normal' },
-    // TODO weight 400
-    // TODO weight 500
-    // TODO weight 600
+    { path: './../../public/fonts/FrutigerLTPro-Roman.otf', weight: '400', style: 'normal' },
     { path: './../../public/fonts/FrutigerLTPro-Bold.otf', weight: '700', style: 'normal' },
     { path: './../../public/fonts/FrutigerLTPro-Black.otf', weight: '800', style: 'normal' },
   ],

@@ -7,6 +7,9 @@ const meta: Meta<typeof TypographyComponent> = {
   component: TypographyComponent,
   title: 'Components/Typography',
   tags: ['autodocs'],
+  argTypes: {
+    children: { name: 'text' },
+  },
   decorators: [
     (Story) => (
       <div className="flex justify-center">
@@ -22,6 +25,7 @@ type Story = StoryObj<typeof TypographyComponent>
 export const Typography: Story = {
   args: {
     variant: 'h1',
+    children: 'Typography',
   },
-  render: (args) => <TypographyComponent {...args}>Typography</TypographyComponent>,
+  render: (args) => <TypographyComponent {...args} />,
 }

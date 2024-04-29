@@ -6,7 +6,7 @@ import { normalizeSkText } from '@/_components/common/Typography/normalizeSkText
 // TODO make `as` prop generic for any text HTML element
 type TypographyProps = {
   children: string
-  variant?:
+  variant:
     | 'h1-hero'
     | 'h1'
     | 'h2'

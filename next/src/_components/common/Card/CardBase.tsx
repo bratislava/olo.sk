@@ -1,5 +1,3 @@
-'use client'
-
 import cx from 'classnames'
 import React, { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'

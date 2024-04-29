@@ -1,5 +1,3 @@
-'use client'
-
 import cx from 'classnames'
 
 import CardBase, { CardBaseProps } from '@/_components/common/Card/CardBase'
@@ -20,7 +18,7 @@ const cardBaseVariantMap: Record<HomepageMainTileProps['variant'], CardBaseProps
   'background-yellow': 'plain-brand',
 }
 
-/*
+/**
  * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
  */
 

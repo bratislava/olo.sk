@@ -1,7 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 
-'use client'
-
 import { twMerge } from 'tailwind-merge'
 
 import Button from '@/_components/common/Button/Button'
@@ -59,7 +57,7 @@ type WasteSortingCardProps = {
   className?: string
 }
 
-/*
+/**
  * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=44-5836&mode=design&t=Eh99aEaL0mrnGsMz-4
  */
 

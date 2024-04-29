@@ -32,7 +32,7 @@ const MenuItemArticleCard = ({
           <Tag variant="without-bg" text={tagText} />
           <Typography
             variant="h6"
-            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+            className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
           >
             {title}
           </Typography>

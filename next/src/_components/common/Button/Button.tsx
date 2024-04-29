@@ -118,7 +118,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
         ? className ?? ''
         : twMerge(
             // TODO text-button interferes with text-[color], as quickfix we set size and color here by arbitrary values
-            'inline-flex h-auto items-center justify-center gap-2 text-[1rem] font-semibold leading-[1.5rem] transition',
+            'inline-flex h-auto items-center justify-center gap-2 text-[1rem] font-bold leading-[1.5rem] transition',
             cx(
               // we change rounded corners for link focus ring
               isLinkVariant ? 'rounded-sm max-lg:gap-1' : 'rounded-lg',
@@ -126,7 +126,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
               {
                 // NOTE: there are some style overrides for link variants below in "twMerge"
 
-                'font-medium underline underline-offset-2': isLinkVariant,
+                'underline underline-offset-2': isLinkVariant,
 
                 // disabled or loading
                 'opacity-50': isLoadingOrDisabled,

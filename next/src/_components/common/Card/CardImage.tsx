@@ -9,17 +9,13 @@ type ArticleCardProps = {
   className?: string // usually used to set aspect-ratio and corner radius
 }
 
-/**
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=8-4117&mode=dev
- */
-
 const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw' })
 
 const ArticleCard = ({ imgSrc, className }: ArticleCardProps) => {
   return (
     <div className={twMerge('relative shrink-0 overflow-hidden', className)}>
       {imgSrc ? (
-        <Image src={imgSrc} sizes={imageSizes} alt="" className="object-cover" />
+        <Image src={imgSrc} sizes={imageSizes} alt="" fill className="object-cover" />
       ) : (
         <ImagePlaceholder />
       )}

@@ -28,12 +28,12 @@ const SearchResultRowCard = ({
   return (
     <CardBase variant="unstyled" className={className}>
       <div className="flex gap-4 border-b border-border-default bg-white p-4">
-        {/* 3.5rem = 56px */}
+        {/* 2.25rem = 36px, 3.5rem = 56px */}
         <div className="flex size-[3.5rem] items-center justify-center">
           {imgSrc ? (
             <CardImage imgSrc={imgSrc} className="aspect-square size-full rounded-lg" />
           ) : iconName ? (
-            <Icon name={iconName} className="size-6" />
+            <Icon name={iconName} className="size-[2.25rem]" />
           ) : null}
         </div>
         <div className="flex flex-col gap-2 max-lg:gap-3">

@@ -32,7 +32,7 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
             </Typography>
           </div>
           {/* TODO Change text to dynamic translation */}
-          <Button variant="black-link" href={linkHref} asLink>
+          <Button variant="black-link" href={linkHref} asLink stretched>
             Čítať viac
           </Button>
         </div>

@@ -62,6 +62,7 @@ const DocumentRowCard = ({
             variant="category-outline"
             href={linkHref}
             asLink
+            stretched
             startIcon={<Icon name="stiahnut" />}
             className="ml-auto max-lg:hidden [&>svg:last-of-type]:hidden"
           >
@@ -74,6 +75,7 @@ const DocumentRowCard = ({
             href={linkHref}
             asLink
             aria-label=""
+            stretched
             icon={<Icon name="stiahnut" />}
             className="ml-auto self-center p-1.5 lg:hidden [&>svg:last-of-type]:hidden"
           />

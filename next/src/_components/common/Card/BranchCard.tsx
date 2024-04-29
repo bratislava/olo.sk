@@ -37,7 +37,7 @@ const BranchCard = ({ title, address, className, linkHref, imgSrc }: BranchCardP
             </Typography>
           </div>
           {/* TODO Change text to dynamic translation */}
-          <Button variant="black-link" href={linkHref} asLink>
+          <Button variant="black-link" href={linkHref} asLink stretched>
             Čítať viac
           </Button>
         </div>

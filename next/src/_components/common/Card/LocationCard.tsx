@@ -35,7 +35,7 @@ const LocationCard = ({ title, className, linkHref, address, iconName }: Locatio
             </Typography>
           </div>
           {/* TODO Change text to dynamic translation */}
-          <Button variant="category-outline" href={linkHref} asLink className="w-full">
+          <Button variant="category-outline" href={linkHref} asLink stretched className="w-full">
             Zistiť viac
           </Button>
         </div>

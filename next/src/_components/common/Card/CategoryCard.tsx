@@ -27,7 +27,7 @@ const CategoryCard = ({ title, className, linkHref, linkText, imgSrc }: Category
           >
             {title}
           </Typography>
-          <Button variant="black-link" href={linkHref} asLink>
+          <Button variant="black-link" href={linkHref} asLink stretched>
             {linkText}
           </Button>
         </div>

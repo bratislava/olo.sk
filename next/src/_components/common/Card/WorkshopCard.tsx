@@ -29,7 +29,7 @@ const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProp
             {title}
           </Typography>
           {/* TODO Change text to dynamic translation */}
-          <Button variant="black-link" href={linkHref} asLink>
+          <Button variant="black-link" href={linkHref} asLink stretched>
             Čítať viac
           </Button>
         </div>

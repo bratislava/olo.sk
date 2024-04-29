@@ -41,7 +41,7 @@ const BasicCard = ({
             {subtext}
           </Typography>
         </div>
-        <Button variant="black-link" href={linkHref} asLink>
+        <Button variant="black-link" href={linkHref} asLink stretched>
           {linkText}
         </Button>
       </div>

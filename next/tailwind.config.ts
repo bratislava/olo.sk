@@ -4,7 +4,7 @@ import plugin from 'tailwindcss/plugin'
 import pluginRAC from 'tailwindcss-react-aria-components'
 
 /**
- * This plugin remove X button and decorations in native search input.
+ * This plugin removes X button and decorations in native search input.
  * https://github.com/tailwindlabs/tailwindcss/discussions/10190#discussioncomment-4994363
  *
  * Similar styles are used also in RAC example styling https://react-spectrum.adobe.com/react-aria/SearchField.html#example
@@ -86,19 +86,9 @@ const config: Config = {
         tertiary: 'rgb(var(--token-background-tertiary))',
         primaryInverted: 'rgb(var(--token-background-primary-inverted))',
         disabled: 'rgb(var(--token-background-disabled))',
-        waste: {
-          paper: 'rgb(var(--token-waste-paper))',
-          plastic: 'rgb(var(--token-waste-plastic))',
-          glass: 'rgb(var(--token-waste-glass))',
-          civicAmenitySite: 'rgb(var(--token-waste-civicAmenitySite))',
-          cookingOilsAndFats: 'rgb(var(--token-waste-cookingOilsAndFats))',
-          kitchen: 'rgb(var(--token-waste-kitchen))',
-          organic: 'rgb(var(--token-waste-organic))',
-          mixed: 'rgb(var(--token-waste-mixed))',
-        },
       },
       border: {
-        DEFAULT: 'rgb(var(--token-border-default))',
+        default: 'rgb(var(--token-border-default))',
         hover: 'rgb(var(--token-border-hover))',
         dark: 'rgb(var(--token-border-dark))',
       },
@@ -111,14 +101,19 @@ const config: Config = {
         tertiaryInverted: 'rgb(var(--token-content-tertiary-inverted))',
         disabled: 'rgb(var(--token-content-disabled))',
         link: {
-          DEFAULT: 'rgb(var(--token-content-link-default))',
+          default: 'rgb(var(--token-content-link-default))',
           hover: 'rgb(var(--token-content-link-hover))',
           pressed: 'rgb(var(--token-content-link-pressed))',
         },
       },
       action: {
+        content: {
+          default: 'rgb(var(--token-action-content-default))',
+          hover: 'rgb(var(--token-action-content-hover))',
+          pressed: 'rgb(var(--token-action-content-pressed))',
+        },
         background: {
-          DEFAULT: 'rgb(var(--token-action-background-default))',
+          default: 'rgb(var(--token-action-background-default))',
           hover: 'rgb(var(--token-action-background-hover))',
           pressed: 'rgb(var(--token-action-background-pressed))',
         },
@@ -127,10 +122,20 @@ const config: Config = {
           pressed: 'rgb(var(--token-action-soft-background-pressed))',
         },
         border: {
-          DEFAULT: 'rgb(var(--token-action-border-default))',
+          default: 'rgb(var(--token-action-border-default))',
           hover: 'rgb(var(--token-action-border-hover))',
           pressed: 'rgb(var(--token-action-border-pressed))',
         },
+      },
+      waste: {
+        paper: 'rgb(var(--token-waste-paper))',
+        plastic: 'rgb(var(--token-waste-plastic))',
+        glass: 'rgb(var(--token-waste-glass))',
+        civicAmenitySite: 'rgb(var(--token-waste-civicAmenitySite))',
+        cookingOilsAndFats: 'rgb(var(--token-waste-cookingOilsAndFats))',
+        kitchen: 'rgb(var(--token-waste-kitchen))',
+        organic: 'rgb(var(--token-waste-organic))',
+        mixed: 'rgb(var(--token-waste-mixed))',
       },
     },
     extend: {

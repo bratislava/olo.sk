@@ -22,7 +22,7 @@ const LocationCard = ({ title, className, linkHref, address, iconName }: Locatio
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-5">
         <div className="self-start rounded-full bg-background-secondary p-4">
-          <Icon name={iconName} className="size-6 text-action-background" />
+          <Icon name={iconName} className="text-action-background size-6" />
         </div>
         <div className="flex flex-col gap-4 ">
           <div className="flex flex-col gap-2 lg:gap-3">

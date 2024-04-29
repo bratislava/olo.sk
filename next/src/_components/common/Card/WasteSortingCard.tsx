@@ -12,42 +12,42 @@ import Typography from '@/_components/common/Typography/Typography'
 const wasteTypesMap = {
   paper: {
     pictogramName: 'paper',
-    className: 'bg-background-waste-paper',
+    className: 'bg-waste-paper',
     pictogramClassName: 'text-background-primary',
   },
   plastic: {
     pictogramName: 'plastic',
-    className: 'bg-background-waste-plastic',
+    className: 'bg-waste-plastic',
     pictogramClassName: 'text-content-secondary',
   },
   glass: {
     pictogramName: 'glass',
-    className: 'bg-background-waste-glass',
+    className: 'bg-waste-glass',
     pictogramClassName: 'text-background-primary',
   },
   civicAmenitySite: {
     pictogramName: 'civicAmenitySite',
-    className: 'bg-background-waste-civicAmenitySite',
+    className: 'bg-waste-civicAmenitySite',
     pictogramClassName: 'text-content-secondary',
   },
   cookingOilsAndFats: {
     pictogramName: 'cookingOilsAndFats',
-    className: 'bg-background-waste-cookingOilsAndFats',
+    className: 'bg-waste-cookingOilsAndFats',
     pictogramClassName: 'text-background-primary',
   },
   kitchen: {
     pictogramName: 'kitchenWaste',
-    className: 'bg-background-waste-kitchen',
+    className: 'bg-waste-kitchen',
     pictogramClassName: 'text-background-primary',
   },
   organic: {
     pictogramName: 'organic',
-    className: 'bg-background-waste-organic',
+    className: 'bg-waste-organic',
     pictogramClassName: 'text-background-primary',
   },
   mixed: {
     pictogramName: 'mixed',
-    className: 'bg-background-waste-mixed',
+    className: 'bg-waste-mixed',
     pictogramClassName: 'text-background-primary',
   },
 } as const

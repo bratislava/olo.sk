@@ -54,8 +54,27 @@ const Homepage = (props: PageProps) => {
       {/*   )} */}
       {/* </Head> */}
 
-      <div className="flex flex-col items-center">
-        <Typography variant="h1-hero">{t('helloWorld')}</Typography>
+      <div className="flex flex-col items-center justify-center">
+        <Typography variant="h1">{`Headline ASDFGHJKL ${t('helloWorld')}`}</Typography>
+        <Typography variant="h1">Lorem ipsum dolor sit amet</Typography>
+        <Typography variant="p-default" className_onlyWhenNecessary="font-light">
+          light p Srk red fox jumpad ASDFGHJKL
+        </Typography>
+        <Typography variant="p-default" className_onlyWhenNecessary="font-normal">
+          (missing) normal p Srk red fox jumpad ASDFGHJKL
+        </Typography>
+        <Typography variant="p-default" className_onlyWhenNecessary="font-medium">
+          (missing) medium p Srk red fox jumpad ASDFGHJKL
+        </Typography>
+        <Typography variant="p-default" className_onlyWhenNecessary="font-semibold">
+          (missing) semibold p Srk red fox jumpad ASDFGHJKL
+        </Typography>
+        <Typography variant="p-default" className_onlyWhenNecessary="font-bold">
+          bold p Srk red fox jumpad ASDFGHJKL
+        </Typography>
+        <Typography variant="p-default" className_onlyWhenNecessary="font-black">
+          black p Srk red fox jumpad ASDFGHJKL
+        </Typography>
       </div>
 
       {/*     <PageLayout> */}

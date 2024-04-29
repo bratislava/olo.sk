@@ -1,29 +1,12 @@
 import '../styles/globals.css'
 
 import { AppProps } from 'next/app'
-import localFont from 'next/font/local'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
-
-const frutigerFont = localFont({
-  // https://nextjs.org/docs/pages/building-your-application/optimizing/fonts#local-fonts
-  src: [
-    { path: './../../public/fonts/FrutigerLTPro-Light.otf', weight: '300', style: 'normal' },
-    { path: './../../public/fonts/FrutigerLTPro-Roman.otf', weight: '400', style: 'normal' },
-    { path: './../../public/fonts/FrutigerLTPro-Bold.otf', weight: '700', style: 'normal' },
-    { path: './../../public/fonts/FrutigerLTPro-Black.otf', weight: '800', style: 'normal' },
-  ],
-})
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      {/* eslint-disable-next-line react/no-unknown-property */}
-      <style jsx global>{`
-        html {
-          font-family: ${frutigerFont.style.fontFamily};
-        }
-      `}</style>
       <Head>
         {/* <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> */}
         {/* <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" /> */}

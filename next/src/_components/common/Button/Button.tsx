@@ -126,7 +126,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
               {
                 // NOTE: there are some style overrides for link variants below in "twMerge"
 
-                'underline underline-offset-2': isLinkVariant,
+                'font-normal underline underline-offset-2': isLinkVariant,
 
                 // disabled or loading
                 'opacity-50': isLoadingOrDisabled,
@@ -227,9 +227,9 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
       const isExternal = rest.href.startsWith('http')
       const linkIcon = hasLinkIcon ? (
         isExternal ? (
-          <Icon name="sipka-doprava" />
-        ) : (
           <Icon name="export" />
+        ) : (
+          <Icon name="sipka-doprava" />
         )
       ) : null
 

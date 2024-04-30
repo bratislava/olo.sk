@@ -27,7 +27,7 @@ const DocumentRowCard = ({
 }: DocumentRowCardProps) => {
   return (
     <CardBase variant="unstyled" className={className}>
-      <div className="bg-white px-4 lg:px-5">
+      <div className="bg-background-primary px-4 lg:px-5">
         <div
           className={cn('flex gap-3 py-4 lg:gap-4', {
             'border-b border-border-default': hasBottomBorder,

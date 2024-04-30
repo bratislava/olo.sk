@@ -17,7 +17,7 @@ type JobPositionRowCardProps = {
 const JobPositionRowCard = ({ title, className, linkHref, metaData }: JobPositionRowCardProps) => {
   return (
     <CardBase variant="unstyled" className={className}>
-      <div className="flex gap-6 border-b border-border-default bg-white px-4 py-3 lg:gap-4 lg:px-6 lg:py-4">
+      <div className="flex gap-6 border-b border-border-default bg-background-primary px-4 py-3 lg:gap-4 lg:px-6 lg:py-4">
         <div className="flex flex-col gap-3">
           <Typography
             variant="h5"

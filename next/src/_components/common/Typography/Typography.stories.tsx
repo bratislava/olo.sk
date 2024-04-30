@@ -9,6 +9,28 @@ const meta: Meta<typeof TypographyComponent> = {
   tags: ['autodocs'],
   argTypes: {
     children: { name: 'text' },
+    variant: {
+      options: [
+        'h1-hero',
+        'h1',
+        'h2',
+        'h3',
+        'h4',
+        'h5',
+        'h6',
+        'p-default',
+        'p-large',
+        'p-small',
+        'p-default-bold',
+        'p-large-bold',
+        'p-small-bold',
+        'p-default-black',
+        'p-large-black',
+        'p-small-black',
+        'button-default',
+        'button-large',
+      ],
+    },
   },
   decorators: [
     (Story) => (

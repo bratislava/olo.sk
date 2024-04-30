@@ -11,7 +11,7 @@ const meta: Meta<typeof SearchResultRowCardComponent> = {
   args: {
     title: 'SearchResultRowCard title',
     linkHref: '#',
-    metaData: ['Kategória', '8. november, 2023'],
+    metadata: ['Kategória', '8. november, 2023'],
     // iconName: 'disk', // temporary icon
     // imgSrc: '/next/src/assets/images/olo-truck.jpg',
   },

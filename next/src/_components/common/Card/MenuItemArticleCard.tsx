@@ -42,7 +42,7 @@ const MenuItemArticleCard = ({
             href={linkHref}
             aria-label=""
             stretched
-            className="ml-auto self-center p-1.5 max-lg:hidden [&>svg:last-of-type]:hidden"
+            className="ml-auto self-center p-1.5"
           />
         </div>
       </div>

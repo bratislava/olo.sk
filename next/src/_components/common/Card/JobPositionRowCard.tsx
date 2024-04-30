@@ -29,7 +29,9 @@ const JobPositionRowCard = ({ title, className, linkHref, metaData }: JobPositio
             <div className="flex items-center gap-3">
               {metaData.map((item, index) => (
                 <>
-                  {index > 0 ? <div className="size-1 rounded-full bg-content-secondary" /> : null}
+                  {index > 0 ? (
+                    <div aria-hidden className="size-1 rounded-full bg-content-secondary" />
+                  ) : null}
                   <Typography variant="p-small">{item}</Typography>
                 </>
               ))}
@@ -45,8 +47,9 @@ const JobPositionRowCard = ({ title, className, linkHref, metaData }: JobPositio
           asLink
           aria-label=""
           stretched
+          hasLinkIcon={false}
           icon={<Icon name="chevron-doprava" />}
-          className="ml-auto self-center p-1.5 max-lg:hidden [&>svg:last-of-type]:hidden"
+          className="ml-auto self-center p-1.5 max-lg:hidden"
         />
       </div>
     </CardBase>

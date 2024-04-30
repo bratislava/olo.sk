@@ -9,7 +9,7 @@ type SearchResultRowCardProps = {
   linkHref: string
   iconName?: keyof typeof iconNameMap
   imgSrc?: string
-  metaData?: string[]
+  metadata?: string[]
   className?: string
 }
 
@@ -21,13 +21,13 @@ const SearchResultRowCard = ({
   title,
   className,
   linkHref,
-  metaData,
+  metadata,
   iconName,
   imgSrc,
 }: SearchResultRowCardProps) => {
   return (
     <CardBase variant="unstyled" className={className}>
-      <div className="flex gap-4 border-b border-border-default bg-white p-4">
+      <div className="flex items-center gap-4 border-b border-border-default bg-background-primary p-4">
         {/* 2.25rem = 36px, 3.5rem = 56px */}
         <div className="flex size-[3.5rem] items-center justify-center">
           {imgSrc ? (
@@ -36,19 +36,19 @@ const SearchResultRowCard = ({
             <Icon name={iconName} className="size-[2.25rem]" />
           ) : null}
         </div>
-        <div className="flex flex-col gap-2 max-lg:gap-3">
+        <div className="flex grow flex-col gap-2">
           <Typography
             variant="h6"
             className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
           >
             {title}
           </Typography>
-          {metaData?.length ? (
-            <div className="flex items-center gap-3 [&>*:first-child]:underline">
-              {metaData.map((item, index) => (
+          {metadata?.length ? (
+            <div className="flex items-center gap-3">
+              {metadata.map((metadataItem, index) => (
                 <>
                   {index > 0 ? <div className="size-1 rounded-full bg-content-secondary" /> : null}
-                  <Typography variant="p-small">{item}</Typography>
+                  <Typography variant="p-small">{metadataItem}</Typography>
                 </>
               ))}
             </div>
@@ -60,10 +60,11 @@ const SearchResultRowCard = ({
           variant="unstyled"
           href={linkHref}
           asLink
+          hasLinkIcon={false}
           aria-label=""
           stretched
           icon={<Icon name="chevron-doprava" />}
-          className="ml-auto self-center max-lg:hidden [&>svg:last-of-type]:hidden"
+          className="max-lg:hidden"
         />
       </div>
     </CardBase>

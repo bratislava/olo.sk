@@ -9,6 +9,15 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    backgrounds: {
+      default: 'figmaBackground',
+      values: [
+        {
+          name: 'figmaBackground',
+          value: '#F5F5F5',
+        },
+      ],
+    },
   },
 }
 

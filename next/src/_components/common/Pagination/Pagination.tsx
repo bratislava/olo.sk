@@ -63,6 +63,7 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
                   // TODO this styling currently overrides current Button component to align with Figma Buttons
                   className={cn(
                     'flex h-10 w-10 shrink-0 grow-0 items-center justify-center rounded-full font-bold lg:h-12 lg:w-12',
+                    { 'bg-background-primary': !selected },
                   )}
                 >
                   {page}

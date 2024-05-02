@@ -5,7 +5,7 @@ import PageHeaderBasicComponent from './PageHeaderBasic'
 
 const meta: Meta<typeof PageHeaderBasicComponent> = {
   component: PageHeaderBasicComponent,
-  title: 'Components/PageHeader/PageHeaderBasic',
+  title: 'Components/Sections/PageHeaderBasic',
   args: {
     title: 'PageHeaderBasic title',
     text: 'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',

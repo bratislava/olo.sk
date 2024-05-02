@@ -1,5 +1,5 @@
 import Typography from '@/_components/common/Typography/Typography'
-import SectionContainer from '@/_components/layout/Section/SectionContainer'
+import Section from '@/_components/layout/Section/Section'
 import cn from '@/app/_utils/cn'
 
 type PageHeaderBasicProps = {
@@ -14,13 +14,13 @@ type PageHeaderBasicProps = {
 
 const PageHeaderBasic = ({ title, text, className }: PageHeaderBasicProps) => {
   return (
-    <SectionContainer background="secondary">
+    <Section background="secondary">
       {/* 50rem = 800px */}
       <div className={cn('flex flex-col items-start gap-6 lg:[&>*]:w-[50rem]', className)}>
         <Typography variant="h1">{title}</Typography>
         <Typography variant="p-default">{text}</Typography>
       </div>
-    </SectionContainer>
+    </Section>
   )
 }
 

@@ -25,25 +25,20 @@ const MenuItemArticleCard = ({
 }: MenuItemArticleCardProps) => {
   return (
     <CardBase className={className}>
-      <div className="flex flex-col gap-4 lg:flex-row">
+      <div className="flex flex-col items-start gap-4 lg:flex-row">
         {/* 6.25rem = 100px */}
-        <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] self-start rounded-lg" />
-        <div className="flex flex-col gap-3">
+        <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />
+        <div className="center flex flex-col gap-3">
           <Tag variant="without-bg" text={tagText} />
-          <Typography
-            variant="h6"
-            className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
-          >
-            {title}
-          </Typography>
           {/* TODO Add aria-label */}
-          <Link
-            variant="unstyled"
-            href={linkHref}
-            aria-label=""
-            stretched
-            className="ml-auto self-center p-1.5"
-          />
+          <Link variant="unstyled" href={linkHref} aria-label="" stretched>
+            <Typography
+              variant="h6"
+              className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
+            >
+              {title}
+            </Typography>
+          </Link>
         </div>
       </div>
     </CardBase>

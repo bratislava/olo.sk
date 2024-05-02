@@ -19,14 +19,14 @@ type ArticleRowCardProps = {
 const ArticleRowCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleRowCardProps) => {
   return (
     <CardBase className={className}>
-      <div className="flex flex-col gap-3 lg:flex-row lg:gap-8">
+      <div className="flex flex-col items-start gap-3 lg:flex-row lg:gap-8">
         {/* 6.25rem = 100px, 14.5rem = 232px */}
         <CardImage
           imgSrc={imgSrc}
-          className="aspect-[232/130] self-start rounded-lg max-lg:w-[6.25rem] lg:w-[14.5rem]"
+          className="aspect-[232/130] rounded-lg max-lg:w-[6.25rem] lg:w-[14.5rem]"
         />
-        <div className="flex grow flex-col max-lg:gap-3 lg:justify-between">
-          <div className="flex flex-col gap-2">
+        <div className="flex flex-col items-start self-stretch max-lg:gap-3 lg:justify-between">
+          <div className="flex flex-col items-start gap-2 self-stretch">
             <Tag variant="without-bg" text={tagText} />
             <Typography
               variant="h5"

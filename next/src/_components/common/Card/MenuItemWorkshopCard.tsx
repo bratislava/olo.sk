@@ -24,26 +24,21 @@ const MenuItemWorkshopCard = ({
 }: MenuItemWorkshopCardProps) => {
   return (
     <CardBase className={className}>
-      <div className="flex gap-4">
-        <div className="self-start rounded-[20px] bg-background-secondary p-4">
+      <div className="flex items-start gap-4">
+        <div className="rounded-[20px] bg-background-secondary p-4">
           <Icon name={iconName} className="size-6" />
         </div>
-        <div className="flex flex-col gap-2">
-          <Typography
-            variant="h6"
-            className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
-          >
-            {title}
-          </Typography>
-          <Typography variant="p-small">{subText}</Typography>
+        <div className="flex flex-col items-start gap-2 self-stretch">
           {/* TODO Add aria-label */}
-          <Link
-            variant="unstyled"
-            href={linkHref}
-            aria-label=""
-            stretched
-            className="ml-auto self-center p-1.5 max-lg:hidden [&>svg:last-of-type]:hidden"
-          />
+          <Link variant="unstyled" href={linkHref} aria-label="" stretched>
+            <Typography
+              variant="h6"
+              className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
+            >
+              {title}
+            </Typography>
+          </Link>
+          <Typography variant="p-small">{subText}</Typography>
         </div>
       </div>
     </CardBase>

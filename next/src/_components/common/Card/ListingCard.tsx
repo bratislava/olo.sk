@@ -24,13 +24,14 @@ const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {
           {title}
         </Typography>
         {/* TODO Change text to dynamic translation */}
-        <div className="flex justify-between">
+        <div className="flex items-center gap-6">
           <Button
             variant="black-link"
             asLink
             href={linkHref}
             stretched
-            className="font-bold [&>svg]:hidden"
+            hasLinkIcon={false}
+            className="font-bold"
           >
             <Typography variant="button-default">Zistiť viac</Typography>
           </Button>

@@ -23,7 +23,7 @@ export const HomepageMainTile: Story = {
 
 export const HomepageMainTileRows: Story = {
   render: (args) => (
-    <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
+    <div className="flex flex-row flex-wrap gap-4 [&>*]:h-[200px] [&>*]:basis-[280px]">
       <HomepageMainTileComponent {...args} />
       <HomepageMainTileComponent {...args} />
       <HomepageMainTileComponent {...args} />

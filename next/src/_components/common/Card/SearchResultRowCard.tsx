@@ -64,7 +64,7 @@ const SearchResultRowCard = ({
           aria-label=""
           stretched
           icon={<Icon name="chevron-doprava" />}
-          className="max-lg:hidden"
+          className=""
         />
       </div>
     </CardBase>

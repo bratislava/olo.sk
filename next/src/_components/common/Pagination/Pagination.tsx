@@ -18,7 +18,7 @@ type PaginationProps = {
  *
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=37-1730&mode=design&t=3OjB80TrL7MvAUkW-4
  *
- * @param selectedPage
+ * @param currentPage
  * @param totalCount
  * @param onPageChange
  * @constructor

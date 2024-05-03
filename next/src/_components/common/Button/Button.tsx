@@ -12,7 +12,7 @@ import Icon from '@/_components/common/Icon/Icon'
 import Link, { LinkPlausibleProps } from '@/_components/common/Link/Link'
 import Spinner from '@/_components/common/Spinner/Spinner'
 
-/*
+/**
  *  Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=4-385&mode=design&t=IDCmW43zimnlwiDU-4
  */
 

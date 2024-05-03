@@ -1,0 +1,51 @@
+import { ReactNode } from 'react'
+
+import AnimateHeight from '@/_components/common/Accordion/AnimateHeight'
+import Icon from '@/_components/common/Icon/Icon'
+import Typography from '@/_components/common/Typography/Typography'
+import cn from '@/app/_utils/cn'
+
+export type AccordionProps = {
+  title: string
+  // title: string | ReactNode | null | undefined // TODO old title type currently incompatible with Typography component
+  children?: ReactNode
+}
+
+/**
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=39-2172&mode=dev
+ *
+ * Component inspired by bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/ui/Accordion/Accordion.tsx
+ *
+ */
+
+const Accordion = ({ title, children }: AccordionProps) => {
+  return (
+    <AnimateHeight isVisible className="relative">
+      <div className="bg-background-primary px-5">
+        <details className={cn('group flex w-full flex-col border-b border-border-default py-5')}>
+          <summary
+            className={cn(
+              'flex cursor-pointer items-center gap-4 text-left',
+              'group-open:pb-3 group-open:lg:pb-4',
+              'after:absolute after:inset-0',
+            )}
+          >
+            <Typography variant="h5" className_onlyWhenNecessary="grow min-w-0 break-words">
+              {title}
+            </Typography>
+
+            <div aria-hidden>
+              <Icon
+                name="chevron-dole"
+                className="size-6 transform fill-content-secondary transition-transform group-open:rotate-180"
+              />
+            </div>
+          </summary>
+          <div className="">{children}</div>
+        </details>
+      </div>
+    </AnimateHeight>
+  )
+}
+
+export default Accordion

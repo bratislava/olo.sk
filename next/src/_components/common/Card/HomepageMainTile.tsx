@@ -1,5 +1,3 @@
-'use client'
-
 import cx from 'classnames'
 
 import CardBase, { CardBaseProps } from '@/_components/common/Card/CardBase'
@@ -20,16 +18,16 @@ const cardBaseVariantMap: Record<HomepageMainTileProps['variant'], CardBaseProps
   'background-yellow': 'plain-brand',
 }
 
-/*
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
+/**
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
  */
 
 const HomepageMainTile = ({ variant, title, text, className, linkHref }: HomepageMainTileProps) => {
   return (
     <CardBase variant={cardBaseVariantMap[variant]} className={className}>
-      <div className="flex flex-col items-start gap-8 p-4 lg:gap-12 lg:p-6">
+      <div className="flex h-full flex-col items-start justify-between p-4 lg:p-6">
         <Typography variant="p-default">{text}</Typography>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 self-stretch">
           <Typography
             variant="h6"
             className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

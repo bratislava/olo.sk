@@ -1,5 +1,3 @@
-'use client'
-
 import CardBase from '@/_components/common/Card/CardBase'
 import Icon, { iconNameMap } from '@/_components/common/Icon/Icon'
 import Link from '@/_components/common/Link/Link'
@@ -12,8 +10,8 @@ type HomepageSmallTileProps = {
   className?: string
 }
 
-/*
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
+/**
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
  */
 
 const HomepageSmallTile = ({ title, className, linkHref, iconName }: HomepageSmallTileProps) => {

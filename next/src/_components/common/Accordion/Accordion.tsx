@@ -7,7 +7,7 @@ import cn from '@/app/_utils/cn'
 
 export type AccordionProps = {
   title: string
-  // title: string | ReactNode | null | undefined // TODO old title type currently incompatible with Typography component
+  hasBottomBorder?: boolean
   children?: ReactNode
 }
 
@@ -18,16 +18,18 @@ export type AccordionProps = {
  *
  */
 
-const Accordion = ({ title, children }: AccordionProps) => {
+const Accordion = ({ title, hasBottomBorder = true, children }: AccordionProps) => {
   return (
     <AnimateHeight isVisible className="relative">
-      <div className="bg-background-primary px-5">
-        <details className={cn('group flex w-full flex-col border-b border-border-default py-5')}>
+      <div className="bg-background-primary px-4 lg:px-5">
+        <details
+          className={cn('group flex w-full flex-col py-5', {
+            'border-b border-border-default ': hasBottomBorder,
+          })}
+        >
           <summary
             className={cn(
-              'flex cursor-pointer items-center gap-4 text-left',
-              'group-open:pb-3 group-open:lg:pb-4',
-              'after:absolute after:inset-0',
+              'flex cursor-pointer items-center gap-4 text-left after:absolute after:inset-0 group-open:pb-3 group-open:lg:pb-4',
             )}
           >
             <Typography variant="h5" className_onlyWhenNecessary="grow min-w-0 break-words">

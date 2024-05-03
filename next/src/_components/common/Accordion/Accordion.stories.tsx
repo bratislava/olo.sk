@@ -6,7 +6,7 @@ import AccordionComponent from './Accordion'
 
 const meta: Meta<typeof AccordionComponent> = {
   component: AccordionComponent,
-  title: 'Components/Accordion',
+  title: 'Components/Accordion/Accordion',
   tags: ['autodocs'],
   args: {
     title: 'AccordionComponent title',

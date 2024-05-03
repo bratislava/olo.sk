@@ -1,5 +1,3 @@
-'use client'
-
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
@@ -15,8 +13,8 @@ type BasicCardProps = {
   imgSrc?: string
 }
 
-/*
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1199-13816&mode=dev
+/**
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1199-13816&mode=dev
  */
 
 const BasicCard = ({
@@ -29,7 +27,7 @@ const BasicCard = ({
   showBorder = true,
 }: BasicCardProps) => {
   return (
-    <CardBase variant={showBorder ? 'solid' : 'plain'} className={className}>
+    <CardBase variant={showBorder ? 'solid' : 'plain-white'} className={className}>
       <CardImage imgSrc={imgSrc} className="aspect-[384/204] rounded-t-lg" />
       <div className="flex flex-col gap-5 px-4 py-4 lg:px-5">
         <div className="flex flex-col gap-3">
@@ -43,7 +41,7 @@ const BasicCard = ({
             {subtext}
           </Typography>
         </div>
-        <Button variant="black-link" href={linkHref} asLink>
+        <Button variant="black-link" href={linkHref} asLink stretched>
           {linkText}
         </Button>
       </div>

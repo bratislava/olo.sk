@@ -10,7 +10,7 @@ const meta: Meta<typeof LinkComponent> = {
   argTypes: {
     children: { name: 'text' },
     variant: {
-      options: ['unstyled', 'underlineOnHover', 'underlined', 'underlined-medium'],
+      options: ['unstyled', 'underlineOnHover', 'underlined'],
       control: { type: 'radio' },
     },
   },
@@ -28,7 +28,7 @@ type Story = StoryObj<typeof LinkComponent>
 
 export const Link: Story = {
   args: {
-    variant: 'underlined-medium',
+    variant: 'underlined',
     className: '',
     href: '#',
     children: 'Link',

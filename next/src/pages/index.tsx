@@ -54,8 +54,8 @@ const Homepage = (props: PageProps) => {
       {/*   )} */}
       {/* </Head> */}
 
-      <div className="flex flex-col items-center">
-        <Typography variant="h1-hero">{t('helloWorld')}</Typography>
+      <div className="flex flex-col items-center justify-center">
+        <Typography variant="h1">{t('helloWorld')}</Typography>
       </div>
 
       {/*     <PageLayout> */}

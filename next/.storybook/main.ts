@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs'
+import svgoConfig from '../svgo.config.mjs'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -38,7 +39,7 @@ const config: StorybookConfig = {
 
     config.module?.rules?.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: { loader: '@svgr/webpack', options: { svgoConfig } },
     })
 
     return config

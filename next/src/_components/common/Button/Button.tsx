@@ -12,7 +12,7 @@ import Icon from '@/_components/common/Icon/Icon'
 import Link, { LinkPlausibleProps } from '@/_components/common/Link/Link'
 import Spinner from '@/_components/common/Spinner/Spinner'
 
-/*
+/**
  *  Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=4-385&mode=design&t=IDCmW43zimnlwiDU-4
  */
 
@@ -71,6 +71,10 @@ export type AnchorProps = Omit<AriaButtonProps<'a'>, 'children'> &
 
 export type PolymorphicProps = ButtonBase & (ButtonProps | AnchorProps)
 
+/**
+ *  Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=4-385&mode=design&t=IDCmW43zimnlwiDU-4
+ */
+
 const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProps>(
   (
     {
@@ -118,7 +122,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
         ? className ?? ''
         : twMerge(
             // TODO text-button interferes with text-[color], as quickfix we set size and color here by arbitrary values
-            'inline-flex h-auto items-center justify-center gap-2 text-[1rem] font-semibold leading-[1.5rem] transition',
+            'inline-flex h-auto items-center justify-center gap-2 text-[1rem] font-bold leading-[1.5rem] transition',
             cx(
               // we change rounded corners for link focus ring
               isLinkVariant ? 'rounded-sm max-lg:gap-1' : 'rounded-lg',
@@ -126,7 +130,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
               {
                 // NOTE: there are some style overrides for link variants below in "twMerge"
 
-                'font-medium underline underline-offset-2': isLinkVariant,
+                'font-normal underline underline-offset-2': isLinkVariant,
 
                 // disabled or loading
                 'opacity-50': isLoadingOrDisabled,
@@ -227,9 +231,9 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
       const isExternal = rest.href.startsWith('http')
       const linkIcon = hasLinkIcon ? (
         isExternal ? (
-          <Icon name="sipka-doprava" />
-        ) : (
           <Icon name="export" />
+        ) : (
+          <Icon name="sipka-doprava" />
         )
       ) : null
 

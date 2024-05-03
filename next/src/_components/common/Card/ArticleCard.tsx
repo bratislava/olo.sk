@@ -1,5 +1,3 @@
-'use client'
-
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
@@ -14,8 +12,8 @@ type ArticleCardProps = {
   imgSrc?: string
 }
 
-/*
- * FIGMA: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=8-4117&mode=dev
+/**
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=8-4117&mode=dev
  */
 
 const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCardProps) => {
@@ -34,7 +32,7 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
             </Typography>
           </div>
           {/* TODO Change text to dynamic translation */}
-          <Button variant="black-link" href={linkHref} asLink>
+          <Button variant="black-link" href={linkHref} asLink stretched>
             Čítať viac
           </Button>
         </div>

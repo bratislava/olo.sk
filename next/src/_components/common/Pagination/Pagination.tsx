@@ -98,7 +98,7 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
                 className={cx({
-                  'text-sm flex w-10 items-center justify-center font-semibold lg:w-12':
+                  'text-sm flex w-10 items-center justify-center lg:w-12':
                     type === 'start-ellipsis' || type === 'end-ellipsis',
                   'lg:mr-2': type === 'previous',
                   'lg:ml-2': type === 'next',

@@ -1,25 +1,12 @@
 import '../styles/globals.css'
 
 import { AppProps } from 'next/app'
-import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
-
-const inter = Inter({
-  variable: '--inter-font',
-  subsets: ['latin', 'latin-ext'],
-})
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      {/* https://nextjs.org/docs/pages/building-your-application/optimizing/fonts#apply-the-font-in-head */}
-      {/* eslint-disable-next-line react/no-unknown-property */}
-      <style jsx global>{`
-        body {
-          font-family: ${inter.style.fontFamily};
-        }
-      `}</style>
       <Head>
         {/* <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /> */}
         {/* <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" /> */}

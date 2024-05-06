@@ -29,7 +29,7 @@ const Accordion = ({ title, hasBottomBorder = true, children }: AccordionProps) 
         >
           <summary
             className={cn(
-              'flex cursor-pointer items-center gap-4 text-left after:absolute after:inset-0 group-open:pb-3 group-open:lg:pb-4',
+              'flex cursor-pointer items-center gap-4 text-left after:absolute after:inset-0',
             )}
           >
             <Typography variant="h5" className_onlyWhenNecessary="grow min-w-0 break-words">
@@ -43,7 +43,7 @@ const Accordion = ({ title, hasBottomBorder = true, children }: AccordionProps) 
               />
             </div>
           </summary>
-          <div className="">{children}</div>
+          <div className="group-open:pt-3 group-open:lg:pt-4">{children}</div>
         </details>
       </div>
     </AnimateHeight>

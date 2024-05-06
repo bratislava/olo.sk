@@ -146,6 +146,9 @@ const config: Config = {
       borderRadius: {
         4: '4px',
       },
+      padding: {
+        '4.5': '1.125rem',
+      },
     },
   },
 }

@@ -1,3 +1,11 @@
 {
-  "helloWorld": "Ahoj svet!"
+  "aria.close": "Zavrieť",
+  "helloWorld": "Ahoj svet!",
+  "modalShare.copy": "Kopírovať",
+  "modalShare.copyLink": "Skopírovať odkaz",
+  "modalShare.facebook": "Facebook",
+  "modalShare.linkedIn": "Linked In",
+  "modalShare.share": "Zdieľať",
+  "modalShare.shareOnSocialMedia": "Zdieľať cez sociálne siete",
+  "modalShare.xTwitter": "X (Twitter)"
 }

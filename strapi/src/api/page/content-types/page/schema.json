@@ -47,7 +47,7 @@
     },
     "sections": {
       "type": "dynamiczone",
-      "components": ["sections.section-1", "sections.section-2"]
+      "components": ["sections.richtext"]
     }
   }
 }

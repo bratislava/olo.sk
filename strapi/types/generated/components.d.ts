@@ -63,6 +63,18 @@ export interface ItemsOpeningHoursItem extends Schema.Component {
   }
 }
 
+export interface SectionsRichtext extends Schema.Component {
+  collectionName: 'components_sections_richtexts'
+  info: {
+    displayName: 'richtext'
+    icon: 'apps'
+    description: ''
+  }
+  attributes: {
+    content: Attribute.Blocks
+  }
+}
+
 export interface SectionsSection1 extends Schema.Component {
   collectionName: 'components_sections_section_1s'
   info: {
@@ -91,6 +103,7 @@ declare module '@strapi/types' {
       'header-sections.image': HeaderSectionsImage
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
+      'sections.richtext': SectionsRichtext
       'sections.section-1': SectionsSection1
       'sections.section-2': SectionsSection2
     }

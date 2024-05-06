@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_richtexts",
+  "info": {
+    "displayName": "richtext",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "blocks",
+      "required": false
+    }
+  }
+}

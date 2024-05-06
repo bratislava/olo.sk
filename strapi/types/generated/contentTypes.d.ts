@@ -906,7 +906,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         },
         number
       >
-    sections: Attribute.DynamicZone<['sections.section-1', 'sections.section-2']>
+    sections: Attribute.DynamicZone<['sections.richtext']>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

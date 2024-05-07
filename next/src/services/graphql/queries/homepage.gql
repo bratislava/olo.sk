@@ -1,0 +1,27 @@
+fragment SlideItem on ComponentItemsSlide {
+  title
+  text
+  media {
+    data {
+      ...UploadImageEntity
+    }
+  }
+  backgroundColor
+}
+
+fragment HomepageEntity on HomepageEntity {
+  id
+  attributes {
+    slides {
+      ...SlideItem
+    }
+  }
+}
+
+query Homepage($locale: I18NLocaleCode!) {
+  homepage(locale: $locale) {
+    data {
+      ...HomepageEntity
+    }
+  }
+}

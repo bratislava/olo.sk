@@ -698,6 +698,26 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true
         }
       }>
+    coverMedia: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
+    addedAt: Attribute.DateTime &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
+    category: Attribute.Relation<'api::article.article', 'manyToOne', 'api::category.category'>
+    blocks: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -789,6 +809,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: true
         }
       }>
+    articles: Attribute.Relation<'api::category.category', 'oneToMany', 'api::article.article'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -852,6 +873,49 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   }
 }
 
+export interface ApiHomepageHomepage extends Schema.SingleType {
+  collectionName: 'homepages'
+  info: {
+    singularName: 'homepage'
+    pluralName: 'homepages'
+    displayName: 'homepage'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    slides: Attribute.Component<'items.slide', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    featuredArticles: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToMany',
+      'api::article.article'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToMany',
+      'api::homepage.homepage'
+    >
+    locale: Attribute.String
+  }
+}
+
 export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
   collectionName: 'opening_times'
   info: {
@@ -906,7 +970,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         },
         number
       >
-    sections: Attribute.DynamicZone<['sections.section-1', 'sections.section-2']>
+    sections: Attribute.DynamicZone<['sections.richtext']>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -978,6 +1042,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
+      'api::homepage.homepage': ApiHomepageHomepage
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
       'api::tag.tag': ApiTagTag

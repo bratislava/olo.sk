@@ -1,19 +1,11 @@
-fragment Section1 on ComponentSectionsSection1 {
-  title
-}
-
-fragment Section2 on ComponentSectionsSection2 {
-  title
+fragment RichtextSection on ComponentSectionsRichtext {
+  content
 }
 
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
-  ... on ComponentSectionsSection1 {
-    ...Section1
-  }
-
-  ... on ComponentSectionsSection2 {
-    ...Section2
+  ... on ComponentSectionsRichtext {
+    ...RichtextSection
   }
 }

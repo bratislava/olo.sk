@@ -3,15 +3,15 @@ import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
-import Sections from '@/_components/layout/Sections'
+import BlocksRenderer from '@/_components/layout/BlocksRenderer'
+import Section from '@/_components/layout/Section/Section'
 import PageHeaderSection from '@/_components/sections/PageHeaderSection'
-import { isDefined } from '@/_utils/isDefined'
 import { client } from '@/services/graphql'
-import { PageEntityFragment } from '@/services/graphql/api'
+import { ArticleEntityFragment } from '@/services/graphql/api'
 
 type PageProps = {
   // general: GeneralQuery
-  page: PageEntityFragment
+  article: ArticleEntityFragment
 }
 
 type StaticParams = {
@@ -19,6 +19,8 @@ type StaticParams = {
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
+  // TODO return all paths
+
   // const { blogPosts } = await client.BlogPostsStaticPaths()
 
   // const paths = (blogPosts?.data ?? [])
@@ -44,58 +46,54 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   const slug = params?.slug
 
   // eslint-disable-next-line no-console
-  console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}/${slug}`)
+  console.log(`Revalidating article ${locale === 'en' ? '/en' : ''}/blog/${slug}`)
 
+  // TODO || !locale
   if (!slug || !locale) {
     return { notFound: true }
   }
 
-  const [{ pages }, translations] = await Promise.all([
-    client.PageBySlug({ slug }),
+  const [{ articles }, translations] = await Promise.all([
+    client.ArticleBySlug({ slug }),
     serverSideTranslations(locale),
   ])
 
-  const page = pages?.data[0]
-  if (!page) {
+  const article = articles?.data[0]
+  if (!article) {
     return { notFound: true }
   }
 
   return {
     props: {
-      page,
+      article,
       ...translations,
     },
     revalidate: 10,
   }
 }
 
-const Page = ({ page }: PageProps) => {
-  if (!page.attributes) {
+const Page = ({ article }: PageProps) => {
+  if (!article.attributes) {
     return null
   }
 
-  const { title, perex, sections } = page.attributes
-
-  // const title = useTitle(blogPostTitle)
+  const { title, perex, blocks } = article.attributes
 
   return (
     <>
-      {/* <GeneralContextProvider general={general}> */}
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>
         {perex && <meta name="description" content={perex} />}
       </Head>
+
+      {/* TODO Article page header */}
       <PageHeaderSection title={title} />
 
-      <Sections sections={sections?.filter(isDefined) ?? []} />
-      {/* <GlobalCategoryColorProvider */}
-      {/*   color={blogPost?.attributes?.tag?.data?.attributes?.pageCategory?.data?.attributes?.color} */}
-      {/* /> */}
-      {/* <PageLayout> */}
-      {/*   <BlogPostPageContentTmp blogPost={blogPost} /> */}
-      {/* </PageLayout> */}
-      {/* </GeneralContextProvider> */}
+      {/* TODO Article narrow layout */}
+      <Section>
+        <BlocksRenderer content={blocks} />
+      </Section>
     </>
   )
 }

@@ -108,7 +108,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
     const isIconButton = Boolean(icon)
 
     /* TODO
-     *   - examine why `text-button` interferes with `text-[color]` and therefore is sometimes ignored
+     *   - text should be styled by Typography component, now we use "text-size-button-default font-bold" directly
      *   - border should render inside button, not outside
      */
     const styles = twMerge(
@@ -121,8 +121,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
       variant === 'unstyled'
         ? className ?? ''
         : twMerge(
-            // TODO text-button interferes with text-[color], as quickfix we set size and color here by arbitrary values
-            'inline-flex h-auto items-center justify-center gap-2 text-[1rem] font-bold leading-[1.5rem] transition',
+            'inline-flex h-auto items-center justify-center gap-2 text-size-button-default font-bold transition',
             cx(
               // we change rounded corners for link focus ring
               isLinkVariant ? 'rounded-sm max-lg:gap-1' : 'rounded-lg',

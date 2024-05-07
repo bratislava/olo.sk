@@ -5,6 +5,7 @@ import * as Icons from '@/assets/icons'
 // TODO make it generic and typesafe (allow only defined filenames/components)
 
 export const iconNameMap = {
+  // size 24 px
   'chevron-dolava': 'ChevronLeftIcon',
   'chevron-dole': 'ChevronDownIcon',
   'chevron-dole-maly': 'ChevronDownSmallIcon',
@@ -59,6 +60,10 @@ export const iconNameMap = {
   'vymazat-plny-kruh': 'RemoveIcon',
   zamok: 'LockIcon',
   'zrusit-kruh': 'CrossInCircleIcon',
+  // size 32 px
+  'social-media-facebook': 'FacebookIcon',
+  'social-media-twitter': 'TwitterIcon',
+  'social-media-linkedin': 'LinkedInIcon',
 } as const
 
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>

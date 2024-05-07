@@ -145,6 +145,9 @@ const config: Config = {
       borderRadius: {
         4: '4px',
       },
+      spacing: {
+        '4.5': '1.125rem',
+      },
     },
   },
 }

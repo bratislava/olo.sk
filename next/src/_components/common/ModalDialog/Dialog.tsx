@@ -1,4 +1,3 @@
-// import { useTranslations } from 'next-intl'
 import { useTranslation } from 'next-i18next'
 import React, { forwardRef, ReactNode } from 'react'
 import { Dialog as ReactAriaDialog, DialogProps } from 'react-aria-components'
@@ -30,7 +29,7 @@ const Dialog = forwardRef<HTMLElement, Props>(({ children, title, ...props }, re
       {({ close }) => (
         <>
           {title ? (
-            <div className="py-4.5 flex shrink-0 items-center gap-6 border-b border-border-default px-4 lg:px-6 lg:py-4">
+            <div className="flex shrink-0 items-center gap-6 border-b border-border-default px-4 py-4.5 lg:px-6 lg:py-4">
               <Typography as="h2" variant="h5" className_onlyWhenNecessary="grow">
                 {title}
               </Typography>

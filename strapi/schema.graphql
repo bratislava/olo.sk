@@ -275,38 +275,21 @@ input ComponentItemsOpeningHoursItemInput {
   value: String
 }
 
-type ComponentSectionsSection1 {
+type ComponentSectionsRichtext {
+  content: JSON
   id: ID!
-  title: String
 }
 
-input ComponentSectionsSection1FiltersInput {
-  and: [ComponentSectionsSection1FiltersInput]
-  not: ComponentSectionsSection1FiltersInput
-  or: [ComponentSectionsSection1FiltersInput]
-  title: StringFilterInput
+input ComponentSectionsRichtextFiltersInput {
+  and: [ComponentSectionsRichtextFiltersInput]
+  content: JSONFilterInput
+  not: ComponentSectionsRichtextFiltersInput
+  or: [ComponentSectionsRichtextFiltersInput]
 }
 
-input ComponentSectionsSection1Input {
+input ComponentSectionsRichtextInput {
+  content: JSON
   id: ID
-  title: String
-}
-
-type ComponentSectionsSection2 {
-  id: ID!
-  title: String
-}
-
-input ComponentSectionsSection2FiltersInput {
-  and: [ComponentSectionsSection2FiltersInput]
-  not: ComponentSectionsSection2FiltersInput
-  or: [ComponentSectionsSection2FiltersInput]
-  title: StringFilterInput
-}
-
-input ComponentSectionsSection2Input {
-  id: ID
-  title: String
 }
 
 type Contact {
@@ -490,7 +473,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsSection1 | ComponentSectionsSection2 | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsRichtext | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type I18NLocale {
   code: String
@@ -827,7 +810,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsSection1 | ComponentSectionsSection2 | Error
+union PageSectionsDynamicZone = ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

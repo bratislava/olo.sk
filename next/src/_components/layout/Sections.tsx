@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Section1 from '@/_components/sections/Section1'
+import RichtextSection from '@/_components/sections/RichtextSection'
 import { PageSectionsFragment } from '@/services/graphql/api'
 
 type Props = {
@@ -11,8 +11,8 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
   // eslint-disable-next-line sonarjs/no-small-switch
   switch (section.__typename) {
     // TODO to be removed, just as example
-    case 'ComponentSectionsSection1':
-      return <Section1 section={section} />
+    case 'ComponentSectionsRichtext':
+      return <RichtextSection section={section} />
 
     default:
       return null

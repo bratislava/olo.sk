@@ -306,16 +306,10 @@ export type ComponentItemsOpeningHoursItemInput = {
   value?: InputMaybe<Scalars['String']['input']>
 }
 
-export type ComponentSectionsSection1 = {
-  __typename?: 'ComponentSectionsSection1'
+export type ComponentSectionsRichtext = {
+  __typename?: 'ComponentSectionsRichtext'
+  content?: Maybe<Scalars['JSON']['output']>
   id: Scalars['ID']['output']
-  title?: Maybe<Scalars['String']['output']>
-}
-
-export type ComponentSectionsSection2 = {
-  __typename?: 'ComponentSectionsSection2'
-  id: Scalars['ID']['output']
-  title?: Maybe<Scalars['String']['output']>
 }
 
 export type Contact = {
@@ -474,8 +468,7 @@ export type GenericMorph =
   | ComponentHeaderSectionsImage
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
-  | ComponentSectionsSection1
-  | ComponentSectionsSection2
+  | ComponentSectionsRichtext
   | Contact
   | Document
   | I18NLocale
@@ -1045,7 +1038,7 @@ export type PageRelationResponseCollection = {
   data: Array<PageEntity>
 }
 
-export type PageSectionsDynamicZone = ComponentSectionsSection1 | ComponentSectionsSection2 | Error
+export type PageSectionsDynamicZone = ComponentSectionsRichtext | Error
 
 export type Pagination = {
   __typename?: 'Pagination'
@@ -1842,25 +1835,20 @@ export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
   | HeaderSections_Error_Fragment
 
-export type Section1Fragment = { __typename?: 'ComponentSectionsSection1'; title?: string | null }
-
-export type Section2Fragment = { __typename?: 'ComponentSectionsSection2'; title?: string | null }
-
-type PageSections_ComponentSectionsSection1_Fragment = {
-  __typename: 'ComponentSectionsSection1'
-  title?: string | null
+export type RichtextSectionFragment = {
+  __typename?: 'ComponentSectionsRichtext'
+  content?: any | null
 }
 
-type PageSections_ComponentSectionsSection2_Fragment = {
-  __typename: 'ComponentSectionsSection2'
-  title?: string | null
+type PageSections_ComponentSectionsRichtext_Fragment = {
+  __typename: 'ComponentSectionsRichtext'
+  content?: any | null
 }
 
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
-  | PageSections_ComponentSectionsSection1_Fragment
-  | PageSections_ComponentSectionsSection2_Fragment
+  | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_Error_Fragment
 
 export type ArticleEntityFragment = {
@@ -2095,8 +2083,7 @@ export type PageEntityFragment = {
       | null
     > | null
     sections?: Array<
-      | { __typename: 'ComponentSectionsSection1'; title?: string | null }
-      | { __typename: 'ComponentSectionsSection2'; title?: string | null }
+      | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
       | { __typename: 'Error' }
       | null
     > | null
@@ -2167,8 +2154,7 @@ export type PagesQuery = {
           | null
         > | null
         sections?: Array<
-          | { __typename: 'ComponentSectionsSection1'; title?: string | null }
-          | { __typename: 'ComponentSectionsSection2'; title?: string | null }
+          | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
           | { __typename: 'Error' }
           | null
         > | null
@@ -2243,8 +2229,7 @@ export type PageBySlugQuery = {
           | null
         > | null
         sections?: Array<
-          | { __typename: 'ComponentSectionsSection1'; title?: string | null }
-          | { __typename: 'ComponentSectionsSection2'; title?: string | null }
+          | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
           | { __typename: 'Error' }
           | null
         > | null
@@ -2424,28 +2409,19 @@ export const HeaderSectionsFragmentDoc = gql`
   ${GalleryHeaderSectionFragmentDoc}
   ${BranchMapHeaderSectionFragmentDoc}
 `
-export const Section1FragmentDoc = gql`
-  fragment Section1 on ComponentSectionsSection1 {
-    title
-  }
-`
-export const Section2FragmentDoc = gql`
-  fragment Section2 on ComponentSectionsSection2 {
-    title
+export const RichtextSectionFragmentDoc = gql`
+  fragment RichtextSection on ComponentSectionsRichtext {
+    content
   }
 `
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
-    ... on ComponentSectionsSection1 {
-      ...Section1
-    }
-    ... on ComponentSectionsSection2 {
-      ...Section2
+    ... on ComponentSectionsRichtext {
+      ...RichtextSection
     }
   }
-  ${Section1FragmentDoc}
-  ${Section2FragmentDoc}
+  ${RichtextSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

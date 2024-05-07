@@ -51,9 +51,8 @@ const config: Config = {
 
     // DO NOT USE these font classes directly, use classes from globals.css
     fontSize: {
-      // TODO text-button mixes with tmp-[color] classes
-      'size-button-large': getFontSize([16, 24]), // this differs from DS
-      'size-button-default': getFontSize([14, 24]), // this differs from DS
+      'size-button-large': getFontSize([16, 24]), // this is probably not used in OLO ?
+      'size-button-default': getFontSize([14, 24]),
 
       'size-p-large': getFontSize([20, 28]),
       'size-p-default': getFontSize([16, 24]),

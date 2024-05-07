@@ -61,13 +61,13 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
       'whitespace-pre-wrap', // TODO revisit if we want to apply it on all text
       'break-words', // TODO revisit if we want to apply it on all text
       {
-        'text-size-h1-hero-r lg:text-size-h1-hero': variant === 'h1',
-        'text-size-h1-r lg:text-size-h1': variant === 'h1',
-        'text-size-h2-r lg:text-size-h2': variant === 'h2',
-        'text-size-h3-r lg:text-size-h3': variant === 'h3',
-        'text-size-h4-r lg:text-size-h4': variant === 'h4',
-        'text-size-h5-r lg:text-size-h5': variant === 'h5',
-        'text-size-h6-r lg:text-size-h6': variant === 'h6',
+        'text-size-h1-hero-r font-black lg:text-size-h1-hero': variant === 'h1-hero',
+        'text-size-h1-r font-black lg:text-size-h1': variant === 'h1',
+        'text-size-h2-r font-black lg:text-size-h2': variant === 'h2',
+        'text-size-h3-r font-black lg:text-size-h3': variant === 'h3',
+        'text-size-h4-r font-black lg:text-size-h4': variant === 'h4',
+        'text-size-h5-r font-black lg:text-size-h5': variant === 'h5',
+        'text-size-h6-r font-black lg:text-size-h6': variant === 'h6',
         'text-size-p-default lg:text-size-p-large': variant.startsWith('p-large'),
         'text-size-p-default lg:text-size-p-default': variant.startsWith('p-default'),
         'text-size-p-small lg:text-size-p-small': variant.startsWith('p-small'),

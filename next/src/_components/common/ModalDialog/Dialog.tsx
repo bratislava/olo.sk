@@ -36,7 +36,7 @@ const Dialog = forwardRef<HTMLElement, Props>(({ children, title, ...props }, re
               <Button
                 icon={<Icon name="krizik" className="size-5 lg:size-6" />}
                 aria-label={t('aria.close')}
-                variant="unstyled"
+                variant="black-plain"
                 onPress={close}
               />
             </div>

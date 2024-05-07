@@ -30,9 +30,7 @@ const Modal = forwardRef<HTMLDivElement, Props>(
       <ModalOverlay
         ref={ref}
         className={cn(
-          // TODO decide bg color, this is just a placeholder
-          'bg-background-secondary/[.70]',
-          'fixed left-0 top-0 z-50 flex h-[--visual-viewport-height] w-screen items-center justify-center',
+          'fixed left-0 top-0 z-50 flex h-[--visual-viewport-height] w-screen items-center justify-center bg-background-primaryInverted/[0.48]',
           overlayClassname,
         )}
         isDismissable={isDismissable}
@@ -40,7 +38,6 @@ const Modal = forwardRef<HTMLDivElement, Props>(
       >
         <RACModal
           className={cn(
-            // TODO decide height and width - in bratislava.sk we had h-[80%]
             'relative m-4 max-h-[--visual-viewport-height] rounded-lg bg-white',
             {
               'w-full md:w-[592px]': width === 'fixed',

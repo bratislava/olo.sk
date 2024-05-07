@@ -31,15 +31,6 @@
     @apply text-content-primary antialiased;
     font-family: 'Frutiger', 'Inter', sans-serif;
   }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-black;
-  }
 }
 
 @layer components {
@@ -47,61 +38,6 @@
     @apply -mx-4 px-4;
   }
 
-  .text-h1-lg {
-    @apply text-size-h1-hero-r lg:text-size-h1-hero;
-  }
-
-  .text-h1 {
-    @apply text-size-h1-r lg:text-size-h1;
-  }
-
-  .text-h2 {
-    @apply text-size-h2-r lg:text-size-h2;
-  }
-
-  .text-h3 {
-    @apply text-size-h3-r lg:text-size-h3;
-  }
-
-  .text-h4 {
-    @apply text-size-h4-r lg:text-size-h4;
-  }
-
-  .text-h5 {
-    @apply text-size-h5-r lg:text-size-h5;
-  }
-
-  .text-h6 {
-    @apply text-size-h6 lg:text-size-h6-r;
-  }
-
-  .text-large-respo {
-    @apply text-size-p-default lg:text-size-p-large;
-  }
-
-  .text-default-respo {
-    @apply text-size-p-small lg:text-size-p-default;
-  }
-
-  .text-large {
-    @apply text-size-p-large;
-  }
-
-  .text-default {
-    @apply text-size-p-default;
-  }
-
-  .text-small {
-    @apply text-size-p-small;
-  }
-
-  .text-large {
-    @apply text-size-p-large;
-  }
-
-  .text-default {
-    @apply text-size-p-default;
-  }
 
   .text-button {
     @apply text-size-button-default lg:text-size-button-large;

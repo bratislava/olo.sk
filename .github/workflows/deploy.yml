@@ -12,11 +12,8 @@ jobs:
   validate:
     name: Validate typescript
     uses: bratislava/github-actions/.github/workflows/validate-typescript.yml@stable
-# if you need different setting uncomment lines bellow
-#    with:
-#      node: 20
-#      workdir: './next'
-#      level: warning
+    with:
+      workdir: './next'
 
   conditions:
     needs: validate

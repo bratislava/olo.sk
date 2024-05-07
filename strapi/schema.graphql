@@ -289,6 +289,34 @@ input ComponentItemsOpeningHoursItemInput {
   value: String
 }
 
+type ComponentItemsSlide {
+  backgroundColor: String
+  id: ID!
+  link: ComponentItemsLink
+  media: UploadFileEntityResponse!
+  text: String
+  title: String!
+}
+
+input ComponentItemsSlideFiltersInput {
+  and: [ComponentItemsSlideFiltersInput]
+  backgroundColor: StringFilterInput
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsSlideFiltersInput
+  or: [ComponentItemsSlideFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsSlideInput {
+  backgroundColor: String
+  id: ID
+  link: ComponentItemsLinkInput
+  media: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsRichtext {
   content: JSON
   id: ID!
@@ -487,7 +515,51 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsRichtext | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsSlide | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+
+type Homepage {
+  createdAt: DateTime
+  featuredArticles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
+  locale: String
+  localizations: HomepageRelationResponseCollection
+  slides(filters: ComponentItemsSlideFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSlide]
+  updatedAt: DateTime
+}
+
+type HomepageEntity {
+  attributes: Homepage
+  id: ID
+}
+
+type HomepageEntityResponse {
+  data: HomepageEntity
+}
+
+type HomepageEntityResponseCollection {
+  data: [HomepageEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input HomepageFiltersInput {
+  and: [HomepageFiltersInput]
+  createdAt: DateTimeFilterInput
+  featuredArticles: ArticleFiltersInput
+  locale: StringFilterInput
+  localizations: HomepageFiltersInput
+  not: HomepageFiltersInput
+  or: [HomepageFiltersInput]
+  slides: ComponentItemsSlideFiltersInput
+  updatedAt: DateTimeFilterInput
+}
+
+input HomepageInput {
+  featuredArticles: [ID]
+  slides: [ComponentItemsSlideInput]
+}
+
+type HomepageRelationResponseCollection {
+  data: [HomepageEntity!]!
+}
 
 type I18NLocale {
   code: String
@@ -654,6 +726,7 @@ type Mutation {
   createCategoryLocalization(data: CategoryInput, id: ID, locale: I18NLocaleCode): CategoryEntityResponse
   createContact(data: ContactInput!): ContactEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
+  createHomepageLocalization(data: HomepageInput, id: ID, locale: I18NLocaleCode): HomepageEntityResponse
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
   createPage(data: PageInput!): PageEntityResponse
   createTag(data: TagInput!, locale: I18NLocaleCode): TagEntityResponse
@@ -671,6 +744,7 @@ type Mutation {
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
+  deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!): PageEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
@@ -705,6 +779,7 @@ type Mutation {
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
+  updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!): PageEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
@@ -858,6 +933,7 @@ type Query {
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
   document(id: ID): DocumentEntityResponse
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentEntityResponseCollection
+  homepage(locale: I18NLocaleCode): HomepageEntityResponse
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
   me: UsersPermissionsMe

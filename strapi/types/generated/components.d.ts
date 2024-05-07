@@ -63,6 +63,21 @@ export interface ItemsOpeningHoursItem extends Schema.Component {
   }
 }
 
+export interface ItemsSlide extends Schema.Component {
+  collectionName: 'components_items_slides'
+  info: {
+    displayName: 'slide'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.Text & Attribute.Required
+    text: Attribute.Text
+    backgroundColor: Attribute.String & Attribute.CustomField<'plugin::color-picker.color'>
+    media: Attribute.Media & Attribute.Required
+    link: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsRichtext extends Schema.Component {
   collectionName: 'components_sections_richtexts'
   info: {
@@ -83,6 +98,7 @@ declare module '@strapi/types' {
       'header-sections.image': HeaderSectionsImage
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
+      'items.slide': ItemsSlide
       'sections.richtext': SectionsRichtext
     }
   }

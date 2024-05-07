@@ -873,6 +873,49 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   }
 }
 
+export interface ApiHomepageHomepage extends Schema.SingleType {
+  collectionName: 'homepages'
+  info: {
+    singularName: 'homepage'
+    pluralName: 'homepages'
+    displayName: 'homepage'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    slides: Attribute.Component<'items.slide', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    featuredArticles: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToMany',
+      'api::article.article'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToMany',
+      'api::homepage.homepage'
+    >
+    locale: Attribute.String
+  }
+}
+
 export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
   collectionName: 'opening_times'
   info: {
@@ -999,6 +1042,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
+      'api::homepage.homepage': ApiHomepageHomepage
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
       'api::tag.tag': ApiTagTag

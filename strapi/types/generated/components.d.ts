@@ -75,26 +75,6 @@ export interface SectionsRichtext extends Schema.Component {
   }
 }
 
-export interface SectionsSection1 extends Schema.Component {
-  collectionName: 'components_sections_section_1s'
-  info: {
-    displayName: 'section 1'
-  }
-  attributes: {
-    title: Attribute.String
-  }
-}
-
-export interface SectionsSection2 extends Schema.Component {
-  collectionName: 'components_sections_section_2s'
-  info: {
-    displayName: 'section 2'
-  }
-  attributes: {
-    title: Attribute.String
-  }
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -104,8 +84,6 @@ declare module '@strapi/types' {
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'sections.richtext': SectionsRichtext
-      'sections.section-1': SectionsSection1
-      'sections.section-2': SectionsSection2
     }
   }
 }

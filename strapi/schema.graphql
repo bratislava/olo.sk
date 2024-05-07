@@ -292,40 +292,6 @@ input ComponentSectionsRichtextInput {
   id: ID
 }
 
-type ComponentSectionsSection1 {
-  id: ID!
-  title: String
-}
-
-input ComponentSectionsSection1FiltersInput {
-  and: [ComponentSectionsSection1FiltersInput]
-  not: ComponentSectionsSection1FiltersInput
-  or: [ComponentSectionsSection1FiltersInput]
-  title: StringFilterInput
-}
-
-input ComponentSectionsSection1Input {
-  id: ID
-  title: String
-}
-
-type ComponentSectionsSection2 {
-  id: ID!
-  title: String
-}
-
-input ComponentSectionsSection2FiltersInput {
-  and: [ComponentSectionsSection2FiltersInput]
-  not: ComponentSectionsSection2FiltersInput
-  or: [ComponentSectionsSection2FiltersInput]
-  title: StringFilterInput
-}
-
-input ComponentSectionsSection2Input {
-  id: ID
-  title: String
-}
-
 type Contact {
   createdAt: DateTime
   label: String!
@@ -507,7 +473,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsRichtext | ComponentSectionsSection1 | ComponentSectionsSection2 | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentSectionsRichtext | Contact | Document | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type I18NLocale {
   code: String

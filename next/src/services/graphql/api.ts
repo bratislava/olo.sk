@@ -312,18 +312,6 @@ export type ComponentSectionsRichtext = {
   id: Scalars['ID']['output']
 }
 
-export type ComponentSectionsSection1 = {
-  __typename?: 'ComponentSectionsSection1'
-  id: Scalars['ID']['output']
-  title?: Maybe<Scalars['String']['output']>
-}
-
-export type ComponentSectionsSection2 = {
-  __typename?: 'ComponentSectionsSection2'
-  id: Scalars['ID']['output']
-  title?: Maybe<Scalars['String']['output']>
-}
-
 export type Contact = {
   __typename?: 'Contact'
   createdAt?: Maybe<Scalars['DateTime']['output']>
@@ -481,8 +469,6 @@ export type GenericMorph =
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentSectionsRichtext
-  | ComponentSectionsSection1
-  | ComponentSectionsSection2
   | Contact
   | Document
   | I18NLocale

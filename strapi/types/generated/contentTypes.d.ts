@@ -698,6 +698,26 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true
         }
       }>
+    coverMedia: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
+    addedAt: Attribute.DateTime &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
+    category: Attribute.Relation<'api::article.article', 'manyToOne', 'api::category.category'>
+    blocks: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -789,6 +809,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: true
         }
       }>
+    articles: Attribute.Relation<'api::category.category', 'oneToMany', 'api::article.article'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

@@ -3,6 +3,10 @@
 
 
 type Article {
+  addedAt: DateTime!
+  blocks: JSON
+  category: CategoryEntityResponse
+  coverMedia: UploadFileEntityResponse
   createdAt: DateTime
   locale: String
   localizations(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
@@ -28,7 +32,10 @@ type ArticleEntityResponseCollection {
 }
 
 input ArticleFiltersInput {
+  addedAt: DateTimeFilterInput
   and: [ArticleFiltersInput]
+  blocks: JSONFilterInput
+  category: CategoryFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -43,6 +50,10 @@ input ArticleFiltersInput {
 }
 
 input ArticleInput {
+  addedAt: DateTime
+  blocks: JSON
+  category: ID
+  coverMedia: ID
   perex: String
   publishedAt: DateTime
   slug: String
@@ -130,6 +141,7 @@ type BranchRelationResponseCollection {
 }
 
 type Category {
+  articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   createdAt: DateTime
   locale: String
   localizations(filters: CategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): CategoryRelationResponseCollection
@@ -155,6 +167,7 @@ type CategoryEntityResponseCollection {
 
 input CategoryFiltersInput {
   and: [CategoryFiltersInput]
+  articles: ArticleFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -168,6 +181,7 @@ input CategoryFiltersInput {
 }
 
 input CategoryInput {
+  articles: [ID]
   publishedAt: DateTime
   slug: String
   title: String

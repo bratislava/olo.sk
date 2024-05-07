@@ -29,6 +29,10 @@ export type Scalars = {
 
 export type Article = {
   __typename?: 'Article'
+  addedAt: Scalars['DateTime']['output']
+  blocks?: Maybe<Scalars['JSON']['output']>
+  category?: Maybe<CategoryEntityResponse>
+  coverMedia?: Maybe<UploadFileEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<ArticleRelationResponseCollection>
@@ -64,7 +68,10 @@ export type ArticleEntityResponseCollection = {
 }
 
 export type ArticleFiltersInput = {
+  addedAt?: InputMaybe<DateTimeFilterInput>
   and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
+  blocks?: InputMaybe<JsonFilterInput>
+  category?: InputMaybe<CategoryFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -79,6 +86,10 @@ export type ArticleFiltersInput = {
 }
 
 export type ArticleInput = {
+  addedAt?: InputMaybe<Scalars['DateTime']['input']>
+  blocks?: InputMaybe<Scalars['JSON']['input']>
+  category?: InputMaybe<Scalars['ID']['input']>
+  coverMedia?: InputMaybe<Scalars['ID']['input']>
   perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
@@ -186,6 +197,7 @@ export type BranchRelationResponseCollection = {
 
 export type Category = {
   __typename?: 'Category'
+  articles?: Maybe<ArticleRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<CategoryRelationResponseCollection>
@@ -193,6 +205,13 @@ export type Category = {
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type CategoryArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type CategoryLocalizationsArgs = {
@@ -221,6 +240,7 @@ export type CategoryEntityResponseCollection = {
 
 export type CategoryFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>
+  articles?: InputMaybe<ArticleFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -234,6 +254,7 @@ export type CategoryFiltersInput = {
 }
 
 export type CategoryInput = {
+  articles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
@@ -1851,10 +1872,83 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_Error_Fragment
 
+export type ArticleSlugEntityFragment = {
+  __typename?: 'ArticleEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Article'; slug: string } | null
+}
+
+export type ArticleCardEntityFragment = {
+  __typename?: 'ArticleEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Article'
+    title: string
+    perex?: string | null
+    addedAt: any
+    slug: string
+    coverMedia?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
+    category?: {
+      __typename?: 'CategoryEntityResponse'
+      data?: {
+        __typename?: 'CategoryEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
+}
+
 export type ArticleEntityFragment = {
   __typename?: 'ArticleEntity'
   id?: string | null
-  attributes?: { __typename?: 'Article'; title: string; slug: string; perex?: string | null } | null
+  attributes?: {
+    __typename?: 'Article'
+    blocks?: any | null
+    title: string
+    perex?: string | null
+    addedAt: any
+    slug: string
+    coverMedia?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
+    category?: {
+      __typename?: 'CategoryEntityResponse'
+      data?: {
+        __typename?: 'CategoryEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
 }
 
 export type ArticlesQueryVariables = Exact<{ [key: string]: never }>
@@ -1868,9 +1962,35 @@ export type ArticlesQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
+        blocks?: any | null
         title: string
-        slug: string
         perex?: string | null
+        addedAt: any
+        slug: string
+        coverMedia?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
+        category?: {
+          __typename?: 'CategoryEntityResponse'
+          data?: {
+            __typename?: 'CategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -1889,9 +2009,35 @@ export type ArticleBySlugQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
+        blocks?: any | null
         title: string
-        slug: string
         perex?: string | null
+        addedAt: any
+        slug: string
+        coverMedia?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
+        category?: {
+          __typename?: 'CategoryEntityResponse'
+          data?: {
+            __typename?: 'CategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -2295,27 +2441,70 @@ export const UploadFileEntityFragmentDoc = gql`
     }
   }
 `
-export const ArticleEntityFragmentDoc = gql`
-  fragment ArticleEntity on ArticleEntity {
+export const ArticleSlugEntityFragmentDoc = gql`
+  fragment ArticleSlugEntity on ArticleEntity {
     id
     attributes {
-      title
       slug
-      perex
     }
   }
 `
-export const BranchEntityFragmentDoc = gql`
-  fragment BranchEntity on BranchEntity {
+export const UploadImageEntityFragmentDoc = gql`
+  fragment UploadImageEntity on UploadFileEntity {
     id
     attributes {
-      title
-      slug
+      url
+      width
+      height
+      caption
+      alternativeText
+      name
     }
   }
 `
 export const CategoryEntityFragmentDoc = gql`
   fragment CategoryEntity on CategoryEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const ArticleCardEntityFragmentDoc = gql`
+  fragment ArticleCardEntity on ArticleEntity {
+    ...ArticleSlugEntity
+    attributes {
+      title
+      perex
+      coverMedia {
+        data {
+          ...UploadImageEntity
+        }
+      }
+      addedAt
+      category {
+        data {
+          ...CategoryEntity
+        }
+      }
+    }
+  }
+  ${ArticleSlugEntityFragmentDoc}
+  ${UploadImageEntityFragmentDoc}
+  ${CategoryEntityFragmentDoc}
+`
+export const ArticleEntityFragmentDoc = gql`
+  fragment ArticleEntity on ArticleEntity {
+    ...ArticleCardEntity
+    attributes {
+      blocks
+    }
+  }
+  ${ArticleCardEntityFragmentDoc}
+`
+export const BranchEntityFragmentDoc = gql`
+  fragment BranchEntity on BranchEntity {
     id
     attributes {
       title
@@ -2349,19 +2538,6 @@ export const OpeningTimeEntityFragmentDoc = gql`
     }
   }
   ${OpeningHoursItemFragmentDoc}
-`
-export const UploadImageEntityFragmentDoc = gql`
-  fragment UploadImageEntity on UploadFileEntity {
-    id
-    attributes {
-      url
-      width
-      height
-      caption
-      alternativeText
-      name
-    }
-  }
 `
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {

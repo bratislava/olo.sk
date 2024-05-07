@@ -1,12 +1,35 @@
-fragment ArticleEntity on ArticleEntity {
+fragment ArticleSlugEntity on ArticleEntity {
   id
   attributes {
-    title
     slug
-    perex
   }
 }
 
+fragment ArticleCardEntity on ArticleEntity {
+  ...ArticleSlugEntity
+  attributes {
+    title
+    perex
+    coverMedia {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    addedAt
+    category {
+      data {
+        ...CategoryEntity
+      }
+    }
+  }
+}
+
+fragment ArticleEntity on ArticleEntity {
+  ...ArticleCardEntity
+  attributes {
+    blocks
+  }
+}
 
 query Articles {
   articles {

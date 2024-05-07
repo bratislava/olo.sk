@@ -306,6 +306,26 @@ export type ComponentItemsLink = {
   url?: Maybe<Scalars['String']['output']>
 }
 
+export type ComponentItemsLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsLinkFiltersInput>>>
+  article?: InputMaybe<ArticleFiltersInput>
+  branch?: InputMaybe<BranchFiltersInput>
+  document?: InputMaybe<DocumentFiltersInput>
+  not?: InputMaybe<ComponentItemsLinkFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsLinkFiltersInput>>>
+  page?: InputMaybe<PageFiltersInput>
+  url?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentItemsLinkInput = {
+  article?: InputMaybe<Scalars['ID']['input']>
+  branch?: InputMaybe<Scalars['ID']['input']>
+  document?: InputMaybe<Scalars['ID']['input']>
+  id?: InputMaybe<Scalars['ID']['input']>
+  page?: InputMaybe<Scalars['ID']['input']>
+  url?: InputMaybe<Scalars['String']['input']>
+}
+
 export type ComponentItemsOpeningHoursItem = {
   __typename?: 'ComponentItemsOpeningHoursItem'
   id: Scalars['ID']['output']
@@ -325,6 +345,35 @@ export type ComponentItemsOpeningHoursItemInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   label?: InputMaybe<Scalars['String']['input']>
   value?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ComponentItemsSlide = {
+  __typename?: 'ComponentItemsSlide'
+  backgroundColor?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  link?: Maybe<ComponentItemsLink>
+  media: UploadFileEntityResponse
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsSlideFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsSlideFiltersInput>>>
+  backgroundColor?: InputMaybe<StringFilterInput>
+  link?: InputMaybe<ComponentItemsLinkFiltersInput>
+  not?: InputMaybe<ComponentItemsSlideFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsSlideFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentItemsSlideInput = {
+  backgroundColor?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['ID']['input']>
+  link?: InputMaybe<ComponentItemsLinkInput>
+  media?: InputMaybe<Scalars['ID']['input']>
+  text?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
 }
 
 export type ComponentSectionsRichtext = {
@@ -489,9 +538,11 @@ export type GenericMorph =
   | ComponentHeaderSectionsImage
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
+  | ComponentItemsSlide
   | ComponentSectionsRichtext
   | Contact
   | Document
+  | Homepage
   | I18NLocale
   | OpeningTime
   | Page
@@ -501,6 +552,50 @@ export type GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
+
+export type Homepage = {
+  __typename?: 'Homepage'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  featuredArticles?: Maybe<ArticleRelationResponseCollection>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<HomepageRelationResponseCollection>
+  slides?: Maybe<Array<Maybe<ComponentItemsSlide>>>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type HomepageFeaturedArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type HomepageSlidesArgs = {
+  filters?: InputMaybe<ComponentItemsSlideFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type HomepageEntity = {
+  __typename?: 'HomepageEntity'
+  attributes?: Maybe<Homepage>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type HomepageEntityResponse = {
+  __typename?: 'HomepageEntityResponse'
+  data?: Maybe<HomepageEntity>
+}
+
+export type HomepageInput = {
+  featuredArticles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  slides?: InputMaybe<Array<InputMaybe<ComponentItemsSlideInput>>>
+}
+
+export type HomepageRelationResponseCollection = {
+  __typename?: 'HomepageRelationResponseCollection'
+  data: Array<HomepageEntity>
+}
 
 export type I18NLocale = {
   __typename?: 'I18NLocale'
@@ -625,6 +720,7 @@ export type Mutation = {
   createCategoryLocalization?: Maybe<CategoryEntityResponse>
   createContact?: Maybe<ContactEntityResponse>
   createDocument?: Maybe<DocumentEntityResponse>
+  createHomepageLocalization?: Maybe<HomepageEntityResponse>
   createOpeningTime?: Maybe<OpeningTimeEntityResponse>
   createPage?: Maybe<PageEntityResponse>
   createTag?: Maybe<TagEntityResponse>
@@ -640,6 +736,7 @@ export type Mutation = {
   deleteCategory?: Maybe<CategoryEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
+  deleteHomepage?: Maybe<HomepageEntityResponse>
   deleteOpeningTime?: Maybe<OpeningTimeEntityResponse>
   deletePage?: Maybe<PageEntityResponse>
   deleteTag?: Maybe<TagEntityResponse>
@@ -666,6 +763,7 @@ export type Mutation = {
   updateContact?: Maybe<ContactEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
   updateFileInfo: UploadFileEntityResponse
+  updateHomepage?: Maybe<HomepageEntityResponse>
   updateOpeningTime?: Maybe<OpeningTimeEntityResponse>
   updatePage?: Maybe<PageEntityResponse>
   updateTag?: Maybe<TagEntityResponse>
@@ -725,6 +823,12 @@ export type MutationCreateDocumentArgs = {
   data: DocumentInput
 }
 
+export type MutationCreateHomepageLocalizationArgs = {
+  data?: InputMaybe<HomepageInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationCreateOpeningTimeArgs = {
   data: OpeningTimeInput
 }
@@ -781,6 +885,10 @@ export type MutationDeleteContactArgs = {
 
 export type MutationDeleteDocumentArgs = {
   id: Scalars['ID']['input']
+}
+
+export type MutationDeleteHomepageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type MutationDeleteOpeningTimeArgs = {
@@ -876,6 +984,11 @@ export type MutationUpdateDocumentArgs = {
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID']['input']
   info?: InputMaybe<FileInfoInput>
+}
+
+export type MutationUpdateHomepageArgs = {
+  data: HomepageInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type MutationUpdateOpeningTimeArgs = {
@@ -1093,6 +1206,7 @@ export type Query = {
   contacts?: Maybe<ContactEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
   documents?: Maybe<DocumentEntityResponseCollection>
+  homepage?: Maybe<HomepageEntityResponse>
   i18NLocale?: Maybe<I18NLocaleEntityResponse>
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>
   me?: Maybe<UsersPermissionsMe>
@@ -1171,6 +1285,10 @@ export type QueryDocumentsArgs = {
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryHomepageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type QueryI18NLocaleArgs = {
@@ -2151,6 +2269,99 @@ export type DocumentBySlugQuery = {
   } | null
 }
 
+export type SlideItemFragment = {
+  __typename?: 'ComponentItemsSlide'
+  title: string
+  text?: string | null
+  backgroundColor?: string | null
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+}
+
+export type HomepageEntityFragment = {
+  __typename?: 'HomepageEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Homepage'
+    slides?: Array<{
+      __typename?: 'ComponentItemsSlide'
+      title: string
+      text?: string | null
+      backgroundColor?: string | null
+      media: {
+        __typename?: 'UploadFileEntityResponse'
+        data?: {
+          __typename?: 'UploadFileEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'UploadFile'
+            url: string
+            width?: number | null
+            height?: number | null
+            caption?: string | null
+            alternativeText?: string | null
+            name: string
+          } | null
+        } | null
+      }
+    } | null> | null
+  } | null
+}
+
+export type HomepageQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type HomepageQuery = {
+  __typename?: 'Query'
+  homepage?: {
+    __typename?: 'HomepageEntityResponse'
+    data?: {
+      __typename?: 'HomepageEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Homepage'
+        slides?: Array<{
+          __typename?: 'ComponentItemsSlide'
+          title: string
+          text?: string | null
+          backgroundColor?: string | null
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          }
+        } | null> | null
+      } | null
+    } | null
+  } | null
+}
+
 export type OpeningHoursItemFragment = {
   __typename?: 'ComponentItemsOpeningHoursItem'
   label: string
@@ -2521,6 +2732,30 @@ export const DocumentEntityFragmentDoc = gql`
     }
   }
 `
+export const SlideItemFragmentDoc = gql`
+  fragment SlideItem on ComponentItemsSlide {
+    title
+    text
+    media {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    backgroundColor
+  }
+  ${UploadImageEntityFragmentDoc}
+`
+export const HomepageEntityFragmentDoc = gql`
+  fragment HomepageEntity on HomepageEntity {
+    id
+    attributes {
+      slides {
+        ...SlideItem
+      }
+    }
+  }
+  ${SlideItemFragmentDoc}
+`
 export const OpeningHoursItemFragmentDoc = gql`
   fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
     label
@@ -2706,6 +2941,16 @@ export const DocumentBySlugDocument = gql`
   }
   ${DocumentEntityFragmentDoc}
 `
+export const HomepageDocument = gql`
+  query Homepage($locale: I18NLocaleCode!) {
+    homepage(locale: $locale) {
+      data {
+        ...HomepageEntity
+      }
+    }
+  }
+  ${HomepageEntityFragmentDoc}
+`
 export const PagesDocument = gql`
   query Pages {
     pages {
@@ -2875,6 +3120,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'DocumentBySlug',
+        'query',
+        variables,
+      )
+    },
+    Homepage(
+      variables: HomepageQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<HomepageQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<HomepageQuery>(HomepageDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Homepage',
         'query',
         variables,
       )

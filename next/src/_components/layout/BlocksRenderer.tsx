@@ -1,6 +1,7 @@
-'use client'
-
-import { type BlocksContent, BlocksRenderer } from '@strapi/blocks-react-renderer'
+import {
+  type BlocksContent,
+  BlocksRenderer as StrapiBlocksRenderer,
+} from '@strapi/blocks-react-renderer'
 
 import Typography from '@/_components/common/Typography/Typography'
 
@@ -8,13 +9,13 @@ type Props = {
   readonly content: BlocksContent
 }
 
-const BlockRendererClient = ({ content }: Props) => {
+const BlocksRenderer = ({ content }: Props) => {
   if (!content) {
     return null
   }
 
   return (
-    <BlocksRenderer
+    <StrapiBlocksRenderer
       content={content}
       blocks={{
         paragraph: ({ children }) => {
@@ -65,4 +66,4 @@ const BlockRendererClient = ({ content }: Props) => {
   )
 }
 
-export default BlockRendererClient
+export default BlocksRenderer

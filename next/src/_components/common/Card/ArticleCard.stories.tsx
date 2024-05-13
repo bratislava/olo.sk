@@ -21,6 +21,13 @@ export const ArticleCard: Story = {
     tagText: 'category',
   },
   render: (args) => <ArticleCardComponent {...args} />,
+  decorators: [
+    (Story) => (
+      <div className="w-[300px]">
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const ArticleCardRows: Story = {
@@ -30,7 +37,6 @@ export const ArticleCardRows: Story = {
   },
   render: (args) => (
     <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
-      <ArticleCardComponent {...args} />
       <ArticleCardComponent {...args} />
       <ArticleCardComponent {...args} />
       <ArticleCardComponent {...args} />

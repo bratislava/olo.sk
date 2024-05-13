@@ -22,7 +22,7 @@ export default meta
 type Story = StoryObj<typeof SearchResultRowCardComponent>
 
 export const SearchResultRowCard: Story = {
-  render: (args) => <SearchResultRowCardComponent {...args} />,
+  render: (args) => <SearchResultRowCardComponent {...args} imgSrc={templateImage.src} />,
 }
 
 export const SearchResultRowCardRows: Story = {

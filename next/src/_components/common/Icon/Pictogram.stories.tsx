@@ -5,6 +5,7 @@ import PictogramComponent, { pictogramNameMap } from './Pictogram'
 const meta: Meta<typeof PictogramComponent> = {
   component: PictogramComponent,
   title: 'Components/Pictogram',
+  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <div className="flex justify-center">

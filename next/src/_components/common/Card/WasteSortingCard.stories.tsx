@@ -18,11 +18,18 @@ type Story = StoryObj<typeof WasteSortingCardComponent>
 
 export const WasteSortingCard: Story = {
   render: (args) => <WasteSortingCardComponent {...args} />,
+  decorators: [
+    (Story) => (
+      <div className="w-[300px]">
+        <Story />
+      </div>
+    ),
+  ],
 }
 
-export const WasteSortingCardRows: Story = {
+export const WasteSortingCardsAll: Story = {
   render: (args) => (
-    <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
+    <div className="flex flex-row flex-wrap gap-2 [&>*]:basis-[280px]">
       <WasteSortingCardComponent {...{ ...args, wasteType: 'paper' }} />
       <WasteSortingCardComponent {...{ ...args, wasteType: 'plastic' }} />
       <WasteSortingCardComponent {...{ ...args, wasteType: 'glass' }} />

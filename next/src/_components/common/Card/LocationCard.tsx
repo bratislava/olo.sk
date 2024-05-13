@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import Icon, { iconNameMap } from '@/_components/common/Icon/Icon'
@@ -16,6 +18,8 @@ type LocationCardProps = {
  */
 
 const LocationCard = ({ title, className, linkHref, address, iconName }: LocationCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col items-start gap-6 p-6">
@@ -33,9 +37,8 @@ const LocationCard = ({ title, className, linkHref, address, iconName }: Locatio
             {address}
           </Typography>
         </div>
-        {/* TODO Change text to dynamic translation */}
         <Button variant="category-outline" href={linkHref} asLink stretched fullWidth>
-          Zistiť viac
+          {t('common.findOutMore')}
         </Button>
       </div>
     </CardBase>

@@ -22,7 +22,8 @@ const HomepageSmallTile = ({ title, className, linkHref, iconName }: HomepageSma
           <Icon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col gap-4">
-          <Link variant="unstyled" href={linkHref} stretched>
+          {/* TODO Add aria label */}
+          <Link variant="unstyled" href={linkHref} aria-label="" stretched>
             <Typography
               variant="h6"
               className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

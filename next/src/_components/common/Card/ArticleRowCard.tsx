@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
@@ -17,6 +19,8 @@ type ArticleRowCardProps = {
  */
 
 const ArticleRowCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleRowCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase className={className}>
       <div className="flex flex-col items-start gap-3 lg:flex-row lg:gap-8">
@@ -35,9 +39,8 @@ const ArticleRowCard = ({ title, className, linkHref, imgSrc, tagText }: Article
               {title}
             </Typography>
           </div>
-          {/* TODO Change text to dynamic translation */}
           <Button variant="black-link" href={linkHref} asLink stretched>
-            Čítať viac
+            {t('common.readMore')}
           </Button>
         </div>
       </div>

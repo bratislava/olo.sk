@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import Icon, { iconNameMap } from '@/_components/common/Icon/Icon'
@@ -15,6 +17,8 @@ type FaqCategoryCardProps = {
  */
 
 const FaqCategoryCard = ({ title, className, linkHref, iconName }: FaqCategoryCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col items-start gap-8 p-5">
@@ -28,9 +32,8 @@ const FaqCategoryCard = ({ title, className, linkHref, iconName }: FaqCategoryCa
           >
             {title}
           </Typography>
-          {/* TODO Change text to dynamic translation */}
           <Button variant="black-link" href={linkHref} stretched asLink>
-            Zobraziť viac
+            {t('common.showMore')}
           </Button>
         </div>
       </div>

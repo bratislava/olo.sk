@@ -34,10 +34,12 @@ const HomepageMainTile = ({ variant, title, text, className, linkHref }: Homepag
           >
             {title}
           </Typography>
+          {/* TODO Add aria label */}
           <Link
             variant="unstyled"
             href={linkHref}
             stretched
+            aria-label=""
             /* 2.5rem = 40px */
             className={cx('flex size-[2.5rem] items-center justify-center rounded-lg', {
               'bg-background-secondary': variant === 'background-white',

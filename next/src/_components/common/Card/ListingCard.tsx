@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import Icon from '@/_components/common/Icon/Icon'
@@ -14,6 +16,8 @@ type ListingCardProps = {
  */
 
 const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col gap-8 p-4">
@@ -23,7 +27,6 @@ const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {
         >
           {title}
         </Typography>
-        {/* TODO Change text to dynamic translation */}
         <div className="flex items-center gap-6">
           <Button
             variant="black-link"
@@ -33,7 +36,7 @@ const ListingCard = ({ title, className, linkHref }: ListingCardProps) => {
             hasLinkIcon={false}
             className="font-bold"
           >
-            <Typography variant="button-default">Zistiť viac</Typography>
+            <Typography variant="button-default">{t('common.findOutMore')}</Typography>
           </Button>
           <div className="ml-auto flex size-10 items-center justify-center rounded-lg bg-background-secondary">
             <Icon name="sipka-doprava" className="size-6" />

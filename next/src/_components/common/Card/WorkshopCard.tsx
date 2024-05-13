@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import Icon, { iconNameMap } from '@/_components/common/Icon/Icon'
@@ -15,6 +17,8 @@ type WorkshopCardProps = {
  */
 
 const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant="solid" className={className}>
       <div className="flex flex-col items-start gap-6 p-4 lg:p-6">
@@ -28,9 +32,8 @@ const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProp
           >
             {title}
           </Typography>
-          {/* TODO Change text to dynamic translation */}
           <Button variant="black-link" href={linkHref} asLink stretched>
-            Čítať viac
+            {t('common.readMore')}
           </Button>
         </div>
       </div>

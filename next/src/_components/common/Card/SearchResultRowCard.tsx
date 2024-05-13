@@ -54,7 +54,6 @@ const SearchResultRowCard = ({
             </div>
           ) : null}
         </div>
-        {/* TODO Change text to dynamic translation */}
         {/* TODO Add aria label */}
         <Button
           variant="unstyled"

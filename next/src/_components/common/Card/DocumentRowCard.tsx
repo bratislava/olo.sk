@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import Icon, { iconNameMap } from '@/_components/common/Icon/Icon'
@@ -25,6 +27,8 @@ const DocumentRowCard = ({
   iconName,
   hasBottomBorder = false,
 }: DocumentRowCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant="unstyled" className={className}>
       <div
@@ -57,7 +61,6 @@ const DocumentRowCard = ({
             ) : null}
           </div>
         </div>
-        {/* TODO Change text to dynamic translation */}
         {/* Screen: desktop */}
         <Button
           variant="category-outline"
@@ -68,7 +71,7 @@ const DocumentRowCard = ({
           startIcon={<Icon name="stiahnut" />}
           className="max-lg:hidden"
         >
-          Stiahnuť
+          {t('common.showMore')}
         </Button>
         {/* Screen: mobile */}
         {/* TODO Add aria label */}

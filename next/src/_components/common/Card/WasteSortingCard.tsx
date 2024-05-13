@@ -1,5 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 
+import { useTranslation } from 'next-i18next'
 import { twMerge } from 'tailwind-merge'
 
 import Button from '@/_components/common/Button/Button'
@@ -62,6 +63,8 @@ type WasteSortingCardProps = {
  */
 
 const WasteSortingCard = ({ title, className, linkHref, wasteType }: WasteSortingCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant="solid" className={className}>
       <div
@@ -84,9 +87,8 @@ const WasteSortingCard = ({ title, className, linkHref, wasteType }: WasteSortin
         >
           {title}
         </Typography>
-        {/* TODO Change text to dynamic translation */}
         <Button variant="black-link" href={linkHref} stretched asLink>
-          Zistiť viac
+          {t('common.findOutMore')}
         </Button>
       </div>
     </CardBase>

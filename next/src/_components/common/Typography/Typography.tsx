@@ -3,10 +3,6 @@ import { createElement, ElementType, forwardRef, ReactNode } from 'react'
 import { normalizeSkText } from '@/_components/common/Typography/normalizeSkText'
 import cn from '@/app/_utils/cn'
 
-/**
- * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=39-2452&mode=dev
- */
-
 type TypographyProps = {
   children: ReactNode
   as?: ElementType
@@ -31,6 +27,10 @@ type TypographyProps = {
     | 'button-default'
     | 'button-large'
 }
+
+/**
+ * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=39-2452&mode=dev
+ */
 
 const Typography = forwardRef<HTMLElement, TypographyProps>(
   ({ variant = 'p-default', children, as, className_onlyWhenNecessary, ...rest }, forwardedRef) => {

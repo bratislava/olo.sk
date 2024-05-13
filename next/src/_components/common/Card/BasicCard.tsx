@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
@@ -7,7 +9,6 @@ type BasicCardProps = {
   title: string
   subtext: string
   linkHref: string
-  linkText: string
   showBorder?: boolean
   className?: string
   imgSrc?: string
@@ -22,10 +23,11 @@ const BasicCard = ({
   subtext,
   className,
   linkHref,
-  linkText,
   imgSrc,
   showBorder = true,
 }: BasicCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant={showBorder ? 'solid' : 'plain-white'} className={className}>
       <CardImage imgSrc={imgSrc} className="aspect-[384/204] rounded-t-lg" />
@@ -42,7 +44,7 @@ const BasicCard = ({
           </Typography>
         </div>
         <Button variant="black-link" href={linkHref} asLink stretched>
-          {linkText}
+          {t('common.readMore')}
         </Button>
       </div>
     </CardBase>

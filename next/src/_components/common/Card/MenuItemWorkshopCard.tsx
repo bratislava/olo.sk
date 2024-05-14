@@ -29,8 +29,7 @@ const MenuItemWorkshopCard = ({
           <Icon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col items-start gap-2 self-stretch">
-          {/* TODO Add aria-label */}
-          <Link variant="unstyled" href={linkHref} aria-label="" stretched>
+          <Link variant="unstyled" href={linkHref} stretched>
             <Typography
               variant="h6"
               className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"

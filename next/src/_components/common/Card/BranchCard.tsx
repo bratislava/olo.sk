@@ -9,19 +9,31 @@ type BranchCardProps = {
   title: string
   linkHref: string
   address: string
-  className?: string
   imgSrc?: string
+  hasWhiteBackground?: boolean
+  className?: string
 }
 
 /**
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1205-14699&mode=dev
  */
 
-const BranchCard = ({ title, address, className, linkHref, imgSrc }: BranchCardProps) => {
+const BranchCard = ({
+  title,
+  address,
+  linkHref,
+  imgSrc,
+  hasWhiteBackground = true,
+  className,
+}: BranchCardProps) => {
   const { t } = useTranslation()
 
   return (
-    <CardBase variant="solid" className={className}>
+    <CardBase
+      variant="background-white"
+      hasWhiteSectionBackground={hasWhiteBackground}
+      className={className}
+    >
       <div className="flex flex-col gap-6 p-4 lg:flex-row lg:p-6">
         {/* 4 rem = 64px, 8 rem = 128px */}
         <CardImage

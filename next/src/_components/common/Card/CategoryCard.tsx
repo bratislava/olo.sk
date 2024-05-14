@@ -13,7 +13,7 @@ type CategoryCardProps = {
 }
 
 /**
- * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1199-13816&mode=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=8-4128&m=dev
  */
 
 const CategoryCard = ({ title, className, linkHref, imgSrc }: CategoryCardProps) => {

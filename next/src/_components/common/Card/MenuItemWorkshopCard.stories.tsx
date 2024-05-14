@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import MenuItemWorkshopCardComponent from './MenuItemWorkshopCard'
@@ -7,7 +6,7 @@ const meta: Meta<typeof MenuItemWorkshopCardComponent> = {
   component: MenuItemWorkshopCardComponent,
   title: 'Components/Cards/MenuItemWorkshopCard',
   args: {
-    title: 'MenuItemWorkshopCard title',
+    title: 'Title',
     iconName: 'domcek',
     linkHref: '#',
     subText: 'Najbližší termín: 21. február 2024 o 9:00',

@@ -8,7 +8,6 @@ const meta: Meta<typeof CategoryCardComponent> = {
   args: {
     title: 'CategoryCard title',
     linkHref: '#',
-    linkText: 'Link value',
   },
   tags: ['autodocs'],
 }

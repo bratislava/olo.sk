@@ -5,10 +5,14 @@ import WorkshopCardComponent from './WorkshopCard'
 const meta: Meta<typeof WorkshopCardComponent> = {
   component: WorkshopCardComponent,
   title: 'Components/Cards/WorkshopCard',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'WorkshopCard title',
     linkHref: '#',
     iconName: 'disk', // temporary icon
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }

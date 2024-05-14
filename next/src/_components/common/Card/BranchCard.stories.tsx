@@ -1,16 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
-import { twMerge } from 'tailwind-merge'
 
 import BranchCardComponent from './BranchCard'
 
 const meta: Meta<typeof BranchCardComponent> = {
   component: BranchCardComponent,
   title: 'Components/Cards/BranchCard',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'BranchCard title',
     linkHref: '#',
     address: 'Majerčíková 10',
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }

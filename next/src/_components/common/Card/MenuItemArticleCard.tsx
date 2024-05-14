@@ -30,8 +30,7 @@ const MenuItemArticleCard = ({
         <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />
         <div className="center flex flex-col gap-3">
           <Tag variant="without-bg" text={tagText} />
-          {/* TODO Add aria-label */}
-          <Link variant="unstyled" href={linkHref} aria-label="" stretched>
+          <Link variant="unstyled" href={linkHref} stretched>
             <Typography
               variant="h6"
               className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"

@@ -9,6 +9,7 @@ type WorkshopCardProps = {
   title: string
   linkHref: string
   iconName: keyof typeof iconNameMap
+  hasWhiteBackground?: boolean
   className?: string
 }
 
@@ -16,11 +17,21 @@ type WorkshopCardProps = {
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
  */
 
-const WorkshopCard = ({ title, className, linkHref, iconName }: WorkshopCardProps) => {
+const WorkshopCard = ({
+  title,
+  linkHref,
+  iconName,
+  hasWhiteBackground = true,
+  className,
+}: WorkshopCardProps) => {
   const { t } = useTranslation()
 
   return (
-    <CardBase variant="solid" className={className}>
+    <CardBase
+      variant="background-white"
+      hasWhiteSectionBackground={hasWhiteBackground}
+      className={className}
+    >
       <div className="flex flex-col items-start gap-6 p-4 lg:p-6">
         <div className="rounded-2xl bg-background-secondary p-4">
           <Icon name={iconName} className="size-6" />

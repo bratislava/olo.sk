@@ -22,7 +22,7 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
   const { t } = useTranslation()
 
   return (
-    <CardBase className={className}>
+    <CardBase variant="unstyled" className={className}>
       <div className="flex flex-col gap-4">
         <CardImage imgSrc={imgSrc} className="aspect-[70/39] rounded-lg" />
         <div className="flex grow flex-col justify-between gap-6">

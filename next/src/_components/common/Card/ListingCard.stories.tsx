@@ -5,9 +5,13 @@ import ListingCardComponent from './ListingCard'
 const meta: Meta<typeof ListingCardComponent> = {
   component: ListingCardComponent,
   title: 'Components/Cards/ListingCard',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'ListingCard title',
     linkHref: '#',
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }

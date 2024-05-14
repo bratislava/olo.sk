@@ -5,10 +5,14 @@ import WasteSortingCardComponent from './WasteSortingCard'
 const meta: Meta<typeof WasteSortingCardComponent> = {
   component: WasteSortingCardComponent,
   title: 'Components/Cards/WasteSortingCard',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'WasteSortingCard title',
     linkHref: '#',
     wasteType: 'paper',
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }
@@ -20,7 +24,7 @@ export const WasteSortingCard: Story = {
   render: (args) => <WasteSortingCardComponent {...args} />,
   decorators: [
     (Story) => (
-      <div className="w-[300px]">
+      <div className="w-[280px]">
         <Story />
       </div>
     ),

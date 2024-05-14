@@ -8,7 +8,7 @@ import Typography from '@/_components/common/Typography/Typography'
 type FaqCategoryCardProps = {
   title: string
   linkHref: string
-  iconName: keyof typeof iconNameMap
+  iconName?: keyof typeof iconNameMap
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -20,7 +20,7 @@ type FaqCategoryCardProps = {
 const FaqCategoryCard = ({
   title,
   linkHref,
-  iconName,
+  iconName = 'live-help',
   hasWhiteBackground,
   className,
 }: FaqCategoryCardProps) => {

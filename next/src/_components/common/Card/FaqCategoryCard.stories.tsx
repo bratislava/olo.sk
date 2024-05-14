@@ -11,7 +11,6 @@ const meta: Meta<typeof FaqCategoryCardComponent> = {
   args: {
     title: 'FaqCategoryCard title',
     linkHref: '#',
-    iconName: 'domcek',
     hasWhiteBackground: true,
   },
   tags: ['autodocs'],

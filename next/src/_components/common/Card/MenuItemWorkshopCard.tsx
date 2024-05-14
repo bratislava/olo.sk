@@ -7,7 +7,7 @@ type MenuItemWorkshopCardProps = {
   title: string
   linkHref: string
   subText: string
-  iconName: keyof typeof iconNameMap
+  iconName?: keyof typeof iconNameMap
   className?: string
 }
 
@@ -19,7 +19,7 @@ const MenuItemWorkshopCard = ({
   title,
   className,
   linkHref,
-  iconName,
+  iconName = 'live-help',
   subText,
 }: MenuItemWorkshopCardProps) => {
   return (

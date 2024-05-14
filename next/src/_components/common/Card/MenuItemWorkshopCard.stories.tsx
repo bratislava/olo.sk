@@ -7,7 +7,6 @@ const meta: Meta<typeof MenuItemWorkshopCardComponent> = {
   title: 'Components/Cards/MenuItemWorkshopCard',
   args: {
     title: 'Title',
-    iconName: 'domcek',
     linkHref: '#',
     subText: 'Najbližší termín: 21. február 2024 o 9:00',
   },

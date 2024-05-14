@@ -5,8 +5,8 @@ import Typography from '@/_components/common/Typography/Typography'
 
 type HomepageSmallTileProps = {
   title: string
-  iconName: keyof typeof iconNameMap
   linkHref: string
+  iconName?: keyof typeof iconNameMap
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -18,7 +18,7 @@ type HomepageSmallTileProps = {
 const HomepageSmallTile = ({
   title,
   linkHref,
-  iconName,
+  iconName = 'live-help',
   hasWhiteBackground,
   className,
 }: HomepageSmallTileProps) => {

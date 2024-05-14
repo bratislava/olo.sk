@@ -11,7 +11,6 @@ const meta: Meta<typeof HomepageSmallTileComponent> = {
   args: {
     title: 'HomepageSmallTile title',
     linkHref: '#',
-    iconName: 'domcek',
     hasWhiteBackground: true,
   },
   tags: ['autodocs'],

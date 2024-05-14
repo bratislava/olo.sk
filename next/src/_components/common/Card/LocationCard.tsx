@@ -9,7 +9,7 @@ type LocationCardProps = {
   title: string
   address: string
   linkHref: string
-  iconName: keyof typeof iconNameMap
+  iconName?: keyof typeof iconNameMap
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -22,7 +22,7 @@ const LocationCard = ({
   title,
   linkHref,
   address,
-  iconName,
+  iconName = 'place',
   hasWhiteBackground = true,
   className,
 }: LocationCardProps) => {
@@ -36,7 +36,10 @@ const LocationCard = ({
     >
       <div className="flex flex-col items-start gap-6 p-6">
         <div className="rounded-full bg-background-secondary p-4">
-          <Icon name={iconName} className="text-action-background size-6" />
+          <Icon
+            name={iconName}
+            className="text-action-background size-6 fill-action-background-default"
+          />
         </div>
         <div className="flex flex-col gap-2 self-stretch lg:gap-3">
           <Typography
@@ -50,7 +53,7 @@ const LocationCard = ({
           </Typography>
         </div>
         <Button variant="category-outline" href={linkHref} asLink stretched fullWidth>
-          {`${t('common.findOutMore')}: ${title} `}
+          {t('common.findOutMore')}
         </Button>
       </div>
     </CardBase>

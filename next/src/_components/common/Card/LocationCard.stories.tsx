@@ -11,7 +11,6 @@ const meta: Meta<typeof LocationCardComponent> = {
   args: {
     title: 'LocationCard title',
     linkHref: '#',
-    iconName: 'domcek',
     address: 'Vymyslená cesta 123/45',
     hasWhiteBackground: true,
   },

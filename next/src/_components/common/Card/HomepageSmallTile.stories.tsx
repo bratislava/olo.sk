@@ -18,12 +18,18 @@ type Story = StoryObj<typeof HomepageSmallTileComponent>
 
 export const HomepageSmallTile: Story = {
   render: (args) => <HomepageSmallTileComponent {...args} />,
+  decorators: [
+    (Story) => (
+      <div className="flex flex-col items-center">
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const HomepageSmallTileRows: Story = {
   render: (args) => (
     <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
-      <HomepageSmallTileComponent {...args} />
       <HomepageSmallTileComponent {...args} />
       <HomepageSmallTileComponent {...args} />
       <HomepageSmallTileComponent {...args} />

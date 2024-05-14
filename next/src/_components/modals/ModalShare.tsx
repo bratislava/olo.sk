@@ -23,6 +23,10 @@ const InputPlaceholder = () => {
   )
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-11025&m=dev
+ */
+
 const ModalShare = ({ triggerButton }: ModalShareProps) => {
   const { t } = useTranslation()
 

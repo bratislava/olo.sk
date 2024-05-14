@@ -6,6 +6,7 @@ import TagComponent from './Tag'
 const meta: Meta<typeof TagComponent> = {
   component: TagComponent,
   title: 'Components/Tag',
+  tags: ['autodocs'],
 }
 
 export default meta
@@ -16,6 +17,11 @@ export const Tag: Story = {
     text: 'category',
     variant: 'without-bg',
   },
+  render: (args) => (
+    <div className="flex flex-col items-start">
+      <TagComponent {...args} />
+    </div>
+  ),
 }
 export const AllTags: Story = {
   args: {

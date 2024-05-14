@@ -10,7 +10,7 @@ type DocumentRowCardProps = {
   title: string
   linkHref: string
   metaData?: string[]
-  iconName: keyof typeof iconNameMap
+  iconName?: keyof typeof iconNameMap
   hasBottomBorder?: boolean
   className?: string
   ariaLabel?: string
@@ -24,7 +24,7 @@ const DocumentRowCard = ({
   title,
   linkHref,
   metaData,
-  iconName,
+  iconName = 'priloha',
   hasBottomBorder = false,
   className,
   ariaLabel,
@@ -74,7 +74,7 @@ const DocumentRowCard = ({
             startIcon={<Icon name="stiahnut" />}
             className="max-lg:hidden"
           >
-            {t('common.showMore')}
+            {t('common.download')}
           </Button>
           {/* Screen: mobile */}
           <Button

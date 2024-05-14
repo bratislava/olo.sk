@@ -16,11 +16,11 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-color-picker": "^4.24.1",
-    "@strapi/plugin-graphql": "4.22.1",
-    "@strapi/plugin-i18n": "4.22.1",
-    "@strapi/plugin-users-permissions": "4.22.1",
-    "@strapi/strapi": "4.22.1",
+    "@strapi/plugin-color-picker": "4.24.2",
+    "@strapi/plugin-graphql": "4.24.2",
+    "@strapi/plugin-i18n": "4.24.2",
+    "@strapi/plugin-users-permissions": "4.24.2",
+    "@strapi/strapi": "4.24.2",
     "patch-package": "^6.5.1",
     "pg": "^8.11.3",
     "postinstall-postinstall": "^2.1.0",

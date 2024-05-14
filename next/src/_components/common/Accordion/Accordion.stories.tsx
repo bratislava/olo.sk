@@ -35,7 +35,6 @@ export default meta
 type Story = StoryObj<typeof AccordionComponent>
 
 export const Accordion: Story = {
-  args: {},
   render: (args) => (
     <div className="w-full max-w-[500px]">
       <AccordionComponent {...args} />

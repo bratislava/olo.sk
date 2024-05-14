@@ -17,12 +17,18 @@ type Story = StoryObj<typeof ListingCardComponent>
 
 export const ListingCard: Story = {
   render: (args) => <ListingCardComponent {...args} />,
+  decorators: [
+    (Story) => (
+      <div className="w-[300px]">
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const ListingCardRows: Story = {
   render: (args) => (
     <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
-      <ListingCardComponent {...args} />
       <ListingCardComponent {...args} />
       <ListingCardComponent {...args} />
       <ListingCardComponent {...args} />

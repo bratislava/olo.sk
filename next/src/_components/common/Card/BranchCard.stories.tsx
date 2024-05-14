@@ -27,8 +27,6 @@ export const BranchCardRows: Story = {
     <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:flex-grow [&>*]:basis-[280px]">
       <BranchCardComponent {...args} />
       <BranchCardComponent {...args} />
-      <BranchCardComponent {...args} />
-      <BranchCardComponent {...args} />
     </div>
   ),
 }

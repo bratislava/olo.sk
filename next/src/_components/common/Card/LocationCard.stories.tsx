@@ -19,12 +19,18 @@ type Story = StoryObj<typeof LocationCardComponent>
 
 export const LocationCard: Story = {
   render: (args) => <LocationCardComponent {...args} />,
+  decorators: [
+    (Story) => (
+      <div className="w-[400px]">
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export const LocationCardRows: Story = {
   render: (args) => (
-    <div className="flex flex-row flex-wrap gap-x-2 gap-y-12 [&>*]:basis-[280px]">
-      <LocationCardComponent {...args} />
+    <div className="flex flex-row flex-wrap gap-x-2 gap-y-1 [&>*]:basis-[280px]">
       <LocationCardComponent {...args} />
       <LocationCardComponent {...args} />
       <LocationCardComponent {...args} />

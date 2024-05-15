@@ -1,6 +1,6 @@
-import cx from 'classnames'
 import React, { HTMLAttributes } from 'react'
-import { twMerge } from 'tailwind-merge'
+
+import cn from '@/app/_utils/cn'
 
 export type CardBaseProps = {
   variant?: 'unstyled' | 'background-white' | 'background-yellow'
@@ -22,21 +22,19 @@ const CardBase = ({
   return (
     <div
       // overflow-hidden ensures image not to overlap with rounded corners
-      className={twMerge(
-        cx(
-          'group/CardBase relative flex flex-col overflow-hidden',
-          // When card is focused, we want to hide all rings of descendants and ring-0 still shows something
-          // This needs to be revisited when we'll need more focusable elements inside a card
-          'ring-offset-2 focus-within:ring [&_*]:outline-none [&_*]:ring-transparent [&_a]:ring-offset-transparent',
-          {
-            'rounded-lg bg-background-primary': variant !== 'unstyled',
+      className={cn(
+        'group/CardBase relative flex flex-col overflow-hidden',
+        // When card is focused, we want to hide all rings of descendants and ring-0 still shows something
+        // This needs to be revisited when we'll need more focusable elements inside a card
+        'ring-offset-2 focus-within:ring [&_*]:outline-none [&_*]:ring-transparent [&_a]:ring-offset-transparent',
+        {
+          'rounded-lg bg-background-primary': variant !== 'unstyled',
 
-            'border border-border-default hover:border-border-hover':
-              variant === 'background-white' && hasWhiteSectionBackground,
+          'border border-border-default hover:border-border-hover':
+            variant === 'background-white' && hasWhiteSectionBackground,
 
-            'bg-background-secondary': variant === 'background-yellow' && hasWhiteSectionBackground,
-          },
-        ),
+          'bg-background-secondary': variant === 'background-yellow' && hasWhiteSectionBackground,
+        },
         className,
       )}
       {...rest}

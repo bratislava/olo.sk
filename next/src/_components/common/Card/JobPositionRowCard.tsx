@@ -19,8 +19,7 @@ const JobPositionRowCard = ({ title, className, linkHref, metaData }: JobPositio
     <CardBase variant="unstyled" className={className}>
       <div className="flex items-center gap-6 border-b border-border-default bg-background-primary px-4 py-3 lg:px-6 lg:py-4">
         <div className="flex grow flex-col gap-3">
-          {/* TODO Add aria label */}
-          <Link variant="unstyled" href={linkHref} aria-label="" stretched>
+          <Link variant="unstyled" href={linkHref} stretched>
             <Typography
               variant="h5"
               className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"

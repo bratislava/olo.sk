@@ -1,5 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 
+import { useTranslation } from 'next-i18next'
 import { twMerge } from 'tailwind-merge'
 
 import Button from '@/_components/common/Button/Button'
@@ -54,6 +55,7 @@ type WasteSortingCardProps = {
   title: string
   linkHref: string
   wasteType: keyof typeof wasteTypesMap
+  hasWhiteBackground?: boolean
   className?: string
 }
 
@@ -61,9 +63,21 @@ type WasteSortingCardProps = {
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=44-5836&mode=design&t=Eh99aEaL0mrnGsMz-4
  */
 
-const WasteSortingCard = ({ title, className, linkHref, wasteType }: WasteSortingCardProps) => {
+const WasteSortingCard = ({
+  title,
+  linkHref,
+  wasteType,
+  hasWhiteBackground = true,
+  className,
+}: WasteSortingCardProps) => {
+  const { t } = useTranslation()
+
   return (
-    <CardBase variant="solid" className={className}>
+    <CardBase
+      variant="background-white"
+      hasWhiteSectionBackground={hasWhiteBackground}
+      className={className}
+    >
       <div
         className={twMerge(
           'flex aspect-[280/164] flex-col items-center justify-center rounded-t-lg lg:aspect-[280/204]',
@@ -84,9 +98,8 @@ const WasteSortingCard = ({ title, className, linkHref, wasteType }: WasteSortin
         >
           {title}
         </Typography>
-        {/* TODO Change text to dynamic translation */}
         <Button variant="black-link" href={linkHref} stretched asLink>
-          Zistiť viac
+          {t('common.findOutMore')}
         </Button>
       </div>
     </CardBase>

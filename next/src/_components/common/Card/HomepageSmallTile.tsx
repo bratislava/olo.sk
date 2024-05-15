@@ -5,18 +5,29 @@ import Typography from '@/_components/common/Typography/Typography'
 
 type HomepageSmallTileProps = {
   title: string
-  iconName: keyof typeof iconNameMap
   linkHref: string
+  iconName?: keyof typeof iconNameMap
+  hasWhiteBackground?: boolean
   className?: string
 }
 
 /**
- * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1202-14657&mode=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=2096-19809&m=dev
  */
 
-const HomepageSmallTile = ({ title, className, linkHref, iconName }: HomepageSmallTileProps) => {
+const HomepageSmallTile = ({
+  title,
+  linkHref,
+  iconName = 'live-help',
+  hasWhiteBackground,
+  className,
+}: HomepageSmallTileProps) => {
   return (
-    <CardBase variant="solid" className={className}>
+    <CardBase
+      variant="background-white"
+      hasWhiteSectionBackground={hasWhiteBackground}
+      className={className}
+    >
       <div className="flex flex-col items-center gap-6 px-4 py-5">
         <div className="rounded-[20px] bg-background-secondary p-4">
           <Icon name={iconName} className="size-6" />

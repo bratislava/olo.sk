@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import Icon, { iconNameMap } from '@/_components/common/Icon/Icon'
@@ -7,7 +9,8 @@ type LocationCardProps = {
   title: string
   address: string
   linkHref: string
-  iconName: keyof typeof iconNameMap
+  iconName?: keyof typeof iconNameMap
+  hasWhiteBackground?: boolean
   className?: string
 }
 
@@ -15,12 +18,28 @@ type LocationCardProps = {
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=2094-18340&mode=dev
  */
 
-const LocationCard = ({ title, className, linkHref, address, iconName }: LocationCardProps) => {
+const LocationCard = ({
+  title,
+  linkHref,
+  address,
+  iconName = 'place',
+  hasWhiteBackground = true,
+  className,
+}: LocationCardProps) => {
+  const { t } = useTranslation()
+
   return (
-    <CardBase variant="solid" className={className}>
+    <CardBase
+      variant="background-white"
+      hasWhiteSectionBackground={hasWhiteBackground}
+      className={className}
+    >
       <div className="flex flex-col items-start gap-6 p-6">
         <div className="rounded-full bg-background-secondary p-4">
-          <Icon name={iconName} className="text-action-background size-6" />
+          <Icon
+            name={iconName}
+            className="text-action-background size-6 fill-action-background-default"
+          />
         </div>
         <div className="flex flex-col gap-2 self-stretch lg:gap-3">
           <Typography
@@ -33,9 +52,8 @@ const LocationCard = ({ title, className, linkHref, address, iconName }: Locatio
             {address}
           </Typography>
         </div>
-        {/* TODO Change text to dynamic translation */}
         <Button variant="category-outline" href={linkHref} asLink stretched fullWidth>
-          Zistiť viac
+          {t('common.findOutMore')}
         </Button>
       </div>
     </CardBase>

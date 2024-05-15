@@ -5,10 +5,13 @@ import HomepageMainTileComponent from './HomepageMainTile'
 const meta: Meta<typeof HomepageMainTileComponent> = {
   component: HomepageMainTileComponent,
   title: 'Components/Cards/HomepageMainTile',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'HomepageMainTile title',
     linkHref: '#',
-    variant: 'background-yellow',
+    hasWhiteBackground: true,
     text: 'text text text',
   },
   tags: ['autodocs'],

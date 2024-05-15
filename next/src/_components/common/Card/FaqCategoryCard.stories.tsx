@@ -5,10 +5,13 @@ import FaqCategoryCardComponent from './FaqCategoryCard'
 const meta: Meta<typeof FaqCategoryCardComponent> = {
   component: FaqCategoryCardComponent,
   title: 'Components/Cards/FaqCategoryCard',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'FaqCategoryCard title',
     linkHref: '#',
-    iconName: 'domcek',
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }

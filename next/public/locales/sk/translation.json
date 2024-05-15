@@ -1,5 +1,9 @@
 {
   "aria.close": "Zavrieť",
+  "common.download": "Stiahnuť",
+  "common.findOutMore": "Zistiť viac",
+  "common.readMore": "Čítať viac",
+  "common.showMore": "Zobraziť viac",
   "helloWorld": "Ahoj svet!",
   "modalShare.copy": "Kopírovať",
   "modalShare.copyLink": "Skopírovať odkaz",
@@ -7,5 +11,8 @@
   "modalShare.linkedIn": "Linked In",
   "modalShare.share": "Zdieľať",
   "modalShare.shareOnSocialMedia": "Zdieľať cez sociálne siete",
-  "modalShare.xTwitter": "X (Twitter)"
+  "modalShare.xTwitter": "X (Twitter)",
+  "pagination.aria.goToNextPage": "Ísť na ďalšiu stranu",
+  "pagination.aria.goToPage": "Ísť na stranu {page}",
+  "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu"
 }

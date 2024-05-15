@@ -1,8 +1,11 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
 import Tag from '@/_components/common/Tag/Tag'
 import Typography from '@/_components/common/Typography/Typography'
+import cn from '@/app/_utils/cn'
 
 type ArticleRowCardProps = {
   title: string
@@ -13,12 +16,14 @@ type ArticleRowCardProps = {
 }
 
 /**
- * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=8-4117&mode=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=44-5000&m=dev
  */
 
 const ArticleRowCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleRowCardProps) => {
+  const { t } = useTranslation()
+
   return (
-    <CardBase className={className}>
+    <CardBase variant="unstyled" className={cn('rounded-lg', className)}>
       <div className="flex flex-col items-start gap-3 lg:flex-row lg:gap-8">
         {/* 6.25rem = 100px, 14.5rem = 232px */}
         <CardImage
@@ -35,9 +40,8 @@ const ArticleRowCard = ({ title, className, linkHref, imgSrc, tagText }: Article
               {title}
             </Typography>
           </div>
-          {/* TODO Change text to dynamic translation */}
           <Button variant="black-link" href={linkHref} asLink stretched>
-            Čítať viac
+            {t('common.readMore')}
           </Button>
         </div>
       </div>

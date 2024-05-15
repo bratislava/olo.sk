@@ -1,5 +1,5 @@
 import cx from 'classnames'
-// import { useTranslations } from 'next-intl'
+import { useTranslation } from 'next-i18next'
 import React, { ReactNode } from 'react'
 
 import Button from '@/_components/common/Button/Button'
@@ -24,9 +24,8 @@ type PaginationProps = {
  * @constructor
  */
 
-// TODO enable translations
 const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: PaginationProps) => {
-  // const t = useTranslations('Pagination')
+  const { t } = useTranslation()
 
   const { items } = usePagination({
     count: totalCount,
@@ -54,12 +53,11 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
             } else if (type === 'page') {
               children = (
                 <Button
-                  // variant="unstyled"
                   variant={selected ? 'category-solid' : 'black-outline'}
                   isDisabled={disabled}
                   onPress={onPress}
                   aria-current={ariaCurrent}
-                  // aria-label={t('aria.goToPage', { page })}
+                  aria-label={t('pagination.aria.goToPage', { page })}
                   // TODO this styling currently overrides current Button component to align with Figma Buttons
                   className={cn(
                     'flex h-10 w-10 shrink-0 grow-0 items-center justify-center rounded-full font-bold lg:h-12 lg:w-12',
@@ -71,14 +69,14 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
               )
             } else if (type === 'previous' || type === 'next') {
               let icon: ReactNode
-              // let ariaLabel = ''
+              let ariaLabel = ''
               if (type === 'previous') {
                 icon = <Icon name="sipka-dolava" />
-                // ariaLabel = t('aria.goToPreviousPage', { page })
+                ariaLabel = t('pagination.aria.goToPreviousPage', { page })
               }
               if (type === 'next') {
                 icon = <Icon name="sipka-doprava" />
-                // ariaLabel = t('aria.goToNextPage', { page })
+                ariaLabel = t('pagination.aria.goToNextPage', { page })
               }
 
               children = (
@@ -86,8 +84,7 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
                   variant="category-plain"
                   isDisabled={disabled}
                   onPress={onPress}
-                  // aria-label={ariaLabel}
-                  aria-label="label"
+                  aria-label={ariaLabel}
                   icon={icon}
                   className="rounded-full"
                 />

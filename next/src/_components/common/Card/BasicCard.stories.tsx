@@ -5,12 +5,14 @@ import BasicCardComponent from './BasicCard'
 const meta: Meta<typeof BasicCardComponent> = {
   component: BasicCardComponent,
   title: 'Components/Cards/BasicCard',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'BasicCard title',
     subtext: 'subtext',
     linkHref: '#',
-    linkText: 'Link value',
-    showBorder: true,
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }

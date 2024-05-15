@@ -12,8 +12,6 @@ const meta: Meta<typeof SearchResultRowCardComponent> = {
     title: 'SearchResultRowCard title',
     linkHref: '#',
     metadata: ['Kategória', '8. november, 2023'],
-    // iconName: 'disk', // temporary icon
-    // imgSrc: '/next/src/assets/images/olo-truck.jpg',
   },
   tags: ['autodocs'],
 }

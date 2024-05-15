@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
@@ -11,6 +13,7 @@ type SearchResultRowCardProps = {
   imgSrc?: string
   metadata?: string[]
   className?: string
+  ariaLabel?: string
 }
 
 /**
@@ -24,7 +27,10 @@ const SearchResultRowCard = ({
   metadata,
   iconName,
   imgSrc,
+  ariaLabel,
 }: SearchResultRowCardProps) => {
+  const { t } = useTranslation()
+
   return (
     <CardBase variant="unstyled" className={className}>
       <div className="flex items-center gap-4 border-b border-border-default bg-background-primary p-4">
@@ -54,14 +60,12 @@ const SearchResultRowCard = ({
             </div>
           ) : null}
         </div>
-        {/* TODO Change text to dynamic translation */}
-        {/* TODO Add aria label */}
         <Button
           variant="unstyled"
           href={linkHref}
           asLink
           hasLinkIcon={false}
-          aria-label=""
+          aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
           stretched
           icon={<Icon name="chevron-doprava" />}
           className=""

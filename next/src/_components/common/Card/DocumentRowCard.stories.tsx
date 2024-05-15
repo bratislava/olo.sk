@@ -13,7 +13,6 @@ const meta: Meta<typeof DocumentRowCardComponent> = {
     linkHref: '#',
     metaData: ['Formát', '1.2MB'],
     hasBottomBorder: false,
-    iconName: 'disk', // temporary icon
   },
   tags: ['autodocs'],
 }

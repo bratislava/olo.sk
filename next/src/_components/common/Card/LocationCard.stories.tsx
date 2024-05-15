@@ -5,11 +5,14 @@ import LocationCardComponent from './LocationCard'
 const meta: Meta<typeof LocationCardComponent> = {
   component: LocationCardComponent,
   title: 'Components/Cards/LocationCard',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'LocationCard title',
     linkHref: '#',
-    iconName: 'domcek',
     address: 'Vymyslená cesta 123/45',
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }

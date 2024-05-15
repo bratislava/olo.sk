@@ -5,10 +5,13 @@ import HomepageSmallTileComponent from './HomepageSmallTile'
 const meta: Meta<typeof HomepageSmallTileComponent> = {
   component: HomepageSmallTileComponent,
   title: 'Components/Cards/HomepageSmallTile',
+  argTypes: {
+    hasWhiteBackground: { type: 'boolean' },
+  },
   args: {
     title: 'HomepageSmallTile title',
     linkHref: '#',
-    iconName: 'domcek',
+    hasWhiteBackground: true,
   },
   tags: ['autodocs'],
 }

@@ -3,6 +3,7 @@ import CardImage from '@/_components/common/Card/CardImage'
 import Link from '@/_components/common/Link/Link'
 import Tag from '@/_components/common/Tag/Tag'
 import Typography from '@/_components/common/Typography/Typography'
+import cn from '@/app/_utils/cn'
 
 type MenuItemArticleCardProps = {
   title: string
@@ -24,7 +25,7 @@ const MenuItemArticleCard = ({
   tagText,
 }: MenuItemArticleCardProps) => {
   return (
-    <CardBase className={className}>
+    <CardBase className={cn('rounded-lg', className)}>
       <div className="flex flex-col items-start gap-4 lg:flex-row">
         {/* 6.25rem = 100px */}
         <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />

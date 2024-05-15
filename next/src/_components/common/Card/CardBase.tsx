@@ -23,16 +23,18 @@ const CardBase = ({
     <div
       // overflow-hidden ensures image not to overlap with rounded corners
       className={twMerge(
-        cx('group/CardBase relative flex flex-col overflow-hidden', {
-          // padding and negative margin is added so the whole ring around focused content is visible
-          '-m-2 p-2': variant === 'unstyled',
-          'rounded-lg bg-background-primary': variant !== 'unstyled',
+        cx(
+          'group/CardBase relative flex flex-col overflow-hidden',
+          'focus-within:ring [&_*]:outline-none [&_*]:ring-transparent',
+          {
+            'rounded-lg bg-background-primary': variant !== 'unstyled',
 
-          'border border-border-default hover:border-border-hover':
-            variant === 'background-white' && hasWhiteSectionBackground,
+            'border border-border-default hover:border-border-hover':
+              variant === 'background-white' && hasWhiteSectionBackground,
 
-          'bg-background-secondary': variant === 'background-yellow' && hasWhiteSectionBackground,
-        }),
+            'bg-background-secondary': variant === 'background-yellow' && hasWhiteSectionBackground,
+          },
+        ),
         className,
       )}
       {...rest}

@@ -5,6 +5,7 @@ import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
 import Tag from '@/_components/common/Tag/Tag'
 import Typography from '@/_components/common/Typography/Typography'
+import cn from '@/app/_utils/cn'
 
 type ArticleCardProps = {
   title: string
@@ -22,8 +23,8 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
   const { t } = useTranslation()
 
   return (
-    <CardBase variant="unstyled" className={className}>
-      <div className="flex flex-col gap-4">
+    <CardBase variant="unstyled" className={cn('rounded-lg', className)}>
+      <div className="flex flex-col gap-4 ">
         <CardImage imgSrc={imgSrc} className="aspect-[70/39] rounded-lg" />
         <div className="flex grow flex-col justify-between gap-6">
           <div className="flex flex-col gap-2">

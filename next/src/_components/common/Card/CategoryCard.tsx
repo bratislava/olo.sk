@@ -4,6 +4,7 @@ import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import CardImage from '@/_components/common/Card/CardImage'
 import Typography from '@/_components/common/Typography/Typography'
+import cn from '@/app/_utils/cn'
 
 type CategoryCardProps = {
   title: string
@@ -20,7 +21,7 @@ const CategoryCard = ({ title, className, linkHref, imgSrc }: CategoryCardProps)
   const { t } = useTranslation()
 
   return (
-    <CardBase variant="unstyled" className={className}>
+    <CardBase variant="unstyled" className={cn('rounded-lg', className)}>
       <div className="flex flex-col gap-4">
         <CardImage imgSrc={imgSrc} className="aspect-square rounded-lg" />
         <div className="flex flex-col gap-2 ">

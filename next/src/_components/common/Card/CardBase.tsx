@@ -25,7 +25,9 @@ const CardBase = ({
       className={twMerge(
         cx(
           'group/CardBase relative flex flex-col overflow-hidden',
-          'focus-within:ring [&_*]:outline-none [&_*]:ring-transparent',
+          // When card is focused, we want to hide all rings of descendants and ring-0 still shows something
+          // This needs to be changed when we'll need more focusable elements inside a card
+          'focus-within:ring [&_*]:outline-none [&_*]:ring-transparent [&_*]:ring-offset-transparent',
           {
             'rounded-lg bg-background-primary': variant !== 'unstyled',
 

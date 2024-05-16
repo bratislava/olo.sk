@@ -6,7 +6,7 @@ import Icon, { iconNameMap } from '@/_components/common/Icon/Icon'
 import Typography from '@/_components/common/Typography/Typography'
 import cn from '@/app/_utils/cn'
 
-type DocumentRowCardProps = {
+export type DocumentRowCardProps = {
   title: string
   linkHref: string
   metaData?: string[]

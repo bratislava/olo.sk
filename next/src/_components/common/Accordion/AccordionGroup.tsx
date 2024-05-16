@@ -1,5 +1,3 @@
-import { PropsWithChildren } from 'react'
-
 import Accordion, { AccordionProps } from '@/_components/common/Accordion/Accordion'
 import cn from '@/app/_utils/cn'
 
@@ -12,7 +10,7 @@ export type AccordionGroupProps = {
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=39-2172&mode=dev
  */
 
-const AccordionGroup = ({ accordionData, className }: PropsWithChildren<AccordionGroupProps>) => {
+const AccordionGroup = ({ accordionData, className }: AccordionGroupProps) => {
   return (
     <div
       className={cn(

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_items_grid_card_items",
+  "info": {
+    "displayName": "Grid Card Item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

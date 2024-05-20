@@ -1,5 +1,6 @@
 import React from 'react'
 
+import GridFourCardsSection from '@/_components/sections/GridFourCardsSection'
 import RichtextSection from '@/_components/sections/RichtextSection'
 import { PageSectionsFragment } from '@/services/graphql/api'
 
@@ -13,6 +14,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
     // TODO to be removed, just as example
     case 'ComponentSectionsRichtext':
       return <RichtextSection section={section} />
+
+    case 'ComponentSectionsGridFourCards':
+      return <GridFourCardsSection section={section} />
 
     default:
       return null

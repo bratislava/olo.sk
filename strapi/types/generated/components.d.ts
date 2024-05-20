@@ -36,6 +36,18 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
+export interface ItemsGridCardItem extends Schema.Component {
+  collectionName: 'components_items_grid_card_items'
+  info: {
+    displayName: 'Grid Card Item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text & Attribute.Required
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -78,6 +90,25 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface SectionsGridFourCards extends Schema.Component {
+  collectionName: 'components_sections_grid_four_cards'
+  info: {
+    displayName: 'Grid - Four Cards'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    cards: Attribute.Component<'items.grid-card-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+  }
+}
+
 export interface SectionsRichtext extends Schema.Component {
   collectionName: 'components_sections_richtexts'
   info: {
@@ -96,9 +127,11 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
+      'items.grid-card-item': ItemsGridCardItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.slide': ItemsSlide
+      'sections.grid-four-cards': SectionsGridFourCards
       'sections.richtext': SectionsRichtext
     }
   }

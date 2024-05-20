@@ -296,6 +296,21 @@ export type ComponentHeaderSectionsImage = {
   media: UploadFileEntityResponse
 }
 
+export type ComponentItemsGridCardItem = {
+  __typename?: 'ComponentItemsGridCardItem'
+  id: Scalars['ID']['output']
+  text: Scalars['String']['output']
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsGridCardItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsGridCardItemFiltersInput>>>
+  not?: InputMaybe<ComponentItemsGridCardItemFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsGridCardItemFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
@@ -374,6 +389,19 @@ export type ComponentItemsSlideInput = {
   media?: InputMaybe<Scalars['ID']['input']>
   text?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ComponentSectionsGridFourCards = {
+  __typename?: 'ComponentSectionsGridFourCards'
+  cards: Array<Maybe<ComponentItemsGridCardItem>>
+  id: Scalars['ID']['output']
+  title: Scalars['String']['output']
+}
+
+export type ComponentSectionsGridFourCardsCardsArgs = {
+  filters?: InputMaybe<ComponentItemsGridCardItemFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type ComponentSectionsRichtext = {
@@ -536,9 +564,11 @@ export type GenericMorph =
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
+  | ComponentItemsGridCardItem
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentItemsSlide
+  | ComponentSectionsGridFourCards
   | ComponentSectionsRichtext
   | Contact
   | Document
@@ -1172,7 +1202,10 @@ export type PageRelationResponseCollection = {
   data: Array<PageEntity>
 }
 
-export type PageSectionsDynamicZone = ComponentSectionsRichtext | Error
+export type PageSectionsDynamicZone =
+  | ComponentSectionsGridFourCards
+  | ComponentSectionsRichtext
+  | Error
 
 export type Pagination = {
   __typename?: 'Pagination'
@@ -1979,6 +2012,18 @@ export type RichtextSectionFragment = {
   content?: any | null
 }
 
+export type GridFourCardsSectionFragment = {
+  __typename?: 'ComponentSectionsGridFourCards'
+  title: string
+  cards: Array<{ __typename?: 'ComponentItemsGridCardItem'; title: string; text: string } | null>
+}
+
+type PageSections_ComponentSectionsGridFourCards_Fragment = {
+  __typename: 'ComponentSectionsGridFourCards'
+  title: string
+  cards: Array<{ __typename?: 'ComponentItemsGridCardItem'; title: string; text: string } | null>
+}
+
 type PageSections_ComponentSectionsRichtext_Fragment = {
   __typename: 'ComponentSectionsRichtext'
   content?: any | null
@@ -1987,6 +2032,7 @@ type PageSections_ComponentSectionsRichtext_Fragment = {
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
+  | PageSections_ComponentSectionsGridFourCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_Error_Fragment
 
@@ -2440,6 +2486,15 @@ export type PageEntityFragment = {
       | null
     > | null
     sections?: Array<
+      | {
+          __typename: 'ComponentSectionsGridFourCards'
+          title: string
+          cards: Array<{
+            __typename?: 'ComponentItemsGridCardItem'
+            title: string
+            text: string
+          } | null>
+        }
       | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
       | { __typename: 'Error' }
       | null
@@ -2511,6 +2566,15 @@ export type PagesQuery = {
           | null
         > | null
         sections?: Array<
+          | {
+              __typename: 'ComponentSectionsGridFourCards'
+              title: string
+              cards: Array<{
+                __typename?: 'ComponentItemsGridCardItem'
+                title: string
+                text: string
+              } | null>
+            }
           | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
           | { __typename: 'Error' }
           | null
@@ -2586,6 +2650,15 @@ export type PageBySlugQuery = {
           | null
         > | null
         sections?: Array<
+          | {
+              __typename: 'ComponentSectionsGridFourCards'
+              title: string
+              cards: Array<{
+                __typename?: 'ComponentItemsGridCardItem'
+                title: string
+                text: string
+              } | null>
+            }
           | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
           | { __typename: 'Error' }
           | null
@@ -2825,14 +2898,27 @@ export const RichtextSectionFragmentDoc = gql`
     content
   }
 `
+export const GridFourCardsSectionFragmentDoc = gql`
+  fragment GridFourCardsSection on ComponentSectionsGridFourCards {
+    title
+    cards {
+      title
+      text
+    }
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
     ... on ComponentSectionsRichtext {
       ...RichtextSection
     }
+    ... on ComponentSectionsGridFourCards {
+      ...GridFourCardsSection
+    }
   }
   ${RichtextSectionFragmentDoc}
+  ${GridFourCardsSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

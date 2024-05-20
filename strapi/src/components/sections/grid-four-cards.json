@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_grid_four_cards",
+  "info": {
+    "displayName": "Grid - Four Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.grid-card-item",
+      "min": 1,
+      "required": true
+    }
+  }
+}

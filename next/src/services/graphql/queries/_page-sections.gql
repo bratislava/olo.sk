@@ -2,10 +2,22 @@ fragment RichtextSection on ComponentSectionsRichtext {
   content
 }
 
+fragment GridFourCardsSection on ComponentSectionsGridFourCards {
+  title
+  cards {
+    title
+    text
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
   ... on ComponentSectionsRichtext {
     ...RichtextSection
+  }
+
+  ... on ComponentSectionsGridFourCards {
+    ...GridFourCardsSection
   }
 }

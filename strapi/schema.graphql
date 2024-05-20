@@ -240,6 +240,26 @@ input ComponentHeaderSectionsImageInput {
   media: ID
 }
 
+type ComponentItemsGridCardItem {
+  id: ID!
+  text: String!
+  title: String!
+}
+
+input ComponentItemsGridCardItemFiltersInput {
+  and: [ComponentItemsGridCardItemFiltersInput]
+  not: ComponentItemsGridCardItemFiltersInput
+  or: [ComponentItemsGridCardItemFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsGridCardItemInput {
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -314,6 +334,26 @@ input ComponentItemsSlideInput {
   link: ComponentItemsLinkInput
   media: ID
   text: String
+  title: String
+}
+
+type ComponentSectionsGridFourCards {
+  cards(filters: ComponentItemsGridCardItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsGridCardItem]!
+  id: ID!
+  title: String!
+}
+
+input ComponentSectionsGridFourCardsFiltersInput {
+  and: [ComponentSectionsGridFourCardsFiltersInput]
+  cards: ComponentItemsGridCardItemFiltersInput
+  not: ComponentSectionsGridFourCardsFiltersInput
+  or: [ComponentSectionsGridFourCardsFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentSectionsGridFourCardsInput {
+  cards: [ComponentItemsGridCardItemInput]
+  id: ID
   title: String
 }
 
@@ -515,7 +555,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsSlide | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsGridCardItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsSlide | ComponentSectionsGridFourCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -899,7 +939,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsGridFourCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

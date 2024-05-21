@@ -1,6 +1,6 @@
 import React from 'react'
 
-import GridFourCardsSection from '@/_components/sections/GridFourCardsSection'
+import OrderedCardsSection from '@/_components/sections/OrderedCardsSection'
 import RichtextSection from '@/_components/sections/RichtextSection'
 import { PageSectionsFragment } from '@/services/graphql/api'
 
@@ -15,8 +15,8 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
     case 'ComponentSectionsRichtext':
       return <RichtextSection section={section} />
 
-    case 'ComponentSectionsGridFourCards':
-      return <GridFourCardsSection section={section} />
+    case 'ComponentSectionsOrderedCards':
+      return <OrderedCardsSection section={section} />
 
     default:
       return null

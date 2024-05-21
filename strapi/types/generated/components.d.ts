@@ -90,10 +90,10 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
-export interface SectionsGridFourCards extends Schema.Component {
-  collectionName: 'components_sections_grid_four_cards'
+export interface SectionsOrderedCards extends Schema.Component {
+  collectionName: 'components_sections_ordered_cards'
   info: {
-    displayName: 'Grid - Four Cards'
+    displayName: 'Ordered Cards'
     description: ''
   }
   attributes: {
@@ -131,7 +131,7 @@ declare module '@strapi/types' {
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.slide': ItemsSlide
-      'sections.grid-four-cards': SectionsGridFourCards
+      'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
     }
   }

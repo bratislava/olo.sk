@@ -337,21 +337,21 @@ input ComponentItemsSlideInput {
   title: String
 }
 
-type ComponentSectionsGridFourCards {
+type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsGridCardItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsGridCardItem]!
   id: ID!
   title: String!
 }
 
-input ComponentSectionsGridFourCardsFiltersInput {
-  and: [ComponentSectionsGridFourCardsFiltersInput]
+input ComponentSectionsOrderedCardsFiltersInput {
+  and: [ComponentSectionsOrderedCardsFiltersInput]
   cards: ComponentItemsGridCardItemFiltersInput
-  not: ComponentSectionsGridFourCardsFiltersInput
-  or: [ComponentSectionsGridFourCardsFiltersInput]
+  not: ComponentSectionsOrderedCardsFiltersInput
+  or: [ComponentSectionsOrderedCardsFiltersInput]
   title: StringFilterInput
 }
 
-input ComponentSectionsGridFourCardsInput {
+input ComponentSectionsOrderedCardsInput {
   cards: [ComponentItemsGridCardItemInput]
   id: ID
   title: String
@@ -555,7 +555,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsGridCardItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsSlide | ComponentSectionsGridFourCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsGridCardItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsSlide | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -939,7 +939,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsGridFourCards | ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

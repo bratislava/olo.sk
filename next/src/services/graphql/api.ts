@@ -391,14 +391,14 @@ export type ComponentItemsSlideInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
-export type ComponentSectionsGridFourCards = {
-  __typename?: 'ComponentSectionsGridFourCards'
+export type ComponentSectionsOrderedCards = {
+  __typename?: 'ComponentSectionsOrderedCards'
   cards: Array<Maybe<ComponentItemsGridCardItem>>
   id: Scalars['ID']['output']
   title: Scalars['String']['output']
 }
 
-export type ComponentSectionsGridFourCardsCardsArgs = {
+export type ComponentSectionsOrderedCardsCardsArgs = {
   filters?: InputMaybe<ComponentItemsGridCardItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
@@ -568,7 +568,7 @@ export type GenericMorph =
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentItemsSlide
-  | ComponentSectionsGridFourCards
+  | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | Contact
   | Document
@@ -1203,7 +1203,7 @@ export type PageRelationResponseCollection = {
 }
 
 export type PageSectionsDynamicZone =
-  | ComponentSectionsGridFourCards
+  | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | Error
 
@@ -2012,14 +2012,14 @@ export type RichtextSectionFragment = {
   content?: any | null
 }
 
-export type GridFourCardsSectionFragment = {
-  __typename?: 'ComponentSectionsGridFourCards'
+export type OrderedCardsSectionFragment = {
+  __typename?: 'ComponentSectionsOrderedCards'
   title: string
   cards: Array<{ __typename?: 'ComponentItemsGridCardItem'; title: string; text: string } | null>
 }
 
-type PageSections_ComponentSectionsGridFourCards_Fragment = {
-  __typename: 'ComponentSectionsGridFourCards'
+type PageSections_ComponentSectionsOrderedCards_Fragment = {
+  __typename: 'ComponentSectionsOrderedCards'
   title: string
   cards: Array<{ __typename?: 'ComponentItemsGridCardItem'; title: string; text: string } | null>
 }
@@ -2032,7 +2032,7 @@ type PageSections_ComponentSectionsRichtext_Fragment = {
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
-  | PageSections_ComponentSectionsGridFourCards_Fragment
+  | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_Error_Fragment
 
@@ -2487,7 +2487,7 @@ export type PageEntityFragment = {
     > | null
     sections?: Array<
       | {
-          __typename: 'ComponentSectionsGridFourCards'
+          __typename: 'ComponentSectionsOrderedCards'
           title: string
           cards: Array<{
             __typename?: 'ComponentItemsGridCardItem'
@@ -2567,7 +2567,7 @@ export type PagesQuery = {
         > | null
         sections?: Array<
           | {
-              __typename: 'ComponentSectionsGridFourCards'
+              __typename: 'ComponentSectionsOrderedCards'
               title: string
               cards: Array<{
                 __typename?: 'ComponentItemsGridCardItem'
@@ -2651,7 +2651,7 @@ export type PageBySlugQuery = {
         > | null
         sections?: Array<
           | {
-              __typename: 'ComponentSectionsGridFourCards'
+              __typename: 'ComponentSectionsOrderedCards'
               title: string
               cards: Array<{
                 __typename?: 'ComponentItemsGridCardItem'
@@ -2898,8 +2898,8 @@ export const RichtextSectionFragmentDoc = gql`
     content
   }
 `
-export const GridFourCardsSectionFragmentDoc = gql`
-  fragment GridFourCardsSection on ComponentSectionsGridFourCards {
+export const OrderedCardsSectionFragmentDoc = gql`
+  fragment OrderedCardsSection on ComponentSectionsOrderedCards {
     title
     cards {
       title
@@ -2913,12 +2913,12 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsRichtext {
       ...RichtextSection
     }
-    ... on ComponentSectionsGridFourCards {
-      ...GridFourCardsSection
+    ... on ComponentSectionsOrderedCards {
+      ...OrderedCardsSection
     }
   }
   ${RichtextSectionFragmentDoc}
-  ${GridFourCardsSectionFragmentDoc}
+  ${OrderedCardsSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

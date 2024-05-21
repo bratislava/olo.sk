@@ -2,7 +2,7 @@ fragment RichtextSection on ComponentSectionsRichtext {
   content
 }
 
-fragment GridFourCardsSection on ComponentSectionsGridFourCards {
+fragment OrderedCardsSection on ComponentSectionsOrderedCards {
   title
   cards {
     title
@@ -17,7 +17,7 @@ fragment PageSections on PageSectionsDynamicZone {
     ...RichtextSection
   }
 
-  ... on ComponentSectionsGridFourCards {
-    ...GridFourCardsSection
+  ... on ComponentSectionsOrderedCards {
+    ...OrderedCardsSection
   }
 }

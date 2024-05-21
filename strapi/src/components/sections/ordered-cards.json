@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_sections_grid_four_cards",
+  "collectionName": "components_sections_ordered_cards",
   "info": {
-    "displayName": "Grid - Four Cards",
+    "displayName": "Ordered Cards",
     "description": ""
   },
   "options": {},

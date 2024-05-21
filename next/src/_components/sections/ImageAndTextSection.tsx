@@ -8,7 +8,6 @@ import SectionContainer, {
   SectionContainerProps,
 } from '@/_components/layout/Section/SectionContainer'
 import { generateImageSizes } from '@/_utils/generateImageSizes'
-import { isDefined } from '@/_utils/isDefined'
 import {
   Enum_Componentsectionsimageandtext_Imageposition,
   ImageAndTextSectionFragment,
@@ -24,7 +23,7 @@ const backgroundValueMap: Record<
 > = {
   white: 'primary',
   yellow: 'secondary',
-  gray: 'tertiary',
+  grey: 'tertiary',
 }
 
 const ImageAndTextSection = ({ section }: Props) => {
@@ -55,12 +54,12 @@ const ImageAndTextSection = ({ section }: Props) => {
         <Typography>{text}</Typography>
       </div>
       <div className="flex gap-4">
-        {isDefined(primaryButton) ? (
+        {primaryButton ? (
           <Button variant="category-solid" href={primaryButton.url} asLink hasLinkIcon={false}>
             {primaryButton.title}
           </Button>
         ) : null}
-        {isDefined(secondaryButton) ? (
+        {secondaryButton ? (
           <Button variant="category-outline" href={secondaryButton.url} asLink hasLinkIcon={false}>
             {secondaryButton.title}
           </Button>

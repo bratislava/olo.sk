@@ -574,7 +574,7 @@ type DocumentRelationResponseCollection {
 }
 
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
-  gray
+  grey
   white
   yellow
 }

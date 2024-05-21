@@ -114,7 +114,7 @@ export interface SectionsImageAndText extends Schema.Component {
     imagePosition: Attribute.Enumeration<['left', 'right']> &
       Attribute.Required &
       Attribute.DefaultTo<'left'>
-    backgroundColor: Attribute.Enumeration<['white', 'yellow', 'gray']> &
+    backgroundColor: Attribute.Enumeration<['white', 'yellow', 'grey']> &
       Attribute.Required &
       Attribute.DefaultTo<'white'>
     image: Attribute.Media & Attribute.Required

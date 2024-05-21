@@ -540,7 +540,7 @@ export type DocumentInput = {
 }
 
 export enum Enum_Componentsectionsimageandtext_Backgroundcolor {
-  Gray = 'gray',
+  Grey = 'grey',
   White = 'white',
   Yellow = 'yellow',
 }

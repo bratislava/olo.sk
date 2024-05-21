@@ -8,7 +8,7 @@ const meta: Meta<typeof BannerComponent> = {
   component: BannerComponent,
   title: 'Components/Banner',
   args: {
-    variant: 'background-gray',
+    variant: 'background-grey',
     title: 'Banner title',
     subtext: 'Banner subtext',
     button1LinkHref: '#',

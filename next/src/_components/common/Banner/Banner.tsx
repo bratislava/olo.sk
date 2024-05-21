@@ -5,13 +5,13 @@ import Typography from '@/_components/common/Typography/Typography'
 import cn from '@/app/_utils/cn'
 
 type BannerProps = {
-  variant: 'background-gray' | 'background-black'
+  variant: 'background-grey' | 'background-black'
   title: string
   subtext: string
   button1LinkHref: string
   button1Text: string
-  button2LinkHref: string
-  button2Text: string
+  button2LinkHref?: string
+  button2Text?: string
   imgSrc?: string
   className?: string
 }
@@ -34,13 +34,13 @@ const Banner = ({
   return (
     <div
       className={cn(
-        'flex h-full w-full flex-col overflow-hidden rounded-b-none rounded-t-2xl lg:flex-row lg:rounded-2xl [&>*]:basis-[50%]',
+        'flex h-full w-full flex-col overflow-hidden rounded-2xl lg:flex-row [&>*]:basis-[50%]',
         className,
       )}
     >
       <div
         className={cn('flex flex-col items-start gap-6 p-6 lg:p-12', '', {
-          'bg-background-tertiary': variant === 'background-gray',
+          'bg-background-tertiary': variant === 'background-grey',
           'bg-background-primaryInverted text-content-primaryInverted':
             variant === 'background-black',
         })}
@@ -53,12 +53,13 @@ const Banner = ({
           <Button href={button1LinkHref} asLink hasLinkIcon={false} variant="category-solid">
             {button1Text}
           </Button>
-          {button2Text ? (
+          {button2LinkHref && button2Text ? (
             <Button
               href={button2LinkHref}
               asLink
               hasLinkIcon={false}
               variant="category-outline"
+              // TODO this custom style should be handled by a dedicated Button variant
               className={cn({ 'text-content-primaryInverted': variant === 'background-black' })}
             >
               {button2Text}

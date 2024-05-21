@@ -1,6 +1,4 @@
-import cx from 'classnames'
-import { twMerge } from 'tailwind-merge'
-
+import cn from '@/app/_utils/cn'
 import * as Pictograms from '@/assets/pictograms'
 
 // TODO make it generic and typesafe (allow only defined filenames/components)
@@ -26,7 +24,7 @@ export type PictogramProps = {
 const Pictogram = ({ name, className }: PictogramProps) => {
   const PictogramComponent: PictogramType = Pictograms[pictogramNameMap[name]]
 
-  return <PictogramComponent className={twMerge(cx('shrink-0', className))} />
+  return <PictogramComponent className={cn('shrink-0', className)} />
 }
 
 export default Pictogram

@@ -1,12 +1,12 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 
 import { useTranslation } from 'next-i18next'
-import { twMerge } from 'tailwind-merge'
 
 import Button from '@/_components/common/Button/Button'
 import CardBase from '@/_components/common/Card/CardBase'
 import Pictogram from '@/_components/common/Icon/Pictogram'
 import Typography from '@/_components/common/Typography/Typography'
+import cn from '@/app/_utils/cn'
 
 const wasteTypesMap = {
   paper: {
@@ -79,7 +79,7 @@ const WasteSortingCard = ({
       className={className}
     >
       <div
-        className={twMerge(
+        className={cn(
           'flex aspect-[280/164] flex-col items-center justify-center rounded-t-lg lg:aspect-[280/204]',
           wasteTypesMap[wasteType]?.className,
         )}

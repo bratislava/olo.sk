@@ -52,7 +52,7 @@ const ImageAndTextSection = ({ section }: Props) => {
     <div className="flex grow flex-col gap-6">
       <div className="flex flex-col gap-4">
         <Typography variant="h2">{title}</Typography>
-        <Typography>{`${image.data?.attributes?.url}  ${text}`}</Typography>
+        <Typography>{text}</Typography>
       </div>
       <div className="flex gap-4">
         {isDefined(primaryButton) ? (

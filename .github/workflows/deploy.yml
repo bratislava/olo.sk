@@ -150,3 +150,31 @@ jobs:
     secrets:
       service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+
+  build-storybook:
+    name: Build & Push Storybook
+    runs-on: ["self-hosted", "Linux", "X64", "bratislava"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Docker Metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ vars.HARBOR_REGISTRY }}/${{ vars.HARBOR_NAMESPACE }}/olo-next-storybook
+          tags: ${{ github.ref_name }}
+      - name: Setup Docker buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Log into registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ vars.HARBOR_REGISTRY }}
+          username: ${{ secrets.HARBOR_REGISTRY_USERNAME }}
+          password: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: "."
+          file: "./next/Dockerfile.storybook"
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}

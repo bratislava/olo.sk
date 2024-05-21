@@ -18,6 +18,9 @@ spec:
         - image: ${IMAGE_TAG}
           name: app
           imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: ${INTERNAL_APP_PORT}
           resources:
             limits:
               cpu: 900m
@@ -40,6 +43,38 @@ spec:
             periodSeconds: 20
             successThreshold: 1
             failureThreshold: 3
+        - image: ${IMAGE}-storybook:${GIT_TAG}
+          name: storybook
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: storybook
+              containerPort: 3000
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            timeoutSeconds: 5
+            periodSeconds: 20
+            successThreshold: 1
+            failureThreshold: 3
+          volumeMounts:
+          - name: storybook-nginx-conf
+            mountPath: /etc/nginx/conf.d
+            subPath: default.conf
+          - name: storybook-nginx-conf
+            mountPath: /etc/nginx/
+            subPath: nginx.conf
+      volumes:
+        - name: storybook-nginx-conf
+          configMap:
+            name: ${BUILD_REPOSITORY_NAME}-storybook-nginx-conf
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30

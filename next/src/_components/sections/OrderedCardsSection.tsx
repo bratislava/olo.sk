@@ -30,7 +30,7 @@ const OrderedCardsSection = ({ section }: Props) => {
                 <li
                   key={card.title}
                   className={cn(
-                    'flex flex-col items-start gap-4 rounded-lg bg-background-primary p-4 last:odd:col-span-2 lg:gap-6 lg:p-6',
+                    'flex flex-col items-start gap-4 rounded-lg bg-background-primary p-4 lg:gap-6 lg:p-6 lg:last:odd:col-span-2',
                   )}
                 >
                   <div className="rounded-full bg-action-background-default p-4">

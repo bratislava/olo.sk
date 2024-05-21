@@ -45,7 +45,7 @@ spec:
               service:
                 name: ${BUILD_REPOSITORY_NAME}-storybook
                 port:
-                  number: 3000
+                  number: 8080
     - host: www.${BRATISKA_HOSTNAME}
       http:
         paths:
@@ -55,4 +55,4 @@ spec:
               service:
                 name: ${BUILD_REPOSITORY_NAME}-storybook
                 port:
-                  number: 3000
+                  number: 8080

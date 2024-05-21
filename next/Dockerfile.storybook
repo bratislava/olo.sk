@@ -19,7 +19,7 @@ USER nginx
 WORKDIR /usr/share/nginx/html
 COPY --chown=nginx:nginx --from=build /build/storybook-static ./
 
-EXPOSE 3000
+EXPOSE 8080
 
 ARG GIT_COMMIT="undefined"
 ENV GIT_COMMIT=$GIT_COMMIT

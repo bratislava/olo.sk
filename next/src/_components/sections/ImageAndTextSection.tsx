@@ -35,7 +35,7 @@ const ImageAndTextSection = ({ section }: Props) => {
     <div className="relative aspect-square size-full shrink-0 overflow-hidden rounded-3xl lg:size-[540px]">
       {image.data?.attributes?.url ? (
         <Image
-          src={image.data?.attributes?.url}
+          src={image.data.attributes.url}
           alt={image.data.attributes.alternativeText ?? ''}
           fill
           sizes={generateImageSizes({ md: '50vw', default: '100vw' })}
@@ -52,7 +52,7 @@ const ImageAndTextSection = ({ section }: Props) => {
     <div className="flex grow flex-col gap-6">
       <div className="flex flex-col gap-4">
         <Typography variant="h2">{title}</Typography>
-        <Typography>{text}</Typography>
+        <Typography>{`${image.data?.attributes?.url}  ${text}`}</Typography>
       </div>
       <div className="flex gap-4">
         {isDefined(primaryButton) ? (

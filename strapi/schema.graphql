@@ -240,6 +240,26 @@ input ComponentHeaderSectionsImageInput {
   media: ID
 }
 
+type ComponentItemsImageAndTextButtonItem {
+  id: ID!
+  title: String!
+  url: String!
+}
+
+input ComponentItemsImageAndTextButtonItemFiltersInput {
+  and: [ComponentItemsImageAndTextButtonItemFiltersInput]
+  not: ComponentItemsImageAndTextButtonItemFiltersInput
+  or: [ComponentItemsImageAndTextButtonItemFiltersInput]
+  title: StringFilterInput
+  url: StringFilterInput
+}
+
+input ComponentItemsImageAndTextButtonItemInput {
+  id: ID
+  title: String
+  url: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -333,6 +353,40 @@ input ComponentItemsSlideInput {
   id: ID
   link: ComponentItemsLinkInput
   media: ID
+  text: String
+  title: String
+}
+
+type ComponentSectionsImageAndText {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR!
+  id: ID!
+  image: UploadFileEntityResponse!
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION!
+  primaryButton: ComponentItemsImageAndTextButtonItem
+  secondaryButton: ComponentItemsImageAndTextButtonItem
+  text: String
+  title: String!
+}
+
+input ComponentSectionsImageAndTextFiltersInput {
+  and: [ComponentSectionsImageAndTextFiltersInput]
+  backgroundColor: StringFilterInput
+  imagePosition: StringFilterInput
+  not: ComponentSectionsImageAndTextFiltersInput
+  or: [ComponentSectionsImageAndTextFiltersInput]
+  primaryButton: ComponentItemsImageAndTextButtonItemFiltersInput
+  secondaryButton: ComponentItemsImageAndTextButtonItemFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsImageAndTextInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR
+  id: ID
+  image: ID
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION
+  primaryButton: ComponentItemsImageAndTextButtonItemInput
+  secondaryButton: ComponentItemsImageAndTextButtonItemInput
   text: String
   title: String
 }
@@ -519,6 +573,17 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
+  gray
+  white
+  yellow
+}
+
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
+  left
+  right
+}
+
 type Error {
   code: String!
   message: String
@@ -555,7 +620,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsImageAndTextButtonItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -939,7 +1004,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

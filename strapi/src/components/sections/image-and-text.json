@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_sections_image_and_texts",
+  "info": {
+    "displayName": "Image and Text",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": ["left", "right"],
+      "default": "left",
+      "required": true
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": ["white", "yellow", "gray"],
+      "default": "white",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": ["images"],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "primaryButton": {
+      "displayName": "primary button",
+      "type": "component",
+      "repeatable": false,
+      "component": "items.image-and-text-button-item",
+      "required": false
+    },
+    "secondaryButton": {
+      "displayName": "secondary button",
+      "type": "component",
+      "repeatable": false,
+      "component": "items.image-and-text-button-item",
+      "required": false
+    }
+  }
+}

@@ -10,6 +10,26 @@ fragment OrderedCardsSection on ComponentSectionsOrderedCards {
   }
 }
 
+fragment ImageAndTextSection on ComponentSectionsImageAndText {
+  title
+  text
+  imagePosition
+  backgroundColor
+  image {
+    data {
+      ...UploadImageEntity
+    }
+  }
+  primaryButton {
+    title
+    url
+  }
+  secondaryButton {
+    title
+    url
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -19,5 +39,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsOrderedCards {
     ...OrderedCardsSection
+  }
+
+  ... on ComponentSectionsImageAndText {
+    ...ImageAndTextSection
   }
 }

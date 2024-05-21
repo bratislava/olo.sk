@@ -36,6 +36,18 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
+export interface ItemsImageAndTextButtonItem extends Schema.Component {
+  collectionName: 'components_items_image-and-text-button-item'
+  info: {
+    displayName: 'Image and Text button item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    url: Attribute.String & Attribute.Required
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -90,6 +102,27 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface SectionsImageAndText extends Schema.Component {
+  collectionName: 'components_sections_image_and_texts'
+  info: {
+    displayName: 'Image and Text'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    imagePosition: Attribute.Enumeration<['left', 'right']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'left'>
+    backgroundColor: Attribute.Enumeration<['white', 'yellow', 'gray']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'white'>
+    image: Attribute.Media & Attribute.Required
+    primaryButton: Attribute.Component<'items.image-and-text-button-item'>
+    secondaryButton: Attribute.Component<'items.image-and-text-button-item'>
+  }
+}
+
 export interface SectionsOrderedCards extends Schema.Component {
   collectionName: 'components_sections_ordered_cards'
   info: {
@@ -127,10 +160,12 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
+      'items.image-and-text-button-item': ItemsImageAndTextButtonItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
     }

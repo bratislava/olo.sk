@@ -296,21 +296,6 @@ export type ComponentHeaderSectionsImage = {
   media: UploadFileEntityResponse
 }
 
-export type ComponentItemsGridCardItem = {
-  __typename?: 'ComponentItemsGridCardItem'
-  id: Scalars['ID']['output']
-  text: Scalars['String']['output']
-  title: Scalars['String']['output']
-}
-
-export type ComponentItemsGridCardItemFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentItemsGridCardItemFiltersInput>>>
-  not?: InputMaybe<ComponentItemsGridCardItemFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ComponentItemsGridCardItemFiltersInput>>>
-  text?: InputMaybe<StringFilterInput>
-  title?: InputMaybe<StringFilterInput>
-}
-
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
@@ -362,6 +347,21 @@ export type ComponentItemsOpeningHoursItemInput = {
   value?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentItemsOrderedCardItem = {
+  __typename?: 'ComponentItemsOrderedCardItem'
+  id: Scalars['ID']['output']
+  text: Scalars['String']['output']
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsOrderedCardItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsOrderedCardItemFiltersInput>>>
+  not?: InputMaybe<ComponentItemsOrderedCardItemFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsOrderedCardItemFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsSlide = {
   __typename?: 'ComponentItemsSlide'
   backgroundColor?: Maybe<Scalars['String']['output']>
@@ -393,13 +393,13 @@ export type ComponentItemsSlideInput = {
 
 export type ComponentSectionsOrderedCards = {
   __typename?: 'ComponentSectionsOrderedCards'
-  cards: Array<Maybe<ComponentItemsGridCardItem>>
+  cards: Array<Maybe<ComponentItemsOrderedCardItem>>
   id: Scalars['ID']['output']
   title: Scalars['String']['output']
 }
 
 export type ComponentSectionsOrderedCardsCardsArgs = {
-  filters?: InputMaybe<ComponentItemsGridCardItemFiltersInput>
+  filters?: InputMaybe<ComponentItemsOrderedCardItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
@@ -564,9 +564,9 @@ export type GenericMorph =
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
-  | ComponentItemsGridCardItem
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
+  | ComponentItemsOrderedCardItem
   | ComponentItemsSlide
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
@@ -2015,13 +2015,13 @@ export type RichtextSectionFragment = {
 export type OrderedCardsSectionFragment = {
   __typename?: 'ComponentSectionsOrderedCards'
   title: string
-  cards: Array<{ __typename?: 'ComponentItemsGridCardItem'; title: string; text: string } | null>
+  cards: Array<{ __typename?: 'ComponentItemsOrderedCardItem'; title: string; text: string } | null>
 }
 
 type PageSections_ComponentSectionsOrderedCards_Fragment = {
   __typename: 'ComponentSectionsOrderedCards'
   title: string
-  cards: Array<{ __typename?: 'ComponentItemsGridCardItem'; title: string; text: string } | null>
+  cards: Array<{ __typename?: 'ComponentItemsOrderedCardItem'; title: string; text: string } | null>
 }
 
 type PageSections_ComponentSectionsRichtext_Fragment = {
@@ -2490,7 +2490,7 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsOrderedCards'
           title: string
           cards: Array<{
-            __typename?: 'ComponentItemsGridCardItem'
+            __typename?: 'ComponentItemsOrderedCardItem'
             title: string
             text: string
           } | null>
@@ -2570,7 +2570,7 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsOrderedCards'
               title: string
               cards: Array<{
-                __typename?: 'ComponentItemsGridCardItem'
+                __typename?: 'ComponentItemsOrderedCardItem'
                 title: string
                 text: string
               } | null>
@@ -2654,7 +2654,7 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsOrderedCards'
               title: string
               cards: Array<{
-                __typename?: 'ComponentItemsGridCardItem'
+                __typename?: 'ComponentItemsOrderedCardItem'
                 title: string
                 text: string
               } | null>

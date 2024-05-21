@@ -36,18 +36,6 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
-export interface ItemsGridCardItem extends Schema.Component {
-  collectionName: 'components_items_grid_card_items'
-  info: {
-    displayName: 'Grid Card Item'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text & Attribute.Required
-  }
-}
-
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -75,6 +63,18 @@ export interface ItemsOpeningHoursItem extends Schema.Component {
   }
 }
 
+export interface ItemsOrderedCardItem extends Schema.Component {
+  collectionName: 'components_items_ordered_card_items'
+  info: {
+    displayName: 'Ordered Card item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text & Attribute.Required
+  }
+}
+
 export interface ItemsSlide extends Schema.Component {
   collectionName: 'components_items_slides'
   info: {
@@ -98,7 +98,7 @@ export interface SectionsOrderedCards extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    cards: Attribute.Component<'items.grid-card-item', true> &
+    cards: Attribute.Component<'items.ordered-card-item', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -127,9 +127,9 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
-      'items.grid-card-item': ItemsGridCardItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
+      'items.ordered-card-item': ItemsOrderedCardItem
       'items.slide': ItemsSlide
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext

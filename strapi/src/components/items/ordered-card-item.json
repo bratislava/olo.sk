@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_items_grid_card_items",
+  "collectionName": "components_items_ordered_card_items",
   "info": {
-    "displayName": "Grid Card Item",
+    "displayName": "Ordered Card item",
     "description": ""
   },
   "options": {},

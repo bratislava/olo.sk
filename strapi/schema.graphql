@@ -240,26 +240,6 @@ input ComponentHeaderSectionsImageInput {
   media: ID
 }
 
-type ComponentItemsGridCardItem {
-  id: ID!
-  text: String!
-  title: String!
-}
-
-input ComponentItemsGridCardItemFiltersInput {
-  and: [ComponentItemsGridCardItemFiltersInput]
-  not: ComponentItemsGridCardItemFiltersInput
-  or: [ComponentItemsGridCardItemFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentItemsGridCardItemInput {
-  id: ID
-  text: String
-  title: String
-}
-
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -309,6 +289,26 @@ input ComponentItemsOpeningHoursItemInput {
   value: String
 }
 
+type ComponentItemsOrderedCardItem {
+  id: ID!
+  text: String!
+  title: String!
+}
+
+input ComponentItemsOrderedCardItemFiltersInput {
+  and: [ComponentItemsOrderedCardItemFiltersInput]
+  not: ComponentItemsOrderedCardItemFiltersInput
+  or: [ComponentItemsOrderedCardItemFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsOrderedCardItemInput {
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentItemsSlide {
   backgroundColor: String
   id: ID!
@@ -338,21 +338,21 @@ input ComponentItemsSlideInput {
 }
 
 type ComponentSectionsOrderedCards {
-  cards(filters: ComponentItemsGridCardItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsGridCardItem]!
+  cards(filters: ComponentItemsOrderedCardItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardItem]!
   id: ID!
   title: String!
 }
 
 input ComponentSectionsOrderedCardsFiltersInput {
   and: [ComponentSectionsOrderedCardsFiltersInput]
-  cards: ComponentItemsGridCardItemFiltersInput
+  cards: ComponentItemsOrderedCardItemFiltersInput
   not: ComponentSectionsOrderedCardsFiltersInput
   or: [ComponentSectionsOrderedCardsFiltersInput]
   title: StringFilterInput
 }
 
 input ComponentSectionsOrderedCardsInput {
-  cards: [ComponentItemsGridCardItemInput]
+  cards: [ComponentItemsOrderedCardItemInput]
   id: ID
   title: String
 }
@@ -555,7 +555,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsGridCardItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsSlide | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardItem | ComponentItemsSlide | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime

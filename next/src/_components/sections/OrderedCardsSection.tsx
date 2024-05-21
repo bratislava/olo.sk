@@ -28,7 +28,8 @@ const OrderedCardsSection = ({ section }: Props) => {
             cards.filter(isDefined).map((card, index) => {
               return (
                 <li
-                  key={card.title}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
                   className={cn(
                     'flex flex-col items-start gap-4 rounded-lg bg-background-primary p-4 lg:gap-6 lg:p-6 lg:last:odd:col-span-2',
                   )}

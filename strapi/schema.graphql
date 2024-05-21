@@ -289,21 +289,21 @@ input ComponentItemsOpeningHoursItemInput {
   value: String
 }
 
-type ComponentItemsOrderedCardItem {
+type ComponentItemsOrderedCardsItem {
   id: ID!
   text: String!
   title: String!
 }
 
-input ComponentItemsOrderedCardItemFiltersInput {
-  and: [ComponentItemsOrderedCardItemFiltersInput]
-  not: ComponentItemsOrderedCardItemFiltersInput
-  or: [ComponentItemsOrderedCardItemFiltersInput]
+input ComponentItemsOrderedCardsItemFiltersInput {
+  and: [ComponentItemsOrderedCardsItemFiltersInput]
+  not: ComponentItemsOrderedCardsItemFiltersInput
+  or: [ComponentItemsOrderedCardsItemFiltersInput]
   text: StringFilterInput
   title: StringFilterInput
 }
 
-input ComponentItemsOrderedCardItemInput {
+input ComponentItemsOrderedCardsItemInput {
   id: ID
   text: String
   title: String
@@ -338,21 +338,21 @@ input ComponentItemsSlideInput {
 }
 
 type ComponentSectionsOrderedCards {
-  cards(filters: ComponentItemsOrderedCardItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardItem]!
+  cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
   title: String!
 }
 
 input ComponentSectionsOrderedCardsFiltersInput {
   and: [ComponentSectionsOrderedCardsFiltersInput]
-  cards: ComponentItemsOrderedCardItemFiltersInput
+  cards: ComponentItemsOrderedCardsItemFiltersInput
   not: ComponentSectionsOrderedCardsFiltersInput
   or: [ComponentSectionsOrderedCardsFiltersInput]
   title: StringFilterInput
 }
 
 input ComponentSectionsOrderedCardsInput {
-  cards: [ComponentItemsOrderedCardItemInput]
+  cards: [ComponentItemsOrderedCardsItemInput]
   id: ID
   title: String
 }
@@ -555,7 +555,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardItem | ComponentItemsSlide | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime

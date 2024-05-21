@@ -240,31 +240,12 @@ input ComponentHeaderSectionsImageInput {
   media: ID
 }
 
-type ComponentItemsImageAndTextButtonItem {
-  id: ID!
-  title: String!
-  url: String!
-}
-
-input ComponentItemsImageAndTextButtonItemFiltersInput {
-  and: [ComponentItemsImageAndTextButtonItemFiltersInput]
-  not: ComponentItemsImageAndTextButtonItemFiltersInput
-  or: [ComponentItemsImageAndTextButtonItemFiltersInput]
-  title: StringFilterInput
-  url: StringFilterInput
-}
-
-input ComponentItemsImageAndTextButtonItemInput {
-  id: ID
-  title: String
-  url: String
-}
-
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
   document: DocumentEntityResponse
   id: ID!
+  label: String!
   page: PageEntityResponse
   url: String
 }
@@ -274,6 +255,7 @@ input ComponentItemsLinkFiltersInput {
   article: ArticleFiltersInput
   branch: BranchFiltersInput
   document: DocumentFiltersInput
+  label: StringFilterInput
   not: ComponentItemsLinkFiltersInput
   or: [ComponentItemsLinkFiltersInput]
   page: PageFiltersInput
@@ -285,6 +267,7 @@ input ComponentItemsLinkInput {
   branch: ID
   document: ID
   id: ID
+  label: String
   page: ID
   url: String
 }
@@ -362,8 +345,8 @@ type ComponentSectionsImageAndText {
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION!
-  primaryButton: ComponentItemsImageAndTextButtonItem
-  secondaryButton: ComponentItemsImageAndTextButtonItem
+  primaryButton: ComponentItemsLink
+  secondaryButton: ComponentItemsLink
   text: String
   title: String!
 }
@@ -374,8 +357,8 @@ input ComponentSectionsImageAndTextFiltersInput {
   imagePosition: StringFilterInput
   not: ComponentSectionsImageAndTextFiltersInput
   or: [ComponentSectionsImageAndTextFiltersInput]
-  primaryButton: ComponentItemsImageAndTextButtonItemFiltersInput
-  secondaryButton: ComponentItemsImageAndTextButtonItemFiltersInput
+  primaryButton: ComponentItemsLinkFiltersInput
+  secondaryButton: ComponentItemsLinkFiltersInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -385,8 +368,8 @@ input ComponentSectionsImageAndTextInput {
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION
-  primaryButton: ComponentItemsImageAndTextButtonItemInput
-  secondaryButton: ComponentItemsImageAndTextButtonItemInput
+  primaryButton: ComponentItemsLinkInput
+  secondaryButton: ComponentItemsLinkInput
   text: String
   title: String
 }
@@ -620,7 +603,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsImageAndTextButtonItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime

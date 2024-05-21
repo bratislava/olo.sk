@@ -36,18 +36,6 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
-export interface ItemsImageAndTextButtonItem extends Schema.Component {
-  collectionName: 'components_items_image-and-text-button-item'
-  info: {
-    displayName: 'Image and Text button item'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    url: Attribute.String & Attribute.Required
-  }
-}
-
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -56,6 +44,7 @@ export interface ItemsLink extends Schema.Component {
     description: ''
   }
   attributes: {
+    label: Attribute.String & Attribute.Required
     url: Attribute.String
     page: Attribute.Relation<'items.link', 'oneToOne', 'api::page.page'>
     article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>
@@ -118,8 +107,8 @@ export interface SectionsImageAndText extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'white'>
     image: Attribute.Media & Attribute.Required
-    primaryButton: Attribute.Component<'items.image-and-text-button-item'>
-    secondaryButton: Attribute.Component<'items.image-and-text-button-item'>
+    primaryButton: Attribute.Component<'items.link'>
+    secondaryButton: Attribute.Component<'items.link'>
   }
 }
 
@@ -160,7 +149,6 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
-      'items.image-and-text-button-item': ItemsImageAndTextButtonItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem

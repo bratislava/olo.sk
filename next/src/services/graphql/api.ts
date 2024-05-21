@@ -296,19 +296,13 @@ export type ComponentHeaderSectionsImage = {
   media: UploadFileEntityResponse
 }
 
-export type ComponentItemsImageAndTextButtonItem = {
-  __typename?: 'ComponentItemsImageAndTextButtonItem'
-  id: Scalars['ID']['output']
-  title: Scalars['String']['output']
-  url: Scalars['String']['output']
-}
-
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
   branch?: Maybe<BranchEntityResponse>
   document?: Maybe<DocumentEntityResponse>
   id: Scalars['ID']['output']
+  label: Scalars['String']['output']
   page?: Maybe<PageEntityResponse>
   url?: Maybe<Scalars['String']['output']>
 }
@@ -318,6 +312,7 @@ export type ComponentItemsLinkFiltersInput = {
   article?: InputMaybe<ArticleFiltersInput>
   branch?: InputMaybe<BranchFiltersInput>
   document?: InputMaybe<DocumentFiltersInput>
+  label?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ComponentItemsLinkFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsLinkFiltersInput>>>
   page?: InputMaybe<PageFiltersInput>
@@ -329,6 +324,7 @@ export type ComponentItemsLinkInput = {
   branch?: InputMaybe<Scalars['ID']['input']>
   document?: InputMaybe<Scalars['ID']['input']>
   id?: InputMaybe<Scalars['ID']['input']>
+  label?: InputMaybe<Scalars['String']['input']>
   page?: InputMaybe<Scalars['ID']['input']>
   url?: InputMaybe<Scalars['String']['input']>
 }
@@ -404,8 +400,8 @@ export type ComponentSectionsImageAndText = {
   id: Scalars['ID']['output']
   image: UploadFileEntityResponse
   imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-  primaryButton?: Maybe<ComponentItemsImageAndTextButtonItem>
-  secondaryButton?: Maybe<ComponentItemsImageAndTextButtonItem>
+  primaryButton?: Maybe<ComponentItemsLink>
+  secondaryButton?: Maybe<ComponentItemsLink>
   text?: Maybe<Scalars['String']['output']>
   title: Scalars['String']['output']
 }
@@ -594,7 +590,6 @@ export type GenericMorph =
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
-  | ComponentItemsImageAndTextButtonItem
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
@@ -1902,6 +1897,40 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>
 }
 
+export type LinkFragment = {
+  __typename?: 'ComponentItemsLink'
+  label: string
+  url?: string | null
+  page?: {
+    __typename?: 'PageEntityResponse'
+    data?: {
+      __typename?: 'PageEntity'
+      attributes?: { __typename?: 'Page'; slug: string } | null
+    } | null
+  } | null
+  article?: {
+    __typename?: 'ArticleEntityResponse'
+    data?: {
+      __typename?: 'ArticleEntity'
+      attributes?: { __typename?: 'Article'; slug: string } | null
+    } | null
+  } | null
+  branch?: {
+    __typename?: 'BranchEntityResponse'
+    data?: {
+      __typename?: 'BranchEntity'
+      attributes?: { __typename?: 'Branch'; slug: string } | null
+    } | null
+  } | null
+  document?: {
+    __typename?: 'DocumentEntityResponse'
+    data?: {
+      __typename?: 'DocumentEntity'
+      attributes?: { __typename?: 'Document'; slug: string } | null
+    } | null
+  } | null
+}
+
 export type UploadImageSrcEntityFragment = {
   __typename?: 'UploadFileEntity'
   id?: string | null
@@ -2078,14 +2107,70 @@ export type ImageAndTextSectionFragment = {
     } | null
   }
   primaryButton?: {
-    __typename?: 'ComponentItemsImageAndTextButtonItem'
-    title: string
-    url: string
+    __typename?: 'ComponentItemsLink'
+    label: string
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; slug: string } | null
+      } | null
+    } | null
   } | null
   secondaryButton?: {
-    __typename?: 'ComponentItemsImageAndTextButtonItem'
-    title: string
-    url: string
+    __typename?: 'ComponentItemsLink'
+    label: string
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; slug: string } | null
+      } | null
+    } | null
   } | null
 }
 
@@ -2112,14 +2197,70 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
     } | null
   }
   primaryButton?: {
-    __typename?: 'ComponentItemsImageAndTextButtonItem'
-    title: string
-    url: string
+    __typename?: 'ComponentItemsLink'
+    label: string
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; slug: string } | null
+      } | null
+    } | null
   } | null
   secondaryButton?: {
-    __typename?: 'ComponentItemsImageAndTextButtonItem'
-    title: string
-    url: string
+    __typename?: 'ComponentItemsLink'
+    label: string
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; slug: string } | null
+      } | null
+    } | null
   } | null
 }
 
@@ -2619,14 +2760,70 @@ export type PageEntityFragment = {
             } | null
           }
           primaryButton?: {
-            __typename?: 'ComponentItemsImageAndTextButtonItem'
-            title: string
-            url: string
+            __typename?: 'ComponentItemsLink'
+            label: string
+            url?: string | null
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename?: 'PageEntity'
+                attributes?: { __typename?: 'Page'; slug: string } | null
+              } | null
+            } | null
+            article?: {
+              __typename?: 'ArticleEntityResponse'
+              data?: {
+                __typename?: 'ArticleEntity'
+                attributes?: { __typename?: 'Article'; slug: string } | null
+              } | null
+            } | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename?: 'BranchEntity'
+                attributes?: { __typename?: 'Branch'; slug: string } | null
+              } | null
+            } | null
+            document?: {
+              __typename?: 'DocumentEntityResponse'
+              data?: {
+                __typename?: 'DocumentEntity'
+                attributes?: { __typename?: 'Document'; slug: string } | null
+              } | null
+            } | null
           } | null
           secondaryButton?: {
-            __typename?: 'ComponentItemsImageAndTextButtonItem'
-            title: string
-            url: string
+            __typename?: 'ComponentItemsLink'
+            label: string
+            url?: string | null
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename?: 'PageEntity'
+                attributes?: { __typename?: 'Page'; slug: string } | null
+              } | null
+            } | null
+            article?: {
+              __typename?: 'ArticleEntityResponse'
+              data?: {
+                __typename?: 'ArticleEntity'
+                attributes?: { __typename?: 'Article'; slug: string } | null
+              } | null
+            } | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename?: 'BranchEntity'
+                attributes?: { __typename?: 'Branch'; slug: string } | null
+              } | null
+            } | null
+            document?: {
+              __typename?: 'DocumentEntityResponse'
+              data?: {
+                __typename?: 'DocumentEntity'
+                attributes?: { __typename?: 'Document'; slug: string } | null
+              } | null
+            } | null
           } | null
         }
       | {
@@ -2732,14 +2929,70 @@ export type PagesQuery = {
                 } | null
               }
               primaryButton?: {
-                __typename?: 'ComponentItemsImageAndTextButtonItem'
-                title: string
-                url: string
+                __typename?: 'ComponentItemsLink'
+                label: string
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; slug: string } | null
+                  } | null
+                } | null
               } | null
               secondaryButton?: {
-                __typename?: 'ComponentItemsImageAndTextButtonItem'
-                title: string
-                url: string
+                __typename?: 'ComponentItemsLink'
+                label: string
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; slug: string } | null
+                  } | null
+                } | null
               } | null
             }
           | {
@@ -2849,14 +3102,70 @@ export type PageBySlugQuery = {
                 } | null
               }
               primaryButton?: {
-                __typename?: 'ComponentItemsImageAndTextButtonItem'
-                title: string
-                url: string
+                __typename?: 'ComponentItemsLink'
+                label: string
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; slug: string } | null
+                  } | null
+                } | null
               } | null
               secondaryButton?: {
-                __typename?: 'ComponentItemsImageAndTextButtonItem'
-                title: string
-                url: string
+                __typename?: 'ComponentItemsLink'
+                label: string
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; slug: string } | null
+                  } | null
+                } | null
               } | null
             }
           | {
@@ -3116,6 +3425,40 @@ export const OrderedCardsSectionFragmentDoc = gql`
     }
   }
 `
+export const LinkFragmentDoc = gql`
+  fragment Link on ComponentItemsLink {
+    label
+    url
+    page {
+      data {
+        attributes {
+          slug
+        }
+      }
+    }
+    article {
+      data {
+        attributes {
+          slug
+        }
+      }
+    }
+    branch {
+      data {
+        attributes {
+          slug
+        }
+      }
+    }
+    document {
+      data {
+        attributes {
+          slug
+        }
+      }
+    }
+  }
+`
 export const ImageAndTextSectionFragmentDoc = gql`
   fragment ImageAndTextSection on ComponentSectionsImageAndText {
     title
@@ -3128,15 +3471,14 @@ export const ImageAndTextSectionFragmentDoc = gql`
       }
     }
     primaryButton {
-      title
-      url
+      ...Link
     }
     secondaryButton {
-      title
-      url
+      ...Link
     }
   }
   ${UploadImageEntityFragmentDoc}
+  ${LinkFragmentDoc}
 `
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {

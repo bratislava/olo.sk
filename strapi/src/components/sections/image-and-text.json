@@ -21,7 +21,7 @@
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["white", "yellow", "gray"],
+      "enum": ["white", "yellow", "grey"],
       "default": "white",
       "required": true
     },
@@ -35,14 +35,14 @@
       "displayName": "primary button",
       "type": "component",
       "repeatable": false,
-      "component": "items.image-and-text-button-item",
+      "component": "items.link",
       "required": false
     },
     "secondaryButton": {
       "displayName": "secondary button",
       "type": "component",
       "repeatable": false,
-      "component": "items.image-and-text-button-item",
+      "component": "items.link",
       "required": false
     }
   }

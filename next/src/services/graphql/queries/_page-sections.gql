@@ -21,12 +21,10 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
     }
   }
   primaryButton {
-    title
-    url
+    ...Link
   }
   secondaryButton {
-    title
-    url
+    ...Link
   }
 }
 

@@ -8,6 +8,7 @@ import SectionContainer, {
   SectionContainerProps,
 } from '@/_components/layout/Section/SectionContainer'
 import { generateImageSizes } from '@/_utils/generateImageSizes'
+import { getLinkProps } from '@/_utils/getLinkProps'
 import {
   Enum_Componentsectionsimageandtext_Imageposition,
   ImageAndTextSectionFragment,
@@ -55,13 +56,23 @@ const ImageAndTextSection = ({ section }: Props) => {
       </div>
       <div className="flex gap-4">
         {primaryButton ? (
-          <Button variant="category-solid" href={primaryButton.url} asLink hasLinkIcon={false}>
-            {primaryButton.title}
+          <Button
+            variant="category-solid"
+            href={getLinkProps(primaryButton).href}
+            asLink
+            hasLinkIcon={false}
+          >
+            {primaryButton.label}
           </Button>
         ) : null}
         {secondaryButton ? (
-          <Button variant="category-outline" href={secondaryButton.url} asLink hasLinkIcon={false}>
-            {secondaryButton.title}
+          <Button
+            variant="category-outline"
+            href={getLinkProps(secondaryButton).href}
+            asLink
+            hasLinkIcon={false}
+          >
+            {secondaryButton.label}
           </Button>
         ) : null}
       </div>

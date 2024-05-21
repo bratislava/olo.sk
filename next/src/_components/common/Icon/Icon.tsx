@@ -1,10 +1,8 @@
-import cx from 'classnames'
-import { twMerge } from 'tailwind-merge'
-
+import cn from '@/app/_utils/cn'
 import * as Icons from '@/assets/icons'
 // TODO make it generic and typesafe (allow only defined filenames/components)
 
-export const iconNameMap = {
+export const iconNameMap: Record<string, keyof typeof Icons> = {
   // size 24 px
   'chevron-dolava': 'ChevronLeftIcon',
   'chevron-dole': 'ChevronDownIcon',
@@ -78,7 +76,7 @@ export type IconProps = {
 const Icon = ({ name, className }: IconProps) => {
   const IconComponent: IconType = Icons[iconNameMap[name]]
 
-  return <IconComponent className={twMerge(cx('shrink-0', className))} />
+  return <IconComponent className={cn('shrink-0', className)} />
 }
 
 export default Icon

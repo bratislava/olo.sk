@@ -13,6 +13,7 @@ type SpinnerBase = {
  */
 
 const Spinner = ({ size = 'md', className }: SpinnerBase) => {
+  // TODO change border color to use token colors
   const style = cx('border-gray-700 border-t-gray-300 animate-spin rounded-[50%] border-solid', {
     'h-5 w-5 border-2 border-t-2': size === 'sm',
     'h-8 w-8 border-3 border-t-3': size === 'md',

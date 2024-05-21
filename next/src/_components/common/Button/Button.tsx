@@ -189,9 +189,10 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
                   variant === 'black-outline',
                 'text-action-content-default pressed:bg-border-hover': variant === 'black-plain',
 
-                'pressed:text-gray-800 text-action-content-default': variant === 'black-link',
+                'text-action-content-default pressed:text-action-content-pressed':
+                  variant === 'black-link',
 
-                // 'border-border-default text-action-content-default pressed:border-border-hover pressed:text-gray-800 bg-white':
+                // 'border-border-default text-action-content-default pressed:border-border-hover pressed:text-action-content-pressed bg-white':
                 // 'border-negative-700 bg-negative-700 pressed:border-negative-800 pressed:bg-negative-800 text-content-primaryInverted':
                 //   variant === 'negative-solid',
                 // 'text-negative-700 pressed:bg-negative-200 pressed:text-negative-800':
@@ -211,7 +212,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
                 'hover:bg-border-default hover:text-action-content-default':
                   variant === 'black-plain',
 
-                'hover:text-gray-600': variant === 'black-link',
+                'hover:text-action-content-hover': variant === 'black-link',
 
                 // 'hover:border-negative-600 hover:bg-negative-600': variant === 'negative-solid',
                 // 'hover:bg-negative-100 hover:text-negative-600': variant === 'negative-plain',

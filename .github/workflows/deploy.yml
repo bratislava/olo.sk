@@ -175,7 +175,7 @@ jobs:
       - name: Build and Push
         uses: docker/build-push-action@v5
         with:
-          context: "."
+          context: "./next"
           file: "./next/Dockerfile.storybook"
           push: true
           tags: ${{ steps.meta.outputs.tags }}

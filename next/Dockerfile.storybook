@@ -3,7 +3,6 @@ FROM node:20.9-alpine AS build
 WORKDIR /build
 
 ENV STORYBOOK_TELEMETRY_DISABLED=1
-ENV YARN_CACHE_FOLDER=/build/.cache/yarn
 
 COPY ./package.json ./yarn.lock ./
 

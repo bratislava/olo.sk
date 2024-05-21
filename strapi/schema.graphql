@@ -289,6 +289,26 @@ input ComponentItemsOpeningHoursItemInput {
   value: String
 }
 
+type ComponentItemsOrderedCardsItem {
+  id: ID!
+  text: String!
+  title: String!
+}
+
+input ComponentItemsOrderedCardsItemFiltersInput {
+  and: [ComponentItemsOrderedCardsItemFiltersInput]
+  not: ComponentItemsOrderedCardsItemFiltersInput
+  or: [ComponentItemsOrderedCardsItemFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsOrderedCardsItemInput {
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentItemsSlide {
   backgroundColor: String
   id: ID!
@@ -314,6 +334,26 @@ input ComponentItemsSlideInput {
   link: ComponentItemsLinkInput
   media: ID
   text: String
+  title: String
+}
+
+type ComponentSectionsOrderedCards {
+  cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
+  id: ID!
+  title: String!
+}
+
+input ComponentSectionsOrderedCardsFiltersInput {
+  and: [ComponentSectionsOrderedCardsFiltersInput]
+  cards: ComponentItemsOrderedCardsItemFiltersInput
+  not: ComponentSectionsOrderedCardsFiltersInput
+  or: [ComponentSectionsOrderedCardsFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentSectionsOrderedCardsInput {
+  cards: [ComponentItemsOrderedCardsItemInput]
+  id: ID
   title: String
 }
 
@@ -515,7 +555,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsSlide | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -899,7 +939,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

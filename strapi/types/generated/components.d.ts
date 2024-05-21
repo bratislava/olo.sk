@@ -63,6 +63,18 @@ export interface ItemsOpeningHoursItem extends Schema.Component {
   }
 }
 
+export interface ItemsOrderedCardsItem extends Schema.Component {
+  collectionName: 'components_items_ordered_cards_items'
+  info: {
+    displayName: 'Ordered Cards item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text & Attribute.Required
+  }
+}
+
 export interface ItemsSlide extends Schema.Component {
   collectionName: 'components_items_slides'
   info: {
@@ -75,6 +87,25 @@ export interface ItemsSlide extends Schema.Component {
     backgroundColor: Attribute.String & Attribute.CustomField<'plugin::color-picker.color'>
     media: Attribute.Media & Attribute.Required
     link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsOrderedCards extends Schema.Component {
+  collectionName: 'components_sections_ordered_cards'
+  info: {
+    displayName: 'Ordered Cards'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    cards: Attribute.Component<'items.ordered-cards-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
   }
 }
 
@@ -98,7 +129,9 @@ declare module '@strapi/types' {
       'header-sections.image': HeaderSectionsImage
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
+      'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
     }
   }

@@ -47,7 +47,10 @@
     },
     "sections": {
       "type": "dynamiczone",
-      "components": ["sections.richtext"]
+      "components": [
+        "sections.richtext",
+        "sections.ordered-cards"
+      ]
     }
   }
 }

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_items_ordered_cards_items",
+  "info": {
+    "displayName": "Ordered Cards item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

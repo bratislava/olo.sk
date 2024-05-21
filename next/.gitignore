@@ -38,3 +38,7 @@ next-env.d.ts
 # storybook
 *storybook.log
 /storybook-static
+
+# bratiska-cli manifests
+manifest-*.y?ml
+

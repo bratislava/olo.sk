@@ -36,3 +36,23 @@ spec:
                 name: ${BUILD_REPOSITORY_NAME}-app
                 port:
                   number: 80
+    - host: ${BRATISKA_HOSTNAME}
+      http:
+        paths:
+          - path: /storybook
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: ${BUILD_REPOSITORY_NAME}-storybook
+                port:
+                  number: 3000
+    - host: www.${BRATISKA_HOSTNAME}
+      http:
+        paths:
+          - path: /storybook
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: ${BUILD_REPOSITORY_NAME}-storybook
+                port:
+                  number: 3000

@@ -1,0 +1,29 @@
+FROM node:20.9-alpine AS build
+
+WORKDIR /build
+
+ENV STORYBOOK_TELEMETRY_DISABLED=1
+ENV YARN_CACHE_FOLDER=/build/.cache/yarn
+
+COPY ./package.json ./yarn.lock ./
+
+RUN yarn config set network-timeout 600000 -g \
+ && yarn install --development --frozen-lockfile
+
+COPY . ./
+
+RUN yarn build-storybook
+
+FROM nginx:1.26-alpine AS prod
+
+USER nginx
+WORKDIR /usr/share/nginx/html
+COPY --chown=nginx:nginx --from=build /build/storybook-static ./
+
+EXPOSE 3000
+
+ARG GIT_COMMIT="undefined"
+ENV GIT_COMMIT=$GIT_COMMIT
+LABEL org.opencontainers.image.revision="${GIT_COMMIT}" \
+      org.opencontainers.image.source="https://github.com/bratislava/olo.sk" \
+      org.opencontainers.image.licenses="EUPL-1.2"

@@ -58,22 +58,18 @@ const ImageAndTextSection = ({ section }: Props) => {
         {primaryButton ? (
           <Button
             variant="category-solid"
-            href={getLinkProps(primaryButton).href}
             asLink
             hasLinkIcon={false}
-          >
-            {primaryButton.label}
-          </Button>
+            {...getLinkProps(primaryButton)}
+          />
         ) : null}
         {secondaryButton ? (
           <Button
             variant="category-outline"
-            href={getLinkProps(secondaryButton).href}
             asLink
             hasLinkIcon={false}
-          >
-            {secondaryButton.label}
-          </Button>
+            {...getLinkProps(primaryButton)}
+          />
         ) : null}
       </div>
     </div>

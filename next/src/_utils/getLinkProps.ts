@@ -16,12 +16,15 @@ export type LinkProps = {
 
 export const getLinkProps = (link: LinkFragment | null | undefined) => {
   let href = '#'
+  let label = link?.label ?? null
   let target: '_blank' | undefined
 
   // TODO Add article, branch and document links
   if (link?.page?.data?.attributes?.slug) {
+    label = link.page.data.attributes.title
     href = `/pages/${link.page.data.attributes.slug}`
   } else if (link?.url) {
+    if (!link.label) label = link.url
     href = link.url
     target = '_blank'
   }
@@ -30,5 +33,5 @@ export const getLinkProps = (link: LinkFragment | null | undefined) => {
   //   ? { id: link.plausibleId }
   //   : undefined
 
-  return { children: link?.label ?? null, href, target }
+  return { children: label, href, target }
 }

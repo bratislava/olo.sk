@@ -245,7 +245,7 @@ type ComponentItemsLink {
   branch: BranchEntityResponse
   document: DocumentEntityResponse
   id: ID!
-  label: String!
+  label: String
   page: PageEntityResponse
   url: String
 }

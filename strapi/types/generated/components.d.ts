@@ -44,7 +44,7 @@ export interface ItemsLink extends Schema.Component {
     description: ''
   }
   attributes: {
-    label: Attribute.String & Attribute.Required
+    label: Attribute.String
     url: Attribute.String
     page: Attribute.Relation<'items.link', 'oneToOne', 'api::page.page'>
     article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>

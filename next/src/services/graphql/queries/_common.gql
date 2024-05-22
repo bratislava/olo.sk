@@ -4,6 +4,7 @@ fragment Link on ComponentItemsLink {
   page {
     data {
       attributes {
+        title
         slug
       }
     }
@@ -11,6 +12,7 @@ fragment Link on ComponentItemsLink {
   article {
     data {
       attributes {
+        title
         slug
       }
     }
@@ -18,6 +20,7 @@ fragment Link on ComponentItemsLink {
   branch {
     data {
       attributes {
+        title
         slug
       }
     }
@@ -25,6 +28,7 @@ fragment Link on ComponentItemsLink {
   document {
     data {
       attributes {
+        title
         slug
       }
     }

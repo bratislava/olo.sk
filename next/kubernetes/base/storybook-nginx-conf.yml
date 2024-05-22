@@ -12,8 +12,8 @@ data:
         server_name  localhost;
 
       location ~ ^/storybook$ {
-          root   /usr/share/nginx/html;
-          index  index.html index.htm;
+          # needs specific redirect to `/` as routes without
+          # trailing `/` do not work
           return 301 $scheme://$host/storybook/;
       }
 

@@ -296,6 +296,22 @@ export type ComponentHeaderSectionsImage = {
   media: UploadFileEntityResponse
 }
 
+export type ComponentItemsIconTitleDesc = {
+  __typename?: 'ComponentItemsIconTitleDesc'
+  description?: Maybe<Scalars['String']['output']>
+  icon?: Maybe<UploadFileEntityResponse>
+  id: Scalars['ID']['output']
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsIconTitleDescFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsIconTitleDescFiltersInput>>>
+  description?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentItemsIconTitleDescFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsIconTitleDescFiltersInput>>>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
@@ -394,15 +410,30 @@ export type ComponentItemsSlideInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentSectionsColumnedItems = {
+  __typename?: 'ComponentSectionsColumnedItems'
+  id: Scalars['ID']['output']
+  items: Array<Maybe<ComponentItemsIconTitleDesc>>
+  sectionBackgroundColor: Enum_Componentsectionscolumneditems_Sectionbackgroundcolor
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
+export type ComponentSectionsColumnedItemsItemsArgs = {
+  filters?: InputMaybe<ComponentItemsIconTitleDescFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsImageAndText = {
   __typename?: 'ComponentSectionsImageAndText'
-  backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
   id: Scalars['ID']['output']
   image: UploadFileEntityResponse
   imagePosition: Enum_Componentsectionsimageandtext_Imageposition
   primaryButton?: Maybe<ComponentItemsLink>
   secondaryButton?: Maybe<ComponentItemsLink>
   text?: Maybe<Scalars['String']['output']>
+  textBackgroundColor: Enum_Componentsectionsimageandtext_Textbackgroundcolor
   title: Scalars['String']['output']
 }
 
@@ -535,8 +566,7 @@ export type DocumentInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
-export enum Enum_Componentsectionsimageandtext_Backgroundcolor {
-  Grey = 'grey',
+export enum Enum_Componentsectionscolumneditems_Sectionbackgroundcolor {
   White = 'white',
   Yellow = 'yellow',
 }
@@ -544,6 +574,12 @@ export enum Enum_Componentsectionsimageandtext_Backgroundcolor {
 export enum Enum_Componentsectionsimageandtext_Imageposition {
   Left = 'left',
   Right = 'right',
+}
+
+export enum Enum_Componentsectionsimageandtext_Textbackgroundcolor {
+  Grey = 'grey',
+  White = 'white',
+  Yellow = 'yellow',
 }
 
 export type Error = {
@@ -590,10 +626,12 @@ export type GenericMorph =
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
+  | ComponentItemsIconTitleDesc
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
+  | ComponentSectionsColumnedItems
   | ComponentSectionsImageAndText
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
@@ -1230,6 +1268,7 @@ export type PageRelationResponseCollection = {
 }
 
 export type PageSectionsDynamicZone =
+  | ComponentSectionsColumnedItems
   | ComponentSectionsImageAndText
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
@@ -2069,6 +2108,25 @@ export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
   | HeaderSections_Error_Fragment
 
+export type IconTitleDescriptionItemFragment = {
+  __typename?: 'ComponentItemsIconTitleDesc'
+  title: string
+  description?: string | null
+  icon?: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        name: string
+      } | null
+    } | null
+  } | null
+}
+
 export type RichtextSectionFragment = {
   __typename?: 'ComponentSectionsRichtext'
   content?: any | null
@@ -2089,7 +2147,7 @@ export type ImageAndTextSectionFragment = {
   title: string
   text?: string | null
   imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-  backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+  textBackgroundColor: Enum_Componentsectionsimageandtext_Textbackgroundcolor
   image: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -2174,12 +2232,62 @@ export type ImageAndTextSectionFragment = {
   } | null
 }
 
+export type ColumnedItemsSectionFragment = {
+  __typename?: 'ComponentSectionsColumnedItems'
+  title: string
+  text?: string | null
+  sectionBackgroundColor: Enum_Componentsectionscolumneditems_Sectionbackgroundcolor
+  items: Array<{
+    __typename?: 'ComponentItemsIconTitleDesc'
+    title: string
+    description?: string | null
+    icon?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          name: string
+        } | null
+      } | null
+    } | null
+  } | null>
+}
+
+type PageSections_ComponentSectionsColumnedItems_Fragment = {
+  __typename: 'ComponentSectionsColumnedItems'
+  title: string
+  text?: string | null
+  sectionBackgroundColor: Enum_Componentsectionscolumneditems_Sectionbackgroundcolor
+  items: Array<{
+    __typename?: 'ComponentItemsIconTitleDesc'
+    title: string
+    description?: string | null
+    icon?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          name: string
+        } | null
+      } | null
+    } | null
+  } | null>
+}
+
 type PageSections_ComponentSectionsImageAndText_Fragment = {
   __typename: 'ComponentSectionsImageAndText'
   title: string
   text?: string | null
   imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-  backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+  textBackgroundColor: Enum_Componentsectionsimageandtext_Textbackgroundcolor
   image: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -2282,6 +2390,7 @@ type PageSections_ComponentSectionsRichtext_Fragment = {
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
+  | PageSections_ComponentSectionsColumnedItems_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
@@ -2738,11 +2847,35 @@ export type PageEntityFragment = {
     > | null
     sections?: Array<
       | {
+          __typename: 'ComponentSectionsColumnedItems'
+          title: string
+          text?: string | null
+          sectionBackgroundColor: Enum_Componentsectionscolumneditems_Sectionbackgroundcolor
+          items: Array<{
+            __typename?: 'ComponentItemsIconTitleDesc'
+            title: string
+            description?: string | null
+            icon?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  name: string
+                } | null
+              } | null
+            } | null
+          } | null>
+        }
+      | {
           __typename: 'ComponentSectionsImageAndText'
           title: string
           text?: string | null
           imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-          backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+          textBackgroundColor: Enum_Componentsectionsimageandtext_Textbackgroundcolor
           image: {
             __typename?: 'UploadFileEntityResponse'
             data?: {
@@ -2907,11 +3040,35 @@ export type PagesQuery = {
         > | null
         sections?: Array<
           | {
+              __typename: 'ComponentSectionsColumnedItems'
+              title: string
+              text?: string | null
+              sectionBackgroundColor: Enum_Componentsectionscolumneditems_Sectionbackgroundcolor
+              items: Array<{
+                __typename?: 'ComponentItemsIconTitleDesc'
+                title: string
+                description?: string | null
+                icon?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
+              } | null>
+            }
+          | {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
               imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-              backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+              textBackgroundColor: Enum_Componentsectionsimageandtext_Textbackgroundcolor
               image: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -3080,11 +3237,35 @@ export type PageBySlugQuery = {
         > | null
         sections?: Array<
           | {
+              __typename: 'ComponentSectionsColumnedItems'
+              title: string
+              text?: string | null
+              sectionBackgroundColor: Enum_Componentsectionscolumneditems_Sectionbackgroundcolor
+              items: Array<{
+                __typename?: 'ComponentItemsIconTitleDesc'
+                title: string
+                description?: string | null
+                icon?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
+              } | null>
+            }
+          | {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
               imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-              backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+              textBackgroundColor: Enum_Componentsectionsimageandtext_Textbackgroundcolor
               image: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -3468,7 +3649,7 @@ export const ImageAndTextSectionFragmentDoc = gql`
     title
     text
     imagePosition
-    backgroundColor
+    textBackgroundColor
     image {
       data {
         ...UploadImageEntity
@@ -3484,6 +3665,33 @@ export const ImageAndTextSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const IconTitleDescriptionItemFragmentDoc = gql`
+  fragment IconTitleDescriptionItem on ComponentItemsIconTitleDesc {
+    title
+    description
+    icon {
+      data {
+        attributes {
+          url
+          width
+          height
+          name
+        }
+      }
+    }
+  }
+`
+export const ColumnedItemsSectionFragmentDoc = gql`
+  fragment ColumnedItemsSection on ComponentSectionsColumnedItems {
+    title
+    text
+    sectionBackgroundColor
+    items {
+      ...IconTitleDescriptionItem
+    }
+  }
+  ${IconTitleDescriptionItemFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -3496,10 +3704,14 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsImageAndText {
       ...ImageAndTextSection
     }
+    ... on ComponentSectionsColumnedItems {
+      ...ColumnedItemsSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
   ${ImageAndTextSectionFragmentDoc}
+  ${ColumnedItemsSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

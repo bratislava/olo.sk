@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_sections_columned_items",
+  "info": {
+    "displayName": "Columned Items",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "sectionBackgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "white",
+        "yellow"
+      ],
+      "default": "white",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.icon-title-desc",
+      "required": true,
+      "min": 1
+    }
+  }
+}

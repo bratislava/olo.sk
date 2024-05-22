@@ -36,6 +36,19 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
+export interface ItemsIconTitleDesc extends Schema.Component {
+  collectionName: 'components_items_icon_title_descs'
+  info: {
+    displayName: 'Icon with Title and Description'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    description: Attribute.Text
+    icon: Attribute.Media
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -91,6 +104,29 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface SectionsColumnedItems extends Schema.Component {
+  collectionName: 'components_sections_columned_items'
+  info: {
+    displayName: 'Columned Items'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    sectionBackgroundColor: Attribute.Enumeration<['white', 'yellow']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'white'>
+    items: Attribute.Component<'items.icon-title-desc', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+  }
+}
+
 export interface SectionsImageAndText extends Schema.Component {
   collectionName: 'components_sections_image_and_texts'
   info: {
@@ -103,7 +139,7 @@ export interface SectionsImageAndText extends Schema.Component {
     imagePosition: Attribute.Enumeration<['left', 'right']> &
       Attribute.Required &
       Attribute.DefaultTo<'left'>
-    backgroundColor: Attribute.Enumeration<['white', 'yellow', 'grey']> &
+    textBackgroundColor: Attribute.Enumeration<['white', 'yellow', 'grey']> &
       Attribute.Required &
       Attribute.DefaultTo<'white'>
     image: Attribute.Media & Attribute.Required
@@ -149,10 +185,12 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
+      'items.icon-title-desc': ItemsIconTitleDesc
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'sections.columned-items': SectionsColumnedItems
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext

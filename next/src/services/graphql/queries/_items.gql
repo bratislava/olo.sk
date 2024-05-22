@@ -1,0 +1,14 @@
+fragment IconTitleDescriptionItem on ComponentItemsIconTitleDesc {
+  title
+  description
+  icon {
+    data {
+      attributes {
+        url
+        width
+        height
+        name
+      }
+    }
+  }
+}

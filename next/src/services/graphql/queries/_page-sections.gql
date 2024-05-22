@@ -14,7 +14,7 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   title
   text
   imagePosition
-  backgroundColor
+  textBackgroundColor
   image {
     data {
       ...UploadImageEntity
@@ -25,6 +25,15 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   }
   secondaryButton {
     ...Link
+  }
+}
+
+fragment ColumnedItemsSection on ComponentSectionsColumnedItems {
+  title
+  text
+  sectionBackgroundColor
+  items {
+    ...IconTitleDescriptionItem
   }
 }
 
@@ -41,5 +50,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsImageAndText {
     ...ImageAndTextSection
+  }
+
+  ... on ComponentSectionsColumnedItems {
+    ...ColumnedItemsSection
   }
 }

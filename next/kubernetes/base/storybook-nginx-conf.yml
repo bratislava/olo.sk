@@ -11,17 +11,17 @@ data:
         listen       8080;
         server_name  localhost;
 
-      location ~ ^/storybook$ {
-          # needs specific redirect to `/` as routes without
-          # trailing `/` do not work
-          return 301 $scheme://$host/storybook/;
-      }
+        location ~ ^/storybook$ {
+            # needs specific redirect to `/` as routes without
+            # trailing `/` do not work
+            return 301 $scheme://$host/storybook/;
+        }
 
-      location / {
-          root   /usr/share/nginx/html;
-          index  index.html index.htm;
-          rewrite ^/storybook(.*)$ /$1 last;
-      }
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+            rewrite ^/storybook(.*)$ /$1 last;
+        }
 
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
@@ -35,11 +35,9 @@ data:
     error_log  /var/log/nginx/error.log notice;
     pid        /tmp/nginx.pid;
 
-
     events {
         worker_connections  1024;
     }
-
 
     http {
         client_body_temp_path /tmp/client_temp;
@@ -56,13 +54,8 @@ data:
                           '"$http_user_agent" "$http_x_forwarded_for"';
 
         access_log  /var/log/nginx/access.log  main;
-
         sendfile        on;
-        #tcp_nopush     on;
-
         keepalive_timeout  65;
-
-        #gzip  on;
 
         include /etc/nginx/conf.d/*.conf;
     }

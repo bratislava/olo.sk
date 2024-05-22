@@ -7,6 +7,9 @@
   },
   "options": {},
   "attributes": {
+    "label": {
+      "type": "string"
+    },
     "url": {
       "type": "string"
     },

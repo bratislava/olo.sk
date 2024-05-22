@@ -1,3 +1,40 @@
+fragment Link on ComponentItemsLink {
+  label
+  url
+  page {
+    data {
+      attributes {
+        title
+        slug
+      }
+    }
+  }
+  article {
+    data {
+      attributes {
+        title
+        slug
+      }
+    }
+  }
+  branch {
+    data {
+      attributes {
+        title
+        slug
+      }
+    }
+  }
+  document {
+    data {
+      attributes {
+        title
+        slug
+      }
+    }
+  }
+}
+
 fragment UploadImageSrcEntity on UploadFileEntity {
   id
   attributes {

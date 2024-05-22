@@ -18,6 +18,15 @@ const nextConfig = {
       },
     ],
   },
+  rewrites: async () => {
+    return [
+      // Media proxy for getting media from Strapi
+      {
+        source: '/uploads/:path*',
+        destination: `${process.env.NEXT_PUBLIC_STRAPI_URL}/uploads/:path*`,
+      },
+    ]
+  },
   // Docs: https://react-svgr.com/docs/next/
   webpack(config) {
     // Grab the existing rule that handles SVG imports

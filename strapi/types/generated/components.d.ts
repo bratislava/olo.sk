@@ -44,6 +44,7 @@ export interface ItemsLink extends Schema.Component {
     description: ''
   }
   attributes: {
+    label: Attribute.String
     url: Attribute.String
     page: Attribute.Relation<'items.link', 'oneToOne', 'api::page.page'>
     article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>
@@ -90,6 +91,27 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface SectionsImageAndText extends Schema.Component {
+  collectionName: 'components_sections_image_and_texts'
+  info: {
+    displayName: 'Image and Text'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    imagePosition: Attribute.Enumeration<['left', 'right']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'left'>
+    backgroundColor: Attribute.Enumeration<['white', 'yellow', 'grey']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'white'>
+    image: Attribute.Media & Attribute.Required
+    primaryButton: Attribute.Component<'items.link'>
+    secondaryButton: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsOrderedCards extends Schema.Component {
   collectionName: 'components_sections_ordered_cards'
   info: {
@@ -131,6 +153,7 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
     }

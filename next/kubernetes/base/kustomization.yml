@@ -2,6 +2,8 @@ resources:
   - deployment.yml
   - service-app.yml
   - ingress.yml
+  - service-storybook.yml
+  - storybook-nginx-conf.yml
 configurations:
   - configuration.yml
 

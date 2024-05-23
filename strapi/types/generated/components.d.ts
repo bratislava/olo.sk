@@ -36,16 +36,16 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
-export interface ItemsIconTitleDesc extends Schema.Component {
-  collectionName: 'components_items_icon_title_descs'
+export interface ItemsColumnsItem extends Schema.Component {
+  collectionName: 'components_items_columns_items'
   info: {
-    displayName: 'Icon with Title and Description'
+    displayName: 'Columns item'
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
-    description: Attribute.Text
-    icon: Attribute.Media
+    title: Attribute.String
+    text: Attribute.Text
+    image: Attribute.Media
   }
 }
 
@@ -104,19 +104,19 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
-export interface SectionsColumnedItems extends Schema.Component {
-  collectionName: 'components_sections_columned_items'
+export interface SectionsColumns extends Schema.Component {
+  collectionName: 'components_sections_columns'
   info: {
-    displayName: 'Columned Items'
+    displayName: 'Columns'
     description: ''
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    text: Attribute.Text
-    sectionBackgroundColor: Attribute.Enumeration<['white', 'yellow']> &
+    text: Attribute.String
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
-      Attribute.DefaultTo<'white'>
-    items: Attribute.Component<'items.icon-title-desc', true> &
+      Attribute.DefaultTo<'primary'>
+    items: Attribute.Component<'items.columns-item', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -185,12 +185,12 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
-      'items.icon-title-desc': ItemsIconTitleDesc
+      'items.columns-item': ItemsColumnsItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
-      'sections.columned-items': SectionsColumnedItems
+      'sections.columns': SectionsColumns
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext

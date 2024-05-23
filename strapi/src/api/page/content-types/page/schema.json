@@ -48,7 +48,7 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
-        "sections.columned-items",
+        "sections.columns",
         "sections.image-and-text",
         "sections.ordered-cards",
         "sections.richtext"

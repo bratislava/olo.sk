@@ -28,12 +28,18 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   }
 }
 
-fragment ColumnedItemsSection on ComponentSectionsColumnedItems {
+fragment ColumnsSection on ComponentSectionsColumns {
   title
   text
-  sectionBackgroundColor
+  backgroundColor
   items {
-    ...IconTitleDescriptionItem
+    itemTitle: title
+    text
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
   }
 }
 
@@ -52,7 +58,7 @@ fragment PageSections on PageSectionsDynamicZone {
     ...ImageAndTextSection
   }
 
-  ... on ComponentSectionsColumnedItems {
-    ...ColumnedItemsSection
+  ... on ComponentSectionsColumns {
+    ...ColumnsSection
   }
 }

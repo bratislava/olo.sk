@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_sections_columned_items",
+  "collectionName": "components_sections_columns",
   "info": {
-    "displayName": "Columned Items",
+    "displayName": "Columns",
     "description": ""
   },
   "options": {},
@@ -11,21 +11,22 @@
       "required": true
     },
     "text": {
-      "type": "text"
+      "type": "string"
     },
-    "sectionBackgroundColor": {
+    "backgroundColor": {
       "type": "enumeration",
       "enum": [
-        "white",
-        "yellow"
+        "primary",
+        "secondary",
+        "tertiary"
       ],
-      "default": "white",
+      "default": "primary",
       "required": true
     },
     "items": {
       "type": "component",
       "repeatable": true,
-      "component": "items.icon-title-desc",
+      "component": "items.columns-item",
       "required": true,
       "min": 1
     }

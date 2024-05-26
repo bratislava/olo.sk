@@ -406,6 +406,18 @@ export type ComponentSectionsImageAndText = {
   title: Scalars['String']['output']
 }
 
+export type ComponentSectionsImageAndTextOverlapped = {
+  __typename?: 'ComponentSectionsImageAndTextOverlapped'
+  backgroundColor: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+  id: Scalars['ID']['output']
+  image: UploadFileEntityResponse
+  imagePosition: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+  linkHref?: Maybe<Scalars['String']['output']>
+  linkText?: Maybe<Scalars['String']['output']>
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
 export type ComponentSectionsOrderedCards = {
   __typename?: 'ComponentSectionsOrderedCards'
   cards: Array<Maybe<ComponentItemsOrderedCardsItem>>
@@ -535,10 +547,23 @@ export type DocumentInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
+export enum Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
+export enum Enum_Componentsectionsimageandtextoverlapped_Imageposition {
+  Left = 'left',
+  LeftShifted = 'left_shifted',
+  Right = 'right',
+  RightShifted = 'right_shifted',
+}
+
 export enum Enum_Componentsectionsimageandtext_Backgroundcolor {
-  Grey = 'grey',
-  White = 'white',
-  Yellow = 'yellow',
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
 }
 
 export enum Enum_Componentsectionsimageandtext_Imageposition {
@@ -595,6 +620,7 @@ export type GenericMorph =
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
   | ComponentSectionsImageAndText
+  | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | Contact
@@ -1231,6 +1257,7 @@ export type PageRelationResponseCollection = {
 
 export type PageSectionsDynamicZone =
   | ComponentSectionsImageAndText
+  | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | Error
@@ -2088,8 +2115,8 @@ export type ImageAndTextSectionFragment = {
   __typename?: 'ComponentSectionsImageAndText'
   title: string
   text?: string | null
-  imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-  backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+  imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+  backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
   image: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -2174,12 +2201,38 @@ export type ImageAndTextSectionFragment = {
   } | null
 }
 
+export type ImageAndTextOverlappedSectionFragment = {
+  __typename?: 'ComponentSectionsImageAndTextOverlapped'
+  title: string
+  text?: string | null
+  linkText?: string | null
+  linkHref?: string | null
+  imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+  backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+  image: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+}
+
 type PageSections_ComponentSectionsImageAndText_Fragment = {
   __typename: 'ComponentSectionsImageAndText'
   title: string
   text?: string | null
-  imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-  backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+  imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+  backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
   image: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -2262,6 +2315,32 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       } | null
     } | null
   } | null
+}
+
+type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
+  __typename: 'ComponentSectionsImageAndTextOverlapped'
+  title: string
+  text?: string | null
+  linkText?: string | null
+  linkHref?: string | null
+  imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+  backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+  image: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
 }
 
 type PageSections_ComponentSectionsOrderedCards_Fragment = {
@@ -2283,6 +2362,7 @@ type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
   | PageSections_ComponentSectionsImageAndText_Fragment
+  | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_Error_Fragment
@@ -2741,8 +2821,8 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsImageAndText'
           title: string
           text?: string | null
-          imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-          backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+          imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+          backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
           image: {
             __typename?: 'UploadFileEntityResponse'
             data?: {
@@ -2825,6 +2905,31 @@ export type PageEntityFragment = {
               } | null
             } | null
           } | null
+        }
+      | {
+          __typename: 'ComponentSectionsImageAndTextOverlapped'
+          title: string
+          text?: string | null
+          linkText?: string | null
+          linkHref?: string | null
+          imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+          backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+          image: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          }
         }
       | {
           __typename: 'ComponentSectionsOrderedCards'
@@ -2910,8 +3015,8 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
-              imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-              backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+              imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+              backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
               image: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -2994,6 +3099,31 @@ export type PagesQuery = {
                   } | null
                 } | null
               } | null
+            }
+          | {
+              __typename: 'ComponentSectionsImageAndTextOverlapped'
+              title: string
+              text?: string | null
+              linkText?: string | null
+              linkHref?: string | null
+              imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+              backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+              image: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -3083,8 +3213,8 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
-              imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-              backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+              imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+              backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
               image: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -3167,6 +3297,31 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               } | null
+            }
+          | {
+              __typename: 'ComponentSectionsImageAndTextOverlapped'
+              title: string
+              text?: string | null
+              linkText?: string | null
+              linkHref?: string | null
+              imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+              backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+              image: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -3467,8 +3622,8 @@ export const ImageAndTextSectionFragmentDoc = gql`
   fragment ImageAndTextSection on ComponentSectionsImageAndText {
     title
     text
-    imagePosition
-    backgroundColor
+    imagePositionImageAndText: imagePosition
+    backgroundColorImageAndText: backgroundColor
     image {
       data {
         ...UploadImageEntity
@@ -3484,6 +3639,22 @@ export const ImageAndTextSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const ImageAndTextOverlappedSectionFragmentDoc = gql`
+  fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
+    title
+    text
+    linkText
+    linkHref
+    imagePositionImageAndTextOverlapped: imagePosition
+    backgroundColorImageAndTextOverlapped: backgroundColor
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -3496,10 +3667,14 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsImageAndText {
       ...ImageAndTextSection
     }
+    ... on ComponentSectionsImageAndTextOverlapped {
+      ...ImageAndTextOverlappedSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
   ${ImageAndTextSectionFragmentDoc}
+  ${ImageAndTextOverlappedSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

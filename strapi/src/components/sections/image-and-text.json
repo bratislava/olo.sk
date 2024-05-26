@@ -15,21 +15,30 @@
     },
     "imagePosition": {
       "type": "enumeration",
-      "enum": ["left", "right"],
+      "enum": [
+        "left",
+        "right"
+      ],
       "default": "left",
       "required": true
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["white", "yellow", "grey"],
-      "default": "white",
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "default": "primary",
       "required": true
     },
     "image": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "primaryButton": {
       "displayName": "primary button",

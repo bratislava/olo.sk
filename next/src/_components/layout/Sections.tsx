@@ -1,5 +1,6 @@
 import React from 'react'
 
+import ImageAndTextOverlappedSection from '@/_components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/_components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/_components/sections/OrderedCardsSection'
 import RichtextSection from '@/_components/sections/RichtextSection'
@@ -10,7 +11,6 @@ type Props = {
 }
 
 const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
-  // eslint-disable-next-line sonarjs/no-small-switch
   switch (section.__typename) {
     // TODO to be removed, just as example
     case 'ComponentSectionsRichtext':
@@ -21,6 +21,10 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsImageAndText':
       return <ImageAndTextSection section={section} />
+
+    // eslint-disable-next-line no-secrets/no-secrets
+    case 'ComponentSectionsImageAndTextOverlapped':
+      return <ImageAndTextOverlappedSection section={section} />
 
     default:
       return null

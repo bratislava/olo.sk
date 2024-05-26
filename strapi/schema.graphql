@@ -374,6 +374,40 @@ input ComponentSectionsImageAndTextInput {
   title: String
 }
 
+type ComponentSectionsImageAndTextOverlapped {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR!
+  id: ID!
+  image: UploadFileEntityResponse!
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
+  linkHref: String
+  linkText: String
+  text: String
+  title: String!
+}
+
+input ComponentSectionsImageAndTextOverlappedFiltersInput {
+  and: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  backgroundColor: StringFilterInput
+  imagePosition: StringFilterInput
+  linkHref: StringFilterInput
+  linkText: StringFilterInput
+  not: ComponentSectionsImageAndTextOverlappedFiltersInput
+  or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsImageAndTextOverlappedInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR
+  id: ID
+  image: ID
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
+  linkHref: String
+  linkText: String
+  text: String
+  title: String
+}
+
 type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
@@ -556,10 +590,23 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION {
+  left
+  left_shifted
+  right
+  right_shifted
+}
+
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
-  grey
-  white
-  yellow
+  primary
+  secondary
+  tertiary
 }
 
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
@@ -603,7 +650,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -987,7 +1034,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

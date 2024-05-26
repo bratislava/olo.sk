@@ -6,6 +6,7 @@ import ImagePlaceholder from '@/_components/common/ImagePlaceholder'
 import Typography from '@/_components/common/Typography/Typography'
 import SectionContainer from '@/_components/layout/Section/SectionContainer'
 import { generateImageSizes } from '@/_utils/generateImageSizes'
+import { useRerenderOnWindowResize } from '@/_utils/useRerenderOnWindowResize'
 import cn from '@/app/_utils/cn'
 import {
   Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor as Enum_Backgroundcolor,
@@ -31,6 +32,9 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
     linkHref,
     linkText,
   } = section
+
+  // re-render components when the window size changes
+  useRerenderOnWindowResize()
 
   const isImageShifted =
     imagePosition === Enum_Imageposition.LeftShifted ||

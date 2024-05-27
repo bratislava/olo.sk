@@ -48,10 +48,11 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
+        "sections.richtext",
+        "sections.branches",
         "sections.columns",
         "sections.image-and-text",
-        "sections.ordered-cards",
-        "sections.richtext"
+        "sections.ordered-cards"
       ]
     }
   }

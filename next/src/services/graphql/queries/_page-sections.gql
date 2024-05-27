@@ -43,6 +43,17 @@ fragment ColumnsSection on ComponentSectionsColumns {
   }
 }
 
+fragment BranchesSection on ComponentSectionsBranches {
+  title
+  text
+  showAll
+  branches {
+    data {
+      ...BranchEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -56,6 +67,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsImageAndText {
     ...ImageAndTextSection
+  }
+
+  ... on ComponentSectionsBranches {
+    ...BranchesSection
   }
 
   ... on ComponentSectionsColumns {

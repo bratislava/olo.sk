@@ -1,5 +1,6 @@
 import React from 'react'
 
+import BranchesSection from '@/_components/sections/BranchesSection'
 import ColumnsSection from '@/_components/sections/ColumnsSection'
 import ImageAndTextSection from '@/_components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/_components/sections/OrderedCardsSection'
@@ -25,6 +26,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsColumns':
       return <ColumnsSection section={section} />
+
+    case 'ComponentSectionsBranches':
+      return <BranchesSection section={section} />
 
     default:
       return null

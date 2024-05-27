@@ -19,7 +19,7 @@
       "default": "left",
       "required": true
     },
-    "backgroundColor": {
+    "textBackgroundColor": {
       "type": "enumeration",
       "enum": ["white", "yellow", "grey"],
       "default": "white",

@@ -1,16 +1,33 @@
 import React from 'react'
 
 import Typography from '@/_components/common/Typography/Typography'
+import cn from '@/app/_utils/cn'
 
-type Props = {
-  title?: string | null
-  text?: string | null | undefined
+type SectionHeaderProps = {
+  title: string
+  text?: string | null
+  isFullWidth?: boolean
+  isCentered?: boolean
+  className?: string
 }
 
-const SectionHeader = ({ title, text }: Props) => {
+const SectionHeader = ({
+  title,
+  text,
+  isFullWidth = false,
+  isCentered = false,
+  className,
+}: SectionHeaderProps) => {
   return (
-    <div className="flex max-w-[600px] flex-col gap-4 empty:hidden">
-      {title ? <Typography variant="h2">{title}</Typography> : null}
+    <div
+      className={cn(
+        'flex w-full flex-col items-start gap-4 empty:hidden',
+        // 50rem = 800px
+        { 'items-center text-center': isCentered, 'max-w-[50rem]': !isFullWidth },
+        className,
+      )}
+    >
+      <Typography variant="h2">{title}</Typography>
       {text ? <Typography variant="p-default">{text}</Typography> : null}
     </div>
   )

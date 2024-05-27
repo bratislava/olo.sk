@@ -979,9 +979,10 @@ export interface ApiPagePage extends Schema.CollectionType {
     sections: Attribute.DynamicZone<
       [
         'sections.richtext',
-        'sections.ordered-cards',
-        'sections.image-and-text',
         'sections.branches',
+        'sections.columns',
+        'sections.image-and-text',
+        'sections.ordered-cards',
       ]
     >
     createdAt: Attribute.DateTime

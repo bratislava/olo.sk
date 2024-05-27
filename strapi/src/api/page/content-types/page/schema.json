@@ -49,9 +49,10 @@
       "type": "dynamiczone",
       "components": [
         "sections.richtext",
-        "sections.ordered-cards",
+        "sections.branches",
+        "sections.columns",
         "sections.image-and-text",
-        "sections.branches"
+        "sections.ordered-cards"
       ]
     }
   }

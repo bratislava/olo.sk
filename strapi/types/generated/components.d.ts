@@ -36,6 +36,19 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
+export interface ItemsColumnsItem extends Schema.Component {
+  collectionName: 'components_items_columns_items'
+  info: {
+    displayName: 'Columns item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    image: Attribute.Media
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -105,6 +118,29 @@ export interface SectionsBranches extends Schema.Component {
   }
 }
 
+export interface SectionsColumns extends Schema.Component {
+  collectionName: 'components_sections_columns'
+  info: {
+    displayName: 'Columns'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.String
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+    items: Attribute.Component<'items.columns-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+  }
+}
+
 export interface SectionsImageAndText extends Schema.Component {
   collectionName: 'components_sections_image_and_texts'
   info: {
@@ -117,7 +153,7 @@ export interface SectionsImageAndText extends Schema.Component {
     imagePosition: Attribute.Enumeration<['left', 'right']> &
       Attribute.Required &
       Attribute.DefaultTo<'left'>
-    backgroundColor: Attribute.Enumeration<['white', 'yellow', 'grey']> &
+    textBackgroundColor: Attribute.Enumeration<['white', 'yellow', 'grey']> &
       Attribute.Required &
       Attribute.DefaultTo<'white'>
     image: Attribute.Media & Attribute.Required
@@ -163,11 +199,13 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
+      'items.columns-item': ItemsColumnsItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
       'sections.branches': SectionsBranches
+      'sections.columns': SectionsColumns
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext

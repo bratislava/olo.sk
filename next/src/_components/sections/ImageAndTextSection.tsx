@@ -3,10 +3,10 @@ import React from 'react'
 
 import Button from '@/_components/common/Button/Button'
 import ImagePlaceholder from '@/_components/common/ImagePlaceholder'
-import Typography from '@/_components/common/Typography/Typography'
 import SectionContainer, {
   SectionContainerProps,
 } from '@/_components/layout/Section/SectionContainer'
+import SectionHeader from '@/_components/layout/Section/SectionHeader'
 import { generateImageSizes } from '@/_utils/generateImageSizes'
 import { getLinkProps } from '@/_utils/getLinkProps'
 import {
@@ -19,7 +19,7 @@ type Props = {
 }
 
 const backgroundValueMap: Record<
-  ImageAndTextSectionFragment['backgroundColor'],
+  ImageAndTextSectionFragment['textBackgroundColor'],
   SectionContainerProps['background']
 > = {
   white: 'primary',
@@ -27,8 +27,12 @@ const backgroundValueMap: Record<
   grey: 'tertiary',
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-14285&m=dev
+ */
+
 const ImageAndTextSection = ({ section }: Props) => {
-  const { title, text, imagePosition, backgroundColor, image, primaryButton, secondaryButton } =
+  const { title, text, imagePosition, textBackgroundColor, image, primaryButton, secondaryButton } =
     section
 
   const ImageContent = (
@@ -50,10 +54,7 @@ const ImageAndTextSection = ({ section }: Props) => {
 
   const TextContent = (
     <div className="flex grow flex-col gap-6">
-      <div className="flex flex-col gap-4">
-        <Typography variant="h2">{title}</Typography>
-        <Typography>{text}</Typography>
-      </div>
+      <SectionHeader title={title} text={text} />
       <div className="flex gap-4">
         {primaryButton ? (
           <Button
@@ -77,7 +78,10 @@ const ImageAndTextSection = ({ section }: Props) => {
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
-    <SectionContainer background={backgroundValueMap[backgroundColor]} className="py-6 lg:py-12">
+    <SectionContainer
+      background={backgroundValueMap[textBackgroundColor]}
+      className="py-6 lg:py-12"
+    >
       {/* 8.5rem = 136px */}
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-[8.5rem]">
         {imagePosition === Enum_Componentsectionsimageandtext_Imageposition.Left ? (

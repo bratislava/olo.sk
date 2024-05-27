@@ -47,7 +47,12 @@
     },
     "sections": {
       "type": "dynamiczone",
-      "components": ["sections.richtext", "sections.ordered-cards", "sections.image-and-text"]
+      "components": [
+        "sections.columns",
+        "sections.image-and-text",
+        "sections.ordered-cards",
+        "sections.richtext"
+      ]
     }
   }
 }

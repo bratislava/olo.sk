@@ -240,6 +240,28 @@ input ComponentHeaderSectionsImageInput {
   media: ID
 }
 
+type ComponentItemsColumnsItem {
+  id: ID!
+  image: UploadFileEntityResponse
+  text: String
+  title: String
+}
+
+input ComponentItemsColumnsItemFiltersInput {
+  and: [ComponentItemsColumnsItemFiltersInput]
+  not: ComponentItemsColumnsItemFiltersInput
+  or: [ComponentItemsColumnsItemFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsColumnsItemInput {
+  id: ID
+  image: ID
+  text: String
+  title: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -340,37 +362,63 @@ input ComponentItemsSlideInput {
   title: String
 }
 
+type ComponentSectionsColumns {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR!
+  id: ID!
+  items(filters: ComponentItemsColumnsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsItem]!
+  text: String
+  title: String!
+}
+
+input ComponentSectionsColumnsFiltersInput {
+  and: [ComponentSectionsColumnsFiltersInput]
+  backgroundColor: StringFilterInput
+  items: ComponentItemsColumnsItemFiltersInput
+  not: ComponentSectionsColumnsFiltersInput
+  or: [ComponentSectionsColumnsFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsColumnsInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR
+  id: ID
+  items: [ComponentItemsColumnsItemInput]
+  text: String
+  title: String
+}
+
 type ComponentSectionsImageAndText {
-  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR!
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION!
   primaryButton: ComponentItemsLink
   secondaryButton: ComponentItemsLink
   text: String
+  textBackgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_TEXTBACKGROUNDCOLOR!
   title: String!
 }
 
 input ComponentSectionsImageAndTextFiltersInput {
   and: [ComponentSectionsImageAndTextFiltersInput]
-  backgroundColor: StringFilterInput
   imagePosition: StringFilterInput
   not: ComponentSectionsImageAndTextFiltersInput
   or: [ComponentSectionsImageAndTextFiltersInput]
   primaryButton: ComponentItemsLinkFiltersInput
   secondaryButton: ComponentItemsLinkFiltersInput
   text: StringFilterInput
+  textBackgroundColor: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsImageAndTextInput {
-  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION
   primaryButton: ComponentItemsLinkInput
   secondaryButton: ComponentItemsLinkInput
   text: String
+  textBackgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_TEXTBACKGROUNDCOLOR
   title: String
 }
 
@@ -556,15 +604,21 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
-enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
-  grey
-  white
-  yellow
+enum ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
 }
 
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   left
   right
+}
+
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_TEXTBACKGROUNDCOLOR {
+  grey
+  white
+  yellow
 }
 
 type Error {
@@ -603,7 +657,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -987,7 +1041,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

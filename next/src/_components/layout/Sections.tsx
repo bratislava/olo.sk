@@ -1,5 +1,6 @@
 import React from 'react'
 
+import ColumnsSection from '@/_components/sections/ColumnsSection'
 import ImageAndTextOverlappedSection from '@/_components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/_components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/_components/sections/OrderedCardsSection'
@@ -21,6 +22,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsImageAndText':
       return <ImageAndTextSection section={section} />
+
+    case 'ComponentSectionsColumns':
+      return <ColumnsSection section={section} />
 
     // eslint-disable-next-line no-secrets/no-secrets
     case 'ComponentSectionsImageAndTextOverlapped':

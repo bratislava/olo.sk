@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sections_columns",
+  "info": {
+    "displayName": "Columns",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "default": "primary",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.columns-item",
+      "required": true,
+      "min": 1
+    }
+  }
+}

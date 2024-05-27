@@ -28,6 +28,21 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   }
 }
 
+fragment ColumnsSection on ComponentSectionsColumns {
+  title
+  text
+  backgroundColor
+  items {
+    itemTitle: title
+    text
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+}
+
 fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
   title
   text
@@ -56,6 +71,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsImageAndText {
     ...ImageAndTextSection
+  }
+
+  ... on ComponentSectionsColumns {
+    ...ColumnsSection
   }
 
   ... on ComponentSectionsImageAndTextOverlapped {

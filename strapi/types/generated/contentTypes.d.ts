@@ -973,6 +973,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     sections: Attribute.DynamicZone<
       [
         'sections.richtext',
+        'sections.columns',
         'sections.ordered-cards',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',

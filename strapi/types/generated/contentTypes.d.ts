@@ -757,7 +757,7 @@ export interface ApiBranchBranch extends Schema.CollectionType {
     address: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true
+          localized: false
         }
       }>
     slug: Attribute.UID<'api::branch.branch', 'title'> &

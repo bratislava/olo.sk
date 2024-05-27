@@ -24,11 +24,10 @@ const BranchesSection = ({ section }: Props) => {
       <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} />
         <ul className="flex flex-col flex-wrap gap-4 lg:flex-row lg:gap-8 lg:[&>*]:w-1/3 lg:[&>*]:grow">
-          {branches?.data?.length
-            ? branches.data
-                // eslint-disable-next-line unicorn/no-array-callback-reference
-                .filter(isDefined)
-                .map((branch) => (
+          {
+            // eslint-disable-next-line unicorn/no-array-callback-reference
+            branches?.data?.filter(isDefined).length
+              ? branches.data.map((branch) => (
                   <li>
                     <BranchCard
                       title={branch.attributes?.title ?? ''}
@@ -37,7 +36,8 @@ const BranchesSection = ({ section }: Props) => {
                     />
                   </li>
                 ))
-            : null}
+              : null
+          }
         </ul>
       </div>
     </SectionContainer>

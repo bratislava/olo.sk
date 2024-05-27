@@ -23,20 +23,22 @@ const BranchesSection = ({ section }: Props) => {
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} />
-        <div className="flex flex-col flex-wrap gap-4 lg:flex-row lg:gap-8 lg:[&>*]:w-1/3 lg:[&>*]:grow">
+        <ul className="flex flex-col flex-wrap gap-4 lg:flex-row lg:gap-8 lg:[&>*]:w-1/3 lg:[&>*]:grow">
           {branches?.data?.length
             ? branches.data
                 // eslint-disable-next-line unicorn/no-array-callback-reference
                 .filter(isDefined)
                 .map((branch) => (
-                  <BranchCard
-                    title={branch.attributes?.title ?? ''}
-                    address={branch.attributes?.address ?? ''}
-                    linkHref={`/pobocky/${branch.attributes?.slug}`}
-                  />
+                  <li>
+                    <BranchCard
+                      title={branch.attributes?.title ?? ''}
+                      address={branch.attributes?.address ?? ''}
+                      linkHref={`/pobocky/${branch.attributes?.slug}`}
+                    />
+                  </li>
                 ))
             : null}
-        </div>
+        </ul>
       </div>
     </SectionContainer>
   )

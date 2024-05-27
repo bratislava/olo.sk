@@ -412,8 +412,7 @@ export type ComponentSectionsImageAndTextOverlapped = {
   id: Scalars['ID']['output']
   image: UploadFileEntityResponse
   imagePosition: Enum_Componentsectionsimageandtextoverlapped_Imageposition
-  linkHref?: Maybe<Scalars['String']['output']>
-  linkText?: Maybe<Scalars['String']['output']>
+  link?: Maybe<ComponentItemsLink>
   text?: Maybe<Scalars['String']['output']>
   title: Scalars['String']['output']
 }
@@ -2205,8 +2204,6 @@ export type ImageAndTextOverlappedSectionFragment = {
   __typename?: 'ComponentSectionsImageAndTextOverlapped'
   title: string
   text?: string | null
-  linkText?: string | null
-  linkHref?: string | null
   imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
   backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
   image: {
@@ -2225,6 +2222,39 @@ export type ImageAndTextOverlappedSectionFragment = {
       } | null
     } | null
   }
+  link?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -2321,8 +2351,6 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
   __typename: 'ComponentSectionsImageAndTextOverlapped'
   title: string
   text?: string | null
-  linkText?: string | null
-  linkHref?: string | null
   imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
   backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
   image: {
@@ -2341,6 +2369,39 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
       } | null
     } | null
   }
+  link?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
 }
 
 type PageSections_ComponentSectionsOrderedCards_Fragment = {
@@ -2910,8 +2971,6 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsImageAndTextOverlapped'
           title: string
           text?: string | null
-          linkText?: string | null
-          linkHref?: string | null
           imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
           backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
           image: {
@@ -2930,6 +2989,39 @@ export type PageEntityFragment = {
               } | null
             } | null
           }
+          link?: {
+            __typename?: 'ComponentItemsLink'
+            label?: string | null
+            url?: string | null
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename?: 'PageEntity'
+                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+              } | null
+            } | null
+            article?: {
+              __typename?: 'ArticleEntityResponse'
+              data?: {
+                __typename?: 'ArticleEntity'
+                attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+              } | null
+            } | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename?: 'BranchEntity'
+                attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+              } | null
+            } | null
+            document?: {
+              __typename?: 'DocumentEntityResponse'
+              data?: {
+                __typename?: 'DocumentEntity'
+                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null
         }
       | {
           __typename: 'ComponentSectionsOrderedCards'
@@ -3104,8 +3196,6 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsImageAndTextOverlapped'
               title: string
               text?: string | null
-              linkText?: string | null
-              linkHref?: string | null
               imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
               backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
               image: {
@@ -3124,6 +3214,39 @@ export type PagesQuery = {
                   } | null
                 } | null
               }
+              link?: {
+                __typename?: 'ComponentItemsLink'
+                label?: string | null
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                  } | null
+                } | null
+              } | null
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -3302,8 +3425,6 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsImageAndTextOverlapped'
               title: string
               text?: string | null
-              linkText?: string | null
-              linkHref?: string | null
               imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
               backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
               image: {
@@ -3322,6 +3443,39 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               }
+              link?: {
+                __typename?: 'ComponentItemsLink'
+                label?: string | null
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                  } | null
+                } | null
+              } | null
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -3643,8 +3797,6 @@ export const ImageAndTextOverlappedSectionFragmentDoc = gql`
   fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
     title
     text
-    linkText
-    linkHref
     imagePositionImageAndTextOverlapped: imagePosition
     backgroundColorImageAndTextOverlapped: backgroundColor
     image {
@@ -3652,8 +3804,12 @@ export const ImageAndTextOverlappedSectionFragmentDoc = gql`
         ...UploadImageEntity
       }
     }
+    link {
+      ...Link
+    }
   }
   ${UploadImageEntityFragmentDoc}
+  ${LinkFragmentDoc}
 `
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {

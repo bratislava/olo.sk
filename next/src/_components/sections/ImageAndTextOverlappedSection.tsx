@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import React, { useRef } from 'react'
+import React from 'react'
 
 import Button from '@/_components/common/Button/Button'
 import ImagePlaceholder from '@/_components/common/ImagePlaceholder'
 import Typography from '@/_components/common/Typography/Typography'
 import SectionContainer from '@/_components/layout/Section/SectionContainer'
 import { generateImageSizes } from '@/_utils/generateImageSizes'
-import { useRerenderOnWindowResize } from '@/_utils/useRerenderOnWindowResize'
+import { getLinkProps } from '@/_utils/getLinkProps'
 import cn from '@/app/_utils/cn'
 import {
   Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor as Enum_Backgroundcolor,
@@ -29,12 +29,8 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
     imagePositionImageAndTextOverlapped: imagePosition,
     backgroundColorImageAndTextOverlapped: backgroundColor,
     image,
-    linkHref,
-    linkText,
+    link,
   } = section
-
-  // re-render components when the window size changes
-  useRerenderOnWindowResize()
 
   const isImageShifted =
     imagePosition === Enum_Imageposition.LeftShifted ||
@@ -45,39 +41,27 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
   const isImageRight =
     imagePosition === Enum_Imageposition.Right || imagePosition === Enum_Imageposition.RightShifted
 
-  // image container stretches according to the text container's height
-  const TEXT_CONTAINER_MARGIN_Y = 72
-  const textContainerRef = useRef<HTMLDivElement>(null)
-  const textContainerHeight = textContainerRef.current?.getBoundingClientRect().height ?? 0
-  const imageContainerHeight =
-    textContainerHeight + (isImageShifted ? 0 : 2 * TEXT_CONTAINER_MARGIN_Y)
-
   const TextContent = (
-    <>
-      <div className="flex flex-col gap-4">
-        <Typography variant="h2">{title}</Typography>
-        <Typography>{text}</Typography>
-      </div>
-      <div className="flex gap-4">
-        {linkHref && linkText ? (
-          <Button variant="black-link" href={linkHref} asLink>
-            {linkText}
-          </Button>
-        ) : null}
-      </div>
-    </>
+    <div className="flex flex-col gap-4">
+      <Typography variant="h2">{title}</Typography>
+      <Typography>{text}</Typography>
+      {link ? <Button variant="black-link" {...getLinkProps(link)} asLink /> : null}
+    </div>
   )
 
   const DesktopTextContainer = (
     <div
-      ref={textContainerRef}
-      style={{ marginTop: TEXT_CONTAINER_MARGIN_Y, marginBottom: TEXT_CONTAINER_MARGIN_Y }}
-      className={cn('z-50 flex grow flex-col gap-6 rounded-lg p-6 lg:rounded-2xl lg:p-18', {
-        'bg-background-primary': backgroundColor !== Enum_Backgroundcolor.Primary,
-        'bg-background-tertiary': backgroundColor === Enum_Backgroundcolor.Primary,
-        'lg:-ml-18': isImageLeft,
-        'lg:-mr-18': isImageRight,
-      })}
+      className={cn(
+        'z-50 flex grow flex-col gap-6 self-start rounded-lg p-6 lg:rounded-2xl lg:p-18',
+        {
+          'bg-background-primary': backgroundColor !== Enum_Backgroundcolor.Primary,
+          'bg-background-tertiary': backgroundColor === Enum_Backgroundcolor.Primary,
+          'lg:-ml-18': isImageLeft,
+          'lg:-mr-18': isImageRight,
+          'my-18': !isImageShifted,
+          'mt-18': isImageShifted,
+        },
+      )}
     >
       {TextContent}
     </div>
@@ -85,7 +69,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
 
   const MobileTextContainer = (
     <div
-      className={cn('z-50 flex grow flex-col gap-6 rounded-lg p-6', {
+      className={cn('z-50 flex grow flex-col gap-6 self-start rounded-lg p-6', {
         'bg-background-primary': backgroundColor !== Enum_Backgroundcolor.Primary,
         'bg-background-tertiary': backgroundColor === Enum_Backgroundcolor.Primary,
         '-mt-6': isImageLeft,
@@ -110,14 +94,9 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
 
   const DesktopImageContainer = (
     <div
-      style={{
-        height: imageContainerHeight,
-        marginTop: isImageShifted ? -2 * TEXT_CONTAINER_MARGIN_Y : 0,
-      }}
-      className="relative shrink-0 overflow-hidden rounded-3xl"
+      className={cn('relative shrink-0 overflow-hidden rounded-3xl', { 'mb-18': isImageShifted })}
     >
       {ImageContent}
-      <div />
     </div>
   )
 
@@ -129,14 +108,13 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
       })}
     >
       {ImageContent}
-      <div />
     </div>
   )
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColor} className="py-6 lg:py-12">
-      <div className="hidden flex-col lg:flex lg:flex-row lg:items-center lg:[&>*]:w-[50%]">
+      <div className="hidden lg:flex lg:flex-row lg:items-stretch lg:[&>*]:w-[50%]">
         {isImageLeft ? (
           <>
             {DesktopImageContainer}

@@ -31,14 +31,15 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
 fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
   title
   text
-  linkText
-  linkHref
   imagePositionImageAndTextOverlapped: imagePosition
   backgroundColorImageAndTextOverlapped: backgroundColor
   image {
     data {
       ...UploadImageEntity
     }
+  }
+  link {
+    ...Link
   }
 }
 

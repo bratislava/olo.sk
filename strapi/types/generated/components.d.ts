@@ -100,8 +100,6 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text
-    linkText: Attribute.String
-    linkHref: Attribute.String
     imagePosition: Attribute.Enumeration<['left', 'right', 'left-shifted', 'right-shifted']> &
       Attribute.Required &
       Attribute.DefaultTo<'left'>
@@ -109,6 +107,7 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     image: Attribute.Media & Attribute.Required
+    link: Attribute.Component<'items.link'>
   }
 }
 

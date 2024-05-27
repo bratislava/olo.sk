@@ -379,8 +379,7 @@ type ComponentSectionsImageAndTextOverlapped {
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
-  linkHref: String
-  linkText: String
+  link: ComponentItemsLink
   text: String
   title: String!
 }
@@ -389,8 +388,7 @@ input ComponentSectionsImageAndTextOverlappedFiltersInput {
   and: [ComponentSectionsImageAndTextOverlappedFiltersInput]
   backgroundColor: StringFilterInput
   imagePosition: StringFilterInput
-  linkHref: StringFilterInput
-  linkText: StringFilterInput
+  link: ComponentItemsLinkFiltersInput
   not: ComponentSectionsImageAndTextOverlappedFiltersInput
   or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
   text: StringFilterInput
@@ -402,8 +400,7 @@ input ComponentSectionsImageAndTextOverlappedInput {
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
-  linkHref: String
-  linkText: String
+  link: ComponentItemsLinkInput
   text: String
   title: String
 }

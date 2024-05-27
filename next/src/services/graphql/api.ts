@@ -25,6 +25,7 @@ export type Scalars = {
   PageHeaderDynamicZoneInput: { input: any; output: any }
   PageSectionsDynamicZoneInput: { input: any; output: any }
   Upload: { input: any; output: any }
+  WorkshopSectionsDynamicZoneInput: { input: any; output: any }
 }
 
 export type Article = {
@@ -425,6 +426,22 @@ export type ComponentSectionsRichtext = {
   id: Scalars['ID']['output']
 }
 
+export type ComponentSectionsWorkshops = {
+  __typename?: 'ComponentSectionsWorkshops'
+  id: Scalars['ID']['output']
+  showAll: Scalars['Boolean']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+  workshops?: Maybe<WorkshopRelationResponseCollection>
+}
+
+export type ComponentSectionsWorkshopsWorkshopsArgs = {
+  filters?: InputMaybe<WorkshopFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type Contact = {
   __typename?: 'Contact'
   createdAt?: Maybe<Scalars['DateTime']['output']>
@@ -597,6 +614,7 @@ export type GenericMorph =
   | ComponentSectionsImageAndText
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
+  | ComponentSectionsWorkshops
   | Contact
   | Document
   | Homepage
@@ -609,6 +627,7 @@ export type GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
+  | Workshop
 
 export type Homepage = {
   __typename?: 'Homepage'
@@ -788,6 +807,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  createWorkshop?: Maybe<WorkshopEntityResponse>
   deleteArticle?: Maybe<ArticleEntityResponse>
   deleteBranch?: Maybe<BranchEntityResponse>
   deleteCategory?: Maybe<CategoryEntityResponse>
@@ -803,6 +823,7 @@ export type Mutation = {
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  deleteWorkshop?: Maybe<WorkshopEntityResponse>
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>
   /** Request a reset password token */
@@ -830,6 +851,7 @@ export type Mutation = {
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  updateWorkshop?: Maybe<WorkshopEntityResponse>
   upload: UploadFileEntityResponse
 }
 
@@ -921,6 +943,10 @@ export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput
 }
 
+export type MutationCreateWorkshopArgs = {
+  data: WorkshopInput
+}
+
 export type MutationDeleteArticleArgs = {
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
@@ -974,6 +1000,10 @@ export type MutationDeleteUsersPermissionsRoleArgs = {
 }
 
 export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID']['input']
+}
+
+export type MutationDeleteWorkshopArgs = {
   id: Scalars['ID']['input']
 }
 
@@ -1081,6 +1111,11 @@ export type MutationUpdateUsersPermissionsRoleArgs = {
 
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput
+  id: Scalars['ID']['input']
+}
+
+export type MutationUpdateWorkshopArgs = {
+  data: WorkshopInput
   id: Scalars['ID']['input']
 }
 
@@ -1233,6 +1268,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsImageAndText
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
+  | ComponentSectionsWorkshops
   | Error
 
 export type Pagination = {
@@ -1285,6 +1321,8 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>
+  workshop?: Maybe<WorkshopEntityResponse>
+  workshops?: Maybe<WorkshopEntityResponseCollection>
 }
 
 export type QueryArticleArgs = {
@@ -1433,6 +1471,17 @@ export type QueryUsersPermissionsUserArgs = {
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>
   pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryWorkshopArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type QueryWorkshopsArgs = {
+  filters?: InputMaybe<WorkshopFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
@@ -1897,6 +1946,59 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>
 }
 
+export type Workshop = {
+  __typename?: 'Workshop'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  sections?: Maybe<Array<Maybe<WorkshopSectionsDynamicZone>>>
+  slug: Scalars['String']['output']
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type WorkshopEntity = {
+  __typename?: 'WorkshopEntity'
+  attributes?: Maybe<Workshop>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type WorkshopEntityResponse = {
+  __typename?: 'WorkshopEntityResponse'
+  data?: Maybe<WorkshopEntity>
+}
+
+export type WorkshopEntityResponseCollection = {
+  __typename?: 'WorkshopEntityResponseCollection'
+  data: Array<WorkshopEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type WorkshopFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<WorkshopFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type WorkshopInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  sections?: InputMaybe<Array<Scalars['WorkshopSectionsDynamicZoneInput']['input']>>
+  slug?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type WorkshopRelationResponseCollection = {
+  __typename?: 'WorkshopRelationResponseCollection'
+  data: Array<WorkshopEntity>
+}
+
+export type WorkshopSectionsDynamicZone = ComponentSectionsRichtext | Error
+
 export type LinkFragment = {
   __typename?: 'ComponentItemsLink'
   label?: string | null
@@ -2174,6 +2276,21 @@ export type ImageAndTextSectionFragment = {
   } | null
 }
 
+export type WorkshopsSectionFragment = {
+  __typename?: 'ComponentSectionsWorkshops'
+  title: string
+  text?: string | null
+  showAll: boolean
+  workshops?: {
+    __typename?: 'WorkshopRelationResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsImageAndText_Fragment = {
   __typename: 'ComponentSectionsImageAndText'
   title: string
@@ -2279,12 +2396,28 @@ type PageSections_ComponentSectionsRichtext_Fragment = {
   content?: any | null
 }
 
+type PageSections_ComponentSectionsWorkshops_Fragment = {
+  __typename: 'ComponentSectionsWorkshops'
+  title: string
+  text?: string | null
+  showAll: boolean
+  workshops?: {
+    __typename?: 'WorkshopRelationResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
+  | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
 
 export type ArticleSlugEntityFragment = {
@@ -2836,6 +2969,20 @@ export type PageEntityFragment = {
           } | null>
         }
       | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+      | {
+          __typename: 'ComponentSectionsWorkshops'
+          title: string
+          text?: string | null
+          showAll: boolean
+          workshops?: {
+            __typename?: 'WorkshopRelationResponseCollection'
+            data: Array<{
+              __typename?: 'WorkshopEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            }>
+          } | null
+        }
       | { __typename: 'Error' }
       | null
     > | null
@@ -3005,6 +3152,20 @@ export type PagesQuery = {
               } | null>
             }
           | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+          | {
+              __typename: 'ComponentSectionsWorkshops'
+              title: string
+              text?: string | null
+              showAll: boolean
+              workshops?: {
+                __typename?: 'WorkshopRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'WorkshopEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                }>
+              } | null
+            }
           | { __typename: 'Error' }
           | null
         > | null
@@ -3178,6 +3339,20 @@ export type PageBySlugQuery = {
               } | null>
             }
           | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+          | {
+              __typename: 'ComponentSectionsWorkshops'
+              title: string
+              text?: string | null
+              showAll: boolean
+              workshops?: {
+                __typename?: 'WorkshopRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'WorkshopEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                }>
+              } | null
+            }
           | { __typename: 'Error' }
           | null
         > | null
@@ -3218,6 +3393,42 @@ export type TagBySlugQuery = {
       __typename?: 'TagEntity'
       id?: string | null
       attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type WorkshopEntityFragment = {
+  __typename?: 'WorkshopEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+}
+
+export type WorkshopsQueryVariables = Exact<{ [key: string]: never }>
+
+export type WorkshopsQuery = {
+  __typename?: 'Query'
+  workshops?: {
+    __typename?: 'WorkshopEntityResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type WorkshopBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type WorkshopBySlugQuery = {
+  __typename?: 'Query'
+  workshops?: {
+    __typename?: 'WorkshopEntityResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     }>
   } | null
 }
@@ -3484,6 +3695,28 @@ export const ImageAndTextSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const WorkshopEntityFragmentDoc = gql`
+  fragment WorkshopEntity on WorkshopEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const WorkshopsSectionFragmentDoc = gql`
+  fragment WorkshopsSection on ComponentSectionsWorkshops {
+    title
+    text
+    showAll
+    workshops {
+      data {
+        ...WorkshopEntity
+      }
+    }
+  }
+  ${WorkshopEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -3496,10 +3729,14 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsImageAndText {
       ...ImageAndTextSection
     }
+    ... on ComponentSectionsWorkshops {
+      ...WorkshopsSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
   ${ImageAndTextSectionFragmentDoc}
+  ${WorkshopsSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
@@ -3657,6 +3894,26 @@ export const TagBySlugDocument = gql`
     }
   }
   ${TagEntityFragmentDoc}
+`
+export const WorkshopsDocument = gql`
+  query Workshops {
+    workshops {
+      data {
+        ...WorkshopEntity
+      }
+    }
+  }
+  ${WorkshopEntityFragmentDoc}
+`
+export const WorkshopBySlugDocument = gql`
+  query WorkshopBySlug($slug: String!) {
+    workshops(filters: { slug: { eq: $slug } }) {
+      data {
+        ...WorkshopEntity
+      }
+    }
+  }
+  ${WorkshopEntityFragmentDoc}
 `
 
 export type SdkFunctionWrapper = <T>(
@@ -3862,6 +4119,36 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'TagBySlug',
+        'query',
+        variables,
+      )
+    },
+    Workshops(
+      variables?: WorkshopsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<WorkshopsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<WorkshopsQuery>(WorkshopsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Workshops',
+        'query',
+        variables,
+      )
+    },
+    WorkshopBySlug(
+      variables: WorkshopBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<WorkshopBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<WorkshopBySlugQuery>(WorkshopBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'WorkshopBySlug',
         'query',
         variables,
       )

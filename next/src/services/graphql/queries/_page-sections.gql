@@ -28,6 +28,17 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   }
 }
 
+fragment WorkshopsSection on ComponentSectionsWorkshops {
+  title
+  text
+  showAll
+  workshops {
+    data {
+      ...WorkshopEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -41,5 +52,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsImageAndText {
     ...ImageAndTextSection
+  }
+
+  ... on ComponentSectionsWorkshops {
+    ...WorkshopsSection
   }
 }

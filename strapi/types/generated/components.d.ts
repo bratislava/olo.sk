@@ -91,6 +91,20 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface SectionsBranches extends Schema.Component {
+  collectionName: 'components_sections_branches'
+  info: {
+    displayName: 'Branches'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
 export interface SectionsImageAndText extends Schema.Component {
   collectionName: 'components_sections_image_and_texts'
   info: {
@@ -153,6 +167,7 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'sections.branches': SectionsBranches
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext

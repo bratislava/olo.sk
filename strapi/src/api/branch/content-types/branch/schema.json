@@ -25,6 +25,14 @@
       "type": "string",
       "required": true
     },
+    "address": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
     "slug": {
       "pluginOptions": {
         "i18n": {

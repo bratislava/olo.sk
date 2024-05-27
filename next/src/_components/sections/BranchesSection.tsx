@@ -23,7 +23,7 @@ const BranchesSection = ({ section }: Props) => {
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} />
-        <ul className="flex flex-col flex-wrap gap-4 lg:flex-row lg:gap-8 lg:[&>*]:w-1/3 lg:[&>*]:grow">
+        <ul className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8 lg:[&>*]:grow">
           {
             // eslint-disable-next-line unicorn/no-array-callback-reference
             branches?.data?.filter(isDefined).length

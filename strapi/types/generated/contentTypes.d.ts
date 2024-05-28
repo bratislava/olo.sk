@@ -981,8 +981,9 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.richtext',
         'sections.branches',
         'sections.columns',
-        'sections.image-and-text',
         'sections.ordered-cards',
+        'sections.image-and-text',
+        'sections.image-and-text-overlapped',
       ]
     >
     createdAt: Attribute.DateTime

@@ -141,6 +141,26 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsImageAndTextOverlapped extends Schema.Component {
+  collectionName: 'components_sections_image_and_text_overlappeds'
+  info: {
+    displayName: 'Image and Text Overlapped'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    imagePosition: Attribute.Enumeration<['left', 'right', 'left-shifted', 'right-shifted']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'left'>
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+    image: Attribute.Media & Attribute.Required
+    link: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsImageAndText extends Schema.Component {
   collectionName: 'components_sections_image_and_texts'
   info: {
@@ -153,9 +173,9 @@ export interface SectionsImageAndText extends Schema.Component {
     imagePosition: Attribute.Enumeration<['left', 'right']> &
       Attribute.Required &
       Attribute.DefaultTo<'left'>
-    textBackgroundColor: Attribute.Enumeration<['white', 'yellow', 'grey']> &
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
-      Attribute.DefaultTo<'white'>
+      Attribute.DefaultTo<'primary'>
     image: Attribute.Media & Attribute.Required
     primaryButton: Attribute.Component<'items.link'>
     secondaryButton: Attribute.Component<'items.link'>
@@ -206,6 +226,7 @@ declare module '@strapi/types' {
       'items.slide': ItemsSlide
       'sections.branches': SectionsBranches
       'sections.columns': SectionsColumns
+      'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext

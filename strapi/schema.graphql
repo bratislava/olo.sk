@@ -418,36 +418,67 @@ input ComponentSectionsColumnsInput {
 }
 
 type ComponentSectionsImageAndText {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR!
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION!
   primaryButton: ComponentItemsLink
   secondaryButton: ComponentItemsLink
   text: String
-  textBackgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_TEXTBACKGROUNDCOLOR!
   title: String!
 }
 
 input ComponentSectionsImageAndTextFiltersInput {
   and: [ComponentSectionsImageAndTextFiltersInput]
+  backgroundColor: StringFilterInput
   imagePosition: StringFilterInput
   not: ComponentSectionsImageAndTextFiltersInput
   or: [ComponentSectionsImageAndTextFiltersInput]
   primaryButton: ComponentItemsLinkFiltersInput
   secondaryButton: ComponentItemsLinkFiltersInput
   text: StringFilterInput
-  textBackgroundColor: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsImageAndTextInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION
   primaryButton: ComponentItemsLinkInput
   secondaryButton: ComponentItemsLinkInput
   text: String
-  textBackgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_TEXTBACKGROUNDCOLOR
+  title: String
+}
+
+type ComponentSectionsImageAndTextOverlapped {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR!
+  id: ID!
+  image: UploadFileEntityResponse!
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
+  link: ComponentItemsLink
+  text: String
+  title: String!
+}
+
+input ComponentSectionsImageAndTextOverlappedFiltersInput {
+  and: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  backgroundColor: StringFilterInput
+  imagePosition: StringFilterInput
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentSectionsImageAndTextOverlappedFiltersInput
+  or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsImageAndTextOverlappedInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR
+  id: ID
+  image: ID
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
+  link: ComponentItemsLinkInput
+  text: String
   title: String
 }
 
@@ -639,15 +670,28 @@ enum ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR {
   tertiary
 }
 
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION {
+  left
+  left_shifted
+  right
+  right_shifted
+}
+
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   left
   right
-}
-
-enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_TEXTBACKGROUNDCOLOR {
-  grey
-  white
-  yellow
 }
 
 type Error {
@@ -686,7 +730,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -1070,7 +1114,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

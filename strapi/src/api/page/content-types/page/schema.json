@@ -51,8 +51,9 @@
         "sections.richtext",
         "sections.branches",
         "sections.columns",
+        "sections.ordered-cards",
         "sections.image-and-text",
-        "sections.ordered-cards"
+        "sections.image-and-text-overlapped"
       ]
     }
   }

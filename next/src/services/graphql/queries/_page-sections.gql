@@ -13,8 +13,8 @@ fragment OrderedCardsSection on ComponentSectionsOrderedCards {
 fragment ImageAndTextSection on ComponentSectionsImageAndText {
   title
   text
-  imagePosition
-  textBackgroundColor
+  imagePositionImageAndText: imagePosition
+  backgroundColorImageAndText: backgroundColor
   image {
     data {
       ...UploadImageEntity
@@ -40,6 +40,21 @@ fragment ColumnsSection on ComponentSectionsColumns {
         ...UploadImageEntity
       }
     }
+  }
+}
+
+fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
+  title
+  text
+  imagePositionImageAndTextOverlapped: imagePosition
+  backgroundColorImageAndTextOverlapped: backgroundColor
+  image {
+    data {
+      ...UploadImageEntity
+    }
+  }
+  link {
+    ...Link
   }
 }
 
@@ -69,11 +84,15 @@ fragment PageSections on PageSectionsDynamicZone {
     ...ImageAndTextSection
   }
 
-  ... on ComponentSectionsBranches {
-    ...BranchesSection
-  }
-
   ... on ComponentSectionsColumns {
     ...ColumnsSection
+  }
+
+  ... on ComponentSectionsImageAndTextOverlapped {
+    ...ImageAndTextOverlappedSection
+  }
+
+  ... on ComponentSectionsBranches {
+    ...BranchesSection
   }
 }

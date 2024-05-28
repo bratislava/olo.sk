@@ -1,4 +1,6 @@
-// Copied from bratislava.sk repository
+/*
+ * Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/utils/isDefined.ts
+ */
 
 export function isDefined<T>(value: T | undefined | null): value is T {
   return value !== undefined && value !== null

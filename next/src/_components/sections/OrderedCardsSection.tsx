@@ -2,6 +2,7 @@ import React from 'react'
 
 import Typography from '@/_components/common/Typography/Typography'
 import SectionContainer from '@/_components/layout/Section/SectionContainer'
+import SectionHeader from '@/_components/layout/Section/SectionHeader'
 import { isDefined } from '@/_utils/isDefined'
 import cn from '@/app/_utils/cn'
 import { OrderedCardsSectionFragment } from '@/services/graphql/api'
@@ -10,7 +11,7 @@ type Props = {
   section: OrderedCardsSectionFragment
 }
 
-/*
+/**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-14423&m=dev
  */
 
@@ -21,7 +22,7 @@ const OrderedCardsSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="secondary" className="py-6 lg:py-18">
       <div className="flex flex-col items-center gap-6 lg:gap-12">
-        <Typography variant="h2">{title}</Typography>
+        <SectionHeader title={title} isCentered />
         <ol className="grid w-full gap-4 lg:grid-cols-2 lg:gap-8">
           {
             // eslint-disable-next-line unicorn/no-array-callback-reference

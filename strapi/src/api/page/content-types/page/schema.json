@@ -49,8 +49,11 @@
       "type": "dynamiczone",
       "components": [
         "sections.richtext",
-        "sections.ordered-cards",
+        "sections.branches",
+        "sections.columns",
         "sections.image-and-text",
+        "sections.image-and-text-overlapped",
+        "sections.ordered-cards",
         "sections.workshops"
       ]
     }

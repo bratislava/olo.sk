@@ -2,10 +2,10 @@ fragment BranchEntity on BranchEntity {
   id
   attributes {
     title
+    address
     slug
   }
 }
-
 
 query Branches {
   branches {

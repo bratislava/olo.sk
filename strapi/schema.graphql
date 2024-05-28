@@ -90,6 +90,7 @@ input BooleanFilterInput {
 }
 
 type Branch {
+  address: String
   createdAt: DateTime
   locale: String
   localizations(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
@@ -115,6 +116,7 @@ type BranchEntityResponseCollection {
 }
 
 input BranchFiltersInput {
+  address: StringFilterInput
   and: [BranchFiltersInput]
   createdAt: DateTimeFilterInput
   id: IDFilterInput
@@ -130,6 +132,7 @@ input BranchFiltersInput {
 }
 
 input BranchInput {
+  address: String
   openingTimes: [ID]
   publishedAt: DateTime
   slug: String
@@ -240,6 +243,28 @@ input ComponentHeaderSectionsImageInput {
   media: ID
 }
 
+type ComponentItemsColumnsItem {
+  id: ID!
+  image: UploadFileEntityResponse
+  text: String
+  title: String
+}
+
+input ComponentItemsColumnsItemFiltersInput {
+  and: [ComponentItemsColumnsItemFiltersInput]
+  not: ComponentItemsColumnsItemFiltersInput
+  or: [ComponentItemsColumnsItemFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsColumnsItemInput {
+  id: ID
+  image: ID
+  text: String
+  title: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -340,6 +365,58 @@ input ComponentItemsSlideInput {
   title: String
 }
 
+type ComponentSectionsBranches {
+  branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
+  id: ID!
+  showAll: Boolean!
+  text: String
+  title: String!
+}
+
+input ComponentSectionsBranchesFiltersInput {
+  and: [ComponentSectionsBranchesFiltersInput]
+  branches: BranchFiltersInput
+  not: ComponentSectionsBranchesFiltersInput
+  or: [ComponentSectionsBranchesFiltersInput]
+  showAll: BooleanFilterInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsBranchesInput {
+  branches: [ID]
+  id: ID
+  showAll: Boolean
+  text: String
+  title: String
+}
+
+type ComponentSectionsColumns {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR!
+  id: ID!
+  items(filters: ComponentItemsColumnsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsItem]!
+  text: String
+  title: String!
+}
+
+input ComponentSectionsColumnsFiltersInput {
+  and: [ComponentSectionsColumnsFiltersInput]
+  backgroundColor: StringFilterInput
+  items: ComponentItemsColumnsItemFiltersInput
+  not: ComponentSectionsColumnsFiltersInput
+  or: [ComponentSectionsColumnsFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsColumnsInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR
+  id: ID
+  items: [ComponentItemsColumnsItemInput]
+  text: String
+  title: String
+}
+
 type ComponentSectionsImageAndText {
   backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR!
   id: ID!
@@ -370,6 +447,37 @@ input ComponentSectionsImageAndTextInput {
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION
   primaryButton: ComponentItemsLinkInput
   secondaryButton: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
+type ComponentSectionsImageAndTextOverlapped {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR!
+  id: ID!
+  image: UploadFileEntityResponse!
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
+  link: ComponentItemsLink
+  text: String
+  title: String!
+}
+
+input ComponentSectionsImageAndTextOverlappedFiltersInput {
+  and: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  backgroundColor: StringFilterInput
+  imagePosition: StringFilterInput
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentSectionsImageAndTextOverlappedFiltersInput
+  or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsImageAndTextOverlappedInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR
+  id: ID
+  image: ID
+  imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
+  link: ComponentItemsLinkInput
   text: String
   title: String
 }
@@ -582,10 +690,29 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
+enum ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION {
+  left
+  left_shifted
+  right
+  right_shifted
+}
+
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
-  grey
-  white
-  yellow
+  primary
+  secondary
+  tertiary
 }
 
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
@@ -629,7 +756,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1016,7 +1143,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsImageAndText | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

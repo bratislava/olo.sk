@@ -128,6 +128,7 @@ export type BooleanFilterInput = {
 
 export type Branch = {
   __typename?: 'Branch'
+  address?: Maybe<Scalars['String']['output']>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<BranchRelationResponseCollection>
@@ -169,6 +170,7 @@ export type BranchEntityResponseCollection = {
 }
 
 export type BranchFiltersInput = {
+  address?: InputMaybe<StringFilterInput>
   and?: InputMaybe<Array<InputMaybe<BranchFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
@@ -184,6 +186,7 @@ export type BranchFiltersInput = {
 }
 
 export type BranchInput = {
+  address?: InputMaybe<Scalars['String']['input']>
   openingTimes?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
@@ -408,6 +411,22 @@ export type ComponentItemsSlideInput = {
   media?: InputMaybe<Scalars['ID']['input']>
   text?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ComponentSectionsBranches = {
+  __typename?: 'ComponentSectionsBranches'
+  branches?: Maybe<BranchRelationResponseCollection>
+  id: Scalars['ID']['output']
+  showAll: Scalars['Boolean']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
+export type ComponentSectionsBranchesBranchesArgs = {
+  filters?: InputMaybe<BranchFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type ComponentSectionsColumns = {
@@ -656,6 +675,7 @@ export type GenericMorph =
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
+  | ComponentSectionsBranches
   | ComponentSectionsColumns
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
@@ -1294,6 +1314,7 @@ export type PageRelationResponseCollection = {
 }
 
 export type PageSectionsDynamicZone =
+  | ComponentSectionsBranches
   | ComponentSectionsColumns
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
@@ -2325,6 +2346,46 @@ export type ImageAndTextOverlappedSectionFragment = {
   } | null
 }
 
+export type BranchesSectionFragment = {
+  __typename?: 'ComponentSectionsBranches'
+  title: string
+  text?: string | null
+  showAll: boolean
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename?: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
+    }>
+  } | null
+}
+
+type PageSections_ComponentSectionsBranches_Fragment = {
+  __typename: 'ComponentSectionsBranches'
+  title: string
+  text?: string | null
+  showAll: boolean
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename?: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsColumns_Fragment = {
   __typename: 'ComponentSectionsColumns'
   title: string
@@ -2518,6 +2579,7 @@ type PageSections_ComponentSectionsRichtext_Fragment = {
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
+  | PageSections_ComponentSectionsBranches_Fragment
   | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
@@ -2699,7 +2761,12 @@ export type ArticleBySlugQuery = {
 export type BranchEntityFragment = {
   __typename?: 'BranchEntity'
   id?: string | null
-  attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+  attributes?: {
+    __typename?: 'Branch'
+    title: string
+    address?: string | null
+    slug: string
+  } | null
 }
 
 export type BranchesQueryVariables = Exact<{ [key: string]: never }>
@@ -2711,7 +2778,12 @@ export type BranchesQuery = {
     data: Array<{
       __typename?: 'BranchEntity'
       id?: string | null
-      attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
     }>
   } | null
 }
@@ -2727,7 +2799,12 @@ export type BranchBySlugQuery = {
     data: Array<{
       __typename?: 'BranchEntity'
       id?: string | null
-      attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
     }>
   } | null
 }
@@ -2975,6 +3052,25 @@ export type PageEntityFragment = {
       | null
     > | null
     sections?: Array<
+      | {
+          __typename: 'ComponentSectionsBranches'
+          title: string
+          text?: string | null
+          showAll: boolean
+          branches?: {
+            __typename?: 'BranchRelationResponseCollection'
+            data: Array<{
+              __typename?: 'BranchEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Branch'
+                title: string
+                address?: string | null
+                slug: string
+              } | null
+            }>
+          } | null
+        }
       | {
           __typename: 'ComponentSectionsColumns'
           title: string
@@ -3227,6 +3323,25 @@ export type PagesQuery = {
           | null
         > | null
         sections?: Array<
+          | {
+              __typename: 'ComponentSectionsBranches'
+              title: string
+              text?: string | null
+              showAll: boolean
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    title: string
+                    address?: string | null
+                    slug: string
+                  } | null
+                }>
+              } | null
+            }
           | {
               __typename: 'ComponentSectionsColumns'
               title: string
@@ -3483,6 +3598,25 @@ export type PageBySlugQuery = {
           | null
         > | null
         sections?: Array<
+          | {
+              __typename: 'ComponentSectionsBranches'
+              title: string
+              text?: string | null
+              showAll: boolean
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    title: string
+                    address?: string | null
+                    slug: string
+                  } | null
+                }>
+              } | null
+            }
           | {
               __typename: 'ComponentSectionsColumns'
               title: string
@@ -3792,15 +3926,6 @@ export const ArticleEntityFragmentDoc = gql`
   }
   ${ArticleCardEntityFragmentDoc}
 `
-export const BranchEntityFragmentDoc = gql`
-  fragment BranchEntity on BranchEntity {
-    id
-    attributes {
-      title
-      slug
-    }
-  }
-`
 export const DocumentEntityFragmentDoc = gql`
   fragment DocumentEntity on DocumentEntity {
     id
@@ -4006,6 +4131,29 @@ export const ImageAndTextOverlappedSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const BranchEntityFragmentDoc = gql`
+  fragment BranchEntity on BranchEntity {
+    id
+    attributes {
+      title
+      address
+      slug
+    }
+  }
+`
+export const BranchesSectionFragmentDoc = gql`
+  fragment BranchesSection on ComponentSectionsBranches {
+    title
+    text
+    showAll
+    branches {
+      data {
+        ...BranchEntity
+      }
+    }
+  }
+  ${BranchEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -4024,12 +4172,16 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsImageAndTextOverlapped {
       ...ImageAndTextOverlappedSection
     }
+    ... on ComponentSectionsBranches {
+      ...BranchesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
   ${ImageAndTextSectionFragmentDoc}
   ${ColumnsSectionFragmentDoc}
   ${ImageAndTextOverlappedSectionFragmentDoc}
+  ${BranchesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

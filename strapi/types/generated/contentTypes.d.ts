@@ -754,6 +754,12 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
+    address: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
     slug: Attribute.UID<'api::branch.branch', 'title'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -973,6 +979,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     sections: Attribute.DynamicZone<
       [
         'sections.richtext',
+        'sections.branches',
         'sections.columns',
         'sections.ordered-cards',
         'sections.image-and-text',

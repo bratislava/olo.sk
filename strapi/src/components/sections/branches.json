@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_branches",
+  "info": {
+    "displayName": "Branches",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "showAll": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "branches": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::branch.branch"
+    }
+  }
+}

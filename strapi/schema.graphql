@@ -90,6 +90,7 @@ input BooleanFilterInput {
 }
 
 type Branch {
+  address: String
   createdAt: DateTime
   locale: String
   localizations(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
@@ -115,6 +116,7 @@ type BranchEntityResponseCollection {
 }
 
 input BranchFiltersInput {
+  address: StringFilterInput
   and: [BranchFiltersInput]
   createdAt: DateTimeFilterInput
   id: IDFilterInput
@@ -130,6 +132,7 @@ input BranchFiltersInput {
 }
 
 input BranchInput {
+  address: String
   openingTimes: [ID]
   publishedAt: DateTime
   slug: String
@@ -358,6 +361,32 @@ input ComponentItemsSlideInput {
   id: ID
   link: ComponentItemsLinkInput
   media: ID
+  text: String
+  title: String
+}
+
+type ComponentSectionsBranches {
+  branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
+  id: ID!
+  showAll: Boolean!
+  text: String
+  title: String!
+}
+
+input ComponentSectionsBranchesFiltersInput {
+  and: [ComponentSectionsBranchesFiltersInput]
+  branches: BranchFiltersInput
+  not: ComponentSectionsBranchesFiltersInput
+  or: [ComponentSectionsBranchesFiltersInput]
+  showAll: BooleanFilterInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsBranchesInput {
+  branches: [ID]
+  id: ID
+  showAll: Boolean
   text: String
   title: String
 }
@@ -701,7 +730,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type Homepage {
   createdAt: DateTime
@@ -1085,7 +1114,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
 
 scalar PageSectionsDynamicZoneInput
 

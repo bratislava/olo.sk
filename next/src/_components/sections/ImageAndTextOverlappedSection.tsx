@@ -56,8 +56,8 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
         {
           'bg-background-primary': backgroundColor !== Enum_Backgroundcolor.Primary,
           'bg-background-tertiary': backgroundColor === Enum_Backgroundcolor.Primary,
-          'lg:-ml-18': isImageLeft,
-          'lg:-mr-18': isImageRight,
+          'lg:-ml-9': isImageLeft,
+          'lg:-mr-9': isImageRight,
           'my-18': !isImageShifted,
           'mt-18': isImageShifted,
         },
@@ -94,7 +94,11 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
 
   const DesktopImageContainer = (
     <div
-      className={cn('relative shrink-0 overflow-hidden rounded-3xl', { 'mb-18': isImageShifted })}
+      className={cn('relative shrink-0 overflow-hidden rounded-3xl', {
+        'lg:-mr-9': isImageLeft,
+        'lg:-ml-9': isImageRight,
+        'mb-18': isImageShifted,
+      })}
     >
       {ImageContent}
     </div>
@@ -114,7 +118,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColor} className="py-6 lg:py-12">
-      <div className="hidden lg:flex lg:flex-row lg:items-stretch lg:[&>*]:w-[50%]">
+      <div className="hidden lg:grid lg:grid-cols-2">
         {isImageLeft ? (
           <>
             {DesktopImageContainer}

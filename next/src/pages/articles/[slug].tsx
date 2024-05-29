@@ -3,11 +3,11 @@ import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
-import BlocksRenderer from '@/_components/layout/BlocksRenderer'
-import Section from '@/_components/layout/Section/Section'
-import PageHeaderSection from '@/_components/sections/PageHeaderSection'
-import { client } from '@/services/graphql'
-import { ArticleEntityFragment } from '@/services/graphql/api'
+import BlocksRenderer from '@/src/components/layout/BlocksRenderer'
+import Section from '@/src/components/layout/Section/Section'
+import PageHeaderSection from '@/src/components/sections/PageHeaderSection'
+import { client } from '@/src/services/graphql'
+import { ArticleEntityFragment } from '@/src/services/graphql/api'
 
 type PageProps = {
   // general: GeneralQuery

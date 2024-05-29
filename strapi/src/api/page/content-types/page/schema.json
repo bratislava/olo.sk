@@ -51,9 +51,10 @@
         "sections.richtext",
         "sections.branches",
         "sections.columns",
-        "sections.ordered-cards",
         "sections.image-and-text",
-        "sections.image-and-text-overlapped"
+        "sections.image-and-text-overlapped",
+        "sections.ordered-cards",
+        "sections.workshops"
       ]
     }
   }

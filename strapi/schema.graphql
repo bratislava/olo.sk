@@ -519,6 +519,32 @@ input ComponentSectionsRichtextInput {
   id: ID
 }
 
+type ComponentSectionsWorkshops {
+  id: ID!
+  showAll: Boolean!
+  text: String
+  title: String!
+  workshops(filters: WorkshopFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): WorkshopRelationResponseCollection
+}
+
+input ComponentSectionsWorkshopsFiltersInput {
+  and: [ComponentSectionsWorkshopsFiltersInput]
+  not: ComponentSectionsWorkshopsFiltersInput
+  or: [ComponentSectionsWorkshopsFiltersInput]
+  showAll: BooleanFilterInput
+  text: StringFilterInput
+  title: StringFilterInput
+  workshops: WorkshopFiltersInput
+}
+
+input ComponentSectionsWorkshopsInput {
+  id: ID
+  showAll: Boolean
+  text: String
+  title: String
+  workshops: [ID]
+}
+
 type Contact {
   createdAt: DateTime
   label: String!
@@ -730,7 +756,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -954,6 +980,7 @@ type Mutation {
 
   """Create a new user"""
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
+  createWorkshop(data: WorkshopInput!): WorkshopEntityResponse
   deleteArticle(id: ID!, locale: I18NLocaleCode): ArticleEntityResponse
   deleteBranch(id: ID!, locale: I18NLocaleCode): BranchEntityResponse
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
@@ -971,6 +998,7 @@ type Mutation {
 
   """Delete an existing user"""
   deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
+  deleteWorkshop(id: ID!): WorkshopEntityResponse
 
   """Confirm an email users email address"""
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
@@ -1006,6 +1034,7 @@ type Mutation {
 
   """Update an existing user"""
   updateUsersPermissionsUser(data: UsersPermissionsUserInput!, id: ID!): UsersPermissionsUserEntityResponse!
+  updateWorkshop(data: WorkshopInput!, id: ID!): WorkshopEntityResponse
   upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID): UploadFileEntityResponse!
 }
 
@@ -1114,7 +1143,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | Error
+union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 
@@ -1166,6 +1195,8 @@ type Query {
   usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
   usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
+  workshop(id: ID): WorkshopEntityResponse
+  workshops(filters: WorkshopFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): WorkshopEntityResponseCollection
 }
 
 type ResponseCollectionMeta {
@@ -1611,3 +1642,53 @@ input UsersPermissionsUserInput {
 type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
+
+type Workshop {
+  createdAt: DateTime
+  publishedAt: DateTime
+  sections: [WorkshopSectionsDynamicZone]
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+type WorkshopEntity {
+  attributes: Workshop
+  id: ID
+}
+
+type WorkshopEntityResponse {
+  data: WorkshopEntity
+}
+
+type WorkshopEntityResponseCollection {
+  data: [WorkshopEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input WorkshopFiltersInput {
+  and: [WorkshopFiltersInput]
+  createdAt: DateTimeFilterInput
+  id: IDFilterInput
+  not: WorkshopFiltersInput
+  or: [WorkshopFiltersInput]
+  publishedAt: DateTimeFilterInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input WorkshopInput {
+  publishedAt: DateTime
+  sections: [WorkshopSectionsDynamicZoneInput!]
+  slug: String
+  title: String
+}
+
+type WorkshopRelationResponseCollection {
+  data: [WorkshopEntity!]!
+}
+
+union WorkshopSectionsDynamicZone = ComponentSectionsRichtext | Error
+
+scalar WorkshopSectionsDynamicZoneInput

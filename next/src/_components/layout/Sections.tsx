@@ -6,6 +6,7 @@ import ImageAndTextOverlappedSection from '@/_components/sections/ImageAndTextOv
 import ImageAndTextSection from '@/_components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/_components/sections/OrderedCardsSection'
 import RichtextSection from '@/_components/sections/RichtextSection'
+import WorkshopsSection from '@/_components/sections/WorkshopsSection'
 import { PageSectionsFragment } from '@/services/graphql/api'
 
 type Props = {
@@ -33,6 +34,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsBranches':
       return <BranchesSection section={section} />
+
+    case 'ComponentSectionsWorkshops':
+      return <WorkshopsSection section={section} />
 
     default:
       return null

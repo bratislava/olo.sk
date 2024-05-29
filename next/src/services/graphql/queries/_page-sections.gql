@@ -69,6 +69,17 @@ fragment BranchesSection on ComponentSectionsBranches {
   }
 }
 
+fragment WorkshopsSection on ComponentSectionsWorkshops {
+  title
+  text
+  showAll
+  workshops {
+    data {
+      ...WorkshopEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -94,5 +105,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBranches {
     ...BranchesSection
+  }
+
+  ... on ComponentSectionsWorkshops {
+    ...WorkshopsSection
   }
 }

@@ -981,9 +981,10 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.richtext',
         'sections.branches',
         'sections.columns',
-        'sections.ordered-cards',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
+        'sections.ordered-cards',
+        'sections.workshops',
       ]
     >
     createdAt: Attribute.DateTime
@@ -1034,6 +1035,31 @@ export interface ApiTagTag extends Schema.CollectionType {
   }
 }
 
+export interface ApiWorkshopWorkshop extends Schema.CollectionType {
+  collectionName: 'workshops'
+  info: {
+    singularName: 'workshop'
+    pluralName: 'workshops'
+    displayName: 'Workshopy'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
+    sections: Attribute.DynamicZone<['sections.richtext']>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::workshop.workshop', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::workshop.workshop', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1061,6 +1087,7 @@ declare module '@strapi/types' {
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
       'api::tag.tag': ApiTagTag
+      'api::workshop.workshop': ApiWorkshopWorkshop
     }
   }
 }

@@ -213,6 +213,20 @@ export interface SectionsRichtext extends Schema.Component {
   }
 }
 
+export interface SectionsWorkshops extends Schema.Component {
+  collectionName: 'components_sections_workshops'
+  info: {
+    displayName: 'Workshops'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    workshops: Attribute.Relation<'sections.workshops', 'oneToMany', 'api::workshop.workshop'>
+  }
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -230,6 +244,7 @@ declare module '@strapi/types' {
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
+      'sections.workshops': SectionsWorkshops
     }
   }
 }

@@ -19,9 +19,7 @@ const WorkshopsSection = ({ section }: Props) => {
   const { title, text, workshops } = section
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
-  // const filteredWorkshops = workshops?.data.filter(isDefined) ?? []
-  const filteredWorkshops =
-    workshops?.data.filter((workshop) => isDefined(workshop?.attributes)) ?? []
+  const filteredWorkshops = workshops?.data.filter(isDefined) ?? []
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer

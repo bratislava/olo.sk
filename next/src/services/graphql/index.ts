@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
 
-import { environment } from '@/environment'
-import { getSdk } from '@/services/graphql/api'
+import { environment } from '@/src/environment'
+import { getSdk } from '@/src/services/graphql/api'
 
 // TODO test if this works with build and deployment
 const index = new GraphQLClient(`${environment.strapiUrl}/graphql`)

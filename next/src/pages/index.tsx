@@ -3,10 +3,10 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
-import Typography from '@/_components/common/Typography/Typography'
-import Section from '@/_components/layout/Section/Section'
-import { client } from '@/services/graphql'
-import { HomepageEntityFragment } from '@/services/graphql/api'
+import Typography from '@/src/components/common/Typography/Typography'
+import Section from '@/src/components/layout/Section/Section'
+import { client } from '@/src/services/graphql'
+import { HomepageEntityFragment } from '@/src/services/graphql/api'
 
 type PageProps = {
   homepage: HomepageEntityFragment

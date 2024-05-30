@@ -1,5 +1,35 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
+export interface HeaderSectionsArticles extends Schema.Component {
+  collectionName: 'components_header_sections_articles'
+  info: {
+    displayName: 'articles'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    articlesTitle: Attribute.String & Attribute.Required
+    firstArticle: Attribute.Relation<'header-sections.articles', 'oneToOne', 'api::article.article'>
+    secondArticle: Attribute.Relation<
+      'header-sections.articles',
+      'oneToOne',
+      'api::article.article'
+    >
+  }
+}
+
+export interface HeaderSectionsBasic extends Schema.Component {
+  collectionName: 'components_header_sections_basics'
+  info: {
+    displayName: 'basic'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+  }
+}
+
 export interface HeaderSectionsBranchMap extends Schema.Component {
   collectionName: 'components_header_sections_branch_maps'
   info: {
@@ -230,6 +260,8 @@ export interface SectionsWorkshops extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'header-sections.articles': HeaderSectionsArticles
+      'header-sections.basic': HeaderSectionsBasic
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage

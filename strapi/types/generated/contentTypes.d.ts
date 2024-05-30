@@ -967,9 +967,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     perex: Attribute.Text
     parentPage: Attribute.Relation<'api::page.page', 'manyToOne', 'api::page.page'>
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
-    header: Attribute.DynamicZone<
-      ['header-sections.image', 'header-sections.gallery', 'header-sections.branch-map']
-    > &
+    header: Attribute.DynamicZone<['header-sections.articles', 'header-sections.basic']> &
       Attribute.SetMinMax<
         {
           max: 1

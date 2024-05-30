@@ -23,18 +23,35 @@ fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
   }
 }
 
+fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
+  title
+  text
+}
+
+fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
+  title
+  text
+  articlesTitle
+  firstArticle {
+    data {
+      ...ArticleCardEntity
+    }
+  }
+  secondArticle {
+    data {
+      ...ArticleCardEntity
+    }
+  }
+}
+
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
 
-  ... on ComponentHeaderSectionsImage {
-    ...ImageHeaderSection
+  ... on ComponentHeaderSectionsBasic {
+    ...BasicHeaderSection
   }
 
-  ... on ComponentHeaderSectionsGallery {
-    ...GalleryHeaderSection
-  }
-
-  ... on ComponentHeaderSectionsBranchMap {
-    ...BranchMapHeaderSection
+  ... on ComponentHeaderSectionsArticles {
+    ...ArticlesHeaderSection
   }
 }

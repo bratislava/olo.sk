@@ -10,7 +10,7 @@ import cn from '@/src/utils/cn'
 type ArticleCardProps = {
   title: string
   linkHref: string
-  tagText: string
+  tagText?: string
   className?: string
   imgSrc?: string
 }
@@ -28,7 +28,7 @@ const ArticleCard = ({ title, className, linkHref, imgSrc, tagText }: ArticleCar
         <CardImage imgSrc={imgSrc} className="aspect-[70/39] rounded-lg" />
         <div className="flex grow flex-col justify-between gap-6">
           <div className="flex flex-col gap-2">
-            <Tag variant="without-bg" text={tagText} />
+            <Tag variant="without-bg" text={tagText ?? t('tag.category.other')} />
             <Typography
               variant="h4"
               className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

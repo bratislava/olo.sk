@@ -39,9 +39,8 @@
     "header": {
       "type": "dynamiczone",
       "components": [
-        "header-sections.image",
-        "header-sections.gallery",
-        "header-sections.branch-map"
+        "header-sections.articles",
+        "header-sections.basic"
       ],
       "max": 1
     },

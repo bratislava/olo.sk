@@ -40,7 +40,8 @@
       "type": "dynamiczone",
       "components": [
         "header-sections.articles",
-        "header-sections.basic"
+        "header-sections.basic",
+        "header-sections.image"
       ],
       "max": 1
     },

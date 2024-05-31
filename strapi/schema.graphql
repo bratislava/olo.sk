@@ -279,17 +279,23 @@ input ComponentHeaderSectionsGalleryInput {
 type ComponentHeaderSectionsImage {
   id: ID!
   media: UploadFileEntityResponse!
+  text: String
+  title: String!
 }
 
 input ComponentHeaderSectionsImageFiltersInput {
   and: [ComponentHeaderSectionsImageFiltersInput]
   not: ComponentHeaderSectionsImageFiltersInput
   or: [ComponentHeaderSectionsImageFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsImageInput {
   id: ID
   media: ID
+  text: String
+  title: String
 }
 
 type ComponentItemsColumnsItem {
@@ -1173,7 +1179,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsImage | Error
 
 scalar PageHeaderDynamicZoneInput
 

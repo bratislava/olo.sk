@@ -315,6 +315,8 @@ export type ComponentHeaderSectionsImage = {
   __typename?: 'ComponentHeaderSectionsImage'
   id: Scalars['ID']['output']
   media: UploadFileEntityResponse
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
 }
 
 export type ComponentItemsColumnsItem = {
@@ -1348,6 +1350,7 @@ export type PageFiltersInput = {
 export type PageHeaderDynamicZone =
   | ComponentHeaderSectionsArticles
   | ComponentHeaderSectionsBasic
+  | ComponentHeaderSectionsImage
   | Error
 
 export type PageInput = {
@@ -2174,6 +2177,8 @@ export type UploadFileEntityFragment = {
 
 export type ImageHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsImage'
+  title: string
+  text?: string | null
   media: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -2398,11 +2403,34 @@ type HeaderSections_ComponentHeaderSectionsBasic_Fragment = {
   text?: string | null
 }
 
+type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
+  __typename: 'ComponentHeaderSectionsImage'
+  title: string
+  text?: string | null
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+}
+
 type HeaderSections_Error_Fragment = { __typename: 'Error' }
 
 export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsArticles_Fragment
   | HeaderSections_ComponentHeaderSectionsBasic_Fragment
+  | HeaderSections_ComponentHeaderSectionsImage_Fragment
   | HeaderSections_Error_Fragment
 
 export type RichtextSectionFragment = {
@@ -3366,6 +3394,27 @@ export type PageEntityFragment = {
           } | null
         }
       | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
+      | {
+          __typename: 'ComponentHeaderSectionsImage'
+          title: string
+          text?: string | null
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          }
+        }
       | { __typename: 'Error' }
       | null
     > | null
@@ -3689,6 +3738,27 @@ export type PagesQuery = {
               } | null
             }
           | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
+          | {
+              __typename: 'ComponentHeaderSectionsImage'
+              title: string
+              text?: string | null
+              media: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+            }
           | { __typename: 'Error' }
           | null
         > | null
@@ -4016,6 +4086,27 @@ export type PageBySlugQuery = {
               } | null
             }
           | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
+          | {
+              __typename: 'ComponentHeaderSectionsImage'
+              title: string
+              text?: string | null
+              media: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+            }
           | { __typename: 'Error' }
           | null
         > | null
@@ -4349,16 +4440,6 @@ export const UploadImageEntityFragmentDoc = gql`
     }
   }
 `
-export const ImageHeaderSectionFragmentDoc = gql`
-  fragment ImageHeaderSection on ComponentHeaderSectionsImage {
-    media {
-      data {
-        ...UploadImageEntity
-      }
-    }
-  }
-  ${UploadImageEntityFragmentDoc}
-`
 export const GalleryHeaderSectionFragmentDoc = gql`
   fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
     medias(pagination: { limit: -1 }) {
@@ -4478,6 +4559,18 @@ export const OpeningTimeEntityFragmentDoc = gql`
   }
   ${OpeningHoursItemFragmentDoc}
 `
+export const ImageHeaderSectionFragmentDoc = gql`
+  fragment ImageHeaderSection on ComponentHeaderSectionsImage {
+    title
+    text
+    media {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
 export const BasicHeaderSectionFragmentDoc = gql`
   fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
     title
@@ -4505,6 +4598,9 @@ export const ArticlesHeaderSectionFragmentDoc = gql`
 export const HeaderSectionsFragmentDoc = gql`
   fragment HeaderSections on PageHeaderDynamicZone {
     __typename
+    ... on ComponentHeaderSectionsImage {
+      ...ImageHeaderSection
+    }
     ... on ComponentHeaderSectionsBasic {
       ...BasicHeaderSection
     }
@@ -4512,6 +4608,7 @@ export const HeaderSectionsFragmentDoc = gql`
       ...ArticlesHeaderSection
     }
   }
+  ${ImageHeaderSectionFragmentDoc}
   ${BasicHeaderSectionFragmentDoc}
   ${ArticlesHeaderSectionFragmentDoc}
 `

@@ -3,7 +3,7 @@ import type { Schema, Attribute } from '@strapi/strapi'
 export interface HeaderSectionsArticles extends Schema.Component {
   collectionName: 'components_header_sections_articles'
   info: {
-    displayName: 'articles'
+    displayName: '\u010Cl\u00E1nky (aktuality)'
     description: ''
   }
   attributes: {
@@ -22,7 +22,8 @@ export interface HeaderSectionsArticles extends Schema.Component {
 export interface HeaderSectionsBasic extends Schema.Component {
   collectionName: 'components_header_sections_basics'
   info: {
-    displayName: 'basic'
+    displayName: 'Basic'
+    description: ''
   }
   attributes: {
     title: Attribute.String & Attribute.Required
@@ -62,6 +63,8 @@ export interface HeaderSectionsImage extends Schema.Component {
     description: ''
   }
   attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
     media: Attribute.Media & Attribute.Required
   }
 }

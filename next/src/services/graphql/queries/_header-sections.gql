@@ -1,4 +1,6 @@
 fragment ImageHeaderSection on ComponentHeaderSectionsImage {
+  title
+  text
   media {
     data {
       ...UploadImageEntity
@@ -46,6 +48,10 @@ fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
 
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
+
+  ... on ComponentHeaderSectionsImage {
+    ...ImageHeaderSection
+  }
 
   ... on ComponentHeaderSectionsBasic {
     ...BasicHeaderSection

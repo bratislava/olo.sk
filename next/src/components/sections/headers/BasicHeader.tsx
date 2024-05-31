@@ -14,7 +14,12 @@ type BasicHeaderProps = {
 const BasicHeader = ({ title, text, className }: BasicHeaderProps) => {
   return (
     // 50rem = 800px
-    <div className={cn('flex flex-col items-start gap-6 lg:[&>*]:w-[50rem]', className)}>
+    <div
+      className={cn(
+        'flex flex-col items-start gap-4 py-6 lg:gap-6 lg:py-12 lg:[&>*]:w-[50rem]',
+        className,
+      )}
+    >
       <Typography variant="h1">{title}</Typography>
       {text ? <Typography variant="p-default">{text}</Typography> : null}
     </div>

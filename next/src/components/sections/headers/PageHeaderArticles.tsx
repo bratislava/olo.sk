@@ -25,9 +25,9 @@ const PageHeaderArticles = ({ header }: Props) => {
       <BasicHeader
         title={title}
         text={text}
-        className="border-b border-action-background-default py-12"
+        className="border-action-background-default max-lg:pb-2 lg:border-b"
       />
-      <div className="flex flex-col gap-6 py-12">
+      <div className="flex flex-col gap-6 py-6 lg:py-12">
         <SectionHeader title={articlesTitle} />
         <ul className=" grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
           {filteredArticles

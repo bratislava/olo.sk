@@ -1,0 +1,23 @@
+fragment WorkshopEntity on WorkshopEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+query Workshops {
+  workshops {
+    data {
+      ...WorkshopEntity
+    }
+  }
+}
+
+query WorkshopBySlug($slug: String!) {
+  workshops(filters: { slug: { eq: $slug } }) {
+    data {
+      ...WorkshopEntity
+    }
+  }
+}

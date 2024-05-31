@@ -25,6 +25,7 @@ export type Scalars = {
   PageHeaderDynamicZoneInput: { input: any; output: any }
   PageSectionsDynamicZoneInput: { input: any; output: any }
   Upload: { input: any; output: any }
+  WorkshopSectionsDynamicZoneInput: { input: any; output: any }
 }
 
 export type Article = {
@@ -128,6 +129,7 @@ export type BooleanFilterInput = {
 
 export type Branch = {
   __typename?: 'Branch'
+  address?: Maybe<Scalars['String']['output']>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<BranchRelationResponseCollection>
@@ -169,6 +171,7 @@ export type BranchEntityResponseCollection = {
 }
 
 export type BranchFiltersInput = {
+  address?: InputMaybe<StringFilterInput>
   and?: InputMaybe<Array<InputMaybe<BranchFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
@@ -184,6 +187,7 @@ export type BranchFiltersInput = {
 }
 
 export type BranchInput = {
+  address?: InputMaybe<Scalars['String']['input']>
   openingTimes?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
@@ -296,6 +300,22 @@ export type ComponentHeaderSectionsImage = {
   media: UploadFileEntityResponse
 }
 
+export type ComponentItemsColumnsItem = {
+  __typename?: 'ComponentItemsColumnsItem'
+  id: Scalars['ID']['output']
+  image?: Maybe<UploadFileEntityResponse>
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsColumnsItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsColumnsItemFiltersInput>>>
+  not?: InputMaybe<ComponentItemsColumnsItemFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsColumnsItemFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
@@ -394,6 +414,37 @@ export type ComponentItemsSlideInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentSectionsBranches = {
+  __typename?: 'ComponentSectionsBranches'
+  branches?: Maybe<BranchRelationResponseCollection>
+  id: Scalars['ID']['output']
+  showAll: Scalars['Boolean']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
+export type ComponentSectionsBranchesBranchesArgs = {
+  filters?: InputMaybe<BranchFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSectionsColumns = {
+  __typename?: 'ComponentSectionsColumns'
+  backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor
+  id: Scalars['ID']['output']
+  items: Array<Maybe<ComponentItemsColumnsItem>>
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
+export type ComponentSectionsColumnsItemsArgs = {
+  filters?: InputMaybe<ComponentItemsColumnsItemFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsImageAndText = {
   __typename?: 'ComponentSectionsImageAndText'
   backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
@@ -402,6 +453,17 @@ export type ComponentSectionsImageAndText = {
   imagePosition: Enum_Componentsectionsimageandtext_Imageposition
   primaryButton?: Maybe<ComponentItemsLink>
   secondaryButton?: Maybe<ComponentItemsLink>
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
+export type ComponentSectionsImageAndTextOverlapped = {
+  __typename?: 'ComponentSectionsImageAndTextOverlapped'
+  backgroundColor: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+  id: Scalars['ID']['output']
+  image: UploadFileEntityResponse
+  imagePosition: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+  link?: Maybe<ComponentItemsLink>
   text?: Maybe<Scalars['String']['output']>
   title: Scalars['String']['output']
 }
@@ -423,6 +485,22 @@ export type ComponentSectionsRichtext = {
   __typename?: 'ComponentSectionsRichtext'
   content?: Maybe<Scalars['JSON']['output']>
   id: Scalars['ID']['output']
+}
+
+export type ComponentSectionsWorkshops = {
+  __typename?: 'ComponentSectionsWorkshops'
+  id: Scalars['ID']['output']
+  showAll: Scalars['Boolean']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+  workshops?: Maybe<WorkshopRelationResponseCollection>
+}
+
+export type ComponentSectionsWorkshopsWorkshopsArgs = {
+  filters?: InputMaybe<WorkshopFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type Contact = {
@@ -535,10 +613,29 @@ export type DocumentInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
+export enum Enum_Componentsectionscolumns_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
+export enum Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
+export enum Enum_Componentsectionsimageandtextoverlapped_Imageposition {
+  Left = 'left',
+  LeftShifted = 'left_shifted',
+  Right = 'right',
+  RightShifted = 'right_shifted',
+}
+
 export enum Enum_Componentsectionsimageandtext_Backgroundcolor {
-  Grey = 'grey',
-  White = 'white',
-  Yellow = 'yellow',
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
 }
 
 export enum Enum_Componentsectionsimageandtext_Imageposition {
@@ -590,13 +687,18 @@ export type GenericMorph =
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
+  | ComponentItemsColumnsItem
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
+  | ComponentSectionsBranches
+  | ComponentSectionsColumns
   | ComponentSectionsImageAndText
+  | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
+  | ComponentSectionsWorkshops
   | Contact
   | Document
   | Homepage
@@ -609,6 +711,7 @@ export type GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
+  | Workshop
 
 export type Homepage = {
   __typename?: 'Homepage'
@@ -788,6 +891,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  createWorkshop?: Maybe<WorkshopEntityResponse>
   deleteArticle?: Maybe<ArticleEntityResponse>
   deleteBranch?: Maybe<BranchEntityResponse>
   deleteCategory?: Maybe<CategoryEntityResponse>
@@ -803,6 +907,7 @@ export type Mutation = {
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  deleteWorkshop?: Maybe<WorkshopEntityResponse>
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>
   /** Request a reset password token */
@@ -830,6 +935,7 @@ export type Mutation = {
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  updateWorkshop?: Maybe<WorkshopEntityResponse>
   upload: UploadFileEntityResponse
 }
 
@@ -921,6 +1027,10 @@ export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput
 }
 
+export type MutationCreateWorkshopArgs = {
+  data: WorkshopInput
+}
+
 export type MutationDeleteArticleArgs = {
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
@@ -974,6 +1084,10 @@ export type MutationDeleteUsersPermissionsRoleArgs = {
 }
 
 export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID']['input']
+}
+
+export type MutationDeleteWorkshopArgs = {
   id: Scalars['ID']['input']
 }
 
@@ -1081,6 +1195,11 @@ export type MutationUpdateUsersPermissionsRoleArgs = {
 
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput
+  id: Scalars['ID']['input']
+}
+
+export type MutationUpdateWorkshopArgs = {
+  data: WorkshopInput
   id: Scalars['ID']['input']
 }
 
@@ -1230,9 +1349,13 @@ export type PageRelationResponseCollection = {
 }
 
 export type PageSectionsDynamicZone =
+  | ComponentSectionsBranches
+  | ComponentSectionsColumns
   | ComponentSectionsImageAndText
+  | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
+  | ComponentSectionsWorkshops
   | Error
 
 export type Pagination = {
@@ -1285,6 +1408,8 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>
+  workshop?: Maybe<WorkshopEntityResponse>
+  workshops?: Maybe<WorkshopEntityResponseCollection>
 }
 
 export type QueryArticleArgs = {
@@ -1433,6 +1558,17 @@ export type QueryUsersPermissionsUserArgs = {
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>
   pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryWorkshopArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type QueryWorkshopsArgs = {
+  filters?: InputMaybe<WorkshopFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
@@ -1897,6 +2033,59 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>
 }
 
+export type Workshop = {
+  __typename?: 'Workshop'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  sections?: Maybe<Array<Maybe<WorkshopSectionsDynamicZone>>>
+  slug: Scalars['String']['output']
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type WorkshopEntity = {
+  __typename?: 'WorkshopEntity'
+  attributes?: Maybe<Workshop>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type WorkshopEntityResponse = {
+  __typename?: 'WorkshopEntityResponse'
+  data?: Maybe<WorkshopEntity>
+}
+
+export type WorkshopEntityResponseCollection = {
+  __typename?: 'WorkshopEntityResponseCollection'
+  data: Array<WorkshopEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type WorkshopFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<WorkshopFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type WorkshopInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  sections?: InputMaybe<Array<Scalars['WorkshopSectionsDynamicZoneInput']['input']>>
+  slug?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type WorkshopRelationResponseCollection = {
+  __typename?: 'WorkshopRelationResponseCollection'
+  data: Array<WorkshopEntity>
+}
+
+export type WorkshopSectionsDynamicZone = ComponentSectionsRichtext | Error
+
 export type LinkFragment = {
   __typename?: 'ComponentItemsLink'
   label?: string | null
@@ -2088,8 +2277,8 @@ export type ImageAndTextSectionFragment = {
   __typename?: 'ComponentSectionsImageAndText'
   title: string
   text?: string | null
-  imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-  backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+  imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+  backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
   image: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -2174,12 +2363,180 @@ export type ImageAndTextSectionFragment = {
   } | null
 }
 
+export type ColumnsSectionFragment = {
+  __typename?: 'ComponentSectionsColumns'
+  title: string
+  text?: string | null
+  backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor
+  items: Array<{
+    __typename?: 'ComponentItemsColumnsItem'
+    text?: string | null
+    itemTitle?: string | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
+  } | null>
+}
+
+export type ImageAndTextOverlappedSectionFragment = {
+  __typename?: 'ComponentSectionsImageAndTextOverlapped'
+  title: string
+  text?: string | null
+  imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+  backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+  image: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+  link?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
+}
+
+export type BranchesSectionFragment = {
+  __typename?: 'ComponentSectionsBranches'
+  title: string
+  text?: string | null
+  showAll: boolean
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename?: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
+    }>
+  } | null
+}
+
+export type WorkshopsSectionFragment = {
+  __typename?: 'ComponentSectionsWorkshops'
+  title: string
+  text?: string | null
+  showAll: boolean
+  workshops?: {
+    __typename?: 'WorkshopRelationResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+type PageSections_ComponentSectionsBranches_Fragment = {
+  __typename: 'ComponentSectionsBranches'
+  title: string
+  text?: string | null
+  showAll: boolean
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename?: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
+    }>
+  } | null
+}
+
+type PageSections_ComponentSectionsColumns_Fragment = {
+  __typename: 'ComponentSectionsColumns'
+  title: string
+  text?: string | null
+  backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor
+  items: Array<{
+    __typename?: 'ComponentItemsColumnsItem'
+    text?: string | null
+    itemTitle?: string | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
+  } | null>
+}
+
 type PageSections_ComponentSectionsImageAndText_Fragment = {
   __typename: 'ComponentSectionsImageAndText'
   title: string
   text?: string | null
-  imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-  backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+  imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+  backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
   image: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -2230,6 +2587,63 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
     } | null
   } | null
   secondaryButton?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename?: 'ArticleEntity'
+        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename?: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename?: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
+}
+
+type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
+  __typename: 'ComponentSectionsImageAndTextOverlapped'
+  title: string
+  text?: string | null
+  imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+  backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+  image: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+  link?: {
     __typename?: 'ComponentItemsLink'
     label?: string | null
     url?: string | null
@@ -2279,12 +2693,31 @@ type PageSections_ComponentSectionsRichtext_Fragment = {
   content?: any | null
 }
 
+type PageSections_ComponentSectionsWorkshops_Fragment = {
+  __typename: 'ComponentSectionsWorkshops'
+  title: string
+  text?: string | null
+  showAll: boolean
+  workshops?: {
+    __typename?: 'WorkshopRelationResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
+  | PageSections_ComponentSectionsBranches_Fragment
+  | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
+  | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
+  | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
 
 export type ArticleSlugEntityFragment = {
@@ -2461,7 +2894,12 @@ export type ArticleBySlugQuery = {
 export type BranchEntityFragment = {
   __typename?: 'BranchEntity'
   id?: string | null
-  attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+  attributes?: {
+    __typename?: 'Branch'
+    title: string
+    address?: string | null
+    slug: string
+  } | null
 }
 
 export type BranchesQueryVariables = Exact<{ [key: string]: never }>
@@ -2473,7 +2911,12 @@ export type BranchesQuery = {
     data: Array<{
       __typename?: 'BranchEntity'
       id?: string | null
-      attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
     }>
   } | null
 }
@@ -2489,7 +2932,12 @@ export type BranchBySlugQuery = {
     data: Array<{
       __typename?: 'BranchEntity'
       id?: string | null
-      attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Branch'
+        title: string
+        address?: string | null
+        slug: string
+      } | null
     }>
   } | null
 }
@@ -2738,11 +3186,57 @@ export type PageEntityFragment = {
     > | null
     sections?: Array<
       | {
+          __typename: 'ComponentSectionsBranches'
+          title: string
+          text?: string | null
+          showAll: boolean
+          branches?: {
+            __typename?: 'BranchRelationResponseCollection'
+            data: Array<{
+              __typename?: 'BranchEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Branch'
+                title: string
+                address?: string | null
+                slug: string
+              } | null
+            }>
+          } | null
+        }
+      | {
+          __typename: 'ComponentSectionsColumns'
+          title: string
+          text?: string | null
+          backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor
+          items: Array<{
+            __typename?: 'ComponentItemsColumnsItem'
+            text?: string | null
+            itemTitle?: string | null
+            image?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
+            } | null
+          } | null>
+        }
+      | {
           __typename: 'ComponentSectionsImageAndText'
           title: string
           text?: string | null
-          imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-          backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+          imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+          backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
           image: {
             __typename?: 'UploadFileEntityResponse'
             data?: {
@@ -2827,6 +3321,62 @@ export type PageEntityFragment = {
           } | null
         }
       | {
+          __typename: 'ComponentSectionsImageAndTextOverlapped'
+          title: string
+          text?: string | null
+          imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+          backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+          image: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          }
+          link?: {
+            __typename?: 'ComponentItemsLink'
+            label?: string | null
+            url?: string | null
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename?: 'PageEntity'
+                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+              } | null
+            } | null
+            article?: {
+              __typename?: 'ArticleEntityResponse'
+              data?: {
+                __typename?: 'ArticleEntity'
+                attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+              } | null
+            } | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename?: 'BranchEntity'
+                attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+              } | null
+            } | null
+            document?: {
+              __typename?: 'DocumentEntityResponse'
+              data?: {
+                __typename?: 'DocumentEntity'
+                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsOrderedCards'
           title: string
           cards: Array<{
@@ -2836,6 +3386,20 @@ export type PageEntityFragment = {
           } | null>
         }
       | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+      | {
+          __typename: 'ComponentSectionsWorkshops'
+          title: string
+          text?: string | null
+          showAll: boolean
+          workshops?: {
+            __typename?: 'WorkshopRelationResponseCollection'
+            data: Array<{
+              __typename?: 'WorkshopEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            }>
+          } | null
+        }
       | { __typename: 'Error' }
       | null
     > | null
@@ -2907,11 +3471,57 @@ export type PagesQuery = {
         > | null
         sections?: Array<
           | {
+              __typename: 'ComponentSectionsBranches'
+              title: string
+              text?: string | null
+              showAll: boolean
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    title: string
+                    address?: string | null
+                    slug: string
+                  } | null
+                }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsColumns'
+              title: string
+              text?: string | null
+              backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor
+              items: Array<{
+                __typename?: 'ComponentItemsColumnsItem'
+                text?: string | null
+                itemTitle?: string | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
+              } | null>
+            }
+          | {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
-              imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-              backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+              imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+              backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
               image: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -2996,6 +3606,62 @@ export type PagesQuery = {
               } | null
             }
           | {
+              __typename: 'ComponentSectionsImageAndTextOverlapped'
+              title: string
+              text?: string | null
+              imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+              backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+              image: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+              link?: {
+                __typename?: 'ComponentItemsLink'
+                label?: string | null
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                  } | null
+                } | null
+              } | null
+            }
+          | {
               __typename: 'ComponentSectionsOrderedCards'
               title: string
               cards: Array<{
@@ -3005,6 +3671,20 @@ export type PagesQuery = {
               } | null>
             }
           | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+          | {
+              __typename: 'ComponentSectionsWorkshops'
+              title: string
+              text?: string | null
+              showAll: boolean
+              workshops?: {
+                __typename?: 'WorkshopRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'WorkshopEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                }>
+              } | null
+            }
           | { __typename: 'Error' }
           | null
         > | null
@@ -3080,11 +3760,57 @@ export type PageBySlugQuery = {
         > | null
         sections?: Array<
           | {
+              __typename: 'ComponentSectionsBranches'
+              title: string
+              text?: string | null
+              showAll: boolean
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    title: string
+                    address?: string | null
+                    slug: string
+                  } | null
+                }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsColumns'
+              title: string
+              text?: string | null
+              backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor
+              items: Array<{
+                __typename?: 'ComponentItemsColumnsItem'
+                text?: string | null
+                itemTitle?: string | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
+              } | null>
+            }
+          | {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
-              imagePosition: Enum_Componentsectionsimageandtext_Imageposition
-              backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
+              imagePositionImageAndText: Enum_Componentsectionsimageandtext_Imageposition
+              backgroundColorImageAndText: Enum_Componentsectionsimageandtext_Backgroundcolor
               image: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -3169,6 +3895,62 @@ export type PageBySlugQuery = {
               } | null
             }
           | {
+              __typename: 'ComponentSectionsImageAndTextOverlapped'
+              title: string
+              text?: string | null
+              imagePositionImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Imageposition
+              backgroundColorImageAndTextOverlapped: Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor
+              image: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+              link?: {
+                __typename?: 'ComponentItemsLink'
+                label?: string | null
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename?: 'ArticleEntity'
+                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename?: 'BranchEntity'
+                    attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentEntity'
+                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                  } | null
+                } | null
+              } | null
+            }
+          | {
               __typename: 'ComponentSectionsOrderedCards'
               title: string
               cards: Array<{
@@ -3178,6 +3960,20 @@ export type PageBySlugQuery = {
               } | null>
             }
           | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+          | {
+              __typename: 'ComponentSectionsWorkshops'
+              title: string
+              text?: string | null
+              showAll: boolean
+              workshops?: {
+                __typename?: 'WorkshopRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'WorkshopEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                }>
+              } | null
+            }
           | { __typename: 'Error' }
           | null
         > | null
@@ -3218,6 +4014,42 @@ export type TagBySlugQuery = {
       __typename?: 'TagEntity'
       id?: string | null
       attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type WorkshopEntityFragment = {
+  __typename?: 'WorkshopEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+}
+
+export type WorkshopsQueryVariables = Exact<{ [key: string]: never }>
+
+export type WorkshopsQuery = {
+  __typename?: 'Query'
+  workshops?: {
+    __typename?: 'WorkshopEntityResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type WorkshopBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type WorkshopBySlugQuery = {
+  __typename?: 'Query'
+  workshops?: {
+    __typename?: 'WorkshopEntityResponseCollection'
+    data: Array<{
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     }>
   } | null
 }
@@ -3304,15 +4136,6 @@ export const ArticleEntityFragmentDoc = gql`
     }
   }
   ${ArticleCardEntityFragmentDoc}
-`
-export const BranchEntityFragmentDoc = gql`
-  fragment BranchEntity on BranchEntity {
-    id
-    attributes {
-      title
-      slug
-    }
-  }
 `
 export const DocumentEntityFragmentDoc = gql`
   fragment DocumentEntity on DocumentEntity {
@@ -3467,8 +4290,8 @@ export const ImageAndTextSectionFragmentDoc = gql`
   fragment ImageAndTextSection on ComponentSectionsImageAndText {
     title
     text
-    imagePosition
-    backgroundColor
+    imagePositionImageAndText: imagePosition
+    backgroundColorImageAndText: backgroundColor
     image {
       data {
         ...UploadImageEntity
@@ -3484,6 +4307,86 @@ export const ImageAndTextSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const ColumnsSectionFragmentDoc = gql`
+  fragment ColumnsSection on ComponentSectionsColumns {
+    title
+    text
+    backgroundColor
+    items {
+      itemTitle: title
+      text
+      image {
+        data {
+          ...UploadImageEntity
+        }
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
+export const ImageAndTextOverlappedSectionFragmentDoc = gql`
+  fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
+    title
+    text
+    imagePositionImageAndTextOverlapped: imagePosition
+    backgroundColorImageAndTextOverlapped: backgroundColor
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    link {
+      ...Link
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+  ${LinkFragmentDoc}
+`
+export const BranchEntityFragmentDoc = gql`
+  fragment BranchEntity on BranchEntity {
+    id
+    attributes {
+      title
+      address
+      slug
+    }
+  }
+`
+export const BranchesSectionFragmentDoc = gql`
+  fragment BranchesSection on ComponentSectionsBranches {
+    title
+    text
+    showAll
+    branches {
+      data {
+        ...BranchEntity
+      }
+    }
+  }
+  ${BranchEntityFragmentDoc}
+`
+export const WorkshopEntityFragmentDoc = gql`
+  fragment WorkshopEntity on WorkshopEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const WorkshopsSectionFragmentDoc = gql`
+  fragment WorkshopsSection on ComponentSectionsWorkshops {
+    title
+    text
+    showAll
+    workshops {
+      data {
+        ...WorkshopEntity
+      }
+    }
+  }
+  ${WorkshopEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -3496,10 +4399,26 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsImageAndText {
       ...ImageAndTextSection
     }
+    ... on ComponentSectionsColumns {
+      ...ColumnsSection
+    }
+    ... on ComponentSectionsImageAndTextOverlapped {
+      ...ImageAndTextOverlappedSection
+    }
+    ... on ComponentSectionsBranches {
+      ...BranchesSection
+    }
+    ... on ComponentSectionsWorkshops {
+      ...WorkshopsSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
   ${ImageAndTextSectionFragmentDoc}
+  ${ColumnsSectionFragmentDoc}
+  ${ImageAndTextOverlappedSectionFragmentDoc}
+  ${BranchesSectionFragmentDoc}
+  ${WorkshopsSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
@@ -3657,6 +4576,26 @@ export const TagBySlugDocument = gql`
     }
   }
   ${TagEntityFragmentDoc}
+`
+export const WorkshopsDocument = gql`
+  query Workshops {
+    workshops {
+      data {
+        ...WorkshopEntity
+      }
+    }
+  }
+  ${WorkshopEntityFragmentDoc}
+`
+export const WorkshopBySlugDocument = gql`
+  query WorkshopBySlug($slug: String!) {
+    workshops(filters: { slug: { eq: $slug } }) {
+      data {
+        ...WorkshopEntity
+      }
+    }
+  }
+  ${WorkshopEntityFragmentDoc}
 `
 
 export type SdkFunctionWrapper = <T>(
@@ -3862,6 +4801,36 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'TagBySlug',
+        'query',
+        variables,
+      )
+    },
+    Workshops(
+      variables?: WorkshopsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<WorkshopsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<WorkshopsQuery>(WorkshopsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Workshops',
+        'query',
+        variables,
+      )
+    },
+    WorkshopBySlug(
+      variables: WorkshopBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<WorkshopBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<WorkshopBySlugQuery>(WorkshopBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'WorkshopBySlug',
         'query',
         variables,
       )

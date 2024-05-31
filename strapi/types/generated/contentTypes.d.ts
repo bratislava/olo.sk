@@ -754,6 +754,12 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
+    address: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
     slug: Attribute.UID<'api::branch.branch', 'title'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -971,7 +977,15 @@ export interface ApiPagePage extends Schema.CollectionType {
         number
       >
     sections: Attribute.DynamicZone<
-      ['sections.richtext', 'sections.ordered-cards', 'sections.image-and-text']
+      [
+        'sections.richtext',
+        'sections.branches',
+        'sections.columns',
+        'sections.image-and-text',
+        'sections.image-and-text-overlapped',
+        'sections.ordered-cards',
+        'sections.workshops',
+      ]
     >
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
@@ -1021,6 +1035,31 @@ export interface ApiTagTag extends Schema.CollectionType {
   }
 }
 
+export interface ApiWorkshopWorkshop extends Schema.CollectionType {
+  collectionName: 'workshops'
+  info: {
+    singularName: 'workshop'
+    pluralName: 'workshops'
+    displayName: 'Workshopy'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
+    sections: Attribute.DynamicZone<['sections.richtext']>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::workshop.workshop', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::workshop.workshop', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1048,6 +1087,7 @@ declare module '@strapi/types' {
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
       'api::tag.tag': ApiTagTag
+      'api::workshop.workshop': ApiWorkshopWorkshop
     }
   }
 }

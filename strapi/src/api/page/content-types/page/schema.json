@@ -47,7 +47,15 @@
     },
     "sections": {
       "type": "dynamiczone",
-      "components": ["sections.richtext", "sections.ordered-cards", "sections.image-and-text"]
+      "components": [
+        "sections.richtext",
+        "sections.branches",
+        "sections.columns",
+        "sections.image-and-text",
+        "sections.image-and-text-overlapped",
+        "sections.ordered-cards",
+        "sections.workshops"
+      ]
     }
   }
 }

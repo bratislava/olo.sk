@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_workshops",
+  "info": {
+    "displayName": "Workshops",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "showAll": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "workshops": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workshop.workshop"
+    }
+  }
+}

@@ -16,7 +16,7 @@ const BasicHeader = ({ title, text, className }: BasicHeaderProps) => {
     // 50rem = 800px
     <div
       className={cn(
-        'flex flex-col items-start gap-4 py-6 lg:gap-6 lg:py-12 lg:[&>*]:w-[50rem]',
+        'flex flex-col items-start gap-4 py-6 lg:gap-6 lg:py-12 lg:[&>*]:max-w-[50rem]',
         className,
       )}
     >

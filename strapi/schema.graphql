@@ -298,6 +298,28 @@ input ComponentHeaderSectionsImageInput {
   title: String
 }
 
+type ComponentHeaderSectionsSideImage {
+  id: ID!
+  media: UploadFileEntityResponse!
+  text: String
+  title: String!
+}
+
+input ComponentHeaderSectionsSideImageFiltersInput {
+  and: [ComponentHeaderSectionsSideImageFiltersInput]
+  not: ComponentHeaderSectionsSideImageFiltersInput
+  or: [ComponentHeaderSectionsSideImageFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentHeaderSectionsSideImageInput {
+  id: ID
+  media: ID
+  text: String
+  title: String
+}
+
 type ComponentItemsColumnsItem {
   id: ID!
   image: UploadFileEntityResponse
@@ -811,7 +833,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1179,7 +1201,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 

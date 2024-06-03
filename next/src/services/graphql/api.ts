@@ -319,6 +319,14 @@ export type ComponentHeaderSectionsImage = {
   title: Scalars['String']['output']
 }
 
+export type ComponentHeaderSectionsSideImage = {
+  __typename?: 'ComponentHeaderSectionsSideImage'
+  id: Scalars['ID']['output']
+  media: UploadFileEntityResponse
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
 export type ComponentItemsColumnsItem = {
   __typename?: 'ComponentItemsColumnsItem'
   id: Scalars['ID']['output']
@@ -708,6 +716,7 @@ export type GenericMorph =
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
+  | ComponentHeaderSectionsSideImage
   | ComponentItemsColumnsItem
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
@@ -1351,6 +1360,7 @@ export type PageHeaderDynamicZone =
   | ComponentHeaderSectionsArticles
   | ComponentHeaderSectionsBasic
   | ComponentHeaderSectionsImage
+  | ComponentHeaderSectionsSideImage
   | Error
 
 export type PageInput = {
@@ -2197,6 +2207,28 @@ export type ImageHeaderSectionFragment = {
   }
 }
 
+export type SideImageHeaderSectionFragment = {
+  __typename?: 'ComponentHeaderSectionsSideImage'
+  title: string
+  text?: string | null
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+}
+
 export type GalleryHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsGallery'
   medias: {
@@ -2425,12 +2457,35 @@ type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
   }
 }
 
+type HeaderSections_ComponentHeaderSectionsSideImage_Fragment = {
+  __typename: 'ComponentHeaderSectionsSideImage'
+  title: string
+  text?: string | null
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  }
+}
+
 type HeaderSections_Error_Fragment = { __typename: 'Error' }
 
 export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsArticles_Fragment
   | HeaderSections_ComponentHeaderSectionsBasic_Fragment
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
+  | HeaderSections_ComponentHeaderSectionsSideImage_Fragment
   | HeaderSections_Error_Fragment
 
 export type RichtextSectionFragment = {
@@ -3415,6 +3470,27 @@ export type PageEntityFragment = {
             } | null
           }
         }
+      | {
+          __typename: 'ComponentHeaderSectionsSideImage'
+          title: string
+          text?: string | null
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          }
+        }
       | { __typename: 'Error' }
       | null
     > | null
@@ -3740,6 +3816,27 @@ export type PagesQuery = {
           | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
               __typename: 'ComponentHeaderSectionsImage'
+              title: string
+              text?: string | null
+              media: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsSideImage'
               title: string
               text?: string | null
               media: {
@@ -4088,6 +4185,27 @@ export type PageBySlugQuery = {
           | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
               __typename: 'ComponentHeaderSectionsImage'
+              title: string
+              text?: string | null
+              media: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              }
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsSideImage'
               title: string
               text?: string | null
               media: {
@@ -4571,6 +4689,18 @@ export const ImageHeaderSectionFragmentDoc = gql`
   }
   ${UploadImageEntityFragmentDoc}
 `
+export const SideImageHeaderSectionFragmentDoc = gql`
+  fragment SideImageHeaderSection on ComponentHeaderSectionsSideImage {
+    title
+    text
+    media {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
 export const BasicHeaderSectionFragmentDoc = gql`
   fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
     title
@@ -4601,6 +4731,9 @@ export const HeaderSectionsFragmentDoc = gql`
     ... on ComponentHeaderSectionsImage {
       ...ImageHeaderSection
     }
+    ... on ComponentHeaderSectionsSideImage {
+      ...SideImageHeaderSection
+    }
     ... on ComponentHeaderSectionsBasic {
       ...BasicHeaderSection
     }
@@ -4609,6 +4742,7 @@ export const HeaderSectionsFragmentDoc = gql`
     }
   }
   ${ImageHeaderSectionFragmentDoc}
+  ${SideImageHeaderSectionFragmentDoc}
   ${BasicHeaderSectionFragmentDoc}
   ${ArticlesHeaderSectionFragmentDoc}
 `

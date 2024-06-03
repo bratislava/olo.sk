@@ -8,6 +8,16 @@ fragment ImageHeaderSection on ComponentHeaderSectionsImage {
   }
 }
 
+fragment SideImageHeaderSection on ComponentHeaderSectionsSideImage {
+  title
+  text
+  media {
+    data {
+      ...UploadImageEntity
+    }
+  }
+}
+
 fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
   medias(pagination: { limit: -1 }) {
     data {
@@ -51,6 +61,10 @@ fragment HeaderSections on PageHeaderDynamicZone {
 
   ... on ComponentHeaderSectionsImage {
     ...ImageHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsSideImage {
+    ...SideImageHeaderSection
   }
 
   ... on ComponentHeaderSectionsBasic {

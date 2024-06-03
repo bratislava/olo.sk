@@ -968,7 +968,12 @@ export interface ApiPagePage extends Schema.CollectionType {
     parentPage: Attribute.Relation<'api::page.page', 'manyToOne', 'api::page.page'>
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
     header: Attribute.DynamicZone<
-      ['header-sections.articles', 'header-sections.basic', 'header-sections.image']
+      [
+        'header-sections.articles',
+        'header-sections.basic',
+        'header-sections.image',
+        'header-sections.side-image',
+      ]
     > &
       Attribute.SetMinMax<
         {

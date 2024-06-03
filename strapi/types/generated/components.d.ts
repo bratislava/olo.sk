@@ -69,6 +69,19 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsSideImage extends Schema.Component {
+  collectionName: 'components_header_sections_side_images'
+  info: {
+    displayName: 'Obr\u00E1zok vpravo'
+    icon: 'picture'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    media: Attribute.Media & Attribute.Required
+  }
+}
+
 export interface ItemsColumnsItem extends Schema.Component {
   collectionName: 'components_items_columns_items'
   info: {
@@ -268,6 +281,7 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
+      'header-sections.side-image': HeaderSectionsSideImage
       'items.columns-item': ItemsColumnsItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem

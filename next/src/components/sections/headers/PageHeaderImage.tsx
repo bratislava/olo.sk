@@ -18,22 +18,15 @@ const PageHeaderImage = ({ header }: Props) => {
 
   const {
     url: imageUrl,
-    width: imageWidth,
-    height: imageHeight,
     alternativeText: imageAlternativeText,
     name: imageName,
   } = media.data?.attributes ?? {}
-
-  const imageAspectRatio = imageWidth && imageHeight ? imageWidth / imageHeight : 16 / 9
 
   return (
     <>
       <SectionContainer background="secondary">
         <BasicHeader title={title} text={text} />
-        <div
-          style={{ aspectRatio: imageAspectRatio }}
-          className="relative overflow-hidden max-lg:-mx-4 lg:top-18 lg:-mt-18 lg:rounded-2xl"
-        >
+        <div className="relative aspect-[1216/440] overflow-hidden max-lg:-mx-4 lg:top-18 lg:-mt-18 lg:rounded-2xl">
           {imageUrl ? (
             <Image
               src={imageUrl}

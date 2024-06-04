@@ -263,17 +263,23 @@ input ComponentHeaderSectionsBranchMapInput {
 type ComponentHeaderSectionsGallery {
   id: ID!
   medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
+  text: String
+  title: String!
 }
 
 input ComponentHeaderSectionsGalleryFiltersInput {
   and: [ComponentHeaderSectionsGalleryFiltersInput]
   not: ComponentHeaderSectionsGalleryFiltersInput
   or: [ComponentHeaderSectionsGalleryFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsGalleryInput {
   id: ID
   medias: [ID]
+  text: String
+  title: String
 }
 
 type ComponentHeaderSectionsImage {
@@ -1201,7 +1207,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 

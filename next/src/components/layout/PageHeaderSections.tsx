@@ -2,6 +2,7 @@ import React from 'react'
 
 import PageHeaderArticles from '@/src/components/sections/headers/PageHeaderArticles'
 import PageHeaderBasic from '@/src/components/sections/headers/PageHeaderBasic'
+import PageHeaderGallery from '@/src/components/sections/headers/PageHeaderGallery'
 import PageHeaderImage from '@/src/components/sections/headers/PageHeaderImage'
 import PageHeaderSideImage from '@/src/components/sections/headers/PageHeaderSideImage'
 import { HeaderSectionsFragment } from '@/src/services/graphql/api'
@@ -23,6 +24,9 @@ const PageHeaderSection = ({ header }: Props) => {
 
     case 'ComponentHeaderSectionsArticles':
       return <PageHeaderArticles header={header} />
+
+    case 'ComponentHeaderSectionsGallery':
+      return <PageHeaderGallery header={header} />
 
     default:
       return null

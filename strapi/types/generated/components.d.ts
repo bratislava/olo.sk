@@ -51,6 +51,8 @@ export interface HeaderSectionsGallery extends Schema.Component {
     description: ''
   }
   attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
     medias: Attribute.Media & Attribute.Required
   }
 }

@@ -973,6 +973,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'header-sections.basic',
         'header-sections.image',
         'header-sections.side-image',
+        'header-sections.gallery',
       ]
     > &
       Attribute.SetMinMax<

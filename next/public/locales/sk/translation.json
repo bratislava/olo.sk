@@ -14,5 +14,6 @@
   "modalShare.xTwitter": "X (Twitter)",
   "pagination.aria.goToNextPage": "Ísť na ďalšiu stranu",
   "pagination.aria.goToPage": "Ísť na stranu {page}",
-  "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu"
+  "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu",
+  "tag.category.other": "iné"
 }

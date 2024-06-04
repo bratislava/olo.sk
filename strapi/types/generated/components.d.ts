@@ -1,5 +1,36 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
+export interface HeaderSectionsArticles extends Schema.Component {
+  collectionName: 'components_header_sections_articles'
+  info: {
+    displayName: '\u010Cl\u00E1nky (aktuality)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    articlesTitle: Attribute.String & Attribute.Required
+    firstArticle: Attribute.Relation<'header-sections.articles', 'oneToOne', 'api::article.article'>
+    secondArticle: Attribute.Relation<
+      'header-sections.articles',
+      'oneToOne',
+      'api::article.article'
+    >
+  }
+}
+
+export interface HeaderSectionsBasic extends Schema.Component {
+  collectionName: 'components_header_sections_basics'
+  info: {
+    displayName: 'Basic'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+  }
+}
+
 export interface HeaderSectionsBranchMap extends Schema.Component {
   collectionName: 'components_header_sections_branch_maps'
   info: {
@@ -32,6 +63,21 @@ export interface HeaderSectionsImage extends Schema.Component {
     description: ''
   }
   attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    media: Attribute.Media & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsSideImage extends Schema.Component {
+  collectionName: 'components_header_sections_side_images'
+  info: {
+    displayName: 'Obr\u00E1zok vpravo'
+    icon: 'picture'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
     media: Attribute.Media & Attribute.Required
   }
 }
@@ -230,9 +276,12 @@ export interface SectionsWorkshops extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'header-sections.articles': HeaderSectionsArticles
+      'header-sections.basic': HeaderSectionsBasic
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
+      'header-sections.side-image': HeaderSectionsSideImage
       'items.columns-item': ItemsColumnsItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem

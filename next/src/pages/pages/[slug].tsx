@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
+import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import Sections from '@/src/components/layout/Sections'
-import PageHeaderSection from '@/src/components/sections/PageHeaderSection'
 import { client } from '@/src/services/graphql'
 import { PageEntityFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
@@ -75,6 +75,7 @@ const Page = ({ page }: PageProps) => {
   }
 
   const { title, perex, sections } = page.attributes
+  const [header] = page.attributes.header ?? []
 
   // const title = useTitle(blogPostTitle)
 
@@ -86,7 +87,7 @@ const Page = ({ page }: PageProps) => {
         <title>{title}</title>
         {perex && <meta name="description" content={perex} />}
       </Head>
-      <PageHeaderSection title={title} />
+      <PageHeaderSections header={header} />
 
       <Sections sections={sections?.filter(isDefined) ?? []} />
       {/* <GlobalCategoryColorProvider */}

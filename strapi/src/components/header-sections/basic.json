@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_header_sections_basics",
+  "info": {
+    "displayName": "Basic",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

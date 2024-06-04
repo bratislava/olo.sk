@@ -1,9 +1,8 @@
 {
-  "collectionName": "components_header_sections_images",
+  "collectionName": "components_header_sections_side_images",
   "info": {
-    "displayName": "Obrázok",
-    "icon": "picture",
-    "description": ""
+    "displayName": "Obrázok vpravo",
+    "icon": "picture"
   },
   "options": {},
   "attributes": {
@@ -15,10 +14,10 @@
       "type": "text"
     },
     "media": {
+      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
-      "required": true,
-      "allowedTypes": ["images"]
+      "required": true
     }
   }
 }

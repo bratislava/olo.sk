@@ -52,7 +52,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
   const DesktopTextContainer = (
     <div
       className={cn(
-        'z-50 flex grow flex-col gap-6 self-start rounded-lg p-6 lg:rounded-2xl lg:p-18',
+        'z-1 flex grow flex-col gap-6 self-start rounded-lg p-6 lg:rounded-2xl lg:p-18',
         {
           'bg-background-primary': backgroundColor !== Enum_Backgroundcolor.Primary,
           'bg-background-tertiary': backgroundColor === Enum_Backgroundcolor.Primary,
@@ -69,7 +69,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
 
   const MobileTextContainer = (
     <div
-      className={cn('z-50 flex grow flex-col gap-6 self-start rounded-lg p-6', {
+      className={cn('z-1 flex w-full grow flex-col gap-6 self-start rounded-lg p-6', {
         'bg-background-primary': backgroundColor !== Enum_Backgroundcolor.Primary,
         'bg-background-tertiary': backgroundColor === Enum_Backgroundcolor.Primary,
         '-mt-6': isImageLeft,
@@ -106,7 +106,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
 
   const MobileImageContainer = (
     <div
-      className={cn('relative z-0 -mx-4 aspect-[320/246]', {
+      className={cn('relative -mx-4 aspect-[320/246]', {
         '-mt-6': isImageLeft,
         '-mb-6': isImageRight,
       })}

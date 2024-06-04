@@ -1,4 +1,16 @@
 fragment ImageHeaderSection on ComponentHeaderSectionsImage {
+  title
+  text
+  media {
+    data {
+      ...UploadImageEntity
+    }
+  }
+}
+
+fragment SideImageHeaderSection on ComponentHeaderSectionsSideImage {
+  title
+  text
   media {
     data {
       ...UploadImageEntity
@@ -23,6 +35,27 @@ fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
   }
 }
 
+fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
+  title
+  text
+}
+
+fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
+  title
+  text
+  articlesTitle
+  firstArticle {
+    data {
+      ...ArticleCardEntity
+    }
+  }
+  secondArticle {
+    data {
+      ...ArticleCardEntity
+    }
+  }
+}
+
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
 
@@ -30,11 +63,15 @@ fragment HeaderSections on PageHeaderDynamicZone {
     ...ImageHeaderSection
   }
 
-  ... on ComponentHeaderSectionsGallery {
-    ...GalleryHeaderSection
+  ... on ComponentHeaderSectionsSideImage {
+    ...SideImageHeaderSection
   }
 
-  ... on ComponentHeaderSectionsBranchMap {
-    ...BranchMapHeaderSection
+  ... on ComponentHeaderSectionsBasic {
+    ...BasicHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsArticles {
+    ...ArticlesHeaderSection
   }
 }

@@ -194,6 +194,55 @@ type CategoryRelationResponseCollection {
   data: [CategoryEntity!]!
 }
 
+type ComponentHeaderSectionsArticles {
+  articlesTitle: String!
+  firstArticle: ArticleEntityResponse
+  id: ID!
+  secondArticle: ArticleEntityResponse
+  text: String
+  title: String!
+}
+
+input ComponentHeaderSectionsArticlesFiltersInput {
+  and: [ComponentHeaderSectionsArticlesFiltersInput]
+  articlesTitle: StringFilterInput
+  firstArticle: ArticleFiltersInput
+  not: ComponentHeaderSectionsArticlesFiltersInput
+  or: [ComponentHeaderSectionsArticlesFiltersInput]
+  secondArticle: ArticleFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentHeaderSectionsArticlesInput {
+  articlesTitle: String
+  firstArticle: ID
+  id: ID
+  secondArticle: ID
+  text: String
+  title: String
+}
+
+type ComponentHeaderSectionsBasic {
+  id: ID!
+  text: String
+  title: String!
+}
+
+input ComponentHeaderSectionsBasicFiltersInput {
+  and: [ComponentHeaderSectionsBasicFiltersInput]
+  not: ComponentHeaderSectionsBasicFiltersInput
+  or: [ComponentHeaderSectionsBasicFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentHeaderSectionsBasicInput {
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentHeaderSectionsBranchMap {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -230,17 +279,45 @@ input ComponentHeaderSectionsGalleryInput {
 type ComponentHeaderSectionsImage {
   id: ID!
   media: UploadFileEntityResponse!
+  text: String
+  title: String!
 }
 
 input ComponentHeaderSectionsImageFiltersInput {
   and: [ComponentHeaderSectionsImageFiltersInput]
   not: ComponentHeaderSectionsImageFiltersInput
   or: [ComponentHeaderSectionsImageFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsImageInput {
   id: ID
   media: ID
+  text: String
+  title: String
+}
+
+type ComponentHeaderSectionsSideImage {
+  id: ID!
+  media: UploadFileEntityResponse!
+  text: String
+  title: String!
+}
+
+input ComponentHeaderSectionsSideImageFiltersInput {
+  and: [ComponentHeaderSectionsSideImageFiltersInput]
+  not: ComponentHeaderSectionsSideImageFiltersInput
+  or: [ComponentHeaderSectionsSideImageFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentHeaderSectionsSideImageInput {
+  id: ID
+  media: ID
+  text: String
+  title: String
 }
 
 type ComponentItemsColumnsItem {
@@ -756,7 +833,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1124,7 +1201,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 

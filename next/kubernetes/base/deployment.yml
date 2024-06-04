@@ -43,7 +43,7 @@ spec:
             periodSeconds: 20
             successThreshold: 1
             failureThreshold: 3
-        - image: ${IMAGE}-storybook:${GIT_TAG}
+        - image: ${IMAGE}-storybook:${GITHUB_SHA}
           name: storybook
           imagePullPolicy: IfNotPresent
           ports:

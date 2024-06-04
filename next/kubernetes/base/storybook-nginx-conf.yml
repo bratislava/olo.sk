@@ -14,7 +14,7 @@ data:
         location ~ ^/storybook$ {
             # needs specific redirect to `/` as routes without
             # trailing `/` do not work
-            return 301 $scheme://$host/storybook/;
+            return 301 storybook/;
         }
 
         location / {

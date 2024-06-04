@@ -34,8 +34,7 @@ const PageHeaderGallery = ({ header }: Props) => {
         <div className="max-lg:hidden">
           <div className="relative lg:top-14 lg:-mt-14">
             <ul
-              className={cn('grid', {
-                'gap-6': imageCount > 1,
+              className={cn('grid gap-6', {
                 'grid-cols-2': imageCount === 2,
                 'grid-cols-3': imageCount > 2,
               })}
@@ -49,11 +48,14 @@ const PageHeaderGallery = ({ header }: Props) => {
                   return (
                     <li
                       className={cn('relative overflow-hidden lg:rounded-lg', {
-                        'aspect-[1218/441]': imageCount === 1,
-                        'aspect-[384/208]': imageCount === 2,
-                        'col-span-2 row-span-2 aspect-[808/440]': imageCount > 2 && index === 0,
-                        'col-[3] row-[1]': index === 1 && imageCount > 2,
-                        'col-[3] row-[2]': index === 2,
+                        // keep the aspect-ratio of whole gallery consistent
+                        'aspect-[1216/440]': imageCount === 1,
+                        'aspect-[596/440] ': imageCount === 2,
+                        'aspect-[808/440] ': imageCount > 2 && index === 0,
+                        // first image is larger when displaying 3 images
+                        'col-[1/3] row-[1/3]': imageCount > 2 && index === 0,
+                        'col-[3/4] row-[1/2]': imageCount > 2 && index === 1,
+                        'col-[3/4] row-[2/3]': imageCount > 2 && index === 2,
                       })}
                     >
                       {imageUrl ? (
@@ -82,7 +84,7 @@ const PageHeaderGallery = ({ header }: Props) => {
         </div>
         {/* Screen: mobile */}
         <div className="lg:hidden">
-          <div className="relative -mx-4 aspect-[320/174] overflow-hidden lg:rounded-lg">
+          <div className="relative -mx-4 aspect-[320/174]">
             {filteredImages[0].attributes ? (
               <Image
                 src={filteredImages[0].attributes.url}

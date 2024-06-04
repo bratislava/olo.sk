@@ -1,5 +1,5 @@
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import BasicHeader from '@/src/components/sections/headers/BasicHeader'
+import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { BasicHeaderSectionFragment } from '@/src/services/graphql/api'
 
 type Props = {
@@ -15,7 +15,7 @@ const PageHeaderBasic = ({ header }: Props) => {
 
   return (
     <SectionContainer background="secondary">
-      <BasicHeader title={title} text={text} />
+      <HeaderTitleText title={title} text={text} />
     </SectionContainer>
   )
 }

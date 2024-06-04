@@ -12,7 +12,7 @@ export type DocumentRowGroupProps = {
 
 const DocumentRowGroup = ({ documentRowCardData, className }: DocumentRowGroupProps) => {
   return (
-    <div
+    <ul
       className={cn(
         'flex flex-col overflow-visible rounded-lg border border-border-default bg-background-primary py-2',
         className,
@@ -21,16 +21,18 @@ const DocumentRowGroup = ({ documentRowCardData, className }: DocumentRowGroupPr
       {documentRowCardData.length > 0
         ? documentRowCardData.map((documentRowCard, index) => {
             return (
-              <DocumentRowCard
-                {...documentRowCard}
-                hasBottomBorder={index < documentRowCardData.length - 1}
-                // elevate z-index to show focus ring on top of other cards
-                className="focus-within:z-50 focus-within:ring-offset-0"
-              />
+              <li>
+                <DocumentRowCard
+                  {...documentRowCard}
+                  hasBottomBorder={index < documentRowCardData.length - 1}
+                  // elevate z-index to show focus ring on top of other cards
+                  className="focus-within:z-1 focus-within:ring-offset-0"
+                />
+              </li>
             )
           })
         : null}
-    </div>
+    </ul>
   )
 }
 

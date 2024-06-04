@@ -7,7 +7,7 @@ import PageHeaderSideImage from '@/src/components/sections/headers/PageHeaderSid
 import { HeaderSectionsFragment } from '@/src/services/graphql/api'
 
 type Props = {
-  header?: HeaderSectionsFragment | null | undefined
+  header: HeaderSectionsFragment | null | undefined
 }
 
 const PageHeaderSection = ({ header }: Props) => {

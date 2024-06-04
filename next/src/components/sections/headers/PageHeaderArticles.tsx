@@ -1,7 +1,7 @@
 import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import BasicHeader from '@/src/components/sections/headers/BasicHeader'
+import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { ArticlesHeaderSectionFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 
@@ -22,7 +22,7 @@ const PageHeaderArticles = ({ header }: Props) => {
 
   return (
     <SectionContainer background="secondary">
-      <BasicHeader
+      <HeaderTitleText
         title={title}
         text={text}
         className="border-action-background-default max-lg:pb-2 lg:border-b"

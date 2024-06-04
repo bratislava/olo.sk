@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import BasicHeader from '@/src/components/sections/headers/BasicHeader'
+import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { SideImageHeaderSectionFragment } from '@/src/services/graphql/api'
 
 type Props = {
@@ -16,34 +16,26 @@ type Props = {
 const PageHeaderSideImage = ({ header }: Props) => {
   const { title, text, media } = header
 
-  const {
-    url: imageUrl,
-    alternativeText: imageAlternativeText,
-    name: imageName,
-  } = media.data?.attributes ?? {}
+  const { url: imageUrl } = media.data?.attributes ?? {}
 
   return (
     <div className="relative flex flex-col">
       {/* TODO breadcrumbs will go here */}
-      {/* Screen: desktop */}
+      {/* Screen : desktop */}
       <div className="max-lg:hidden">
+        {/* This container ensures that the text part of header scales correctly with window width  */}
         <SectionContainer background="secondary">
-          <div className="flex flex-row justify-center gap-12">
-            <BasicHeader title={title} text={text} className="w-1/2 grow" />
-            <div className="w-1/2 grow" />
+          <div className="grid grid-cols-2 gap-12">
+            <HeaderTitleText title={title} text={text} className="col-[1] grow" />
           </div>
         </SectionContainer>
-        <div className="h-18" />
-        <div className="absolute top-0 flex h-full w-full flex-row justify-between gap-12">
-          <div className="w-full" />
-          <div className="relative h-full w-full overflow-hidden rounded-bl-2xl">
+        {/* This div serves as an empty space for the image to overlap correctly */}
+        <div aria-hidden className="h-18" />
+        {/* This div overlaps the grid in SectionContainer and and allows the image to fill the whole right side */}
+        <div className="absolute top-0 grid h-full w-full grid-cols-2 gap-12">
+          <div className="relative col-[2] h-full w-full overflow-hidden rounded-bl-2xl">
             {imageUrl ? (
-              <Image
-                src={imageUrl}
-                alt={imageAlternativeText ?? imageName ?? ''}
-                fill
-                className="z-50 object-cover"
-              />
+              <Image src={imageUrl} alt="" fill className="z-1 object-cover" />
             ) : (
               <ImagePlaceholder />
             )}
@@ -54,15 +46,10 @@ const PageHeaderSideImage = ({ header }: Props) => {
       <div className="lg:hidden">
         <SectionContainer background="secondary">
           <div className="flex flex-col">
-            <BasicHeader title={title} text={text} />
+            <HeaderTitleText title={title} text={text} />
             <div className="relative aspect-[320/222] overflow-hidden max-lg:-mx-4">
               {imageUrl ? (
-                <Image
-                  src={imageUrl}
-                  alt={imageAlternativeText ?? imageName ?? ''}
-                  fill
-                  className="z-50 object-cover"
-                />
+                <Image src={imageUrl} alt="" fill className="z-1 object-cover" />
               ) : (
                 <ImagePlaceholder />
               )}

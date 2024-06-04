@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import BasicHeader from '@/src/components/sections/headers/BasicHeader'
+import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { ImageHeaderSectionFragment } from '@/src/services/graphql/api'
 
 type Props = {
@@ -16,30 +16,22 @@ type Props = {
 const PageHeaderImage = ({ header }: Props) => {
   const { title, text, media } = header
 
-  const {
-    url: imageUrl,
-    alternativeText: imageAlternativeText,
-    name: imageName,
-  } = media.data?.attributes ?? {}
+  const { url: imageUrl } = media.data?.attributes ?? {}
 
   return (
     <>
       <SectionContainer background="secondary">
-        <BasicHeader title={title} text={text} />
+        <HeaderTitleText title={title} text={text} />
         <div className="relative aspect-[1216/440] overflow-hidden max-lg:-mx-4 lg:top-18 lg:-mt-18 lg:rounded-2xl">
           {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt={imageAlternativeText ?? imageName ?? ''}
-              fill
-              className="z-50 object-cover"
-            />
+            <Image src={imageUrl} alt="" fill className="z-1 object-cover" />
           ) : (
             <ImagePlaceholder />
           )}
         </div>
       </SectionContainer>
-      <div className="h-18 bg-background-primary max-lg:hidden" />
+      {/* This div serves as an empty space for the image to overlap correctly */}
+      <div aria-hidden className="h-18 max-lg:hidden" />
     </>
   )
 }

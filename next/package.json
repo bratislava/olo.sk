@@ -40,6 +40,7 @@
     "react-resize-detector": "^10.0.1",
     "storybook": "^8.0.6",
     "tailwind-merge": "^2.2.2",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss-react-aria-components": "^1.1.1"
   },
   "devDependencies": {

@@ -12655,6 +12655,11 @@ tailwind-merge@^2.2.2:
   dependencies:
     "@babel/runtime" "^7.24.1"
 
+tailwind-scrollbar-hide@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/tailwind-scrollbar-hide/-/tailwind-scrollbar-hide-1.1.7.tgz#90b481fb2e204030e3919427416650c54f56f847"
+  integrity sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==
+
 tailwindcss-react-aria-components@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/tailwindcss-react-aria-components/-/tailwindcss-react-aria-components-1.1.2.tgz#29432d7753f2806769b168e50ba96c7486dae448"

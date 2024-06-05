@@ -1,13 +1,10 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React, { ReactNode, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import Button from '@/src/components/common/Button/Button'
-import CarouselControlButton from '@/src/components/common/Carousel/CarouselControlButton'
 import Icon from '@/src/components/common/Icon/Icon'
-
-// Inspired by MKB project and https://inclusive-components.design/a-content-slider/
+import cn from '@/src/utils/cn'
 
 export type AllowedVisibleCount = 1 | 2 | 3 | 4
 
@@ -17,12 +14,18 @@ export type CarouselProps = {
   itemClassName?: string
   items: ReactNode[]
   shiftVariant?: 'single' | 'byPage'
+  controlsVariant?: 'bottom' | 'side'
   visibleCount?: AllowedVisibleCount
   hideControls?: boolean
   noYListSpacing?: boolean
   showControlsOnMobile?: boolean
-  useOldStyledControls?: boolean
 }
+
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1183-12812&m=dev
+ * Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/Carousel/Carousel.tsx
+ * which was inspired by MKB project and https://inclusive-components.design/a-content-slider/
+ */
 
 const Carousel = ({
   className,
@@ -30,11 +33,11 @@ const Carousel = ({
   itemClassName,
   items,
   shiftVariant = 'single',
+  controlsVariant = 'bottom',
   visibleCount = 1,
   hideControls = false,
-  noYListSpacing = false,
+  noYListSpacing = true,
   showControlsOnMobile = false,
-  useOldStyledControls = false,
 }: CarouselProps) => {
   const { t } = useTranslation()
   const scrollerRef = useRef<HTMLUListElement>(null)
@@ -67,19 +70,14 @@ const Carousel = ({
   const isRightControlHidden = noControls || currentIndex >= totalCount - visibleCount
 
   return (
-    <div className={twMerge('relative', className)}>
-      {useOldStyledControls && (
-        <div
-          className={cx({ hidden: isLeftControlHidden, 'max-md:hidden': !showControlsOnMobile })}
-        >
-          <CarouselControlButton direction="left" onPress={handleGoToPrevious} />
-        </div>
-      )}
-
+    <div className={cn('relative ', className)}>
       <ul
-        className={twMerge(
-          'max-md:negative-x-spacing flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-clip scrollbar-hide lg:-mx-2 lg:px-2',
-          noYListSpacing ? '' : 'py-8',
+        className={cn(
+          // if gap is changed, also change card width calculation
+          'max-md:negative-x-spacing flex snap-x snap-mandatory gap-3 overflow-x-auto overflow-y-clip scrollbar-hide lg:gap-8 ',
+          // show the whole focus ring
+          '-my-2 py-2 lg:-mx-2 lg:px-2',
+          { 'py-8 lg:py-8': !noYListSpacing },
           listClassName,
         )}
         ref={scrollerRef}
@@ -87,18 +85,17 @@ const Carousel = ({
         {items?.map((item) => {
           if (React.isValidElement(item)) {
             return (
-              // <li> applies h-full to its (first) child. Custom items height can be achieved by using itemClassName
               <li
                 key={item.key}
                 className={twMerge(
-                  'shrink-0 transform transition-all duration-200 lg:scroll-mx-2 [&>*:first-child]:h-full',
-                  cx({
+                  'shrink-0 transform transition-all duration-200 lg:scroll-mx-2 ',
+                  cn({
                     // 1rem represents 1 gap-4, if gap is changed, also change card width
-                    'w-[calc(100%-1rem)] snap-center': visibleCount === 1,
+                    'w-[calc(100%-1rem)] snap-center ': visibleCount === 1,
                     'snap-start': visibleCount > 1,
-                    'w-[calc((100%-1rem)/2)]': visibleCount === 2,
-                    'w-[calc((100%-2rem)/3)]': visibleCount === 3,
-                    'w-[calc((100%-3rem)/4)]': visibleCount === 4,
+                    'w-[calc((100%-2rem)/2)]': visibleCount === 2,
+                    'w-[calc((100%-4rem)/3)]': visibleCount === 3,
+                    'w-[calc((100%-6rem)/4)]': visibleCount === 4,
                   }),
                   itemClassName,
                 )}
@@ -112,39 +109,62 @@ const Carousel = ({
         })}
       </ul>
 
-      {useOldStyledControls && (
-        <div
-          className={cx({ hidden: isRightControlHidden, 'max-md:hidden': !showControlsOnMobile })}
-        >
-          <CarouselControlButton direction="right" onPress={handleGoToNext} />
-        </div>
-      )}
+      {noControls ? null : (
+        <div className={cn({ 'max-md:hidden': !showControlsOnMobile })}>
+          {controlsVariant === 'side' && (
+            <>
+              <Button
+                variant="icon-wrapped"
+                excludeFromTabOrder
+                onPress={handleGoToPrevious}
+                className={cn(
+                  // figma says size-18, but then the button extends beyond page margin - therefore size-16
+                  'absolute bottom-0 top-0 my-auto size-16 transform rounded-full bg-white',
+                  'left-0 -translate-x-1/2 ',
+                  { hidden: isLeftControlHidden },
+                )}
+                icon={<Icon name="sipka-dolava" />}
+                aria-label={t('carousel.aria.previous')}
+              />
+              <Button
+                variant="icon-wrapped"
+                excludeFromTabOrder
+                onPress={handleGoToNext}
+                className={cn(
+                  'absolute bottom-0 top-0 my-auto size-16 transform rounded-full bg-white',
+                  'right-0 translate-x-1/2 ',
+                  { hidden: isRightControlHidden },
+                )}
+                icon={<Icon name="sipka-doprava" />}
+                aria-label={t('carousel.aria.next')}
+              />
+            </>
+          )}
 
-      {/* Inspired by https://inclusive-components.design/a-content-slider/#thebuttongroup */}
-      {noControls || useOldStyledControls ? null : (
-        <ul
-          aria-label={t('aria.controlButtons')}
-          className={cx('flex gap-2', {
-            'max-md:hidden': !showControlsOnMobile,
-          })}
-        >
-          <li>
-            <Button
-              variant="category-outline"
-              onPress={handleGoToPrevious}
-              icon={<Icon name="sipka-dolava" />}
-              aria-label={t('carousel.aria.previous')}
-            />
-          </li>
-          <li>
-            <Button
-              variant="category-outline"
-              onPress={handleGoToNext}
-              icon={<Icon name="sipka-doprava" />}
-              aria-label={t('carousel.aria.next')}
-            />
-          </li>
-        </ul>
+          {controlsVariant === 'bottom' && (
+            // Inspired by https://inclusive-components.design/a-content-slider/#thebuttongroup
+            <ul aria-label={t('aria.controlButtons')} className="mt-6 flex gap-2">
+              <li>
+                <Button
+                  variant="category-outline"
+                  onPress={handleGoToPrevious}
+                  icon={<Icon name="sipka-dolava" />}
+                  aria-label={t('aria.previous')}
+                  isDisabled={isLeftControlHidden}
+                />
+              </li>
+              <li>
+                <Button
+                  variant="category-outline"
+                  onPress={handleGoToNext}
+                  icon={<Icon name="sipka-doprava" />}
+                  aria-label={t('aria.next')}
+                  isDisabled={isRightControlHidden}
+                />
+              </li>
+            </ul>
+          )}
+        </div>
       )}
     </div>
   )

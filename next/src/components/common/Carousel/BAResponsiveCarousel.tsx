@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import Carousel, {
   AllowedVisibleCount,
   CarouselProps,
-} from '@/src/components/common/Carousel/Carousel'
+} from '@/src/components/common/Carousel/BACarousel'
 
 type Props = {
   mobile?: AllowedVisibleCount
@@ -12,10 +12,10 @@ type Props = {
   desktop?: AllowedVisibleCount
 } & Omit<CarouselProps, 'visibleCount'>
 
-/**
- * Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/Carousel/ResponsiveCarousel.tsx
+/*
+ * TODO: We may want to find more sophisticated solution, but this is clean and works fine,
+ *   and does not overcomplicate Carousel component
  */
-
 const ResponsiveCarousel = ({ mobile = 1, tablet = 2, desktop = 3, className, ...rest }: Props) => {
   return (
     <>

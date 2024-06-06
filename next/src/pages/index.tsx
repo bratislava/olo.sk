@@ -3,11 +3,8 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
-import ResponsiveCarousel from '@/src/components/common/Carousel/BAResponsiveCarousel'
 import Typography from '@/src/components/common/Typography/Typography'
 import Section from '@/src/components/layout/Section/Section'
-import CarouselTest from '@/src/components/sections/CarouselTest'
-import ResponsiveCarouselTest from '@/src/components/sections/ResponsiveCarouselTest'
 import { client } from '@/src/services/graphql'
 import { HomepageEntityFragment } from '@/src/services/graphql/api'
 
@@ -64,7 +61,7 @@ const Homepage = ({ homepage }: PageProps) => {
       {/* </Head> */}
 
       {/* TODO this is just to display data in very basic form, should be replaced by proper component */}
-      {/* <Section>
+      <Section>
         {homepage.attributes?.slides?.map((slide, index) => (
           <div
             // eslint-disable-next-line react/no-array-index-key
@@ -90,15 +87,6 @@ const Homepage = ({ homepage }: PageProps) => {
         <Typography variant="p-default" as="strong">
           {t('helloWorld')}
         </Typography>
-      </div>
-
-      */}
-
-      <div className="flex flex-col items-center justify-center">
-        <Typography variant="h1">Carousel</Typography>
-        <CarouselTest />
-        <Typography variant="h1">ResponsiveCarousel</Typography>
-        <ResponsiveCarouselTest />
       </div>
 
       {/*     <PageLayout> */}

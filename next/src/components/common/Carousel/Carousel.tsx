@@ -17,7 +17,7 @@ export type CarouselProps = {
   controlsVariant?: 'bottom' | 'side'
   visibleCount?: AllowedVisibleCount
   hideControls?: boolean
-  noYListSpacing?: boolean
+  hasVerticalPadding?: boolean
   showControlsOnMobile?: boolean
 }
 
@@ -36,7 +36,7 @@ const Carousel = ({
   controlsVariant = 'bottom',
   visibleCount = 1,
   hideControls = false,
-  noYListSpacing = true,
+  hasVerticalPadding = true,
   showControlsOnMobile = false,
 }: CarouselProps) => {
   const { t } = useTranslation()
@@ -70,14 +70,14 @@ const Carousel = ({
   const isRightControlHidden = noControls || currentIndex >= totalCount - visibleCount
 
   return (
-    <div className={cn('relative ', className)}>
+    <div className={cn('relative', className)}>
       <ul
         className={cn(
           // if gap is changed, also change card width calculation
-          'max-md:negative-x-spacing flex snap-x snap-mandatory gap-3 overflow-x-auto overflow-y-clip scrollbar-hide lg:gap-8 ',
+          'max-md:negative-x-spacing flex snap-x snap-mandatory gap-3 overflow-x-auto overflow-y-clip scrollbar-hide lg:gap-8',
           // show the whole focus ring
           '-my-2 py-2 lg:-mx-2 lg:px-2',
-          { 'py-8 lg:py-8': !noYListSpacing },
+          { 'py-8 lg:py-8': hasVerticalPadding },
           listClassName,
         )}
         ref={scrollerRef}
@@ -88,7 +88,7 @@ const Carousel = ({
               <li
                 key={item.key}
                 className={twMerge(
-                  'shrink-0 transform transition-all duration-200 lg:scroll-mx-2 ',
+                  'shrink-0 transform transition-all duration-200 lg:scroll-mx-2',
                   cn({
                     // 1rem represents 1 gap-4, if gap is changed, also change card width
                     'w-[calc(100%-1rem)] snap-center ': visibleCount === 1,
@@ -143,13 +143,13 @@ const Carousel = ({
 
           {controlsVariant === 'bottom' && (
             // Inspired by https://inclusive-components.design/a-content-slider/#thebuttongroup
-            <ul aria-label={t('aria.controlButtons')} className="mt-6 flex gap-2">
+            <ul aria-label={t('carousel.aria.controlButtons')} className="mt-6 flex gap-2">
               <li>
                 <Button
                   variant="category-outline"
                   onPress={handleGoToPrevious}
                   icon={<Icon name="sipka-dolava" />}
-                  aria-label={t('aria.previous')}
+                  aria-label={t('carousel.aria.previous')}
                   isDisabled={isLeftControlHidden}
                 />
               </li>
@@ -158,7 +158,7 @@ const Carousel = ({
                   variant="category-outline"
                   onPress={handleGoToNext}
                   icon={<Icon name="sipka-doprava" />}
-                  aria-label={t('aria.next')}
+                  aria-label={t('carousel.aria.next')}
                   isDisabled={isRightControlHidden}
                 />
               </li>

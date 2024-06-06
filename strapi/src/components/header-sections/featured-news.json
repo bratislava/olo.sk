@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_header_sections_featured_news",
+  "info": {
+    "displayName": "Aktuality (články)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "articlesTitle": {
+      "type": "string",
+      "required": true
+    },
+    "firstArticle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    },
+    "secondArticle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    }
+  }
+}

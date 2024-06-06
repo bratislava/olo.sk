@@ -1,7 +1,7 @@
 import React from 'react'
 
-import PageHeaderArticles from '@/src/components/sections/headers/PageHeaderArticles'
 import PageHeaderBasic from '@/src/components/sections/headers/PageHeaderBasic'
+import PageHeaderFeaturedNews from '@/src/components/sections/headers/PageHeaderFeaturedNews'
 import PageHeaderGallery from '@/src/components/sections/headers/PageHeaderGallery'
 import PageHeaderImage from '@/src/components/sections/headers/PageHeaderImage'
 import PageHeaderSideImage from '@/src/components/sections/headers/PageHeaderSideImage'
@@ -22,8 +22,8 @@ const PageHeaderSection = ({ header }: Props) => {
     case 'ComponentHeaderSectionsBasic':
       return <PageHeaderBasic header={header} />
 
-    case 'ComponentHeaderSectionsArticles':
-      return <PageHeaderArticles header={header} />
+    case 'ComponentHeaderSectionsFeaturedNews':
+      return <PageHeaderFeaturedNews header={header} />
 
     case 'ComponentHeaderSectionsGallery':
       return <PageHeaderGallery header={header} />

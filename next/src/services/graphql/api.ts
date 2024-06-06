@@ -299,6 +299,16 @@ export type ComponentHeaderSectionsBranchMapBranchesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentHeaderSectionsFeaturedNews = {
+  __typename?: 'ComponentHeaderSectionsFeaturedNews'
+  articlesTitle: Scalars['String']['output']
+  firstArticle?: Maybe<ArticleEntityResponse>
+  id: Scalars['ID']['output']
+  secondArticle?: Maybe<ArticleEntityResponse>
+  text?: Maybe<Scalars['String']['output']>
+  title: Scalars['String']['output']
+}
+
 export type ComponentHeaderSectionsGallery = {
   __typename?: 'ComponentHeaderSectionsGallery'
   id: Scalars['ID']['output']
@@ -716,6 +726,7 @@ export type GenericMorph =
   | ComponentHeaderSectionsArticles
   | ComponentHeaderSectionsBasic
   | ComponentHeaderSectionsBranchMap
+  | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
   | ComponentHeaderSectionsSideImage
@@ -1361,6 +1372,7 @@ export type PageFiltersInput = {
 export type PageHeaderDynamicZone =
   | ComponentHeaderSectionsArticles
   | ComponentHeaderSectionsBasic
+  | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
   | ComponentHeaderSectionsSideImage
@@ -2268,8 +2280,8 @@ export type BasicHeaderSectionFragment = {
   text?: string | null
 }
 
-export type ArticlesHeaderSectionFragment = {
-  __typename?: 'ComponentHeaderSectionsArticles'
+export type FeaturedNewsHeaderSectionFragment = {
+  __typename?: 'ComponentHeaderSectionsFeaturedNews'
   title: string
   text?: string | null
   articlesTitle: string
@@ -2353,6 +2365,16 @@ export type ArticlesHeaderSectionFragment = {
 
 type HeaderSections_ComponentHeaderSectionsArticles_Fragment = {
   __typename: 'ComponentHeaderSectionsArticles'
+}
+
+type HeaderSections_ComponentHeaderSectionsBasic_Fragment = {
+  __typename: 'ComponentHeaderSectionsBasic'
+  title: string
+  text?: string | null
+}
+
+type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
+  __typename: 'ComponentHeaderSectionsFeaturedNews'
   title: string
   text?: string | null
   articlesTitle: string
@@ -2434,12 +2456,6 @@ type HeaderSections_ComponentHeaderSectionsArticles_Fragment = {
   } | null
 }
 
-type HeaderSections_ComponentHeaderSectionsBasic_Fragment = {
-  __typename: 'ComponentHeaderSectionsBasic'
-  title: string
-  text?: string | null
-}
-
 type HeaderSections_ComponentHeaderSectionsGallery_Fragment = {
   __typename: 'ComponentHeaderSectionsGallery'
   title: string
@@ -2511,6 +2527,7 @@ type HeaderSections_Error_Fragment = { __typename: 'Error' }
 export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsArticles_Fragment
   | HeaderSections_ComponentHeaderSectionsBasic_Fragment
+  | HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment
   | HeaderSections_ComponentHeaderSectionsGallery_Fragment
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
   | HeaderSections_ComponentHeaderSectionsSideImage_Fragment
@@ -3394,8 +3411,10 @@ export type PageEntityFragment = {
     slug: string
     perex?: string | null
     header?: Array<
+      | { __typename: 'ComponentHeaderSectionsArticles' }
+      | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
       | {
-          __typename: 'ComponentHeaderSectionsArticles'
+          __typename: 'ComponentHeaderSectionsFeaturedNews'
           title: string
           text?: string | null
           articlesTitle: string
@@ -3476,7 +3495,6 @@ export type PageEntityFragment = {
             } | null
           } | null
         }
-      | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
       | {
           __typename: 'ComponentHeaderSectionsGallery'
           title: string
@@ -3780,8 +3798,10 @@ export type PagesQuery = {
         slug: string
         perex?: string | null
         header?: Array<
+          | { __typename: 'ComponentHeaderSectionsArticles' }
+          | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
-              __typename: 'ComponentHeaderSectionsArticles'
+              __typename: 'ComponentHeaderSectionsFeaturedNews'
               title: string
               text?: string | null
               articlesTitle: string
@@ -3862,7 +3882,6 @@ export type PagesQuery = {
                 } | null
               } | null
             }
-          | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
               __typename: 'ComponentHeaderSectionsGallery'
               title: string
@@ -4170,8 +4189,10 @@ export type PageBySlugQuery = {
         slug: string
         perex?: string | null
         header?: Array<
+          | { __typename: 'ComponentHeaderSectionsArticles' }
+          | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
-              __typename: 'ComponentHeaderSectionsArticles'
+              __typename: 'ComponentHeaderSectionsFeaturedNews'
               title: string
               text?: string | null
               articlesTitle: string
@@ -4252,7 +4273,6 @@ export type PageBySlugQuery = {
                 } | null
               } | null
             }
-          | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
               __typename: 'ComponentHeaderSectionsGallery'
               title: string
@@ -4788,8 +4808,8 @@ export const BasicHeaderSectionFragmentDoc = gql`
     text
   }
 `
-export const ArticlesHeaderSectionFragmentDoc = gql`
-  fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
+export const FeaturedNewsHeaderSectionFragmentDoc = gql`
+  fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
     title
     text
     articlesTitle
@@ -4830,8 +4850,8 @@ export const HeaderSectionsFragmentDoc = gql`
     ... on ComponentHeaderSectionsBasic {
       ...BasicHeaderSection
     }
-    ... on ComponentHeaderSectionsArticles {
-      ...ArticlesHeaderSection
+    ... on ComponentHeaderSectionsFeaturedNews {
+      ...FeaturedNewsHeaderSection
     }
     ... on ComponentHeaderSectionsGallery {
       ...GalleryHeaderSection
@@ -4840,7 +4860,7 @@ export const HeaderSectionsFragmentDoc = gql`
   ${ImageHeaderSectionFragmentDoc}
   ${SideImageHeaderSectionFragmentDoc}
   ${BasicHeaderSectionFragmentDoc}
-  ${ArticlesHeaderSectionFragmentDoc}
+  ${FeaturedNewsHeaderSectionFragmentDoc}
   ${GalleryHeaderSectionFragmentDoc}
 `
 export const RichtextSectionFragmentDoc = gql`

@@ -42,7 +42,7 @@ fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
   text
 }
 
-fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
+fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
   title
   text
   articlesTitle
@@ -73,8 +73,8 @@ fragment HeaderSections on PageHeaderDynamicZone {
     ...BasicHeaderSection
   }
 
-  ... on ComponentHeaderSectionsArticles {
-    ...ArticlesHeaderSection
+  ... on ComponentHeaderSectionsFeaturedNews {
+    ...FeaturedNewsHeaderSection
   }
 
   ... on ComponentHeaderSectionsGallery {

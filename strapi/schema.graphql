@@ -260,6 +260,35 @@ input ComponentHeaderSectionsBranchMapInput {
   id: ID
 }
 
+type ComponentHeaderSectionsFeaturedNews {
+  articlesTitle: String!
+  firstArticle: ArticleEntityResponse
+  id: ID!
+  secondArticle: ArticleEntityResponse
+  text: String
+  title: String!
+}
+
+input ComponentHeaderSectionsFeaturedNewsFiltersInput {
+  and: [ComponentHeaderSectionsFeaturedNewsFiltersInput]
+  articlesTitle: StringFilterInput
+  firstArticle: ArticleFiltersInput
+  not: ComponentHeaderSectionsFeaturedNewsFiltersInput
+  or: [ComponentHeaderSectionsFeaturedNewsFiltersInput]
+  secondArticle: ArticleFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentHeaderSectionsFeaturedNewsInput {
+  articlesTitle: String
+  firstArticle: ID
+  id: ID
+  secondArticle: ID
+  text: String
+  title: String
+}
+
 type ComponentHeaderSectionsGallery {
   id: ID!
   medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
@@ -839,7 +868,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1207,7 +1236,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsArticles | ComponentHeaderSectionsBasic | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 

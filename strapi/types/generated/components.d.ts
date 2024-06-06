@@ -43,6 +43,28 @@ export interface HeaderSectionsBranchMap extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsFeaturedNews extends Schema.Component {
+  collectionName: 'components_header_sections_featured_news'
+  info: {
+    displayName: 'Aktuality (\u010Dl\u00E1nky)'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    articlesTitle: Attribute.String & Attribute.Required
+    firstArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+    secondArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+  }
+}
+
 export interface HeaderSectionsGallery extends Schema.Component {
   collectionName: 'components_header_sections_galleries'
   info: {
@@ -281,6 +303,7 @@ declare module '@strapi/types' {
       'header-sections.articles': HeaderSectionsArticles
       'header-sections.basic': HeaderSectionsBasic
       'header-sections.branch-map': HeaderSectionsBranchMap
+      'header-sections.featured-news': HeaderSectionsFeaturedNews
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
       'header-sections.side-image': HeaderSectionsSideImage

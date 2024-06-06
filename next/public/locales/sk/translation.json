@@ -1,10 +1,12 @@
 {
   "aria.close": "Zavrieť",
+  "carousel.aria.controlButtons": "Ovládacie tlačidlá",
+  "carousel.aria.next": "Ďalší",
+  "carousel.aria.previous": "Predchádzajúci",
   "common.download": "Stiahnuť",
   "common.findOutMore": "Zistiť viac",
   "common.readMore": "Čítať viac",
   "common.showMore": "Zobraziť viac",
-  "helloWorld": "Ahoj svet!",
   "modalShare.copy": "Kopírovať",
   "modalShare.copyLink": "Skopírovať odkaz",
   "modalShare.facebook": "Facebook",
@@ -15,6 +17,5 @@
   "pageHeaderGallery.buttonText": "Všetky fotky",
   "pagination.aria.goToNextPage": "Ísť na ďalšiu stranu",
   "pagination.aria.goToPage": "Ísť na stranu {page}",
-  "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu",
-  "tag.category.other": "iné"
+  "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu"
 }

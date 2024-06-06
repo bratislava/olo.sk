@@ -14,7 +14,7 @@ jobs:
     name: Validate typescript
     uses: bratislava/github-actions/.github/workflows/validate-typescript.yml@stable
     with:
-      workdir: './next'
+      directory: './next'
 
   conditions:
     needs: validate

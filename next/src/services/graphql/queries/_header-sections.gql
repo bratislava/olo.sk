@@ -58,6 +58,16 @@ fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
   }
 }
 
+fragment IconHeaderSection on ComponentHeaderSectionsIcon {
+  title
+  text
+  icon {
+    data {
+      ...UploadImageEntity
+    }
+  }
+}
+
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
 
@@ -79,5 +89,9 @@ fragment HeaderSections on PageHeaderDynamicZone {
 
   ... on ComponentHeaderSectionsGallery {
     ...GalleryHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsIcon {
+    ...IconHeaderSection
   }
 }

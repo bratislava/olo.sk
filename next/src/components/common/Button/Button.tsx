@@ -1,6 +1,3 @@
-'use client'
-
-/* eslint-disable sonarjs/no-duplicate-string */
 import cx from 'classnames'
 import NextLink from 'next/link'
 import { ComponentProps, forwardRef, ReactNode, RefObject } from 'react'

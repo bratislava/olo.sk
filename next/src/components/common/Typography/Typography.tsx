@@ -61,12 +61,12 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
       'whitespace-pre-wrap', // TODO revisit if we want to apply it on all text
       'break-words', // TODO revisit if we want to apply it on all text
       {
-        'lg:leading-14 text-size-h1-hero-r font-black leading-10 lg:text-size-h1-hero':
+        'text-size-h1-hero-r·font-black·leading-10·lg:text-size-h1-hero·lg:leading-14':
           variant === 'h1-hero',
-        'lg:leading-12 text-size-h1-r font-black leading-9 lg:text-size-h1': variant === 'h1',
+        'text-size-h1-r·font-black·leading-9·lg:text-size-h1·lg:leading-12': variant === 'h1',
         'text-size-h2-r font-black leading-8 lg:text-size-h2 lg:leading-10': variant === 'h2',
         'text-size-h3-r font-black leading-7 lg:text-size-h3 lg:leading-9': variant === 'h3',
-        'leading-6.5 text-size-h4-r font-black lg:text-size-h4 lg:leading-8': variant === 'h4',
+        'text-size-h4-r·font-black·leading-6.5': variant === 'h4',
         'text-size-h5-r font-black leading-6 lg:text-size-h5 lg:leading-7': variant === 'h5',
         'text-size-h6-r font-black leading-6 lg:text-size-h6': variant === 'h6',
         'text-size-p-default leading-6 lg:text-size-p-large lg:leading-7':

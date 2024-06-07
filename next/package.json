@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@graphql-codegen/cli": "^5.0.2",
-    "@js-joda/core": "^5.6.2",
     "@strapi/blocks-react-renderer": "^1.0.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",

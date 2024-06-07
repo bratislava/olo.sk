@@ -5,7 +5,6 @@ import Tag from '@/src/components/common/Tag/Tag'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { ArticleEntityFragment } from '@/src/services/graphql/api'
-import cn from '@/src/utils/cn'
 import { formatDate } from '@/src/utils/formatDate'
 
 type Props = {
@@ -27,24 +26,16 @@ const ArticlePageHeader = ({ article }: Props) => {
     <SectionContainer background="secondary">
       {/* 50rem = 800px */}
       <div className="mx-auto lg:max-w-[50rem]">
-        {/* Screen: Desktop */}
-        <div className="flex flex-col items-start gap-6 py-12 max-lg:hidden">
-          <Typography variant="h1">{title}</Typography>
-          <div
-            className={cn('flex w-full items-center', {
-              'justify-end': !tagText,
-              'justify-between': tagText,
-            })}
-          >
-            {tagText ? <Tag variant="large" text={tagText} /> : null}
-            <Typography>{formatDate(addedAt)}</Typography>
+        <div className="flex flex-row flex-wrap items-center gap-6 py-6 lg:py-12">
+          <div className="order-1 w-full shrink-0 max-lg:order-2">
+            <Typography variant="h1">{title}</Typography>
           </div>
-        </div>
-        {/* Screen: Mobile */}
-        <div className="flex flex-col items-start gap-6 py-6 lg:hidden">
-          {tagText ? <Tag variant="small" text={tagText} /> : null}
-          <Typography variant="h1">{title}</Typography>
-          <Typography variant="p-small">{formatDate(addedAt)}</Typography>
+          {tagText ? (
+            <Tag variant="large" text={tagText} className="order-2 max-lg:order-1" />
+          ) : null}
+          <div className="order-3 ml-auto max-lg:w-full">
+            <Typography variant="p-default">{formatDate(addedAt)}</Typography>
+          </div>
         </div>
       </div>
       {/* 63rem = 1008px */}

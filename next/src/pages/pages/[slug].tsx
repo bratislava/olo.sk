@@ -79,6 +79,8 @@ const Page = ({ page }: PageProps) => {
 
   // const title = useTitle(blogPostTitle)
 
+  // TODO scroll to content based on URL
+
   return (
     <>
       {/* <GeneralContextProvider general={general}> */}

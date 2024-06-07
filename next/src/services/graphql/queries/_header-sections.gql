@@ -58,6 +58,14 @@ fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
   }
 }
 
+fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
+  title
+  subTitle
+  anchors {
+    ...Anchor
+  }
+}
+
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
 
@@ -79,5 +87,9 @@ fragment HeaderSections on PageHeaderDynamicZone {
 
   ... on ComponentHeaderSectionsGallery {
     ...GalleryHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsPickupDay {
+    ...PickupDayHeaderSection
   }
 }

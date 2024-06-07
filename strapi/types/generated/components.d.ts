@@ -71,6 +71,19 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsPickupDay extends Schema.Component {
+  collectionName: 'components_header_sections_pickup_days'
+  info: {
+    displayName: 'Odvodzov\u00FD de\u0148'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    subTitle: Attribute.String & Attribute.Required
+    anchors: Attribute.Component<'items.anchor', true>
+  }
+}
+
 export interface HeaderSectionsSideImage extends Schema.Component {
   collectionName: 'components_header_sections_side_images'
   info: {
@@ -81,6 +94,17 @@ export interface HeaderSectionsSideImage extends Schema.Component {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text
     media: Attribute.Media & Attribute.Required
+  }
+}
+
+export interface ItemsAnchor extends Schema.Component {
+  collectionName: 'components_items_anchors'
+  info: {
+    displayName: 'Anchor'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    targetId: Attribute.String & Attribute.Required
   }
 }
 
@@ -261,6 +285,19 @@ export interface SectionsRichtext extends Schema.Component {
   }
 }
 
+export interface SectionsTable extends Schema.Component {
+  collectionName: 'components_sections_tables'
+  info: {
+    displayName: 'Tabu\u013Eka'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    anchorId: Attribute.String
+    text: Attribute.Text
+  }
+}
+
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
@@ -283,7 +320,9 @@ declare module '@strapi/types' {
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.image': HeaderSectionsImage
+      'header-sections.pickup-day': HeaderSectionsPickupDay
       'header-sections.side-image': HeaderSectionsSideImage
+      'items.anchor': ItemsAnchor
       'items.columns-item': ItemsColumnsItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
@@ -295,6 +334,7 @@ declare module '@strapi/types' {
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
+      'sections.table': SectionsTable
       'sections.workshops': SectionsWorkshops
     }
   }

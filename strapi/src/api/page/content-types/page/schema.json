@@ -43,7 +43,8 @@
         "header-sections.basic",
         "header-sections.image",
         "header-sections.side-image",
-        "header-sections.gallery"
+        "header-sections.gallery",
+        "header-sections.pickup-day"
       ],
       "max": 1
     },
@@ -56,6 +57,7 @@
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
         "sections.ordered-cards",
+        "sections.table",
         "sections.workshops"
       ]
     }

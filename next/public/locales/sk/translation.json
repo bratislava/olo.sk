@@ -7,6 +7,7 @@
   "common.findOutMore": "Zistiť viac",
   "common.readMore": "Čítať viac",
   "common.showMore": "Zobraziť viac",
+  "helloWorld": "Ahoj svet",
   "modalShare.copy": "Kopírovať",
   "modalShare.copyLink": "Skopírovať odkaz",
   "modalShare.facebook": "Facebook",
@@ -15,6 +16,7 @@
   "modalShare.shareOnSocialMedia": "Zdieľať cez sociálne siete",
   "modalShare.xTwitter": "X (Twitter)",
   "pageHeaderGallery.buttonText": "Všetky fotky",
+  "PageHeaderPickupDay.allNews": "Všetky novinky",
   "pagination.aria.goToNextPage": "Ísť na ďalšiu stranu",
   "pagination.aria.goToPage": "Ísť na stranu {page}",
   "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu"

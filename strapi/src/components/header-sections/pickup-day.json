@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_header_sections_pickup_days",
+  "info": {
+    "displayName": "Odvodzový deň",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subTitle": {
+      "type": "string",
+      "required": true
+    },
+    "anchors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.anchor"
+    }
+  }
+}

@@ -4,6 +4,7 @@ import PageHeaderArticles from '@/src/components/sections/headers/PageHeaderArti
 import PageHeaderBasic from '@/src/components/sections/headers/PageHeaderBasic'
 import PageHeaderGallery from '@/src/components/sections/headers/PageHeaderGallery'
 import PageHeaderImage from '@/src/components/sections/headers/PageHeaderImage'
+import PageHeaderPickupDay from '@/src/components/sections/headers/PageHeaderPickupDay'
 import PageHeaderSideImage from '@/src/components/sections/headers/PageHeaderSideImage'
 import { HeaderSectionsFragment } from '@/src/services/graphql/api'
 
@@ -27,6 +28,10 @@ const PageHeaderSection = ({ header }: Props) => {
 
     case 'ComponentHeaderSectionsGallery':
       return <PageHeaderGallery header={header} />
+
+    // eslint-disable-next-line no-secrets/no-secrets
+    case 'ComponentHeaderSectionsPickupDay':
+      return <PageHeaderPickupDay header={header} />
 
     default:
       return null

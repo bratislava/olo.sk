@@ -6,6 +6,7 @@ import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTex
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
+import TableSection from '@/src/components/sections/TableSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment } from '@/src/services/graphql/api'
 
@@ -37,6 +38,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsWorkshops':
       return <WorkshopsSection section={section} />
+
+    case 'ComponentSectionsTable':
+      return <TableSection section={section} />
 
     default:
       return null

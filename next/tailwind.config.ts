@@ -145,12 +145,17 @@ const config: Config = {
       borderRadius: {
         4: '4px',
       },
+      lineHeight: {
+        14: '4rem', // 64px
+        12: '3rem', // 48px
+        6.5: '1.625rem', // 26px
+      },
       spacing: {
-        '4.5': '1.125rem',
-        '18': '4.5rem',
+        4.5: '1.125rem', // 18px
+        18: '4.5rem', // 72px
       },
       zIndex: {
-        '1': '1',
+        1: '1',
       },
     },
   },

@@ -42,7 +42,7 @@ fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
   text
 }
 
-fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
+fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
   title
   text
   articlesTitle
@@ -54,6 +54,16 @@ fragment ArticlesHeaderSection on ComponentHeaderSectionsArticles {
   secondArticle {
     data {
       ...ArticleCardEntity
+    }
+  }
+}
+
+fragment IconHeaderSection on ComponentHeaderSectionsIcon {
+  title
+  text
+  icon {
+    data {
+      ...UploadImageEntity
     }
   }
 }
@@ -73,11 +83,15 @@ fragment HeaderSections on PageHeaderDynamicZone {
     ...BasicHeaderSection
   }
 
-  ... on ComponentHeaderSectionsArticles {
-    ...ArticlesHeaderSection
+  ... on ComponentHeaderSectionsFeaturedNews {
+    ...FeaturedNewsHeaderSection
   }
 
   ... on ComponentHeaderSectionsGallery {
     ...GalleryHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsIcon {
+    ...IconHeaderSection
   }
 }

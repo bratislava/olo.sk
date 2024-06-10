@@ -1,3 +1,4 @@
+import { LocalDate } from '@js-joda/core'
 import { useTranslation } from 'next-i18next'
 
 import AnchorPill from '@/src/components/common/AnchorPill/AnchorPill'
@@ -14,11 +15,13 @@ type Props = {
   header: PickupDayHeaderSectionFragment
 }
 
-// TODO replace these dummy items with actual articles when fetcher is implemented
-// eslint-disable-next-line const-case/uppercase
-const DUMMY_CAROUSEL_ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-  return <ArticleCard key={item} title="Article headline" linkHref="#" tagText="TEST" />
-})
+const getCurrentWeekOfYear = () => {
+  return LocalDate.now().isoWeekOfWeekyear()
+}
+
+const isCurrentWeekEven = () => {
+  return getCurrentWeekOfYear() % 2 === 0
+}
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13579&m=dev
@@ -36,7 +39,11 @@ const PageHeaderPickupDay = ({ header }: Props) => {
         <div className="flex flex-col gap-3">
           <Typography variant="h1">{title}</Typography>
           {/* TODO Add even or odd week message */}
-          <Typography variant="p-large">TODO: Even or odd week message</Typography>
+          <Typography variant="p-large">
+            {isCurrentWeekEven()
+              ? t('pageHeaderPickupDay.messageEvenWeek', { weekNumber: getCurrentWeekOfYear() })
+              : t('pageHeaderPickupDay.messageOddWeek', { weekNumber: getCurrentWeekOfYear() })}
+          </Typography>
         </div>
         <ul
           className={cn(
@@ -67,11 +74,13 @@ const PageHeaderPickupDay = ({ header }: Props) => {
             {t('PageHeaderPickupDay.allNews')}
           </Button>
         </div>
-        {/* TODO replace dummy items with actual articles when fetcher is implemented */}
         <ResponsiveCarousel
           desktop={4}
           shiftVariant="byPage"
-          items={DUMMY_CAROUSEL_ITEMS}
+          // TODO replace dummy items with actual articles when fetcher is implemented
+          items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
+            return <ArticleCard key={item} title="Article headline" linkHref="#" tagText="TEST" />
+          })}
           hasVerticalPadding={false}
         />
       </div>

@@ -1,4 +1,5 @@
 import { LocalDate } from '@js-joda/core'
+import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 
 import AnchorPill from '@/src/components/common/AnchorPill/AnchorPill'
@@ -7,6 +8,7 @@ import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import ResponsiveCarousel from '@/src/components/common/Carousel/ResponsiveCarousel'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import { client } from '@/src/services/graphql'
 import { PickupDayHeaderSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
@@ -33,12 +35,22 @@ const PageHeaderPickupDay = ({ header }: Props) => {
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
+  const { data: articlesData } = useQuery({
+    // TODO decide the limit of articles displayed in carousel
+    queryFn: () => client.LatestArticles({ limit: 10 }),
+    queryKey: ['articles'],
+  })
+
+  const filteredArticles =
+    articlesData?.articles?.data.filter(
+      (article) => isDefined(article) && isDefined(article.attributes),
+    ) ?? []
+
   return (
     <SectionContainer background="secondary">
       <div className="flex flex-col gap-6 pb-2 pt-6 lg:gap-8 lg:border-b lg:border-action-background-default lg:py-12">
         <div className="flex flex-col gap-3">
           <Typography variant="h1">{title}</Typography>
-          {/* TODO Add even or odd week message */}
           <Typography variant="p-large">
             {isCurrentWeekEven()
               ? t('pageHeaderPickupDay.messageEvenWeek', { weekNumber: getCurrentWeekOfYear() })
@@ -74,15 +86,31 @@ const PageHeaderPickupDay = ({ header }: Props) => {
             {t('PageHeaderPickupDay.allNews')}
           </Button>
         </div>
-        <ResponsiveCarousel
-          desktop={4}
-          shiftVariant="byPage"
-          // TODO replace dummy items with actual articles when fetcher is implemented
-          items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-            return <ArticleCard key={item} title="Article headline" linkHref="#" tagText="TEST" />
-          })}
-          hasVerticalPadding={false}
-        />
+        {filteredArticles.length > 0 ? (
+          <ResponsiveCarousel
+            desktop={4}
+            shiftVariant="byPage"
+            items={filteredArticles
+              .map((article) => {
+                if (!article.attributes) return null
+
+                const { title: articleTitle, coverMedia, category, slug } = article.attributes
+
+                return (
+                  <ArticleCard
+                    key={slug}
+                    title={articleTitle}
+                    linkHref={`/articles/${slug}`}
+                    imgSrc={coverMedia?.data?.attributes?.url}
+                    tagText={category?.data?.attributes?.title}
+                  />
+                )
+              })
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+              .filter(isDefined)}
+            hasVerticalPadding={false}
+          />
+        ) : null}
       </div>
     </SectionContainer>
   )

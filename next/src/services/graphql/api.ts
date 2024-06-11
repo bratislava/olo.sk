@@ -3235,6 +3235,53 @@ export type ArticleBySlugQuery = {
   } | null
 }
 
+export type LatestArticlesQueryVariables = Exact<{
+  limit: Scalars['Int']['input']
+}>
+
+export type LatestArticlesQuery = {
+  __typename?: 'Query'
+  articles?: {
+    __typename?: 'ArticleEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ArticleEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Article'
+        blocks?: any | null
+        title: string
+        perex?: string | null
+        addedAt: any
+        slug: string
+        coverMedia?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
+        category?: {
+          __typename?: 'CategoryEntityResponse'
+          data?: {
+            __typename?: 'CategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+          } | null
+        } | null
+      } | null
+    }>
+  } | null
+}
+
 export type BranchEntityFragment = {
   __typename?: 'BranchEntity'
   id?: string | null
@@ -5241,6 +5288,16 @@ export const ArticleBySlugDocument = gql`
   }
   ${ArticleEntityFragmentDoc}
 `
+export const LatestArticlesDocument = gql`
+  query LatestArticles($limit: Int!) {
+    articles(sort: "publishedAt:desc", pagination: { limit: $limit }) {
+      data {
+        ...ArticleEntity
+      }
+    }
+  }
+  ${ArticleEntityFragmentDoc}
+`
 export const BranchesDocument = gql`
   query Branches {
     branches {
@@ -5410,6 +5467,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'ArticleBySlug',
+        'query',
+        variables,
+      )
+    },
+    LatestArticles(
+      variables: LatestArticlesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<LatestArticlesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<LatestArticlesQuery>(LatestArticlesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'LatestArticles',
         'query',
         variables,
       )

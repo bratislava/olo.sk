@@ -2,18 +2,18 @@ import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
-import { ArticlesHeaderSectionFragment } from '@/src/services/graphql/api'
+import { FeaturedNewsHeaderSectionFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 
 type Props = {
-  header: ArticlesHeaderSectionFragment
+  header: FeaturedNewsHeaderSectionFragment
 }
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1189-12938&m=dev
  */
 
-const PageHeaderArticles = ({ header }: Props) => {
+const PageHeaderFeaturedNews = ({ header }: Props) => {
   const { title, text, articlesTitle, firstArticle, secondArticle } = header
 
   const filteredArticles =
@@ -55,4 +55,4 @@ const PageHeaderArticles = ({ header }: Props) => {
   )
 }
 
-export default PageHeaderArticles
+export default PageHeaderFeaturedNews

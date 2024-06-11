@@ -64,7 +64,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
               'max-sm:negative-x-spacing scrollbar-hide max-sm:overflow-x-scroll',
             )}
           >
-            {anchors
+            {filteredAnchors
               ?.map((anchor) => {
                 if (!anchor) return null
 

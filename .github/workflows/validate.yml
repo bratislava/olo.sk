@@ -9,3 +9,4 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/validate-typescript.yml@beta
     with:
       directory: './next'
+      typescript-directory: './next'

@@ -57,27 +57,27 @@ const PageHeaderPickupDay = ({ header }: Props) => {
               : t('pageHeaderPickupDay.messageOddWeek', { weekNumber: getCurrentWeekOfYear() })}
           </Typography>
         </div>
-        <ul
-          className={cn(
-            'flex gap-2',
-            'max-sm:negative-x-spacing scrollbar-hide max-sm:overflow-x-scroll',
-          )}
-        >
-          {filteredAnchors?.length
-            ? anchors
-                ?.map((anchor) => {
-                  if (!anchor) return null
+        {filteredAnchors?.length ? (
+          <ul
+            className={cn(
+              'flex gap-2',
+              'max-sm:negative-x-spacing scrollbar-hide max-sm:overflow-x-scroll',
+            )}
+          >
+            {anchors
+              ?.map((anchor) => {
+                if (!anchor) return null
 
-                  return (
-                    <li className="shrink-0">
-                      <AnchorPill text={anchor.label} targetId={anchor?.targetId} />
-                    </li>
-                  )
-                })
-                // eslint-disable-next-line unicorn/no-array-callback-reference
-                .filter(isDefined)
-            : null}
-        </ul>
+                return (
+                  <li className="shrink-0">
+                    <AnchorPill text={anchor.label} targetId={anchor?.targetId} />
+                  </li>
+                )
+              })
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+              .filter(isDefined)}
+          </ul>
+        ) : null}
       </div>
       <div className="flex flex-col gap-6 py-6 lg:py-12">
         <div className="flex flex-col max-lg:gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -90,6 +90,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
           <ResponsiveCarousel
             desktop={4}
             shiftVariant="byPage"
+            controlsVariant="side"
             items={filteredArticles
               .map((article) => {
                 if (!article.attributes) return null

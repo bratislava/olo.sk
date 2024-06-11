@@ -5,7 +5,7 @@ import * as React from 'react'
 
 import BlocksRenderer from '@/src/components/layout/BlocksRenderer'
 import Section from '@/src/components/layout/Section/Section'
-import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
+import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
 import { client } from '@/src/services/graphql'
 import { ArticleEntityFragment } from '@/src/services/graphql/api'
 
@@ -87,8 +87,7 @@ const Page = ({ article }: PageProps) => {
         {perex && <meta name="description" content={perex} />}
       </Head>
 
-      {/* TODO Article page header */}
-      <HeaderTitleText title={title} text={perex} />
+      <ArticlePageHeader article={article} />
 
       {/* TODO Article narrow layout */}
       <Section>

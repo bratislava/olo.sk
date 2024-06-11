@@ -1,24 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
-export interface HeaderSectionsArticles extends Schema.Component {
-  collectionName: 'components_header_sections_articles'
-  info: {
-    displayName: '\u010Cl\u00E1nky (aktuality)'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text
-    articlesTitle: Attribute.String & Attribute.Required
-    firstArticle: Attribute.Relation<'header-sections.articles', 'oneToOne', 'api::article.article'>
-    secondArticle: Attribute.Relation<
-      'header-sections.articles',
-      'oneToOne',
-      'api::article.article'
-    >
-  }
-}
-
 export interface HeaderSectionsBasic extends Schema.Component {
   collectionName: 'components_header_sections_basics'
   info: {
@@ -43,6 +24,28 @@ export interface HeaderSectionsBranchMap extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsFeaturedNews extends Schema.Component {
+  collectionName: 'components_header_sections_featured_news'
+  info: {
+    displayName: 'Aktuality (\u010Dl\u00E1nky)'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    articlesTitle: Attribute.String & Attribute.Required
+    firstArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+    secondArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+  }
+}
+
 export interface HeaderSectionsGallery extends Schema.Component {
   collectionName: 'components_header_sections_galleries'
   info: {
@@ -54,6 +57,19 @@ export interface HeaderSectionsGallery extends Schema.Component {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text
     medias: Attribute.Media & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsIcon extends Schema.Component {
+  collectionName: 'components_header_sections_icons'
+  info: {
+    displayName: 'Ikonka'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    icon: Attribute.Media & Attribute.Required
   }
 }
 
@@ -315,10 +331,11 @@ export interface SectionsWorkshops extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'header-sections.articles': HeaderSectionsArticles
       'header-sections.basic': HeaderSectionsBasic
       'header-sections.branch-map': HeaderSectionsBranchMap
+      'header-sections.featured-news': HeaderSectionsFeaturedNews
       'header-sections.gallery': HeaderSectionsGallery
+      'header-sections.icon': HeaderSectionsIcon
       'header-sections.image': HeaderSectionsImage
       'header-sections.pickup-day': HeaderSectionsPickupDay
       'header-sections.side-image': HeaderSectionsSideImage

@@ -1,8 +1,7 @@
 {
-  "collectionName": "components_header_sections_articles",
+  "collectionName": "components_header_sections_featured_news",
   "info": {
-    "displayName": "Články (aktuality)",
-    "description": ""
+    "displayName": "Aktuality (články)"
   },
   "options": {},
   "attributes": {

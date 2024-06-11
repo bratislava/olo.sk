@@ -237,6 +237,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
       return (
         <Link
           href={rest.href}
+          target={isExternal ? '_blank' : '_self'}
           ref={ref as RefObject<HTMLAnchorElement>}
           className={styles}
           plausibleProps={rest.plausibleProps}

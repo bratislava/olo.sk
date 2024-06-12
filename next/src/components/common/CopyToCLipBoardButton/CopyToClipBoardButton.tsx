@@ -21,7 +21,7 @@ const CopyToClipboardButton = ({ copyText, children, className }: Props) => {
   return (
     <Button
       variant="category-outline"
-      aria-label={t('modalShare.copy')}
+      aria-label={t('shareModal.copy')}
       onPress={() => copy(copyText)}
       startIcon={<Icon name="kopirovat" />}
       className={className}

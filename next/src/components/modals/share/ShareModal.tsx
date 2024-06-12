@@ -12,7 +12,7 @@ import Typography from '@/src/components/common/Typography/Typography'
 
 // TODO social buttons share functionality
 
-type ModalShareProps = {
+type ShareModalProps = {
   triggerButton: ReactNode
 }
 
@@ -20,7 +20,7 @@ type ModalShareProps = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-11025&m=dev
  */
 
-const ModalShare = ({ triggerButton }: ModalShareProps) => {
+const ShareModal = ({ triggerButton }: ShareModalProps) => {
   const { t } = useTranslation()
 
   const [inputValue, setInputValue] = useState(
@@ -32,10 +32,10 @@ const ModalShare = ({ triggerButton }: ModalShareProps) => {
     <DialogTrigger>
       {triggerButton}
       <Modal>
-        <Dialog title={t('modalShare.share')}>
+        <Dialog title={t('shareModal.share')}>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-2">
-              <Typography variant="h6">{t('modalShare.shareOnSocialMedia')}</Typography>
+              <Typography variant="h6">{t('shareModal.shareOnSocialMedia')}</Typography>
               <div className="flex items-stretch gap-3 max-lg:flex-col">
                 <Button
                   variant="category-outline"
@@ -43,7 +43,7 @@ const ModalShare = ({ triggerButton }: ModalShareProps) => {
                   size="large"
                   startIcon={<Icon name="social-media-facebook" />}
                 >
-                  {t('modalShare.facebook')}
+                  {t('shareModal.facebook')}
                 </Button>
                 <Button
                   variant="category-outline"
@@ -51,7 +51,7 @@ const ModalShare = ({ triggerButton }: ModalShareProps) => {
                   size="large"
                   startIcon={<Icon name="social-media-twitter" />}
                 >
-                  {t('modalShare.xTwitter')}
+                  {t('shareModal.xTwitter')}
                 </Button>
                 <Button
                   variant="category-outline"
@@ -59,7 +59,7 @@ const ModalShare = ({ triggerButton }: ModalShareProps) => {
                   size="large"
                   startIcon={<Icon name="social-media-linkedin" />}
                 >
-                  {t('modalShare.linkedIn')}
+                  {t('shareModal.linkedIn')}
                 </Button>
               </div>
             </div>
@@ -68,11 +68,11 @@ const ModalShare = ({ triggerButton }: ModalShareProps) => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 className="grow"
-                labelText={t('modalShare.copyLink')}
+                labelText={t('shareModal.copyLink')}
                 disabled
               />
               <CopyToClipboardButton copyText={inputValue} className="max-lg:w-full max-lg:grow">
-                {t('modalShare.copy')}
+                {t('shareModal.copy')}
               </CopyToClipboardButton>
             </div>
           </div>
@@ -82,4 +82,4 @@ const ModalShare = ({ triggerButton }: ModalShareProps) => {
   )
 }
 
-export default ModalShare
+export default ShareModal

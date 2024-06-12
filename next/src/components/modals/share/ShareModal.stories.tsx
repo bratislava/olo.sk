@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import Button from '@/src/components/common/Button/Button'
 
-import ModalShareComponent from './ModalShare'
+import ShareModalComponent from './ShareModal'
 
-const meta: Meta<typeof ModalShareComponent> = {
-  component: ModalShareComponent,
-  title: 'Components/ModalShare',
+const meta: Meta<typeof ShareModalComponent> = {
+  component: ShareModalComponent,
+  title: 'Components/ShareModal',
   tags: ['autodocs'],
   args: { triggerButton: <Button variant="category-outline">Show</Button> },
   decorators: [
@@ -19,10 +19,10 @@ const meta: Meta<typeof ModalShareComponent> = {
 }
 
 export default meta
-type Story = StoryObj<typeof ModalShareComponent>
+type Story = StoryObj<typeof ShareModalComponent>
 
-export const ModalShare: Story = {
+export const ShareModal: Story = {
   render: (args) => {
-    return <ModalShareComponent {...args} />
+    return <ShareModalComponent {...args} />
   },
 }

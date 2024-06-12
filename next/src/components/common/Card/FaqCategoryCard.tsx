@@ -36,7 +36,7 @@ const FaqCategoryCard = ({
         <div className="rounded-[20px] bg-background-secondary p-4">
           <Icon name={iconName} className="size-6" />
         </div>
-        <div className="flex flex-col items-start gap-4 self-stretch ">
+        <div className="flex flex-col items-start gap-4 self-stretch">
           <Typography
             variant="h5"
             className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

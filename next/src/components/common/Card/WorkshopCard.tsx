@@ -36,7 +36,7 @@ const WorkshopCard = ({
         <div className="rounded-2xl bg-background-secondary p-4">
           <Icon name={iconName} className="size-6" />
         </div>
-        <div className="flex flex-col items-start gap-4 self-stretch lg:gap-10 ">
+        <div className="flex flex-col items-start gap-4 self-stretch lg:gap-10">
           <Typography
             variant="h4"
             className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

@@ -131,7 +131,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
           </>
         )}
       </div>
-      <div className="flex flex-col lg:hidden ">
+      <div className="flex flex-col lg:hidden">
         {isImageLeft ? (
           <>
             {MobileImageContainer}

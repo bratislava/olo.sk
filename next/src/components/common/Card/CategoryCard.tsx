@@ -24,7 +24,7 @@ const CategoryCard = ({ title, className, linkHref, imgSrc }: CategoryCardProps)
     <CardBase variant="unstyled" className={cn('rounded-lg', className)}>
       <div className="flex flex-col gap-4">
         <CardImage imgSrc={imgSrc} className="aspect-square rounded-lg" />
-        <div className="flex flex-col gap-2 ">
+        <div className="flex flex-col gap-2">
           <Typography
             variant="h5"
             className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

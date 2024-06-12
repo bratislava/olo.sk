@@ -16,8 +16,8 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13672&t=MZpsUzCxw11KJPJr-4
  */
 
-const ColumnedItemsSection = ({ section }: Props) => {
-  const { title, text, backgroundColor, items } = section
+const ColumnsSection = ({ section }: Props) => {
+  const { title, text, backgroundColorColumns: backgroundColor, items } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -77,4 +77,4 @@ const ColumnedItemsSection = ({ section }: Props) => {
   )
 }
 
-export default ColumnedItemsSection
+export default ColumnsSection

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_items_columns_list_items",
+  "info": {
+    "displayName": "Columns List item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

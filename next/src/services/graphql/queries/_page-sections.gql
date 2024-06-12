@@ -31,7 +31,7 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
 fragment ColumnsSection on ComponentSectionsColumns {
   title
   text
-  backgroundColor
+  backgroundColorColumns: backgroundColor
   items {
     itemTitle: title
     text
@@ -80,6 +80,22 @@ fragment WorkshopsSection on ComponentSectionsWorkshops {
   }
 }
 
+fragment ColumnsListSection on ComponentSectionsColumnsList {
+  title
+  listIcon {
+    data {
+      ...UploadImageEntity
+    }
+  }
+  backgroundColorColumnList: backgroundColor
+  leftColumn {
+    content
+  }
+  rightColumn {
+    content
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -109,5 +125,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsWorkshops {
     ...WorkshopsSection
+  }
+
+  ... on ComponentSectionsColumnsList {
+    ...ColumnsListSection
   }
 }

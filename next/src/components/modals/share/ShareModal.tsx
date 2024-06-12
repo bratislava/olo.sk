@@ -2,15 +2,13 @@ import { useTranslation } from 'next-i18next'
 import { ReactNode, useState } from 'react'
 import { DialogTrigger } from 'react-aria-components'
 
-import Button from '@/src/components/common/Button/Button'
 import CopyToClipboardButton from '@/src/components/common/CopyToCLipBoardButton/CopyToClipBoardButton'
 import Icon from '@/src/components/common/Icon/Icon'
 import Input from '@/src/components/common/Input/Input'
 import Dialog from '@/src/components/common/ModalDialog/Dialog'
 import Modal from '@/src/components/common/ModalDialog/Modal'
+import SocialMediaButton from '@/src/components/common/SocialMediaButton/SocialMediaButton'
 import Typography from '@/src/components/common/Typography/Typography'
-
-// TODO social buttons share functionality
 
 type ShareModalProps = {
   triggerButton: ReactNode
@@ -37,30 +35,30 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
             <div className="flex flex-col gap-2">
               <Typography variant="h6">{t('shareModal.shareOnSocialMedia')}</Typography>
               <div className="flex items-stretch gap-3 max-lg:flex-col">
-                <Button
-                  variant="category-outline"
-                  fullWidth
-                  size="large"
+                <SocialMediaButton
                   startIcon={<Icon name="social-media-facebook" />}
+                  getSocialLink={(url) => `https://www.facebook.com/sharer/sharer.php?u=${url}`}
+                  fullWidth
                 >
                   {t('shareModal.facebook')}
-                </Button>
-                <Button
-                  variant="category-outline"
-                  fullWidth
-                  size="large"
+                </SocialMediaButton>
+                <SocialMediaButton
+                  // TODO discuss if we want to add twitterTextQuery as in bratislava.sk
+                  getSocialLink={(url) => `https://twitter.com/intent/tweet?url=${url}`}
                   startIcon={<Icon name="social-media-twitter" />}
+                  fullWidth
                 >
                   {t('shareModal.xTwitter')}
-                </Button>
-                <Button
-                  variant="category-outline"
-                  fullWidth
-                  size="large"
+                </SocialMediaButton>
+                <SocialMediaButton
+                  getSocialLink={(url) =>
+                    `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+                  }
                   startIcon={<Icon name="social-media-linkedin" />}
+                  fullWidth
                 >
                   {t('shareModal.linkedIn')}
-                </Button>
+                </SocialMediaButton>
               </div>
             </div>
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end">

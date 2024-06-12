@@ -1,26 +1,19 @@
 import { useTranslation } from 'next-i18next'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { DialogTrigger } from 'react-aria-components'
 
 import Button from '@/src/components/common/Button/Button'
+import CopyToClipboardButton from '@/src/components/common/CopyToCLipBoardButton/CopyToClipBoardButton'
 import Icon from '@/src/components/common/Icon/Icon'
+import Input from '@/src/components/common/Input/Input'
 import Dialog from '@/src/components/common/ModalDialog/Dialog'
 import Modal from '@/src/components/common/ModalDialog/Modal'
 import Typography from '@/src/components/common/Typography/Typography'
 
-// TODO share functionality
+// TODO social buttons share functionality
 
 type ModalShareProps = {
   triggerButton: ReactNode
-}
-
-// Temporary placeholder to be replaced with Input field
-const InputPlaceholder = () => {
-  return (
-    <Button variant="black-outline" isDisabled className="grow text-left max-lg:w-full  ">
-      input placeholder
-    </Button>
-  )
 }
 
 /**
@@ -29,6 +22,11 @@ const InputPlaceholder = () => {
 
 const ModalShare = ({ triggerButton }: ModalShareProps) => {
   const { t } = useTranslation()
+
+  const [inputValue, setInputValue] = useState(
+    // inspired by https://stackoverflow.com/a/65200178
+    typeof window === 'undefined' ? '' : window.location.href,
+  )
 
   return (
     <DialogTrigger>
@@ -65,19 +63,17 @@ const ModalShare = ({ triggerButton }: ModalShareProps) => {
                 </Button>
               </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <Typography variant="h6">{t('modalShare.copyLink')}</Typography>
-              <div className="flex flex-wrap gap-3 max-lg:flex-col">
-                {/* TODO change to Input field */}
-                <InputPlaceholder />
-                <Button
-                  variant="category-outline"
-                  startIcon={<Icon name="kopirovat" />}
-                  className="max-lg:w-full max-lg:grow"
-                >
-                  {t('modalShare.copy')}
-                </Button>
-              </div>
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
+              <Input
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                className="grow"
+                labelText={t('modalShare.copyLink')}
+                disabled
+              />
+              <CopyToClipboardButton copyText={inputValue} className="max-lg:w-full max-lg:grow">
+                {t('modalShare.copy')}
+              </CopyToClipboardButton>
             </div>
           </div>
         </Dialog>

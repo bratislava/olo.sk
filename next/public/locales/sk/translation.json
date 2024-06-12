@@ -1,5 +1,7 @@
 {
   "aria.close": "Zavrieť",
+  "ArticlePage.shareblock.buttonText": "Zdieľať článok",
+  "ArticlePage.shareblock.text": "Páčil sa vám článok?",
   "carousel.aria.controlButtons": "Ovládacie tlačidlá",
   "carousel.aria.next": "Ďalší",
   "carousel.aria.previous": "Predchádzajúci",
@@ -7,6 +9,7 @@
   "common.findOutMore": "Zistiť viac",
   "common.readMore": "Čítať viac",
   "common.showMore": "Zobraziť viac",
+  "helloWorld": "Ahoj svet",
   "modalShare.copy": "Kopírovať",
   "modalShare.copyLink": "Skopírovať odkaz",
   "modalShare.facebook": "Facebook",

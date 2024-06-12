@@ -25,6 +25,7 @@ export const iconNameMap: Record<string, keyof typeof Icons> = {
   kopirovat: 'CopyIcon',
   kos: 'BinIcon',
   krizik: 'CrossIcon',
+  lietadlo: 'AirplaneIcon',
   'live-help': 'LiveHelpIcon',
   lupa: 'SearchIcon',
   'mestske-konto': 'CityAccountIcon',

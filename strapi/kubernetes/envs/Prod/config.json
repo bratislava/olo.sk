@@ -7,6 +7,7 @@
     "DB_CPU_REQUESTS": "100m",
     "DB_MEMORY_REQUESTS": "128Mi",
     "DB_CPU_LIMITS": "2",
-    "DB_MEMORY_LIMITS": "2Gi"
+    "DB_MEMORY_LIMITS": "2Gi",
+    "DB_SIZE": "10Gi"
   }
 }

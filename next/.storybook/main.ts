@@ -2,7 +2,15 @@ import type { StorybookConfig } from '@storybook/nextjs'
 import svgoConfig from '../svgo.config.mjs'
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../src/**/*.mdx',
+    // By importing specific folders first, we can influence the order in which stories will appear in the sidebar
+    // See more: https://github.com/storybookjs/storybook/issues/6327#issuecomment-612687059
+    '../src/components/sections/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/components/sections/headers/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/components/common/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
   typescript: {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {}, // Available only when reactDocgen is set to 'react-docgen-typescript'
@@ -23,7 +31,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: ['../public', '../src/assets/images'],
+  staticDirs: ['../public', '../src/assets'],
   webpackFinal: async (config) => {
     const imageRule = config.module?.rules?.find((rule) => {
       const test = (rule as { test: RegExp }).test

@@ -45,10 +45,24 @@ const config: StorybookConfig = {
 
     imageRule.exclude = /\.svg$/
 
-    config.module?.rules?.push({
-      test: /\.svg$/,
-      use: { loader: '@svgr/webpack', options: { svgoConfig } },
-    })
+    config.module?.rules?.push(
+      // Load svg as asset if import is ending in ?url so we can use it in <Image />
+      {
+        test: /\.svg$/i,
+        resourceQuery: /url/, // only include if path ends with *.svg?url
+        type: 'asset/resource', // See more: https://webpack.js.org/guides/asset-modules/
+      },
+      // Convert all other *.svg imports to React components
+      {
+        test: /\.svg$/i,
+        issuer: imageRule.issuer,
+        resourceQuery: { not: [/url/] }, // exclude if *.svg?url
+        use: {
+          loader: '@svgr/webpack',
+          options: { svgoConfig },
+        },
+      },
+    )
 
     return config
   },

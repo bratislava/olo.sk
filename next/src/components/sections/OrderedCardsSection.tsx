@@ -41,7 +41,7 @@ const OrderedCardsSection = ({ section }: Props) => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Typography variant="h5" className_onlyWhenNecessary="line-clamp-1">
+                    <Typography variant="h5" className_onlyWhenNecessary="whitespace-pre-line">
                       {card.title}
                     </Typography>
                     <Typography>{card.text}</Typography>

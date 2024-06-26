@@ -65,7 +65,7 @@ const ImageAndTextSection = ({ section }: Props) => {
             variant="category-outline"
             asLink
             hasLinkIcon={false}
-            {...getLinkProps(primaryButton)}
+            {...getLinkProps(secondaryButton)}
           />
         ) : null}
       </div>

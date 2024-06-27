@@ -1,5 +1,3 @@
-'use client'
-
 import cx from 'classnames'
 
 import Typography from '@/src/components/common/Typography/Typography'

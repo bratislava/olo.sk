@@ -1,7 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useSearchParams } from 'next/navigation'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
+import { useEffect } from 'react'
 
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import Sections from '@/src/components/layout/Sections'
@@ -70,6 +72,18 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 }
 
 const Page = ({ page }: PageProps) => {
+  const searchParams = useSearchParams()
+
+  const scrollId = searchParams.get('scrollId')
+
+  useEffect(() => {
+    if (!scrollId) return
+    const targetElement = document.querySelector(`#${scrollId}`)
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [scrollId])
+
   if (!page.attributes) {
     return null
   }
@@ -79,17 +93,22 @@ const Page = ({ page }: PageProps) => {
 
   // const title = useTitle(blogPostTitle)
 
+  // TODO scroll to content based on URL
+
   return (
     <>
       {/* <GeneralContextProvider general={general}> */}
       {/* TODO common Head/Seo component */}
+
       <Head>
         <title>{title}</title>
         {perex && <meta name="description" content={perex} />}
       </Head>
+
       <PageHeaderSections header={header} />
 
       <Sections sections={sections?.filter(isDefined) ?? []} />
+
       {/* <GlobalCategoryColorProvider */}
       {/*   color={blogPost?.attributes?.tag?.data?.attributes?.pageCategory?.data?.attributes?.color} */}
       {/* /> */}

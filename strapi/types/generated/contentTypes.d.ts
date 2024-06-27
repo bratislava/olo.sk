@@ -975,6 +975,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'header-sections.icon',
         'header-sections.image',
         'header-sections.side-image',
+        'header-sections.pickup-day',
       ]
     > &
       Attribute.SetMinMax<
@@ -992,6 +993,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.ordered-cards',
+        'sections.table',
         'sections.workshops',
       ]
     >

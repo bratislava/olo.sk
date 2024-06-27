@@ -35,6 +35,11 @@ fragment Link on ComponentItemsLink {
   }
 }
 
+fragment Anchor on ComponentItemsAnchor {
+  label
+  targetId
+}
+
 fragment UploadImageSrcEntity on UploadFileEntity {
   id
   attributes {

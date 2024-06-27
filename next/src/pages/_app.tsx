@@ -4,6 +4,8 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 
+import BAQueryClientProvider from '@/src/providers/BAQueryClientProvider'
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
@@ -24,20 +26,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       {/*   // uncomment for local testing, needs to be run with `yarn build && yarn start` */}
       {/*   // trackLocalhost */}
       {/* > */}
-      {/*   <BAQueryClientProvider> */}
-      {/*     <QueryParamProvider adapter={NextAdapter}> */}
-      {/*       <BAI18nProvider> */}
-      {/*         <OverlayProvider> */}
-      {/* <NavMenuContextProvider> */}
-      {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
-      <div id="root">
-        <Component {...pageProps} />
-      </div>
-      {/* </NavMenuContextProvider> */}
-      {/* </OverlayProvider> */}
-      {/* </BAI18nProvider> */}
-      {/* </QueryParamProvider> */}
-      {/* </BAQueryClientProvider> */}
+      <BAQueryClientProvider>
+        {/*     <QueryParamProvider adapter={NextAdapter}> */}
+        {/*       <BAI18nProvider> */}
+        {/*         <OverlayProvider> */}
+        {/* <NavMenuContextProvider> */}
+        {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
+        <div id="root">
+          <Component {...pageProps} />
+        </div>
+        {/* </NavMenuContextProvider> */}
+        {/* </OverlayProvider> */}
+        {/* </BAI18nProvider> */}
+        {/* </QueryParamProvider> */}
+      </BAQueryClientProvider>
       {/* </PlausibleProvider> */}
       {/* </NextIntlClientProvider> */}
     </>

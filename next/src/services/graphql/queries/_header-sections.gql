@@ -68,6 +68,14 @@ fragment IconHeaderSection on ComponentHeaderSectionsIcon {
   }
 }
 
+fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
+  title
+  carouselTitle
+  anchors {
+    ...Anchor
+  }
+}
+
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
 
@@ -93,5 +101,9 @@ fragment HeaderSections on PageHeaderDynamicZone {
 
   ... on ComponentHeaderSectionsIcon {
     ...IconHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsPickupDay {
+    ...PickupDayHeaderSection
   }
 }

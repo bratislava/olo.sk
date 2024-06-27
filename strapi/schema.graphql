@@ -326,6 +326,29 @@ input ComponentHeaderSectionsImageInput {
   title: String
 }
 
+type ComponentHeaderSectionsPickupDay {
+  anchors(filters: ComponentItemsAnchorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsAnchor]
+  carouselTitle: String!
+  id: ID!
+  title: String!
+}
+
+input ComponentHeaderSectionsPickupDayFiltersInput {
+  anchors: ComponentItemsAnchorFiltersInput
+  and: [ComponentHeaderSectionsPickupDayFiltersInput]
+  carouselTitle: StringFilterInput
+  not: ComponentHeaderSectionsPickupDayFiltersInput
+  or: [ComponentHeaderSectionsPickupDayFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentHeaderSectionsPickupDayInput {
+  anchors: [ComponentItemsAnchorInput]
+  carouselTitle: String
+  id: ID
+  title: String
+}
+
 type ComponentHeaderSectionsSideImage {
   id: ID!
   media: UploadFileEntityResponse!
@@ -346,6 +369,26 @@ input ComponentHeaderSectionsSideImageInput {
   media: ID
   text: String
   title: String
+}
+
+type ComponentItemsAnchor {
+  id: ID!
+  label: String!
+  targetId: String!
+}
+
+input ComponentItemsAnchorFiltersInput {
+  and: [ComponentItemsAnchorFiltersInput]
+  label: StringFilterInput
+  not: ComponentItemsAnchorFiltersInput
+  or: [ComponentItemsAnchorFiltersInput]
+  targetId: StringFilterInput
+}
+
+input ComponentItemsAnchorInput {
+  id: ID
+  label: String
+  targetId: String
 }
 
 type ComponentItemsColumnsItem {
@@ -669,6 +712,29 @@ input ComponentSectionsRichtextInput {
   id: ID
 }
 
+type ComponentSectionsTable {
+  anchorId: String
+  id: ID!
+  text: String
+  title: String!
+}
+
+input ComponentSectionsTableFiltersInput {
+  anchorId: StringFilterInput
+  and: [ComponentSectionsTableFiltersInput]
+  not: ComponentSectionsTableFiltersInput
+  or: [ComponentSectionsTableFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsTableInput {
+  anchorId: String
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsWorkshops {
   id: ID!
   showAll: Boolean!
@@ -912,7 +978,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1280,7 +1346,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsBasic | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsBasic | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 
@@ -1299,7 +1365,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_items_anchors",
+  "info": {
+    "displayName": "Anchor"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "targetId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

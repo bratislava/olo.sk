@@ -16,15 +16,7 @@ type Props = {
  */
 
 const ColumnsListSection = ({ section }: Props) => {
-  const {
-    title,
-    backgroundColorColumnList: backgroundColor,
-    listIcon,
-    leftColumn,
-    rightColumn,
-  } = section
-
-  const iconSrc = listIcon?.data?.attributes?.url
+  const { title, backgroundColorColumnList: backgroundColor, leftColumn, rightColumn } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -43,6 +35,8 @@ const ColumnsListSection = ({ section }: Props) => {
                         return null
                       }
 
+                      const iconSrc = columnItem.icon?.data?.attributes?.url
+
                       return (
                         <div className="flex gap-4">
                           {iconSrc ? (
@@ -51,7 +45,7 @@ const ColumnsListSection = ({ section }: Props) => {
                             </div>
                           ) : null}
                           {/* TODO discuss whether we want to use rich text here instead */}
-                          <Typography variant="p-default">{columnItem.content}</Typography>
+                          <Typography variant="p-default">{columnItem.text}</Typography>
                         </div>
                       )
                     })

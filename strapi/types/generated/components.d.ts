@@ -120,7 +120,8 @@ export interface ItemsColumnsListItem extends Schema.Component {
     description: ''
   }
   attributes: {
-    content: Attribute.Text & Attribute.Required
+    icon: Attribute.Media
+    text: Attribute.Text & Attribute.Required
   }
 }
 
@@ -201,7 +202,6 @@ export interface SectionsColumnsList extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    listIcon: Attribute.Media
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
     leftColumn: Attribute.Component<'items.columns-list-item', true>
     rightColumn: Attribute.Component<'items.columns-list-item', true>

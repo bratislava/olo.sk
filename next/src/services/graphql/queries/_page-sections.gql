@@ -82,17 +82,22 @@ fragment WorkshopsSection on ComponentSectionsWorkshops {
 
 fragment ColumnsListSection on ComponentSectionsColumnsList {
   title
-  listIcon {
-    data {
-      ...UploadImageEntity
-    }
-  }
   backgroundColorColumnList: backgroundColor
   leftColumn {
-    content
+    icon {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    text
   }
   rightColumn {
-    content
+    icon {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    text
   }
 }
 

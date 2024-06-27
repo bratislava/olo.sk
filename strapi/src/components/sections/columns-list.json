@@ -10,15 +10,13 @@
       "type": "string",
       "required": true
     },
-    "listIcon": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"]
-    },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["primary", "secondary", "tertiary"]
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
     },
     "leftColumn": {
       "type": "component",

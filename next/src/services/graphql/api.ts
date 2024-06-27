@@ -355,15 +355,16 @@ export type ComponentItemsColumnsItemFiltersInput = {
 
 export type ComponentItemsColumnsListItem = {
   __typename?: 'ComponentItemsColumnsListItem'
-  content: Scalars['String']['output']
+  icon?: Maybe<UploadFileEntityResponse>
   id: Scalars['ID']['output']
+  text: Scalars['String']['output']
 }
 
 export type ComponentItemsColumnsListItemFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentItemsColumnsListItemFiltersInput>>>
-  content?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ComponentItemsColumnsListItemFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsColumnsListItemFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
 }
 
 export type ComponentItemsLink = {
@@ -500,7 +501,6 @@ export type ComponentSectionsColumnsList = {
   backgroundColor?: Maybe<Enum_Componentsectionscolumnslist_Backgroundcolor>
   id: Scalars['ID']['output']
   leftColumn?: Maybe<Array<Maybe<ComponentItemsColumnsListItem>>>
-  listIcon?: Maybe<UploadFileEntityResponse>
   rightColumn?: Maybe<Array<Maybe<ComponentItemsColumnsListItem>>>
   title: Scalars['String']['output']
 }
@@ -2844,29 +2844,45 @@ export type ColumnsListSectionFragment = {
   __typename?: 'ComponentSectionsColumnsList'
   title: string
   backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
-  listIcon?: {
-    __typename?: 'UploadFileEntityResponse'
-    data?: {
-      __typename?: 'UploadFileEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'UploadFile'
-        url: string
-        width?: number | null
-        height?: number | null
-        caption?: string | null
-        alternativeText?: string | null
-        name: string
-      } | null
-    } | null
-  } | null
   leftColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    content: string
+    text: string
+    icon?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
   } | null> | null
   rightColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    content: string
+    text: string
+    icon?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
   } | null> | null
 }
 
@@ -2922,29 +2938,45 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
   __typename: 'ComponentSectionsColumnsList'
   title: string
   backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
-  listIcon?: {
-    __typename?: 'UploadFileEntityResponse'
-    data?: {
-      __typename?: 'UploadFileEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'UploadFile'
-        url: string
-        width?: number | null
-        height?: number | null
-        caption?: string | null
-        alternativeText?: string | null
-        name: string
-      } | null
-    } | null
-  } | null
   leftColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    content: string
+    text: string
+    icon?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
   } | null> | null
   rightColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    content: string
+    text: string
+    icon?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
   } | null> | null
 }
 
@@ -3775,29 +3807,45 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsColumnsList'
           title: string
           backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
-          listIcon?: {
-            __typename?: 'UploadFileEntityResponse'
-            data?: {
-              __typename?: 'UploadFileEntity'
-              id?: string | null
-              attributes?: {
-                __typename?: 'UploadFile'
-                url: string
-                width?: number | null
-                height?: number | null
-                caption?: string | null
-                alternativeText?: string | null
-                name: string
-              } | null
-            } | null
-          } | null
           leftColumn?: Array<{
             __typename?: 'ComponentItemsColumnsListItem'
-            content: string
+            text: string
+            icon?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
+            } | null
           } | null> | null
           rightColumn?: Array<{
             __typename?: 'ComponentItemsColumnsListItem'
-            content: string
+            text: string
+            icon?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
+            } | null
           } | null> | null
         }
       | {
@@ -4211,29 +4259,45 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsColumnsList'
               title: string
               backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
-              listIcon?: {
-                __typename?: 'UploadFileEntityResponse'
-                data?: {
-                  __typename?: 'UploadFileEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'UploadFile'
-                    url: string
-                    width?: number | null
-                    height?: number | null
-                    caption?: string | null
-                    alternativeText?: string | null
-                    name: string
-                  } | null
-                } | null
-              } | null
               leftColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                content: string
+                text: string
+                icon?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null> | null
               rightColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                content: string
+                text: string
+                icon?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null> | null
             }
           | {
@@ -4651,29 +4715,45 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsColumnsList'
               title: string
               backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
-              listIcon?: {
-                __typename?: 'UploadFileEntityResponse'
-                data?: {
-                  __typename?: 'UploadFileEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'UploadFile'
-                    url: string
-                    width?: number | null
-                    height?: number | null
-                    caption?: string | null
-                    alternativeText?: string | null
-                    name: string
-                  } | null
-                } | null
-              } | null
               leftColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                content: string
+                text: string
+                icon?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null> | null
               rightColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                content: string
+                text: string
+                icon?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null> | null
             }
           | {
@@ -5325,17 +5405,22 @@ export const WorkshopsSectionFragmentDoc = gql`
 export const ColumnsListSectionFragmentDoc = gql`
   fragment ColumnsListSection on ComponentSectionsColumnsList {
     title
-    listIcon {
-      data {
-        ...UploadImageEntity
-      }
-    }
     backgroundColorColumnList: backgroundColor
     leftColumn {
-      content
+      icon {
+        data {
+          ...UploadImageEntity
+        }
+      }
+      text
     }
     rightColumn {
-      content
+      icon {
+        data {
+          ...UploadImageEntity
+        }
+      }
+      text
     }
   }
   ${UploadImageEntityFragmentDoc}

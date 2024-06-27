@@ -371,20 +371,22 @@ input ComponentItemsColumnsItemInput {
 }
 
 type ComponentItemsColumnsListItem {
-  content: String!
+  icon: UploadFileEntityResponse
   id: ID!
+  text: String!
 }
 
 input ComponentItemsColumnsListItemFiltersInput {
   and: [ComponentItemsColumnsListItemFiltersInput]
-  content: StringFilterInput
   not: ComponentItemsColumnsListItemFiltersInput
   or: [ComponentItemsColumnsListItemFiltersInput]
+  text: StringFilterInput
 }
 
 input ComponentItemsColumnsListItemInput {
-  content: String
+  icon: ID
   id: ID
+  text: String
 }
 
 type ComponentItemsLink {
@@ -543,7 +545,6 @@ type ComponentSectionsColumnsList {
   backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR
   id: ID!
   leftColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
-  listIcon: UploadFileEntityResponse
   rightColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
   title: String!
 }
@@ -562,7 +563,6 @@ input ComponentSectionsColumnsListInput {
   backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR
   id: ID
   leftColumn: [ComponentItemsColumnsListItemInput]
-  listIcon: ID
   rightColumn: [ComponentItemsColumnsListItemInput]
   title: String
 }

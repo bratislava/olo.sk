@@ -1,10 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
+import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import BlocksRenderer from '@/src/components/layout/BlocksRenderer'
-import Section from '@/src/components/layout/Section/Section'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
 import { client } from '@/src/services/graphql'
 import { ArticleEntityFragment } from '@/src/services/graphql/api'
@@ -73,6 +74,8 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 }
 
 const Page = ({ article }: PageProps) => {
+  const { t } = useTranslation()
+
   if (!article.attributes) {
     return null
   }
@@ -89,10 +92,18 @@ const Page = ({ article }: PageProps) => {
 
       <ArticlePageHeader article={article} />
 
-      {/* TODO Article narrow layout */}
-      <Section>
-        <BlocksRenderer content={blocks} />
-      </Section>
+      {/* TODO separate outer div(s) to Article Section with narrow layout */}
+      <div className="mx-auto max-lg:px-4 lg:max-w-[50rem] lg:px-0">
+        <div className="flex flex-col gap-6 py-6 lg:gap-12 lg:py-12">
+          <div>
+            <BlocksRenderer content={blocks} />
+          </div>
+          <ShareBlock
+            text={t('ArticlePage.shareblock.text')}
+            buttonText={t('ArticlePage.shareblock.buttonText')}
+          />
+        </div>
+      </div>
     </>
   )
 }

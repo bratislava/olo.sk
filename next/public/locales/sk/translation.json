@@ -1,5 +1,7 @@
 {
   "aria.close": "Zavrieť",
+  "ArticlePage.shareblock.buttonText": "Zdieľať článok",
+  "ArticlePage.shareblock.text": "Páčil sa vám článok?",
   "carousel.aria.controlButtons": "Ovládacie tlačidlá",
   "carousel.aria.next": "Ďalší",
   "carousel.aria.previous": "Predchádzajúci",
@@ -21,5 +23,12 @@
   "pageHeaderPickupDay.messageOddWeek": "Tento týždeň je nepárny ({{weekNumber}}. týždeň).",
   "pagination.aria.goToNextPage": "Ísť na ďalšiu stranu",
   "pagination.aria.goToPage": "Ísť na stranu {{page}}",
-  "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu"
+  "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu",
+  "shareModal.copy": "Kopírovať",
+  "shareModal.CopyToClipBoardButton.ariaLabel": "Skopírovať odkaz na článok",
+  "shareModal.facebook": "Facebook",
+  "shareModal.linkedIn": "Linked In",
+  "shareModal.share": "Zdieľať",
+  "shareModal.shareOnSocialMedia": "Zdieľať cez sociálne siete",
+  "shareModal.xTwitter": "X (Twitter)"
 }

@@ -24,6 +24,7 @@ export const iconNameMap = {
   kopirovat: 'CopyIcon',
   kos: 'BinIcon',
   krizik: 'CrossIcon',
+  lietadlo: 'SendIcon',
   'live-help': 'LiveHelpIcon',
   lupa: 'SearchIcon',
   'mestske-konto': 'CityAccountIcon',

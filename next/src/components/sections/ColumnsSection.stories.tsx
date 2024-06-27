@@ -15,7 +15,7 @@ const meta: Meta<Props> = {
   args: {
     title: 'Naše hodnoty',
     text: '',
-    backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor.Primary,
+    backgroundColorColumns: Enum_Componentsectionscolumns_Backgroundcolor.Primary,
     columnsCount: 5,
   },
   argTypes: {
@@ -23,7 +23,7 @@ const meta: Meta<Props> = {
       name: 'počet stĺpcov',
       control: { type: 'number', min: 1 },
     },
-    backgroundColor: {
+    backgroundColorColumns: {
       options: Object.values(Enum_Componentsectionscolumns_Backgroundcolor),
       control: {
         type: 'inline-radio',

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import BranchesSection from '@/src/components/sections/BranchesSection'
+import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
@@ -37,6 +38,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsWorkshops':
       return <WorkshopsSection section={section} />
+
+    case 'ComponentSectionsColumnsList':
+      return <ColumnsListSection section={section} />
 
     default:
       return null

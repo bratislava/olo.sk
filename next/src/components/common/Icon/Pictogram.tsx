@@ -1,9 +1,8 @@
 import * as Pictograms from '@/src/assets/pictograms'
 import cn from '@/src/utils/cn'
 
-// TODO make it generic and typesafe (allow only defined filenames/components)
-
 export const pictogramNameMap = {
+  // waste-types
   paper: 'WastePaperIcon',
   plastic: 'WastePlasticIcon',
   glass: 'WasteGlassIcon',
@@ -12,7 +11,9 @@ export const pictogramNameMap = {
   kitchenWaste: 'WasteKitchenIcon',
   organic: 'WasteOrganicIcon',
   mixed: 'WasteMixedIcon',
-} as const
+  // other
+  pigCoinBank: 'PigCoinBankIcon',
+} satisfies Record<string, keyof typeof Pictograms>
 
 type PictogramType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 

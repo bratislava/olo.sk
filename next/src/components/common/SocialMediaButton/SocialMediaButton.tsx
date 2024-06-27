@@ -2,6 +2,12 @@ import { PropsWithChildren } from 'react'
 
 import Button, { PolymorphicProps } from '@/src/components/common/Button/Button'
 
+type SocialMediaButtonProps = PropsWithChildren<{
+  getSocialLink: (link: string) => string
+  startIcon: PolymorphicProps['startIcon']
+  className?: string
+}>
+
 /**
  * Inspired by bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/page-contents/BlogPostPageContent.tsx
  */
@@ -10,12 +16,8 @@ export const SocialMediaButton = ({
   getSocialLink,
   children,
   startIcon,
-  fullWidth,
-}: PropsWithChildren<{
-  getSocialLink: (link: string) => string
-  startIcon: PolymorphicProps['startIcon']
-  fullWidth?: PolymorphicProps['fullWidth']
-}>) => {
+  className,
+}: SocialMediaButtonProps) => {
   const openSharePage = () => {
     const W = 600
     const H = 400
@@ -36,8 +38,8 @@ export const SocialMediaButton = ({
       variant="category-outline"
       onPress={openSharePage}
       startIcon={startIcon}
-      fullWidth={fullWidth}
       size="large"
+      className={className}
     >
       {children}
     </Button>

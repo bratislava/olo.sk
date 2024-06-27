@@ -15,7 +15,7 @@
   "pagination.aria.goToPage": "Ísť na stranu {page}",
   "pagination.aria.goToPreviousPage": "Ísť na predchádzajúcu stranu",
   "shareModal.copy": "Kopírovať",
-  "shareModal.copyLink": "Skopírovať odkaz",
+  "shareModal.CopyToClipBoardButton.ariaLabel": "Skopírovať odkaz na článok",
   "shareModal.facebook": "Facebook",
   "shareModal.linkedIn": "Linked In",
   "shareModal.share": "Zdieľať",

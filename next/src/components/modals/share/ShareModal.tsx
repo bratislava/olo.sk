@@ -38,7 +38,7 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
                 <SocialMediaButton
                   startIcon={<Icon name="social-media-facebook" />}
                   getSocialLink={(url) => `https://www.facebook.com/sharer/sharer.php?u=${url}`}
-                  fullWidth
+                  className="w-full"
                 >
                   {t('shareModal.facebook')}
                 </SocialMediaButton>
@@ -46,7 +46,7 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
                   // TODO discuss if we want to add twitterTextQuery as in bratislava.sk
                   getSocialLink={(url) => `https://twitter.com/intent/tweet?url=${url}`}
                   startIcon={<Icon name="social-media-twitter" />}
-                  fullWidth
+                  className="w-full"
                 >
                   {t('shareModal.xTwitter')}
                 </SocialMediaButton>
@@ -55,7 +55,7 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
                     `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
                   }
                   startIcon={<Icon name="social-media-linkedin" />}
-                  fullWidth
+                  className="w-full"
                 >
                   {t('shareModal.linkedIn')}
                 </SocialMediaButton>
@@ -69,7 +69,11 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
                 labelText={t('shareModal.copyLink')}
                 disabled
               />
-              <CopyToClipboardButton copyText={inputValue} className="max-lg:w-full max-lg:grow">
+              <CopyToClipboardButton
+                copyText={inputValue}
+                className="max-lg:w-full max-lg:grow"
+                aria-label={t('shareModal.CopyToClipBoardButton.ariaLabel')}
+              >
                 {t('shareModal.copy')}
               </CopyToClipboardButton>
             </div>

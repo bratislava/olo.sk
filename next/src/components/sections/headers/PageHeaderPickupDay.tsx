@@ -18,6 +18,7 @@ type Props = {
 }
 
 const getCurrentWeekOfYear = () => {
+  // returns the number of the current week in current year
   return LocalDate.now().isoWeekOfWeekyear()
 }
 
@@ -31,20 +32,18 @@ const isCurrentWeekEven = () => {
 
 const PageHeaderPickupDay = ({ header }: Props) => {
   const { t } = useTranslation()
-  const { title, subTitle, anchors } = header
+  const { title, carouselTitle, anchors } = header
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
   const { data: articlesData } = useQuery({
     // TODO decide the limit of articles displayed in carousel
     queryFn: () => client.LatestArticles({ limit: 10 }),
-    queryKey: ['articles'],
+    queryKey: ['latestArticles', { limit: 10 }],
   })
 
   const filteredArticles =
-    articlesData?.articles?.data.filter(
-      (article) => isDefined(article) && isDefined(article.attributes),
-    ) ?? []
+    articlesData?.articles?.data.filter((article) => isDefined(article?.attributes)) ?? []
 
   return (
     <SectionContainer background="secondary">
@@ -70,7 +69,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
 
                 return (
                   <li className="shrink-0">
-                    <AnchorPill text={anchor.label} targetId={anchor?.targetId} />
+                    <AnchorPill text={anchor.label} targetId={anchor.targetId} />
                   </li>
                 )
               })
@@ -80,8 +79,8 @@ const PageHeaderPickupDay = ({ header }: Props) => {
         ) : null}
       </div>
       <div className="flex flex-col gap-6 py-6 lg:py-12">
-        <div className="flex flex-col max-lg:gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <Typography variant="h2">{subTitle}</Typography>
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <Typography variant="h2">{carouselTitle}</Typography>
           <Button variant="black-link" href="/articles" asLink>
             {t('PageHeaderPickupDay.allNews')}
           </Button>

@@ -95,7 +95,7 @@ export interface HeaderSectionsPickupDay extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    subTitle: Attribute.String & Attribute.Required
+    carouselTitle: Attribute.String & Attribute.Required
     anchors: Attribute.Component<'items.anchor', true>
   }
 }

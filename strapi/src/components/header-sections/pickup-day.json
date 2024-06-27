@@ -10,7 +10,7 @@
       "type": "string",
       "required": true
     },
-    "subTitle": {
+    "carouselTitle": {
       "type": "string",
       "required": true
     },

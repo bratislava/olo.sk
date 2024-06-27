@@ -7,10 +7,10 @@ import { PropsWithChildren, useState } from 'react'
  * @param children
  * @constructor
  */
-const OLOQueryClientProvider = ({ children }: PropsWithChildren) => {
+const BAQueryClientProvider = ({ children }: PropsWithChildren) => {
   const [queryClient] = useState(() => new QueryClient())
 
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }
 
-export default OLOQueryClientProvider
+export default BAQueryClientProvider

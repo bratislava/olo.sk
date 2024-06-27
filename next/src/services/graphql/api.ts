@@ -332,8 +332,8 @@ export type ComponentHeaderSectionsImage = {
 export type ComponentHeaderSectionsPickupDay = {
   __typename?: 'ComponentHeaderSectionsPickupDay'
   anchors?: Maybe<Array<Maybe<ComponentItemsAnchor>>>
+  carouselTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
-  subTitle: Scalars['String']['output']
   title: Scalars['String']['output']
 }
 
@@ -2478,7 +2478,7 @@ export type IconHeaderSectionFragment = {
 export type PickupDayHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsPickupDay'
   title: string
-  subTitle: string
+  carouselTitle: string
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
     label: string
@@ -2644,7 +2644,7 @@ type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
 type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
   __typename: 'ComponentHeaderSectionsPickupDay'
   title: string
-  subTitle: string
+  carouselTitle: string
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
     label: string
@@ -3868,7 +3868,7 @@ export type PageEntityFragment = {
       | {
           __typename: 'ComponentHeaderSectionsPickupDay'
           title: string
-          subTitle: string
+          carouselTitle: string
           anchors?: Array<{
             __typename?: 'ComponentItemsAnchor'
             label: string
@@ -4336,7 +4336,7 @@ export type PagesQuery = {
           | {
               __typename: 'ComponentHeaderSectionsPickupDay'
               title: string
-              subTitle: string
+              carouselTitle: string
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
                 label: string
@@ -4808,7 +4808,7 @@ export type PageBySlugQuery = {
           | {
               __typename: 'ComponentHeaderSectionsPickupDay'
               title: string
-              subTitle: string
+              carouselTitle: string
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
                 label: string
@@ -5410,7 +5410,7 @@ export const AnchorFragmentDoc = gql`
 export const PickupDayHeaderSectionFragmentDoc = gql`
   fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
     title
-    subTitle
+    carouselTitle
     anchors {
       ...Anchor
     }

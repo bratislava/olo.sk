@@ -70,7 +70,7 @@ fragment IconHeaderSection on ComponentHeaderSectionsIcon {
 
 fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
   title
-  subTitle
+  carouselTitle
   anchors {
     ...Anchor
   }

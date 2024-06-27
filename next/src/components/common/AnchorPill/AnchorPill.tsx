@@ -15,18 +15,20 @@ type AnchorPillProps = {
 const AnchorPill = ({ text, targetId }: AnchorPillProps) => {
   const router = useRouter()
 
+  const handleAnchorPress = async () => {
+    const targetElement = document.querySelector(`#${targetId}`)
+    if (targetElement) {
+      await router.replace({ query: { ...router.query, scrollId: targetId } }, undefined, {
+        shallow: true,
+      })
+      targetElement.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <Button
       variant="unstyled"
-      onPress={async () => {
-        const targetElement = document.querySelector(`#${targetId}`)
-        if (targetElement) {
-          await router.push({ query: { ...router.query, scrollId: targetId } }, undefined, {
-            shallow: true,
-          })
-          targetElement.scrollIntoView({ behavior: 'smooth' })
-        }
-      }}
+      onPress={handleAnchorPress}
       endIcon={<Icon name="sipka-dole" />}
       className="text-bold flex items-center gap-2 rounded-full bg-background-primary py-3.5 pl-4 pr-3"
     >

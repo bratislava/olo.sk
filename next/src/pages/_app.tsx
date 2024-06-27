@@ -4,7 +4,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 
-import BAQueryClientProvider from '@/src/providers/OLOQueryClientProvider'
+import BAQueryClientProvider from '@/src/providers/BAQueryClientProvider'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (

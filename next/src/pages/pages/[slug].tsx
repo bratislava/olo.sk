@@ -99,12 +99,16 @@ const Page = ({ page }: PageProps) => {
     <>
       {/* <GeneralContextProvider general={general}> */}
       {/* TODO common Head/Seo component */}
+
       <Head>
         <title>{title}</title>
         {perex && <meta name="description" content={perex} />}
       </Head>
+
       <PageHeaderSections header={header} />
+
       <Sections sections={sections?.filter(isDefined) ?? []} />
+
       {/* <GlobalCategoryColorProvider */}
       {/*   color={blogPost?.attributes?.tag?.data?.attributes?.pageCategory?.data?.attributes?.color} */}
       {/* /> */}

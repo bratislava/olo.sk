@@ -46,3 +46,11 @@ query ArticleBySlug($slug: String!) {
     }
   }
 }
+
+query LatestArticles($limit: Int!) {
+  articles(sort: "publishedAt:desc", pagination: { limit: $limit }) {
+    data {
+      ...ArticleEntity
+    }
+  }
+}

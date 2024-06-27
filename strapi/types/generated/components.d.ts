@@ -87,6 +87,19 @@ export interface HeaderSectionsImage extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsPickupDay extends Schema.Component {
+  collectionName: 'components_header_sections_pickup_days'
+  info: {
+    displayName: 'Odvodzov\u00FD de\u0148'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    carouselTitle: Attribute.String & Attribute.Required
+    anchors: Attribute.Component<'items.anchor', true>
+  }
+}
+
 export interface HeaderSectionsSideImage extends Schema.Component {
   collectionName: 'components_header_sections_side_images'
   info: {
@@ -100,6 +113,17 @@ export interface HeaderSectionsSideImage extends Schema.Component {
   }
 }
 
+export interface ItemsAnchor extends Schema.Component {
+  collectionName: 'components_items_anchors'
+  info: {
+    displayName: 'Anchor'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    targetId: Attribute.String & Attribute.Required
+  }
+}
+
 export interface ItemsColumnsItem extends Schema.Component {
   collectionName: 'components_items_columns_items'
   info: {
@@ -110,6 +134,18 @@ export interface ItemsColumnsItem extends Schema.Component {
     title: Attribute.String
     text: Attribute.Text
     image: Attribute.Media
+  }
+}
+
+export interface ItemsColumnsListItem extends Schema.Component {
+  collectionName: 'components_items_columns_list_items'
+  info: {
+    displayName: 'Columns List item'
+    description: ''
+  }
+  attributes: {
+    icon: Attribute.Media
+    text: Attribute.Text & Attribute.Required
   }
 }
 
@@ -179,6 +215,20 @@ export interface SectionsBranches extends Schema.Component {
     text: Attribute.Text
     showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
+export interface SectionsColumnsList extends Schema.Component {
+  collectionName: 'components_sections_columns_lists'
+  info: {
+    displayName: 'Columns List'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
+    leftColumn: Attribute.Component<'items.columns-list-item', true>
+    rightColumn: Attribute.Component<'items.columns-list-item', true>
   }
 }
 
@@ -277,6 +327,19 @@ export interface SectionsRichtext extends Schema.Component {
   }
 }
 
+export interface SectionsTable extends Schema.Component {
+  collectionName: 'components_sections_tables'
+  info: {
+    displayName: 'Tabu\u013Eka'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    anchorId: Attribute.String
+    text: Attribute.Text
+  }
+}
+
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
@@ -300,18 +363,23 @@ declare module '@strapi/types' {
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.icon': HeaderSectionsIcon
       'header-sections.image': HeaderSectionsImage
+      'header-sections.pickup-day': HeaderSectionsPickupDay
       'header-sections.side-image': HeaderSectionsSideImage
+      'items.anchor': ItemsAnchor
       'items.columns-item': ItemsColumnsItem
+      'items.columns-list-item': ItemsColumnsListItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
       'sections.branches': SectionsBranches
+      'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
+      'sections.table': SectionsTable
       'sections.workshops': SectionsWorkshops
     }
   }

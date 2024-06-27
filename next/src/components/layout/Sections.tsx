@@ -1,11 +1,13 @@
 import React from 'react'
 
 import BranchesSection from '@/src/components/sections/BranchesSection'
+import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
+import TableSection from '@/src/components/sections/TableSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment } from '@/src/services/graphql/api'
 
@@ -37,6 +39,12 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsWorkshops':
       return <WorkshopsSection section={section} />
+
+    case 'ComponentSectionsColumnsList':
+      return <ColumnsListSection section={section} />
+
+    case 'ComponentSectionsTable':
+      return <TableSection section={section} />
 
     default:
       return null

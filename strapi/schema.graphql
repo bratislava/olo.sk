@@ -326,6 +326,29 @@ input ComponentHeaderSectionsImageInput {
   title: String
 }
 
+type ComponentHeaderSectionsPickupDay {
+  anchors(filters: ComponentItemsAnchorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsAnchor]
+  carouselTitle: String!
+  id: ID!
+  title: String!
+}
+
+input ComponentHeaderSectionsPickupDayFiltersInput {
+  anchors: ComponentItemsAnchorFiltersInput
+  and: [ComponentHeaderSectionsPickupDayFiltersInput]
+  carouselTitle: StringFilterInput
+  not: ComponentHeaderSectionsPickupDayFiltersInput
+  or: [ComponentHeaderSectionsPickupDayFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentHeaderSectionsPickupDayInput {
+  anchors: [ComponentItemsAnchorInput]
+  carouselTitle: String
+  id: ID
+  title: String
+}
+
 type ComponentHeaderSectionsSideImage {
   id: ID!
   media: UploadFileEntityResponse!
@@ -348,6 +371,26 @@ input ComponentHeaderSectionsSideImageInput {
   title: String
 }
 
+type ComponentItemsAnchor {
+  id: ID!
+  label: String!
+  targetId: String!
+}
+
+input ComponentItemsAnchorFiltersInput {
+  and: [ComponentItemsAnchorFiltersInput]
+  label: StringFilterInput
+  not: ComponentItemsAnchorFiltersInput
+  or: [ComponentItemsAnchorFiltersInput]
+  targetId: StringFilterInput
+}
+
+input ComponentItemsAnchorInput {
+  id: ID
+  label: String
+  targetId: String
+}
+
 type ComponentItemsColumnsItem {
   id: ID!
   image: UploadFileEntityResponse
@@ -368,6 +411,25 @@ input ComponentItemsColumnsItemInput {
   image: ID
   text: String
   title: String
+}
+
+type ComponentItemsColumnsListItem {
+  icon: UploadFileEntityResponse
+  id: ID!
+  text: String!
+}
+
+input ComponentItemsColumnsListItemFiltersInput {
+  and: [ComponentItemsColumnsListItemFiltersInput]
+  not: ComponentItemsColumnsListItemFiltersInput
+  or: [ComponentItemsColumnsListItemFiltersInput]
+  text: StringFilterInput
+}
+
+input ComponentItemsColumnsListItemInput {
+  icon: ID
+  id: ID
+  text: String
 }
 
 type ComponentItemsLink {
@@ -522,6 +584,32 @@ input ComponentSectionsColumnsInput {
   title: String
 }
 
+type ComponentSectionsColumnsList {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR
+  id: ID!
+  leftColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
+  rightColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
+  title: String!
+}
+
+input ComponentSectionsColumnsListFiltersInput {
+  and: [ComponentSectionsColumnsListFiltersInput]
+  backgroundColor: StringFilterInput
+  leftColumn: ComponentItemsColumnsListItemFiltersInput
+  not: ComponentSectionsColumnsListFiltersInput
+  or: [ComponentSectionsColumnsListFiltersInput]
+  rightColumn: ComponentItemsColumnsListItemFiltersInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsColumnsListInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR
+  id: ID
+  leftColumn: [ComponentItemsColumnsListItemInput]
+  rightColumn: [ComponentItemsColumnsListItemInput]
+  title: String
+}
+
 type ComponentSectionsImageAndText {
   backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR!
   id: ID!
@@ -622,6 +710,29 @@ input ComponentSectionsRichtextFiltersInput {
 input ComponentSectionsRichtextInput {
   content: JSON
   id: ID
+}
+
+type ComponentSectionsTable {
+  anchorId: String
+  id: ID!
+  text: String
+  title: String!
+}
+
+input ComponentSectionsTableFiltersInput {
+  anchorId: StringFilterInput
+  and: [ComponentSectionsTableFiltersInput]
+  not: ComponentSectionsTableFiltersInput
+  or: [ComponentSectionsTableFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsTableInput {
+  anchorId: String
+  id: ID
+  text: String
+  title: String
 }
 
 type ComponentSectionsWorkshops {
@@ -795,6 +906,12 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 enum ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR {
   primary
   secondary
@@ -861,7 +978,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1229,7 +1346,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsBasic | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsSideImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsBasic | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 
@@ -1248,7 +1365,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

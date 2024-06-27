@@ -1,8 +1,7 @@
 import * as Icons from '@/src/assets/icons'
 import cn from '@/src/utils/cn'
-// TODO make it generic and typesafe (allow only defined filenames/components)
 
-export const iconNameMap: Record<string, keyof typeof Icons> = {
+export const iconNameMap = {
   // size 24 px
   'chevron-dolava': 'ChevronLeftIcon',
   'chevron-dole': 'ChevronDownIcon',
@@ -65,7 +64,7 @@ export const iconNameMap: Record<string, keyof typeof Icons> = {
   'social-media-facebook': 'FacebookIcon',
   'social-media-twitter': 'TwitterIcon',
   'social-media-linkedin': 'LinkedInIcon',
-} as const
+} satisfies Record<string, keyof typeof Icons>
 
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 

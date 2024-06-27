@@ -16,15 +16,15 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13672&t=MZpsUzCxw11KJPJr-4
  */
 
-const ColumnedItemsSection = ({ section }: Props) => {
-  const { title, text, backgroundColor, items } = section
+const ColumnsSection = ({ section }: Props) => {
+  const { title, text, backgroundColorColumns: backgroundColor, items } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColor ?? 'primary'} className="w-full py-6 lg:py-18">
       <div className="flex flex-col items-center gap-6 lg:gap-18">
         <SectionHeader title={title} text={text} isCentered />
-        <ul className="flex w-full flex-wrap items-stretch justify-center gap-4 lg:gap-8">
+        <ul className="flex w-full flex-wrap items-stretch justify-center gap-4 gap-y-6 lg:gap-8 lg:gap-y-14">
           {
             // eslint-disable-next-line unicorn/no-array-callback-reference
             items.filter(isDefined).map((item) => {
@@ -77,4 +77,4 @@ const ColumnedItemsSection = ({ section }: Props) => {
   )
 }
 
-export default ColumnedItemsSection
+export default ColumnsSection

@@ -3,7 +3,7 @@ import { createElement, ElementType, forwardRef, ReactNode } from 'react'
 import { normalizeSkText } from '@/src/components/common/Typography/normalizeSkText'
 import cn from '@/src/utils/cn'
 
-type TypographyProps = {
+export type TypographyProps = {
   children: ReactNode
   as?: ElementType
   className_onlyWhenNecessary?: string

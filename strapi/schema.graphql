@@ -413,6 +413,25 @@ input ComponentItemsColumnsItemInput {
   title: String
 }
 
+type ComponentItemsColumnsListItem {
+  icon: UploadFileEntityResponse
+  id: ID!
+  text: String!
+}
+
+input ComponentItemsColumnsListItemFiltersInput {
+  and: [ComponentItemsColumnsListItemFiltersInput]
+  not: ComponentItemsColumnsListItemFiltersInput
+  or: [ComponentItemsColumnsListItemFiltersInput]
+  text: StringFilterInput
+}
+
+input ComponentItemsColumnsListItemInput {
+  icon: ID
+  id: ID
+  text: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -562,6 +581,32 @@ input ComponentSectionsColumnsInput {
   id: ID
   items: [ComponentItemsColumnsItemInput]
   text: String
+  title: String
+}
+
+type ComponentSectionsColumnsList {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR
+  id: ID!
+  leftColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
+  rightColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
+  title: String!
+}
+
+input ComponentSectionsColumnsListFiltersInput {
+  and: [ComponentSectionsColumnsListFiltersInput]
+  backgroundColor: StringFilterInput
+  leftColumn: ComponentItemsColumnsListItemFiltersInput
+  not: ComponentSectionsColumnsListFiltersInput
+  or: [ComponentSectionsColumnsListFiltersInput]
+  rightColumn: ComponentItemsColumnsListItemFiltersInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsColumnsListInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR
+  id: ID
+  leftColumn: [ComponentItemsColumnsListItemInput]
+  rightColumn: [ComponentItemsColumnsListItemInput]
   title: String
 }
 
@@ -861,6 +906,12 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 enum ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR {
   primary
   secondary
@@ -927,7 +978,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1314,7 +1365,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

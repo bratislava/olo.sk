@@ -59,7 +59,7 @@ const config: Config = {
       'size-p-small': getFontSize([14, 20]),
 
       'size-h6': getFontSize([16, 24]),
-      'size-h6-r': getFontSize([16, 20]),
+      'size-h6-r': getFontSize([16, 24]),
       'size-h5': getFontSize([20, 28]),
       'size-h5-r': getFontSize([16, 24]),
       'size-h4': getFontSize([24, 32]),
@@ -67,7 +67,7 @@ const config: Config = {
       'size-h3': getFontSize([28, 36]),
       'size-h3-r': getFontSize([20, 28]),
       'size-h2': getFontSize([32, 40]),
-      'size-h2-r': getFontSize([24, 28]),
+      'size-h2-r': getFontSize([24, 32]),
       'size-h1': getFontSize([40, 48]),
       'size-h1-r': getFontSize([28, 36]),
       'size-h1-hero': getFontSize([56, 64]),
@@ -145,12 +145,17 @@ const config: Config = {
       borderRadius: {
         4: '4px',
       },
+      lineHeight: {
+        14: '4rem', // 64px
+        12: '3rem', // 48px
+        6.5: '1.625rem', // 26px
+      },
       spacing: {
-        '4.5': '1.125rem',
-        '18': '4.5rem',
+        4.5: '1.125rem', // 18px
+        18: '4.5rem', // 72px
       },
       zIndex: {
-        '1': '1',
+        1: '1',
       },
     },
   },

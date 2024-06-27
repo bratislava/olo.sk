@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_items_columns_list_items",
+  "info": {
+    "displayName": "Columns List item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

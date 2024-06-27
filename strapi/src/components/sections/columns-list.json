@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_columns_lists",
+  "info": {
+    "displayName": "Columns List",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
+    },
+    "leftColumn": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.columns-list-item"
+    },
+    "rightColumn": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.columns-list-item"
+    }
+  }
+}

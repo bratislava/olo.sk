@@ -137,6 +137,18 @@ export interface ItemsColumnsItem extends Schema.Component {
   }
 }
 
+export interface ItemsColumnsListItem extends Schema.Component {
+  collectionName: 'components_items_columns_list_items'
+  info: {
+    displayName: 'Columns List item'
+    description: ''
+  }
+  attributes: {
+    icon: Attribute.Media
+    text: Attribute.Text & Attribute.Required
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -203,6 +215,20 @@ export interface SectionsBranches extends Schema.Component {
     text: Attribute.Text
     showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
+export interface SectionsColumnsList extends Schema.Component {
+  collectionName: 'components_sections_columns_lists'
+  info: {
+    displayName: 'Columns List'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
+    leftColumn: Attribute.Component<'items.columns-list-item', true>
+    rightColumn: Attribute.Component<'items.columns-list-item', true>
   }
 }
 
@@ -341,11 +367,13 @@ declare module '@strapi/types' {
       'header-sections.side-image': HeaderSectionsSideImage
       'items.anchor': ItemsAnchor
       'items.columns-item': ItemsColumnsItem
+      'items.columns-list-item': ItemsColumnsListItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
       'sections.branches': SectionsBranches
+      'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText

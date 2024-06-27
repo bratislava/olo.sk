@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import BAQueryClientProvider from '@/src/providers/BAQueryClientProvider'
 import { PickupDayHeaderSectionFragment } from '@/src/services/graphql/api'
 
 import PageHeaderPickupDayComponent from './PageHeaderPickupDay'
-import BAQueryClientProvider from '@/src/providers/BAQueryClientProvider'
 
 type Props = PickupDayHeaderSectionFragment
 
@@ -33,7 +33,11 @@ export const PageHeaderPickupDay: Story = {
       />
       {Array.from({ length: 4 }).map((_, index) => {
         return (
-          <div id={`id${index + 1}`} key={index} style={{ height: '50vh' }}>
+          <div
+            id={`id${index + 1}`}
+            key={args?.anchors?.[index]?.targetId}
+            style={{ height: '50vh' }}
+          >
             <div className="flex justify-center p-6">
               {index < 3 ? `Anchor ${index + 1} should scroll here on click.` : null}
             </div>

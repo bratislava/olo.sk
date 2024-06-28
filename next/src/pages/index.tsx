@@ -51,10 +51,32 @@ const Homepage = ({ homepage }: PageProps) => {
    * https://github.com/bratislava/bratislava.sk/blob/master/next/pages/index.tsx
    */
   return (
-    // TODO replace placeholder with proper component based on homepage props
     <PageLayoutPlaceholder>
       <HomePageContentPlaceholder />
     </PageLayoutPlaceholder>
+
+    // TODO replace placeholder with proper component based on homepage props. Example below (needs to be a proper component, however):
+
+    //   <Section>
+    //   {homepage.attributes?.slides?.map((slide, index) => (
+    //     <div
+    //       // eslint-disable-next-line react/no-array-index-key
+    //       key={index}
+    //       className="rounded-lg p-6"
+    //       style={{ backgroundColor: slide?.backgroundColor ?? '' }}
+    //     >
+    //       <Typography variant="h1" as="p">
+    //         {slide?.title}
+    //       </Typography>
+    //       <Typography>{slide?.text}</Typography>
+    //       <Typography>{slide?.backgroundColor}</Typography>
+
+    //       {slide?.media.data?.attributes ? (
+    //         <Image src={slide.media.data.attributes.url} alt="" />
+    //       ) : null}
+    //     </div>
+    //   ))}
+    // </Section>
   )
 }
 

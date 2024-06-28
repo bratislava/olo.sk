@@ -1,11 +1,10 @@
 import { GetStaticProps } from 'next'
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
-import Typography from '@/src/components/common/Typography/Typography'
-import Section from '@/src/components/layout/Section/Section'
+import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
+import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { client } from '@/src/services/graphql'
 import { HomepageEntityFragment } from '@/src/services/graphql/api'
 
@@ -43,59 +42,19 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Homepage = ({ homepage }: PageProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation()
   // const title = useTitle()
 
+  /**
+   * TODO Add common Head/Seo component, layout, providers, as in bratislava.sk
+   * https://github.com/bratislava/bratislava.sk/blob/master/next/pages/index.tsx
+   */
   return (
-    <>
-      {/* TODO common Head/Seo component, layout, providers  */}
-      {/* <GeneralContextProvider general={general}> */}
-      {/*   <HomepageContextProvider homepageContext={homepageContext}> */}
-      {/* <Head> */}
-      {/*   <title>{title}</title> */}
-      {/*   {homepageContext.homepage?.attributes?.metaDescription && ( */}
-      {/*     <meta */}
-      {/*       name="description" */}
-      {/*       content={homepageContext.homepage?.attributes?.metaDescription ?? undefined} */}
-      {/*     /> */}
-      {/*   )} */}
-      {/* </Head> */}
-
-      {/* TODO this is just to display data in very basic form, should be replaced by proper component */}
-      <Section>
-        {homepage.attributes?.slides?.map((slide, index) => (
-          <div
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            className="rounded-lg p-6"
-            style={{ backgroundColor: slide?.backgroundColor ?? '' }}
-          >
-            <Typography variant="h1" as="p">
-              {slide?.title}
-            </Typography>
-            <Typography>{slide?.text}</Typography>
-            <Typography>{slide?.backgroundColor}</Typography>
-
-            {slide?.media.data?.attributes ? (
-              <Image src={slide.media.data.attributes.url} alt="" />
-            ) : null}
-          </div>
-        ))}
-      </Section>
-
-      <div className="flex flex-col items-center justify-center">
-        <Typography variant="h1">{t('helloWorld')}</Typography>
-        <Typography variant="p-default" as="strong">
-          {t('helloWorld')}
-        </Typography>
-      </div>
-
-      {/*     <PageLayout> */}
-      {/*       <HomepageContent /> */}
-      {/*     </PageLayout> */}
-      {/*   </HomepageContextProvider> */}
-      {/* </GeneralContextProvider> */}
-    </>
+    // TODO replace placeholder with proper component based on homepage props
+    <PageLayoutPlaceholder>
+      <HomePageContentPlaceholder />
+    </PageLayoutPlaceholder>
   )
 }
 

@@ -6,6 +6,7 @@ import * as React from 'react'
 
 import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import BlocksRenderer from '@/src/components/layout/BlocksRenderer'
+import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
 import { client } from '@/src/services/graphql'
 import { ArticleEntityFragment } from '@/src/services/graphql/api'
@@ -90,20 +91,22 @@ const Page = ({ article }: PageProps) => {
         {perex && <meta name="description" content={perex} />}
       </Head>
 
-      <ArticlePageHeader article={article} />
+      <PageLayoutPlaceholder>
+        <ArticlePageHeader article={article} />
 
-      {/* TODO separate outer div(s) to Article Section with narrow layout */}
-      <div className="mx-auto max-lg:px-4 lg:max-w-[50rem] lg:px-0">
-        <div className="flex flex-col gap-6 py-6 lg:gap-12 lg:py-12">
-          <div>
-            <BlocksRenderer content={blocks} />
+        {/* TODO separate outer div(s) to Article Section with narrow layout */}
+        <div className="mx-auto max-lg:px-4 lg:max-w-[50rem] lg:px-0">
+          <div className="flex flex-col gap-6 py-6 lg:gap-12 lg:py-12">
+            <div>
+              <BlocksRenderer content={blocks} />
+            </div>
+            <ShareBlock
+              text={t('ArticlePage.shareblock.text')}
+              buttonText={t('ArticlePage.shareblock.buttonText')}
+            />
           </div>
-          <ShareBlock
-            text={t('ArticlePage.shareblock.text')}
-            buttonText={t('ArticlePage.shareblock.buttonText')}
-          />
         </div>
-      </div>
+      </PageLayoutPlaceholder>
     </>
   )
 }

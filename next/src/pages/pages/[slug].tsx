@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import Sections from '@/src/components/layout/Sections'
+import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { client } from '@/src/services/graphql'
 import { PageEntityFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
@@ -74,6 +75,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 const Page = ({ page }: PageProps) => {
   const searchParams = useSearchParams()
 
+  // TODO consider extracting url-based scrolling on load to a separate hook
   const scrollId = searchParams.get('scrollId')
 
   useEffect(() => {
@@ -93,8 +95,6 @@ const Page = ({ page }: PageProps) => {
 
   // const title = useTitle(blogPostTitle)
 
-  // TODO scroll to content based on URL
-
   return (
     <>
       {/* <GeneralContextProvider general={general}> */}
@@ -105,10 +105,11 @@ const Page = ({ page }: PageProps) => {
         {perex && <meta name="description" content={perex} />}
       </Head>
 
-      <PageHeaderSections header={header} />
+      <PageLayoutPlaceholder>
+        <PageHeaderSections header={header} />
 
-      <Sections sections={sections?.filter(isDefined) ?? []} />
-
+        <Sections sections={sections?.filter(isDefined) ?? []} />
+      </PageLayoutPlaceholder>
       {/* <GlobalCategoryColorProvider */}
       {/*   color={blogPost?.attributes?.tag?.data?.attributes?.pageCategory?.data?.attributes?.color} */}
       {/* /> */}

@@ -1,18 +1,19 @@
 import React from 'react'
 
-import OLOlogo from '@/src/assets/images/olo-logo.svg'
+import OloLogo from '@/src/assets/images/olo-logo.svg'
 import Button from '@/src/components/common/Button/Button'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 
 const FooterPlaceholder = () => {
   return (
-    <>
+    <PlaceholderWrapper>
       {/* Screen: desktop */}
       <SectionContainer className="bg-content-primary py-18 text-white">
         <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[30.5rem_1fr_1fr]">
           <div className="flex flex-col flex-wrap gap-6 text-border-default">
-            <OLOlogo fill="white" />
+            <OloLogo fill="white" />
             <div>
               <Typography variant="p-small">
                 ODVOZ A LIKVIDÁCIA ODPADU a.s., v skratke: OLO a.s.
@@ -35,7 +36,8 @@ const FooterPlaceholder = () => {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             Array.from({ length: 2 }).map((column, index) => {
               return (
-                <div className="flex flex-col flex-wrap gap-4">
+                // eslint-disable-next-line react/no-array-index-key
+                <div className="flex flex-col flex-wrap gap-4" key={index}>
                   <Typography variant="h5">Col headline</Typography>
                   <div className="flex flex-col gap-3">
                     {Array.from({ length: 8 }).map((footerItem, index2) => {
@@ -82,7 +84,7 @@ const FooterPlaceholder = () => {
           </div>
         </div>
       </SectionContainer>
-    </>
+    </PlaceholderWrapper>
   )
 }
 

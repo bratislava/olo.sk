@@ -33,11 +33,11 @@ const HomePageContentPlaceholder = () => {
           <Typography variant="h4">Stránky</Typography>
           <div className="flex flex-col gap-2">
             {filteredPagesData?.map((page) => (
-              <div key={page?.id}>
+              <div key={page.id}>
                 <div className="flex flex-row gap-2">
                   <Typography variant="p-default">•</Typography>
-                  <Link variant="underlined" href={`/pages/${page?.attributes?.slug}`}>
-                    {page?.attributes?.title}
+                  <Link variant="underlined" href={`/pages/${page.attributes?.slug}`}>
+                    {page.attributes?.title}
                   </Link>
                 </div>
               </div>
@@ -48,11 +48,11 @@ const HomePageContentPlaceholder = () => {
           <Typography variant="h4">Články</Typography>
           <div className="flex flex-col gap-2">
             {filteredArticlesData?.map((article) => (
-              <div key={article?.id}>
+              <div key={article.id}>
                 <div className="flex flex-row gap-2">
                   <Typography variant="p-default">•</Typography>
-                  <Link variant="underlined" href={`/articles/${article?.attributes?.slug}`}>
-                    {article?.attributes?.title}
+                  <Link variant="underlined" href={`/articles/${article.attributes?.slug}`}>
+                    {article.attributes?.title}
                   </Link>
                 </div>
               </div>

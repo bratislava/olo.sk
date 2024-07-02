@@ -24,8 +24,10 @@ export const Pictogram: Story = {
       <div className="flex flex-wrap gap-2">
         {Object.keys(pictogramNameMap).map((name) => {
           return (
-            <div className="flex w-[10rem] flex-col items-center gap-4 bg-white p-2 shadow-sm">
-              <PictogramComponent key={name} name={name as keyof typeof pictogramNameMap} />
+            <div className="flex w-[10rem] flex-col items-center justify-end gap-4 bg-white p-2 shadow-sm">
+              <div className="flex h-full items-center">
+                <PictogramComponent key={name} name={name as keyof typeof pictogramNameMap} />
+              </div>
               <p className="text-[0.8rem]">{name}</p>
             </div>
           )

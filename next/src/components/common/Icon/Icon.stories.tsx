@@ -20,12 +20,14 @@ type Story = StoryObj<typeof IconComponent>
 
 export const Icon: Story = {
   render: () => {
+    const sortedIconNames = Object.keys(iconNameMap).sort((a, b) => a.localeCompare(b))
+
     return (
       <div className="flex flex-wrap gap-2">
-        {Object.keys(iconNameMap).map((name) => {
+        {sortedIconNames.map((name) => {
           return (
             <div className="flex w-[8rem] items-center gap-2 bg-white p-2 shadow-sm">
-              <IconComponent key={name} name={name as keyof typeof iconNameMap} />{' '}
+              <IconComponent key={name} name={name as keyof typeof iconNameMap} />
               <p className="text-[0.6rem]">{name}</p>
             </div>
           )

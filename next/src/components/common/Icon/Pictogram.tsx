@@ -3,16 +3,18 @@ import cn from '@/src/utils/cn'
 
 export const pictogramNameMap = {
   // waste-types
-  paper: 'WastePaperIcon',
-  plastic: 'WastePlasticIcon',
-  glass: 'WasteGlassIcon',
-  civicAmenitySite: 'WasteCivicAmenitySiteIcon',
-  cookingOilsAndFats: 'WasteOilsAndFatsIcon',
-  kitchenWaste: 'WasteKitchenIcon',
-  organic: 'WasteOrganicIcon',
-  mixed: 'WasteMixedIcon',
+  paper: 'WastePaperPictogram',
+  plastic: 'WastePlasticPictogram',
+  glass: 'WasteGlassPictogram',
+  civicAmenitySite: 'WasteCivicAmenitySitePictogram',
+  cookingOilsAndFats: 'WasteOilsAndFatsPictogram',
+  kitchenWaste: 'WasteKitchenPictogram',
+  organic: 'WasteOrganicPictogram',
+  mixed: 'WasteMixedPictogram',
   // other
-  pigCoinBank: 'PigCoinBankIcon',
+  pigCoinBank: 'PigCoinBankPictogram',
+  'transparentne-mesto': 'TransparentCityPictogram',
+  'ine-dokumenty': 'OtherDocuments',
 } satisfies Record<string, keyof typeof Pictograms>
 
 type PictogramType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>

@@ -2,6 +2,8 @@ import * as Icons from '@/src/assets/icons'
 import cn from '@/src/utils/cn'
 
 export const iconNameMap = {
+  // size 20 px
+  'mail-outline': 'MailIcon',
   // size 24 px
   'chevron-dolava': 'ChevronLeftIcon',
   'chevron-dole': 'ChevronDownIcon',

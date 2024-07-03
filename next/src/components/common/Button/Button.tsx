@@ -118,7 +118,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
       variant === 'unstyled'
         ? className ?? ''
         : twMerge(
-            'inline-flex h-auto items-center justify-center gap-2 text-size-button-default font-bold transition',
+            'inline-flex h-auto items-center justify-center gap-1 text-size-button-default font-bold transition',
             cx(
               // we change rounded corners for link focus ring
               isLinkVariant ? 'rounded-sm max-lg:gap-1' : 'rounded-lg',

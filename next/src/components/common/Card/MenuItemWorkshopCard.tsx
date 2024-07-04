@@ -1,5 +1,5 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 
@@ -7,7 +7,7 @@ type MenuItemWorkshopCardProps = {
   title: string
   linkHref: string
   subText: string
-  iconName?: keyof typeof iconNameMap
+  iconName?: keyof typeof oloIconNameMap
   className?: string
 }
 
@@ -26,7 +26,7 @@ const MenuItemWorkshopCard = ({
     <CardBase className={className}>
       <div className="flex items-start gap-4">
         <div className="rounded-[20px] bg-background-secondary p-4">
-          <Icon name={iconName} className="size-6" />
+          <OloIcon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col items-start gap-2 self-stretch">
           <Link variant="unstyled" href={linkHref} stretched>

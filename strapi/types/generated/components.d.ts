@@ -149,6 +149,17 @@ export interface ItemsColumnsListItem extends Schema.Component {
   }
 }
 
+export interface ItemsFileItem extends Schema.Component {
+  collectionName: 'components_items_file_items'
+  info: {
+    displayName: 'File item'
+  }
+  attributes: {
+    title: Attribute.String
+    media: Attribute.Media & Attribute.Required
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -368,6 +379,7 @@ declare module '@strapi/types' {
       'items.anchor': ItemsAnchor
       'items.columns-item': ItemsColumnsItem
       'items.columns-list-item': ItemsColumnsListItem
+      'items.file-item': ItemsFileItem
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem

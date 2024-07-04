@@ -70,3 +70,12 @@ fragment UploadFileEntity on UploadFileEntity {
     updatedAt
   }
 }
+
+fragment FileItem on ComponentItemsFileItem {
+  title
+  media {
+    data {
+      ...UploadFileEntity
+    }
+  }
+}

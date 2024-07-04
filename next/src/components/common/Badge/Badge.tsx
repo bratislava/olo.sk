@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -11,10 +13,11 @@ type BadgeProps = {
  */
 
 const Badge = ({ variant, className }: BadgeProps) => {
+  const { t } = useTranslation()
   const text =
-    (variant === 'public' && 'Pre obyvateľov') ||
-    (variant === 'firms' && 'Pre firmy') ||
-    (variant === 'institutions' && 'Pre správcovské organizácie')
+    (variant === 'public' && t('badge.public')) ||
+    (variant === 'firms' && t('badge.firms')) ||
+    (variant === 'institutions' && t('badge.institutions'))
 
   return (
     <div

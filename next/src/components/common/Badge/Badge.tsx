@@ -17,14 +17,14 @@ const Badge = ({ variant, text, className }: BadgeProps) => {
       className={cn(
         'text-stone-800 flex h-5 items-center justify-center rounded-[0.25rem] px-2',
         {
-          'bg-background-secondary': variant === 'public',
-          'bg-background-tertiary': variant === 'firms',
-          'bg-background-primaryInverted': variant === 'institutions',
+          'bg-background-tag-public': variant === 'public',
+          'bg-background-tag-firms': variant === 'firms',
+          'bg-background-tag-institutions': variant === 'institutions',
         },
         className,
       )}
     >
-      <Typography variant="p-small"> {text}</Typography>
+      <Typography variant="p-small">{text}</Typography>
     </div>
   )
 }

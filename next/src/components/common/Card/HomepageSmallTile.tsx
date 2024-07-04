@@ -1,12 +1,12 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type HomepageSmallTileProps = {
   title: string
   linkHref: string
-  iconName?: keyof typeof iconNameMap
+  iconName?: keyof typeof oloIconNameMap
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -30,7 +30,7 @@ const HomepageSmallTile = ({
     >
       <div className="flex flex-col items-center gap-6 px-4 py-5">
         <div className="rounded-[20px] bg-background-secondary p-4">
-          <Icon name={iconName} className="size-6" />
+          <OloIcon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col gap-4">
           <Link variant="unstyled" href={linkHref} stretched>

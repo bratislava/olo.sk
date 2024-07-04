@@ -1,6 +1,13 @@
 import * as Icons from '@/src/assets/icons'
 import cn from '@/src/utils/cn'
 
+/*
+ * This component is used only for icons from the Bratislava design system
+ * For icons specific to OLO, use OloIcon component
+ */
+
+// Todo refactor type to ensure that we include all icon assets from the folder in the nameMap
+
 export const iconNameMap = {
   // size 20 px
   'mail-outline': 'MailIcon',
@@ -12,6 +19,7 @@ export const iconNameMap = {
   'chevron-hore': 'ChevronUpIcon',
   'chevron-hore-maly': 'ChevronUpSmallIcon',
   disk: 'DiscIcon',
+  dokument: 'DocumentIcon',
   domcek: 'HomeIcon',
   export: 'ExportIcon',
   fajka: 'CheckIcon',
@@ -22,13 +30,14 @@ export const iconNameMap = {
   import: 'ImportIcon',
   info: 'InfoIcon',
   kalendar: 'CalendarIcon',
+  'karty-a-preukazy': 'CardsAndIdsIcon',
   kniha: 'BookIcon',
   kopirovat: 'CopyIcon',
   kos: 'BinIcon',
   krizik: 'CrossIcon',
   lietadlo: 'SendIcon',
-  'live-help': 'LiveHelpIcon',
   lupa: 'SearchIcon',
+  mal: 'MailIcon',
   'mestske-konto': 'CityAccountIcon',
   'mestske-sluzby': 'ServicesIcon',
   'moje-podania': 'MySubmissionsIcon',
@@ -39,12 +48,13 @@ export const iconNameMap = {
   opakovat: 'RepeatIcon',
   pdf: 'PdfIcon',
   pero: 'EditIcon',
-  place: 'PlaceIcon',
   platba: 'PaymentIcon',
   pomoc: 'HelpIcon',
   'presypacie-hodiny': 'SandGlassIcon',
+  pridat: 'AddIcon',
   priloha: 'AttachmentIcon',
   profil: 'ProfileIcon',
+  referenti: 'ReferentsIcon',
   reproduktor: 'SpeakerIcon',
   'sipka-dolava': 'ArrowLeftIcon',
   'sipka-dole': 'ArrowDownIcon',
@@ -52,6 +62,7 @@ export const iconNameMap = {
   'sipka-doprava': 'ArrowRightIcon',
   'sipka-hore': 'ArrowUpIcon',
   'sipky-spojenie': 'ConnectionIcon',
+  skenovanie: 'ScanIcon',
   stiahnut: 'DownloadIcon',
   telefon: 'PhoneIcon',
   'tri-bodky': 'EllipsisIcon',
@@ -62,11 +73,7 @@ export const iconNameMap = {
   'vymazat-plny-kruh': 'RemoveIcon',
   zamok: 'LockIcon',
   'zrusit-kruh': 'CrossInCircleIcon',
-  // size 32 px
-  'social-media-facebook': 'FacebookIcon',
-  'social-media-twitter': 'TwitterIcon',
-  'social-media-linkedin': 'LinkedInIcon',
-} satisfies Record<string, keyof typeof Icons>
+} satisfies Record<string, Extract<keyof typeof Icons, string>>
 
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 

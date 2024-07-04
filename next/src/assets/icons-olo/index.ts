@@ -1,0 +1,6 @@
+export { default as CareerCalendarIcon } from './career-calendar.svg'
+export { default as LiveHelpIcon } from './live-help.svg'
+export { default as PlaceIcon } from './place.svg'
+export { default as FacebookIcon } from './social-media-facebook.svg'
+export { default as LinkedInIcon } from './social-media-linkedin.svg'
+export { default as TwitterIcon } from './social-media-twitter.svg'

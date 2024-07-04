@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import IconComponent, { iconNameMap } from './Icon'
+import OloIconComponent, { oloIconNameMap } from './OloIcon'
 
-const meta: Meta<typeof IconComponent> = {
-  component: IconComponent,
-  title: 'Components/Icon (BA)',
+const meta: Meta<typeof OloIconComponent> = {
+  component: OloIconComponent,
+  title: 'Components/Icon (OLO)',
   tags: ['autodocs'],
   decorators: [
     (Story) => (
@@ -16,17 +16,17 @@ const meta: Meta<typeof IconComponent> = {
 }
 
 export default meta
-type Story = StoryObj<typeof IconComponent>
+type Story = StoryObj<typeof OloIconComponent>
 
-export const Icon: Story = {
-  name: 'Icon (BA)',
+export const OloIcon: Story = {
+  name: 'Icon (OLO)',
   render: () => {
     return (
       <div className="flex flex-wrap gap-2">
-        {Object.keys(iconNameMap).map((name) => {
+        {Object.keys(oloIconNameMap).map((name) => {
           return (
             <div className="flex w-[8rem] items-center gap-2 bg-white p-2 shadow-sm">
-              <IconComponent key={name} name={name as keyof typeof iconNameMap} />{' '}
+              <OloIconComponent key={name} name={name as keyof typeof oloIconNameMap} />
               <p className="text-[0.6rem]">{name}</p>
             </div>
           )

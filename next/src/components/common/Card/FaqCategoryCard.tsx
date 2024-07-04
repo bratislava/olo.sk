@@ -2,13 +2,13 @@ import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type FaqCategoryCardProps = {
   title: string
   linkHref: string
-  iconName?: keyof typeof iconNameMap
+  iconName?: keyof typeof oloIconNameMap
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -34,7 +34,7 @@ const FaqCategoryCard = ({
     >
       <div className="flex flex-col items-start gap-8 p-5">
         <div className="rounded-[20px] bg-background-secondary p-4">
-          <Icon name={iconName} className="size-6" />
+          <OloIcon name={iconName} className="size-6" />
         </div>
         <div className="flex flex-col items-start gap-4 self-stretch">
           <Typography

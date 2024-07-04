@@ -37,7 +37,7 @@ export const iconNameMap = {
   krizik: 'CrossIcon',
   lietadlo: 'SendIcon',
   lupa: 'SearchIcon',
-  mal: 'MailIcon',
+  mail: 'MailIcon',
   'mestske-konto': 'CityAccountIcon',
   'mestske-sluzby': 'ServicesIcon',
   'moje-podania': 'MySubmissionsIcon',
@@ -73,7 +73,7 @@ export const iconNameMap = {
   'vymazat-plny-kruh': 'RemoveIcon',
   zamok: 'LockIcon',
   'zrusit-kruh': 'CrossInCircleIcon',
-} satisfies Record<string, Extract<keyof typeof Icons, string>>
+} satisfies Record<string, keyof typeof Icons>
 
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 

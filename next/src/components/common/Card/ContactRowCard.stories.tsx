@@ -1,27 +1,18 @@
 /* eslint-disable pii/no-email */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import mailIconUrl from '@/src/assets/icons/mail-outline.svg?url'
-import phoneIconUrl from '@/src/assets/icons/telefon.svg?url'
-
 import ContactRowCardComponent from './ContactRowCard'
 
 type Props = {
-  hasBottomBorder: boolean
-  phoneText: string
-  phoneHref: string
-  mailText: string
-  mailHref: string
+  phoneLink: string
+  mailLink: string
 }
 
 const meta: Meta<Props> = {
   title: 'Components/Cards/ContactRowCard',
   args: {
-    phoneText: '+421 2 50 110 111',
-    phoneHref: 'tel:+421250110111',
-    mailText: 'zakazka@olo.sk',
-    mailHref: 'mailto:zakazka@olo.sk',
-    hasBottomBorder: true,
+    phoneLink: '+421 2 50 110 111',
+    mailLink: 'zakazka@olo.sk',
   },
   parameters: { controls: { exclude: ['className', 'variant'] } },
   tags: ['autodocs'],
@@ -40,9 +31,7 @@ export const ContactRowCard: Story = {
             {...{
               ...args,
               variant: 'phone',
-              iconSrc: phoneIconUrl,
-              linkText: args.phoneText,
-              linkHref: args.phoneHref,
+              contact: args.phoneLink,
             }}
           />
         </div>
@@ -52,9 +41,7 @@ export const ContactRowCard: Story = {
             {...{
               ...args,
               variant: 'mail',
-              iconSrc: mailIconUrl,
-              linkText: args.mailText,
-              linkHref: args.mailHref,
+              contact: args.mailLink,
             }}
           />
         </div>

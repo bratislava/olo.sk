@@ -49,8 +49,10 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   const path = params?.path
   const slug = path?.at(-1)
 
+  const pathJoined = `/${path?.join('/')}`
+
   // eslint-disable-next-line no-console
-  console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}/${path?.join('/')}`)
+  console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}${pathJoined}`)
 
   if (!path || !slug || !locale) {
     return { notFound: true }
@@ -63,6 +65,12 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
   const page = pages?.data[0]
   if (!page) {
+    return { notFound: true }
+  }
+
+  /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
+  const pagePath = getPageBreadcrumbs(page).at(-1)?.path
+  if (pagePath !== pathJoined) {
     return { notFound: true }
   }
 

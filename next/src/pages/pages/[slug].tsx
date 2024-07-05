@@ -3,13 +3,15 @@ import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import Sections from '@/src/components/layout/Sections'
+import BreadcrumbsPlaceholder from '@/src/components/placeholder/BreadcrumbsPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { client } from '@/src/services/graphql'
 import { PageEntityFragment } from '@/src/services/graphql/api'
+import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
 
 type PageProps = {
@@ -76,7 +78,7 @@ const Page = ({ page }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook
-  const scrollId = searchParams.get('scrollId')
+  const scrollId = searchParams?.get('scrollId')
 
   useEffect(() => {
     if (!scrollId) return
@@ -90,6 +92,7 @@ const Page = ({ page }: PageProps) => {
     return null
   }
 
+  const breadcrumbs = useMemo(() => getPageBreadcrumbs(page), [page])
   const { title, perex, sections } = page.attributes
   const [header] = page.attributes.header ?? []
 
@@ -106,6 +109,7 @@ const Page = ({ page }: PageProps) => {
       </Head>
 
       <PageLayoutPlaceholder>
+        <BreadcrumbsPlaceholder breadcrumbs={breadcrumbs} />
         <PageHeaderSections header={header} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />

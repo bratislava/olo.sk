@@ -1,14 +1,15 @@
 fragment ArticleSlugEntity on ArticleEntity {
+  __typename
   id
   attributes {
     slug
+    title
   }
 }
 
 fragment ArticleCardEntity on ArticleEntity {
   ...ArticleSlugEntity
   attributes {
-    title
     perex
     coverMedia {
       data {

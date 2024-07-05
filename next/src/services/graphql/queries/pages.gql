@@ -37,11 +37,18 @@ fragment PageParentPages on PageEntity {
   }
 }
 
-fragment PageEntity on PageEntity {
+fragment PageSlugEntity on PageEntity {
+  __typename
   id
   attributes {
     title
     slug
+  }
+}
+
+fragment PageEntity on PageEntity {
+  ...PageSlugEntity
+  attributes {
     perex
     header {
       ...HeaderSections

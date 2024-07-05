@@ -12,6 +12,7 @@ import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceh
 import { client } from '@/src/services/graphql'
 import { PageEntityFragment } from '@/src/services/graphql/api'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
+import { getPagePath } from '@/src/utils/getPagePath'
 import { isDefined } from '@/src/utils/isDefined'
 
 type PageProps = {
@@ -69,7 +70,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 
   /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
-  const pagePath = getPageBreadcrumbs(page).at(-1)?.path
+  const pagePath = getPagePath(page)
   if (pagePath !== pathJoined) {
     return { notFound: true }
   }

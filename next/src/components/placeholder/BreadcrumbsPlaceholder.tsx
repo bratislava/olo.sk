@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 
 import Icon from '@/src/components/common/Icon/Icon'
+import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { Breadcrumb } from '@/src/utils/getPageBreadcrumbs'
@@ -17,7 +18,13 @@ const BreadcrumbsPlaceholder = ({ breadcrumbs }: Props) => {
           // eslint-disable-next-line react/no-array-index-key
           <Fragment key={index}>
             <Icon name="chevron-doprava" />
-            <Typography>{breadcrumb.title}</Typography>
+            {breadcrumb.path ? (
+              <Link href={breadcrumb.path} variant="underlined">
+                {breadcrumb.title}
+              </Link>
+            ) : (
+              <Typography>{breadcrumb.title}</Typography>
+            )}
           </Fragment>
         ))}
       </div>

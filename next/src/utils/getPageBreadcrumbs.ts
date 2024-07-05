@@ -5,25 +5,33 @@ export type Breadcrumb = {
   path: string | null
 }
 
+// Inspired by bratislava.sk https://github.com/bratislava/bratislava.sk/blob/master/next/utils/pageUtils_Deprecated.ts#L93
 export const getPageBreadcrumbs = (page: PageParentPagesFragment): Breadcrumb[] => {
   const current = page
   if (!current) {
     return []
   }
+
+  const pages = [current]
+
   let parentPage = current?.attributes?.parentPage
-  const breadcrumbs = [
-    {
-      title: current?.attributes?.title ?? '',
-      path: current?.attributes?.slug ? `/${current.attributes.slug}` : null,
-    },
-  ]
   while (parentPage?.data?.attributes) {
-    breadcrumbs.push({
-      title: parentPage?.data?.attributes?.title ?? '',
-      path: parentPage?.data?.attributes?.slug ? `/${parentPage.data.attributes.slug}` : null,
-    })
+    pages.push(parentPage.data)
     parentPage = parentPage?.data?.attributes?.parentPage
   }
 
-  return breadcrumbs.reverse()
+  const breadcrumbs: Breadcrumb[] = []
+
+  pages.reverse().forEach((pageInner) => {
+    const previousBreadcrumb = breadcrumbs.at(-1)
+
+    breadcrumbs.push({
+      title: pageInner.attributes?.title ?? '',
+      path: pageInner.attributes?.slug
+        ? `${previousBreadcrumb ? previousBreadcrumb.path : ''}/${pageInner.attributes.slug}`
+        : null,
+    })
+  })
+
+  return breadcrumbs
 }

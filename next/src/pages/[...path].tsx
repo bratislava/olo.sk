@@ -6,6 +6,7 @@ import * as React from 'react'
 import { useEffect, useMemo } from 'react'
 
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
 import BreadcrumbsPlaceholder from '@/src/components/placeholder/BreadcrumbsPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
@@ -120,7 +121,10 @@ const Page = ({ page }: PageProps) => {
       </Head>
 
       <PageLayoutPlaceholder>
-        <BreadcrumbsPlaceholder breadcrumbs={breadcrumbs} />
+        {/* TODO consider extracting to PageContent */}
+        <SectionContainer background="secondary">
+          <BreadcrumbsPlaceholder breadcrumbs={breadcrumbs} />
+        </SectionContainer>
         <PageHeaderSections header={header} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />

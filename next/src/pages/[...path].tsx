@@ -12,9 +12,8 @@ import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceh
 import { client } from '@/src/services/graphql'
 import { PageEntityFragment } from '@/src/services/graphql/api'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
+import { getPagePath } from '@/src/utils/getPagePath'
 import { isDefined } from '@/src/utils/isDefined'
-
-// TODO To be removed
 
 type PageProps = {
   // general: GeneralQuery
@@ -22,7 +21,7 @@ type PageProps = {
 }
 
 type StaticParams = {
-  slug: string
+  path: string[]
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
@@ -48,12 +47,15 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   locale,
   params,
 }) => {
-  const slug = params?.slug
+  const path = params?.path
+  const slug = path?.at(-1)
+
+  const pathJoined = `/${path?.join('/')}`
 
   // eslint-disable-next-line no-console
-  console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}/${slug}`)
+  console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}${pathJoined}`)
 
-  if (!slug || !locale) {
+  if (!path || !slug || !locale) {
     return { notFound: true }
   }
 
@@ -64,6 +66,12 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
   const page = pages?.data[0]
   if (!page) {
+    return { notFound: true }
+  }
+
+  /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
+  const pagePath = getPagePath(page)
+  if (pagePath !== pathJoined) {
     return { notFound: true }
   }
 

@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 
 // import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
 import { LinkFragment } from '@/src/services/graphql/api'
+import { getFullPath } from '@/src/utils/getFullPath'
 
 export type LinkProps = {
   children: ReactNode
@@ -16,15 +17,22 @@ export type LinkProps = {
 
 export const getLinkProps = (link: LinkFragment | null | undefined) => {
   let href = '#'
-  let label = link?.label ?? null
+  let label = link?.label ?? undefined
   let target: '_blank' | undefined
 
+  if (!link) {
+    return { children: label, href } // TODO
+  }
+
   // TODO Add article, branch and document links
-  if (link?.page?.data?.attributes?.slug) {
-    label = link.page.data.attributes.title
-    href = `/pages/${link.page.data.attributes.slug}`
+  if (link.page?.data?.attributes) {
+    label = link.label ?? link.page.data.attributes.title
+    href = getFullPath(link.page.data) ?? '#'
+  } else if (link.article?.data?.attributes) {
+    label = link.label ?? link.article.data.attributes.title
+    href = getFullPath(link.article.data) ?? '#'
   } else if (link?.url) {
-    if (!link.label) label = link.url
+    label = link.label ?? link.url
     href = link.url
     target = '_blank'
   }

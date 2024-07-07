@@ -12,6 +12,7 @@ import { client } from '@/src/services/graphql'
 import { PickupDayHeaderSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
+import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 type Props = {
   header: PickupDayHeaderSectionFragment
@@ -33,6 +34,7 @@ const isCurrentWeekEven = () => {
 const PageHeaderPickupDay = ({ header }: Props) => {
   const { t } = useTranslation()
   const { title, carouselTitle, anchors } = header
+  const { getFullPath } = useGetFullPath()
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
@@ -100,7 +102,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
                   <ArticleCard
                     key={slug}
                     title={articleTitle}
-                    linkHref={`/articles/${slug}`}
+                    linkHref={getFullPath(article) ?? '#'}
                     imgSrc={coverMedia?.data?.attributes?.url}
                     tagText={category?.data?.attributes?.title}
                   />

@@ -82,7 +82,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <Typography variant="h2">{carouselTitle}</Typography>
           <Button variant="black-link" href="/articles" asLink>
-            {t('PageHeaderPickupDay.allNews')}
+            {t('pageHeaderPickupDay.allNews')}
           </Button>
         </div>
         {filteredArticles.length > 0 ? (

@@ -101,8 +101,8 @@ const Page = ({ article }: PageProps) => {
               <BlocksRenderer content={blocks} />
             </div>
             <ShareBlock
-              text={t('ArticlePage.shareblock.text')}
-              buttonText={t('ArticlePage.shareblock.buttonText')}
+              text={t('articlePage.shareblock.text')}
+              buttonText={t('articlePage.shareblock.buttonText')}
             />
           </div>
         </div>

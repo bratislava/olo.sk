@@ -18,7 +18,7 @@ export const getPageBreadcrumbs = (page: PageParentPagesFragment): Breadcrumb[] 
   let parentPage = current?.attributes?.parentPage
   while (parentPage?.data?.attributes) {
     pages.push(parentPage.data)
-    parentPage = parentPage?.data?.attributes?.parentPage
+    parentPage = parentPage.data.attributes.parentPage
   }
 
   const breadcrumbs: Breadcrumb[] = []

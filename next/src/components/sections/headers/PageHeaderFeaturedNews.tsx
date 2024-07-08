@@ -36,7 +36,7 @@ const PageHeaderFeaturedNews = ({ header }: Props) => {
             .map((article) => {
               if (!article?.attributes) return null
 
-              const { title: articleTitle, slug, category, coverMedia } = article.attributes
+              const { title: articleTitle, category, coverMedia } = article.attributes
 
               return (
                 <li>

@@ -5,9 +5,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 import { useEffect, useMemo } from 'react'
 
+import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
-import BreadcrumbsPlaceholder from '@/src/components/placeholder/BreadcrumbsPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
@@ -121,7 +122,10 @@ const Page = ({ page, general }: PageProps) => {
       </Head>
 
       <PageLayoutPlaceholder>
-        <BreadcrumbsPlaceholder breadcrumbs={breadcrumbs} />
+        {/* TODO consider extracting to PageContent */}
+        <SectionContainer background="secondary">
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+        </SectionContainer>
         <PageHeaderSections header={header} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />

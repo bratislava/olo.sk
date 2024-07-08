@@ -1,7 +1,8 @@
 {
   "collectionName": "components_items_file_items",
   "info": {
-    "displayName": "File item"
+    "displayName": "File item",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -9,10 +10,13 @@
       "type": "string"
     },
     "media": {
-      "allowedTypes": ["images", "files", "videos", "audios"],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     }
   }
 }

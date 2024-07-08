@@ -153,6 +153,7 @@ export interface ItemsFileItem extends Schema.Component {
   collectionName: 'components_items_file_items'
   info: {
     displayName: 'File item'
+    description: ''
   }
   attributes: {
     title: Attribute.String

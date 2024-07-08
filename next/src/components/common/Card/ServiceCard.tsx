@@ -27,9 +27,7 @@ const ServiceCard = ({ title, linkHref, hasWhiteBackground, className }: Service
       hasWhiteSectionBackground={hasWhiteBackground}
       className={cn(className)}
     >
-      {/* Plus Button */}
       <div className="flex w-64 flex-col gap-8 lg:w-[21rem] lg:gap-12">
-        {/* Content */}
         <div className="flex flex-col items-start justify-start gap-3 lg:gap-4">
           <Typography
             variant="h6"
@@ -37,16 +35,12 @@ const ServiceCard = ({ title, linkHref, hasWhiteBackground, className }: Service
           >
             {title}
           </Typography>
-
-          {/* Badges: here, or extract later */}
           <div className="flex h-12 flex-wrap items-start justify-start gap-2">
             <Badge variant="public" />
             <Badge variant="firms" />
             <Badge variant="institutions" />
           </div>
         </div>
-
-        {/* Button */}
         <div className="flex items-center gap-6">
           <Button
             variant="black-link"
@@ -62,7 +56,6 @@ const ServiceCard = ({ title, linkHref, hasWhiteBackground, className }: Service
             <Icon name="sipka-doprava" className="size-6" />
           </div>
         </div>
-        {/* Button */}
       </div>
     </CardBase>
   )

@@ -829,6 +829,7 @@ export type GenericMorph =
   | I18NLocale
   | OpeningTime
   | Page
+  | Router
   | Tag
   | UploadFile
   | UploadFolder
@@ -1024,6 +1025,7 @@ export type Mutation = {
   deleteHomepage?: Maybe<HomepageEntityResponse>
   deleteOpeningTime?: Maybe<OpeningTimeEntityResponse>
   deletePage?: Maybe<PageEntityResponse>
+  deleteRouter?: Maybe<RouterEntityResponse>
   deleteTag?: Maybe<TagEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1052,6 +1054,7 @@ export type Mutation = {
   updateHomepage?: Maybe<HomepageEntityResponse>
   updateOpeningTime?: Maybe<OpeningTimeEntityResponse>
   updatePage?: Maybe<PageEntityResponse>
+  updateRouter?: Maybe<RouterEntityResponse>
   updateTag?: Maybe<TagEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1296,6 +1299,10 @@ export type MutationUpdatePageArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationUpdateRouterArgs = {
+  data: RouterInput
+}
+
 export type MutationUpdateTagArgs = {
   data: TagInput
   id: Scalars['ID']['input']
@@ -1528,6 +1535,7 @@ export type Query = {
   openingTimes?: Maybe<OpeningTimeEntityResponseCollection>
   page?: Maybe<PageEntityResponse>
   pages?: Maybe<PageEntityResponseCollection>
+  router?: Maybe<RouterEntityResponse>
   tag?: Maybe<TagEntityResponse>
   tags?: Maybe<TagEntityResponseCollection>
   uploadFile?: Maybe<UploadFileEntityResponse>
@@ -1705,6 +1713,28 @@ export type QueryWorkshopsArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta'
   pagination: Pagination
+}
+
+export type Router = {
+  __typename?: 'Router'
+  articlesParentPage?: Maybe<PageEntityResponse>
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type RouterEntity = {
+  __typename?: 'RouterEntity'
+  attributes?: Maybe<Router>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type RouterEntityResponse = {
+  __typename?: 'RouterEntityResponse'
+  data?: Maybe<RouterEntity>
+}
+
+export type RouterInput = {
+  articlesParentPage?: InputMaybe<Scalars['ID']['input']>
 }
 
 export type StringFilterInput = {
@@ -2289,6 +2319,140 @@ export type UploadFileEntityFragment = {
     size: number
     createdAt?: any | null
     updatedAt?: any | null
+  } | null
+}
+
+export type RouterEntityFragment = {
+  __typename?: 'RouterEntity'
+  attributes?: {
+    __typename?: 'Router'
+    articlesParentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
+export type GeneralQueryVariables = Exact<{ [key: string]: never }>
+
+export type GeneralQuery = {
+  __typename?: 'Query'
+  router?: {
+    __typename?: 'RouterEntityResponse'
+    data?: {
+      __typename?: 'RouterEntity'
+      attributes?: {
+        __typename?: 'Router'
+        articlesParentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              title: string
+              slug: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                parentPage?: {
+                                  __typename?: 'PageEntityResponse'
+                                  data?: {
+                                    __typename?: 'PageEntity'
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
   } | null
 }
 
@@ -5424,6 +5588,72 @@ export const UploadFileEntityFragmentDoc = gql`
     }
   }
 `
+export const PageSlugEntityFragmentDoc = gql`
+  fragment PageSlugEntity on PageEntity {
+    __typename
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const ParentPageFragmentDoc = gql`
+  fragment ParentPage on Page {
+    slug
+    title
+  }
+`
+export const PageParentPagesFragmentDoc = gql`
+  fragment PageParentPages on PageEntity {
+    attributes {
+      ...ParentPage
+      parentPage {
+        data {
+          attributes {
+            ...ParentPage
+            parentPage {
+              data {
+                attributes {
+                  ...ParentPage
+                  parentPage {
+                    data {
+                      attributes {
+                        ...ParentPage
+                        parentPage {
+                          data {
+                            attributes {
+                              ...ParentPage
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ParentPageFragmentDoc}
+`
+export const RouterEntityFragmentDoc = gql`
+  fragment RouterEntity on RouterEntity {
+    attributes {
+      articlesParentPage {
+        data {
+          ...PageSlugEntity
+          ...PageParentPages
+        }
+      }
+    }
+  }
+  ${PageSlugEntityFragmentDoc}
+  ${PageParentPagesFragmentDoc}
+`
 export const BranchMapHeaderSectionFragmentDoc = gql`
   fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
     branches(pagination: { limit: -1 }) {
@@ -5546,16 +5776,6 @@ export const OpeningTimeEntityFragmentDoc = gql`
     }
   }
   ${OpeningHoursItemFragmentDoc}
-`
-export const PageSlugEntityFragmentDoc = gql`
-  fragment PageSlugEntity on PageEntity {
-    __typename
-    id
-    attributes {
-      title
-      slug
-    }
-  }
 `
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {
@@ -5900,48 +6120,6 @@ export const PageSectionsFragmentDoc = gql`
   ${ColumnsListSectionFragmentDoc}
   ${TableSectionFragmentDoc}
 `
-export const ParentPageFragmentDoc = gql`
-  fragment ParentPage on Page {
-    slug
-    title
-  }
-`
-export const PageParentPagesFragmentDoc = gql`
-  fragment PageParentPages on PageEntity {
-    attributes {
-      ...ParentPage
-      parentPage {
-        data {
-          attributes {
-            ...ParentPage
-            parentPage {
-              data {
-                attributes {
-                  ...ParentPage
-                  parentPage {
-                    data {
-                      attributes {
-                        ...ParentPage
-                        parentPage {
-                          data {
-                            attributes {
-                              ...ParentPage
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${ParentPageFragmentDoc}
-`
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
     ...PageSlugEntity
@@ -5969,6 +6147,16 @@ export const TagEntityFragmentDoc = gql`
       slug
     }
   }
+`
+export const GeneralDocument = gql`
+  query General {
+    router {
+      data {
+        ...RouterEntity
+      }
+    }
+  }
+  ${RouterEntityFragmentDoc}
 `
 export const ArticlesDocument = gql`
   query Articles {
@@ -6143,6 +6331,21 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    General(
+      variables?: GeneralQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<GeneralQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GeneralQuery>(GeneralDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'General',
+        'query',
+        variables,
+      )
+    },
     Articles(
       variables?: ArticlesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,

@@ -27,7 +27,7 @@ export const ArticlePageHeader: Story = {
   render: (args: Props) => (
     <ArticlePageHeaderComponent
       article={{
-        __typename: 'ArticleEntity',
+        __typename: 'ArticleEntity' as const,
         attributes: {
           ...args,
           category: { data: { attributes: { title: args.categoryTitle, slug: '' } } },

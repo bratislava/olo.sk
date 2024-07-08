@@ -26,6 +26,7 @@ const CareerRowCard = ({ value, label, toolTipText, className }: CareerRowCardPr
             <Typography variant="p-default">{value}</Typography>
           </div>
           {/* TODO Change later to Tooltip component */}
+          {/* TODO dashed border */}
           {toolTipText ? (
             <div title={toolTipText}>
               <Icon name="pomoc" className="size-5 lg:size-6" />

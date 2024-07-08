@@ -1,26 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import { iconNameMap } from '@/src/components/common/Icon/Icon'
 
 import BasicRowCardComponent, { BasicRowCardProps } from './BasicRowCard'
 
-type Props = BasicRowCardProps & {
-  iconName: keyof typeof iconNameMap
+type Props = Omit<BasicRowCardProps, 'label'> & {
+  label: string
 }
 
 const meta: Meta<Props> = {
-  component: BasicRowCardComponent,
   title: 'Components/Cards/BasicRowCard',
   args: {
-    label: 'Label',
     value: 'Value',
     iconName: 'hodiny',
+    label: 'Label',
   },
   parameters: { controls: { exclude: ['className', 'variant', 'icon'] } },
   argTypes: {
     variant: { control: { type: 'inline-radio' } },
     iconName: {
-      name: 'icon (name)',
+      name: 'iconName',
       options: Object.keys(iconNameMap),
       control: { type: 'select' },
     },
@@ -37,11 +36,7 @@ export const BasicRowCard: Story = {
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-1">
           <p className="text-[0.6rem]">variant: icon-value</p>
-          <BasicRowCardComponent
-            variant="icon-value"
-            value={args.value}
-            icon={<Icon name={args.iconName} />}
-          />
+          <BasicRowCardComponent variant="icon-value" value={args.value} iconName={args.iconName} />
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-[0.6rem]">variant: label-value-vertical</p>

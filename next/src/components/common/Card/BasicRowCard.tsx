@@ -1,6 +1,5 @@
-import { ReactNode } from 'react'
-
 import CardBase from '@/src/components/common/Card/CardBase'
+import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -11,12 +10,12 @@ export type BasicRowCardProps = {
   | {
       variant: 'label-value-horizontal' | 'label-value-vertical'
       label: string
-      icon?: never
+      iconName?: never
     }
   | {
       variant: 'icon-value'
       label?: never
-      icon: ReactNode
+      iconName: keyof typeof iconNameMap
     }
 )
 
@@ -24,14 +23,13 @@ export type BasicRowCardProps = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-9981&m=dev
  */
 
-const BasicRowCard = ({ variant, value, label, icon, className }: BasicRowCardProps) => {
+const BasicRowCard = ({ variant, value, label, iconName, className }: BasicRowCardProps) => {
   return (
     <CardBase variant="unstyled" className={cn('bg-background-primary', className)}>
       <div className="py-3 lg:py-4">
         {variant === 'icon-value' ? (
           <div className="flex gap-3 lg:gap-4">
-            {/* Icon will be passed from parent, but we want to ensure the correct size */}
-            <div className="size-5 lg:size-6 [&>*]:w-full">{icon}</div>
+            <Icon name={iconName} className="size-5 lg:size-6" />
             <Typography variant="p-default">{value}</Typography>
           </div>
         ) : variant === 'label-value-horizontal' ? (

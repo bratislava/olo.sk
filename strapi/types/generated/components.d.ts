@@ -161,6 +161,24 @@ export interface ItemsFileItem extends Schema.Component {
   }
 }
 
+export interface ItemsFooterColumn extends Schema.Component {
+  collectionName: 'components_items_footer_columns'
+  info: {
+    displayName: 'Footer column'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    links: Attribute.Component<'items.link', true> &
+      Attribute.SetMinMax<
+        {
+          min: 2
+          max: 2
+        },
+        number
+      >
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -381,6 +399,7 @@ declare module '@strapi/types' {
       'items.columns-item': ItemsColumnsItem
       'items.columns-list-item': ItemsColumnsListItem
       'items.file-item': ItemsFileItem
+      'items.footer-column': ItemsFooterColumn
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem

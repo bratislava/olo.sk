@@ -879,6 +879,39 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   }
 }
 
+export interface ApiFooterFooter extends Schema.SingleType {
+  collectionName: 'footers'
+  info: {
+    singularName: 'footer'
+    pluralName: 'footers'
+    displayName: 'footer'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    text: Attribute.RichText
+    facebookUrl: Attribute.String
+    instagramUrl: Attribute.String
+    columns: Attribute.Component<'items.footer-column', true> &
+      Attribute.SetMinMax<
+        {
+          max: 2
+        },
+        number
+      >
+    bottomLinks: Attribute.Component<'items.link', true>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::footer.footer', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::footer.footer', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
 export interface ApiHomepageHomepage extends Schema.SingleType {
   collectionName: 'homepages'
   info: {
@@ -1115,6 +1148,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
+      'api::footer.footer': ApiFooterFooter
       'api::homepage.homepage': ApiHomepageHomepage
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage

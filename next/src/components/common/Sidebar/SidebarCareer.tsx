@@ -28,10 +28,11 @@ const SidebarCareer = ({
     >
       {children.map((child, index) => {
         return (
-          <>
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={index}>
+            {index > 0 && <SidebarDivider />}
             {child}
-            {index < children.length - 1 && <SidebarDivider />}
-          </>
+          </div>
         )
       })}
     </div>

@@ -48,21 +48,16 @@ export const SidebarCareer: Story = {
     return (
       <div className="mx-auto max-w-[288px] lg:max-w-[384px]">
         <SidebarCareerComponent>
-          <BasicRowCard
-            variant="label-value-vertical"
-            label={args.rowsContent[0].label}
-            value={args.rowsContent[0].value}
-          />
-          <BasicRowCard
-            variant="label-value-vertical"
-            label={args.rowsContent[1].label}
-            value={args.rowsContent[1].value}
-          />
-          <BasicRowCard
-            variant="label-value-vertical"
-            label={args.rowsContent[2].label}
-            value={args.rowsContent[2].value}
-          />
+          {...args.rowsContent.map((row) => (
+            <div>
+              <BasicRowCard
+                variant="label-value-vertical"
+                label={row.label}
+                value={row.value}
+                key={row.label}
+              />
+            </div>
+          ))}
           <div className="flex flex-col gap-3 py-4 lg:py-5">
             <Typography variant="h6">{args.buttonLabel}</Typography>
             <Button variant="category-solid" startIcon={<Icon name="karty-a-preukazy" />} fullWidth>

@@ -28,9 +28,10 @@ const SidebarContacts = ({
     >
       {children.map((child, index) => {
         return (
-          <div className="px-3 lg:px-5">
+          // eslint-disable-next-line react/no-array-index-key
+          <div className="px-3 lg:px-5" key={index}>
+            {index > 0 && <SidebarDivider />}
             {child}
-            {index < children.length - 1 && <SidebarDivider />}
           </div>
         )
       })}

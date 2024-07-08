@@ -9,8 +9,6 @@ import cn from '@/src/utils/cn'
 // Todo refactor type to ensure that we include all icon assets from the folder in the nameMap
 
 export const iconNameMap = {
-  // size 20 px
-  'mail-outline': 'MailIcon',
   // size 24 px
   'chevron-dolava': 'ChevronLeftIcon',
   'chevron-dole': 'ChevronDownIcon',

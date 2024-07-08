@@ -9,9 +9,9 @@ import cn from '@/src/utils/cn'
 // Todo refactor type to ensure that we include all icon assets from the folder in the nameMap
 
 export const oloIconNameMap = {
-  // TODO: size
   // size 24 px
   'career-calendar': 'CareerCalendarIcon',
+  directions: 'DirectionsIcon',
   'live-help': 'LiveHelpIcon',
   place: 'PlaceIcon',
   // size 32 px

@@ -14,6 +14,8 @@
   "common.findOutMore": "Zistiť viac",
   "common.readMore": "Čítať viac",
   "common.showMore": "Zobraziť viac",
+  "fileItem.aria.downloadFile": "Stiahnuť súbor",
+  "fileItem.aria.downloadFileAriaLabel": "Stiahnuť súbor {{title}}, formát {{format}}, {{size}}",
   "navBar.aria.logoButton": "Domov",
   "pageHeaderGallery.buttonText": "Všetky fotky",
   "pageHeaderPickupDay.allNews": "Všetky novinky",

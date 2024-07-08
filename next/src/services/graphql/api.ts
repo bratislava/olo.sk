@@ -396,6 +396,13 @@ export type ComponentItemsColumnsListItemFiltersInput = {
   text?: InputMaybe<StringFilterInput>
 }
 
+export type ComponentItemsFileItem = {
+  __typename?: 'ComponentItemsFileItem'
+  id: Scalars['ID']['output']
+  media: UploadFileEntityResponse
+  title?: Maybe<Scalars['String']['output']>
+}
+
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
@@ -810,6 +817,7 @@ export type GenericMorph =
   | ComponentItemsAnchor
   | ComponentItemsColumnsItem
   | ComponentItemsColumnsListItem
+  | ComponentItemsFileItem
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
@@ -2320,6 +2328,27 @@ export type UploadFileEntityFragment = {
     createdAt?: any | null
     updatedAt?: any | null
   } | null
+}
+
+export type FileItemFragment = {
+  __typename?: 'ComponentItemsFileItem'
+  title?: string | null
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        name: string
+        ext?: string | null
+        size: number
+        createdAt?: any | null
+        updatedAt?: any | null
+      } | null
+    } | null
+  }
 }
 
 export type RouterEntityFragment = {
@@ -5587,6 +5616,17 @@ export const UploadFileEntityFragmentDoc = gql`
       updatedAt
     }
   }
+`
+export const FileItemFragmentDoc = gql`
+  fragment FileItem on ComponentItemsFileItem {
+    title
+    media {
+      data {
+        ...UploadFileEntity
+      }
+    }
+  }
+  ${UploadFileEntityFragmentDoc}
 `
 export const PageSlugEntityFragmentDoc = gql`
   fragment PageSlugEntity on PageEntity {

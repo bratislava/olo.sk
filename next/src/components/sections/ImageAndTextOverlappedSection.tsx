@@ -12,7 +12,7 @@ import {
 } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
-import { getLinkProps } from '@/src/utils/getLinkProps'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type Props = {
   section: ImageAndTextOverlappedSectionFragment
@@ -31,6 +31,8 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
     image,
     link,
   } = section
+
+  const { getLinkProps } = useGetLinkProps()
 
   const isImageShifted =
     imagePosition === Enum_Imageposition.LeftShifted ||

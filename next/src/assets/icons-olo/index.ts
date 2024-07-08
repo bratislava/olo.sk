@@ -1,4 +1,5 @@
 export { default as CareerCalendarIcon } from './career-calendar.svg'
+export { default as DirectionsIcon } from './directions.svg'
 export { default as LiveHelpIcon } from './live-help.svg'
 export { default as PlaceIcon } from './place.svg'
 export { default as FacebookIcon } from './social-media-facebook.svg'

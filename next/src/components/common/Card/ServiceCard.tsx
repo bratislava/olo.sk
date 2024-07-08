@@ -7,12 +7,6 @@ import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-/**
- * pass `children` prop - BadgesGroup / Badges OR render in all badges here
- */
-
-// 336
-
 type ServiceCardProps = {
   title: string
   linkHref: string

@@ -9,14 +9,15 @@ import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import Sections from '@/src/components/layout/Sections'
 import BreadcrumbsPlaceholder from '@/src/components/placeholder/BreadcrumbsPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
+import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
-import { PageEntityFragment } from '@/src/services/graphql/api'
+import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { getPagePath } from '@/src/utils/getPagePath'
 import { isDefined } from '@/src/utils/isDefined'
 
 type PageProps = {
-  // general: GeneralQuery
+  general: GeneralQuery
   page: PageEntityFragment
 }
 
@@ -59,8 +60,9 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ pages }, translations] = await Promise.all([
+  const [{ pages }, general, translations] = await Promise.all([
     client.PageBySlug({ slug }),
+    client.General(),
     serverSideTranslations(locale),
   ])
 
@@ -78,13 +80,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   return {
     props: {
       page,
+      general,
       ...translations,
     },
     revalidate: 10,
   }
 }
 
-const Page = ({ page }: PageProps) => {
+const Page = ({ page, general }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook
@@ -110,10 +113,8 @@ const Page = ({ page }: PageProps) => {
   // const title = useTitle(blogPostTitle)
 
   return (
-    <>
-      {/* <GeneralContextProvider general={general}> */}
+    <GeneralContextProvider general={general}>
       {/* TODO common Head/Seo component */}
-
       <Head>
         <title>{title}</title>
         {perex && <meta name="description" content={perex} />}
@@ -131,8 +132,7 @@ const Page = ({ page }: PageProps) => {
       {/* <PageLayout> */}
       {/*   <BlogPostPageContentTmp blogPost={blogPost} /> */}
       {/* </PageLayout> */}
-      {/* </GeneralContextProvider> */}
-    </>
+    </GeneralContextProvider>
   )
 }
 

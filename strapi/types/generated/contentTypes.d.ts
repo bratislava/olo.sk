@@ -1005,6 +1005,28 @@ export interface ApiPagePage extends Schema.CollectionType {
   }
 }
 
+export interface ApiRouterRouter extends Schema.SingleType {
+  collectionName: 'routers'
+  info: {
+    singularName: 'router'
+    pluralName: 'routers'
+    displayName: 'router'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    articlesParentPage: Attribute.Relation<'api::router.router', 'oneToOne', 'api::page.page'>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::router.router', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::router.router', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
 export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags'
   info: {
@@ -1096,6 +1118,7 @@ declare module '@strapi/types' {
       'api::homepage.homepage': ApiHomepageHomepage
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
+      'api::router.router': ApiRouterRouter
       'api::tag.tag': ApiTagTag
       'api::workshop.workshop': ApiWorkshopWorkshop
     }

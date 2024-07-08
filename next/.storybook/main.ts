@@ -13,7 +13,9 @@ const config: StorybookConfig = {
   ],
   typescript: {
     reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {}, // Available only when reactDocgen is set to 'react-docgen-typescript'
+    reactDocgenTypescriptOptions: {
+      shouldRemoveUndefinedFromOptional: true,
+    }, // Available only when reactDocgen is set to 'react-docgen-typescript'
   },
   addons: [
     '@storybook/addon-links',

@@ -997,7 +997,7 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1230,6 +1230,7 @@ type Mutation {
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!): PageEntityResponse
+  deleteRouter: RouterEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
@@ -1266,6 +1267,7 @@ type Mutation {
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!): PageEntityResponse
+  updateRouter(data: RouterInput!): RouterEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
   updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
@@ -1426,6 +1428,7 @@ type Query {
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
   page(id: ID): PageEntityResponse
   pages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageEntityResponseCollection
+  router: RouterEntityResponse
   tag(id: ID, locale: I18NLocaleCode): TagEntityResponse
   tags(filters: TagFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
@@ -1442,6 +1445,43 @@ type Query {
 
 type ResponseCollectionMeta {
   pagination: Pagination!
+}
+
+type Router {
+  articlesParentPage: PageEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type RouterEntity {
+  attributes: Router
+  id: ID
+}
+
+type RouterEntityResponse {
+  data: RouterEntity
+}
+
+type RouterEntityResponseCollection {
+  data: [RouterEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input RouterFiltersInput {
+  and: [RouterFiltersInput]
+  articlesParentPage: PageFiltersInput
+  createdAt: DateTimeFilterInput
+  not: RouterFiltersInput
+  or: [RouterFiltersInput]
+  updatedAt: DateTimeFilterInput
+}
+
+input RouterInput {
+  articlesParentPage: ID
+}
+
+type RouterRelationResponseCollection {
+  data: [RouterEntity!]!
 }
 
 input StringFilterInput {

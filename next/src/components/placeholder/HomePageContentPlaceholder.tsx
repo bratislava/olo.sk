@@ -5,6 +5,7 @@ import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { client } from '@/src/services/graphql'
+import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
 
 const HomePageContentPlaceholder = () => {
@@ -36,7 +37,7 @@ const HomePageContentPlaceholder = () => {
               <div key={page.id}>
                 <div className="flex flex-row gap-2">
                   <Typography variant="p-default">•</Typography>
-                  <Link variant="underlined" href={`/pages/${page.attributes?.slug}`}>
+                  <Link variant="underlined" href={getPageBreadcrumbs(page).at(-1)?.path ?? '#'}>
                     {page.attributes?.title}
                   </Link>
                 </div>

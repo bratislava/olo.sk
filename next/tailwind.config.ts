@@ -10,7 +10,7 @@ import pluginRAC from 'tailwindcss-react-aria-components'
  * Similar styles are used also in RAC example styling https://react-spectrum.adobe.com/react-aria/SearchField.html#example
  *
  */
-const removeNativeSearchInputStyling = plugin(function ({ addBase }) {
+const removeNativeSearchInputStyling = plugin(function({ addBase }) {
   addBase({
     '[type="search"]::-webkit-search-decoration': { display: 'none' },
     '[type="search"]::-webkit-search-cancel-button': { display: 'none' },
@@ -73,7 +73,6 @@ const config: Config = {
       'size-h1-hero': getFontSize([56, 64]),
       'size-h1-hero-r': getFontSize([32, 40]),
     },
-
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -85,6 +84,11 @@ const config: Config = {
         tertiary: 'rgb(var(--token-background-tertiary))',
         primaryInverted: 'rgb(var(--token-background-primary-inverted))',
         disabled: 'rgb(var(--token-background-disabled))',
+        tag: {
+          public: 'rgb(var(--token-badge-public))',
+          firms: 'rgb(var(--token-badge-firms))',
+          institutions: 'rgb(var(--token-badge-institutions))',
+        },
       },
       border: {
         default: 'rgb(var(--token-border-default))',

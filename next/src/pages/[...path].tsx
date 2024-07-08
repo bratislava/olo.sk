@@ -7,22 +7,23 @@ import { useEffect, useMemo } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
+import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
-import { PageEntityFragment } from '@/src/services/graphql/api'
+import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
+import { getPagePath } from '@/src/utils/getPagePath'
 import { isDefined } from '@/src/utils/isDefined'
 
-// TODO To be removed
-
 type PageProps = {
-  // general: GeneralQuery
+  general: GeneralQuery
   page: PageEntityFragment
 }
 
 type StaticParams = {
-  slug: string
+  path: string[]
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
@@ -48,17 +49,21 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   locale,
   params,
 }) => {
-  const slug = params?.slug
+  const path = params?.path
+  const slug = path?.at(-1)
+
+  const pathJoined = `/${path?.join('/')}`
 
   // eslint-disable-next-line no-console
-  console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}/${slug}`)
+  console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}${pathJoined}`)
 
-  if (!slug || !locale) {
+  if (!path || !slug || !locale) {
     return { notFound: true }
   }
 
-  const [{ pages }, translations] = await Promise.all([
+  const [{ pages }, general, translations] = await Promise.all([
     client.PageBySlug({ slug }),
+    client.General(),
     serverSideTranslations(locale),
   ])
 
@@ -67,16 +72,23 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
+  /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
+  const pagePath = getPagePath(page)
+  if (pagePath !== pathJoined) {
+    return { notFound: true }
+  }
+
   return {
     props: {
       page,
+      general,
       ...translations,
     },
     revalidate: 10,
   }
 }
 
-const Page = ({ page }: PageProps) => {
+const Page = ({ page, general }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook
@@ -102,17 +114,18 @@ const Page = ({ page }: PageProps) => {
   // const title = useTitle(blogPostTitle)
 
   return (
-    <>
-      {/* <GeneralContextProvider general={general}> */}
+    <GeneralContextProvider general={general}>
       {/* TODO common Head/Seo component */}
-
       <Head>
         <title>{title}</title>
         {perex && <meta name="description" content={perex} />}
       </Head>
 
       <PageLayoutPlaceholder>
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
+        {/* TODO consider extracting to PageContent */}
+        <SectionContainer background="secondary">
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+        </SectionContainer>
         <PageHeaderSections header={header} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />
@@ -123,8 +136,7 @@ const Page = ({ page }: PageProps) => {
       {/* <PageLayout> */}
       {/*   <BlogPostPageContentTmp blogPost={blogPost} /> */}
       {/* </PageLayout> */}
-      {/* </GeneralContextProvider> */}
-    </>
+    </GeneralContextProvider>
   )
 }
 

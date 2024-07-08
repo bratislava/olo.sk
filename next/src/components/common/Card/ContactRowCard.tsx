@@ -35,9 +35,9 @@ const ContactRowCard = ({ variant, contact, className }: ContactRowCardProps) =>
   return (
     <CardBase className={cn('bg-background-primary py-3 lg:py-4', className)}>
       <div className="flex gap-3 lg:gap-4">
-        <div className="size-5 shrink-0 lg:size-6">
-          {variant === 'phone' && <Icon name="telefon" />}
-          {variant === 'mail' && <Icon name="mail" />}
+        <div>
+          {variant === 'phone' && <Icon name="telefon" className="size-5 lg:size-6" />}
+          {variant === 'mail' && <Icon name="mail" className="size-5 lg:size-6" />}
         </div>
         <Button variant="black-link" asLink href={linkHref} hasLinkIcon={false}>
           {contact}

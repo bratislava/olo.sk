@@ -2,55 +2,17 @@ import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import AnimateHeight from '@/src/components/common/Accordion/AnimateHeight'
+import { BreadcrumbsProps } from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
-import Typography from '@/src/components/common/Typography/Typography'
-import { Breadcrumb } from '@/src/utils/getPageBreadcrumbs'
-
-type BreadcrumbsProps = {
-  // Todo add white background variant
-  breadcrumbs: Breadcrumb[]
-}
-
-const DesktopBreadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
-  const { t } = useTranslation()
-
-  return (
-    <ol className="flex flex-wrap gap-2 py-4.5">
-      <li className="size-5">
-        <Button
-          variant="icon-wrapped-negative-margin"
-          href="/"
-          asLink
-          hasLinkIcon={false}
-          // eslint-disable-next-line sonarjs/no-duplicate-string
-          aria-label={t('breadcrumbs.homepage')}
-          icon={<Icon name="domcek" />}
-        />
-      </li>
-      {breadcrumbs.map((breadcrumb, index) => {
-        const isLast = index === breadcrumbs.length - 1
-
-        return (
-          <li key={breadcrumb.path} className="flex gap-2">
-            <Icon name="chevron-doprava" aria-hidden />
-            {breadcrumb.path && !isLast ? (
-              <Button variant="black-link" href={breadcrumb.path} asLink hasLinkIcon={false}>
-                {breadcrumb.title}
-              </Button>
-            ) : (
-              <Typography>{breadcrumb.title}</Typography>
-            )}
-          </li>
-        )
-      })}
-    </ol>
-  )
-}
 
 const goBack = () => {
   window.history.back()
 }
+
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=38-1950&m=dev
+ */
 
 const MobileBreadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
   const { t } = useTranslation()
@@ -101,15 +63,13 @@ const MobileBreadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
                     asLink
                     hasLinkIcon={false}
                     className="flex gap-1"
-                    startIcon={
-                      <Icon name="chevron-doprava" className="size-5 shrink-0 rotate-180" />
-                    }
+                    startIcon={<Icon name="chevron-dolava" className="size-5 rotate-180" />}
                   >
                     {breadcrumb.title}
                   </Button>
                 ) : (
                   <div className="flex gap-1">
-                    <Icon name="chevron-doprava" className="size-5 shrink-0 rotate-180" />
+                    <Icon name="chevron-dolava" className="size-5 shrink-0 rotate-180" />
                     {breadcrumb.title}
                   </div>
                 )}
@@ -122,20 +82,4 @@ const MobileBreadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
   )
 }
 
-/**
- * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=38-1950&m=dev
- */
-const BreadcrumbsPlaceholder = ({ breadcrumbs }: BreadcrumbsProps) => {
-  return (
-    <>
-      <nav className="hidden lg:block">
-        <DesktopBreadcrumbs breadcrumbs={breadcrumbs} />
-      </nav>
-      <nav className="lg:hidden">
-        <MobileBreadcrumbs breadcrumbs={breadcrumbs} />
-      </nav>
-    </>
-  )
-}
-
-export default BreadcrumbsPlaceholder
+export default MobileBreadcrumbs

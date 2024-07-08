@@ -5,9 +5,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 import { useEffect, useMemo } from 'react'
 
+import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import Sections from '@/src/components/layout/Sections'
-import BreadcrumbsPlaceholder from '@/src/components/placeholder/BreadcrumbsPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { client } from '@/src/services/graphql'
 import { PageEntityFragment } from '@/src/services/graphql/api'
@@ -112,7 +112,7 @@ const Page = ({ page }: PageProps) => {
       </Head>
 
       <PageLayoutPlaceholder>
-        <BreadcrumbsPlaceholder breadcrumbs={breadcrumbs} />
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
         <PageHeaderSections header={header} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />

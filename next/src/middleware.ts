@@ -23,6 +23,7 @@ export const config = {
  */
 // eslint-disable-next-line consistent-return
 export async function middleware(request: NextRequest) {
+  // eslint-disable-next-line no-console
   console.log(request.nextUrl)
   const response = await fetch(`${request.nextUrl.origin}/api/paths-list`)
   const { articlesPath } = await response.json()

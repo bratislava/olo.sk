@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import Badge from '@/src/components/common/Badge/Badge'
 import Button from '@/src/components/common/Button/Button'
-import CardBase from '@/src/components/common/Card/CardBase'
+import CardBase, { CardBaseProps } from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -10,22 +10,21 @@ import cn from '@/src/utils/cn'
 type ServiceCardProps = {
   title: string
   linkHref: string
-  hasWhiteBackground: boolean
   className?: string
-}
+} & Omit<CardBaseProps, 'variant'>
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=2094-19259&t=KpDlPbubYbVcw7ey-4&mode=dev
  */
 
-const ServiceCard = ({ title, linkHref, hasWhiteBackground, className }: ServiceCardProps) => {
+const ServiceCard = ({ title, linkHref, className, ...rest }: ServiceCardProps) => {
   const { t } = useTranslation()
 
   return (
     <CardBase
       variant="background-white"
-      hasWhiteSectionBackground={hasWhiteBackground}
-      className={cn(className)}
+      hasWhiteSectionBackground={rest.hasWhiteSectionBackground}
+      className={cn('p-4 lg:p-6', className)}
     >
       <div className="flex flex-col gap-8 lg:gap-12">
         <div className="flex flex-col items-start justify-start gap-3 lg:gap-4">
@@ -35,6 +34,7 @@ const ServiceCard = ({ title, linkHref, hasWhiteBackground, className }: Service
           >
             {title}
           </Typography>
+
           <div className="flex flex-wrap items-start justify-start gap-2">
             <Badge variant="public" />
             <Badge variant="firms" />
@@ -48,7 +48,7 @@ const ServiceCard = ({ title, linkHref, hasWhiteBackground, className }: Service
             href={linkHref}
             stretched
             hasLinkIcon={false}
-            className="font-bold no-underline"
+            className="text-size-button-default font-bold no-underline"
           >
             {t('common.findOutMore')}
           </Button>

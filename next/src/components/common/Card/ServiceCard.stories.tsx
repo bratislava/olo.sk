@@ -5,14 +5,9 @@ import ServiceCardComponent from './ServiceCard'
 const meta: Meta<typeof ServiceCardComponent> = {
   component: ServiceCardComponent,
   title: 'Components/Cards/ServiceCard',
-  argTypes: {
-    hasWhiteBackground: { type: 'boolean' },
-  },
   args: {
     title: 'Service name',
     linkHref: '/',
-    hasWhiteBackground: true,
-    className: 'flex flex-col p-4 lg:p-6',
   },
   parameters: {
     controls: { exclude: ['className'] },

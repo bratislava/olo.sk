@@ -23,14 +23,14 @@ const ServiceCard = ({
   linkHref,
   className,
   serviceCategories,
-  ...rest
+  hasWhiteSectionBackground,
 }: ServiceCardProps) => {
   const { t } = useTranslation()
 
   return (
     <CardBase
       variant="background-white"
-      hasWhiteSectionBackground={rest.hasWhiteSectionBackground}
+      hasWhiteSectionBackground={hasWhiteSectionBackground}
       className={cn('min-w-[18rem] p-4 lg:p-6', className)}
     >
       <div className="flex flex-col gap-8 lg:gap-12">

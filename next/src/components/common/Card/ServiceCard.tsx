@@ -11,20 +11,27 @@ type ServiceCardProps = {
   title: string
   linkHref: string
   className?: string
+  serviceCategories: Array<'public' | 'firms' | 'institutions'>
 } & Omit<CardBaseProps, 'variant'>
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=2094-19259&t=KpDlPbubYbVcw7ey-4&mode=dev
  */
 
-const ServiceCard = ({ title, linkHref, className, ...rest }: ServiceCardProps) => {
+const ServiceCard = ({
+  title,
+  linkHref,
+  className,
+  serviceCategories,
+  ...rest
+}: ServiceCardProps) => {
   const { t } = useTranslation()
 
   return (
     <CardBase
       variant="background-white"
       hasWhiteSectionBackground={rest.hasWhiteSectionBackground}
-      className={cn('p-4 lg:p-6', className)}
+      className={cn('min-w-[18rem] p-4 lg:p-6', className)}
     >
       <div className="flex flex-col gap-8 lg:gap-12">
         <div className="flex flex-col items-start justify-start gap-3 lg:gap-4">
@@ -34,11 +41,10 @@ const ServiceCard = ({ title, linkHref, className, ...rest }: ServiceCardProps) 
           >
             {title}
           </Typography>
-
           <div className="flex flex-wrap items-start justify-start gap-2">
-            <Badge variant="public" />
-            <Badge variant="firms" />
-            <Badge variant="institutions" />
+            {serviceCategories.map((category) => (
+              <Badge variant={category} />
+            ))}
           </div>
         </div>
         <div className="flex items-center gap-6">

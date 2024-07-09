@@ -5,9 +5,23 @@ import ServiceCardComponent from './ServiceCard'
 const meta: Meta<typeof ServiceCardComponent> = {
   component: ServiceCardComponent,
   title: 'Components/Cards/ServiceCard',
+  argTypes: {
+    serviceCategories: {
+      options: [['public'], ['firms'], ['institutions'], ['public', 'firms', 'institutions']],
+      control: {
+        type: 'radio',
+        labels: {
+          public: 'Public',
+          firms: 'Firms',
+          institutions: 'Institutions',
+          'public,firms,institutions': 'All',
+        },
+      },
+    },
+  },
   args: {
     title: 'Service name',
-    linkHref: '/',
+    serviceCategories: ['public', 'firms', 'institutions'],
   },
   parameters: {
     controls: { exclude: ['className'] },
@@ -28,13 +42,15 @@ export const ServiceCard: Story = {
     ),
   ],
 }
-
 export const ServiceCardRows: Story = {
   render: (args) => (
-    <div className="lg:flex-inline flex flex-wrap gap-2 lg:gap-8">
+    <div className="flex grid-rows-1 gap-2 lg:gap-8">
       <ServiceCardComponent {...args} />
       <ServiceCardComponent {...args} />
       <ServiceCardComponent {...args} />
     </div>
   ),
+  parameters: {
+    controls: { exclude: ['serviceCategories'] },
+  },
 }

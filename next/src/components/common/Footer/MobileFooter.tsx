@@ -32,6 +32,7 @@ const DesktopFooter = () => {
       {/* Columns */}
       <SectionContainer className="bg-content-primary py-6">
         <div className="flex flex-col gap-6">
+          {/* TODO Replace with Accordions */}
           {columns?.length &&
             columns
               .map((column, columnIndex) => {

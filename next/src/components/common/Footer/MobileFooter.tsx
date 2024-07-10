@@ -9,7 +9,7 @@ import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-const DesktopFooter = () => {
+const MobileFooter = () => {
   const { getLinkProps } = useGetLinkProps()
   const { t } = useTranslation()
   const { footer } = useGeneralContext()
@@ -21,17 +21,13 @@ const DesktopFooter = () => {
   const { columns, bottomLinks } = footerAttributes
 
   return (
-    <div className="flex flex-col divide-y divide-border-dark">
-      {/* Contacts */}
-      <SectionContainer className="bg-content-primary py-6">
-        <div className="flex flex-col">
+    <SectionContainer className="bg-content-primary">
+      <div className="flex flex-col divide-y divide-border-dark ">
+        <div className="flex flex-col py-6">
           <FooterContacts {...footerAttributes} />
         </div>
-      </SectionContainer>
 
-      {/* Columns */}
-      <SectionContainer className="bg-content-primary py-6">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 py-6">
           {/* TODO Replace with Accordions */}
           {columns?.length &&
             columns
@@ -68,11 +64,8 @@ const DesktopFooter = () => {
               // eslint-disable-next-line unicorn/no-array-callback-reference
               .filter(isDefined)}
         </div>
-      </SectionContainer>
 
-      {/* Bottom links & Copyright */}
-      <SectionContainer className="bg-content-primary py-6">
-        <div className="flex flex-col gap-6 text-center text-border-default">
+        <div className="flex flex-col gap-6 py-6 text-center text-border-default">
           <div className="flex flex-col gap-6 text-size-p-small">
             <div className="flex flex-col gap-6">
               <FooterBottomLinks bottomLinks={bottomLinks} />
@@ -91,9 +84,9 @@ const DesktopFooter = () => {
             </Link>
           </Typography>
         </div>
-      </SectionContainer>
-    </div>
+      </div>
+    </SectionContainer>
   )
 }
 
-export default DesktopFooter
+export default MobileFooter

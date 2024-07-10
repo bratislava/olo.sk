@@ -11,15 +11,19 @@ fragment RouterEntity on RouterEntity {
 
 fragment FooterEntity on FooterEntity {
   attributes {
-    text
-    facebookUrl
-    instagramUrl
-    columns {
-      ...FooterColumnItem
-    }
-    bottomLinks {
-      ...Link
-    }
+    ...Footer
+  }
+}
+
+fragment Footer on Footer {
+  text
+  facebookUrl
+  instagramUrl
+  columns {
+    ...FooterColumnItem
+  }
+  bottomLinks {
+    ...Link
   }
 }
 

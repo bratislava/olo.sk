@@ -165,17 +165,11 @@ export interface ItemsFooterColumn extends Schema.Component {
   collectionName: 'components_items_footer_columns'
   info: {
     displayName: 'Footer column'
+    description: ''
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    links: Attribute.Component<'items.link', true> &
-      Attribute.SetMinMax<
-        {
-          min: 2
-          max: 2
-        },
-        number
-      >
+    links: Attribute.Component<'items.link', true>
   }
 }
 

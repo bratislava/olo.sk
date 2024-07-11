@@ -48,19 +48,15 @@ export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragme
 export const FooterBottomLinks = ({ bottomLinks }: FooterFragment) => {
   const { getLinkProps } = useGetLinkProps()
 
-  return (
-    bottomLinks?.length &&
-    // eslint-disable-next-line unicorn/no-array-callback-reference
-    bottomLinks.filter(isDefined).map((bottomLink, index) => {
-      return (
-        <Link
-          variant="underlined"
-          // eslint-disable-next-line react/no-array-index-key
-          key={index}
-          {...getLinkProps(bottomLink)}
-          className="text-border-default"
-        />
-      )
-    })
-  )
+  return bottomLinks?.filter(isDefined).map((bottomLink, index) => {
+    return (
+      <Link
+        variant="underlined"
+        // eslint-disable-next-line react/no-array-index-key
+        key={index}
+        {...getLinkProps(bottomLink)}
+        className="text-border-default"
+      />
+    )
+  })
 }

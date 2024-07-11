@@ -26,36 +26,35 @@ const DesktopFooter = () => {
       <SectionContainer className="bg-content-primary py-18">
         <div className="grid grid-cols-[30.5rem_1fr_1fr] gap-8">
           <FooterContacts {...footerAttributes} />
-          {columns?.length &&
-            columns
-              .map((column, columnIndex) => {
-                if (!column) return null
+          {columns
+            ?.map((column, columnIndex) => {
+              if (!column) return null
 
-                const filteredColumnLinks = column.links?.filter(isDefined) ?? []
+              const filteredColumnLinks = column.links?.filter(isDefined) ?? []
 
-                return (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <div className="flex flex-col flex-wrap gap-4" key={columnIndex}>
-                    <Typography variant="h5" className_onlyWhenNecessary="text-background-primary">
-                      {column.title}
-                    </Typography>
-                    <div className="flex flex-col gap-3 text-border-default">
-                      {filteredColumnLinks.map((columnLink, index) => {
-                        return (
-                          <Link
-                            variant="underlined"
-                            // eslint-disable-next-line react/no-array-index-key
-                            key={index}
-                            {...getLinkProps(columnLink)}
-                          />
-                        )
-                      })}
-                    </div>
+              return (
+                // eslint-disable-next-line react/no-array-index-key
+                <div className="flex flex-col flex-wrap gap-4" key={columnIndex}>
+                  <Typography variant="h5" className_onlyWhenNecessary="text-background-primary">
+                    {column.title}
+                  </Typography>
+                  <div className="flex flex-col gap-3 text-border-default">
+                    {filteredColumnLinks.map((columnLink, index) => {
+                      return (
+                        <Link
+                          variant="underlined"
+                          // eslint-disable-next-line react/no-array-index-key
+                          key={index}
+                          {...getLinkProps(columnLink)}
+                        />
+                      )
+                    })}
                   </div>
-                )
-              })
-              // eslint-disable-next-line unicorn/no-array-callback-reference
-              .filter(isDefined)}
+                </div>
+              )
+            })
+            // eslint-disable-next-line unicorn/no-array-callback-reference
+            .filter(isDefined)}
         </div>
       </SectionContainer>
 
@@ -75,7 +74,7 @@ const DesktopFooter = () => {
               target="_blank"
               className="text-size-p-small"
             >
-              {t('footer.innovationDepartment')}
+              {t('footer.copyrightMessage.innovationDepartment')}
             </Link>
           </Typography>
         </div>

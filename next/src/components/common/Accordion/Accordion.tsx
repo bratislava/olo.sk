@@ -8,7 +8,6 @@ import cn from '@/src/utils/cn'
 export type AccordionProps = {
   title: string
   children?: ReactNode
-  hideHorizontalPadding?: boolean
   className?: string
 }
 
@@ -19,20 +18,11 @@ export type AccordionProps = {
  *
  */
 
-const Accordion = ({
-  title,
-  children,
-  hideHorizontalPadding = false,
-  className,
-}: AccordionProps) => {
+const Accordion = ({ title, children, className }: AccordionProps) => {
   return (
     <AnimateHeight isVisible className="relative">
       <div className={cn('bg-background-primary', className)}>
-        <details
-          className={cn('group flex w-full flex-col py-5', {
-            'px-4 lg:px-5': !hideHorizontalPadding,
-          })}
-        >
+        <details className={cn('group flex w-full flex-col py-5', {})}>
           <summary
             className={cn(
               'flex cursor-pointer items-center gap-4 text-left after:absolute after:inset-0',

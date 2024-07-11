@@ -29,40 +29,39 @@ const MobileFooter = () => {
 
         <div className="flex flex-col gap-6 py-6">
           {/* TODO Replace with Accordions */}
-          {columns?.length &&
-            columns
-              .map((column, columnIndex) => {
-                if (!column) return null
+          {columns
+            ?.map((column, columnIndex) => {
+              if (!column) return null
 
-                const filteredColumnLinks = column.links?.filter(isDefined) ?? []
+              const filteredColumnLinks = column.links?.filter(isDefined) ?? []
 
-                return (
+              return (
+                // eslint-disable-next-line react/no-array-index-key
+                <div
+                  className="flex flex-col flex-wrap gap-4"
                   // eslint-disable-next-line react/no-array-index-key
-                  <div
-                    className="flex flex-col flex-wrap gap-4"
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={columnIndex}
-                  >
-                    <Typography variant="h5" className_onlyWhenNecessary="text-background-primary">
-                      {column.title}
-                    </Typography>
-                    <div className="flex flex-col gap-3 text-border-default">
-                      {filteredColumnLinks.map((columnLink, index) => {
-                        return (
-                          <Link
-                            variant="underlined"
-                            // eslint-disable-next-line react/no-array-index-key
-                            key={index}
-                            {...getLinkProps(columnLink)}
-                          />
-                        )
-                      })}
-                    </div>
+                  key={columnIndex}
+                >
+                  <Typography variant="h5" className_onlyWhenNecessary="text-background-primary">
+                    {column.title}
+                  </Typography>
+                  <div className="flex flex-col gap-3 text-border-default">
+                    {filteredColumnLinks.map((columnLink, index) => {
+                      return (
+                        <Link
+                          variant="underlined"
+                          // eslint-disable-next-line react/no-array-index-key
+                          key={index}
+                          {...getLinkProps(columnLink)}
+                        />
+                      )
+                    })}
                   </div>
-                )
-              })
-              // eslint-disable-next-line unicorn/no-array-callback-reference
-              .filter(isDefined)}
+                </div>
+              )
+            })
+            // eslint-disable-next-line unicorn/no-array-callback-reference
+            .filter(isDefined)}
         </div>
 
         <div className="flex flex-col gap-6 py-6 text-center text-border-default">
@@ -80,7 +79,7 @@ const MobileFooter = () => {
               target="_blank"
               className="text-size-p-small"
             >
-              {t('footer.innovationDepartment')}
+              {t('footer.copyrightMessage.innovationDepartment')}
             </Link>
           </Typography>
         </div>

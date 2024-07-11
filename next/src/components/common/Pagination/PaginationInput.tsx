@@ -17,7 +17,7 @@ const PaginationInput = ({
 
   return (
     <nav>
-      <ul className={cn('flex items-center justify-start')}>
+      <div className={cn('flex items-center justify-start gap-4')}>
         <Button
           variant="category-plain"
           isDisabled={currentPage === 1}
@@ -26,20 +26,26 @@ const PaginationInput = ({
           icon={<Icon name="sipka-dolava" />}
           className="rounded-full"
         />
-        <div className="flex h-12 w-[102px] items-center justify-center">
+
+        <div className="flex items-center justify-center gap-2">
           <Input
-            className="h-12 w-12 shrink grow basis-0 items-center justify-start gap-3 px-4 py-3 text-center"
+            className="items-center justify-center"
+            classNameInner="max-w-[3.2rem]"
             disabled={false}
             value={currentPage}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               handlePageChange?.(Number(event.target.value))
             }
           />
-          <div className="flex items-center justify-start gap-1">
-            <Typography variant="p-default">/</Typography>
+
+          <div className="flex gap-1">
+            <div className="flex size-6 justify-center">
+              <Typography variant="p-default">/</Typography>
+            </div>
             <Typography variant="p-default">{totalCount}</Typography>
           </div>
         </div>
+
         <Button
           variant="category-plain"
           isDisabled={currentPage === totalCount}
@@ -48,7 +54,7 @@ const PaginationInput = ({
           icon={<Icon name="sipka-doprava" />}
           className="rounded-full"
         />
-      </ul>
+      </div>
     </nav>
   )
 }

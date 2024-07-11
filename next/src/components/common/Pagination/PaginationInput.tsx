@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next'
-import React from 'react'
+import React, { useState } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
@@ -14,15 +14,19 @@ const PaginationInput = ({
   onPageChange: handlePageChange,
 }: PaginationProps) => {
   const { t } = useTranslation()
+  const [page, setPage] = useState(currentPage)
 
   return (
     <nav>
       <div className={cn('flex items-center justify-start gap-4')}>
         <Button
           variant="category-plain"
-          isDisabled={currentPage === 1}
-          onPress={() => handlePageChange?.(currentPage - 1)}
-          aria-label={t('pagination.aria.goToPreviousPage', currentPage.toString())}
+          isDisabled={page === 1}
+          onPress={() => {
+            setPage(page - 1)
+            handlePageChange?.(page - 1)
+          }}
+          aria-label={t('pagination.aria.goToPreviousPage', page.toString())}
           icon={<Icon name="sipka-dolava" />}
           className="rounded-full"
         />
@@ -31,12 +35,16 @@ const PaginationInput = ({
           <Input
             className="items-center justify-center"
             classNameInner={cn('!w-[3.75rem] text-center', {
-              '!w-[4.37rem]': currentPage.toString().length > 3,
+              '!w-[4.37rem]': page.toString().length > 3,
             })}
             maxLength={4}
-            value={currentPage}
+            inputMode="numeric"
+            value={page}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handlePageChange?.(Number(event.target.value))
+              setPage(+event.target.value as number)
+            }
+            onBlur={(event: React.ChangeEvent<HTMLInputElement>) =>
+              handlePageChange?.(+event.target.value as number)
             }
           />
 
@@ -50,9 +58,12 @@ const PaginationInput = ({
 
         <Button
           variant="category-plain"
-          isDisabled={currentPage === totalCount}
-          onPress={() => handlePageChange?.(currentPage + 1)}
-          aria-label={t('pagination.aria.goToNextPage', currentPage.toString())}
+          isDisabled={page === totalCount}
+          onPress={() => {
+            setPage(page + 1)
+            handlePageChange?.(page + 1)
+          }}
+          aria-label={t('pagination.aria.goToNextPage', page.toString())}
           icon={<Icon name="sipka-doprava" />}
           className="rounded-full"
         />

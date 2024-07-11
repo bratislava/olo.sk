@@ -8,8 +8,6 @@ import { PaginationProps } from '@/src/components/common/Pagination/Pagination'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-// enter, blur -> az ked dopise
-
 const PaginationInput = ({
   currentPage,
   totalCount,
@@ -32,18 +30,13 @@ const PaginationInput = ({
         <div className="flex items-center justify-center gap-2">
           <Input
             className="items-center justify-center"
-            classNameInner="max-w-[3.2rem]"
-            defaultValue={1}
-            maxLength={2}
-            //max={totalCount}
-            //min={1}
+            classNameInner={cn('!w-[3.75rem] text-center', {
+              '!w-[4.37rem]': currentPage.toString().length > 3,
+            })}
+            maxLength={4}
             value={currentPage}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handlePageChange?.(
-                Number.isNaN(Number(event.target.value)) || Number(event.target.value) < 1
-                  ? 1
-                  : Number(event.target.value),
-              )
+              handlePageChange?.(Number(event.target.value))
             }
           />
 

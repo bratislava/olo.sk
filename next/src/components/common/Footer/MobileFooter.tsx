@@ -13,18 +13,14 @@ const MobileFooter = () => {
   const { getLinkProps } = useGetLinkProps()
   const { t } = useTranslation()
   const { footer } = useGeneralContext()
-  const footerAttributes = footer?.data?.attributes
-  if (!footerAttributes) {
-    return null
-  }
 
-  const { columns, bottomLinks } = footerAttributes
+  const { text, facebookUrl, instagramUrl, columns, bottomLinks } = footer?.data?.attributes ?? {}
 
   return (
     <SectionContainer className="bg-content-primary">
       <div className="flex flex-col divide-y divide-border-dark ">
         <div className="flex flex-col py-6">
-          <FooterContacts {...footerAttributes} />
+          <FooterContacts {...{ text, facebookUrl, instagramUrl }} />
         </div>
 
         <div className="flex flex-col gap-6 py-6">

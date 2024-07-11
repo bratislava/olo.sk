@@ -38,6 +38,7 @@ fragment PageParentPages on PageEntity {
 }
 
 fragment PageSlugEntity on PageEntity {
+  ...PageParentPages
   __typename
   id
   attributes {
@@ -57,7 +58,6 @@ fragment PageEntity on PageEntity {
       ...PageSections
     }
   }
-  ...PageParentPages
 }
 
 query Pages {

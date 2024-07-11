@@ -13,6 +13,8 @@ export const oloIconNameMap = {
   'career-calendar': 'CareerCalendarIcon',
   directions: 'DirectionsIcon',
   'live-help': 'LiveHelpIcon',
+  'social-media-facebook-footer': 'FacebookFooterIcon',
+  'social-media-instagram-footer': 'InstagramFooterIcon',
   place: 'PlaceIcon',
   // size 32 px
   'social-media-facebook': 'FacebookIcon',

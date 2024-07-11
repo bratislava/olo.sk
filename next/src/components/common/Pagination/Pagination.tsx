@@ -7,7 +7,7 @@ import Icon from '@/src/components/common/Icon/Icon'
 import usePagination from '@/src/components/common/Pagination/usePagination'
 import cn from '@/src/utils/cn'
 
-type PaginationProps = {
+export type PaginationProps = {
   currentPage: number
   totalCount: number
   onPageChange?: (value: number) => void

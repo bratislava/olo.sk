@@ -14,19 +14,36 @@ const PaginationInput = ({
   onPageChange: handlePageChange,
 }: PaginationProps) => {
   const { t } = useTranslation()
-  const [page, setPage] = useState(currentPage)
+  const [inputValue, setInputValue] = useState(currentPage)
+
+  const handleInputChange = (userInput: string, totalPagesState: number) => {
+    let currentInputValue = +userInput
+    const LOWER_BOUNDARY = 1
+
+    if (Number.isNaN(currentInputValue) || currentInputValue < LOWER_BOUNDARY) {
+      setInputValue(LOWER_BOUNDARY) // if string-based input, go back to the start
+      currentInputValue = LOWER_BOUNDARY
+    }
+
+    if (currentInputValue > totalPagesState) {
+      setInputValue(totalPagesState)
+      currentInputValue = totalPagesState
+    }
+
+    handlePageChange?.(currentInputValue) // send to parent
+  }
 
   return (
     <nav>
       <div className={cn('flex items-center justify-start gap-4')}>
         <Button
           variant="category-plain"
-          isDisabled={page === 1}
+          isDisabled={inputValue === 1}
           onPress={() => {
-            setPage(page - 1)
-            handlePageChange?.(page - 1)
+            setInputValue(inputValue - 1)
+            handlePageChange?.(inputValue - 1)
           }}
-          aria-label={t('pagination.aria.goToPreviousPage', page.toString())}
+          aria-label={t('pagination.aria.goToPreviousPage', inputValue.toString())}
           icon={<Icon name="sipka-dolava" />}
           className="rounded-full"
         />
@@ -35,16 +52,24 @@ const PaginationInput = ({
           <Input
             className="items-center justify-center"
             classNameInner={cn('!w-[3.75rem] text-center', {
-              '!w-[4.37rem]': page.toString().length > 3,
+              '!w-[4.37rem]': inputValue.toString().length > 3,
             })}
             maxLength={4}
-            inputMode="numeric"
-            value={page}
+            // @ts-ignore
+            value={
+              Number.isNaN(+inputValue)
+                ? () => {
+                    setInputValue(1) // change local state
+
+                    return '1' // return immediately to the UI
+                  }
+                : inputValue
+            }
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setPage(+event.target.value as number)
+              setInputValue(+event.target.value)
             }
             onBlur={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handlePageChange?.(+event.target.value as number)
+              handleInputChange(event.target.value, totalCount)
             }
           />
 
@@ -58,12 +83,12 @@ const PaginationInput = ({
 
         <Button
           variant="category-plain"
-          isDisabled={page === totalCount}
+          isDisabled={inputValue === totalCount}
           onPress={() => {
-            setPage(page + 1)
-            handlePageChange?.(page + 1)
+            setInputValue(inputValue + 1)
+            handlePageChange?.(inputValue + 1)
           }}
-          aria-label={t('pagination.aria.goToNextPage', page.toString())}
+          aria-label={t('pagination.aria.goToNextPage', inputValue.toString())}
           icon={<Icon name="sipka-doprava" />}
           className="rounded-full"
         />

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import * as OloIcons from '@/src/assets/icons-olo'
 import cn from '@/src/utils/cn'
 
@@ -14,6 +16,8 @@ export const oloIconNameMap = {
   directions: 'DirectionsIcon',
   'live-help': 'LiveHelpIcon',
   place: 'PlaceIcon',
+  'directions-bus': 'BusIcon',
+  'local-parking': 'ParkingIcon',
   // size 32 px
   'social-media-facebook': 'FacebookIcon',
   'social-media-twitter': 'TwitterIcon',

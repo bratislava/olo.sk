@@ -4,8 +4,8 @@
 
 type Article {
   addedAt: DateTime!
-  blocks: JSON
   category: CategoryEntityResponse
+  content: String
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
   locale: String
@@ -34,8 +34,8 @@ type ArticleEntityResponseCollection {
 input ArticleFiltersInput {
   addedAt: DateTimeFilterInput
   and: [ArticleFiltersInput]
-  blocks: JSONFilterInput
   category: CategoryFiltersInput
+  content: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -51,8 +51,8 @@ input ArticleFiltersInput {
 
 input ArticleInput {
   addedAt: DateTime
-  blocks: JSON
   category: ID
+  content: String
   coverMedia: ID
   perex: String
   publishedAt: DateTime
@@ -735,19 +735,22 @@ input ComponentSectionsOrderedCardsInput {
 }
 
 type ComponentSectionsRichtext {
-  content: JSON
+  backgroundColor: ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR!
+  content: String
   id: ID!
 }
 
 input ComponentSectionsRichtextFiltersInput {
   and: [ComponentSectionsRichtextFiltersInput]
-  content: JSONFilterInput
+  backgroundColor: StringFilterInput
+  content: StringFilterInput
   not: ComponentSectionsRichtextFiltersInput
   or: [ComponentSectionsRichtextFiltersInput]
 }
 
 input ComponentSectionsRichtextInput {
-  content: JSON
+  backgroundColor: ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR
+  content: String
   id: ID
 }
 
@@ -979,6 +982,12 @@ enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   left
   right
+}
+
+enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
 }
 
 type Error {

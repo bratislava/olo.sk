@@ -342,12 +342,14 @@ export interface SectionsOrderedCards extends Schema.Component {
 export interface SectionsRichtext extends Schema.Component {
   collectionName: 'components_sections_richtexts'
   info: {
-    displayName: 'richtext'
-    icon: 'apps'
+    displayName: 'Richtext'
     description: ''
   }
   attributes: {
-    content: Attribute.Blocks
+    content: Attribute.RichText
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
   }
 }
 

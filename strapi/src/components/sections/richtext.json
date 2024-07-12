@@ -1,15 +1,19 @@
 {
   "collectionName": "components_sections_richtexts",
   "info": {
-    "displayName": "richtext",
-    "icon": "apps",
+    "displayName": "Richtext",
     "description": ""
   },
   "options": {},
   "attributes": {
     "content": {
-      "type": "blocks",
-      "required": false
+      "type": "richtext"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary", "tertiary"],
+      "default": "primary",
+      "required": true
     }
   }
 }

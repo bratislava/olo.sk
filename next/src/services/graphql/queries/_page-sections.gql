@@ -1,5 +1,6 @@
 fragment RichtextSection on ComponentSectionsRichtext {
   content
+  backgroundColorRichtext: backgroundColor
 }
 
 fragment OrderedCardsSection on ComponentSectionsOrderedCards {

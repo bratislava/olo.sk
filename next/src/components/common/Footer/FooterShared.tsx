@@ -5,7 +5,7 @@ import OloLogo from '@/src/assets/images/olo-logo.svg'
 import Button from '@/src/components/common/Button/Button'
 import OloIcon from '@/src/components/common/Icon/OloIcon'
 import Link from '@/src/components/common/Link/Link'
-import Typography from '@/src/components/common/Typography/Typography'
+import Markdown from '@/src/components/formatting/Markdown'
 import { FooterFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
@@ -17,8 +17,7 @@ export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragme
     <div className="flex flex-col flex-wrap gap-6 text-border-default">
       {/* TODO consider extracting logo to a separate component */}
       <OloLogo fill="white" />
-      {/* TODO replace with rich text */}
-      <Typography variant="p-default">{text}</Typography>
+      <Markdown content={text} />
       <div className="flex gap-6 text-background-primary">
         {facebookUrl && (
           <Button

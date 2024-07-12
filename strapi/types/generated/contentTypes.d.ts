@@ -712,7 +712,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
         }
       }>
     category: Attribute.Relation<'api::article.article', 'manyToOne', 'api::category.category'>
-    blocks: Attribute.Blocks &
+    content: Attribute.RichText &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
@@ -1019,13 +1019,13 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
-        'sections.richtext',
         'sections.branches',
         'sections.columns',
         'sections.columns-list',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.ordered-cards',
+        'sections.richtext',
         'sections.table',
         'sections.workshops',
       ]

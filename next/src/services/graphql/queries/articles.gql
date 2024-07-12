@@ -28,7 +28,7 @@ fragment ArticleCardEntity on ArticleEntity {
 fragment ArticleEntity on ArticleEntity {
   ...ArticleCardEntity
   attributes {
-    blocks
+    content
   }
 }
 

@@ -22,6 +22,10 @@ Each sub-project contains README which should get you up and running. More infor
 
 💅 `.prettierrc` - presently needed for prettier to work well when opening root directory in vscode (PRs to get rid of it & config it better are welcome)
 
+## Product specification
+
+[Product specification](https://olosk-my.sharepoint.com/:w:/g/personal/puchlova_external_olo_sk/EaD75VEddzBNrCmOBMdnJ3oBMYCv1MjzDFyBKGGZofQdPg?rtime=FknKvj2b3Eg)
+
 ## Local installation
 
 Follow user guide in folders `/strapi` and `/next`.

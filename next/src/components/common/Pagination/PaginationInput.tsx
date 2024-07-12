@@ -19,6 +19,10 @@ const sanitizePaginationInput = (userInput: string, currentPage: number, totalCo
   return userInput === '0' ? '' : userInput // 0 entered, we leave it empty for users to type a value
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=37-1906&t=Ix6vxd23ycmma0c2-4
+ */
+
 const PaginationInput = ({
   currentPage,
   totalCount,

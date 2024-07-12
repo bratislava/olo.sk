@@ -8,29 +8,41 @@ import { PaginationProps } from '@/src/components/common/Pagination/Pagination'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
+// can be moved to utils
+const sanitizePaginationInput = (userInput: string, currentPage: number, totalCount: number) => {
+  if (Number.isNaN(+userInput)) {
+    return userInput.replaceAll(/\D/g, currentPage.toString()) // plain text entered
+  }
+
+  if (+userInput > totalCount) return totalCount.toString() // value entered goes over the page limit, adjust the UI to display our defined max
+
+  return userInput === '0' ? '' : userInput // 0 entered, we leave it empty for users to type a value
+}
+
 const PaginationInput = ({
   currentPage,
   totalCount,
   onPageChange: handlePageChange,
 }: PaginationProps) => {
   const { t } = useTranslation()
-  const [inputValue, setInputValue] = useState(currentPage)
+  const [inputValue, setInputValue] = useState(currentPage.toString())
 
-  const handleInputChange = (userInput: string, totalPagesState: number) => {
-    let currentInputValue = +userInput
-    const LOWER_BOUNDARY = 1
+  const handleDecrement = (userInput: string, parentHandler: any) => {
+    const newUserInputValue = +userInput - 1 === 0 ? 1 : +userInput - 1
+    setInputValue(newUserInputValue.toString())
+    parentHandler(newUserInputValue)
+  }
 
-    if (Number.isNaN(currentInputValue) || currentInputValue < LOWER_BOUNDARY) {
-      setInputValue(LOWER_BOUNDARY) // if string-based input, go back to the start
-      currentInputValue = LOWER_BOUNDARY
+  const handleIncrement = (userInput: string, parentHandler: any, pagesCount: number) => {
+    const newUserInputValue = +userInput + 1 === pagesCount ? pagesCount : +userInput + 1
+    setInputValue(newUserInputValue.toString())
+    parentHandler(newUserInputValue)
+  }
+
+  const handleInputChange = (userInput: string) => {
+    if (userInput !== '') {
+      handlePageChange?.(+userInput)
     }
-
-    if (currentInputValue > totalPagesState) {
-      setInputValue(totalPagesState)
-      currentInputValue = totalPagesState
-    }
-
-    handlePageChange?.(currentInputValue) // send to parent
   }
 
   return (
@@ -38,12 +50,11 @@ const PaginationInput = ({
       <div className={cn('flex items-center justify-start gap-4')}>
         <Button
           variant="category-plain"
-          isDisabled={inputValue === 1}
+          isDisabled={+inputValue < 2}
           onPress={() => {
-            setInputValue(inputValue - 1)
-            handlePageChange?.(inputValue - 1)
+            handleDecrement(inputValue, handlePageChange)
           }}
-          aria-label={t('pagination.aria.goToPreviousPage', inputValue.toString())}
+          aria-label={t('pagination.aria.goToPreviousPage', inputValue)}
           icon={<Icon name="sipka-dolava" />}
           className="rounded-full"
         />
@@ -51,26 +62,21 @@ const PaginationInput = ({
         <div className="flex items-center justify-center gap-2">
           <Input
             className="items-center justify-center"
-            classNameInner={cn('!w-[3.75rem] text-center', {
-              '!w-[4.37rem]': inputValue.toString().length > 3,
+            classNameInner={cn('w-[3.75rem] text-center', {
+              // widen input field slightly for more than 3 digits
+              'w-[4.37rem]': inputValue.toString().length > 3,
             })}
-            maxLength={4}
-            // @ts-ignore
-            value={
-              Number.isNaN(+inputValue)
-                ? () => {
-                    setInputValue(1) // change local state
-
-                    return '1' // return immediately to the UI
-                  }
-                : inputValue
-            }
+            maxLength={totalCount.toString().length}
+            value={sanitizePaginationInput(inputValue, currentPage, totalCount)}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setInputValue(+event.target.value)
+              setInputValue(event.currentTarget.value)
             }
-            onBlur={(event: React.ChangeEvent<HTMLInputElement>) =>
-              handleInputChange(event.target.value, totalCount)
-            }
+            onBlur={(event) => handleInputChange(event.currentTarget.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                handleInputChange(event.currentTarget.value)
+              }
+            }}
           />
 
           <div className="flex gap-1">
@@ -83,12 +89,11 @@ const PaginationInput = ({
 
         <Button
           variant="category-plain"
-          isDisabled={inputValue === totalCount}
+          isDisabled={+inputValue >= totalCount}
           onPress={() => {
-            setInputValue(inputValue + 1)
-            handlePageChange?.(inputValue + 1)
+            handleIncrement(inputValue, handlePageChange, totalCount)
           }}
-          aria-label={t('pagination.aria.goToNextPage', inputValue.toString())}
+          aria-label={t('pagination.aria.goToNextPage', inputValue)}
           icon={<Icon name="sipka-doprava" />}
           className="rounded-full"
         />

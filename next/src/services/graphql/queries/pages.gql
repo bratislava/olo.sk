@@ -1,8 +1,55 @@
-fragment PageEntity on PageEntity {
+fragment ParentPage on Page {
+  slug
+  title
+}
+
+fragment PageParentPages on PageEntity {
+  attributes {
+    ...ParentPage
+    parentPage {
+      data {
+        attributes {
+          ...ParentPage
+          parentPage {
+            data {
+              attributes {
+                ...ParentPage
+                parentPage {
+                  data {
+                    attributes {
+                      ...ParentPage
+                      parentPage {
+                        data {
+                          attributes {
+                            ...ParentPage
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment PageSlugEntity on PageEntity {
+  ...PageParentPages
+  __typename
   id
   attributes {
     title
     slug
+  }
+}
+
+fragment PageEntity on PageEntity {
+  ...PageSlugEntity
+  attributes {
     perex
     header {
       ...HeaderSections

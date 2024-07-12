@@ -49,7 +49,7 @@ const config: Config = {
       black: '800',
     },
 
-    // DO NOT USE these font classes directly, use classes from globals.css
+    // do not use these classes, use Typography component instead
     fontSize: {
       'size-button-large': getFontSize([16, 24]), // this is probably not used in OLO ?
       'size-button-default': getFontSize([14, 24]),
@@ -73,7 +73,6 @@ const config: Config = {
       'size-h1-hero': getFontSize([56, 64]),
       'size-h1-hero-r': getFontSize([32, 40]),
     },
-
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -85,6 +84,11 @@ const config: Config = {
         tertiary: 'rgb(var(--token-background-tertiary))',
         primaryInverted: 'rgb(var(--token-background-primary-inverted))',
         disabled: 'rgb(var(--token-background-disabled))',
+        tag: {
+          public: 'rgb(var(--token-badge-public))',
+          firms: 'rgb(var(--token-badge-firms))',
+          institutions: 'rgb(var(--token-badge-institutions))',
+        },
       },
       border: {
         default: 'rgb(var(--token-border-default))',

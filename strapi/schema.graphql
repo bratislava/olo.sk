@@ -432,6 +432,45 @@ input ComponentItemsColumnsListItemInput {
   text: String
 }
 
+type ComponentItemsFileItem {
+  id: ID!
+  media: UploadFileEntityResponse!
+  title: String
+}
+
+input ComponentItemsFileItemFiltersInput {
+  and: [ComponentItemsFileItemFiltersInput]
+  not: ComponentItemsFileItemFiltersInput
+  or: [ComponentItemsFileItemFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentItemsFileItemInput {
+  id: ID
+  media: ID
+  title: String
+}
+
+type ComponentItemsFooterColumn {
+  id: ID!
+  links(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
+  title: String!
+}
+
+input ComponentItemsFooterColumnFiltersInput {
+  and: [ComponentItemsFooterColumnFiltersInput]
+  links: ComponentItemsLinkFiltersInput
+  not: ComponentItemsFooterColumnFiltersInput
+  or: [ComponentItemsFooterColumnFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentItemsFooterColumnInput {
+  id: ID
+  links: [ComponentItemsLinkInput]
+  title: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -978,7 +1017,59 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Homepage | I18NLocale | OpeningTime | Page | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+type Footer {
+  bottomLinks(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
+  columns(filters: ComponentItemsFooterColumnFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFooterColumn]
+  createdAt: DateTime
+  facebookUrl: String
+  instagramUrl: String
+  publishedAt: DateTime
+  text: String
+  updatedAt: DateTime
+}
+
+type FooterEntity {
+  attributes: Footer
+  id: ID
+}
+
+type FooterEntityResponse {
+  data: FooterEntity
+}
+
+type FooterEntityResponseCollection {
+  data: [FooterEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input FooterFiltersInput {
+  and: [FooterFiltersInput]
+  bottomLinks: ComponentItemsLinkFiltersInput
+  columns: ComponentItemsFooterColumnFiltersInput
+  createdAt: DateTimeFilterInput
+  facebookUrl: StringFilterInput
+  instagramUrl: StringFilterInput
+  not: FooterFiltersInput
+  or: [FooterFiltersInput]
+  publishedAt: DateTimeFilterInput
+  text: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input FooterInput {
+  bottomLinks: [ComponentItemsLinkInput]
+  columns: [ComponentItemsFooterColumnInput]
+  facebookUrl: String
+  instagramUrl: String
+  publishedAt: DateTime
+  text: String
+}
+
+type FooterRelationResponseCollection {
+  data: [FooterEntity!]!
+}
+
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Footer | Homepage | I18NLocale | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1208,9 +1299,11 @@ type Mutation {
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
+  deleteFooter: FooterEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!): PageEntityResponse
+  deleteRouter: RouterEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
@@ -1244,9 +1337,11 @@ type Mutation {
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
+  updateFooter(data: FooterInput!): FooterEntityResponse
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!): PageEntityResponse
+  updateRouter(data: RouterInput!): RouterEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
   updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
@@ -1399,6 +1494,7 @@ type Query {
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
   document(id: ID): DocumentEntityResponse
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentEntityResponseCollection
+  footer(publicationState: PublicationState = LIVE): FooterEntityResponse
   homepage(locale: I18NLocaleCode): HomepageEntityResponse
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
@@ -1407,6 +1503,7 @@ type Query {
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
   page(id: ID): PageEntityResponse
   pages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageEntityResponseCollection
+  router: RouterEntityResponse
   tag(id: ID, locale: I18NLocaleCode): TagEntityResponse
   tags(filters: TagFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
@@ -1423,6 +1520,43 @@ type Query {
 
 type ResponseCollectionMeta {
   pagination: Pagination!
+}
+
+type Router {
+  articlesParentPage: PageEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type RouterEntity {
+  attributes: Router
+  id: ID
+}
+
+type RouterEntityResponse {
+  data: RouterEntity
+}
+
+type RouterEntityResponseCollection {
+  data: [RouterEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input RouterFiltersInput {
+  and: [RouterFiltersInput]
+  articlesParentPage: PageFiltersInput
+  createdAt: DateTimeFilterInput
+  not: RouterFiltersInput
+  or: [RouterFiltersInput]
+  updatedAt: DateTimeFilterInput
+}
+
+input RouterInput {
+  articlesParentPage: ID
+}
+
+type RouterRelationResponseCollection {
+  data: [RouterEntity!]!
 }
 
 input StringFilterInput {

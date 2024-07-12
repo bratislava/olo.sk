@@ -396,6 +396,40 @@ export type ComponentItemsColumnsListItemFiltersInput = {
   text?: InputMaybe<StringFilterInput>
 }
 
+export type ComponentItemsFileItem = {
+  __typename?: 'ComponentItemsFileItem'
+  id: Scalars['ID']['output']
+  media: UploadFileEntityResponse
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsFooterColumn = {
+  __typename?: 'ComponentItemsFooterColumn'
+  id: Scalars['ID']['output']
+  links?: Maybe<Array<Maybe<ComponentItemsLink>>>
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsFooterColumnLinksArgs = {
+  filters?: InputMaybe<ComponentItemsLinkFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentItemsFooterColumnFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsFooterColumnFiltersInput>>>
+  links?: InputMaybe<ComponentItemsLinkFiltersInput>
+  not?: InputMaybe<ComponentItemsFooterColumnFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsFooterColumnFiltersInput>>>
+  title?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentItemsFooterColumnInput = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  links?: InputMaybe<Array<InputMaybe<ComponentItemsLinkInput>>>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
 export type ComponentItemsLink = {
   __typename?: 'ComponentItemsLink'
   article?: Maybe<ArticleEntityResponse>
@@ -795,6 +829,50 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>
 }
 
+export type Footer = {
+  __typename?: 'Footer'
+  bottomLinks?: Maybe<Array<Maybe<ComponentItemsLink>>>
+  columns?: Maybe<Array<Maybe<ComponentItemsFooterColumn>>>
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  facebookUrl?: Maybe<Scalars['String']['output']>
+  instagramUrl?: Maybe<Scalars['String']['output']>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  text?: Maybe<Scalars['String']['output']>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type FooterBottomLinksArgs = {
+  filters?: InputMaybe<ComponentItemsLinkFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type FooterColumnsArgs = {
+  filters?: InputMaybe<ComponentItemsFooterColumnFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type FooterEntity = {
+  __typename?: 'FooterEntity'
+  attributes?: Maybe<Footer>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type FooterEntityResponse = {
+  __typename?: 'FooterEntityResponse'
+  data?: Maybe<FooterEntity>
+}
+
+export type FooterInput = {
+  bottomLinks?: InputMaybe<Array<InputMaybe<ComponentItemsLinkInput>>>
+  columns?: InputMaybe<Array<InputMaybe<ComponentItemsFooterColumnInput>>>
+  facebookUrl?: InputMaybe<Scalars['String']['input']>
+  instagramUrl?: InputMaybe<Scalars['String']['input']>
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  text?: InputMaybe<Scalars['String']['input']>
+}
+
 export type GenericMorph =
   | Article
   | Branch
@@ -810,6 +888,8 @@ export type GenericMorph =
   | ComponentItemsAnchor
   | ComponentItemsColumnsItem
   | ComponentItemsColumnsListItem
+  | ComponentItemsFileItem
+  | ComponentItemsFooterColumn
   | ComponentItemsLink
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
@@ -825,10 +905,12 @@ export type GenericMorph =
   | ComponentSectionsWorkshops
   | Contact
   | Document
+  | Footer
   | Homepage
   | I18NLocale
   | OpeningTime
   | Page
+  | Router
   | Tag
   | UploadFile
   | UploadFolder
@@ -1021,9 +1103,11 @@ export type Mutation = {
   deleteCategory?: Maybe<CategoryEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
+  deleteFooter?: Maybe<FooterEntityResponse>
   deleteHomepage?: Maybe<HomepageEntityResponse>
   deleteOpeningTime?: Maybe<OpeningTimeEntityResponse>
   deletePage?: Maybe<PageEntityResponse>
+  deleteRouter?: Maybe<RouterEntityResponse>
   deleteTag?: Maybe<TagEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1049,9 +1133,11 @@ export type Mutation = {
   updateContact?: Maybe<ContactEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
   updateFileInfo: UploadFileEntityResponse
+  updateFooter?: Maybe<FooterEntityResponse>
   updateHomepage?: Maybe<HomepageEntityResponse>
   updateOpeningTime?: Maybe<OpeningTimeEntityResponse>
   updatePage?: Maybe<PageEntityResponse>
+  updateRouter?: Maybe<RouterEntityResponse>
   updateTag?: Maybe<TagEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1281,6 +1367,10 @@ export type MutationUpdateFileInfoArgs = {
   info?: InputMaybe<FileInfoInput>
 }
 
+export type MutationUpdateFooterArgs = {
+  data: FooterInput
+}
+
 export type MutationUpdateHomepageArgs = {
   data: HomepageInput
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
@@ -1294,6 +1384,10 @@ export type MutationUpdateOpeningTimeArgs = {
 export type MutationUpdatePageArgs = {
   data: PageInput
   id: Scalars['ID']['input']
+}
+
+export type MutationUpdateRouterArgs = {
+  data: RouterInput
 }
 
 export type MutationUpdateTagArgs = {
@@ -1520,6 +1614,7 @@ export type Query = {
   contacts?: Maybe<ContactEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
   documents?: Maybe<DocumentEntityResponseCollection>
+  footer?: Maybe<FooterEntityResponse>
   homepage?: Maybe<HomepageEntityResponse>
   i18NLocale?: Maybe<I18NLocaleEntityResponse>
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>
@@ -1528,6 +1623,7 @@ export type Query = {
   openingTimes?: Maybe<OpeningTimeEntityResponseCollection>
   page?: Maybe<PageEntityResponse>
   pages?: Maybe<PageEntityResponseCollection>
+  router?: Maybe<RouterEntityResponse>
   tag?: Maybe<TagEntityResponse>
   tags?: Maybe<TagEntityResponseCollection>
   uploadFile?: Maybe<UploadFileEntityResponse>
@@ -1601,6 +1697,10 @@ export type QueryDocumentsArgs = {
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryFooterArgs = {
+  publicationState?: InputMaybe<PublicationState>
 }
 
 export type QueryHomepageArgs = {
@@ -1705,6 +1805,28 @@ export type QueryWorkshopsArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta'
   pagination: Pagination
+}
+
+export type Router = {
+  __typename?: 'Router'
+  articlesParentPage?: Maybe<PageEntityResponse>
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type RouterEntity = {
+  __typename?: 'RouterEntity'
+  attributes?: Maybe<Router>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type RouterEntityResponse = {
+  __typename?: 'RouterEntityResponse'
+  data?: Maybe<RouterEntity>
+}
+
+export type RouterInput = {
+  articlesParentPage?: InputMaybe<Scalars['ID']['input']>
 }
 
 export type StringFilterInput = {
@@ -2223,28 +2345,78 @@ export type LinkFragment = {
   page?: {
     __typename?: 'PageEntityResponse'
     data?: {
-      __typename?: 'PageEntity'
-      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      __typename: 'PageEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Page'
+        title: string
+        slug: string
+        parentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename?: 'PageEntity'
+            attributes?: {
+              __typename?: 'Page'
+              slug: string
+              title: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
     } | null
   } | null
   article?: {
     __typename?: 'ArticleEntityResponse'
     data?: {
-      __typename?: 'ArticleEntity'
-      attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+      __typename: 'ArticleEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
     } | null
   } | null
   branch?: {
     __typename?: 'BranchEntityResponse'
     data?: {
-      __typename?: 'BranchEntity'
+      __typename: 'BranchEntity'
       attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
     } | null
   } | null
   document?: {
     __typename?: 'DocumentEntityResponse'
     data?: {
-      __typename?: 'DocumentEntity'
+      __typename: 'DocumentEntity'
       attributes?: { __typename?: 'Document'; title: string; slug: string } | null
     } | null
   } | null
@@ -2287,6 +2459,788 @@ export type UploadFileEntityFragment = {
     size: number
     createdAt?: any | null
     updatedAt?: any | null
+  } | null
+}
+
+export type FileItemFragment = {
+  __typename?: 'ComponentItemsFileItem'
+  title?: string | null
+  media: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        name: string
+        ext?: string | null
+        size: number
+        createdAt?: any | null
+        updatedAt?: any | null
+      } | null
+    } | null
+  }
+}
+
+export type RouterEntityFragment = {
+  __typename?: 'RouterEntity'
+  attributes?: {
+    __typename?: 'Router'
+    articlesParentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
+export type FooterEntityFragment = {
+  __typename?: 'FooterEntity'
+  attributes?: {
+    __typename?: 'Footer'
+    text?: string | null
+    facebookUrl?: string | null
+    instagramUrl?: string | null
+    columns?: Array<{
+      __typename?: 'ComponentItemsFooterColumn'
+      title: string
+      links?: Array<{
+        __typename?: 'ComponentItemsLink'
+        label?: string | null
+        url?: string | null
+        page?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              title: string
+              slug: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                parentPage?: {
+                                  __typename?: 'PageEntityResponse'
+                                  data?: {
+                                    __typename?: 'PageEntity'
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+        article?: {
+          __typename?: 'ArticleEntityResponse'
+          data?: {
+            __typename: 'ArticleEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          } | null
+        } | null
+        branch?: {
+          __typename?: 'BranchEntityResponse'
+          data?: {
+            __typename: 'BranchEntity'
+            attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+          } | null
+        } | null
+        document?: {
+          __typename?: 'DocumentEntityResponse'
+          data?: {
+            __typename: 'DocumentEntity'
+            attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+          } | null
+        } | null
+      } | null> | null
+    } | null> | null
+    bottomLinks?: Array<{
+      __typename?: 'ComponentItemsLink'
+      label?: string | null
+      url?: string | null
+      page?: {
+        __typename?: 'PageEntityResponse'
+        data?: {
+          __typename: 'PageEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Page'
+            title: string
+            slug: string
+            parentPage?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename?: 'PageEntity'
+                attributes?: {
+                  __typename?: 'Page'
+                  slug: string
+                  title: string
+                  parentPage?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename?: 'PageEntity'
+                      attributes?: {
+                        __typename?: 'Page'
+                        slug: string
+                        title: string
+                        parentPage?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename?: 'PageEntity'
+                            attributes?: {
+                              __typename?: 'Page'
+                              slug: string
+                              title: string
+                              parentPage?: {
+                                __typename?: 'PageEntityResponse'
+                                data?: {
+                                  __typename?: 'PageEntity'
+                                  attributes?: {
+                                    __typename?: 'Page'
+                                    slug: string
+                                    title: string
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+      article?: {
+        __typename?: 'ArticleEntityResponse'
+        data?: {
+          __typename: 'ArticleEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        } | null
+      } | null
+      branch?: {
+        __typename?: 'BranchEntityResponse'
+        data?: {
+          __typename: 'BranchEntity'
+          attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+        } | null
+      } | null
+      document?: {
+        __typename?: 'DocumentEntityResponse'
+        data?: {
+          __typename: 'DocumentEntity'
+          attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        } | null
+      } | null
+    } | null> | null
+  } | null
+}
+
+export type FooterFragment = {
+  __typename?: 'Footer'
+  text?: string | null
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  columns?: Array<{
+    __typename?: 'ComponentItemsFooterColumn'
+    title: string
+    links?: Array<{
+      __typename?: 'ComponentItemsLink'
+      label?: string | null
+      url?: string | null
+      page?: {
+        __typename?: 'PageEntityResponse'
+        data?: {
+          __typename: 'PageEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Page'
+            title: string
+            slug: string
+            parentPage?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename?: 'PageEntity'
+                attributes?: {
+                  __typename?: 'Page'
+                  slug: string
+                  title: string
+                  parentPage?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename?: 'PageEntity'
+                      attributes?: {
+                        __typename?: 'Page'
+                        slug: string
+                        title: string
+                        parentPage?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename?: 'PageEntity'
+                            attributes?: {
+                              __typename?: 'Page'
+                              slug: string
+                              title: string
+                              parentPage?: {
+                                __typename?: 'PageEntityResponse'
+                                data?: {
+                                  __typename?: 'PageEntity'
+                                  attributes?: {
+                                    __typename?: 'Page'
+                                    slug: string
+                                    title: string
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+      article?: {
+        __typename?: 'ArticleEntityResponse'
+        data?: {
+          __typename: 'ArticleEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        } | null
+      } | null
+      branch?: {
+        __typename?: 'BranchEntityResponse'
+        data?: {
+          __typename: 'BranchEntity'
+          attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+        } | null
+      } | null
+      document?: {
+        __typename?: 'DocumentEntityResponse'
+        data?: {
+          __typename: 'DocumentEntity'
+          attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        } | null
+      } | null
+    } | null> | null
+  } | null> | null
+  bottomLinks?: Array<{
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null> | null
+}
+
+export type FooterColumnItemFragment = {
+  __typename?: 'ComponentItemsFooterColumn'
+  title: string
+  links?: Array<{
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null> | null
+}
+
+export type GeneralQueryVariables = Exact<{ [key: string]: never }>
+
+export type GeneralQuery = {
+  __typename?: 'Query'
+  router?: {
+    __typename?: 'RouterEntityResponse'
+    data?: {
+      __typename?: 'RouterEntity'
+      attributes?: {
+        __typename?: 'Router'
+        articlesParentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              title: string
+              slug: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                parentPage?: {
+                                  __typename?: 'PageEntityResponse'
+                                  data?: {
+                                    __typename?: 'PageEntity'
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null
+  footer?: {
+    __typename?: 'FooterEntityResponse'
+    data?: {
+      __typename?: 'FooterEntity'
+      attributes?: {
+        __typename?: 'Footer'
+        text?: string | null
+        facebookUrl?: string | null
+        instagramUrl?: string | null
+        columns?: Array<{
+          __typename?: 'ComponentItemsFooterColumn'
+          title: string
+          links?: Array<{
+            __typename?: 'ComponentItemsLink'
+            label?: string | null
+            url?: string | null
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Page'
+                  title: string
+                  slug: string
+                  parentPage?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename?: 'PageEntity'
+                      attributes?: {
+                        __typename?: 'Page'
+                        slug: string
+                        title: string
+                        parentPage?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename?: 'PageEntity'
+                            attributes?: {
+                              __typename?: 'Page'
+                              slug: string
+                              title: string
+                              parentPage?: {
+                                __typename?: 'PageEntityResponse'
+                                data?: {
+                                  __typename?: 'PageEntity'
+                                  attributes?: {
+                                    __typename?: 'Page'
+                                    slug: string
+                                    title: string
+                                    parentPage?: {
+                                      __typename?: 'PageEntityResponse'
+                                      data?: {
+                                        __typename?: 'PageEntity'
+                                        attributes?: {
+                                          __typename?: 'Page'
+                                          slug: string
+                                          title: string
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+            article?: {
+              __typename?: 'ArticleEntityResponse'
+              data?: {
+                __typename: 'ArticleEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              } | null
+            } | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename: 'BranchEntity'
+                attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+              } | null
+            } | null
+            document?: {
+              __typename?: 'DocumentEntityResponse'
+              data?: {
+                __typename: 'DocumentEntity'
+                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null> | null
+        } | null> | null
+        bottomLinks?: Array<{
+          __typename?: 'ComponentItemsLink'
+          label?: string | null
+          url?: string | null
+          page?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename: 'PageEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Page'
+                title: string
+                slug: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+          article?: {
+            __typename?: 'ArticleEntityResponse'
+            data?: {
+              __typename: 'ArticleEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            } | null
+          } | null
+          branch?: {
+            __typename?: 'BranchEntityResponse'
+            data?: {
+              __typename: 'BranchEntity'
+              attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+            } | null
+          } | null
+          document?: {
+            __typename?: 'DocumentEntityResponse'
+            data?: {
+              __typename: 'DocumentEntity'
+              attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+            } | null
+          } | null
+        } | null> | null
+      } | null
+    } | null
   } | null
 }
 
@@ -2378,14 +3332,14 @@ export type FeaturedNewsHeaderSectionFragment = {
   firstArticle?: {
     __typename?: 'ArticleEntityResponse'
     data?: {
-      __typename?: 'ArticleEntity'
+      __typename: 'ArticleEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Article'
-        title: string
         perex?: string | null
         addedAt: any
         slug: string
+        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -2416,14 +3370,14 @@ export type FeaturedNewsHeaderSectionFragment = {
   secondArticle?: {
     __typename?: 'ArticleEntityResponse'
     data?: {
-      __typename?: 'ArticleEntity'
+      __typename: 'ArticleEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Article'
-        title: string
         perex?: string | null
         addedAt: any
         slug: string
+        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -2500,14 +3454,14 @@ type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
   firstArticle?: {
     __typename?: 'ArticleEntityResponse'
     data?: {
-      __typename?: 'ArticleEntity'
+      __typename: 'ArticleEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Article'
-        title: string
         perex?: string | null
         addedAt: any
         slug: string
+        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -2538,14 +3492,14 @@ type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
   secondArticle?: {
     __typename?: 'ArticleEntityResponse'
     data?: {
-      __typename?: 'ArticleEntity'
+      __typename: 'ArticleEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Article'
-        title: string
         perex?: string | null
         addedAt: any
         slug: string
+        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -2730,28 +3684,78 @@ export type ImageAndTextSectionFragment = {
     page?: {
       __typename?: 'PageEntityResponse'
       data?: {
-        __typename?: 'PageEntity'
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     } | null
     article?: {
       __typename?: 'ArticleEntityResponse'
       data?: {
-        __typename?: 'ArticleEntity'
-        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
       } | null
     } | null
     branch?: {
       __typename?: 'BranchEntityResponse'
       data?: {
-        __typename?: 'BranchEntity'
+        __typename: 'BranchEntity'
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
     document?: {
       __typename?: 'DocumentEntityResponse'
       data?: {
-        __typename?: 'DocumentEntity'
+        __typename: 'DocumentEntity'
         attributes?: { __typename?: 'Document'; title: string; slug: string } | null
       } | null
     } | null
@@ -2763,28 +3767,78 @@ export type ImageAndTextSectionFragment = {
     page?: {
       __typename?: 'PageEntityResponse'
       data?: {
-        __typename?: 'PageEntity'
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     } | null
     article?: {
       __typename?: 'ArticleEntityResponse'
       data?: {
-        __typename?: 'ArticleEntity'
-        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
       } | null
     } | null
     branch?: {
       __typename?: 'BranchEntityResponse'
       data?: {
-        __typename?: 'BranchEntity'
+        __typename: 'BranchEntity'
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
     document?: {
       __typename?: 'DocumentEntityResponse'
       data?: {
-        __typename?: 'DocumentEntity'
+        __typename: 'DocumentEntity'
         attributes?: { __typename?: 'Document'; title: string; slug: string } | null
       } | null
     } | null
@@ -2848,28 +3902,78 @@ export type ImageAndTextOverlappedSectionFragment = {
     page?: {
       __typename?: 'PageEntityResponse'
       data?: {
-        __typename?: 'PageEntity'
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     } | null
     article?: {
       __typename?: 'ArticleEntityResponse'
       data?: {
-        __typename?: 'ArticleEntity'
-        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
       } | null
     } | null
     branch?: {
       __typename?: 'BranchEntityResponse'
       data?: {
-        __typename?: 'BranchEntity'
+        __typename: 'BranchEntity'
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
     document?: {
       __typename?: 'DocumentEntityResponse'
       data?: {
-        __typename?: 'DocumentEntity'
+        __typename: 'DocumentEntity'
         attributes?: { __typename?: 'Document'; title: string; slug: string } | null
       } | null
     } | null
@@ -3087,28 +4191,78 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
     page?: {
       __typename?: 'PageEntityResponse'
       data?: {
-        __typename?: 'PageEntity'
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     } | null
     article?: {
       __typename?: 'ArticleEntityResponse'
       data?: {
-        __typename?: 'ArticleEntity'
-        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
       } | null
     } | null
     branch?: {
       __typename?: 'BranchEntityResponse'
       data?: {
-        __typename?: 'BranchEntity'
+        __typename: 'BranchEntity'
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
     document?: {
       __typename?: 'DocumentEntityResponse'
       data?: {
-        __typename?: 'DocumentEntity'
+        __typename: 'DocumentEntity'
         attributes?: { __typename?: 'Document'; title: string; slug: string } | null
       } | null
     } | null
@@ -3120,28 +4274,78 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
     page?: {
       __typename?: 'PageEntityResponse'
       data?: {
-        __typename?: 'PageEntity'
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     } | null
     article?: {
       __typename?: 'ArticleEntityResponse'
       data?: {
-        __typename?: 'ArticleEntity'
-        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
       } | null
     } | null
     branch?: {
       __typename?: 'BranchEntityResponse'
       data?: {
-        __typename?: 'BranchEntity'
+        __typename: 'BranchEntity'
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
     document?: {
       __typename?: 'DocumentEntityResponse'
       data?: {
-        __typename?: 'DocumentEntity'
+        __typename: 'DocumentEntity'
         attributes?: { __typename?: 'Document'; title: string; slug: string } | null
       } | null
     } | null
@@ -3177,28 +4381,78 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
     page?: {
       __typename?: 'PageEntityResponse'
       data?: {
-        __typename?: 'PageEntity'
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     } | null
     article?: {
       __typename?: 'ArticleEntityResponse'
       data?: {
-        __typename?: 'ArticleEntity'
-        attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
       } | null
     } | null
     branch?: {
       __typename?: 'BranchEntityResponse'
       data?: {
-        __typename?: 'BranchEntity'
+        __typename: 'BranchEntity'
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
     document?: {
       __typename?: 'DocumentEntityResponse'
       data?: {
-        __typename?: 'DocumentEntity'
+        __typename: 'DocumentEntity'
         attributes?: { __typename?: 'Document'; title: string; slug: string } | null
       } | null
     } | null
@@ -3257,20 +4511,20 @@ export type PageSectionsFragment =
   | PageSections_Error_Fragment
 
 export type ArticleSlugEntityFragment = {
-  __typename?: 'ArticleEntity'
+  __typename: 'ArticleEntity'
   id?: string | null
-  attributes?: { __typename?: 'Article'; slug: string } | null
+  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
 }
 
 export type ArticleCardEntityFragment = {
-  __typename?: 'ArticleEntity'
+  __typename: 'ArticleEntity'
   id?: string | null
   attributes?: {
     __typename?: 'Article'
-    title: string
     perex?: string | null
     addedAt: any
     slug: string
+    title: string
     coverMedia?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -3299,15 +4553,15 @@ export type ArticleCardEntityFragment = {
 }
 
 export type ArticleEntityFragment = {
-  __typename?: 'ArticleEntity'
+  __typename: 'ArticleEntity'
   id?: string | null
   attributes?: {
     __typename?: 'Article'
     blocks?: any | null
-    title: string
     perex?: string | null
     addedAt: any
     slug: string
+    title: string
     coverMedia?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -3342,15 +4596,15 @@ export type ArticlesQuery = {
   articles?: {
     __typename?: 'ArticleEntityResponseCollection'
     data: Array<{
-      __typename?: 'ArticleEntity'
+      __typename: 'ArticleEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Article'
         blocks?: any | null
-        title: string
         perex?: string | null
         addedAt: any
         slug: string
+        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -3389,15 +4643,15 @@ export type ArticleBySlugQuery = {
   articles?: {
     __typename?: 'ArticleEntityResponseCollection'
     data: Array<{
-      __typename?: 'ArticleEntity'
+      __typename: 'ArticleEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Article'
         blocks?: any | null
-        title: string
         perex?: string | null
         addedAt: any
         slug: string
+        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -3436,15 +4690,15 @@ export type LatestArticlesQuery = {
   articles?: {
     __typename?: 'ArticleEntityResponseCollection'
     data: Array<{
-      __typename?: 'ArticleEntity'
+      __typename: 'ArticleEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Article'
         blocks?: any | null
-        title: string
         perex?: string | null
         addedAt: any
         slug: string
+        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -3710,14 +4964,115 @@ export type OpeningTimeEntityFragment = {
   } | null
 }
 
-export type PageEntityFragment = {
+export type ParentPageFragment = { __typename?: 'Page'; slug: string; title: string }
+
+export type PageParentPagesFragment = {
   __typename?: 'PageEntity'
+  attributes?: {
+    __typename?: 'Page'
+    slug: string
+    title: string
+    parentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: {
+          __typename?: 'Page'
+          slug: string
+          title: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: { __typename?: 'Page'; slug: string; title: string } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
+export type PageSlugEntityFragment = {
+  __typename: 'PageEntity'
   id?: string | null
   attributes?: {
     __typename?: 'Page'
     title: string
     slug: string
+    parentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: {
+          __typename?: 'Page'
+          slug: string
+          title: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: { __typename?: 'Page'; slug: string; title: string } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
+export type PageEntityFragment = {
+  __typename: 'PageEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Page'
     perex?: string | null
+    title: string
+    slug: string
     header?: Array<
       | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
       | {
@@ -3728,14 +5083,14 @@ export type PageEntityFragment = {
           firstArticle?: {
             __typename?: 'ArticleEntityResponse'
             data?: {
-              __typename?: 'ArticleEntity'
+              __typename: 'ArticleEntity'
               id?: string | null
               attributes?: {
                 __typename?: 'Article'
-                title: string
                 perex?: string | null
                 addedAt: any
                 slug: string
+                title: string
                 coverMedia?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -3766,14 +5121,14 @@ export type PageEntityFragment = {
           secondArticle?: {
             __typename?: 'ArticleEntityResponse'
             data?: {
-              __typename?: 'ArticleEntity'
+              __typename: 'ArticleEntity'
               id?: string | null
               attributes?: {
                 __typename?: 'Article'
-                title: string
                 perex?: string | null
                 addedAt: any
                 slug: string
+                title: string
                 coverMedia?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -4020,28 +5375,78 @@ export type PageEntityFragment = {
             page?: {
               __typename?: 'PageEntityResponse'
               data?: {
-                __typename?: 'PageEntity'
-                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Page'
+                  title: string
+                  slug: string
+                  parentPage?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename?: 'PageEntity'
+                      attributes?: {
+                        __typename?: 'Page'
+                        slug: string
+                        title: string
+                        parentPage?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename?: 'PageEntity'
+                            attributes?: {
+                              __typename?: 'Page'
+                              slug: string
+                              title: string
+                              parentPage?: {
+                                __typename?: 'PageEntityResponse'
+                                data?: {
+                                  __typename?: 'PageEntity'
+                                  attributes?: {
+                                    __typename?: 'Page'
+                                    slug: string
+                                    title: string
+                                    parentPage?: {
+                                      __typename?: 'PageEntityResponse'
+                                      data?: {
+                                        __typename?: 'PageEntity'
+                                        attributes?: {
+                                          __typename?: 'Page'
+                                          slug: string
+                                          title: string
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
               } | null
             } | null
             article?: {
               __typename?: 'ArticleEntityResponse'
               data?: {
-                __typename?: 'ArticleEntity'
-                attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                __typename: 'ArticleEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
               } | null
             } | null
             branch?: {
               __typename?: 'BranchEntityResponse'
               data?: {
-                __typename?: 'BranchEntity'
+                __typename: 'BranchEntity'
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
             document?: {
               __typename?: 'DocumentEntityResponse'
               data?: {
-                __typename?: 'DocumentEntity'
+                __typename: 'DocumentEntity'
                 attributes?: { __typename?: 'Document'; title: string; slug: string } | null
               } | null
             } | null
@@ -4053,28 +5458,78 @@ export type PageEntityFragment = {
             page?: {
               __typename?: 'PageEntityResponse'
               data?: {
-                __typename?: 'PageEntity'
-                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Page'
+                  title: string
+                  slug: string
+                  parentPage?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename?: 'PageEntity'
+                      attributes?: {
+                        __typename?: 'Page'
+                        slug: string
+                        title: string
+                        parentPage?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename?: 'PageEntity'
+                            attributes?: {
+                              __typename?: 'Page'
+                              slug: string
+                              title: string
+                              parentPage?: {
+                                __typename?: 'PageEntityResponse'
+                                data?: {
+                                  __typename?: 'PageEntity'
+                                  attributes?: {
+                                    __typename?: 'Page'
+                                    slug: string
+                                    title: string
+                                    parentPage?: {
+                                      __typename?: 'PageEntityResponse'
+                                      data?: {
+                                        __typename?: 'PageEntity'
+                                        attributes?: {
+                                          __typename?: 'Page'
+                                          slug: string
+                                          title: string
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
               } | null
             } | null
             article?: {
               __typename?: 'ArticleEntityResponse'
               data?: {
-                __typename?: 'ArticleEntity'
-                attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                __typename: 'ArticleEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
               } | null
             } | null
             branch?: {
               __typename?: 'BranchEntityResponse'
               data?: {
-                __typename?: 'BranchEntity'
+                __typename: 'BranchEntity'
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
             document?: {
               __typename?: 'DocumentEntityResponse'
               data?: {
-                __typename?: 'DocumentEntity'
+                __typename: 'DocumentEntity'
                 attributes?: { __typename?: 'Document'; title: string; slug: string } | null
               } | null
             } | null
@@ -4109,28 +5564,78 @@ export type PageEntityFragment = {
             page?: {
               __typename?: 'PageEntityResponse'
               data?: {
-                __typename?: 'PageEntity'
-                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Page'
+                  title: string
+                  slug: string
+                  parentPage?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename?: 'PageEntity'
+                      attributes?: {
+                        __typename?: 'Page'
+                        slug: string
+                        title: string
+                        parentPage?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename?: 'PageEntity'
+                            attributes?: {
+                              __typename?: 'Page'
+                              slug: string
+                              title: string
+                              parentPage?: {
+                                __typename?: 'PageEntityResponse'
+                                data?: {
+                                  __typename?: 'PageEntity'
+                                  attributes?: {
+                                    __typename?: 'Page'
+                                    slug: string
+                                    title: string
+                                    parentPage?: {
+                                      __typename?: 'PageEntityResponse'
+                                      data?: {
+                                        __typename?: 'PageEntity'
+                                        attributes?: {
+                                          __typename?: 'Page'
+                                          slug: string
+                                          title: string
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
               } | null
             } | null
             article?: {
               __typename?: 'ArticleEntityResponse'
               data?: {
-                __typename?: 'ArticleEntity'
-                attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                __typename: 'ArticleEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
               } | null
             } | null
             branch?: {
               __typename?: 'BranchEntityResponse'
               data?: {
-                __typename?: 'BranchEntity'
+                __typename: 'BranchEntity'
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
             document?: {
               __typename?: 'DocumentEntityResponse'
               data?: {
-                __typename?: 'DocumentEntity'
+                __typename: 'DocumentEntity'
                 attributes?: { __typename?: 'Document'; title: string; slug: string } | null
               } | null
             } | null
@@ -4169,6 +5674,46 @@ export type PageEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    parentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: {
+          __typename?: 'Page'
+          slug: string
+          title: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: { __typename?: 'Page'; slug: string; title: string } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
   } | null
 }
 
@@ -4179,13 +5724,13 @@ export type PagesQuery = {
   pages?: {
     __typename?: 'PageEntityResponseCollection'
     data: Array<{
-      __typename?: 'PageEntity'
+      __typename: 'PageEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Page'
+        perex?: string | null
         title: string
         slug: string
-        perex?: string | null
         header?: Array<
           | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
@@ -4196,14 +5741,14 @@ export type PagesQuery = {
               firstArticle?: {
                 __typename?: 'ArticleEntityResponse'
                 data?: {
-                  __typename?: 'ArticleEntity'
+                  __typename: 'ArticleEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Article'
-                    title: string
                     perex?: string | null
                     addedAt: any
                     slug: string
+                    title: string
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -4234,14 +5779,14 @@ export type PagesQuery = {
               secondArticle?: {
                 __typename?: 'ArticleEntityResponse'
                 data?: {
-                  __typename?: 'ArticleEntity'
+                  __typename: 'ArticleEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Article'
-                    title: string
                     perex?: string | null
                     addedAt: any
                     slug: string
+                    title: string
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -4488,28 +6033,78 @@ export type PagesQuery = {
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
                 article?: {
                   __typename?: 'ArticleEntityResponse'
                   data?: {
-                    __typename?: 'ArticleEntity'
-                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
                   } | null
                 } | null
                 branch?: {
                   __typename?: 'BranchEntityResponse'
                   data?: {
-                    __typename?: 'BranchEntity'
+                    __typename: 'BranchEntity'
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
                 document?: {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
-                    __typename?: 'DocumentEntity'
+                    __typename: 'DocumentEntity'
                     attributes?: { __typename?: 'Document'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -4521,28 +6116,78 @@ export type PagesQuery = {
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
                 article?: {
                   __typename?: 'ArticleEntityResponse'
                   data?: {
-                    __typename?: 'ArticleEntity'
-                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
                   } | null
                 } | null
                 branch?: {
                   __typename?: 'BranchEntityResponse'
                   data?: {
-                    __typename?: 'BranchEntity'
+                    __typename: 'BranchEntity'
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
                 document?: {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
-                    __typename?: 'DocumentEntity'
+                    __typename: 'DocumentEntity'
                     attributes?: { __typename?: 'Document'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -4577,28 +6222,78 @@ export type PagesQuery = {
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
                 article?: {
                   __typename?: 'ArticleEntityResponse'
                   data?: {
-                    __typename?: 'ArticleEntity'
-                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
                   } | null
                 } | null
                 branch?: {
                   __typename?: 'BranchEntityResponse'
                   data?: {
-                    __typename?: 'BranchEntity'
+                    __typename: 'BranchEntity'
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
                 document?: {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
-                    __typename?: 'DocumentEntity'
+                    __typename: 'DocumentEntity'
                     attributes?: { __typename?: 'Document'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -4637,6 +6332,50 @@ export type PagesQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        parentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename?: 'PageEntity'
+            attributes?: {
+              __typename?: 'Page'
+              slug: string
+              title: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -4651,13 +6390,13 @@ export type PageBySlugQuery = {
   pages?: {
     __typename?: 'PageEntityResponseCollection'
     data: Array<{
-      __typename?: 'PageEntity'
+      __typename: 'PageEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Page'
+        perex?: string | null
         title: string
         slug: string
-        perex?: string | null
         header?: Array<
           | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
@@ -4668,14 +6407,14 @@ export type PageBySlugQuery = {
               firstArticle?: {
                 __typename?: 'ArticleEntityResponse'
                 data?: {
-                  __typename?: 'ArticleEntity'
+                  __typename: 'ArticleEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Article'
-                    title: string
                     perex?: string | null
                     addedAt: any
                     slug: string
+                    title: string
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -4706,14 +6445,14 @@ export type PageBySlugQuery = {
               secondArticle?: {
                 __typename?: 'ArticleEntityResponse'
                 data?: {
-                  __typename?: 'ArticleEntity'
+                  __typename: 'ArticleEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Article'
-                    title: string
                     perex?: string | null
                     addedAt: any
                     slug: string
+                    title: string
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -4960,28 +6699,78 @@ export type PageBySlugQuery = {
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
                 article?: {
                   __typename?: 'ArticleEntityResponse'
                   data?: {
-                    __typename?: 'ArticleEntity'
-                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
                   } | null
                 } | null
                 branch?: {
                   __typename?: 'BranchEntityResponse'
                   data?: {
-                    __typename?: 'BranchEntity'
+                    __typename: 'BranchEntity'
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
                 document?: {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
-                    __typename?: 'DocumentEntity'
+                    __typename: 'DocumentEntity'
                     attributes?: { __typename?: 'Document'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -4993,28 +6782,78 @@ export type PageBySlugQuery = {
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
                 article?: {
                   __typename?: 'ArticleEntityResponse'
                   data?: {
-                    __typename?: 'ArticleEntity'
-                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
                   } | null
                 } | null
                 branch?: {
                   __typename?: 'BranchEntityResponse'
                   data?: {
-                    __typename?: 'BranchEntity'
+                    __typename: 'BranchEntity'
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
                 document?: {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
-                    __typename?: 'DocumentEntity'
+                    __typename: 'DocumentEntity'
                     attributes?: { __typename?: 'Document'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -5049,28 +6888,78 @@ export type PageBySlugQuery = {
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
                 article?: {
                   __typename?: 'ArticleEntityResponse'
                   data?: {
-                    __typename?: 'ArticleEntity'
-                    attributes?: { __typename?: 'Article'; title: string; slug: string } | null
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
                   } | null
                 } | null
                 branch?: {
                   __typename?: 'BranchEntityResponse'
                   data?: {
-                    __typename?: 'BranchEntity'
+                    __typename: 'BranchEntity'
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
                 document?: {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
-                    __typename?: 'DocumentEntity'
+                    __typename: 'DocumentEntity'
                     attributes?: { __typename?: 'Document'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -5109,6 +6998,50 @@ export type PageBySlugQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        parentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename?: 'PageEntity'
+            attributes?: {
+              __typename?: 'Page'
+              slug: string
+              title: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -5207,20 +7140,169 @@ export const UploadFileEntityFragmentDoc = gql`
     }
   }
 `
+export const FileItemFragmentDoc = gql`
+  fragment FileItem on ComponentItemsFileItem {
+    title
+    media {
+      data {
+        ...UploadFileEntity
+      }
+    }
+  }
+  ${UploadFileEntityFragmentDoc}
+`
+export const ParentPageFragmentDoc = gql`
+  fragment ParentPage on Page {
+    slug
+    title
+  }
+`
+export const PageParentPagesFragmentDoc = gql`
+  fragment PageParentPages on PageEntity {
+    attributes {
+      ...ParentPage
+      parentPage {
+        data {
+          attributes {
+            ...ParentPage
+            parentPage {
+              data {
+                attributes {
+                  ...ParentPage
+                  parentPage {
+                    data {
+                      attributes {
+                        ...ParentPage
+                        parentPage {
+                          data {
+                            attributes {
+                              ...ParentPage
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ParentPageFragmentDoc}
+`
+export const PageSlugEntityFragmentDoc = gql`
+  fragment PageSlugEntity on PageEntity {
+    ...PageParentPages
+    __typename
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+  ${PageParentPagesFragmentDoc}
+`
+export const RouterEntityFragmentDoc = gql`
+  fragment RouterEntity on RouterEntity {
+    attributes {
+      articlesParentPage {
+        data {
+          ...PageSlugEntity
+          ...PageParentPages
+        }
+      }
+    }
+  }
+  ${PageSlugEntityFragmentDoc}
+  ${PageParentPagesFragmentDoc}
+`
+export const ArticleSlugEntityFragmentDoc = gql`
+  fragment ArticleSlugEntity on ArticleEntity {
+    __typename
+    id
+    attributes {
+      slug
+      title
+    }
+  }
+`
+export const LinkFragmentDoc = gql`
+  fragment Link on ComponentItemsLink {
+    label
+    url
+    page {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    article {
+      data {
+        ...ArticleSlugEntity
+      }
+    }
+    branch {
+      data {
+        __typename
+        attributes {
+          title
+          slug
+        }
+      }
+    }
+    document {
+      data {
+        __typename
+        attributes {
+          title
+          slug
+        }
+      }
+    }
+  }
+  ${PageSlugEntityFragmentDoc}
+  ${ArticleSlugEntityFragmentDoc}
+`
+export const FooterColumnItemFragmentDoc = gql`
+  fragment FooterColumnItem on ComponentItemsFooterColumn {
+    title
+    links {
+      ...Link
+    }
+  }
+  ${LinkFragmentDoc}
+`
+export const FooterFragmentDoc = gql`
+  fragment Footer on Footer {
+    text
+    facebookUrl
+    instagramUrl
+    columns {
+      ...FooterColumnItem
+    }
+    bottomLinks {
+      ...Link
+    }
+  }
+  ${FooterColumnItemFragmentDoc}
+  ${LinkFragmentDoc}
+`
+export const FooterEntityFragmentDoc = gql`
+  fragment FooterEntity on FooterEntity {
+    attributes {
+      ...Footer
+    }
+  }
+  ${FooterFragmentDoc}
+`
 export const BranchMapHeaderSectionFragmentDoc = gql`
   fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
     branches(pagination: { limit: -1 }) {
       data {
         id
       }
-    }
-  }
-`
-export const ArticleSlugEntityFragmentDoc = gql`
-  fragment ArticleSlugEntity on ArticleEntity {
-    id
-    attributes {
-      slug
     }
   }
 `
@@ -5250,7 +7332,6 @@ export const ArticleCardEntityFragmentDoc = gql`
   fragment ArticleCardEntity on ArticleEntity {
     ...ArticleSlugEntity
     attributes {
-      title
       perex
       coverMedia {
         data {
@@ -5464,44 +7545,6 @@ export const OrderedCardsSectionFragmentDoc = gql`
     }
   }
 `
-export const LinkFragmentDoc = gql`
-  fragment Link on ComponentItemsLink {
-    label
-    url
-    page {
-      data {
-        attributes {
-          title
-          slug
-        }
-      }
-    }
-    article {
-      data {
-        attributes {
-          title
-          slug
-        }
-      }
-    }
-    branch {
-      data {
-        attributes {
-          title
-          slug
-        }
-      }
-    }
-    document {
-      data {
-        attributes {
-          title
-          slug
-        }
-      }
-    }
-  }
-`
 export const ImageAndTextSectionFragmentDoc = gql`
   fragment ImageAndTextSection on ComponentSectionsImageAndText {
     title
@@ -5676,10 +7719,8 @@ export const PageSectionsFragmentDoc = gql`
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
-    id
+    ...PageSlugEntity
     attributes {
-      title
-      slug
       perex
       header {
         ...HeaderSections
@@ -5689,6 +7730,7 @@ export const PageEntityFragmentDoc = gql`
       }
     }
   }
+  ${PageSlugEntityFragmentDoc}
   ${HeaderSectionsFragmentDoc}
   ${PageSectionsFragmentDoc}
 `
@@ -5700,6 +7742,22 @@ export const TagEntityFragmentDoc = gql`
       slug
     }
   }
+`
+export const GeneralDocument = gql`
+  query General {
+    router {
+      data {
+        ...RouterEntity
+      }
+    }
+    footer {
+      data {
+        ...FooterEntity
+      }
+    }
+  }
+  ${RouterEntityFragmentDoc}
+  ${FooterEntityFragmentDoc}
 `
 export const ArticlesDocument = gql`
   query Articles {
@@ -5874,6 +7932,21 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    General(
+      variables?: GeneralQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<GeneralQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GeneralQuery>(GeneralDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'General',
+        'query',
+        variables,
+      )
+    },
     Articles(
       variables?: ArticlesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,

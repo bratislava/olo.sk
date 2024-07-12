@@ -1,0 +1,48 @@
+fragment RouterEntity on RouterEntity {
+  attributes {
+    articlesParentPage {
+      data {
+        ...PageSlugEntity
+        ...PageParentPages
+      }
+    }
+  }
+}
+
+fragment FooterEntity on FooterEntity {
+  attributes {
+    ...Footer
+  }
+}
+
+fragment Footer on Footer {
+  text
+  facebookUrl
+  instagramUrl
+  columns {
+    ...FooterColumnItem
+  }
+  bottomLinks {
+    ...Link
+  }
+}
+
+fragment FooterColumnItem on ComponentItemsFooterColumn {
+  title
+  links {
+    ...Link
+  }
+}
+
+query General {
+  router {
+    data {
+      ...RouterEntity
+    }
+  }
+  footer {
+    data {
+      ...FooterEntity
+    }
+  }
+}

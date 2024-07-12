@@ -7,8 +7,8 @@ import cn from '@/src/utils/cn'
 
 export type AccordionProps = {
   title: string
-  hasBottomBorder?: boolean
   children?: ReactNode
+  className?: string
 }
 
 /**
@@ -18,19 +18,15 @@ export type AccordionProps = {
  *
  */
 
-const Accordion = ({ title, hasBottomBorder = true, children }: AccordionProps) => {
+const Accordion = ({ title, children, className }: AccordionProps) => {
   return (
     <AnimateHeight isVisible className="relative">
-      <div className="bg-background-primary px-4 lg:px-5">
-        <details
-          className={cn('group flex w-full flex-col py-5', {
-            'border-b border-border-default ': hasBottomBorder,
-          })}
-        >
+      <div className={cn('bg-background-primary', className)}>
+        <details className={cn('group flex w-full flex-col py-5', {})}>
           <summary
             className={cn(
               'flex cursor-pointer items-center gap-4 text-left after:absolute after:inset-0',
-              'ring-offset-2 focus:outline-none focus:ring',
+              'ring-offset-2 focus:outline-none focus-visible:ring',
             )}
           >
             <Typography variant="h5" className_onlyWhenNecessary="grow min-w-0 break-words">

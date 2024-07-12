@@ -8,6 +8,7 @@ import PageHeaderFeaturedNewsComponent from './PageHeaderFeaturedNews'
 type Props = FeaturedNewsHeaderSectionFragment
 
 const dummyArticleData = {
+  __typename: 'ArticleEntity' as const,
   attributes: {
     title: 'Article',
     slug: '',

@@ -10,7 +10,7 @@ import {
   ImageAndTextSectionFragment,
 } from '@/src/services/graphql/api'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
-import { getLinkProps } from '@/src/utils/getLinkProps'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type Props = {
   section: ImageAndTextSectionFragment
@@ -30,6 +30,8 @@ const ImageAndTextSection = ({ section }: Props) => {
     primaryButton,
     secondaryButton,
   } = section
+
+  const { getLinkProps } = useGetLinkProps()
 
   const ImageContent = (
     <div className="relative aspect-square size-full shrink-0 overflow-hidden rounded-3xl lg:size-[540px]">

@@ -74,6 +74,11 @@
   --color-waste-red: 252 76 2; /*#FC4C02*/
   --color-waste-brown: 116 79 40; /*#744F28*/
 
+  /* OLO badge categories */
+  --color-badge-red: 255 220 195; /*#FFDCC3*/
+  --color-badge-green: 214 239 227; /*#D6EFE3*/
+  --color-badge-blue: 214 229 244; /*#D6E5F4*/
+
   /*--error-color: var(--color-negative-700);*/
 
   --token-background-primary: var(--color-grey-0);
@@ -118,6 +123,10 @@
   --token-waste-kitchen: var(--color-waste-brown);
   --token-waste-organic: var(--color-waste-brown);
   --token-waste-mixed: var(--color-grey-700);
+
+  --token-badge-public: var(--color-badge-red);
+  --token-badge-firms: var(--color-badge-green);
+  --token-badge-institutions: var(--color-badge-blue);
 
   /* These variables are overridden in pages to get custom colors for each category */
   --color-category-800: var(--color-brand-800);

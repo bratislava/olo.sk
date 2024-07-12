@@ -8,11 +8,12 @@ import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import BlocksRenderer from '@/src/components/layout/BlocksRenderer'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
+import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
-import { ArticleEntityFragment } from '@/src/services/graphql/api'
+import { ArticleEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
 
 type PageProps = {
-  // general: GeneralQuery
+  general: GeneralQuery
   article: ArticleEntityFragment
 }
 
@@ -47,6 +48,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 }) => {
   const slug = params?.slug
 
+  // TODO update console log so it displays correct path
   // eslint-disable-next-line no-console
   console.log(`Revalidating article ${locale === 'en' ? '/en' : ''}/blog/${slug}`)
 
@@ -55,8 +57,9 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ articles }, translations] = await Promise.all([
+  const [{ articles }, general, translations] = await Promise.all([
     client.ArticleBySlug({ slug }),
+    client.General(),
     serverSideTranslations(locale),
   ])
 
@@ -68,13 +71,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   return {
     props: {
       article,
+      general,
       ...translations,
     },
     revalidate: 10,
   }
 }
 
-const Page = ({ article }: PageProps) => {
+const Page = ({ article, general }: PageProps) => {
   const { t } = useTranslation()
 
   if (!article.attributes) {
@@ -84,7 +88,7 @@ const Page = ({ article }: PageProps) => {
   const { title, perex, blocks } = article.attributes
 
   return (
-    <>
+    <GeneralContextProvider general={general}>
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>
@@ -101,13 +105,13 @@ const Page = ({ article }: PageProps) => {
               <BlocksRenderer content={blocks} />
             </div>
             <ShareBlock
-              text={t('ArticlePage.shareblock.text')}
-              buttonText={t('ArticlePage.shareblock.buttonText')}
+              text={t('articlePage.shareblock.text')}
+              buttonText={t('articlePage.shareblock.buttonText')}
             />
           </div>
         </div>
       </PageLayoutPlaceholder>
-    </>
+    </GeneralContextProvider>
   )
 }
 

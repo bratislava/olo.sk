@@ -3,22 +3,17 @@ fragment Link on ComponentItemsLink {
   url
   page {
     data {
-      attributes {
-        title
-        slug
-      }
+      ...PageSlugEntity
     }
   }
   article {
     data {
-      attributes {
-        title
-        slug
-      }
+      ...ArticleSlugEntity
     }
   }
   branch {
     data {
+      __typename
       attributes {
         title
         slug
@@ -27,6 +22,7 @@ fragment Link on ComponentItemsLink {
   }
   document {
     data {
+      __typename
       attributes {
         title
         slug
@@ -68,5 +64,14 @@ fragment UploadFileEntity on UploadFileEntity {
     size
     createdAt
     updatedAt
+  }
+}
+
+fragment FileItem on ComponentItemsFileItem {
+  title
+  media {
+    data {
+      ...UploadFileEntity
+    }
   }
 }

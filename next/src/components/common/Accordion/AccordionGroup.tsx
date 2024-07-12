@@ -14,7 +14,7 @@ const AccordionGroup = ({ accordionData, className }: AccordionGroupProps) => {
   return (
     <div
       className={cn(
-        'flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary py-2',
+        'flex flex-col divide-y divide-border-default overflow-hidden rounded-lg border border-border-default bg-background-primary px-4 py-2 lg:px-5',
         className,
       )}
     >
@@ -22,9 +22,9 @@ const AccordionGroup = ({ accordionData, className }: AccordionGroupProps) => {
         ? accordionData.map((accordion, index) => {
             return (
               <Accordion
-                key={accordion.title}
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
                 {...accordion}
-                hasBottomBorder={index !== accordionData.length - 1}
               />
             )
           })

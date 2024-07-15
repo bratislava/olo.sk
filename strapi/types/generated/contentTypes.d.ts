@@ -879,6 +879,47 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   }
 }
 
+export interface ApiFaqFaq extends Schema.CollectionType {
+  collectionName: 'faqs'
+  info: {
+    singularName: 'faq'
+    pluralName: 'faqs'
+    displayName: 'FAQs'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<'api::faq.faq', 'oneToMany', 'api::faq.faq'>
+    locale: Attribute.String
+  }
+}
+
 export interface ApiFooterFooter extends Schema.SingleType {
   collectionName: 'footers'
   info: {
@@ -1214,6 +1255,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
+      'api::faq.faq': ApiFaqFaq
       'api::footer.footer': ApiFooterFooter
       'api::homepage.homepage': ApiHomepageHomepage
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime

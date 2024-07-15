@@ -995,6 +995,54 @@ type Error {
   message: String
 }
 
+type Faq {
+  content: String!
+  createdAt: DateTime
+  locale: String
+  localizations(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
+  publishedAt: DateTime
+  title: String!
+  updatedAt: DateTime
+}
+
+type FaqEntity {
+  attributes: Faq
+  id: ID
+}
+
+type FaqEntityResponse {
+  data: FaqEntity
+}
+
+type FaqEntityResponseCollection {
+  data: [FaqEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input FaqFiltersInput {
+  and: [FaqFiltersInput]
+  content: StringFilterInput
+  createdAt: DateTimeFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: FaqFiltersInput
+  not: FaqFiltersInput
+  or: [FaqFiltersInput]
+  publishedAt: DateTimeFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input FaqInput {
+  content: String
+  publishedAt: DateTime
+  title: String
+}
+
+type FaqRelationResponseCollection {
+  data: [FaqEntity!]!
+}
+
 input FileInfoInput {
   alternativeText: String
   caption: String
@@ -1079,7 +1127,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Footer | Homepage | I18NLocale | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Faq | Footer | Homepage | I18NLocale | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1290,6 +1338,8 @@ type Mutation {
   createCategoryLocalization(data: CategoryInput, id: ID, locale: I18NLocaleCode): CategoryEntityResponse
   createContact(data: ContactInput!): ContactEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
+  createFaq(data: FaqInput!, locale: I18NLocaleCode): FaqEntityResponse
+  createFaqLocalization(data: FaqInput, id: ID, locale: I18NLocaleCode): FaqEntityResponse
   createFooterLocalization(data: FooterInput, id: ID, locale: I18NLocaleCode): FooterEntityResponse
   createHomepageLocalization(data: HomepageInput, id: ID, locale: I18NLocaleCode): HomepageEntityResponse
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
@@ -1312,6 +1362,7 @@ type Mutation {
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
+  deleteFaq(id: ID!, locale: I18NLocaleCode): FaqEntityResponse
   deleteFooter(locale: I18NLocaleCode): FooterEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
@@ -1349,6 +1400,7 @@ type Mutation {
   updateCategory(data: CategoryInput!, id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
+  updateFaq(data: FaqInput!, id: ID!, locale: I18NLocaleCode): FaqEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   updateFooter(data: FooterInput!, locale: I18NLocaleCode): FooterEntityResponse
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
@@ -1511,6 +1563,8 @@ type Query {
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
   document(id: ID): DocumentEntityResponse
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentEntityResponseCollection
+  faq(id: ID, locale: I18NLocaleCode): FaqEntityResponse
+  faqs(filters: FaqFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqEntityResponseCollection
   footer(locale: I18NLocaleCode): FooterEntityResponse
   homepage(locale: I18NLocaleCode): HomepageEntityResponse
   i18NLocale(id: ID): I18NLocaleEntityResponse

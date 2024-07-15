@@ -12,7 +12,7 @@ const meta: Meta<typeof PaginationInputComponent> = {
     currentPage: 1,
     totalCount: 20,
   },
-  parameters: { controls: { exclude: ['onPageChange'] } },
+  parameters: { controls: { exclude: ['onPageChange', 'currentPage'] } },
   decorators: [
     (Story) => (
       <div className="flex justify-center">

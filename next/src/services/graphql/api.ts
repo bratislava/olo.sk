@@ -31,8 +31,8 @@ export type Scalars = {
 export type Article = {
   __typename?: 'Article'
   addedAt: Scalars['DateTime']['output']
-  blocks?: Maybe<Scalars['JSON']['output']>
   category?: Maybe<CategoryEntityResponse>
+  content?: Maybe<Scalars['String']['output']>
   coverMedia?: Maybe<UploadFileEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
@@ -71,8 +71,8 @@ export type ArticleEntityResponseCollection = {
 export type ArticleFiltersInput = {
   addedAt?: InputMaybe<DateTimeFilterInput>
   and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
-  blocks?: InputMaybe<JsonFilterInput>
   category?: InputMaybe<CategoryFiltersInput>
+  content?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -88,8 +88,8 @@ export type ArticleFiltersInput = {
 
 export type ArticleInput = {
   addedAt?: InputMaybe<Scalars['DateTime']['input']>
-  blocks?: InputMaybe<Scalars['JSON']['input']>
   category?: InputMaybe<Scalars['ID']['input']>
+  content?: InputMaybe<Scalars['String']['input']>
   coverMedia?: InputMaybe<Scalars['ID']['input']>
   perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
@@ -618,7 +618,8 @@ export type ComponentSectionsOrderedCardsCardsArgs = {
 
 export type ComponentSectionsRichtext = {
   __typename?: 'ComponentSectionsRichtext'
-  content?: Maybe<Scalars['JSON']['output']>
+  backgroundColor: Enum_Componentsectionsrichtext_Backgroundcolor
+  content?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
 }
 
@@ -790,6 +791,12 @@ export enum Enum_Componentsectionsimageandtext_Backgroundcolor {
 export enum Enum_Componentsectionsimageandtext_Imageposition {
   Left = 'left',
   Right = 'right',
+}
+
+export enum Enum_Componentsectionsrichtext_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
 }
 
 export type Error = {
@@ -3642,7 +3649,8 @@ export type HeaderSectionsFragment =
 
 export type RichtextSectionFragment = {
   __typename?: 'ComponentSectionsRichtext'
-  content?: any | null
+  content?: string | null
+  backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
 }
 
 export type OrderedCardsSectionFragment = {
@@ -4471,7 +4479,8 @@ type PageSections_ComponentSectionsOrderedCards_Fragment = {
 
 type PageSections_ComponentSectionsRichtext_Fragment = {
   __typename: 'ComponentSectionsRichtext'
-  content?: any | null
+  content?: string | null
+  backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
 }
 
 type PageSections_ComponentSectionsTable_Fragment = {
@@ -4557,7 +4566,7 @@ export type ArticleEntityFragment = {
   id?: string | null
   attributes?: {
     __typename?: 'Article'
-    blocks?: any | null
+    content?: string | null
     perex?: string | null
     addedAt: any
     slug: string
@@ -4600,7 +4609,7 @@ export type ArticlesQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
-        blocks?: any | null
+        content?: string | null
         perex?: string | null
         addedAt: any
         slug: string
@@ -4647,7 +4656,7 @@ export type ArticleBySlugQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
-        blocks?: any | null
+        content?: string | null
         perex?: string | null
         addedAt: any
         slug: string
@@ -4694,7 +4703,7 @@ export type LatestArticlesQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
-        blocks?: any | null
+        content?: string | null
         perex?: string | null
         addedAt: any
         slug: string
@@ -5650,7 +5659,11 @@ export type PageEntityFragment = {
             text: string
           } | null>
         }
-      | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+      | {
+          __typename: 'ComponentSectionsRichtext'
+          content?: string | null
+          backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+        }
       | {
           __typename: 'ComponentSectionsTable'
           title: string
@@ -6308,7 +6321,11 @@ export type PagesQuery = {
                 text: string
               } | null>
             }
-          | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+          | {
+              __typename: 'ComponentSectionsRichtext'
+              content?: string | null
+              backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
           | {
               __typename: 'ComponentSectionsTable'
               title: string
@@ -6974,7 +6991,11 @@ export type PageBySlugQuery = {
                 text: string
               } | null>
             }
-          | { __typename: 'ComponentSectionsRichtext'; content?: any | null }
+          | {
+              __typename: 'ComponentSectionsRichtext'
+              content?: string | null
+              backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
           | {
               __typename: 'ComponentSectionsTable'
               title: string
@@ -7354,7 +7375,7 @@ export const ArticleEntityFragmentDoc = gql`
   fragment ArticleEntity on ArticleEntity {
     ...ArticleCardEntity
     attributes {
-      blocks
+      content
     }
   }
   ${ArticleCardEntityFragmentDoc}
@@ -7534,6 +7555,7 @@ export const HeaderSectionsFragmentDoc = gql`
 export const RichtextSectionFragmentDoc = gql`
   fragment RichtextSection on ComponentSectionsRichtext {
     content
+    backgroundColorRichtext: backgroundColor
   }
 `
 export const OrderedCardsSectionFragmentDoc = gql`

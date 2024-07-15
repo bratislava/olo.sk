@@ -52,13 +52,13 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
-        "sections.richtext",
         "sections.branches",
         "sections.columns",
         "sections.columns-list",
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
         "sections.ordered-cards",
+        "sections.richtext",
         "sections.table",
         "sections.workshops"
       ]

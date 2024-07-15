@@ -31,7 +31,7 @@ const ServiceCard = ({
     <CardBase
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteSectionBackground}
-      className={cn('min-w-[18rem] p-4 lg:p-6', className)}
+      className={cn('p-4 lg:p-6', className)}
     >
       <div className="flex flex-col gap-8 lg:gap-12">
         <div className="flex flex-col items-start justify-start gap-3 lg:gap-4">

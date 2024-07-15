@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import mapImage from '@/src/assets/images/olo-placeholder-map.png'
+import mapImage from '@/src/assets/images/olo-placeholder-map.jpg'
 
 const MapPlaceholder = () => {
   return (

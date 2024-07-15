@@ -12,7 +12,7 @@ import cn from '@/src/utils/cn'
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=37-1906&t=Ix6vxd23ycmma0c2-4
  */
 
-const PaginationInput = ({
+const PaginationWithInput = ({
   currentPage,
   totalCount,
   onPageChange: handlePageChange,
@@ -113,4 +113,4 @@ const PaginationInput = ({
   )
 }
 
-export default PaginationInput
+export default PaginationWithInput

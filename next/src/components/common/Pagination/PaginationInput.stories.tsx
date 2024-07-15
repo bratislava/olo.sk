@@ -2,11 +2,11 @@
 import { useArgs } from '@storybook/preview-api'
 import type { Meta, StoryObj } from '@storybook/react'
 
-import PaginationInputComponent from './PaginationInput'
+import PaginationWithInputComponent from './PaginationWithInput'
 
-const meta: Meta<typeof PaginationInputComponent> = {
-  component: PaginationInputComponent,
-  title: 'Components/PaginationInput',
+const meta: Meta<typeof PaginationWithInputComponent> = {
+  component: PaginationWithInputComponent,
+  title: 'Components/Pagination/PaginationWithInput',
   tags: ['autodocs'],
   args: {
     currentPage: 1,
@@ -23,14 +23,14 @@ const meta: Meta<typeof PaginationInputComponent> = {
 }
 
 export default meta
-type Story = StoryObj<typeof PaginationInputComponent>
+type Story = StoryObj<typeof PaginationWithInputComponent>
 
-export const PaginationInput: Story = {
+export const PaginationWithInput: Story = {
   render: (props) => {
     const [{ currentPage }, updateArgs] = useArgs()
 
     return (
-      <PaginationInputComponent
+      <PaginationWithInputComponent
         {...props}
         currentPage={currentPage}
         onPageChange={(num) => updateArgs({ currentPage: num })}

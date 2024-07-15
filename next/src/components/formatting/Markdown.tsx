@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 import ReactMarkdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
@@ -12,7 +11,6 @@ import styles from './Markdown.module.scss'
 
 export type MarkdownProps = {
   content: string | null | undefined
-  variant?: 'default' | 'small' | 'small-no-respo' | 'accordion'
   className?: string
 }
 
@@ -21,56 +19,49 @@ export type MarkdownProps = {
  *
  * @param className
  * @param content
+ * @param variant
  * @constructor
  *
  */
 
-// TODO Apply correct styling when figma design is reeady
+// TODO Apply correct styling when figma design is ready
 
-const Markdown = ({ content, variant = 'default', className }: MarkdownProps) => {
+const Markdown = ({ content, className }: MarkdownProps) => {
   return (
     <ReactMarkdown
-      className={
-        (cn(styles.markdown, {
-          'text-large-respo': variant === 'default' || variant === 'accordion',
-          'text-default-respo': variant === 'small',
-          'text-default': variant === 'small-no-respo',
-        }),
-        className)
-      }
+      remarkPlugins={[remarkUnwrapImages, remarkGfm]}
+      className={cn(styles.markdown, className)}
       components={{
         // Standard components: a, blockquote, br, code, em, h1, h2, h3, h4, h5, h6, hr, img, li, ol, p, pre, strong, and ul
 
         // We don't want to use h1 in markdown, so it returns standard <p> tag
-        // TODO (from bratislava.sk) Accordion uses h3 as its own heading, we want to display all the headings in markdown smaller or equal to h4.
-
         h1: 'p',
-        h2: ({ children, ...props }) => (
-          <Typography variant="h2" {...props} data-cy="heading-two">
+        h2: ({ node, children, ...props }) => (
+          <Typography variant="h2" {...props}>
             {children}
           </Typography>
         ),
-        h3: ({ children, ...props }) => (
+        h3: ({ node, children, ...props }) => (
           <Typography variant="h3" {...props}>
             {children}
           </Typography>
         ),
-        h4: ({ children, ...props }) => (
+        h4: ({ node, children, ...props }) => (
           <Typography variant="h4" {...props}>
             {children}
           </Typography>
         ),
-        h5: ({ children, ...props }) => (
+        h5: ({ node, children, ...props }) => (
           <Typography variant="h5" {...props}>
             {children}
           </Typography>
         ),
-        h6: ({ children, ...props }) => (
+        h6: ({ node, children, ...props }) => (
           <Typography variant="h6" className="text-h5" {...props}>
             {children}
           </Typography>
         ),
-        p: ({ children, ...props }) => (
+        p: ({ node, children, ...props }) => (
           <Typography
             variant="p-default"
             className_onlyWhenNecessary="whitespace-pre-wrap"
@@ -152,8 +143,6 @@ const Markdown = ({ content, variant = 'default', className }: MarkdownProps) =>
         // th: ...
         hr: () => <hr className="my-8 border-t border-border-default" />,
       }}
-      remarkPlugins={[remarkUnwrapImages, remarkGfm]}
-      rehypePlugins={[rehypeRaw]}
     >
       {content ?? ''}
     </ReactMarkdown>

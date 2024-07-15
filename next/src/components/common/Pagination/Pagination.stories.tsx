@@ -6,7 +6,7 @@ import PaginationComponent from './Pagination'
 
 const meta: Meta<typeof PaginationComponent> = {
   component: PaginationComponent,
-  title: 'Components/Pagination',
+  title: 'Components/Pagination/Pagination',
   tags: ['autodocs'],
   args: {
     currentPage: 1,

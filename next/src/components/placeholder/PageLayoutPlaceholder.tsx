@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 
-import FooterPlaceholder from '@/src/components/placeholder/FooterPlaceholder'
+import Footer from '@/src/components/common/Footer/Footer'
 import NavBarPlaceholder from '@/src/components/placeholder/NavBarPlaceholder'
 
 type PageLayoutProps = {
@@ -19,7 +19,7 @@ const PageLayoutPlaceholder = ({ className, children }: PropsWithChildren<PageLa
 
       <main className="relative z-0">{children}</main>
 
-      <FooterPlaceholder />
+      <Footer />
     </div>
   )
 }

@@ -1,8 +1,8 @@
 import { useTranslation } from 'next-i18next'
 
-import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
+import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type ListingCardProps = {
@@ -38,16 +38,14 @@ const ListingCard = ({
           {title}
         </Typography>
         <div className="flex items-center gap-6">
-          <Button
-            variant="black-link"
-            asLink
+          <Link
+            variant="underlined"
             href={linkHref}
             stretched
-            hasLinkIcon={false}
-            className="font-bold"
+            className="text-size-button-default font-bold"
           >
-            <Typography variant="button-default">{t('common.findOutMore')}</Typography>
-          </Button>
+            {t('common.findOutMore')}
+          </Link>
           <div className="ml-auto flex size-10 items-center justify-center rounded-lg bg-background-secondary">
             <Icon name="sipka-doprava" className="size-6" />
           </div>

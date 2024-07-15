@@ -10,7 +10,7 @@ import pluginRAC from 'tailwindcss-react-aria-components'
  * Similar styles are used also in RAC example styling https://react-spectrum.adobe.com/react-aria/SearchField.html#example
  *
  */
-const removeNativeSearchInputStyling = plugin(function({ addBase }) {
+const removeNativeSearchInputStyling = plugin(function ({ addBase }) {
   addBase({
     '[type="search"]::-webkit-search-decoration': { display: 'none' },
     '[type="search"]::-webkit-search-cancel-button': { display: 'none' },
@@ -49,7 +49,7 @@ const config: Config = {
       black: '800',
     },
 
-    // DO NOT USE these font classes directly, use classes from globals.css
+    // do not use these classes, use Typography component instead
     fontSize: {
       'size-button-large': getFontSize([16, 24]), // this is probably not used in OLO ?
       'size-button-default': getFontSize([14, 24]),

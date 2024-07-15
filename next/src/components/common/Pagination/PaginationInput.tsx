@@ -8,17 +8,6 @@ import { PaginationProps } from '@/src/components/common/Pagination/Pagination'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-// can be moved to utils
-const sanitizePaginationInput = (userInput: string, currentPage: number, totalCount: number) => {
-  if (Number.isNaN(+userInput)) {
-    return userInput.replaceAll(/\D/g, currentPage.toString()) // plain text entered
-  }
-
-  if (+userInput > totalCount) return totalCount.toString() // value entered goes over the page limit, adjust the UI to display our defined max
-
-  return userInput === '0' ? '' : userInput // 0 entered, we leave it empty for users to type a value
-}
-
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=37-1906&t=Ix6vxd23ycmma0c2-4
  */
@@ -31,16 +20,34 @@ const PaginationInput = ({
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState(currentPage.toString())
 
-  const handleDecrement = (userInput: string, parentHandler: any) => {
-    const newUserInputValue = +userInput - 1 === 0 ? 1 : +userInput - 1
-    setInputValue(newUserInputValue.toString())
-    parentHandler(newUserInputValue)
+  const sanitizeInput = (userInput: string) => {
+    if (/^\D+$/.test(userInput)) {
+      // arbitrary text entered
+      setInputValue(currentPage.toString())
+
+      return currentPage.toString()
+    }
+
+    if (+userInput > totalCount) {
+      setInputValue(totalCount.toString()) // user input exceeds totalCount of pages
+
+      return totalCount.toString()
+    }
+
+    return userInput === '0' ? '' : userInput // 0 is entered, displaying an empty field
   }
 
-  const handleIncrement = (userInput: string, parentHandler: any, pagesCount: number) => {
-    const newUserInputValue = +userInput + 1 === pagesCount ? pagesCount : +userInput + 1
+  const handleDecrement = (userInput: string) => {
+    const newUserInputValue = +userInput - 1 === 0 ? 1 : +userInput - 1
     setInputValue(newUserInputValue.toString())
-    parentHandler(newUserInputValue)
+    handlePageChange?.(newUserInputValue)
+  }
+
+  const handleIncrement = (userInput: string, pagesCount: number) => {
+    const newUserInputValue = +userInput + 1 === pagesCount ? pagesCount : +userInput + 1
+
+    setInputValue(newUserInputValue.toString())
+    handlePageChange?.(newUserInputValue)
   }
 
   const handleInputChange = (userInput: string) => {
@@ -56,7 +63,7 @@ const PaginationInput = ({
           variant="category-plain"
           isDisabled={+inputValue < 2}
           onPress={() => {
-            handleDecrement(inputValue, handlePageChange)
+            handleDecrement(inputValue)
           }}
           aria-label={t('pagination.aria.goToPreviousPage', inputValue)}
           icon={<Icon name="sipka-dolava" />}
@@ -64,6 +71,8 @@ const PaginationInput = ({
         />
 
         <div className="flex items-center justify-center gap-2">
+          <p>local value: {inputValue}</p>
+
           <Input
             className="items-center justify-center"
             classNameInner={cn('w-[3.75rem] text-center', {
@@ -71,7 +80,7 @@ const PaginationInput = ({
               'w-[4.37rem]': inputValue.toString().length > 3,
             })}
             maxLength={totalCount.toString().length}
-            value={sanitizePaginationInput(inputValue, currentPage, totalCount)}
+            value={sanitizeInput(inputValue)}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               setInputValue(event.currentTarget.value)
             }
@@ -95,7 +104,7 @@ const PaginationInput = ({
           variant="category-plain"
           isDisabled={+inputValue >= totalCount}
           onPress={() => {
-            handleIncrement(inputValue, handlePageChange, totalCount)
+            handleIncrement(inputValue, totalCount)
           }}
           aria-label={t('pagination.aria.goToNextPage', inputValue)}
           icon={<Icon name="sipka-doprava" />}

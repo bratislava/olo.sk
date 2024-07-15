@@ -34,13 +34,13 @@ fragment FooterColumnItem on ComponentItemsFooterColumn {
   }
 }
 
-query General {
-  router {
+query General($locale: I18NLocaleCode!) {
+  router(locale: $locale) {
     data {
       ...RouterEntity
     }
   }
-  footer {
+  footer(locale: $locale) {
     data {
       ...FooterEntity
     }

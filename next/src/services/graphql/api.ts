@@ -805,6 +805,66 @@ export type Error = {
   message?: Maybe<Scalars['String']['output']>
 }
 
+export type Faq = {
+  __typename?: 'Faq'
+  content: Scalars['String']['output']
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<FaqRelationResponseCollection>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type FaqLocalizationsArgs = {
+  filters?: InputMaybe<FaqFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type FaqEntity = {
+  __typename?: 'FaqEntity'
+  attributes?: Maybe<Faq>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type FaqEntityResponse = {
+  __typename?: 'FaqEntityResponse'
+  data?: Maybe<FaqEntity>
+}
+
+export type FaqEntityResponseCollection = {
+  __typename?: 'FaqEntityResponseCollection'
+  data: Array<FaqEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type FaqFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<FaqFiltersInput>>>
+  content?: InputMaybe<StringFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  locale?: InputMaybe<StringFilterInput>
+  localizations?: InputMaybe<FaqFiltersInput>
+  not?: InputMaybe<FaqFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<FaqFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type FaqInput = {
+  content?: InputMaybe<Scalars['String']['input']>
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type FaqRelationResponseCollection = {
+  __typename?: 'FaqRelationResponseCollection'
+  data: Array<FaqEntity>
+}
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']['input']>
   caption?: InputMaybe<Scalars['String']['input']>
@@ -843,7 +903,8 @@ export type Footer = {
   createdAt?: Maybe<Scalars['DateTime']['output']>
   facebookUrl?: Maybe<Scalars['String']['output']>
   instagramUrl?: Maybe<Scalars['String']['output']>
-  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<FooterRelationResponseCollection>
   text?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
@@ -876,8 +937,12 @@ export type FooterInput = {
   columns?: InputMaybe<Array<InputMaybe<ComponentItemsFooterColumnInput>>>
   facebookUrl?: InputMaybe<Scalars['String']['input']>
   instagramUrl?: InputMaybe<Scalars['String']['input']>
-  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   text?: InputMaybe<Scalars['String']['input']>
+}
+
+export type FooterRelationResponseCollection = {
+  __typename?: 'FooterRelationResponseCollection'
+  data: Array<FooterEntity>
 }
 
 export type GenericMorph =
@@ -912,6 +977,7 @@ export type GenericMorph =
   | ComponentSectionsWorkshops
   | Contact
   | Document
+  | Faq
   | Footer
   | Homepage
   | I18NLocale
@@ -1093,9 +1159,14 @@ export type Mutation = {
   createCategoryLocalization?: Maybe<CategoryEntityResponse>
   createContact?: Maybe<ContactEntityResponse>
   createDocument?: Maybe<DocumentEntityResponse>
+  createFaq?: Maybe<FaqEntityResponse>
+  createFaqLocalization?: Maybe<FaqEntityResponse>
+  createFooterLocalization?: Maybe<FooterEntityResponse>
   createHomepageLocalization?: Maybe<HomepageEntityResponse>
   createOpeningTime?: Maybe<OpeningTimeEntityResponse>
   createPage?: Maybe<PageEntityResponse>
+  createPageLocalization?: Maybe<PageEntityResponse>
+  createRouterLocalization?: Maybe<RouterEntityResponse>
   createTag?: Maybe<TagEntityResponse>
   createTagLocalization?: Maybe<TagEntityResponse>
   createUploadFile?: Maybe<UploadFileEntityResponse>
@@ -1110,6 +1181,7 @@ export type Mutation = {
   deleteCategory?: Maybe<CategoryEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
+  deleteFaq?: Maybe<FaqEntityResponse>
   deleteFooter?: Maybe<FooterEntityResponse>
   deleteHomepage?: Maybe<HomepageEntityResponse>
   deleteOpeningTime?: Maybe<OpeningTimeEntityResponse>
@@ -1139,6 +1211,7 @@ export type Mutation = {
   updateCategory?: Maybe<CategoryEntityResponse>
   updateContact?: Maybe<ContactEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
+  updateFaq?: Maybe<FaqEntityResponse>
   updateFileInfo: UploadFileEntityResponse
   updateFooter?: Maybe<FooterEntityResponse>
   updateHomepage?: Maybe<HomepageEntityResponse>
@@ -1203,6 +1276,23 @@ export type MutationCreateDocumentArgs = {
   data: DocumentInput
 }
 
+export type MutationCreateFaqArgs = {
+  data: FaqInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateFaqLocalizationArgs = {
+  data?: InputMaybe<FaqInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateFooterLocalizationArgs = {
+  data?: InputMaybe<FooterInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationCreateHomepageLocalizationArgs = {
   data?: InputMaybe<HomepageInput>
   id?: InputMaybe<Scalars['ID']['input']>
@@ -1215,6 +1305,19 @@ export type MutationCreateOpeningTimeArgs = {
 
 export type MutationCreatePageArgs = {
   data: PageInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreatePageLocalizationArgs = {
+  data?: InputMaybe<PageInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateRouterLocalizationArgs = {
+  data?: InputMaybe<RouterInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type MutationCreateTagArgs = {
@@ -1271,6 +1374,15 @@ export type MutationDeleteDocumentArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationDeleteFaqArgs = {
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationDeleteFooterArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationDeleteHomepageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1281,6 +1393,11 @@ export type MutationDeleteOpeningTimeArgs = {
 
 export type MutationDeletePageArgs = {
   id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationDeleteRouterArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type MutationDeleteTagArgs = {
@@ -1369,6 +1486,12 @@ export type MutationUpdateDocumentArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationUpdateFaqArgs = {
+  data: FaqInput
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID']['input']
   info?: InputMaybe<FileInfoInput>
@@ -1376,6 +1499,7 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateFooterArgs = {
   data: FooterInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type MutationUpdateHomepageArgs = {
@@ -1391,10 +1515,12 @@ export type MutationUpdateOpeningTimeArgs = {
 export type MutationUpdatePageArgs = {
   data: PageInput
   id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type MutationUpdateRouterArgs = {
   data: RouterInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type MutationUpdateTagArgs = {
@@ -1503,6 +1629,8 @@ export type Page = {
   childPages?: Maybe<PageRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   header?: Maybe<Array<Maybe<PageHeaderDynamicZone>>>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<PageRelationResponseCollection>
   parentPage?: Maybe<PageEntityResponse>
   perex?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
@@ -1513,6 +1641,13 @@ export type Page = {
 }
 
 export type PageChildPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type PageLocalizationsArgs = {
   filters?: InputMaybe<PageFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
@@ -1541,6 +1676,8 @@ export type PageFiltersInput = {
   childPages?: InputMaybe<PageFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
+  locale?: InputMaybe<StringFilterInput>
+  localizations?: InputMaybe<PageFiltersInput>
   not?: InputMaybe<PageFiltersInput>
   or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>
   parentPage?: InputMaybe<PageFiltersInput>
@@ -1621,6 +1758,8 @@ export type Query = {
   contacts?: Maybe<ContactEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
   documents?: Maybe<DocumentEntityResponseCollection>
+  faq?: Maybe<FaqEntityResponse>
+  faqs?: Maybe<FaqEntityResponseCollection>
   footer?: Maybe<FooterEntityResponse>
   homepage?: Maybe<HomepageEntityResponse>
   i18NLocale?: Maybe<I18NLocaleEntityResponse>
@@ -1706,8 +1845,21 @@ export type QueryDocumentsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
-export type QueryFooterArgs = {
+export type QueryFaqArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type QueryFaqsArgs = {
+  filters?: InputMaybe<FaqFiltersInput>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+  pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryFooterArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type QueryHomepageArgs = {
@@ -1736,13 +1888,19 @@ export type QueryOpeningTimesArgs = {
 
 export type QueryPageArgs = {
   id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type QueryPagesArgs = {
   filters?: InputMaybe<PageFiltersInput>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryRouterArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type QueryTagArgs = {
@@ -1818,6 +1976,8 @@ export type Router = {
   __typename?: 'Router'
   articlesParentPage?: Maybe<PageEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<RouterRelationResponseCollection>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
@@ -1834,6 +1994,11 @@ export type RouterEntityResponse = {
 
 export type RouterInput = {
   articlesParentPage?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type RouterRelationResponseCollection = {
+  __typename?: 'RouterRelationResponseCollection'
+  data: Array<RouterEntity>
 }
 
 export type StringFilterInput = {
@@ -2998,7 +3163,9 @@ export type FooterColumnItemFragment = {
   } | null> | null
 }
 
-export type GeneralQueryVariables = Exact<{ [key: string]: never }>
+export type GeneralQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
 
 export type GeneralQuery = {
   __typename?: 'Query'
@@ -4645,6 +4812,7 @@ export type ArticlesQuery = {
 
 export type ArticleBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
 }>
 
 export type ArticleBySlugQuery = {
@@ -4692,6 +4860,7 @@ export type ArticleBySlugQuery = {
 
 export type LatestArticlesQueryVariables = Exact<{
   limit: Scalars['Int']['input']
+  locale: Scalars['I18NLocaleCode']['input']
 }>
 
 export type LatestArticlesQuery = {
@@ -4748,7 +4917,9 @@ export type BranchEntityFragment = {
   } | null
 }
 
-export type BranchesQueryVariables = Exact<{ [key: string]: never }>
+export type BranchesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
 
 export type BranchesQuery = {
   __typename?: 'Query'
@@ -4769,6 +4940,7 @@ export type BranchesQuery = {
 
 export type BranchBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
 }>
 
 export type BranchBySlugQuery = {
@@ -4794,7 +4966,9 @@ export type CategoryEntityFragment = {
   attributes?: { __typename?: 'Category'; title: string; slug: string } | null
 }
 
-export type CategoriesQueryVariables = Exact<{ [key: string]: never }>
+export type CategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
 
 export type CategoriesQuery = {
   __typename?: 'Query'
@@ -4810,6 +4984,7 @@ export type CategoriesQuery = {
 
 export type CategoryBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
 }>
 
 export type CategoryBySlugQuery = {
@@ -4856,6 +5031,28 @@ export type DocumentBySlugQuery = {
       __typename?: 'DocumentEntity'
       id?: string | null
       attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type FaqEntityFragment = {
+  __typename?: 'FaqEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Faq'; title: string; content: string } | null
+}
+
+export type FaqsQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type FaqsQuery = {
+  __typename?: 'Query'
+  faqs?: {
+    __typename?: 'FaqEntityResponseCollection'
+    data: Array<{
+      __typename?: 'FaqEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Faq'; title: string; content: string } | null
     }>
   } | null
 }
@@ -5730,7 +5927,9 @@ export type PageEntityFragment = {
   } | null
 }
 
-export type PagesQueryVariables = Exact<{ [key: string]: never }>
+export type PagesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
 
 export type PagesQuery = {
   __typename?: 'Query'
@@ -6400,6 +6599,7 @@ export type PagesQuery = {
 
 export type PageBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
 }>
 
 export type PageBySlugQuery = {
@@ -7389,6 +7589,15 @@ export const DocumentEntityFragmentDoc = gql`
     }
   }
 `
+export const FaqEntityFragmentDoc = gql`
+  fragment FaqEntity on FaqEntity {
+    id
+    attributes {
+      title
+      content
+    }
+  }
+`
 export const SlideItemFragmentDoc = gql`
   fragment SlideItem on ComponentItemsSlide {
     title
@@ -7766,13 +7975,13 @@ export const TagEntityFragmentDoc = gql`
   }
 `
 export const GeneralDocument = gql`
-  query General {
-    router {
+  query General($locale: I18NLocaleCode!) {
+    router(locale: $locale) {
       data {
         ...RouterEntity
       }
     }
-    footer {
+    footer(locale: $locale) {
       data {
         ...FooterEntity
       }
@@ -7792,8 +8001,8 @@ export const ArticlesDocument = gql`
   ${ArticleEntityFragmentDoc}
 `
 export const ArticleBySlugDocument = gql`
-  query ArticleBySlug($slug: String!) {
-    articles(filters: { slug: { eq: $slug } }) {
+  query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    articles(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         ...ArticleEntity
       }
@@ -7802,8 +8011,8 @@ export const ArticleBySlugDocument = gql`
   ${ArticleEntityFragmentDoc}
 `
 export const LatestArticlesDocument = gql`
-  query LatestArticles($limit: Int!) {
-    articles(sort: "publishedAt:desc", pagination: { limit: $limit }) {
+  query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
+    articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
       data {
         ...ArticleEntity
       }
@@ -7812,8 +8021,8 @@ export const LatestArticlesDocument = gql`
   ${ArticleEntityFragmentDoc}
 `
 export const BranchesDocument = gql`
-  query Branches {
-    branches {
+  query Branches($locale: I18NLocaleCode!) {
+    branches(locale: $locale) {
       data {
         ...BranchEntity
       }
@@ -7822,8 +8031,8 @@ export const BranchesDocument = gql`
   ${BranchEntityFragmentDoc}
 `
 export const BranchBySlugDocument = gql`
-  query BranchBySlug($slug: String!) {
-    branches(filters: { slug: { eq: $slug } }) {
+  query BranchBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    branches(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         ...BranchEntity
       }
@@ -7832,8 +8041,8 @@ export const BranchBySlugDocument = gql`
   ${BranchEntityFragmentDoc}
 `
 export const CategoriesDocument = gql`
-  query Categories {
-    categories {
+  query Categories($locale: I18NLocaleCode!) {
+    categories(locale: $locale) {
       data {
         ...CategoryEntity
       }
@@ -7842,8 +8051,8 @@ export const CategoriesDocument = gql`
   ${CategoryEntityFragmentDoc}
 `
 export const CategoryBySlugDocument = gql`
-  query CategoryBySlug($slug: String!) {
-    categories(filters: { slug: { eq: $slug } }) {
+  query CategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    categories(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         ...CategoryEntity
       }
@@ -7871,6 +8080,16 @@ export const DocumentBySlugDocument = gql`
   }
   ${DocumentEntityFragmentDoc}
 `
+export const FaqsDocument = gql`
+  query Faqs($locale: I18NLocaleCode!) {
+    faqs(locale: $locale) {
+      data {
+        ...FaqEntity
+      }
+    }
+  }
+  ${FaqEntityFragmentDoc}
+`
 export const HomepageDocument = gql`
   query Homepage($locale: I18NLocaleCode!) {
     homepage(locale: $locale) {
@@ -7882,8 +8101,8 @@ export const HomepageDocument = gql`
   ${HomepageEntityFragmentDoc}
 `
 export const PagesDocument = gql`
-  query Pages {
-    pages {
+  query Pages($locale: I18NLocaleCode!) {
+    pages(locale: $locale) {
       data {
         ...PageEntity
       }
@@ -7892,8 +8111,8 @@ export const PagesDocument = gql`
   ${PageEntityFragmentDoc}
 `
 export const PageBySlugDocument = gql`
-  query PageBySlug($slug: String!) {
-    pages(filters: { slug: { eq: $slug } }) {
+  query PageBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    pages(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         ...PageEntity
       }
@@ -7955,7 +8174,7 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     General(
-      variables?: GeneralQueryVariables,
+      variables: GeneralQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<GeneralQuery> {
       return withWrapper(
@@ -8015,7 +8234,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
       )
     },
     Branches(
-      variables?: BranchesQueryVariables,
+      variables: BranchesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<BranchesQuery> {
       return withWrapper(
@@ -8045,7 +8264,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
       )
     },
     Categories(
-      variables?: CategoriesQueryVariables,
+      variables: CategoriesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<CategoriesQuery> {
       return withWrapper(
@@ -8104,6 +8323,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables,
       )
     },
+    Faqs(
+      variables: FaqsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<FaqsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<FaqsQuery>(FaqsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Faqs',
+        'query',
+        variables,
+      )
+    },
     Homepage(
       variables: HomepageQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
@@ -8120,7 +8354,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
       )
     },
     Pages(
-      variables?: PagesQueryVariables,
+      variables: PagesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
     ): Promise<PagesQuery> {
       return withWrapper(

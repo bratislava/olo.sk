@@ -58,8 +58,8 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 
   const [{ articles }, general, translations] = await Promise.all([
-    client.ArticleBySlug({ slug }),
-    client.General(),
+    client.ArticleBySlug({ slug, locale }),
+    client.General({ locale }),
     serverSideTranslations(locale),
   ])
 

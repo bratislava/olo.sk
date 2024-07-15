@@ -4,13 +4,17 @@
   "info": {
     "singularName": "router",
     "pluralName": "routers",
-    "displayName": "router",
+    "displayName": "Router",
     "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "articlesParentPage": {
       "type": "relation",

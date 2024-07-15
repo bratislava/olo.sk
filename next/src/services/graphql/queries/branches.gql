@@ -7,16 +7,16 @@ fragment BranchEntity on BranchEntity {
   }
 }
 
-query Branches {
-  branches {
+query Branches($locale: I18NLocaleCode!) {
+  branches(locale: $locale) {
     data {
       ...BranchEntity
     }
   }
 }
 
-query BranchBySlug($slug: String!) {
-  branches(filters: { slug: { eq: $slug } }) {
+query BranchBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  branches(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {
       ...BranchEntity
     }

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import Link from '@/src/components/common/Link/Link'
@@ -10,10 +11,12 @@ import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 const HomePageContentPlaceholder = () => {
   const { getFullPath } = useGetFullPath()
+  const { i18n } = useTranslation()
+  const locale = i18n.language
 
   const { data: pagesData } = useQuery({
-    queryFn: () => client.Pages(),
-    queryKey: ['pages'],
+    queryFn: () => client.Pages({ locale }),
+    queryKey: ['pages', locale],
   })
 
   const { data: articlesData } = useQuery({

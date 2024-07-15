@@ -40,16 +40,16 @@ query Articles {
   }
 }
 
-query ArticleBySlug($slug: String!) {
-  articles(filters: { slug: { eq: $slug } }) {
+query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  articles(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {
       ...ArticleEntity
     }
   }
 }
 
-query LatestArticles($limit: Int!) {
-  articles(sort: "publishedAt:desc", pagination: { limit: $limit }) {
+query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
+  articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
     data {
       ...ArticleEntity
     }

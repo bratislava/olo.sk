@@ -884,31 +884,62 @@ export interface ApiFooterFooter extends Schema.SingleType {
   info: {
     singularName: 'footer'
     pluralName: 'footers'
-    displayName: 'footer'
+    displayName: 'P\u00E4ti\u010Dka'
     description: ''
   }
   options: {
-    draftAndPublish: true
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
   }
   attributes: {
-    text: Attribute.RichText
-    facebookUrl: Attribute.String
-    instagramUrl: Attribute.String
+    text: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    facebookUrl: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    instagramUrl: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     columns: Attribute.Component<'items.footer-column', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
       Attribute.SetMinMax<
         {
           max: 2
         },
         number
       >
-    bottomLinks: Attribute.Component<'items.link', true>
+    bottomLinks: Attribute.Component<'items.link', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
-    publishedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::footer.footer', 'oneToOne', 'admin::user'> &
       Attribute.Private
     updatedBy: Attribute.Relation<'api::footer.footer', 'oneToOne', 'admin::user'> &
       Attribute.Private
+    localizations: Attribute.Relation<'api::footer.footer', 'oneToMany', 'api::footer.footer'>
+    locale: Attribute.String
   }
 }
 
@@ -917,7 +948,7 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
   info: {
     singularName: 'homepage'
     pluralName: 'homepages'
-    displayName: 'homepage'
+    displayName: 'Domov'
     description: ''
   }
   options: {
@@ -994,10 +1025,26 @@ export interface ApiPagePage extends Schema.CollectionType {
   options: {
     draftAndPublish: true
   }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required
-    perex: Attribute.Text
+    perex: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     parentPage: Attribute.Relation<'api::page.page', 'manyToOne', 'api::page.page'>
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
     header: Attribute.DynamicZone<
@@ -1011,6 +1058,11 @@ export interface ApiPagePage extends Schema.CollectionType {
         'header-sections.pickup-day',
       ]
     > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
       Attribute.SetMinMax<
         {
           max: 1
@@ -1029,12 +1081,19 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.table',
         'sections.workshops',
       ]
-    >
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
+    locale: Attribute.String
   }
 }
 
@@ -1043,11 +1102,16 @@ export interface ApiRouterRouter extends Schema.SingleType {
   info: {
     singularName: 'router'
     pluralName: 'routers'
-    displayName: 'router'
+    displayName: 'Router'
     description: ''
   }
   options: {
     draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
   }
   attributes: {
     articlesParentPage: Attribute.Relation<'api::router.router', 'oneToOne', 'api::page.page'>
@@ -1057,6 +1121,8 @@ export interface ApiRouterRouter extends Schema.SingleType {
       Attribute.Private
     updatedBy: Attribute.Relation<'api::router.router', 'oneToOne', 'admin::user'> &
       Attribute.Private
+    localizations: Attribute.Relation<'api::router.router', 'oneToMany', 'api::router.router'>
+    locale: Attribute.String
   }
 }
 

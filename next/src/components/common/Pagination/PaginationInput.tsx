@@ -71,8 +71,6 @@ const PaginationInput = ({
         />
 
         <div className="flex items-center justify-center gap-2">
-          <p>local value: {inputValue}</p>
-
           <Input
             className="items-center justify-center"
             classNameInner={cn('w-[3.75rem] text-center', {

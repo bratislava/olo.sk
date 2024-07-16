@@ -1027,6 +1027,38 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
   }
 }
 
+export interface ApiMenuMenu extends Schema.SingleType {
+  collectionName: 'menus'
+  info: {
+    singularName: 'menu'
+    pluralName: 'menus'
+    displayName: 'Menu'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    menuItems: Attribute.Component<'menu.menu-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<'api::menu.menu', 'oneToMany', 'api::menu.menu'>
+    locale: Attribute.String
+  }
+}
+
 export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
   collectionName: 'opening_times'
   info: {
@@ -1258,6 +1290,7 @@ declare module '@strapi/types' {
       'api::faq.faq': ApiFaqFaq
       'api::footer.footer': ApiFooterFooter
       'api::homepage.homepage': ApiHomepageHomepage
+      'api::menu.menu': ApiMenuMenu
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
       'api::router.router': ApiRouterRouter

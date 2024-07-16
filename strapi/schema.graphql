@@ -571,6 +571,84 @@ input ComponentItemsSlideInput {
   title: String
 }
 
+type ComponentMenuMenuItem {
+  id: ID!
+  label: String!
+  sections(filters: ComponentMenuMenuSectionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuSection]
+  seeAllLink: ComponentItemsLink
+}
+
+input ComponentMenuMenuItemFiltersInput {
+  and: [ComponentMenuMenuItemFiltersInput]
+  label: StringFilterInput
+  not: ComponentMenuMenuItemFiltersInput
+  or: [ComponentMenuMenuItemFiltersInput]
+  sections: ComponentMenuMenuSectionFiltersInput
+  seeAllLink: ComponentItemsLinkFiltersInput
+}
+
+input ComponentMenuMenuItemInput {
+  id: ID
+  label: String
+  sections: [ComponentMenuMenuSectionInput]
+  seeAllLink: ComponentItemsLinkInput
+}
+
+type ComponentMenuMenuLink {
+  branch: BranchEntityResponse
+  id: ID!
+  label: String
+  page: PageEntityResponse
+  url: String
+  workshop: WorkshopEntityResponse
+}
+
+input ComponentMenuMenuLinkFiltersInput {
+  and: [ComponentMenuMenuLinkFiltersInput]
+  branch: BranchFiltersInput
+  label: StringFilterInput
+  not: ComponentMenuMenuLinkFiltersInput
+  or: [ComponentMenuMenuLinkFiltersInput]
+  page: PageFiltersInput
+  url: StringFilterInput
+  workshop: WorkshopFiltersInput
+}
+
+input ComponentMenuMenuLinkInput {
+  branch: ID
+  id: ID
+  label: String
+  page: ID
+  url: String
+  workshop: ID
+}
+
+type ComponentMenuMenuSection {
+  colSpan: Int!
+  id: ID!
+  label: String!
+  links(filters: ComponentMenuMenuLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuLink]
+  multicolumnBehaviour: ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR
+}
+
+input ComponentMenuMenuSectionFiltersInput {
+  and: [ComponentMenuMenuSectionFiltersInput]
+  colSpan: IntFilterInput
+  label: StringFilterInput
+  links: ComponentMenuMenuLinkFiltersInput
+  multicolumnBehaviour: StringFilterInput
+  not: ComponentMenuMenuSectionFiltersInput
+  or: [ComponentMenuMenuSectionFiltersInput]
+}
+
+input ComponentMenuMenuSectionInput {
+  colSpan: Int
+  id: ID
+  label: String
+  links: [ComponentMenuMenuLinkInput]
+  multicolumnBehaviour: ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR
+}
+
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -948,6 +1026,11 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR {
+  fullwidth
+  split_equally
+}
+
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
   primary
   secondary
@@ -1127,7 +1210,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Faq | Footer | Homepage | I18NLocale | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Faq | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1327,6 +1410,47 @@ input LongFilterInput {
   startsWith: Long
 }
 
+type Menu {
+  createdAt: DateTime
+  locale: String
+  localizations: MenuRelationResponseCollection
+  menuItems(filters: ComponentMenuMenuItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuItem]
+  updatedAt: DateTime
+}
+
+type MenuEntity {
+  attributes: Menu
+  id: ID
+}
+
+type MenuEntityResponse {
+  data: MenuEntity
+}
+
+type MenuEntityResponseCollection {
+  data: [MenuEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input MenuFiltersInput {
+  and: [MenuFiltersInput]
+  createdAt: DateTimeFilterInput
+  locale: StringFilterInput
+  localizations: MenuFiltersInput
+  menuItems: ComponentMenuMenuItemFiltersInput
+  not: MenuFiltersInput
+  or: [MenuFiltersInput]
+  updatedAt: DateTimeFilterInput
+}
+
+input MenuInput {
+  menuItems: [ComponentMenuMenuItemInput]
+}
+
+type MenuRelationResponseCollection {
+  data: [MenuEntity!]!
+}
+
 type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
@@ -1342,6 +1466,7 @@ type Mutation {
   createFaqLocalization(data: FaqInput, id: ID, locale: I18NLocaleCode): FaqEntityResponse
   createFooterLocalization(data: FooterInput, id: ID, locale: I18NLocaleCode): FooterEntityResponse
   createHomepageLocalization(data: HomepageInput, id: ID, locale: I18NLocaleCode): HomepageEntityResponse
+  createMenuLocalization(data: MenuInput, id: ID, locale: I18NLocaleCode): MenuEntityResponse
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
   createPage(data: PageInput!, locale: I18NLocaleCode): PageEntityResponse
   createPageLocalization(data: PageInput, id: ID, locale: I18NLocaleCode): PageEntityResponse
@@ -1365,6 +1490,7 @@ type Mutation {
   deleteFaq(id: ID!, locale: I18NLocaleCode): FaqEntityResponse
   deleteFooter(locale: I18NLocaleCode): FooterEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
+  deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!, locale: I18NLocaleCode): PageEntityResponse
   deleteRouter(locale: I18NLocaleCode): RouterEntityResponse
@@ -1404,6 +1530,7 @@ type Mutation {
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   updateFooter(data: FooterInput!, locale: I18NLocaleCode): FooterEntityResponse
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
+  updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!, locale: I18NLocaleCode): PageEntityResponse
   updateRouter(data: RouterInput!, locale: I18NLocaleCode): RouterEntityResponse
@@ -1570,6 +1697,7 @@ type Query {
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
   me: UsersPermissionsMe
+  menu(locale: I18NLocaleCode): MenuEntityResponse
   openingTime(id: ID): OpeningTimeEntityResponse
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
   page(id: ID, locale: I18NLocaleCode): PageEntityResponse

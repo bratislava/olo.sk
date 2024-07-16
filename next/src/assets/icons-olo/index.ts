@@ -1,6 +1,8 @@
 export { default as CareerCalendarIcon } from './career-calendar.svg'
 export { default as DirectionsIcon } from './directions.svg'
+export { default as BusIcon } from './directions-bus.svg'
 export { default as LiveHelpIcon } from './live-help.svg'
+export { default as ParkingIcon } from './local-parking.svg'
 export { default as PlaceIcon } from './place.svg'
 export { default as FacebookIcon } from './social-media-facebook.svg'
 export { default as FacebookFooterIcon } from './social-media-facebook-footer.svg'

@@ -24,7 +24,21 @@
     },
     "multicolumnBehaviour": {
       "type": "enumeration",
-      "enum": ["fullwidth", "split equally"]
+      "enum": [
+        "fullwidth",
+        "split equally"
+      ]
+    },
+    "hasDivider": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "specialSectionType": {
+      "type": "enumeration",
+      "enum": [
+        "latest articles"
+      ]
     }
   }
 }

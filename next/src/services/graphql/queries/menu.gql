@@ -35,6 +35,8 @@ fragment MenuSection on ComponentMenuMenuSection {
   links {
     ...MenuLink
   }
+  hasDivider
+  specialSectionType
 }
 
 fragment MenuItem on ComponentMenuMenuItem {

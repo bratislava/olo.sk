@@ -1,8 +1,8 @@
-@import 'colors.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import 'colors.css';
 
 /* Docs: https://tailwindcss.com/docs/functions-and-directives */
 @layer base {
@@ -37,7 +37,6 @@
   .negative-x-spacing {
     @apply -mx-4 px-4;
   }
-
 
   .text-button {
     @apply text-size-button-default lg:text-size-button-large;

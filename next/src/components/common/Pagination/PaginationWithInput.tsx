@@ -1,10 +1,11 @@
 import { useTranslation } from 'next-i18next'
-import React, { useState } from 'react'
+import React from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import Input from '@/src/components/common/Input/Input'
 import { PaginationProps } from '@/src/components/common/Pagination/Pagination'
+import { usePaginationWithInput } from '@/src/components/common/Pagination/usePaginationWithInput'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -18,54 +19,25 @@ const PaginationWithInput = ({
   onPageChange: handlePageChange,
 }: PaginationProps) => {
   const { t } = useTranslation()
-  const [inputValue, setInputValue] = useState(currentPage.toString())
 
-  const sanitizeInput = (userInput: string) => {
-    if (/^\D+$/.test(userInput)) {
-      // arbitrary text entered
-      setInputValue(currentPage.toString())
-
-      return currentPage.toString()
-    }
-
-    if (+userInput > totalCount) {
-      setInputValue(totalCount.toString()) // user input exceeds totalCount of pages
-
-      return totalCount.toString()
-    }
-
-    return userInput === '0' ? '' : userInput // 0 is entered, displaying an empty field
-  }
-
-  const handleDecrement = (userInput: string) => {
-    const newUserInputValue = +userInput - 1 === 0 ? 1 : +userInput - 1
-    setInputValue(newUserInputValue.toString())
-    handlePageChange?.(newUserInputValue)
-  }
-
-  const handleIncrement = (userInput: string, pagesCount: number) => {
-    const newUserInputValue = +userInput + 1 === pagesCount ? pagesCount : +userInput + 1
-
-    setInputValue(newUserInputValue.toString())
-    handlePageChange?.(newUserInputValue)
-  }
-
-  const handleInputChange = (userInput: string) => {
-    if (userInput !== '') {
-      handlePageChange?.(+userInput)
-    }
-  }
+  const {
+    handleInputFocus,
+    inputValue,
+    handleInputChange,
+    handleDecrement,
+    handleIncrement,
+    handleBlur,
+    handleKeyDown,
+  } = usePaginationWithInput(currentPage, totalCount, handlePageChange)
 
   return (
     <nav>
       <div className={cn('flex items-center justify-start gap-4')}>
         <Button
           variant="category-plain"
-          isDisabled={+inputValue < 2}
-          onPress={() => {
-            handleDecrement(inputValue)
-          }}
-          aria-label={t('pagination.aria.goToPreviousPage', inputValue)}
+          isDisabled={inputValue < 2}
+          onPress={() => handleDecrement(inputValue)}
+          aria-label={t('pagination.aria.goToPreviousPage', inputValue.toString())}
           icon={<Icon name="sipka-dolava" />}
           className="rounded-full"
         />
@@ -77,17 +49,12 @@ const PaginationWithInput = ({
               // widen input field slightly for more than 3 digits
               'w-[4.37rem]': inputValue.toString().length > 3,
             })}
-            maxLength={totalCount.toString().length}
-            value={sanitizeInput(inputValue)}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              setInputValue(event.currentTarget.value)
-            }
-            onBlur={(event) => handleInputChange(event.currentTarget.value)}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                handleInputChange(event.currentTarget.value)
-              }
-            }}
+            type="number"
+            value={inputValue}
+            onFocus={handleInputFocus}
+            onChange={handleInputChange}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
           />
 
           <div className="flex gap-1">
@@ -100,11 +67,9 @@ const PaginationWithInput = ({
 
         <Button
           variant="category-plain"
-          isDisabled={+inputValue >= totalCount}
-          onPress={() => {
-            handleIncrement(inputValue, totalCount)
-          }}
-          aria-label={t('pagination.aria.goToNextPage', inputValue)}
+          isDisabled={inputValue >= totalCount || inputValue.toString() === ''}
+          onPress={() => handleIncrement(inputValue)}
+          aria-label={t('pagination.aria.goToNextPage', inputValue.toString())}
           icon={<Icon name="sipka-doprava" />}
           className="rounded-full"
         />

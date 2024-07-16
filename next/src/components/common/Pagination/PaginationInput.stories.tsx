@@ -33,7 +33,7 @@ export const PaginationWithInput: Story = {
       <PaginationWithInputComponent
         {...props}
         currentPage={currentPage}
-        onPageChange={(num) => updateArgs({ currentPage: num })}
+        onPageChange={(pageNumber) => updateArgs({ currentPage: pageNumber })}
       />
     )
   },

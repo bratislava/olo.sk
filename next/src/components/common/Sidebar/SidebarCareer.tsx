@@ -17,7 +17,7 @@ const SidebarCareer = ({
   children,
   className,
 }: SidebarCareerProps) => {
-  if (!children?.length) return null
+  if (children.length === 0) return null
 
   return (
     <div

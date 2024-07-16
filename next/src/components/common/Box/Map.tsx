@@ -14,7 +14,7 @@ type MapProps = {
  */
 
 const Map = ({ children, className }: MapProps) => {
-  if (!children?.length) return null
+  if (children.length === 0) return null
 
   return (
     <div

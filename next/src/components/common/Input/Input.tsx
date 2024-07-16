@@ -8,11 +8,25 @@ import {
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-export interface InputProps
+export interface InputBase
   extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-  labelText?: string
   classNameInner?: string
 }
+
+type InputWithAriaLabel = InputBase & {
+  labelText?: never
+  'aria-label': string
+}
+
+type InputProps = InputBase &
+  (
+    | {
+        labelText: string
+        'aria-label'?: string
+      }
+    | InputWithAriaLabel
+  )
+
 const Input = ({ labelText, className, classNameInner, ...restProps }: InputProps) => {
   return (
     <RACTextField className={cn('flex flex-col gap-2', className)}>
@@ -32,4 +46,5 @@ const Input = ({ labelText, className, classNameInner, ...restProps }: InputProp
     </RACTextField>
   )
 }
+
 export default Input

@@ -31,18 +31,18 @@ export const usePaginationWithInput = (
 
   const handleInputFocus = () => {
     // @ts-ignore
-    setInputValue('') // set Num field to string
+    setInputValue('')
   }
 
   const handleDecrement = (userInput: number) => {
     const newUserInputValue = userInput - 1 === 0 ? 1 : userInput - 1
-    setInputValue(newUserInputValue) // .toString()
+    setInputValue(newUserInputValue)
     handlePageChange?.(newUserInputValue)
   }
 
   const handleIncrement = (userInput: number) => {
     const newUserInputValue = userInput + 1 === totalCount ? totalCount : userInput + 1
-    setInputValue(newUserInputValue) // .toString()
+    setInputValue(newUserInputValue)
     handlePageChange?.(newUserInputValue)
   }
 
@@ -51,6 +51,10 @@ export const usePaginationWithInput = (
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (['e', 'E', '+', '-', '.', ','].includes(event.key)) {
+      event.preventDefault() // Restrict input type number to integers only
+    }
+
     if (event.key === 'Enter') {
       handleBlur()
     }

@@ -1,0 +1,24 @@
+fragment FooterColumnItem on ComponentItemsFooterColumn {
+  title
+  links {
+    ...Link
+  }
+}
+
+fragment Footer on Footer {
+  text
+  facebookUrl
+  instagramUrl
+  columns {
+    ...FooterColumnItem
+  }
+  bottomLinks {
+    ...Link
+  }
+}
+
+fragment FooterEntity on FooterEntity {
+  attributes {
+    ...Footer
+  }
+}

@@ -9,31 +9,6 @@ fragment RouterEntity on RouterEntity {
   }
 }
 
-fragment FooterEntity on FooterEntity {
-  attributes {
-    ...Footer
-  }
-}
-
-fragment Footer on Footer {
-  text
-  facebookUrl
-  instagramUrl
-  columns {
-    ...FooterColumnItem
-  }
-  bottomLinks {
-    ...Link
-  }
-}
-
-fragment FooterColumnItem on ComponentItemsFooterColumn {
-  title
-  links {
-    ...Link
-  }
-}
-
 query General($locale: I18NLocaleCode!) {
   router(locale: $locale) {
     data {
@@ -43,6 +18,11 @@ query General($locale: I18NLocaleCode!) {
   footer(locale: $locale) {
     data {
       ...FooterEntity
+    }
+  }
+  menu(locale: $locale) {
+    data {
+      ...MenuEntity
     }
   }
 }

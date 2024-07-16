@@ -275,6 +275,8 @@ export interface MenuMenuSection extends Schema.Component {
       > &
       Attribute.DefaultTo<1>
     multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
+    hasDivider: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    specialSectionType: Attribute.Enumeration<['latest articles']>
   }
 }
 

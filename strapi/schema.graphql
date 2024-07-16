@@ -625,28 +625,34 @@ input ComponentMenuMenuLinkInput {
 
 type ComponentMenuMenuSection {
   colSpan: Int!
+  hasDivider: Boolean!
   id: ID!
   label: String!
   links(filters: ComponentMenuMenuLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuLink]
   multicolumnBehaviour: ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR
+  specialSectionType: ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE
 }
 
 input ComponentMenuMenuSectionFiltersInput {
   and: [ComponentMenuMenuSectionFiltersInput]
   colSpan: IntFilterInput
+  hasDivider: BooleanFilterInput
   label: StringFilterInput
   links: ComponentMenuMenuLinkFiltersInput
   multicolumnBehaviour: StringFilterInput
   not: ComponentMenuMenuSectionFiltersInput
   or: [ComponentMenuMenuSectionFiltersInput]
+  specialSectionType: StringFilterInput
 }
 
 input ComponentMenuMenuSectionInput {
   colSpan: Int
+  hasDivider: Boolean
   id: ID
   label: String
   links: [ComponentMenuMenuLinkInput]
   multicolumnBehaviour: ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR
+  specialSectionType: ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE
 }
 
 type ComponentSectionsBranches {
@@ -1029,6 +1035,10 @@ type DocumentRelationResponseCollection {
 enum ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR {
   fullwidth
   split_equally
+}
+
+enum ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE {
+  latest_articles
 }
 
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {

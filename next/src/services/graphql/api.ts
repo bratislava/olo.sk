@@ -1095,7 +1095,7 @@ export type GenericMorph =
   | Menu
   | OpeningTime
   | Page
-  | Router
+  | Sitemap
   | Tag
   | UploadFile
   | UploadFolder
@@ -1314,7 +1314,7 @@ export type Mutation = {
   createOpeningTime?: Maybe<OpeningTimeEntityResponse>
   createPage?: Maybe<PageEntityResponse>
   createPageLocalization?: Maybe<PageEntityResponse>
-  createRouterLocalization?: Maybe<RouterEntityResponse>
+  createSitemapLocalization?: Maybe<SitemapEntityResponse>
   createTag?: Maybe<TagEntityResponse>
   createTagLocalization?: Maybe<TagEntityResponse>
   createUploadFile?: Maybe<UploadFileEntityResponse>
@@ -1335,7 +1335,7 @@ export type Mutation = {
   deleteMenu?: Maybe<MenuEntityResponse>
   deleteOpeningTime?: Maybe<OpeningTimeEntityResponse>
   deletePage?: Maybe<PageEntityResponse>
-  deleteRouter?: Maybe<RouterEntityResponse>
+  deleteSitemap?: Maybe<SitemapEntityResponse>
   deleteTag?: Maybe<TagEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1367,7 +1367,7 @@ export type Mutation = {
   updateMenu?: Maybe<MenuEntityResponse>
   updateOpeningTime?: Maybe<OpeningTimeEntityResponse>
   updatePage?: Maybe<PageEntityResponse>
-  updateRouter?: Maybe<RouterEntityResponse>
+  updateSitemap?: Maybe<SitemapEntityResponse>
   updateTag?: Maybe<TagEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1470,8 +1470,8 @@ export type MutationCreatePageLocalizationArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
-export type MutationCreateRouterLocalizationArgs = {
-  data?: InputMaybe<RouterInput>
+export type MutationCreateSitemapLocalizationArgs = {
+  data?: InputMaybe<SitemapInput>
   id?: InputMaybe<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1556,7 +1556,7 @@ export type MutationDeletePageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
-export type MutationDeleteRouterArgs = {
+export type MutationDeleteSitemapArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
@@ -1683,8 +1683,8 @@ export type MutationUpdatePageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
-export type MutationUpdateRouterArgs = {
-  data: RouterInput
+export type MutationUpdateSitemapArgs = {
+  data: SitemapInput
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
@@ -1935,7 +1935,7 @@ export type Query = {
   openingTimes?: Maybe<OpeningTimeEntityResponseCollection>
   page?: Maybe<PageEntityResponse>
   pages?: Maybe<PageEntityResponseCollection>
-  router?: Maybe<RouterEntityResponse>
+  sitemap?: Maybe<SitemapEntityResponse>
   tag?: Maybe<TagEntityResponse>
   tags?: Maybe<TagEntityResponseCollection>
   uploadFile?: Maybe<UploadFileEntityResponse>
@@ -2069,7 +2069,7 @@ export type QueryPagesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
-export type QueryRouterArgs = {
+export type QuerySitemapArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
@@ -2142,33 +2142,39 @@ export type ResponseCollectionMeta = {
   pagination: Pagination
 }
 
-export type Router = {
-  __typename?: 'Router'
+export type Sitemap = {
+  __typename?: 'Sitemap'
   articlesParentPage?: Maybe<PageEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  documentsParentPage?: Maybe<PageEntityResponse>
+  faqsParentPage?: Maybe<PageEntityResponse>
   locale?: Maybe<Scalars['String']['output']>
-  localizations?: Maybe<RouterRelationResponseCollection>
+  localizations?: Maybe<SitemapRelationResponseCollection>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
+  workshopsParentPage?: Maybe<PageEntityResponse>
 }
 
-export type RouterEntity = {
-  __typename?: 'RouterEntity'
-  attributes?: Maybe<Router>
+export type SitemapEntity = {
+  __typename?: 'SitemapEntity'
+  attributes?: Maybe<Sitemap>
   id?: Maybe<Scalars['ID']['output']>
 }
 
-export type RouterEntityResponse = {
-  __typename?: 'RouterEntityResponse'
-  data?: Maybe<RouterEntity>
+export type SitemapEntityResponse = {
+  __typename?: 'SitemapEntityResponse'
+  data?: Maybe<SitemapEntity>
 }
 
-export type RouterInput = {
+export type SitemapInput = {
   articlesParentPage?: InputMaybe<Scalars['ID']['input']>
+  documentsParentPage?: InputMaybe<Scalars['ID']['input']>
+  faqsParentPage?: InputMaybe<Scalars['ID']['input']>
+  workshopsParentPage?: InputMaybe<Scalars['ID']['input']>
 }
 
-export type RouterRelationResponseCollection = {
-  __typename?: 'RouterRelationResponseCollection'
-  data: Array<RouterEntity>
+export type SitemapRelationResponseCollection = {
+  __typename?: 'SitemapRelationResponseCollection'
+  data: Array<SitemapEntity>
 }
 
 export type StringFilterInput = {
@@ -2825,11 +2831,179 @@ export type FileItemFragment = {
   }
 }
 
-export type RouterEntityFragment = {
-  __typename?: 'RouterEntity'
+export type SitemapEntityFragment = {
+  __typename?: 'SitemapEntity'
   attributes?: {
-    __typename?: 'Router'
+    __typename?: 'Sitemap'
     articlesParentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    documentsParentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    faqsParentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    workshopsParentPage?: {
       __typename?: 'PageEntityResponse'
       data?: {
         __typename: 'PageEntity'
@@ -2894,13 +3068,181 @@ export type GeneralQueryVariables = Exact<{
 
 export type GeneralQuery = {
   __typename?: 'Query'
-  router?: {
-    __typename?: 'RouterEntityResponse'
+  sitemap?: {
+    __typename?: 'SitemapEntityResponse'
     data?: {
-      __typename?: 'RouterEntity'
+      __typename?: 'SitemapEntity'
       attributes?: {
-        __typename?: 'Router'
+        __typename?: 'Sitemap'
         articlesParentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              title: string
+              slug: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                parentPage?: {
+                                  __typename?: 'PageEntityResponse'
+                                  data?: {
+                                    __typename?: 'PageEntity'
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+        documentsParentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              title: string
+              slug: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                parentPage?: {
+                                  __typename?: 'PageEntityResponse'
+                                  data?: {
+                                    __typename?: 'PageEntity'
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+        faqsParentPage?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              title: string
+              slug: string
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    parentPage?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename?: 'PageEntity'
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          parentPage?: {
+                            __typename?: 'PageEntityResponse'
+                            data?: {
+                              __typename?: 'PageEntity'
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                parentPage?: {
+                                  __typename?: 'PageEntityResponse'
+                                  data?: {
+                                    __typename?: 'PageEntity'
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+        workshopsParentPage?: {
           __typename?: 'PageEntityResponse'
           data?: {
             __typename: 'PageEntity'
@@ -8472,19 +8814,32 @@ export const PageSlugEntityFragmentDoc = gql`
   }
   ${PageParentPagesFragmentDoc}
 `
-export const RouterEntityFragmentDoc = gql`
-  fragment RouterEntity on RouterEntity {
+export const SitemapEntityFragmentDoc = gql`
+  fragment SitemapEntity on SitemapEntity {
     attributes {
       articlesParentPage {
         data {
           ...PageSlugEntity
-          ...PageParentPages
+        }
+      }
+      documentsParentPage {
+        data {
+          ...PageSlugEntity
+        }
+      }
+      faqsParentPage {
+        data {
+          ...PageSlugEntity
+        }
+      }
+      workshopsParentPage {
+        data {
+          ...PageSlugEntity
         }
       }
     }
   }
   ${PageSlugEntityFragmentDoc}
-  ${PageParentPagesFragmentDoc}
 `
 export const BranchMapHeaderSectionFragmentDoc = gql`
   fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
@@ -9097,9 +9452,9 @@ export const TagEntityFragmentDoc = gql`
 `
 export const GeneralDocument = gql`
   query General($locale: I18NLocaleCode!) {
-    router(locale: $locale) {
+    sitemap(locale: $locale) {
       data {
-        ...RouterEntity
+        ...SitemapEntity
       }
     }
     footer(locale: $locale) {
@@ -9113,7 +9468,7 @@ export const GeneralDocument = gql`
       }
     }
   }
-  ${RouterEntityFragmentDoc}
+  ${SitemapEntityFragmentDoc}
   ${FooterEntityFragmentDoc}
   ${MenuEntityFragmentDoc}
 `

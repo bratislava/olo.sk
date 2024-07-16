@@ -1170,12 +1170,12 @@ export interface ApiPagePage extends Schema.CollectionType {
   }
 }
 
-export interface ApiRouterRouter extends Schema.SingleType {
-  collectionName: 'routers'
+export interface ApiSitemapSitemap extends Schema.SingleType {
+  collectionName: 'sitemaps'
   info: {
-    singularName: 'router'
-    pluralName: 'routers'
-    displayName: 'Router'
+    singularName: 'sitemap'
+    pluralName: 'sitemaps'
+    displayName: 'Sitemapa'
     description: ''
   }
   options: {
@@ -1187,14 +1187,17 @@ export interface ApiRouterRouter extends Schema.SingleType {
     }
   }
   attributes: {
-    articlesParentPage: Attribute.Relation<'api::router.router', 'oneToOne', 'api::page.page'>
+    articlesParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
+    documentsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
+    faqsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
+    workshopsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::router.router', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'admin::user'> &
       Attribute.Private
-    updatedBy: Attribute.Relation<'api::router.router', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'admin::user'> &
       Attribute.Private
-    localizations: Attribute.Relation<'api::router.router', 'oneToMany', 'api::router.router'>
+    localizations: Attribute.Relation<'api::sitemap.sitemap', 'oneToMany', 'api::sitemap.sitemap'>
     locale: Attribute.String
   }
 }
@@ -1293,7 +1296,7 @@ declare module '@strapi/types' {
       'api::menu.menu': ApiMenuMenu
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
-      'api::router.router': ApiRouterRouter
+      'api::sitemap.sitemap': ApiSitemapSitemap
       'api::tag.tag': ApiTagTag
       'api::workshop.workshop': ApiWorkshopWorkshop
     }

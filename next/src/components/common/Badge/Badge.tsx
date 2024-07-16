@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-type BadgeProps = {
+export type BadgeProps = {
   variant: 'public' | 'firms' | 'institutions'
   className?: string
 }
@@ -14,10 +14,12 @@ type BadgeProps = {
 
 const Badge = ({ variant, className }: BadgeProps) => {
   const { t } = useTranslation()
-  const text =
-    (variant === 'public' && t('badge.public')) ||
-    (variant === 'firms' && t('badge.firms')) ||
-    (variant === 'institutions' && t('badge.institutions'))
+
+  const translationMap = {
+    public: t('badge.public'),
+    firms: t('badge.firms'),
+    institutions: t('badge.institutions'),
+  } satisfies Record<BadgeProps['variant'], string>
 
   return (
     <div
@@ -31,7 +33,7 @@ const Badge = ({ variant, className }: BadgeProps) => {
         className,
       )}
     >
-      <Typography variant="p-small">{text}</Typography>
+      <Typography variant="p-small">{translationMap[variant]}</Typography>
     </div>
   )
 }

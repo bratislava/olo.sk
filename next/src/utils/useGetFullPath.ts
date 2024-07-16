@@ -4,7 +4,7 @@ import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import {
   ArticleSlugEntityFragment,
   PageSlugEntityFragment,
-  RouterEntityFragment,
+  SitemapEntityFragment,
 } from '@/src/services/graphql/api'
 import { getPagePath } from '@/src/utils/getPagePath'
 
@@ -21,7 +21,7 @@ export type UnionSlugEntityType =
  */
 export const getFullPathFn = (
   entity: UnionSlugEntityType,
-  router: RouterEntityFragment | null | undefined,
+  sitemap: SitemapEntityFragment | null | undefined,
 ) => {
   const { slug } = entity?.attributes ?? {}
 
@@ -33,19 +33,19 @@ export const getFullPathFn = (
   if (entity.__typename === 'PageEntity') {
     return getPagePath(entity)
   }
-  if (entity.__typename === 'ArticleEntity' && router?.attributes?.articlesParentPage?.data) {
-    return `${getPagePath(router.attributes.articlesParentPage.data)}/${entity.attributes.slug}`
+  if (entity.__typename === 'ArticleEntity' && sitemap?.attributes?.articlesParentPage?.data) {
+    return `${getPagePath(sitemap.attributes.articlesParentPage.data)}/${entity.attributes.slug}`
   }
 
   return null
 }
 
 export const useGetFullPath = () => {
-  const { router } = useGeneralContext()
+  const { sitemap } = useGeneralContext()
 
   const getFullPath = useMemo(
-    () => (entity: UnionSlugEntityType) => getFullPathFn(entity, router?.data),
-    [router],
+    () => (entity: UnionSlugEntityType) => getFullPathFn(entity, sitemap?.data),
+    [sitemap],
   )
 
   return { getFullPath }

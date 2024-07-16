@@ -4,33 +4,62 @@
   "info": {
     "singularName": "footer",
     "pluralName": "footers",
-    "displayName": "footer",
+    "displayName": "Pätička",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "text": {
-      "type": "richtext"
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "facebookUrl": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "instagramUrl": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "columns": {
       "type": "component",
       "repeatable": true,
       "component": "items.footer-column",
-      "max": 2
+      "max": 2,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "bottomLinks": {
       "type": "component",
       "repeatable": true,
-      "component": "items.link"
+      "component": "items.link",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

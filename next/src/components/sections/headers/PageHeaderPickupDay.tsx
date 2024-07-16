@@ -32,7 +32,8 @@ const isCurrentWeekEven = () => {
  */
 
 const PageHeaderPickupDay = ({ header }: Props) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
   const { title, carouselTitle, anchors } = header
   const { getFullPath } = useGetFullPath()
 
@@ -40,8 +41,8 @@ const PageHeaderPickupDay = ({ header }: Props) => {
 
   const { data: articlesData } = useQuery({
     // TODO decide the limit of articles displayed in carousel
-    queryFn: () => client.LatestArticles({ limit: 10 }),
-    queryKey: ['latestArticles', { limit: 10 }],
+    queryFn: () => client.LatestArticles({ limit: 10, locale }),
+    queryKey: ['latestArticles', { limit: 10, locale }],
   })
 
   const filteredArticles =

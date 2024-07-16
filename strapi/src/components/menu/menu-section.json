@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_menu_menu_sections",
+  "info": {
+    "displayName": "menu section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.menu-link"
+    },
+    "colSpan": {
+      "type": "integer",
+      "default": 1,
+      "required": true,
+      "max": 3,
+      "min": 0
+    },
+    "multicolumnBehaviour": {
+      "type": "enumeration",
+      "enum": [
+        "fullwidth",
+        "split equally"
+      ]
+    },
+    "hasDivider": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "specialSectionType": {
+      "type": "enumeration",
+      "enum": [
+        "latest articles"
+      ]
+    }
+  }
+}

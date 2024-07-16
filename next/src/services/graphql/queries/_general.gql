@@ -1,48 +1,42 @@
-fragment RouterEntity on RouterEntity {
+fragment SitemapEntity on SitemapEntity {
   attributes {
     articlesParentPage {
       data {
         ...PageSlugEntity
-        ...PageParentPages
+      }
+    }
+    documentsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    faqsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    workshopsParentPage {
+      data {
+        ...PageSlugEntity
       }
     }
   }
 }
 
-fragment FooterEntity on FooterEntity {
-  attributes {
-    ...Footer
-  }
-}
-
-fragment Footer on Footer {
-  text
-  facebookUrl
-  instagramUrl
-  columns {
-    ...FooterColumnItem
-  }
-  bottomLinks {
-    ...Link
-  }
-}
-
-fragment FooterColumnItem on ComponentItemsFooterColumn {
-  title
-  links {
-    ...Link
-  }
-}
-
-query General {
-  router {
+query General($locale: I18NLocaleCode!) {
+  sitemap(locale: $locale) {
     data {
-      ...RouterEntity
+      ...SitemapEntity
     }
   }
-  footer {
+  footer(locale: $locale) {
     data {
       ...FooterEntity
+    }
+  }
+  menu(locale: $locale) {
+    data {
+      ...MenuEntity
     }
   }
 }

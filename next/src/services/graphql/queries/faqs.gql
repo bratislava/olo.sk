@@ -1,0 +1,15 @@
+fragment FaqEntity on FaqEntity {
+  id
+  attributes {
+    title
+    content
+  }
+}
+
+query Faqs($locale: I18NLocaleCode!) {
+  faqs(locale: $locale) {
+    data {
+      ...FaqEntity
+    }
+  }
+}

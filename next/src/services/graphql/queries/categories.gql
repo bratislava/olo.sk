@@ -6,17 +6,16 @@ fragment CategoryEntity on CategoryEntity {
   }
 }
 
-
-query Categories {
-  categories {
+query Categories($locale: I18NLocaleCode!) {
+  categories(locale: $locale) {
     data {
       ...CategoryEntity
     }
   }
 }
 
-query CategoryBySlug($slug: String!) {
-  categories(filters: { slug: { eq: $slug } }) {
+query CategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  categories(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {
       ...CategoryEntity
     }

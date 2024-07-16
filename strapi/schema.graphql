@@ -4,8 +4,8 @@
 
 type Article {
   addedAt: DateTime!
-  blocks: JSON
   category: CategoryEntityResponse
+  content: String
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
   locale: String
@@ -34,8 +34,8 @@ type ArticleEntityResponseCollection {
 input ArticleFiltersInput {
   addedAt: DateTimeFilterInput
   and: [ArticleFiltersInput]
-  blocks: JSONFilterInput
   category: CategoryFiltersInput
+  content: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -51,8 +51,8 @@ input ArticleFiltersInput {
 
 input ArticleInput {
   addedAt: DateTime
-  blocks: JSON
   category: ID
+  content: String
   coverMedia: ID
   perex: String
   publishedAt: DateTime
@@ -571,6 +571,90 @@ input ComponentItemsSlideInput {
   title: String
 }
 
+type ComponentMenuMenuItem {
+  id: ID!
+  label: String!
+  sections(filters: ComponentMenuMenuSectionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuSection]
+  seeAllLink: ComponentItemsLink
+}
+
+input ComponentMenuMenuItemFiltersInput {
+  and: [ComponentMenuMenuItemFiltersInput]
+  label: StringFilterInput
+  not: ComponentMenuMenuItemFiltersInput
+  or: [ComponentMenuMenuItemFiltersInput]
+  sections: ComponentMenuMenuSectionFiltersInput
+  seeAllLink: ComponentItemsLinkFiltersInput
+}
+
+input ComponentMenuMenuItemInput {
+  id: ID
+  label: String
+  sections: [ComponentMenuMenuSectionInput]
+  seeAllLink: ComponentItemsLinkInput
+}
+
+type ComponentMenuMenuLink {
+  branch: BranchEntityResponse
+  id: ID!
+  label: String
+  page: PageEntityResponse
+  url: String
+  workshop: WorkshopEntityResponse
+}
+
+input ComponentMenuMenuLinkFiltersInput {
+  and: [ComponentMenuMenuLinkFiltersInput]
+  branch: BranchFiltersInput
+  label: StringFilterInput
+  not: ComponentMenuMenuLinkFiltersInput
+  or: [ComponentMenuMenuLinkFiltersInput]
+  page: PageFiltersInput
+  url: StringFilterInput
+  workshop: WorkshopFiltersInput
+}
+
+input ComponentMenuMenuLinkInput {
+  branch: ID
+  id: ID
+  label: String
+  page: ID
+  url: String
+  workshop: ID
+}
+
+type ComponentMenuMenuSection {
+  colSpan: Int!
+  hasDivider: Boolean!
+  id: ID!
+  label: String!
+  links(filters: ComponentMenuMenuLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuLink]
+  multicolumnBehaviour: ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR
+  specialSectionType: ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE
+}
+
+input ComponentMenuMenuSectionFiltersInput {
+  and: [ComponentMenuMenuSectionFiltersInput]
+  colSpan: IntFilterInput
+  hasDivider: BooleanFilterInput
+  label: StringFilterInput
+  links: ComponentMenuMenuLinkFiltersInput
+  multicolumnBehaviour: StringFilterInput
+  not: ComponentMenuMenuSectionFiltersInput
+  or: [ComponentMenuMenuSectionFiltersInput]
+  specialSectionType: StringFilterInput
+}
+
+input ComponentMenuMenuSectionInput {
+  colSpan: Int
+  hasDivider: Boolean
+  id: ID
+  label: String
+  links: [ComponentMenuMenuLinkInput]
+  multicolumnBehaviour: ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR
+  specialSectionType: ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE
+}
+
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -735,19 +819,22 @@ input ComponentSectionsOrderedCardsInput {
 }
 
 type ComponentSectionsRichtext {
-  content: JSON
+  backgroundColor: ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR!
+  content: String
   id: ID!
 }
 
 input ComponentSectionsRichtextFiltersInput {
   and: [ComponentSectionsRichtextFiltersInput]
-  content: JSONFilterInput
+  backgroundColor: StringFilterInput
+  content: StringFilterInput
   not: ComponentSectionsRichtextFiltersInput
   or: [ComponentSectionsRichtextFiltersInput]
 }
 
 input ComponentSectionsRichtextInput {
-  content: JSON
+  backgroundColor: ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR
+  content: String
   id: ID
 }
 
@@ -945,6 +1032,15 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR {
+  fullwidth
+  split_equally
+}
+
+enum ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE {
+  latest_articles
+}
+
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
   primary
   secondary
@@ -981,9 +1077,63 @@ enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   right
 }
 
+enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 type Error {
   code: String!
   message: String
+}
+
+type Faq {
+  content: String!
+  createdAt: DateTime
+  locale: String
+  localizations(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
+  publishedAt: DateTime
+  title: String!
+  updatedAt: DateTime
+}
+
+type FaqEntity {
+  attributes: Faq
+  id: ID
+}
+
+type FaqEntityResponse {
+  data: FaqEntity
+}
+
+type FaqEntityResponseCollection {
+  data: [FaqEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input FaqFiltersInput {
+  and: [FaqFiltersInput]
+  content: StringFilterInput
+  createdAt: DateTimeFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: FaqFiltersInput
+  not: FaqFiltersInput
+  or: [FaqFiltersInput]
+  publishedAt: DateTimeFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input FaqInput {
+  content: String
+  publishedAt: DateTime
+  title: String
+}
+
+type FaqRelationResponseCollection {
+  data: [FaqEntity!]!
 }
 
 input FileInfoInput {
@@ -1023,7 +1173,8 @@ type Footer {
   createdAt: DateTime
   facebookUrl: String
   instagramUrl: String
-  publishedAt: DateTime
+  locale: String
+  localizations: FooterRelationResponseCollection
   text: String
   updatedAt: DateTime
 }
@@ -1049,9 +1200,10 @@ input FooterFiltersInput {
   createdAt: DateTimeFilterInput
   facebookUrl: StringFilterInput
   instagramUrl: StringFilterInput
+  locale: StringFilterInput
+  localizations: FooterFiltersInput
   not: FooterFiltersInput
   or: [FooterFiltersInput]
-  publishedAt: DateTimeFilterInput
   text: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
@@ -1061,7 +1213,6 @@ input FooterInput {
   columns: [ComponentItemsFooterColumnInput]
   facebookUrl: String
   instagramUrl: String
-  publishedAt: DateTime
   text: String
 }
 
@@ -1069,7 +1220,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Footer | Homepage | I18NLocale | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Faq | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Sitemap | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1269,6 +1420,47 @@ input LongFilterInput {
   startsWith: Long
 }
 
+type Menu {
+  createdAt: DateTime
+  locale: String
+  localizations: MenuRelationResponseCollection
+  menuItems(filters: ComponentMenuMenuItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuItem]
+  updatedAt: DateTime
+}
+
+type MenuEntity {
+  attributes: Menu
+  id: ID
+}
+
+type MenuEntityResponse {
+  data: MenuEntity
+}
+
+type MenuEntityResponseCollection {
+  data: [MenuEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input MenuFiltersInput {
+  and: [MenuFiltersInput]
+  createdAt: DateTimeFilterInput
+  locale: StringFilterInput
+  localizations: MenuFiltersInput
+  menuItems: ComponentMenuMenuItemFiltersInput
+  not: MenuFiltersInput
+  or: [MenuFiltersInput]
+  updatedAt: DateTimeFilterInput
+}
+
+input MenuInput {
+  menuItems: [ComponentMenuMenuItemInput]
+}
+
+type MenuRelationResponseCollection {
+  data: [MenuEntity!]!
+}
+
 type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
@@ -1280,9 +1472,15 @@ type Mutation {
   createCategoryLocalization(data: CategoryInput, id: ID, locale: I18NLocaleCode): CategoryEntityResponse
   createContact(data: ContactInput!): ContactEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
+  createFaq(data: FaqInput!, locale: I18NLocaleCode): FaqEntityResponse
+  createFaqLocalization(data: FaqInput, id: ID, locale: I18NLocaleCode): FaqEntityResponse
+  createFooterLocalization(data: FooterInput, id: ID, locale: I18NLocaleCode): FooterEntityResponse
   createHomepageLocalization(data: HomepageInput, id: ID, locale: I18NLocaleCode): HomepageEntityResponse
+  createMenuLocalization(data: MenuInput, id: ID, locale: I18NLocaleCode): MenuEntityResponse
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
-  createPage(data: PageInput!): PageEntityResponse
+  createPage(data: PageInput!, locale: I18NLocaleCode): PageEntityResponse
+  createPageLocalization(data: PageInput, id: ID, locale: I18NLocaleCode): PageEntityResponse
+  createSitemapLocalization(data: SitemapInput, id: ID, locale: I18NLocaleCode): SitemapEntityResponse
   createTag(data: TagInput!, locale: I18NLocaleCode): TagEntityResponse
   createTagLocalization(data: TagInput, id: ID, locale: I18NLocaleCode): TagEntityResponse
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
@@ -1299,11 +1497,13 @@ type Mutation {
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
-  deleteFooter: FooterEntityResponse
+  deleteFaq(id: ID!, locale: I18NLocaleCode): FaqEntityResponse
+  deleteFooter(locale: I18NLocaleCode): FooterEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
+  deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
-  deletePage(id: ID!): PageEntityResponse
-  deleteRouter: RouterEntityResponse
+  deletePage(id: ID!, locale: I18NLocaleCode): PageEntityResponse
+  deleteSitemap(locale: I18NLocaleCode): SitemapEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
@@ -1336,12 +1536,14 @@ type Mutation {
   updateCategory(data: CategoryInput!, id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
+  updateFaq(data: FaqInput!, id: ID!, locale: I18NLocaleCode): FaqEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
-  updateFooter(data: FooterInput!): FooterEntityResponse
+  updateFooter(data: FooterInput!, locale: I18NLocaleCode): FooterEntityResponse
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
+  updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
-  updatePage(data: PageInput!, id: ID!): PageEntityResponse
-  updateRouter(data: RouterInput!): RouterEntityResponse
+  updatePage(data: PageInput!, id: ID!, locale: I18NLocaleCode): PageEntityResponse
+  updateSitemap(data: SitemapInput!, locale: I18NLocaleCode): SitemapEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
   updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
@@ -1403,6 +1605,8 @@ type Page {
   childPages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageRelationResponseCollection
   createdAt: DateTime
   header: [PageHeaderDynamicZone]
+  locale: String
+  localizations(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageRelationResponseCollection
   parentPage: PageEntityResponse
   perex: String
   publishedAt: DateTime
@@ -1431,6 +1635,8 @@ input PageFiltersInput {
   childPages: PageFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
+  locale: StringFilterInput
+  localizations: PageFiltersInput
   not: PageFiltersInput
   or: [PageFiltersInput]
   parentPage: PageFiltersInput
@@ -1494,16 +1700,19 @@ type Query {
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
   document(id: ID): DocumentEntityResponse
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentEntityResponseCollection
-  footer(publicationState: PublicationState = LIVE): FooterEntityResponse
+  faq(id: ID, locale: I18NLocaleCode): FaqEntityResponse
+  faqs(filters: FaqFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqEntityResponseCollection
+  footer(locale: I18NLocaleCode): FooterEntityResponse
   homepage(locale: I18NLocaleCode): HomepageEntityResponse
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
   me: UsersPermissionsMe
+  menu(locale: I18NLocaleCode): MenuEntityResponse
   openingTime(id: ID): OpeningTimeEntityResponse
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
-  page(id: ID): PageEntityResponse
-  pages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageEntityResponseCollection
-  router: RouterEntityResponse
+  page(id: ID, locale: I18NLocaleCode): PageEntityResponse
+  pages(filters: PageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageEntityResponseCollection
+  sitemap(locale: I18NLocaleCode): SitemapEntityResponse
   tag(id: ID, locale: I18NLocaleCode): TagEntityResponse
   tags(filters: TagFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
@@ -1522,41 +1731,54 @@ type ResponseCollectionMeta {
   pagination: Pagination!
 }
 
-type Router {
+type Sitemap {
   articlesParentPage: PageEntityResponse
   createdAt: DateTime
+  documentsParentPage: PageEntityResponse
+  faqsParentPage: PageEntityResponse
+  locale: String
+  localizations: SitemapRelationResponseCollection
   updatedAt: DateTime
+  workshopsParentPage: PageEntityResponse
 }
 
-type RouterEntity {
-  attributes: Router
+type SitemapEntity {
+  attributes: Sitemap
   id: ID
 }
 
-type RouterEntityResponse {
-  data: RouterEntity
+type SitemapEntityResponse {
+  data: SitemapEntity
 }
 
-type RouterEntityResponseCollection {
-  data: [RouterEntity!]!
+type SitemapEntityResponseCollection {
+  data: [SitemapEntity!]!
   meta: ResponseCollectionMeta!
 }
 
-input RouterFiltersInput {
-  and: [RouterFiltersInput]
+input SitemapFiltersInput {
+  and: [SitemapFiltersInput]
   articlesParentPage: PageFiltersInput
   createdAt: DateTimeFilterInput
-  not: RouterFiltersInput
-  or: [RouterFiltersInput]
+  documentsParentPage: PageFiltersInput
+  faqsParentPage: PageFiltersInput
+  locale: StringFilterInput
+  localizations: SitemapFiltersInput
+  not: SitemapFiltersInput
+  or: [SitemapFiltersInput]
   updatedAt: DateTimeFilterInput
+  workshopsParentPage: PageFiltersInput
 }
 
-input RouterInput {
+input SitemapInput {
   articlesParentPage: ID
+  documentsParentPage: ID
+  faqsParentPage: ID
+  workshopsParentPage: ID
 }
 
-type RouterRelationResponseCollection {
-  data: [RouterEntity!]!
+type SitemapRelationResponseCollection {
+  data: [SitemapEntity!]!
 }
 
 input StringFilterInput {

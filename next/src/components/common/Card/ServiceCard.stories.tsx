@@ -33,7 +33,6 @@ export default meta
 type Story = StoryObj<typeof ServiceCardComponent>
 
 export const ServiceCard: Story = {
-  render: (args) => <ServiceCardComponent {...args} />,
   decorators: [
     (Story) => (
       <div className="w-[288px] lg:w-[386px]">
@@ -41,8 +40,13 @@ export const ServiceCard: Story = {
       </div>
     ),
   ],
+  render: (args) => <ServiceCardComponent {...args} />,
 }
+
 export const ServiceCardRows: Story = {
+  parameters: {
+    controls: { exclude: ['serviceCategories'] },
+  },
   render: (args) => (
     <div className="flex grid-rows-1 gap-2 lg:gap-8">
       <ServiceCardComponent {...args} />
@@ -50,7 +54,4 @@ export const ServiceCardRows: Story = {
       <ServiceCardComponent {...args} />
     </div>
   ),
-  parameters: {
-    controls: { exclude: ['serviceCategories'] },
-  },
 }

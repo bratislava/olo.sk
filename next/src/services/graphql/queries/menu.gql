@@ -1,0 +1,63 @@
+fragment MenuLink on ComponentMenuMenuLink {
+  id
+  label
+  url
+  page {
+    data {
+      ...PageSlugEntity
+    }
+  }
+  branch {
+    data {
+      __typename
+      attributes {
+        title
+        slug
+      }
+    }
+  }
+  workshop {
+    data {
+      __typename
+      attributes {
+        title
+        slug
+      }
+    }
+  }
+}
+
+fragment MenuSection on ComponentMenuMenuSection {
+  id
+  label
+  colSpan
+  multicolumnBehaviour
+  links {
+    ...MenuLink
+  }
+  hasDivider
+  specialSectionType
+}
+
+fragment MenuItem on ComponentMenuMenuItem {
+  id
+  label
+  sections {
+    ...MenuSection
+  }
+  seeAllLink {
+    ...Link
+  }
+}
+
+fragment Menu on Menu {
+  menuItems {
+    ...MenuItem
+  }
+}
+
+fragment MenuEntity on MenuEntity {
+  attributes {
+    ...Menu
+  }
+}

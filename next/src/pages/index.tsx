@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
 
   const [{ homepage }, general, translations] = await Promise.all([
     client.Homepage({ locale }),
-    client.General(),
+    client.General({ locale }),
     serverSideTranslations(locale),
   ])
 

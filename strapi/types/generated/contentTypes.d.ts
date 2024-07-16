@@ -712,7 +712,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
         }
       }>
     category: Attribute.Relation<'api::article.article', 'manyToOne', 'api::category.category'>
-    blocks: Attribute.Blocks &
+    content: Attribute.RichText &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
@@ -879,36 +879,108 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   }
 }
 
-export interface ApiFooterFooter extends Schema.SingleType {
-  collectionName: 'footers'
+export interface ApiFaqFaq extends Schema.CollectionType {
+  collectionName: 'faqs'
   info: {
-    singularName: 'footer'
-    pluralName: 'footers'
-    displayName: 'footer'
+    singularName: 'faq'
+    pluralName: 'faqs'
+    displayName: 'FAQs'
     description: ''
   }
   options: {
     draftAndPublish: true
   }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
   attributes: {
-    text: Attribute.RichText
-    facebookUrl: Attribute.String
-    instagramUrl: Attribute.String
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<'api::faq.faq', 'oneToMany', 'api::faq.faq'>
+    locale: Attribute.String
+  }
+}
+
+export interface ApiFooterFooter extends Schema.SingleType {
+  collectionName: 'footers'
+  info: {
+    singularName: 'footer'
+    pluralName: 'footers'
+    displayName: 'P\u00E4ti\u010Dka'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    text: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    facebookUrl: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    instagramUrl: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     columns: Attribute.Component<'items.footer-column', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
       Attribute.SetMinMax<
         {
           max: 2
         },
         number
       >
-    bottomLinks: Attribute.Component<'items.link', true>
+    bottomLinks: Attribute.Component<'items.link', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
-    publishedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::footer.footer', 'oneToOne', 'admin::user'> &
       Attribute.Private
     updatedBy: Attribute.Relation<'api::footer.footer', 'oneToOne', 'admin::user'> &
       Attribute.Private
+    localizations: Attribute.Relation<'api::footer.footer', 'oneToMany', 'api::footer.footer'>
+    locale: Attribute.String
   }
 }
 
@@ -917,7 +989,7 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
   info: {
     singularName: 'homepage'
     pluralName: 'homepages'
-    displayName: 'homepage'
+    displayName: 'Domov'
     description: ''
   }
   options: {
@@ -951,6 +1023,38 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
       'oneToMany',
       'api::homepage.homepage'
     >
+    locale: Attribute.String
+  }
+}
+
+export interface ApiMenuMenu extends Schema.SingleType {
+  collectionName: 'menus'
+  info: {
+    singularName: 'menu'
+    pluralName: 'menus'
+    displayName: 'Menu'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    menuItems: Attribute.Component<'menu.menu-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<'api::menu.menu', 'oneToMany', 'api::menu.menu'>
     locale: Attribute.String
   }
 }
@@ -994,10 +1098,26 @@ export interface ApiPagePage extends Schema.CollectionType {
   options: {
     draftAndPublish: true
   }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required
-    perex: Attribute.Text
+    perex: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     parentPage: Attribute.Relation<'api::page.page', 'manyToOne', 'api::page.page'>
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
     header: Attribute.DynamicZone<
@@ -1011,6 +1131,11 @@ export interface ApiPagePage extends Schema.CollectionType {
         'header-sections.pickup-day',
       ]
     > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
       Attribute.SetMinMax<
         {
           max: 1
@@ -1019,44 +1144,61 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
-        'sections.richtext',
         'sections.branches',
         'sections.columns',
         'sections.columns-list',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.ordered-cards',
+        'sections.richtext',
         'sections.table',
         'sections.workshops',
       ]
-    >
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> & Attribute.Private
+    localizations: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
+    locale: Attribute.String
   }
 }
 
-export interface ApiRouterRouter extends Schema.SingleType {
-  collectionName: 'routers'
+export interface ApiSitemapSitemap extends Schema.SingleType {
+  collectionName: 'sitemaps'
   info: {
-    singularName: 'router'
-    pluralName: 'routers'
-    displayName: 'router'
+    singularName: 'sitemap'
+    pluralName: 'sitemaps'
+    displayName: 'Sitemapa'
     description: ''
   }
   options: {
     draftAndPublish: false
   }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
   attributes: {
-    articlesParentPage: Attribute.Relation<'api::router.router', 'oneToOne', 'api::page.page'>
+    articlesParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
+    documentsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
+    faqsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
+    workshopsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::router.router', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'admin::user'> &
       Attribute.Private
-    updatedBy: Attribute.Relation<'api::router.router', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'admin::user'> &
       Attribute.Private
+    localizations: Attribute.Relation<'api::sitemap.sitemap', 'oneToMany', 'api::sitemap.sitemap'>
+    locale: Attribute.String
   }
 }
 
@@ -1148,11 +1290,13 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
+      'api::faq.faq': ApiFaqFaq
       'api::footer.footer': ApiFooterFooter
       'api::homepage.homepage': ApiHomepageHomepage
+      'api::menu.menu': ApiMenuMenu
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
-      'api::router.router': ApiRouterRouter
+      'api::sitemap.sitemap': ApiSitemapSitemap
       'api::tag.tag': ApiTagTag
       'api::workshop.workshop': ApiWorkshopWorkshop
     }

@@ -25,11 +25,11 @@ const Map = ({ children, className }: MapProps) => {
     >
       <MapPlaceholder />
 
-      <div className="flex flex-col items-center justify-center px-4 lg:px-6 lg:py-3">
+      <div className="flex flex-col px-4 lg:px-6 lg:py-3">
         {children.map((child: ReactNode, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={index} className="w-full">
+            <div key={index}>
               {index > 0 && <SidebarDivider />}
               {child}
             </div>

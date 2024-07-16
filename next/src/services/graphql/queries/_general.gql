@@ -1,18 +1,32 @@
-fragment RouterEntity on RouterEntity {
+fragment SitemapEntity on SitemapEntity {
   attributes {
     articlesParentPage {
       data {
         ...PageSlugEntity
-        ...PageParentPages
+      }
+    }
+    documentsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    faqsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    workshopsParentPage {
+      data {
+        ...PageSlugEntity
       }
     }
   }
 }
 
 query General($locale: I18NLocaleCode!) {
-  router(locale: $locale) {
+  sitemap(locale: $locale) {
     data {
-      ...RouterEntity
+      ...SitemapEntity
     }
   }
   footer(locale: $locale) {

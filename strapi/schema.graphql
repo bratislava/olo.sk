@@ -1220,7 +1220,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Faq | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Router | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Faq | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Sitemap | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1480,7 +1480,7 @@ type Mutation {
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
   createPage(data: PageInput!, locale: I18NLocaleCode): PageEntityResponse
   createPageLocalization(data: PageInput, id: ID, locale: I18NLocaleCode): PageEntityResponse
-  createRouterLocalization(data: RouterInput, id: ID, locale: I18NLocaleCode): RouterEntityResponse
+  createSitemapLocalization(data: SitemapInput, id: ID, locale: I18NLocaleCode): SitemapEntityResponse
   createTag(data: TagInput!, locale: I18NLocaleCode): TagEntityResponse
   createTagLocalization(data: TagInput, id: ID, locale: I18NLocaleCode): TagEntityResponse
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
@@ -1503,7 +1503,7 @@ type Mutation {
   deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!, locale: I18NLocaleCode): PageEntityResponse
-  deleteRouter(locale: I18NLocaleCode): RouterEntityResponse
+  deleteSitemap(locale: I18NLocaleCode): SitemapEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
@@ -1543,7 +1543,7 @@ type Mutation {
   updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!, locale: I18NLocaleCode): PageEntityResponse
-  updateRouter(data: RouterInput!, locale: I18NLocaleCode): RouterEntityResponse
+  updateSitemap(data: SitemapInput!, locale: I18NLocaleCode): SitemapEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
   updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
@@ -1712,7 +1712,7 @@ type Query {
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
   page(id: ID, locale: I18NLocaleCode): PageEntityResponse
   pages(filters: PageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageEntityResponseCollection
-  router(locale: I18NLocaleCode): RouterEntityResponse
+  sitemap(locale: I18NLocaleCode): SitemapEntityResponse
   tag(id: ID, locale: I18NLocaleCode): TagEntityResponse
   tags(filters: TagFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
@@ -1731,45 +1731,54 @@ type ResponseCollectionMeta {
   pagination: Pagination!
 }
 
-type Router {
+type Sitemap {
   articlesParentPage: PageEntityResponse
   createdAt: DateTime
+  documentsParentPage: PageEntityResponse
+  faqsParentPage: PageEntityResponse
   locale: String
-  localizations: RouterRelationResponseCollection
+  localizations: SitemapRelationResponseCollection
   updatedAt: DateTime
+  workshopsParentPage: PageEntityResponse
 }
 
-type RouterEntity {
-  attributes: Router
+type SitemapEntity {
+  attributes: Sitemap
   id: ID
 }
 
-type RouterEntityResponse {
-  data: RouterEntity
+type SitemapEntityResponse {
+  data: SitemapEntity
 }
 
-type RouterEntityResponseCollection {
-  data: [RouterEntity!]!
+type SitemapEntityResponseCollection {
+  data: [SitemapEntity!]!
   meta: ResponseCollectionMeta!
 }
 
-input RouterFiltersInput {
-  and: [RouterFiltersInput]
+input SitemapFiltersInput {
+  and: [SitemapFiltersInput]
   articlesParentPage: PageFiltersInput
   createdAt: DateTimeFilterInput
+  documentsParentPage: PageFiltersInput
+  faqsParentPage: PageFiltersInput
   locale: StringFilterInput
-  localizations: RouterFiltersInput
-  not: RouterFiltersInput
-  or: [RouterFiltersInput]
+  localizations: SitemapFiltersInput
+  not: SitemapFiltersInput
+  or: [SitemapFiltersInput]
   updatedAt: DateTimeFilterInput
+  workshopsParentPage: PageFiltersInput
 }
 
-input RouterInput {
+input SitemapInput {
   articlesParentPage: ID
+  documentsParentPage: ID
+  faqsParentPage: ID
+  workshopsParentPage: ID
 }
 
-type RouterRelationResponseCollection {
-  data: [RouterEntity!]!
+type SitemapRelationResponseCollection {
+  data: [SitemapEntity!]!
 }
 
 input StringFilterInput {

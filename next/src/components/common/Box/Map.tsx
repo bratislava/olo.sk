@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { Fragment, ReactNode } from 'react'
 
 import MapPlaceholder from '@/src/components/common/MapPlaceholder'
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
@@ -29,10 +29,10 @@ const Map = ({ children, className }: MapProps) => {
         {children.map((child: ReactNode, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={index}>
+            <Fragment key={index}>
               {index > 0 && <SidebarDivider />}
               {child}
-            </div>
+            </Fragment>
           )
         })}
       </div>

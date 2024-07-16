@@ -23,8 +23,7 @@ const meta: Meta<Props> = {
         iconName: 'place',
       },
       {
-        value:
-          'zastávka Avion IKEA (linky číslo 61, 69, 96 a 163)\nzastávka Avion IKEA (linky číslo 61, 69, 96 a 163)',
+        value: 'zastávka Avion IKEA (linky číslo 61, 69, 96 a 163)',
         iconName: 'directions-bus',
       },
       {

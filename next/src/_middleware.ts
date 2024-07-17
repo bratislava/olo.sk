@@ -24,17 +24,18 @@ export const config = {
 // eslint-disable-next-line consistent-return
 export async function middleware(request: NextRequest) {
   // eslint-disable-next-line no-console
-  console.log('request.nextUrl', request.nextUrl)
+  // console.log('request.nextUrl', request.nextUrl)
   console.log('request.url', request.url)
-  const response = await fetch(`${request.nextUrl.origin}/api/paths-list`)
-  const { articlesPath } = await response.json()
+  // const fetchUrl = `${request.nextUrl.origin}/api/sitemap${request.nextUrl.pathname}`
+  const fetchUrl = `${request.nextUrl.origin}/api/sitemap${request.nextUrl.pathname}`
+  console.log('fetch url', fetchUrl)
+  const response = await fetch(fetchUrl)
+  const { destination } = await response.json()
 
-  // TODO add other content types
-  if (request.nextUrl.pathname.startsWith(`${articlesPath}/`)) {
-    const newUrl = new URL(
-      `/articles/${request.nextUrl.pathname.split('/').at(-1)}`,
-      request.nextUrl.origin,
-    )
+  console.log('response destination', destination)
+
+  if (destination && typeof destination === 'string' && destination.length > 0) {
+    const newUrl = new URL(destination, request.nextUrl.origin)
     console.log('new url', newUrl.toString())
 
     return NextResponse.rewrite(newUrl)

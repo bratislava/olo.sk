@@ -23,7 +23,12 @@ type AccordionDefaultProps = Omit<AccordionProps, 'variant'>
  *
  */
 
-const AccordionWaste = ({ title, hasBottomBorder = true, children }: AccordionWasteProps) => {
+const AccordionWaste = ({
+  title,
+  hasBottomBorder = true,
+  children,
+  className,
+}: AccordionWasteProps) => {
   return (
     <div className="bg-background-primary">
       <details className="group flex w-full flex-col">
@@ -55,7 +60,12 @@ const AccordionWaste = ({ title, hasBottomBorder = true, children }: AccordionWa
   )
 }
 
-const AccordionDefault = ({ title, hasBottomBorder, children }: AccordionDefaultProps) => {
+const AccordionDefault = ({
+  title,
+  hasBottomBorder,
+  children,
+  className,
+}: AccordionDefaultProps) => {
   return (
     <div className="bg-background-primary px-4 lg:px-5">
       <details
@@ -86,7 +96,13 @@ const AccordionDefault = ({ title, hasBottomBorder, children }: AccordionDefault
   )
 }
 
-const Accordion = ({ title, variant, hasBottomBorder = true, children }: AccordionProps) => {
+const Accordion = ({
+  title,
+  variant,
+  hasBottomBorder = true,
+  children,
+  className,
+}: AccordionProps) => {
   return (
     <AnimateHeight isVisible className="relative">
       {variant === 'default' ? (

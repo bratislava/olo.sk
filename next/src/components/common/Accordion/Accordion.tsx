@@ -12,7 +12,7 @@ export type AccordionProps = {
   children?: ReactNode
 }
 
-type AccordionWasteProps = Omit<AccordionProps, 'variant' | 'hasBottomBorder'>
+type AccordionWasteProps = Omit<AccordionProps, 'variant'>
 type AccordionDefaultProps = Omit<AccordionProps, 'variant'>
 
 /**
@@ -22,11 +22,16 @@ type AccordionDefaultProps = Omit<AccordionProps, 'variant'>
  *
  */
 
-const AccordionWaste = ({ title, children }: AccordionWasteProps) => {
+const AccordionWaste = ({ title, hasBottomBorder = true, children }: AccordionWasteProps) => {
   return (
     <div className="bg-background-primary">
       <details className="group flex w-full flex-col">
-        <summary className="flex cursor-pointer items-center gap-4 border-b border-border-default p-4 text-left ring-offset-2 after:absolute after:inset-0 focus:outline-none focus:ring lg:p-8">
+        <summary
+          className={cn(
+            'flex cursor-pointer items-center gap-4 p-4 text-left ring-offset-2 after:absolute after:inset-0 focus:outline-none focus:ring lg:p-8',
+            { 'border-b border-border-default': hasBottomBorder },
+          )}
+        >
           <div className="flex h-[3rem] w-[3rem] items-center justify-center self-center rounded-2xl bg-waste-paper p-3 text-white">
             <Icon name="kos" />
           </div>
@@ -41,7 +46,9 @@ const AccordionWaste = ({ title, children }: AccordionWasteProps) => {
             />
           </div>
         </summary>
-        <div className="border-b border-border-default">{children}</div>
+        <div className="flex items-start justify-center border-b border-border-default">
+          {children}
+        </div>
       </details>
     </div>
   )

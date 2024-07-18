@@ -23,12 +23,7 @@ const AccordionWaste = ({
           )}
         >
           <div className="flex flex-row gap-4 md:items-center">
-            <div
-              className={cn(
-                'flex h-[3rem] w-[3rem] rounded-2xl bg-waste-paper p-3 text-white',
-                className,
-              )}
-            >
+            <div className={cn('flex h-[3rem] w-[3rem] rounded-2xl p-3 text-white', className)}>
               <Icon name="kos" />
             </div>
 
@@ -44,7 +39,6 @@ const AccordionWaste = ({
             />
           </div>
         </summary>
-
         <div className="flex flex-col items-start justify-center border-b border-border-default lg:flex-row">
           {children}
         </div>

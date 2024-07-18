@@ -35,9 +35,13 @@ type Story = StoryObj<typeof AccordionGroupComponent>
 export const AccordionGroup: Story = {
   args: {
     accordionData: [
-      { title: 'Accordion title 1', children: <Typography>Short dummy text</Typography> },
-      { title: 'Accordion title 2', children: dummyTextContent },
-      { title: 'Accordion title 3', children: dummyTextContent },
+      {
+        title: 'Accordion title 1',
+        variant: 'default',
+        children: <Typography>Short dummy text</Typography>,
+      },
+      { title: 'Accordion title 2', variant: 'default', children: dummyTextContent },
+      { title: 'Accordion title 3', variant: 'default', children: dummyTextContent },
     ],
   },
   render: (args) => (

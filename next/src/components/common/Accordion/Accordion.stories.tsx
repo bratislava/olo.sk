@@ -10,6 +10,7 @@ const meta: Meta<typeof AccordionComponent> = {
   tags: ['autodocs'],
   args: {
     title: 'AccordionComponent title',
+    variant: 'default',
     children: (
       <Typography variant="p-default">
         Ut eget malesuada nisl. Donec gravida, risus in maximus tincidunt, augue elit maximus ante,
@@ -21,6 +22,12 @@ const meta: Meta<typeof AccordionComponent> = {
         orci purus.
       </Typography>
     ),
+  },
+  argTypes: {
+    variant: {
+      options: ['default', 'waste'],
+      control: { type: 'radio' },
+    },
   },
   decorators: [
     (Story) => (

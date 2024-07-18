@@ -5,11 +5,13 @@ import React from 'react'
 
 import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
+import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
-import { HomepageEntityFragment } from '@/src/services/graphql/api'
+import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api'
 
 type PageProps = {
   homepage: HomepageEntityFragment
+  general: GeneralQuery
 }
 
 export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
@@ -20,9 +22,9 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
     return { notFound: true }
   }
 
-  const [{ homepage }, translations] = await Promise.all([
+  const [{ homepage }, general, translations] = await Promise.all([
     client.Homepage({ locale }),
-    // client.General({ locale }),
+    client.General({ locale }),
     serverSideTranslations(locale),
   ])
 
@@ -34,6 +36,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
   return {
     props: {
       homepage: page,
+      general,
       ...translations,
     },
     revalidate: 10,
@@ -41,7 +44,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Homepage = ({ homepage }: PageProps) => {
+const Homepage = ({ homepage, general }: PageProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation()
   // const title = useTitle()
@@ -51,9 +54,11 @@ const Homepage = ({ homepage }: PageProps) => {
    * https://github.com/bratislava/bratislava.sk/blob/master/next/pages/index.tsx
    */
   return (
-    <PageLayoutPlaceholder>
-      <HomePageContentPlaceholder />
-    </PageLayoutPlaceholder>
+    <GeneralContextProvider general={general}>
+      <PageLayoutPlaceholder>
+        <HomePageContentPlaceholder />
+      </PageLayoutPlaceholder>
+    </GeneralContextProvider>
 
     // TODO replace placeholder with proper component based on homepage props. Example below (needs to be a proper component, however):
 

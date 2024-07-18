@@ -21,9 +21,9 @@ const BranchesSection = ({ section }: Props) => {
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-18">
-      <div className="flex flex-col gap-6 lg:gap-12">
+      <div className="flex flex-col items-start gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} />
-        <ul className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-8 lg:[&>*]:grow">
+        <ul className="flex flex-col gap-4 self-stretch lg:grid lg:grid-cols-3 lg:items-start lg:gap-8">
           {
             // eslint-disable-next-line unicorn/no-array-callback-reference
             branches?.data?.filter(isDefined).length

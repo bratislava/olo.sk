@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import Link from '@/src/components/common/Link/Link'
@@ -6,11 +7,16 @@ import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { client } from '@/src/services/graphql'
 import { isDefined } from '@/src/utils/isDefined'
+import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 const HomePageContentPlaceholder = () => {
+  const { getFullPath } = useGetFullPath()
+  const { i18n } = useTranslation()
+  const locale = i18n.language
+
   const { data: pagesData } = useQuery({
-    queryFn: () => client.Pages(),
-    queryKey: ['pages'],
+    queryFn: () => client.Pages({ locale }),
+    queryKey: ['pages', locale],
   })
 
   const { data: articlesData } = useQuery({
@@ -36,7 +42,7 @@ const HomePageContentPlaceholder = () => {
               <div key={page.id}>
                 <div className="flex flex-row gap-2">
                   <Typography variant="p-default">•</Typography>
-                  <Link variant="underlined" href={`/pages/${page.attributes?.slug}`}>
+                  <Link variant="underlined" href={getFullPath(page) ?? '#'}>
                     {page.attributes?.title}
                   </Link>
                 </div>
@@ -51,7 +57,7 @@ const HomePageContentPlaceholder = () => {
               <div key={article.id}>
                 <div className="flex flex-row gap-2">
                   <Typography variant="p-default">•</Typography>
-                  <Link variant="underlined" href={`/articles/${article.attributes?.slug}`}>
+                  <Link variant="underlined" href={getFullPath(article) ?? '#'}>
                     {article.attributes?.title}
                   </Link>
                 </div>

@@ -5,14 +5,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
 import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
-import BlocksRenderer from '@/src/components/layout/BlocksRenderer'
+import Markdown from '@/src/components/formatting/Markdown'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
+import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
-import { ArticleEntityFragment } from '@/src/services/graphql/api'
+import { ArticleEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
 
 type PageProps = {
-  // general: GeneralQuery
+  general: GeneralQuery
   article: ArticleEntityFragment
 }
 
@@ -23,21 +24,21 @@ type StaticParams = {
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
   // TODO return all paths
 
-  // const { blogPosts } = await client.BlogPostsStaticPaths()
+  // TODO restrict query
+  // const { articles } = await client.Articles()
 
-  // const paths = (blogPosts?.data ?? [])
-  //   .filter((blogPost) => blogPost?.attributes?.slug && blogPost?.attributes?.locale)
-  //   .map((blogPost) => ({
+  // const paths = (articles?.data ?? [])
+  //   .filter((article) => article?.attributes?.slug)
+  //   .map((article) => ({
   //     params: {
   //       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion,@typescript-eslint/no-non-null-assertion
-  //       slug: blogPost.attributes!.slug!,
+  //       slug: article.attributes!.slug!,
   //     },
-  //     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion,@typescript-eslint/no-non-null-assertion
-  //     locale: blogPost.attributes!.locale!,
   //   }))
 
-  // eslint-disable-next-line no-console
+  // // eslint-disable-next-line no-console
   // console.log(`GENERATED STATIC PATHS FOR ${paths.length} SLUGS - BLOGS`)
+
   return { paths: [], fallback: 'blocking' }
 }
 
@@ -47,16 +48,18 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 }) => {
   const slug = params?.slug
 
+  // TODO update console log so it displays correct path
   // eslint-disable-next-line no-console
-  console.log(`Revalidating article ${locale === 'en' ? '/en' : ''}/blog/${slug}`)
+  console.log(`Revalidating article ${locale === 'en' ? '/en' : ''}/articles/${slug}`)
 
   // TODO || !locale
   if (!slug || !locale) {
     return { notFound: true }
   }
 
-  const [{ articles }, translations] = await Promise.all([
-    client.ArticleBySlug({ slug }),
+  const [{ articles }, general, translations] = await Promise.all([
+    client.ArticleBySlug({ slug, locale }),
+    client.General({ locale }),
     serverSideTranslations(locale),
   ])
 
@@ -68,23 +71,24 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   return {
     props: {
       article,
+      general,
       ...translations,
     },
     revalidate: 10,
   }
 }
 
-const Page = ({ article }: PageProps) => {
+const Page = ({ article, general }: PageProps) => {
   const { t } = useTranslation()
 
   if (!article.attributes) {
     return null
   }
 
-  const { title, perex, blocks } = article.attributes
+  const { title, perex, content } = article.attributes
 
   return (
-    <>
+    <GeneralContextProvider general={general}>
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>
@@ -98,16 +102,16 @@ const Page = ({ article }: PageProps) => {
         <div className="mx-auto max-lg:px-4 lg:max-w-[50rem] lg:px-0">
           <div className="flex flex-col gap-6 py-6 lg:gap-12 lg:py-12">
             <div>
-              <BlocksRenderer content={blocks} />
+              <Markdown content={content} />
             </div>
             <ShareBlock
-              text={t('ArticlePage.shareblock.text')}
-              buttonText={t('ArticlePage.shareblock.buttonText')}
+              text={t('articlePage.shareblock.text')}
+              buttonText={t('articlePage.shareblock.buttonText')}
             />
           </div>
         </div>
       </PageLayoutPlaceholder>
-    </>
+    </GeneralContextProvider>
   )
 }
 

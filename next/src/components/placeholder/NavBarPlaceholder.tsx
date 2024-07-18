@@ -1,10 +1,8 @@
 import { LocalDate } from '@js-joda/core'
-import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import * as React from 'react'
 
-import OloLogoSVG from '@/src/assets/images/olo-logo.svg'
-import OloLogoURL from '@/src/assets/images/olo-logo.svg?url'
+import OloLogo from '@/src/assets/images/olo-logo.svg'
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
@@ -13,6 +11,7 @@ import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 
 // import { useElementSize } from 'usehooks-ts'
 
+// TODO extract into utils
 const getCurrentWeekOfYear = () => {
   // returns the number of the current week in current year
   return LocalDate.now().isoWeekOfWeekyear()
@@ -37,7 +36,6 @@ const NavBarPlaceholder = () => {
 
   return (
     <>
-      {/* <div className="fixed top-0 z-30 hidden w-full border-b border-border-default bg-white lg:block"> */}
       <div className="fixed top-0 z-30 w-full border-b border-border-default bg-white ">
         <PlaceholderWrapper>
           {/* <AlertBanner ref={alertRef} /> */}
@@ -51,14 +49,13 @@ const NavBarPlaceholder = () => {
                 <div className="flex gap-4 py-[2px]">
                   {/* TODO replace by proper logo component */}
                   <Button
-                    href="/"
                     variant="unstyled"
+                    href="/"
                     asLink
+                    aria-label={t('navBar.aria.logoButton')}
+                    icon={<OloLogo />}
                     hasLinkIcon={false}
-                    className="shrink-0"
-                  >
-                    <Image alt="" src={OloLogoURL} />
-                  </Button>
+                  />
                   <Divider />
                   {/* TODO Isolate currentWeekMessage into a function that returns the message as string */}
                   <Typography variant="p-small">
@@ -122,8 +119,15 @@ const NavBarPlaceholder = () => {
             <SectionContainer className="bg-background-primary py-4">
               <div className="flex items-center justify-between">
                 {/* TODO replace by proper logo component */}
-                <div className="relative text-action-background-default">
-                  <OloLogoSVG />
+                <div className="text-action-background-default">
+                  <Button
+                    variant="unstyled"
+                    href="/"
+                    asLink
+                    aria-label={t('navBar.aria.logoButton')}
+                    icon={<OloLogo />}
+                    hasLinkIcon={false}
+                  />
                 </div>
                 {/* Set opacity to 25% to suggest that it should not be interacted with */}
                 <div className="flex gap-6 opacity-25">
@@ -136,7 +140,7 @@ const NavBarPlaceholder = () => {
         </PlaceholderWrapper>
       </div>
       {/* TODO Fix height */}
-      <div aria-hidden className="h-20 lg:h-28" />
+      <div aria-hidden className="h-[5.9rem] lg:h-28" />
       {/* <div style={{ height }} aria-hidden className="hidden lg:block" /> */}
       {/* <div className="hidden h-[137px] lg:block" aria-hidden /> */}
 

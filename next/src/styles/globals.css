@@ -38,8 +38,20 @@
     @apply -mx-4 px-4;
   }
 
-
   .text-button {
     @apply text-size-button-default lg:text-size-button-large;
   }
+}
+
+/* Remove arrows from input type='number' */
+/* Chrome, Safari, Edge, Opera */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }

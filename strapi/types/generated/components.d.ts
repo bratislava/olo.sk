@@ -149,6 +149,30 @@ export interface ItemsColumnsListItem extends Schema.Component {
   }
 }
 
+export interface ItemsFileItem extends Schema.Component {
+  collectionName: 'components_items_file_items'
+  info: {
+    displayName: 'File item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    media: Attribute.Media & Attribute.Required
+  }
+}
+
+export interface ItemsFooterColumn extends Schema.Component {
+  collectionName: 'components_items_footer_columns'
+  info: {
+    displayName: 'Footer column'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    links: Attribute.Component<'items.link', true>
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -201,6 +225,58 @@ export interface ItemsSlide extends Schema.Component {
     backgroundColor: Attribute.String & Attribute.CustomField<'plugin::color-picker.color'>
     media: Attribute.Media & Attribute.Required
     link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface MenuMenuItem extends Schema.Component {
+  collectionName: 'components_menu_menu_items'
+  info: {
+    displayName: 'menu item'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    sections: Attribute.Component<'menu.menu-section', true>
+    seeAllLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface MenuMenuLink extends Schema.Component {
+  collectionName: 'components_menu_menu_link'
+  info: {
+    displayName: 'menu link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
+    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
+  }
+}
+
+export interface MenuMenuSection extends Schema.Component {
+  collectionName: 'components_menu_menu_sections'
+  info: {
+    displayName: 'menu section'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    links: Attribute.Component<'menu.menu-link', true>
+    colSpan: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0
+          max: 3
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>
+    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
+    hasDivider: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    specialSectionType: Attribute.Enumeration<['latest articles']>
   }
 }
 
@@ -318,12 +394,14 @@ export interface SectionsOrderedCards extends Schema.Component {
 export interface SectionsRichtext extends Schema.Component {
   collectionName: 'components_sections_richtexts'
   info: {
-    displayName: 'richtext'
-    icon: 'apps'
+    displayName: 'Richtext'
     description: ''
   }
   attributes: {
-    content: Attribute.Blocks
+    content: Attribute.RichText
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
   }
 }
 
@@ -368,10 +446,15 @@ declare module '@strapi/types' {
       'items.anchor': ItemsAnchor
       'items.columns-item': ItemsColumnsItem
       'items.columns-list-item': ItemsColumnsListItem
+      'items.file-item': ItemsFileItem
+      'items.footer-column': ItemsFooterColumn
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'menu.menu-item': MenuMenuItem
+      'menu.menu-link': MenuMenuLink
+      'menu.menu-section': MenuMenuSection
       'sections.branches': SectionsBranches
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns

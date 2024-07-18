@@ -10,6 +10,7 @@ export type AccordionProps = {
   variant: 'default' | 'waste'
   hasBottomBorder?: boolean
   children?: ReactNode
+  className?: string
 }
 
 type AccordionWasteProps = Omit<AccordionProps, 'variant'>

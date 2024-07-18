@@ -2,14 +2,14 @@ import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type LocationCardProps = {
   title: string
   address: string
   linkHref: string
-  iconName?: keyof typeof iconNameMap
+  iconName?: keyof typeof oloIconNameMap
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -36,7 +36,7 @@ const LocationCard = ({
     >
       <div className="flex flex-col items-start gap-6 p-6">
         <div className="rounded-full bg-background-secondary p-4">
-          <Icon
+          <OloIcon
             name={iconName}
             className="text-action-background size-6 fill-action-background-default"
           />

@@ -1,0 +1,42 @@
+fragment SitemapEntity on SitemapEntity {
+  attributes {
+    articlesParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    documentsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    faqsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    workshopsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+  }
+}
+
+query General($locale: I18NLocaleCode!) {
+  sitemap(locale: $locale) {
+    data {
+      ...SitemapEntity
+    }
+  }
+  footer(locale: $locale) {
+    data {
+      ...FooterEntity
+    }
+  }
+  menu(locale: $locale) {
+    data {
+      ...MenuEntity
+    }
+  }
+}

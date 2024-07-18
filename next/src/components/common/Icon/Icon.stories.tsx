@@ -4,7 +4,7 @@ import IconComponent, { iconNameMap } from './Icon'
 
 const meta: Meta<typeof IconComponent> = {
   component: IconComponent,
-  title: 'Components/Icon',
+  title: 'Components/Icon (BA)',
   tags: ['autodocs'],
   decorators: [
     (Story) => (
@@ -19,6 +19,7 @@ export default meta
 type Story = StoryObj<typeof IconComponent>
 
 export const Icon: Story = {
+  name: 'Icon (BA)',
   render: () => {
     return (
       <div className="flex flex-wrap gap-2">

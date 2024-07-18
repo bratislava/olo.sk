@@ -11,7 +11,7 @@ const meta: Meta<Props> = {
   args: {
     title: 'Naše pobočky',
     text: '',
-    branchesCount: 2,
+    branchesCount: 3,
   },
   argTypes: {
     branchesCount: {
@@ -24,6 +24,7 @@ const meta: Meta<Props> = {
 const getBranchesDummyData = (count: number): BranchEntityFragment[] => {
   const initialItems = [
     { attributes: { title: 'KOLO – Pestovateľská', slug: '#' } },
+    { attributes: { title: 'KOLO – Nová adresa', slug: '#' } },
     { attributes: { title: 'KOLO – Nová adresa', slug: '#' } },
   ]
 

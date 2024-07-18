@@ -4,6 +4,7 @@ import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { FeaturedNewsHeaderSectionFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
+import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 type Props = {
   header: FeaturedNewsHeaderSectionFragment
@@ -15,6 +16,7 @@ type Props = {
 
 const PageHeaderFeaturedNews = ({ header }: Props) => {
   const { title, text, articlesTitle, firstArticle, secondArticle } = header
+  const { getFullPath } = useGetFullPath()
 
   const filteredArticles =
     // eslint-disable-next-line unicorn/no-array-callback-reference
@@ -34,7 +36,7 @@ const PageHeaderFeaturedNews = ({ header }: Props) => {
             .map((article) => {
               if (!article?.attributes) return null
 
-              const { title: articleTitle, slug, category, coverMedia } = article.attributes
+              const { title: articleTitle, category, coverMedia } = article.attributes
 
               return (
                 <li>
@@ -42,7 +44,7 @@ const PageHeaderFeaturedNews = ({ header }: Props) => {
                     title={articleTitle}
                     tagText={category?.data?.attributes?.title}
                     imgSrc={coverMedia?.data?.attributes?.url}
-                    linkHref={`/articles/${slug}`}
+                    linkHref={getFullPath(article) ?? '#'}
                   />
                 </li>
               )

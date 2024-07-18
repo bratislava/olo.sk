@@ -3,7 +3,7 @@ import { ReactNode, useState } from 'react'
 import { DialogTrigger } from 'react-aria-components'
 
 import CopyToClipboardButton from '@/src/components/common/CopyToCLipBoardButton/CopyToClipBoardButton'
-import Icon from '@/src/components/common/Icon/Icon'
+import OloIcon from '@/src/components/common/Icon/OloIcon'
 import Input from '@/src/components/common/Input/Input'
 import Dialog from '@/src/components/common/ModalDialog/Dialog'
 import Modal from '@/src/components/common/ModalDialog/Modal'
@@ -36,7 +36,7 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
               <Typography variant="h6">{t('shareModal.shareOnSocialMedia')}</Typography>
               <div className="flex items-stretch gap-3 max-lg:flex-col">
                 <SocialMediaButton
-                  startIcon={<Icon name="social-media-facebook" />}
+                  startIcon={<OloIcon name="social-media-facebook" />}
                   getSocialLink={(url) => `https://www.facebook.com/sharer/sharer.php?u=${url}`}
                   className="w-full"
                 >
@@ -45,7 +45,7 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
                 <SocialMediaButton
                   // TODO discuss if we want to add twitterTextQuery as in bratislava.sk
                   getSocialLink={(url) => `https://twitter.com/intent/tweet?url=${url}`}
-                  startIcon={<Icon name="social-media-twitter" />}
+                  startIcon={<OloIcon name="social-media-twitter" />}
                   className="w-full"
                 >
                   {t('shareModal.xTwitter')}
@@ -54,7 +54,7 @@ const ShareModal = ({ triggerButton }: ShareModalProps) => {
                   getSocialLink={(url) =>
                     `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
                   }
-                  startIcon={<Icon name="social-media-linkedin" />}
+                  startIcon={<OloIcon name="social-media-linkedin" />}
                   className="w-full"
                 >
                   {t('shareModal.linkedIn')}

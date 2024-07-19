@@ -38,10 +38,23 @@ export const AccordionGroup: Story = {
       {
         title: 'Accordion title 1',
         variant: 'default',
+        hasBottomBorder: false,
         children: <Typography>Short dummy text</Typography>,
       },
-      { title: 'Accordion title 2', variant: 'default', children: dummyTextContent },
-      { title: 'Accordion title 3', variant: 'default', children: dummyTextContent },
+
+      {
+        title: 'Accordion title 2',
+        variant: 'default',
+        hasBottomBorder: false,
+        children: dummyTextContent,
+      },
+
+      {
+        title: 'Accordion title 3',
+        variant: 'default',
+        hasBottomBorder: false,
+        children: dummyTextContent,
+      },
     ],
   },
   render: (args) => (

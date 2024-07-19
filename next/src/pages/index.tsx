@@ -3,7 +3,6 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
-import Iframe from '@/src/components/common/Iframe'
 import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
@@ -58,14 +57,6 @@ const Homepage = ({ homepage, general }: PageProps) => {
     <GeneralContextProvider general={general}>
       <PageLayoutPlaceholder>
         <HomePageContentPlaceholder />
-        {/* TODO remove */}
-        <Iframe
-          url="https://city-account-next.staging.bratislava.sk"
-          iframeWidth="full"
-          iframeHeight="1000px"
-          fullHeight={false}
-          allowFullscreen={false}
-        />
       </PageLayoutPlaceholder>
     </GeneralContextProvider>
 

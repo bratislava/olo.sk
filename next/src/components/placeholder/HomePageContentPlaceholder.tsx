@@ -5,6 +5,7 @@ import React from 'react'
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import AccordionPlaceholder from '@/src/components/placeholder/AccordionPlaceholder'
 import { client } from '@/src/services/graphql'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
@@ -65,6 +66,7 @@ const HomePageContentPlaceholder = () => {
             ))}
           </div>
         </div>
+        <AccordionPlaceholder />
       </div>
     </SectionContainer>
   )

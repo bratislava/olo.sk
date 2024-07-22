@@ -19,8 +19,6 @@ type WasteSortingGuideProps = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1-5&m=dev
  */
 
-// TODO issue: <div className="flex h-full w-full flex-col gap-5 p-4 lg:py-5">, precisely: p-4 lg:px-8
-
 const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingGuideProps) => {
   return (
     <div

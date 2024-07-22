@@ -23,11 +23,12 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
   return (
     <div
       className={cn(
-        'flex w-full flex-col divide-y divide-border-default lg:flex-row lg:items-start lg:justify-between lg:divide-x lg:divide-y-0',
+        'flex w-full flex-col lg:flex-row lg:items-start lg:justify-between',
+        'divide-border-default lg:divide-x lg:divide-y-0', // handles vertical
         className,
       )}
     >
-      <div className="flex h-full w-full flex-col gap-5 py-4 lg:py-5">
+      <div className="flex h-full w-full flex-col gap-5 p-4 lg:px-8 lg:py-5">
         <Typography variant="h6">{leftColumn.title}</Typography>
         <div className="flex flex-col gap-4">
           {leftColumn.items.length > 0
@@ -42,6 +43,8 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
             : null}
         </div>
       </div>
+
+      <div className="-mx-4 flex flex-col border-b border-border-default" />
 
       <div className="flex h-full w-full flex-col gap-5 p-4 lg:px-8 lg:py-5">
         <Typography variant="h6">{rightColumn.title}</Typography>

@@ -22,6 +22,7 @@ const dummySortingGuideContent = (
   <WasteSortingGuide
     leftColumn={wasteSortingGuideData.leftColumn}
     rightColumn={wasteSortingGuideData.rightColumn}
+    className="px-4 lg:px-8"
   />
 )
 
@@ -41,8 +42,10 @@ const meta: Meta<typeof AccordionComponent> = {
   title: 'Components/Accordion/Accordion',
   tags: ['autodocs'],
   args: {
-    title: 'AccordionComponent title',
+    title: 'Accordion title',
+    hasBottomBorder: true,
     children: dummyTextContent,
+    icon: undefined,
   },
   decorators: [
     (Story) => (
@@ -58,22 +61,26 @@ type Story = StoryObj<typeof AccordionComponent>
 
 export const Accordion: Story = {
   render: (args) => (
-    <div className="w-full min-w-[256px] max-w-[1136px]">
-      <AccordionComponent {...args} />
+    <div className="w-full min-w-[256px]">
+      <div className="bg-background-primary px-4 lg:px-5">
+        <AccordionComponent {...args} />
+      </div>
     </div>
   ),
 }
 
 export const AllAccordions: Story = {
   render: (args) => (
-    <div className="flex w-full min-w-[256px] max-w-[1152px] flex-col gap-4">
+    <div className="flex w-full min-w-[255px] flex-col gap-4">
       <div>
         <p className="mb-1 text-[.7rem]">default</p>
-        <AccordionComponent {...args} />
+        <div className="bg-background-primary px-4 lg:px-5">
+          <AccordionComponent {...args} />
+        </div>
       </div>
       <div>
         <p className="mb-1 text-[.7rem]">waste</p>
-        <AccordionComponent {...args} icon={<WasteIcon variant="glass" />}>
+        <AccordionComponent {...args} icon={<WasteIcon variant="paper" />}>
           {dummySortingGuideContent}
         </AccordionComponent>
       </div>

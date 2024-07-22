@@ -24,22 +24,21 @@ const Accordion = ({ title, icon, hasBottomBorder, children, className }: Accord
   return (
     <AnimateHeight isVisible className="relative">
       <div className="bg-background-primary">
-        <details
-          className={cn(
-            'group flex w-full flex-col p-4 lg:p-5',
-            {
-              'px-4 py-0 lg:py-0': hasBottomBorder && icon,
-            },
-            className,
-          )}
-        >
+        <details className={cn('group flex w-full flex-col', className)}>
           <summary
             className={cn(
-              'relative flex cursor-pointer items-start justify-center gap-4 text-left after:absolute after:inset-0 md:items-center',
-              'ring-offset-2 focus:outline-none focus:ring',
+              'relative flex cursor-pointer items-center justify-center gap-4 text-left after:absolute after:inset-0',
+              'ring-offset-2 group-open:pb-0 focus:outline-none focus:ring',
               {
-                'px-0 py-4 group-open:border-b group-open:border-border-default lg:py-8':
-                  hasBottomBorder && icon,
+                'py-5 group-open:border-none group-open:py-5 group-open:pb-3 lg:group-open:pb-4':
+                  icon === undefined,
+              },
+              {
+                'p-4 group-open:border-b group-open:border-border-default group-open:p-4 lg:p-8 lg:group-open:p-8':
+                  icon,
+              },
+              {
+                'border-b border-border-default': hasBottomBorder,
               },
             )}
           >
@@ -56,7 +55,11 @@ const Accordion = ({ title, icon, hasBottomBorder, children, className }: Accord
             </div>
           </summary>
 
-          <div className={cn({ 'group-open:pt-3 group-open:lg:pt-4': icon === undefined })}>
+          <div
+            className={cn('border-b border-border-default', {
+              'group-open:pb-5': icon === undefined,
+            })}
+          >
             {children}
           </div>
         </details>

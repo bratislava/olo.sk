@@ -1124,6 +1124,13 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/runtime@^7.24.7":
+  version "7.24.8"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.8.tgz#5d958c3827b13cc6d05e038c07fb2e5e3420d82e"
+  integrity sha512-5F7SDGs1T72ZczbRwbGO9lQi0NLjQxzl6i4lJxLxfW9U5UluCSyEJeniWvnhl3/euNiqQVbo8zruhsDfid0esA==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/template@^7.18.10", "@babel/template@^7.20.7", "@babel/template@^7.22.15", "@babel/template@^7.24.0":
   version "7.24.0"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.24.0.tgz#c6a524aa93a4a05d66aaf31654258fae69d87d50"
@@ -1963,6 +1970,20 @@
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.2.4.tgz#4f3059423823bd8176132ceea9447dee101dfac1"
   integrity sha512-Ttl/jHpxfS3st5sxwICYfk4pOH0WrLI1SpW283GgQL7sCWU7EHIOhX4b4fkIxr3tkfzwg8+FNojtzsIEE7Ecgg==
+
+"@iframe-resizer/core@5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@iframe-resizer/core/-/core-5.2.1.tgz#81c5dc942ddce7b7f53cddae931461abdc5c5cbc"
+  integrity sha512-etPA5NfB+K9bALYME/d2k5AYdIKShUNyvJjMQ3HmHKHV4jNIxnqkzN0u6agsOUlwS7fMrRqy0btX0d3becf6Zw==
+
+"@iframe-resizer/react@^5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@iframe-resizer/react/-/react-5.2.1.tgz#1c1d467720fa8565f9a273466f66c8b5c05f16ec"
+  integrity sha512-9y//81lit01jMQwT6nfeOdSh48tnS4luXaIcRkqa5oZdsAMnT0zAlGdnOh8yEjHLPmsBDsct5StY+wPlZOnyBg==
+  dependencies:
+    "@babel/runtime" "^7.24.7"
+    "@iframe-resizer/core" "5.2.1"
+    warning "^4.0.3"
 
 "@img/sharp-darwin-arm64@0.33.3":
   version "0.33.3"
@@ -14339,6 +14360,13 @@ walk-sync@^2.2.0:
     ensure-posix-path "^1.1.0"
     matcher-collection "^2.0.0"
     minimatch "^3.0.4"
+
+warning@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 watchpack@^2.2.0, watchpack@^2.4.1:
   version "2.4.1"

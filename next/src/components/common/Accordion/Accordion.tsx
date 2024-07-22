@@ -35,7 +35,7 @@ const Accordion = ({ title, icon, hasBottomBorder, children, className }: Accord
         >
           <summary
             className={cn(
-              'relative flex cursor-pointer items-center justify-center gap-4 text-left after:absolute after:inset-0',
+              'relative flex cursor-pointer items-start justify-center gap-4 text-left after:absolute after:inset-0 md:items-center',
               'ring-offset-2 focus:outline-none focus:ring',
               {
                 'px-0 py-4 group-open:border-b group-open:border-border-default lg:py-8':

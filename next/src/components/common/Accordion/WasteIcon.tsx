@@ -3,6 +3,10 @@ import React from 'react'
 import Icon from '@/src/components/common/Icon/Icon'
 import cn from '@/src/utils/cn'
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=810-15763&m=dev
+ */
+
 const WasteIcon = ({
   variant,
 }: {

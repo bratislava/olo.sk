@@ -19,6 +19,8 @@ type WasteSortingGuideProps = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1-5&m=dev
  */
 
+// TODO issue: <div className="flex h-full w-full flex-col gap-5 p-4 lg:py-5">, precisely: p-4 lg:px-8
+
 const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingGuideProps) => {
   return (
     <div
@@ -27,7 +29,7 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
         className,
       )}
     >
-      <div className="flex h-full w-full flex-col gap-5 p-4 lg:px-8 lg:py-5">
+      <div className="flex h-full w-full flex-col gap-5 py-4 lg:py-5">
         <Typography variant="h6">{leftColumn.title}</Typography>
         <div className="flex flex-col gap-4">
           {leftColumn.items.length > 0

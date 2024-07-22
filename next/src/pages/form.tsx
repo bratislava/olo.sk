@@ -32,7 +32,7 @@ const Page = ({ general }: PageProps) => {
       <PageLayoutPlaceholder>
         <IframeResizer
           license="GPLv3"
-          src="https://city-account-next.dev.bratislava.sk/mestske-sluzby/dev/priznanie-k-dani-z-nehnutelnosti?krok=druh-priznania"
+          src="https://city-account-next.dev.bratislava.sk/mestske-sluzby/dev/olo-mimoriadny-odvoz-a-likvidacia-odpadu?externa-sluzba=true"
           style={{ width: '100%', height: '100vh' }}
         />
       </PageLayoutPlaceholder>

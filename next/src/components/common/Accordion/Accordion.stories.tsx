@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import WasteIcon from '@/src/components/common/Accordion/WasteIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 
 import AccordionComponent from './Accordion'
+
+// to waste, pass special children - my component
 
 const meta: Meta<typeof AccordionComponent> = {
   component: AccordionComponent,
@@ -36,8 +39,23 @@ type Story = StoryObj<typeof AccordionComponent>
 
 export const Accordion: Story = {
   render: (args) => (
-    <div className="w-full max-w-[500px]">
+    <div className="w-full min-w-[256px] max-w-[500px]">
       <AccordionComponent {...args} />
+    </div>
+  ),
+}
+
+export const AllAccordions: Story = {
+  render: (args) => (
+    <div className="flex w-full min-w-[256px] max-w-[500px] flex-col gap-4">
+      <div>
+        <p className="mb-1 text-[.7rem]">default</p>
+        <AccordionComponent {...args} />
+      </div>
+      <div>
+        <p className="mb-1 text-[.7rem]">waste</p>
+        <AccordionComponent {...args} icon={<WasteIcon variant="glass" />} />
+      </div>
     </div>
   ),
 }

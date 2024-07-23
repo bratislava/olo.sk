@@ -23,7 +23,7 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
   return (
     <div
       className={cn(
-        'flex w-full flex-col lg:flex-row lg:items-start lg:justify-between',
+        'flex h-full w-full flex-col lg:flex-row lg:items-start lg:justify-between',
         'divide-y divide-border-default lg:divide-x lg:divide-y-0',
         className,
       )}

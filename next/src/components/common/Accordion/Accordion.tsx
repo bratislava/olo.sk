@@ -11,6 +11,7 @@ export type AccordionProps = {
   icon?: ReactNode
   children?: ReactNode
   className?: string
+  innerClassName?: string
 }
 
 /**
@@ -20,7 +21,14 @@ export type AccordionProps = {
  *
  */
 
-const Accordion = ({ title, icon, hasBottomBorder, children, className }: AccordionProps) => {
+const Accordion = ({
+  title,
+  icon,
+  hasBottomBorder,
+  children,
+  className,
+  innerClassName,
+}: AccordionProps) => {
   return (
     <AnimateHeight isVisible className="relative">
       <div className="bg-background-primary">
@@ -56,9 +64,13 @@ const Accordion = ({ title, icon, hasBottomBorder, children, className }: Accord
           </summary>
 
           <div
-            className={cn('border-b border-border-default', {
-              'group-open:pb-5': icon === undefined,
-            })}
+            className={cn(
+              'border-b border-border-default',
+              {
+                'group-open:pb-5': icon === undefined,
+              },
+              innerClassName,
+            )}
           >
             {children}
           </div>

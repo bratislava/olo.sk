@@ -21,7 +21,7 @@ const meta: Meta<typeof WasteSortingGuideComponent> = {
   args: {
     leftColumn: wasteSortingGuideData.leftColumn,
     rightColumn: wasteSortingGuideData.rightColumn,
-    className: 'rounded-lg border border-border-default bg-background-primary p-4 lg:px-8',
+    className: 'rounded-lg border border-border-default bg-background-primary',
   },
   decorators: [
     (Story) => (

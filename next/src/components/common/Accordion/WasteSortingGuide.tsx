@@ -24,7 +24,7 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
     <div
       className={cn(
         'flex w-full flex-col lg:flex-row lg:items-start lg:justify-between',
-        'divide-border-default lg:divide-x lg:divide-y-0', // handles vertical
+        'divide-y divide-border-default lg:divide-x lg:divide-y-0',
         className,
       )}
     >
@@ -43,8 +43,6 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
             : null}
         </div>
       </div>
-
-      <div className="-mx-4 flex flex-col border-b border-border-default" />
 
       <div className="flex h-full w-full flex-col gap-5 p-4 lg:px-8 lg:py-5">
         <Typography variant="h6">{rightColumn.title}</Typography>

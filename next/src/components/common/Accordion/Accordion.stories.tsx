@@ -22,7 +22,6 @@ const dummySortingGuideContent = (
   <WasteSortingGuide
     leftColumn={wasteSortingGuideData.leftColumn}
     rightColumn={wasteSortingGuideData.rightColumn}
-    className="px-4 lg:px-8"
   />
 )
 

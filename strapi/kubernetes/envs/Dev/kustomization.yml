@@ -1,5 +1,6 @@
 resources:
   - ../../base
+  - ./secrets/database.secret.yml
 
 generatorOptions:
   disableNameSuffixHash: true

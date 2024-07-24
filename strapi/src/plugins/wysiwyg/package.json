@@ -20,6 +20,8 @@
     "@types/react-dom": "^18.0.28",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.32",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",

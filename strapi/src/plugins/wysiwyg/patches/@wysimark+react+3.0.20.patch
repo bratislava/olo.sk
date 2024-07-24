@@ -1,0 +1,17 @@
+diff --git a/node_modules/@wysimark/react/.dist/browser/index.esm.js b/node_modules/@wysimark/react/.dist/browser/index.esm.js
+index 46d1f77..d2a9b94 100644
+--- a/node_modules/@wysimark/react/.dist/browser/index.esm.js
++++ b/node_modules/@wysimark/react/.dist/browser/index.esm.js
+@@ -6385,7 +6385,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
+   Editor45.withoutNormalizing(editor, () => {
+     const { columns } = tableElement;
+     const nextColumns = [...columns];
+-    nextColumns.splice(nextCellIndex, 0, columns[nextCellIndex]);
++    if (nextCellIndex < columns.length) {
++      nextColumns.splice(nextCellIndex, 0, columns[nextCellIndex]);
++    } else {
++      nextColumns.push({ align: 'left' });
++    }
+     Transforms31.setNodes(editor, { columns: nextColumns }, { at: tablePath });
+     tableElement.children.forEach((rowElement, i) => {
+       Transforms31.insertNodes(editor, createCell(nextCellIndex), {

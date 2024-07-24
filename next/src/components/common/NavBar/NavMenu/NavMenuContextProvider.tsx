@@ -14,8 +14,12 @@ const NavMenuContext = createContext<NavMenuContextType>({
   setMobileMenuOpen: () => {},
 })
 
+/**
+ * Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/NavBar/NavMenu/navMenuContext.tsx
+ */
+
 export const NavMenuContextProvider = ({ children }: PropsWithChildren<{}>) => {
-  const [menuValue, setMenuValue] = useState<string>('')
+  const [menuValue, setMenuValue] = useState('')
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (

@@ -1,5 +1,5 @@
 diff --git a/node_modules/@wysimark/react/.dist/browser/index.esm.js b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-index 46d1f77..d2a9b94 100644
+index 46d1f77..5fd2d08 100644
 --- a/node_modules/@wysimark/react/.dist/browser/index.esm.js
 +++ b/node_modules/@wysimark/react/.dist/browser/index.esm.js
 @@ -6385,7 +6385,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
@@ -15,3 +15,130 @@ index 46d1f77..d2a9b94 100644
      Transforms31.setNodes(editor, { columns: nextColumns }, { at: tablePath });
      tableElement.children.forEach((rowElement, i) => {
        Transforms31.insertNodes(editor, createCell(nextCellIndex), {
+@@ -7563,12 +7567,12 @@ var Emoji = () => /* @__PURE__ */ jsxs27(TablerIcon, { children: [
+ 
+ // src/toolbar-plugin/items/block-items.tsx
+ var blockItems = [
+-  {
+-    icon: H1,
+-    title: "Heading 1",
+-    hotkey: "super+1",
+-    action: (editor) => editor.heading.convertHeading(1, false)
+-  },
++  // {
++  //   icon: H1,
++  //   title: "Heading 1",
++  //   hotkey: "super+1",
++  //   action: (editor) => editor.heading.convertHeading(1, false)
++  // },
+   {
+     icon: H2,
+     title: "Heading 2",
+@@ -7800,26 +7804,26 @@ var dialogItems = [
+     more: true,
+     Component: TableDialog
+   },
+-  {
+-    icon: Image,
+-    title: "Insert Image",
+-    more: true,
+-    Component: ImageDialog,
+-    show: (editor) => editor.toolbar.showUploadButtons ?? false
+-  },
+-  {
+-    icon: Attachment,
+-    title: "Insert Attachment",
+-    more: true,
+-    Component: AttachmentDialog,
+-    show: (editor) => editor.toolbar.showUploadButtons ?? false
+-  },
+-  {
+-    icon: Emoji,
+-    title: "Insert Emoji",
+-    more: true,
+-    Component: EmojiDialog
+-  }
++  // {
++  //   icon: Image,
++  //   title: "Insert Image",
++  //   more: true,
++  //   Component: ImageDialog,
++  //   show: (editor) => editor.toolbar.showUploadButtons ?? false
++  // },
++  // {
++  //   icon: Attachment,
++  //   title: "Insert Attachment",
++  //   more: true,
++  //   Component: AttachmentDialog,
++  //   show: (editor) => editor.toolbar.showUploadButtons ?? false
++  // },
++  // {
++  //   icon: Emoji,
++  //   title: "Insert Emoji",
++  //   more: true,
++  //   Component: EmojiDialog
++  // }
+ ];
+ var expandedDialogItems = dialogItems;
+ var compactDialogItems = [
+@@ -7883,13 +7887,13 @@ var listItems = [
+     title: "Numbered List",
+     hotkey: "super+7",
+     action: (editor) => editor.list.convertOrderedList(false)
+-  },
+-  {
+-    icon: ListCheck,
+-    title: "Checklist",
+-    hotkey: "super+9",
+-    action: (editor) => editor.list.convertTaskList(false)
+   }
++  // {
++  //   icon: ListCheck,
++  //   title: "Checklist",
++  //   hotkey: "super+9",
++  //   action: (editor) => editor.list.convertTaskList(false)
++  // }
+ ];
+ 
+ // src/toolbar-plugin/items/quote-items.tsx
+@@ -7921,13 +7925,13 @@ var dropdownItems = [
+     title: "Block Quote",
+     more: true,
+     children: quoteItems
+-  },
+-  {
+-    icon: Code,
+-    title: "Code Block",
+-    more: true,
+-    children: codeBlockItems
+   }
++  // {
++  //   icon: Code,
++  //   title: "Code Block",
++  //   more: true,
++  //   children: codeBlockItems
++  // }
+ ];
+ 
+ // src/toolbar-plugin/components/dialog/anchor-dialog.tsx
+@@ -8048,13 +8052,13 @@ var secondaryMarkItems = [
+     action: (editor) => editor.marksPlugin.toggleStrike()
+   },
+   "divider",
+-  {
+-    icon: Code,
+-    title: "Inline Code",
+-    hotkey: "mod+j",
+-    action: (editor) => editor.inlineCode.toggleInlineCode()
+-  },
+-  "divider",
++  // {
++  //   icon: Code,
++  //   title: "Inline Code",
++  //   hotkey: "mod+j",
++  //   action: (editor) => editor.inlineCode.toggleInlineCode()
++  // },
++  // "divider",
+   {
+     icon: RemoveStyles,
+     title: "Remove Styles",

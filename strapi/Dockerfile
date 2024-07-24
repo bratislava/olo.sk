@@ -16,6 +16,9 @@ COPY ./package.json ./yarn.lock ./
 # copy any installation files for Strapi plugins you want to build. For example:
 # COPY src/plugins/<package-name>/package.json src/plugins/<package-name>/yarn.lock ./src/plugins/<package-name>
 # Or leave empty (do not add anyting) if you don't have any custom plugins (most likely ./plugins directory)
+COPY src/plugins/wysiwyg/package.json ./src/plugins/wysiwyg/package.json
+COPY src/plugins/wysiwyg/yarn.lock ./src/plugins/wysiwyg/yarn.lock
+COPY src/plugins/wysiwyg/patches ./patches
 
 FROM build-base AS install-prod
 ENV YARN_CACHE_FOLDER=/build/.cache/yarn
@@ -65,4 +68,8 @@ COPY --chown=node:node --from=build /build/app/dist ./dist
 # - plugins/<name>/dist/
 # - plugins/<name>/*.js
 # Or leave empty (do not add anyting) if you don't have any custom plugins (most likely ./plugins directory)
+COPY --chown=node:node --from=install-prod /build/src/plugins/wysiwyg/yarn.lock ./src/plugins/wysiwyg/yarn.lock
+COPY --chown=node:node --from=install-prod /build/src/plugins/wysiwyg/package.json ./src/plugins/wysiwyg/package.json
+COPY --chown=node:node --from=build /build/app/src/plugins/wysiwyg/dist ./src/plugins/wysiwyg/dist
+COPY --chown=node:node --from=build /build/app/src/plugins/wysiwyg/*.js ./src/plugins/wysiwyg/
 CMD [ "strapi", "start" ]

@@ -48,7 +48,8 @@
   },
   "scripts": {
     "develop": "tsc -p tsconfig.server.json -w",
-    "build": "tsc -p tsconfig.server.json"
+    "build": "tsc -p tsconfig.server.json",
+    "postinstall": "patch-package"
   },
   "license": "MIT"
 }

@@ -8,7 +8,7 @@
     "name": "City of Bratislava"
   },
   "scripts": {
-    "build": "strapi build",
+    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && strapi build",
     "dev": "yarn develop",
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
     "postinstall": "patch-package",

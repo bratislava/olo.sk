@@ -12,6 +12,8 @@
     "@strapi/helper-plugin": "^4.6.0",
     "@strapi/icons": "^1.6.3",
     "@wysimark/react": "^3.0.20",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
@@ -20,8 +22,6 @@
     "@types/react-dom": "^18.0.28",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.32",
-    "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.3.4",
@@ -48,7 +48,8 @@
   },
   "scripts": {
     "develop": "tsc -p tsconfig.server.json -w",
-    "build": "tsc -p tsconfig.server.json"
+    "build": "tsc -p tsconfig.server.json",
+    "postinstall": "patch-package"
   },
   "license": "MIT"
 }

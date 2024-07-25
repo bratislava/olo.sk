@@ -32,5 +32,10 @@ export const NavMenuContextProvider = ({ children }: PropsWithChildren<{}>) => {
 }
 
 export const useNavMenuContext = () => {
-  return useContext(NavMenuContext)
+  const context = useContext(NavMenuContext)
+  if (!context) {
+    throw new Error('NavMenuContext is not initialized.')
+  }
+
+  return context
 }

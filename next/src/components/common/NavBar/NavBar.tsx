@@ -15,8 +15,8 @@ type NavBarProps = {
 const NavBar = ({ className }: NavBarProps) => {
   return (
     <div className={cn(className)}>
-      <DesktopNavBar />
-      <MobileNavBar />
+      <DesktopNavBar className="max-lg:hidden" />
+      <MobileNavBar className="lg:hidden" />
     </div>
   )
 }

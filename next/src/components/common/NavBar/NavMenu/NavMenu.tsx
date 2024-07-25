@@ -19,14 +19,14 @@ const NavMenu = ({ className }: NavMenuProps) => {
           <div className="flex gap-8">
             {['Odpad', 'Služby', 'Aktuality', 'KOLO', 'ZEVO', 'O nás'].map((item) => {
               return (
-                <div className="flex items-center gap-0.5" key={item}>
+                <div className="flex items-center justify-center gap-0.5" key={item}>
                   <Typography variant="p-default-bold">{item}</Typography>
-                  <Icon name="chevron-dole" className="size-5" />
+                  <Icon name="chevron-dole-maly" className="mb-1 size-6" />
                 </div>
               )
             })}
           </div>
-          {/* Set opacity to 25% to suggest that it should not be interacted with */}
+          {/* TODO: Temporary solution - should be implemented as a Button */}
           <div className="opacity-25">
             <Icon name="lupa" className="size-6" />
           </div>

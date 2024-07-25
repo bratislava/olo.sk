@@ -10,15 +10,15 @@ type DesktopNavBarProps = {
 
 const DesktopNavBar = ({ className }: DesktopNavBarProps) => {
   return (
-    <>
-      <div className={cn('fixed top-0 z-30 w-full', className)}>
-        <div className="relative max-lg:hidden">
+    <div className={cn(className)}>
+      <div className="fixed top-0 z-30 w-full">
+        <div className="relative">
           <NavBarHeader />
           <NavMenu />
         </div>
       </div>
-      <div className="hidden h-[8.563rem] lg:block lg:h-28" aria-hidden />
-    </>
+      <div className="w-full lg:h-28" aria-hidden />
+    </div>
   )
 }
 

@@ -4,11 +4,11 @@ import * as React from 'react'
 import OloLogo from '@/src/assets/images/olo-logo.svg'
 import Button from '@/src/components/common/Button/Button'
 
-type BrandProps = {
+type NavBarLogoProps = {
   className?: string
 }
 
-const Brand = ({ className }: BrandProps) => {
+const NavBarLogo = ({ className }: NavBarLogoProps) => {
   const { t } = useTranslation()
 
   return (
@@ -25,4 +25,4 @@ const Brand = ({ className }: BrandProps) => {
   )
 }
 
-export default Brand
+export default NavBarLogo

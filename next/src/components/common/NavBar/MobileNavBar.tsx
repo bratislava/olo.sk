@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import Brand from '@/src/components/common/Brand/Brand'
 import Icon from '@/src/components/common/Icon/Icon'
+import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import cn from '@/src/utils/cn'
@@ -15,17 +15,12 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
   const { currentWeekMessage } = useCurrentWeekParity()
 
   return (
-    <div className="lg:hidden">
-      <SectionContainer
-        className={cn(
-          'fixed top-0 z-30 w-full border-b border-border-default bg-background-primary p-4',
-          className,
-        )}
-      >
+    <div className={cn(className)}>
+      <SectionContainer className="fixed top-0 z-30 w-full border-b border-border-default bg-background-primary p-4">
         <div className="flex items-center justify-between">
-          <Brand className="text-action-background-default" />
+          <NavBarLogo className="text-action-background-default" />
           <div className="flex gap-6">
-            {/* Set opacity to 25% to suggest that it should not be interacted with */}
+            {/* TODO: Temporary solution - should be implemented as a Button */}
             <div className="opacity-25">
               <Icon name="lupa" className="size-6" />
             </div>
@@ -33,7 +28,7 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
           </div>
         </div>
       </SectionContainer>
-      <div aria-hidden className="h-[3.5rem]" />
+      <div aria-hidden className="h-14" />
       <SectionContainer className="w-full bg-action-background-default py-2 text-center">
         <Typography variant="p-small">{currentWeekMessage}</Typography>
       </SectionContainer>

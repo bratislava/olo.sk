@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import Brand from '@/src/components/common/Brand/Brand'
-import NavBarHorizontalDivider from '@/src/components/common/NavBar/NavMenu/NavBarHorizontalDivider'
+import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import cn from '@/src/utils/cn'
@@ -18,17 +17,12 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
     <SectionContainer className={cn('bg-action-background-default py-3', className)}>
       <div className="flex items-center justify-between">
         <div className="flex gap-4 py-0.5">
-          <Brand />
-          <NavBarHorizontalDivider />
+          <NavBarLogo />
           <Typography variant="p-small">{currentWeekMessage}</Typography>
         </div>
-        {/* Set opacity to 25% to suggest that it should not be interacted with */}
+        {/* TODO: Temporary solution - should be implemented as a Button */}
         <div className="opacity-25">
-          <div className="flex gap-4">
-            <Typography variant="p-small">Kontakty</Typography>
-            <NavBarHorizontalDivider />
-            <Typography variant="p-small">SK</Typography>
-          </div>
+          <Typography variant="p-small">Kontakty</Typography>
         </div>
       </div>
     </SectionContainer>

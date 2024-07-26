@@ -23,16 +23,15 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
   return (
     <div
       className={cn(
-        'flex h-full w-full flex-col lg:flex-row lg:items-start lg:justify-between',
-        'divide-y divide-border-default lg:divide-x lg:divide-y-0',
+        'flex flex-col divide-y divide-border-default lg:flex-row lg:divide-x lg:divide-y-0',
         className,
       )}
     >
-      <div className="flex h-full w-full flex-col gap-5 p-4 lg:px-8 lg:py-5">
+      <div className="flex flex-col gap-5 p-4 lg:w-1/2 lg:px-8 lg:py-5">
         <Typography variant="h6">{leftColumn.title}</Typography>
         <div className="flex flex-col gap-4">
           {leftColumn.items.length > 0
-            ? leftColumn.items.map((item: any) => {
+            ? leftColumn.items.map((item) => {
                 return (
                   <div className="flex gap-4">
                     <Icon name="fajka-kruh" className="text-success" />
@@ -44,11 +43,11 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
         </div>
       </div>
 
-      <div className="flex h-full w-full flex-col gap-5 p-4 lg:px-8 lg:py-5">
+      <div className="flex flex-col gap-5 p-4 lg:w-1/2 lg:px-8 lg:py-5">
         <Typography variant="h6">{rightColumn.title}</Typography>
         <div className="flex flex-col gap-4">
           {rightColumn.items.length > 0
-            ? rightColumn?.items.map((item: any) => {
+            ? rightColumn?.items.map((item) => {
                 return (
                   <div className="flex gap-4">
                     <Icon name="zrusit-kruh" className="text-error" />

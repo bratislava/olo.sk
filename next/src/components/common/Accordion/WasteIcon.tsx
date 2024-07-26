@@ -14,9 +14,9 @@ const WasteIcon = ({
 }) => {
   return (
     <div
-      className={cn('flex h-[3rem] w-[3rem] rounded-2xl p-3 text-white', {
+      className={cn('flex h-[3rem] w-[3rem] rounded-2xl p-3 text-background-primary', {
         'bg-waste-paper': variant === 'paper',
-        'text-black bg-waste-plastic': variant === 'plastic',
+        'bg-waste-plastic text-content-secondary': variant === 'plastic',
         'bg-waste-glass': variant === 'glass',
         'bg-waste-mixed': variant === 'mixed',
         'bg-waste-organic': variant === 'organic',

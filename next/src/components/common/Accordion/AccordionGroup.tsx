@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import Accordion, { AccordionProps } from '@/src/components/common/Accordion/Accordion'
 import cn from '@/src/utils/cn'
 
@@ -23,15 +25,11 @@ const AccordionGroup = ({ accordionData, className }: AccordionGroupProps) => {
       {accordionData.length > 0
         ? accordionData.map((accordion, index) => {
             return (
-              <div>
-                <Accordion
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={index}
-                  innerClassName="border-none"
-                  {...accordion}
-                />
-                {index === accordionData.length - 1 ? null : <SidebarDivider />}
-              </div>
+              // eslint-disable-next-line react/no-array-index-key
+              <Fragment key={index}>
+                {index > 0 && <SidebarDivider />}
+                <Accordion innerClassName="border-none" {...accordion} />
+              </Fragment>
             )
           })
         : null}

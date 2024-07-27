@@ -30,7 +30,10 @@ const Accordion = ({
   innerClassName,
 }: AccordionProps) => {
   return (
-    <AnimateHeight isVisible className="relative">
+    <AnimateHeight
+      isVisible
+      className="relative ring-offset-2 focus-within:z-[1] focus-within:[&:has(:focus-visible)]:ring"
+    >
       <div className="bg-background-primary">
         <details className={cn('group flex w-full flex-col', className)}>
           <summary
@@ -39,13 +42,9 @@ const Accordion = ({
               'ring-offset-2 group-open:pb-0 focus:outline-none focus:ring',
               {
                 'py-5 group-open:border-none group-open:py-5 group-open:pb-3 lg:group-open:pb-4':
-                  icon === undefined,
-              },
-              {
+                  !icon,
                 'p-4 group-open:border-b group-open:border-border-default group-open:p-4 lg:p-8 lg:group-open:p-8':
                   icon,
-              },
-              {
                 'border-b border-border-default': hasBottomBorder,
               },
             )}
@@ -67,7 +66,7 @@ const Accordion = ({
             className={cn(
               'border-b border-border-default',
               {
-                'group-open:pb-5': icon === undefined,
+                'pb-5': !icon,
               },
               innerClassName,
             )}

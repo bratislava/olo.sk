@@ -88,6 +88,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
       fullWidthMobile,
       isLoading,
       loadingText,
+      asLink, // not used, but it should not be passed down in `rest` because it's not valid html attribute for <button> or <a>
       ...rest
     },
     ref,

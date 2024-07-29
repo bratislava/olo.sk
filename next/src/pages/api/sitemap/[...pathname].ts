@@ -28,7 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
    * - `articlesPath` contains also trailing slash
    * - `pathnameString` does not contain trailing slash
    *
-   * Therefore when we do `pathnameString.startsWith(articlesPath)` it does not match articles' parent page, but matches only paths that contains also article's slug.
+   * Therefore, when we do `pathnameString.startsWith(articlesPath)` it does not match articles' parent page, but matches only paths that contains also article's slug.
    */
   const articlesPath = articlesParentPage?.data ? `${getPagePath(articlesParentPage.data)}/` : null
   const documentsPath = documentsParentPage?.data

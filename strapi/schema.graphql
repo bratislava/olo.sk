@@ -529,7 +529,9 @@ type ComponentItemsLink {
   id: ID!
   label: String
   page: PageEntityResponse
+  service: ServiceEntityResponse
   url: String
+  workshop: WorkshopEntityResponse
 }
 
 input ComponentItemsLinkFiltersInput {
@@ -541,7 +543,9 @@ input ComponentItemsLinkFiltersInput {
   not: ComponentItemsLinkFiltersInput
   or: [ComponentItemsLinkFiltersInput]
   page: PageFiltersInput
+  service: ServiceFiltersInput
   url: StringFilterInput
+  workshop: WorkshopFiltersInput
 }
 
 input ComponentItemsLinkInput {
@@ -551,7 +555,9 @@ input ComponentItemsLinkInput {
   id: ID
   label: String
   page: ID
+  service: ID
   url: String
+  workshop: ID
 }
 
 type ComponentItemsOpeningHoursItem {

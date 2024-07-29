@@ -23,14 +23,21 @@ const meta: Meta<Props> = {
 
 const getBranchesDummyData = (count: number): BranchEntityFragment[] => {
   const initialItems = [
-    { attributes: { title: 'KOLO – Pestovateľská', slug: '#' } },
-    { attributes: { title: 'KOLO – Nová adresa', slug: '#' } },
-    { attributes: { title: 'KOLO – Nová adresa', slug: '#' } },
-  ]
+    { __typename: 'BranchEntity', attributes: { title: 'KOLO – Pestovateľská', slug: '#' } },
+    { __typename: 'BranchEntity', attributes: { title: 'KOLO – Nová adresa', slug: '#' } },
+    { __typename: 'BranchEntity', attributes: { title: 'KOLO – Nová adresa', slug: '#' } },
+  ] as const
 
-  const generatedItems = Array.from({ length: count - initialItems.length }).map((_, index) => ({
-    attributes: { title: `Branch ${index + 1 + initialItems.length}`, slug: `#` },
-  }))
+  const generatedItems = Array.from({ length: count - initialItems.length }).map(
+    (_, index) =>
+      ({
+        __typename: 'BranchEntity',
+        attributes: {
+          title: `Branch ${index + 1 + initialItems.length}`,
+          slug: `#`,
+        },
+      }) as const,
+  )
 
   return [...initialItems, ...generatedItems].slice(0, count)
 }

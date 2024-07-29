@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import {
   ArticleSlugEntityFragment,
+  BranchSlugEntityFragment,
   DocumentSlugEntityFragment,
   FaqCategorySlugEntityFragment,
   NavigationEntityFragment,
@@ -15,6 +16,7 @@ import { getPagePath } from '@/src/utils/getPagePath'
 export type UnionSlugEntityType =
   | PageSlugEntityFragment
   | ArticleSlugEntityFragment
+  | BranchSlugEntityFragment
   | DocumentSlugEntityFragment
   | FaqCategorySlugEntityFragment
   | ServiceSlugEntityFragment
@@ -30,6 +32,7 @@ export type UnionSlugEntityType =
 export const getFullPathFn = (
   entity: UnionSlugEntityType,
   navigation: NavigationEntityFragment | null | undefined,
+  // eslint-disable-next-line sonarjs/cognitive-complexity
 ) => {
   const { slug } = entity?.attributes ?? {}
 
@@ -44,6 +47,11 @@ export const getFullPathFn = (
 
   if (entity.__typename === 'ArticleEntity' && navigation?.attributes?.articlesParentPage?.data) {
     return `${getPagePath(navigation.attributes.articlesParentPage.data)}/${entity.attributes.slug}`
+  }
+
+  // TODO
+  if (entity.__typename === 'BranchEntity') {
+    return '#'
   }
 
   if (entity.__typename === 'DocumentEntity' && navigation?.attributes?.documentsParentPage?.data) {

@@ -18,6 +18,7 @@ export type LinkProps = {
 export const useGetLinkProps = () => {
   const { getFullPath } = useGetFullPath()
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   const getLinkProps = (link: LinkFragment | null | undefined) => {
     let href = '#'
     let label = link?.label ?? undefined
@@ -34,6 +35,12 @@ export const useGetLinkProps = () => {
     } else if (link.article?.data?.attributes) {
       label = link.label ?? link.article.data.attributes.title
       href = getFullPath(link.article.data) ?? '#'
+    } else if (link.branch?.data?.attributes) {
+      label = link.label ?? link.branch.data.attributes.title
+      href = getFullPath(link.branch.data) ?? '#'
+    } else if (link.document?.data?.attributes) {
+      label = link.label ?? link.document.data.attributes.title
+      href = getFullPath(link.document.data) ?? '#'
     } else if (link?.url) {
       label = link.label ?? link.url
       href = link.url

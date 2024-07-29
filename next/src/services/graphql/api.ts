@@ -1,5 +1,6 @@
 import { GraphQLClient, RequestOptions } from 'graphql-request'
 import gql from 'graphql-tag'
+
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -508,7 +509,9 @@ export type ComponentItemsLink = {
   id: Scalars['ID']['output']
   label?: Maybe<Scalars['String']['output']>
   page?: Maybe<PageEntityResponse>
+  service?: Maybe<ServiceEntityResponse>
   url?: Maybe<Scalars['String']['output']>
+  workshop?: Maybe<WorkshopEntityResponse>
 }
 
 export type ComponentItemsLinkFiltersInput = {
@@ -520,7 +523,9 @@ export type ComponentItemsLinkFiltersInput = {
   not?: InputMaybe<ComponentItemsLinkFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsLinkFiltersInput>>>
   page?: InputMaybe<PageFiltersInput>
+  service?: InputMaybe<ServiceFiltersInput>
   url?: InputMaybe<StringFilterInput>
+  workshop?: InputMaybe<WorkshopFiltersInput>
 }
 
 export type ComponentItemsLinkInput = {
@@ -530,7 +535,9 @@ export type ComponentItemsLinkInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   label?: InputMaybe<Scalars['String']['input']>
   page?: InputMaybe<Scalars['ID']['input']>
+  service?: InputMaybe<Scalars['ID']['input']>
   url?: InputMaybe<Scalars['String']['input']>
+  workshop?: InputMaybe<Scalars['ID']['input']>
 }
 
 export type ComponentItemsOpeningHoursItem = {
@@ -3408,6 +3415,7 @@ export type LinkFragment = {
     __typename?: 'BranchEntityResponse'
     data?: {
       __typename: 'BranchEntity'
+      id?: string | null
       attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
     } | null
   } | null
@@ -3415,7 +3423,24 @@ export type LinkFragment = {
     __typename?: 'DocumentEntityResponse'
     data?: {
       __typename: 'DocumentEntity'
-      attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      id?: string | null
+      attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+    } | null
+  } | null
+  service?: {
+    __typename?: 'ServiceEntityResponse'
+    data?: {
+      __typename: 'ServiceEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+    } | null
+  } | null
+  workshop?: {
+    __typename?: 'WorkshopEntityResponse'
+    data?: {
+      __typename?: 'WorkshopEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     } | null
   } | null
 }
@@ -4378,6 +4403,7 @@ export type GeneralQuery = {
               __typename?: 'BranchEntityResponse'
               data?: {
                 __typename: 'BranchEntity'
+                id?: string | null
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
@@ -4385,7 +4411,24 @@ export type GeneralQuery = {
               __typename?: 'DocumentEntityResponse'
               data?: {
                 __typename: 'DocumentEntity'
-                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                id?: string | null
+                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+              } | null
+            } | null
+            service?: {
+              __typename?: 'ServiceEntityResponse'
+              data?: {
+                __typename: 'ServiceEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+              } | null
+            } | null
+            workshop?: {
+              __typename?: 'WorkshopEntityResponse'
+              data?: {
+                __typename?: 'WorkshopEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
             } | null
           } | null> | null
@@ -4462,6 +4505,7 @@ export type GeneralQuery = {
             __typename?: 'BranchEntityResponse'
             data?: {
               __typename: 'BranchEntity'
+              id?: string | null
               attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
             } | null
           } | null
@@ -4469,7 +4513,24 @@ export type GeneralQuery = {
             __typename?: 'DocumentEntityResponse'
             data?: {
               __typename: 'DocumentEntity'
-              attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+              id?: string | null
+              attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+            } | null
+          } | null
+          service?: {
+            __typename?: 'ServiceEntityResponse'
+            data?: {
+              __typename: 'ServiceEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+            } | null
+          } | null
+          workshop?: {
+            __typename?: 'WorkshopEntityResponse'
+            data?: {
+              __typename?: 'WorkshopEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             } | null
           } | null
         } | null> | null
@@ -4559,13 +4620,20 @@ export type GeneralQuery = {
                 __typename?: 'BranchEntityResponse'
                 data?: {
                   __typename: 'BranchEntity'
-                  attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    address?: string | null
+                    title: string
+                    slug: string
+                  } | null
                 } | null
               } | null
               workshop?: {
                 __typename?: 'WorkshopEntityResponse'
                 data?: {
-                  __typename: 'WorkshopEntity'
+                  __typename?: 'WorkshopEntity'
+                  id?: string | null
                   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                 } | null
               } | null
@@ -4643,6 +4711,7 @@ export type GeneralQuery = {
               __typename?: 'BranchEntityResponse'
               data?: {
                 __typename: 'BranchEntity'
+                id?: string | null
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
@@ -4650,7 +4719,24 @@ export type GeneralQuery = {
               __typename?: 'DocumentEntityResponse'
               data?: {
                 __typename: 'DocumentEntity'
-                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                id?: string | null
+                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+              } | null
+            } | null
+            service?: {
+              __typename?: 'ServiceEntityResponse'
+              data?: {
+                __typename: 'ServiceEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+              } | null
+            } | null
+            workshop?: {
+              __typename?: 'WorkshopEntityResponse'
+              data?: {
+                __typename?: 'WorkshopEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
             } | null
           } | null
@@ -5198,6 +5284,7 @@ export type ImageAndTextSectionFragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -5205,7 +5292,24 @@ export type ImageAndTextSectionFragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null
@@ -5281,6 +5385,7 @@ export type ImageAndTextSectionFragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -5288,7 +5393,24 @@ export type ImageAndTextSectionFragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null
@@ -5416,6 +5538,7 @@ export type ImageAndTextOverlappedSectionFragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -5423,7 +5546,24 @@ export type ImageAndTextOverlappedSectionFragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null
@@ -5437,12 +5577,12 @@ export type BranchesSectionFragment = {
   branches?: {
     __typename?: 'BranchRelationResponseCollection'
     data: Array<{
-      __typename?: 'BranchEntity'
+      __typename: 'BranchEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Branch'
-        title: string
         address?: string | null
+        title: string
         slug: string
       } | null
     }>
@@ -5525,12 +5665,12 @@ type PageSections_ComponentSectionsBranches_Fragment = {
   branches?: {
     __typename?: 'BranchRelationResponseCollection'
     data: Array<{
-      __typename?: 'BranchEntity'
+      __typename: 'BranchEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Branch'
-        title: string
         address?: string | null
+        title: string
         slug: string
       } | null
     }>
@@ -5705,6 +5845,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -5712,7 +5853,24 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null
@@ -5788,6 +5946,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -5795,7 +5954,24 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null
@@ -5895,6 +6071,7 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -5902,7 +6079,24 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null
@@ -6220,13 +6414,19 @@ export type LatestArticlesQuery = {
   } | null
 }
 
+export type BranchSlugEntityFragment = {
+  __typename: 'BranchEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+}
+
 export type BranchEntityFragment = {
-  __typename?: 'BranchEntity'
+  __typename: 'BranchEntity'
   id?: string | null
   attributes?: {
     __typename?: 'Branch'
-    title: string
     address?: string | null
+    title: string
     slug: string
   } | null
 }
@@ -6240,12 +6440,12 @@ export type BranchesQuery = {
   branches?: {
     __typename?: 'BranchEntityResponseCollection'
     data: Array<{
-      __typename?: 'BranchEntity'
+      __typename: 'BranchEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Branch'
-        title: string
         address?: string | null
+        title: string
         slug: string
       } | null
     }>
@@ -6262,12 +6462,12 @@ export type BranchBySlugQuery = {
   branches?: {
     __typename?: 'BranchEntityResponseCollection'
     data: Array<{
-      __typename?: 'BranchEntity'
+      __typename: 'BranchEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Branch'
-        title: string
         address?: string | null
+        title: string
         slug: string
       } | null
     }>
@@ -6722,6 +6922,7 @@ export type FooterColumnItemFragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -6729,7 +6930,24 @@ export type FooterColumnItemFragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null> | null
@@ -6815,6 +7033,7 @@ export type FooterFragment = {
         __typename?: 'BranchEntityResponse'
         data?: {
           __typename: 'BranchEntity'
+          id?: string | null
           attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
         } | null
       } | null
@@ -6822,7 +7041,24 @@ export type FooterFragment = {
         __typename?: 'DocumentEntityResponse'
         data?: {
           __typename: 'DocumentEntity'
-          attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename?: 'WorkshopEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
       } | null
     } | null> | null
@@ -6899,6 +7135,7 @@ export type FooterFragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -6906,7 +7143,24 @@ export type FooterFragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null> | null
@@ -6994,6 +7248,7 @@ export type FooterEntityFragment = {
           __typename?: 'BranchEntityResponse'
           data?: {
             __typename: 'BranchEntity'
+            id?: string | null
             attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
           } | null
         } | null
@@ -7001,7 +7256,24 @@ export type FooterEntityFragment = {
           __typename?: 'DocumentEntityResponse'
           data?: {
             __typename: 'DocumentEntity'
-            attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+            id?: string | null
+            attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+          } | null
+        } | null
+        service?: {
+          __typename?: 'ServiceEntityResponse'
+          data?: {
+            __typename: 'ServiceEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+          } | null
+        } | null
+        workshop?: {
+          __typename?: 'WorkshopEntityResponse'
+          data?: {
+            __typename?: 'WorkshopEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
         } | null
       } | null> | null
@@ -7078,6 +7350,7 @@ export type FooterEntityFragment = {
         __typename?: 'BranchEntityResponse'
         data?: {
           __typename: 'BranchEntity'
+          id?: string | null
           attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
         } | null
       } | null
@@ -7085,7 +7358,24 @@ export type FooterEntityFragment = {
         __typename?: 'DocumentEntityResponse'
         data?: {
           __typename: 'DocumentEntity'
-          attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename?: 'WorkshopEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
       } | null
     } | null> | null
@@ -7250,13 +7540,20 @@ export type MenuLinkFragment = {
     __typename?: 'BranchEntityResponse'
     data?: {
       __typename: 'BranchEntity'
-      attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        address?: string | null
+        title: string
+        slug: string
+      } | null
     } | null
   } | null
   workshop?: {
     __typename?: 'WorkshopEntityResponse'
     data?: {
-      __typename: 'WorkshopEntity'
+      __typename?: 'WorkshopEntity'
+      id?: string | null
       attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     } | null
   } | null
@@ -7335,13 +7632,20 @@ export type MenuSectionFragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
-        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: {
+          __typename?: 'Branch'
+          address?: string | null
+          title: string
+          slug: string
+        } | null
       } | null
     } | null
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename: 'WorkshopEntity'
+        __typename?: 'WorkshopEntity'
+        id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
@@ -7425,13 +7729,20 @@ export type MenuItemFragment = {
         __typename?: 'BranchEntityResponse'
         data?: {
           __typename: 'BranchEntity'
-          attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+          id?: string | null
+          attributes?: {
+            __typename?: 'Branch'
+            address?: string | null
+            title: string
+            slug: string
+          } | null
         } | null
       } | null
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename: 'WorkshopEntity'
+          __typename?: 'WorkshopEntity'
+          id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
       } | null
@@ -7509,6 +7820,7 @@ export type MenuItemFragment = {
       __typename?: 'BranchEntityResponse'
       data?: {
         __typename: 'BranchEntity'
+        id?: string | null
         attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
       } | null
     } | null
@@ -7516,7 +7828,24 @@ export type MenuItemFragment = {
       __typename?: 'DocumentEntityResponse'
       data?: {
         __typename: 'DocumentEntity'
-        attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
     } | null
   } | null
@@ -7601,13 +7930,20 @@ export type MenuFragment = {
           __typename?: 'BranchEntityResponse'
           data?: {
             __typename: 'BranchEntity'
-            attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+            id?: string | null
+            attributes?: {
+              __typename?: 'Branch'
+              address?: string | null
+              title: string
+              slug: string
+            } | null
           } | null
         } | null
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename: 'WorkshopEntity'
+            __typename?: 'WorkshopEntity'
+            id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
         } | null
@@ -7685,6 +8021,7 @@ export type MenuFragment = {
         __typename?: 'BranchEntityResponse'
         data?: {
           __typename: 'BranchEntity'
+          id?: string | null
           attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
         } | null
       } | null
@@ -7692,7 +8029,24 @@ export type MenuFragment = {
         __typename?: 'DocumentEntityResponse'
         data?: {
           __typename: 'DocumentEntity'
-          attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename?: 'WorkshopEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
       } | null
     } | null
@@ -7780,13 +8134,20 @@ export type MenuEntityFragment = {
             __typename?: 'BranchEntityResponse'
             data?: {
               __typename: 'BranchEntity'
-              attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+              id?: string | null
+              attributes?: {
+                __typename?: 'Branch'
+                address?: string | null
+                title: string
+                slug: string
+              } | null
             } | null
           } | null
           workshop?: {
             __typename?: 'WorkshopEntityResponse'
             data?: {
-              __typename: 'WorkshopEntity'
+              __typename?: 'WorkshopEntity'
+              id?: string | null
               attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             } | null
           } | null
@@ -7864,6 +8225,7 @@ export type MenuEntityFragment = {
           __typename?: 'BranchEntityResponse'
           data?: {
             __typename: 'BranchEntity'
+            id?: string | null
             attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
           } | null
         } | null
@@ -7871,7 +8233,24 @@ export type MenuEntityFragment = {
           __typename?: 'DocumentEntityResponse'
           data?: {
             __typename: 'DocumentEntity'
-            attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+            id?: string | null
+            attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+          } | null
+        } | null
+        service?: {
+          __typename?: 'ServiceEntityResponse'
+          data?: {
+            __typename: 'ServiceEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+          } | null
+        } | null
+        workshop?: {
+          __typename?: 'WorkshopEntityResponse'
+          data?: {
+            __typename?: 'WorkshopEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
         } | null
       } | null
@@ -8222,12 +8601,12 @@ export type PageEntityFragment = {
           branches?: {
             __typename?: 'BranchRelationResponseCollection'
             data: Array<{
-              __typename?: 'BranchEntity'
+              __typename: 'BranchEntity'
               id?: string | null
               attributes?: {
                 __typename?: 'Branch'
-                title: string
                 address?: string | null
+                title: string
                 slug: string
               } | null
             }>
@@ -8399,6 +8778,7 @@ export type PageEntityFragment = {
               __typename?: 'BranchEntityResponse'
               data?: {
                 __typename: 'BranchEntity'
+                id?: string | null
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
@@ -8406,7 +8786,24 @@ export type PageEntityFragment = {
               __typename?: 'DocumentEntityResponse'
               data?: {
                 __typename: 'DocumentEntity'
-                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                id?: string | null
+                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+              } | null
+            } | null
+            service?: {
+              __typename?: 'ServiceEntityResponse'
+              data?: {
+                __typename: 'ServiceEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+              } | null
+            } | null
+            workshop?: {
+              __typename?: 'WorkshopEntityResponse'
+              data?: {
+                __typename?: 'WorkshopEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
             } | null
           } | null
@@ -8482,6 +8879,7 @@ export type PageEntityFragment = {
               __typename?: 'BranchEntityResponse'
               data?: {
                 __typename: 'BranchEntity'
+                id?: string | null
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
@@ -8489,7 +8887,24 @@ export type PageEntityFragment = {
               __typename?: 'DocumentEntityResponse'
               data?: {
                 __typename: 'DocumentEntity'
-                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                id?: string | null
+                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+              } | null
+            } | null
+            service?: {
+              __typename?: 'ServiceEntityResponse'
+              data?: {
+                __typename: 'ServiceEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+              } | null
+            } | null
+            workshop?: {
+              __typename?: 'WorkshopEntityResponse'
+              data?: {
+                __typename?: 'WorkshopEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
             } | null
           } | null
@@ -8588,6 +9003,7 @@ export type PageEntityFragment = {
               __typename?: 'BranchEntityResponse'
               data?: {
                 __typename: 'BranchEntity'
+                id?: string | null
                 attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
               } | null
             } | null
@@ -8595,7 +9011,24 @@ export type PageEntityFragment = {
               __typename?: 'DocumentEntityResponse'
               data?: {
                 __typename: 'DocumentEntity'
-                attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                id?: string | null
+                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+              } | null
+            } | null
+            service?: {
+              __typename?: 'ServiceEntityResponse'
+              data?: {
+                __typename: 'ServiceEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+              } | null
+            } | null
+            workshop?: {
+              __typename?: 'WorkshopEntityResponse'
+              data?: {
+                __typename?: 'WorkshopEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
             } | null
           } | null
@@ -8910,12 +9343,12 @@ export type PagesQuery = {
               branches?: {
                 __typename?: 'BranchRelationResponseCollection'
                 data: Array<{
-                  __typename?: 'BranchEntity'
+                  __typename: 'BranchEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Branch'
-                    title: string
                     address?: string | null
+                    title: string
                     slug: string
                   } | null
                 }>
@@ -9087,6 +9520,7 @@ export type PagesQuery = {
                   __typename?: 'BranchEntityResponse'
                   data?: {
                     __typename: 'BranchEntity'
+                    id?: string | null
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -9094,7 +9528,24 @@ export type PagesQuery = {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
                     __typename: 'DocumentEntity'
-                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
                 } | null
               } | null
@@ -9170,6 +9621,7 @@ export type PagesQuery = {
                   __typename?: 'BranchEntityResponse'
                   data?: {
                     __typename: 'BranchEntity'
+                    id?: string | null
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -9177,7 +9629,24 @@ export type PagesQuery = {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
                     __typename: 'DocumentEntity'
-                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
                 } | null
               } | null
@@ -9276,6 +9745,7 @@ export type PagesQuery = {
                   __typename?: 'BranchEntityResponse'
                   data?: {
                     __typename: 'BranchEntity'
+                    id?: string | null
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -9283,7 +9753,24 @@ export type PagesQuery = {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
                     __typename: 'DocumentEntity'
-                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
                 } | null
               } | null
@@ -9605,12 +10092,12 @@ export type PageBySlugQuery = {
               branches?: {
                 __typename?: 'BranchRelationResponseCollection'
                 data: Array<{
-                  __typename?: 'BranchEntity'
+                  __typename: 'BranchEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Branch'
-                    title: string
                     address?: string | null
+                    title: string
                     slug: string
                   } | null
                 }>
@@ -9782,6 +10269,7 @@ export type PageBySlugQuery = {
                   __typename?: 'BranchEntityResponse'
                   data?: {
                     __typename: 'BranchEntity'
+                    id?: string | null
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -9789,7 +10277,24 @@ export type PageBySlugQuery = {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
                     __typename: 'DocumentEntity'
-                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
                 } | null
               } | null
@@ -9865,6 +10370,7 @@ export type PageBySlugQuery = {
                   __typename?: 'BranchEntityResponse'
                   data?: {
                     __typename: 'BranchEntity'
+                    id?: string | null
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -9872,7 +10378,24 @@ export type PageBySlugQuery = {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
                     __typename: 'DocumentEntity'
-                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
                 } | null
               } | null
@@ -9971,6 +10494,7 @@ export type PageBySlugQuery = {
                   __typename?: 'BranchEntityResponse'
                   data?: {
                     __typename: 'BranchEntity'
+                    id?: string | null
                     attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
                   } | null
                 } | null
@@ -9978,7 +10502,24 @@ export type PageBySlugQuery = {
                   __typename?: 'DocumentEntityResponse'
                   data?: {
                     __typename: 'DocumentEntity'
-                    attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
                 } | null
               } | null
@@ -10541,6 +11082,35 @@ export const FaqEntityFragmentDoc = gql`
   }
   ${FaqCategoryEntityFragmentDoc}
 `
+export const BranchSlugEntityFragmentDoc = gql`
+  fragment BranchSlugEntity on BranchEntity {
+    __typename
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const ServiceSlugEntityFragmentDoc = gql`
+  fragment ServiceSlugEntity on ServiceEntity {
+    __typename
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const WorkshopSlugEntityFragmentDoc = gql`
+  fragment WorkshopSlugEntity on WorkshopEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
 export const LinkFragmentDoc = gql`
   fragment Link on ComponentItemsLink {
     label
@@ -10557,25 +11127,31 @@ export const LinkFragmentDoc = gql`
     }
     branch {
       data {
-        __typename
-        attributes {
-          title
-          slug
-        }
+        ...BranchSlugEntity
       }
     }
     document {
       data {
-        __typename
-        attributes {
-          title
-          slug
-        }
+        ...DocumentSlugEntity
+      }
+    }
+    service {
+      data {
+        ...ServiceSlugEntity
+      }
+    }
+    workshop {
+      data {
+        ...WorkshopSlugEntity
       }
     }
   }
   ${PageSlugEntityFragmentDoc}
   ${ArticleSlugEntityFragmentDoc}
+  ${BranchSlugEntityFragmentDoc}
+  ${DocumentSlugEntityFragmentDoc}
+  ${ServiceSlugEntityFragmentDoc}
+  ${WorkshopSlugEntityFragmentDoc}
 `
 export const FooterColumnItemFragmentDoc = gql`
   fragment FooterColumnItem on ComponentItemsFooterColumn {
@@ -10633,6 +11209,15 @@ export const HomepageEntityFragmentDoc = gql`
   }
   ${SlideItemFragmentDoc}
 `
+export const BranchEntityFragmentDoc = gql`
+  fragment BranchEntity on BranchEntity {
+    ...BranchSlugEntity
+    attributes {
+      address
+    }
+  }
+  ${BranchSlugEntityFragmentDoc}
+`
 export const MenuLinkFragmentDoc = gql`
   fragment MenuLink on ComponentMenuMenuLink {
     id
@@ -10645,24 +11230,18 @@ export const MenuLinkFragmentDoc = gql`
     }
     branch {
       data {
-        __typename
-        attributes {
-          title
-          slug
-        }
+        ...BranchEntity
       }
     }
     workshop {
       data {
-        __typename
-        attributes {
-          title
-          slug
-        }
+        ...WorkshopSlugEntity
       }
     }
   }
   ${PageSlugEntityFragmentDoc}
+  ${BranchEntityFragmentDoc}
+  ${WorkshopSlugEntityFragmentDoc}
 `
 export const MenuSectionFragmentDoc = gql`
   fragment MenuSection on ComponentMenuMenuSection {
@@ -10918,16 +11497,6 @@ export const ImageAndTextOverlappedSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
-export const BranchEntityFragmentDoc = gql`
-  fragment BranchEntity on BranchEntity {
-    id
-    attributes {
-      title
-      address
-      slug
-    }
-  }
-`
 export const BranchesSectionFragmentDoc = gql`
   fragment BranchesSection on ComponentSectionsBranches {
     title
@@ -10940,15 +11509,6 @@ export const BranchesSectionFragmentDoc = gql`
     }
   }
   ${BranchEntityFragmentDoc}
-`
-export const WorkshopSlugEntityFragmentDoc = gql`
-  fragment WorkshopSlugEntity on WorkshopEntity {
-    id
-    attributes {
-      title
-      slug
-    }
-  }
 `
 export const WorkshopEntityFragmentDoc = gql`
   fragment WorkshopEntity on WorkshopEntity {
@@ -11056,16 +11616,6 @@ export const PageEntityFragmentDoc = gql`
   ${PageSlugEntityFragmentDoc}
   ${HeaderSectionsFragmentDoc}
   ${PageSectionsFragmentDoc}
-`
-export const ServiceSlugEntityFragmentDoc = gql`
-  fragment ServiceSlugEntity on ServiceEntity {
-    __typename
-    id
-    attributes {
-      title
-      slug
-    }
-  }
 `
 export const ServiceCategoryEntityFragmentDoc = gql`
   fragment ServiceCategoryEntity on ServiceCategoryEntity {

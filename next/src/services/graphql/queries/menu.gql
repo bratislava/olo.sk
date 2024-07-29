@@ -9,20 +9,12 @@ fragment MenuLink on ComponentMenuMenuLink {
   }
   branch {
     data {
-      __typename
-      attributes {
-        title
-        slug
-      }
+      ...BranchEntity
     }
   }
   workshop {
     data {
-      __typename
-      attributes {
-        title
-        slug
-      }
+      ...WorkshopSlugEntity
     }
   }
 }

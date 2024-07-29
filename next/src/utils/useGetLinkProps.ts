@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 // import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
-import { LinkFragment } from '@/src/services/graphql/api'
+import { LinkFragment, MenuLinkFragment } from '@/src/services/graphql/api'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 export type LinkProps = {
@@ -19,7 +19,7 @@ export const useGetLinkProps = () => {
   const { getFullPath } = useGetFullPath()
 
   // eslint-disable-next-line sonarjs/cognitive-complexity
-  const getLinkProps = (link: LinkFragment | null | undefined) => {
+  const getLinkProps = (link: LinkFragment | MenuLinkFragment | null | undefined) => {
     let href = '#'
     let label = link?.label ?? undefined
     let target: '_blank' | undefined
@@ -28,17 +28,17 @@ export const useGetLinkProps = () => {
       return { children: label, href } // TODO
     }
 
-    // TODO Add article, branch and document links
+    // Some content types are not in MenuLinkFragment, so we have to check if they exist in the object
     if (link.page?.data?.attributes) {
       label = link.label ?? link.page.data.attributes.title
       href = getFullPath(link.page.data) ?? '#'
-    } else if (link.article?.data?.attributes) {
+    } else if ('article' in link && link.article?.data?.attributes) {
       label = link.label ?? link.article.data.attributes.title
       href = getFullPath(link.article.data) ?? '#'
     } else if (link.branch?.data?.attributes) {
       label = link.label ?? link.branch.data.attributes.title
       href = getFullPath(link.branch.data) ?? '#'
-    } else if (link.document?.data?.attributes) {
+    } else if ('document' in link && link.document?.data?.attributes) {
       label = link.label ?? link.document.data.attributes.title
       href = getFullPath(link.document.data) ?? '#'
     } else if (link?.url) {

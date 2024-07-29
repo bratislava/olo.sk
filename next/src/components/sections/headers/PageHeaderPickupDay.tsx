@@ -97,7 +97,12 @@ const PageHeaderPickupDay = ({ header }: Props) => {
               .map((article) => {
                 if (!article.attributes) return null
 
-                const { title: articleTitle, coverMedia, category, slug } = article.attributes
+                const {
+                  title: articleTitle,
+                  coverMedia,
+                  articleCategory,
+                  slug,
+                } = article.attributes
 
                 return (
                   <ArticleCard
@@ -105,7 +110,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
                     title={articleTitle}
                     linkHref={getFullPath(article) ?? '#'}
                     imgSrc={coverMedia?.data?.attributes?.url}
-                    tagText={category?.data?.attributes?.title}
+                    tagText={articleCategory?.data?.attributes?.title}
                   />
                 )
               })

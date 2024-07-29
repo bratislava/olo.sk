@@ -31,19 +31,23 @@ fragment HomepageServiceTile on ComponentItemsHomepageServiceTile {
   }
 }
 
+fragment HeroHomepageSection on ComponentSectionsHeroHomepageSection {
+  slides {
+    ...SlideItem
+  }
+  mainTiles {
+    ...HeroMainTile
+  }
+  smallTiles {
+    ...HeroSmallTile
+  }
+}
+
 fragment HomepageEntity on HomepageEntity {
   id
   attributes {
     heroSection {
-      slides {
-        ...SlideItem
-      }
-      mainTiles {
-        ...HeroMainTile
-      }
-      smallTiles {
-        ...HeroSmallTile
-      }
+      ...HeroHomepageSection
     }
     articlesSection {
       title

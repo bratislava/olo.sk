@@ -1,9 +1,16 @@
-fragment BranchEntity on BranchEntity {
+fragment BranchSlugEntity on BranchEntity {
+  __typename
   id
   attributes {
     title
-    address
     slug
+  }
+}
+
+fragment BranchEntity on BranchEntity {
+  ...BranchSlugEntity
+  attributes {
+    address
   }
 }
 

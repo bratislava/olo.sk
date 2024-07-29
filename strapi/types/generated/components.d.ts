@@ -187,6 +187,8 @@ export interface ItemsLink extends Schema.Component {
     article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>
     branch: Attribute.Relation<'items.link', 'oneToOne', 'api::branch.branch'>
     document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
+    service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
+    workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
   }
 }
 

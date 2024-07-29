@@ -63,3 +63,12 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+/* Remove native Safari arrows in accordions  */
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}

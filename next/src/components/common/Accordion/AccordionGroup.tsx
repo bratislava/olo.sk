@@ -1,5 +1,9 @@
+import { Fragment } from 'react'
+
 import Accordion, { AccordionProps } from '@/src/components/common/Accordion/Accordion'
 import cn from '@/src/utils/cn'
+
+import SidebarDivider from '../Sidebar/SidebarDivider'
 
 export type AccordionGroupProps = {
   accordionData: AccordionProps[]
@@ -14,18 +18,18 @@ const AccordionGroup = ({ accordionData, className }: AccordionGroupProps) => {
   return (
     <div
       className={cn(
-        'flex flex-col divide-y divide-border-default overflow-hidden rounded-lg border border-border-default bg-background-primary px-4 py-2 lg:px-5',
+        'flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary',
         className,
       )}
     >
       {accordionData.length > 0
         ? accordionData.map((accordion, index) => {
             return (
-              <Accordion
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                {...accordion}
-              />
+              // eslint-disable-next-line react/no-array-index-key
+              <Fragment key={index}>
+                {index > 0 && <SidebarDivider />}
+                <Accordion innerClassName="border-none" {...accordion} />
+              </Fragment>
             )
           })
         : null}

@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
 
+import WasteIcon from '@/src/components/common/Accordion/WasteIcon'
+import WasteSortingGuide from '@/src/components/common/Accordion/WasteSortingGuide'
 import Typography from '@/src/components/common/Typography/Typography'
 
 import AccordionGroupComponent from './AccordionGroup'
@@ -17,7 +20,7 @@ const meta: Meta<typeof AccordionGroupComponent> = {
   ],
 }
 
-const dummyTextContent = (
+const accordionDefaultDummyTextContent = (
   <Typography>
     Long dummy text: Ut eget malesuada nisl. Donec gravida, risus in maximus tincidunt, augue elit
     maximus ante, at posuere arcu est in metus. Sed maximus risus nulla, quis blandit nulla
@@ -29,20 +32,93 @@ const dummyTextContent = (
   </Typography>
 )
 
+const accordionDefaultData = [
+  {
+    title: 'Accordion title 1',
+    hasBottomBorder: false,
+    children: <Typography>Short dummy text</Typography>,
+  },
+
+  {
+    title: 'Accordion title 2',
+    hasBottomBorder: false,
+    children: accordionDefaultDummyTextContent,
+  },
+
+  {
+    title: 'Accordion title 3',
+    hasBottomBorder: false,
+    children: accordionDefaultDummyTextContent,
+  },
+]
+const wasteSortingGuideData = {
+  leftColumn: {
+    title: 'Patrí sem:',
+    items: [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }],
+  },
+  rightColumn: {
+    title: 'Nepatrí sem:',
+    items: [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }],
+  },
+}
+
+const dummySortingGuideContent = (
+  <WasteSortingGuide
+    leftColumn={wasteSortingGuideData.leftColumn}
+    rightColumn={wasteSortingGuideData.rightColumn}
+  />
+)
+
+const accordionWasteData = [
+  {
+    title: 'Accordion title 1',
+    hasBottomBorder: false,
+    icon: <WasteIcon variant="plastic" />,
+    children: dummySortingGuideContent,
+  },
+
+  {
+    title: 'Accordion title 2',
+    hasBottomBorder: false,
+    icon: <WasteIcon variant="paper" />,
+    children: dummySortingGuideContent,
+  },
+
+  {
+    title: 'Accordion title 3',
+    hasBottomBorder: false,
+    icon: <WasteIcon variant="glass" />,
+    children: dummySortingGuideContent,
+  },
+]
+
 export default meta
 type Story = StoryObj<typeof AccordionGroupComponent>
 
-export const AccordionGroup: Story = {
+export const AccordionDefaultGroup: Story = {
   args: {
-    accordionData: [
-      { title: 'Accordion title 1', children: <Typography>Short dummy text</Typography> },
-      { title: 'Accordion title 2', children: dummyTextContent },
-      { title: 'Accordion title 3', children: dummyTextContent },
-    ],
+    accordionData: accordionDefaultData,
   },
   render: (args) => (
-    <div className="w-full max-w-[500px]">
-      <AccordionGroupComponent {...args} />
+    <div className="flex w-full min-w-[255px] flex-col gap-4">
+      <div>
+        <p className="mb-1 text-[.7rem]">default</p>
+        <AccordionGroupComponent {...args} className="px-5 py-2" /> {/* Adjust group's padding */}
+      </div>
+    </div>
+  ),
+}
+
+export const AccordionWasteGroup: Story = {
+  args: {
+    accordionData: accordionWasteData,
+  },
+  render: (args) => (
+    <div className="flex w-full min-w-[255px] flex-col gap-4">
+      <div>
+        <p className="mb-1 text-[.7rem]">waste</p>
+        <AccordionGroupComponent {...args} /> {/* Has no group padding */}
+      </div>
     </div>
   ),
 }

@@ -5,6 +5,7 @@ import React from 'react'
 
 import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
+import ArticlesHomepageSection from '@/src/components/sections/hompage/ArticlesHomepageSection'
 import HeroHomepageSection from '@/src/components/sections/hompage/HeroHomepageSection'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
@@ -58,6 +59,7 @@ const Homepage = ({ homepage, general }: PageProps) => {
     <GeneralContextProvider general={general}>
       <PageLayoutPlaceholder>
         <HeroHomepageSection section={homepage.attributes?.heroSection} />
+        <ArticlesHomepageSection section={homepage.attributes?.articlesSection} />
         <HomePageContentPlaceholder />
       </PageLayoutPlaceholder>
     </GeneralContextProvider>

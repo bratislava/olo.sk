@@ -43,6 +43,19 @@ fragment HeroHomepageSection on ComponentSectionsHeroHomepageSection {
   }
 }
 
+fragment ArticlesHomepageSection on ComponentSectionsArticlesHomepageSection {
+  title
+  text
+  articles {
+    data {
+      ...ArticleEntity
+    }
+  }
+  showMoreLink {
+    ...Link
+  }
+}
+
 fragment HomepageEntity on HomepageEntity {
   id
   attributes {
@@ -50,16 +63,7 @@ fragment HomepageEntity on HomepageEntity {
       ...HeroHomepageSection
     }
     articlesSection {
-      title
-      text
-      articles {
-        data {
-          ...ArticleEntity
-        }
-      }
-      showMoreLink {
-        ...Link
-      }
+      ...ArticlesHomepageSection
     }
     koloSection {
       title

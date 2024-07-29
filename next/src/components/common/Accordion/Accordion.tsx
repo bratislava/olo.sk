@@ -39,7 +39,7 @@ const Accordion = ({
           <summary
             className={cn(
               'relative flex cursor-pointer items-center justify-center gap-4 text-left after:absolute after:inset-0',
-              'ring-offset-2 group-open:pb-0 focus:outline-none focus:ring',
+              'group-open:pb-0 focus:outline-none',
               {
                 'py-5 group-open:border-none group-open:py-5 group-open:pb-3 lg:group-open:pb-4':
                   !icon,

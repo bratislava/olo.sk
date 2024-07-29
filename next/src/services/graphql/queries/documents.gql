@@ -1,5 +1,14 @@
-fragment DocumentEntity on DocumentEntity {
+fragment DocumentSlugEntity on DocumentEntity {
+  __typename
   id
+  attributes {
+    slug
+    title
+  }
+}
+
+fragment DocumentEntity on DocumentEntity {
+  ...DocumentSlugEntity
   attributes {
     title
     slug

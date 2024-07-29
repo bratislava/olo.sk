@@ -70,12 +70,17 @@ query DocumentCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
   }
 }
 
-fragment FaqCategoryEntity on FaqCategoryEntity {
+fragment FaqCategorySlugEntity on FaqCategoryEntity {
+  __typename
   id
   attributes {
-    title
     slug
+    title
   }
+}
+
+fragment FaqCategoryEntity on FaqCategoryEntity {
+  ...FaqCategorySlugEntity
 }
 
 query FaqCategories($locale: I18NLocaleCode!) {

@@ -8,4 +8,8 @@ export default {
   meilisearch: {
     config: meilisearchConfig,
   },
+  wysiwyg: {
+    enabled: true,
+    resolve: './src/plugins/wysiwyg',
+  },
 }

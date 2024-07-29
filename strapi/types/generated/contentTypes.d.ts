@@ -1235,6 +1235,63 @@ export interface ApiMenuMenu extends Schema.SingleType {
   }
 }
 
+export interface ApiNavigationNavigation extends Schema.SingleType {
+  collectionName: 'navigations'
+  info: {
+    singularName: 'navigation'
+    pluralName: 'navigations'
+    displayName: 'Navigation'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    articlesParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    documentsParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    faqCategoriesParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    servicesParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    workshopsParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::navigation.navigation', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::navigation.navigation', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToMany',
+      'api::navigation.navigation'
+    >
+    locale: Attribute.String
+  }
+}
+
 export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
   collectionName: 'opening_times'
   info: {
@@ -1581,6 +1638,7 @@ declare module '@strapi/types' {
       'api::footer.footer': ApiFooterFooter
       'api::homepage.homepage': ApiHomepageHomepage
       'api::menu.menu': ApiMenuMenu
+      'api::navigation.navigation': ApiNavigationNavigation
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
       'api::service.service': ApiServiceService

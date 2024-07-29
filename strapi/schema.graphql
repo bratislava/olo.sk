@@ -1381,7 +1381,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Service | ServiceCategory | Sitemap | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Sitemap | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1644,6 +1644,7 @@ type Mutation {
   createFooterLocalization(data: FooterInput, id: ID, locale: I18NLocaleCode): FooterEntityResponse
   createHomepageLocalization(data: HomepageInput, id: ID, locale: I18NLocaleCode): HomepageEntityResponse
   createMenuLocalization(data: MenuInput, id: ID, locale: I18NLocaleCode): MenuEntityResponse
+  createNavigationLocalization(data: NavigationInput, id: ID, locale: I18NLocaleCode): NavigationEntityResponse
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
   createPage(data: PageInput!, locale: I18NLocaleCode): PageEntityResponse
   createPageLocalization(data: PageInput, id: ID, locale: I18NLocaleCode): PageEntityResponse
@@ -1675,6 +1676,7 @@ type Mutation {
   deleteFooter(locale: I18NLocaleCode): FooterEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
   deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
+  deleteNavigation(locale: I18NLocaleCode): NavigationEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!, locale: I18NLocaleCode): PageEntityResponse
   deleteService(id: ID!, locale: I18NLocaleCode): ServiceEntityResponse
@@ -1720,6 +1722,7 @@ type Mutation {
   updateFooter(data: FooterInput!, locale: I18NLocaleCode): FooterEntityResponse
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
   updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
+  updateNavigation(data: NavigationInput!, locale: I18NLocaleCode): NavigationEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!, locale: I18NLocaleCode): PageEntityResponse
   updateService(data: ServiceInput!, id: ID!, locale: I18NLocaleCode): ServiceEntityResponse
@@ -1736,6 +1739,59 @@ type Mutation {
   updateUsersPermissionsUser(data: UsersPermissionsUserInput!, id: ID!): UsersPermissionsUserEntityResponse!
   updateWorkshop(data: WorkshopInput!, id: ID!): WorkshopEntityResponse
   upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID): UploadFileEntityResponse!
+}
+
+type Navigation {
+  articlesParentPage: PageEntityResponse
+  createdAt: DateTime
+  documentsParentPage: PageEntityResponse
+  faqCategoriesParentPage: PageEntityResponse
+  locale: String
+  localizations: NavigationRelationResponseCollection
+  servicesParentPage: PageEntityResponse
+  updatedAt: DateTime
+  workshopsParentPage: PageEntityResponse
+}
+
+type NavigationEntity {
+  attributes: Navigation
+  id: ID
+}
+
+type NavigationEntityResponse {
+  data: NavigationEntity
+}
+
+type NavigationEntityResponseCollection {
+  data: [NavigationEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input NavigationFiltersInput {
+  and: [NavigationFiltersInput]
+  articlesParentPage: PageFiltersInput
+  createdAt: DateTimeFilterInput
+  documentsParentPage: PageFiltersInput
+  faqCategoriesParentPage: PageFiltersInput
+  locale: StringFilterInput
+  localizations: NavigationFiltersInput
+  not: NavigationFiltersInput
+  or: [NavigationFiltersInput]
+  servicesParentPage: PageFiltersInput
+  updatedAt: DateTimeFilterInput
+  workshopsParentPage: PageFiltersInput
+}
+
+input NavigationInput {
+  articlesParentPage: ID
+  documentsParentPage: ID
+  faqCategoriesParentPage: ID
+  servicesParentPage: ID
+  workshopsParentPage: ID
+}
+
+type NavigationRelationResponseCollection {
+  data: [NavigationEntity!]!
 }
 
 type OpeningTime {
@@ -1895,6 +1951,7 @@ type Query {
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
   me: UsersPermissionsMe
   menu(locale: I18NLocaleCode): MenuEntityResponse
+  navigation(locale: I18NLocaleCode): NavigationEntityResponse
   openingTime(id: ID): OpeningTimeEntityResponse
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
   page(id: ID, locale: I18NLocaleCode): PageEntityResponse

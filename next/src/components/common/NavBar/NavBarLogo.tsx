@@ -13,7 +13,7 @@ const NavBarLogo = ({ className }: NavBarLogoProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={cn('-m-1.5 rounded p-1.5', className)}>
+    <div className={cn('-m-1.5 shrink-0 rounded p-1.5', className)}>
       <Button
         variant="unstyled"
         href="/"

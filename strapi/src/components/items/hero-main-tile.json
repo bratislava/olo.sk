@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_items_hero_main_tiles",
+  "info": {
+    "displayName": "hero main tile"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    }
+  }
+}

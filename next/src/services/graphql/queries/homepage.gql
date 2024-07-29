@@ -9,11 +9,79 @@ fragment SlideItem on ComponentItemsSlide {
   backgroundColor
 }
 
+fragment HeroMainTile on ComponentItemsHeroMainTile {
+  text
+  link {
+    ...Link
+  }
+}
+
+fragment HeroSmallTile on ComponentItemsHeroSmallTile {
+  icon
+  link {
+    ...Link
+  }
+}
+
+fragment HomepageServiceTile on ComponentItemsHomepageServiceTile {
+  title
+  text
+  link {
+    ...Link
+  }
+}
+
 fragment HomepageEntity on HomepageEntity {
   id
   attributes {
-    slides {
-      ...SlideItem
+    heroSection {
+      slides {
+        ...SlideItem
+      }
+      mainTiles {
+        ...HeroMainTile
+      }
+      smallTiles {
+        ...HeroSmallTile
+      }
+    }
+    articlesSection {
+      title
+      text
+      articles {
+        data {
+          ...ArticleEntity
+        }
+      }
+      showMoreLink {
+        ...Link
+      }
+    }
+    koloSection {
+      title
+      text
+      mainCards {
+        ...Link
+      }
+      branchesTitle
+      branches {
+        data {
+          ...BranchEntity
+        }
+      }
+      showMoreLink {
+        ...Link
+      }
+    }
+    servicesSection {
+      title
+      text
+      tiles {
+        ...HomepageServiceTile
+      }
+      showMoreLink {
+        ...Link
+      }
     }
   }
 }

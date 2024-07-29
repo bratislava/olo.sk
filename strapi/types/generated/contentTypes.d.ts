@@ -1130,17 +1130,30 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
     }
   }
   attributes: {
-    slides: Attribute.Component<'items.slide', true> &
+    heroSection: Attribute.Component<'sections.hero-homepage-section'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
         }
       }>
-    featuredArticles: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::article.article'
-    >
+    articlesSection: Attribute.Component<'sections.articles-homepage-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    koloSection: Attribute.Component<'sections.kolo-homepage-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    servicesSection: Attribute.Component<'sections.services-homepage-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &

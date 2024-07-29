@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_items_homepage_service_tiles",
+  "info": {
+    "displayName": "homepage service tile"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    }
+  }
+}

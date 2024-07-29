@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_items_hero_small_tiles",
+  "info": {
+    "displayName": "hero small tile"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "string"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    }
+  }
+}

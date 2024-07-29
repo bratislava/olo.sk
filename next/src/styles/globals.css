@@ -41,6 +41,14 @@
   .text-button {
     @apply text-size-button-default lg:text-size-button-large;
   }
+
+  .chevron-down-animate {
+    @apply transform transition duration-300 ease-in-out;
+  }
+
+  .rotate-menu-trigger[data-state='open'] > .chevron-down-animate {
+    @apply rotate-180;
+  }
 }
 
 /* Remove arrows from input type='number' */

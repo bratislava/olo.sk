@@ -21,3 +21,99 @@ query CategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
     }
   }
 }
+
+fragment ArticleCategoryEntity on ArticleCategoryEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+query ArticleCategories($locale: I18NLocaleCode!) {
+  articleCategories(locale: $locale) {
+    data {
+      ...ArticleCategoryEntity
+    }
+  }
+}
+
+query ArticleCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  articleCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+    data {
+      ...ArticleCategoryEntity
+    }
+  }
+}
+
+fragment DocumentCategoryEntity on DocumentCategoryEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+query DocumentCategories($locale: I18NLocaleCode!) {
+  documentCategories(locale: $locale) {
+    data {
+      ...DocumentCategoryEntity
+    }
+  }
+}
+
+query DocumentCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  documentCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+    data {
+      ...DocumentCategoryEntity
+    }
+  }
+}
+
+fragment FaqCategoryEntity on FaqCategoryEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+query FaqCategories($locale: I18NLocaleCode!) {
+  faqCategories(locale: $locale) {
+    data {
+      ...FaqCategoryEntity
+    }
+  }
+}
+
+query FaqCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  faqCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+    data {
+      ...FaqCategoryEntity
+    }
+  }
+}
+
+fragment ServiceCategoryEntity on ServiceCategoryEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+query ServiceCategories($locale: I18NLocaleCode!) {
+  serviceCategories(locale: $locale) {
+    data {
+      ...ServiceCategoryEntity
+    }
+  }
+}
+
+query ServiceCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  serviceCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+    data {
+      ...ServiceCategoryEntity
+    }
+  }
+}

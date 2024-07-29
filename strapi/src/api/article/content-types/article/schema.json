@@ -47,9 +47,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -65,10 +63,16 @@
       "type": "datetime",
       "required": true
     },
-    "category": {
+    "articleCategory": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::category.category",
+      "target": "api::article-category.article-category",
+      "inversedBy": "articles"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
       "inversedBy": "articles"
     },
     "content": {

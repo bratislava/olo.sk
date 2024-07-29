@@ -4,7 +4,7 @@
 
 type Article {
   addedAt: DateTime!
-  category: CategoryEntityResponse
+  articleCategory: ArticleCategoryEntityResponse
   content: String
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
@@ -13,8 +13,60 @@ type Article {
   perex: String
   publishedAt: DateTime
   slug: String!
+  tags(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
   title: String!
   updatedAt: DateTime
+}
+
+type ArticleCategory {
+  articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
+  createdAt: DateTime
+  locale: String
+  localizations(filters: ArticleCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleCategoryRelationResponseCollection
+  publishedAt: DateTime
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+type ArticleCategoryEntity {
+  attributes: ArticleCategory
+  id: ID
+}
+
+type ArticleCategoryEntityResponse {
+  data: ArticleCategoryEntity
+}
+
+type ArticleCategoryEntityResponseCollection {
+  data: [ArticleCategoryEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input ArticleCategoryFiltersInput {
+  and: [ArticleCategoryFiltersInput]
+  articles: ArticleFiltersInput
+  createdAt: DateTimeFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: ArticleCategoryFiltersInput
+  not: ArticleCategoryFiltersInput
+  or: [ArticleCategoryFiltersInput]
+  publishedAt: DateTimeFilterInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input ArticleCategoryInput {
+  articles: [ID]
+  publishedAt: DateTime
+  slug: String
+  title: String
+}
+
+type ArticleCategoryRelationResponseCollection {
+  data: [ArticleCategoryEntity!]!
 }
 
 type ArticleEntity {
@@ -34,7 +86,7 @@ type ArticleEntityResponseCollection {
 input ArticleFiltersInput {
   addedAt: DateTimeFilterInput
   and: [ArticleFiltersInput]
-  category: CategoryFiltersInput
+  articleCategory: ArticleCategoryFiltersInput
   content: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
@@ -45,18 +97,20 @@ input ArticleFiltersInput {
   perex: StringFilterInput
   publishedAt: DateTimeFilterInput
   slug: StringFilterInput
+  tags: TagFiltersInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input ArticleInput {
   addedAt: DateTime
-  category: ID
+  articleCategory: ID
   content: String
   coverMedia: ID
   perex: String
   publishedAt: DateTime
   slug: String
+  tags: [ID]
   title: String
 }
 
@@ -144,7 +198,6 @@ type BranchRelationResponseCollection {
 }
 
 type Category {
-  articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   createdAt: DateTime
   locale: String
   localizations(filters: CategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): CategoryRelationResponseCollection
@@ -170,7 +223,6 @@ type CategoryEntityResponseCollection {
 
 input CategoryFiltersInput {
   and: [CategoryFiltersInput]
-  articles: ArticleFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -184,7 +236,6 @@ input CategoryFiltersInput {
 }
 
 input CategoryInput {
-  articles: [ID]
   publishedAt: DateTime
   slug: String
   title: String
@@ -990,10 +1041,63 @@ input DateTimeFilterInput {
 
 type Document {
   createdAt: DateTime
+  documentCategory: DocumentCategoryEntityResponse
+  files(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
   publishedAt: DateTime
   slug: String!
   title: String!
   updatedAt: DateTime
+}
+
+type DocumentCategory {
+  createdAt: DateTime
+  dokuments(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
+  locale: String
+  localizations(filters: DocumentCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentCategoryRelationResponseCollection
+  publishedAt: DateTime
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+type DocumentCategoryEntity {
+  attributes: DocumentCategory
+  id: ID
+}
+
+type DocumentCategoryEntityResponse {
+  data: DocumentCategoryEntity
+}
+
+type DocumentCategoryEntityResponseCollection {
+  data: [DocumentCategoryEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input DocumentCategoryFiltersInput {
+  and: [DocumentCategoryFiltersInput]
+  createdAt: DateTimeFilterInput
+  dokuments: DocumentFiltersInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: DocumentCategoryFiltersInput
+  not: DocumentCategoryFiltersInput
+  or: [DocumentCategoryFiltersInput]
+  publishedAt: DateTimeFilterInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input DocumentCategoryInput {
+  dokuments: [ID]
+  publishedAt: DateTime
+  slug: String
+  title: String
+}
+
+type DocumentCategoryRelationResponseCollection {
+  data: [DocumentCategoryEntity!]!
 }
 
 type DocumentEntity {
@@ -1013,6 +1117,7 @@ type DocumentEntityResponseCollection {
 input DocumentFiltersInput {
   and: [DocumentFiltersInput]
   createdAt: DateTimeFilterInput
+  documentCategory: DocumentCategoryFiltersInput
   id: IDFilterInput
   not: DocumentFiltersInput
   or: [DocumentFiltersInput]
@@ -1023,6 +1128,8 @@ input DocumentFiltersInput {
 }
 
 input DocumentInput {
+  documentCategory: ID
+  files: [ID]
   publishedAt: DateTime
   slug: String
   title: String
@@ -1091,11 +1198,63 @@ type Error {
 type Faq {
   content: String!
   createdAt: DateTime
+  faqCategory: FaqCategoryEntityResponse
   locale: String
   localizations(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
   publishedAt: DateTime
   title: String!
   updatedAt: DateTime
+}
+
+type FaqCategory {
+  createdAt: DateTime
+  faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
+  locale: String
+  localizations(filters: FaqCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqCategoryRelationResponseCollection
+  publishedAt: DateTime
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+type FaqCategoryEntity {
+  attributes: FaqCategory
+  id: ID
+}
+
+type FaqCategoryEntityResponse {
+  data: FaqCategoryEntity
+}
+
+type FaqCategoryEntityResponseCollection {
+  data: [FaqCategoryEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input FaqCategoryFiltersInput {
+  and: [FaqCategoryFiltersInput]
+  createdAt: DateTimeFilterInput
+  faqs: FaqFiltersInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: FaqCategoryFiltersInput
+  not: FaqCategoryFiltersInput
+  or: [FaqCategoryFiltersInput]
+  publishedAt: DateTimeFilterInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input FaqCategoryInput {
+  faqs: [ID]
+  publishedAt: DateTime
+  slug: String
+  title: String
+}
+
+type FaqCategoryRelationResponseCollection {
+  data: [FaqCategoryEntity!]!
 }
 
 type FaqEntity {
@@ -1116,6 +1275,7 @@ input FaqFiltersInput {
   and: [FaqFiltersInput]
   content: StringFilterInput
   createdAt: DateTimeFilterInput
+  faqCategory: FaqCategoryFiltersInput
   id: IDFilterInput
   locale: StringFilterInput
   localizations: FaqFiltersInput
@@ -1128,6 +1288,7 @@ input FaqFiltersInput {
 
 input FaqInput {
   content: String
+  faqCategory: ID
   publishedAt: DateTime
   title: String
 }
@@ -1220,7 +1381,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | Faq | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Sitemap | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | Category | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Service | ServiceCategory | Sitemap | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   createdAt: DateTime
@@ -1465,6 +1626,8 @@ type Mutation {
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
   createArticle(data: ArticleInput!, locale: I18NLocaleCode): ArticleEntityResponse
+  createArticleCategory(data: ArticleCategoryInput!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
+  createArticleCategoryLocalization(data: ArticleCategoryInput, id: ID, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   createArticleLocalization(data: ArticleInput, id: ID, locale: I18NLocaleCode): ArticleEntityResponse
   createBranch(data: BranchInput!, locale: I18NLocaleCode): BranchEntityResponse
   createBranchLocalization(data: BranchInput, id: ID, locale: I18NLocaleCode): BranchEntityResponse
@@ -1472,7 +1635,11 @@ type Mutation {
   createCategoryLocalization(data: CategoryInput, id: ID, locale: I18NLocaleCode): CategoryEntityResponse
   createContact(data: ContactInput!): ContactEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
+  createDocumentCategory(data: DocumentCategoryInput!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
+  createDocumentCategoryLocalization(data: DocumentCategoryInput, id: ID, locale: I18NLocaleCode): DocumentCategoryEntityResponse
   createFaq(data: FaqInput!, locale: I18NLocaleCode): FaqEntityResponse
+  createFaqCategory(data: FaqCategoryInput!, locale: I18NLocaleCode): FaqCategoryEntityResponse
+  createFaqCategoryLocalization(data: FaqCategoryInput, id: ID, locale: I18NLocaleCode): FaqCategoryEntityResponse
   createFaqLocalization(data: FaqInput, id: ID, locale: I18NLocaleCode): FaqEntityResponse
   createFooterLocalization(data: FooterInput, id: ID, locale: I18NLocaleCode): FooterEntityResponse
   createHomepageLocalization(data: HomepageInput, id: ID, locale: I18NLocaleCode): HomepageEntityResponse
@@ -1480,6 +1647,10 @@ type Mutation {
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
   createPage(data: PageInput!, locale: I18NLocaleCode): PageEntityResponse
   createPageLocalization(data: PageInput, id: ID, locale: I18NLocaleCode): PageEntityResponse
+  createService(data: ServiceInput!, locale: I18NLocaleCode): ServiceEntityResponse
+  createServiceCategory(data: ServiceCategoryInput!, locale: I18NLocaleCode): ServiceCategoryEntityResponse
+  createServiceCategoryLocalization(data: ServiceCategoryInput, id: ID, locale: I18NLocaleCode): ServiceCategoryEntityResponse
+  createServiceLocalization(data: ServiceInput, id: ID, locale: I18NLocaleCode): ServiceEntityResponse
   createSitemapLocalization(data: SitemapInput, id: ID, locale: I18NLocaleCode): SitemapEntityResponse
   createTag(data: TagInput!, locale: I18NLocaleCode): TagEntityResponse
   createTagLocalization(data: TagInput, id: ID, locale: I18NLocaleCode): TagEntityResponse
@@ -1493,16 +1664,21 @@ type Mutation {
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
   createWorkshop(data: WorkshopInput!): WorkshopEntityResponse
   deleteArticle(id: ID!, locale: I18NLocaleCode): ArticleEntityResponse
+  deleteArticleCategory(id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   deleteBranch(id: ID!, locale: I18NLocaleCode): BranchEntityResponse
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
+  deleteDocumentCategory(id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
   deleteFaq(id: ID!, locale: I18NLocaleCode): FaqEntityResponse
+  deleteFaqCategory(id: ID!, locale: I18NLocaleCode): FaqCategoryEntityResponse
   deleteFooter(locale: I18NLocaleCode): FooterEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
   deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!, locale: I18NLocaleCode): PageEntityResponse
+  deleteService(id: ID!, locale: I18NLocaleCode): ServiceEntityResponse
+  deleteServiceCategory(id: ID!, locale: I18NLocaleCode): ServiceCategoryEntityResponse
   deleteSitemap(locale: I18NLocaleCode): SitemapEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
@@ -1532,17 +1708,22 @@ type Mutation {
   """
   resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
   updateArticle(data: ArticleInput!, id: ID!, locale: I18NLocaleCode): ArticleEntityResponse
+  updateArticleCategory(data: ArticleCategoryInput!, id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   updateBranch(data: BranchInput!, id: ID!, locale: I18NLocaleCode): BranchEntityResponse
   updateCategory(data: CategoryInput!, id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
+  updateDocumentCategory(data: DocumentCategoryInput!, id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
   updateFaq(data: FaqInput!, id: ID!, locale: I18NLocaleCode): FaqEntityResponse
+  updateFaqCategory(data: FaqCategoryInput!, id: ID!, locale: I18NLocaleCode): FaqCategoryEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   updateFooter(data: FooterInput!, locale: I18NLocaleCode): FooterEntityResponse
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
   updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!, locale: I18NLocaleCode): PageEntityResponse
+  updateService(data: ServiceInput!, id: ID!, locale: I18NLocaleCode): ServiceEntityResponse
+  updateServiceCategory(data: ServiceCategoryInput!, id: ID!, locale: I18NLocaleCode): ServiceCategoryEntityResponse
   updateSitemap(data: SitemapInput!, locale: I18NLocaleCode): SitemapEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
@@ -1691,6 +1872,8 @@ enum PublicationState {
 
 type Query {
   article(id: ID, locale: I18NLocaleCode): ArticleEntityResponse
+  articleCategories(filters: ArticleCategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleCategoryEntityResponseCollection
+  articleCategory(id: ID, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   articles(filters: ArticleFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleEntityResponseCollection
   branch(id: ID, locale: I18NLocaleCode): BranchEntityResponse
   branches(filters: BranchFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchEntityResponseCollection
@@ -1699,8 +1882,12 @@ type Query {
   contact(id: ID): ContactEntityResponse
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
   document(id: ID): DocumentEntityResponse
+  documentCategories(filters: DocumentCategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentCategoryEntityResponseCollection
+  documentCategory(id: ID, locale: I18NLocaleCode): DocumentCategoryEntityResponse
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentEntityResponseCollection
   faq(id: ID, locale: I18NLocaleCode): FaqEntityResponse
+  faqCategories(filters: FaqCategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqCategoryEntityResponseCollection
+  faqCategory(id: ID, locale: I18NLocaleCode): FaqCategoryEntityResponse
   faqs(filters: FaqFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqEntityResponseCollection
   footer(locale: I18NLocaleCode): FooterEntityResponse
   homepage(locale: I18NLocaleCode): HomepageEntityResponse
@@ -1712,6 +1899,10 @@ type Query {
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
   page(id: ID, locale: I18NLocaleCode): PageEntityResponse
   pages(filters: PageFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageEntityResponseCollection
+  service(id: ID, locale: I18NLocaleCode): ServiceEntityResponse
+  serviceCategories(filters: ServiceCategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryEntityResponseCollection
+  serviceCategory(id: ID, locale: I18NLocaleCode): ServiceCategoryEntityResponse
+  services(filters: ServiceFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceEntityResponseCollection
   sitemap(locale: I18NLocaleCode): SitemapEntityResponse
   tag(id: ID, locale: I18NLocaleCode): TagEntityResponse
   tags(filters: TagFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagEntityResponseCollection
@@ -1729,6 +1920,108 @@ type Query {
 
 type ResponseCollectionMeta {
   pagination: Pagination!
+}
+
+type Service {
+  createdAt: DateTime
+  locale: String
+  localizations(filters: ServiceFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceRelationResponseCollection
+  publishedAt: DateTime
+  serviceCategories(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+type ServiceCategory {
+  createdAt: DateTime
+  locale: String
+  localizations(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
+  publishedAt: DateTime
+  services(filters: ServiceFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceRelationResponseCollection
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+}
+
+type ServiceCategoryEntity {
+  attributes: ServiceCategory
+  id: ID
+}
+
+type ServiceCategoryEntityResponse {
+  data: ServiceCategoryEntity
+}
+
+type ServiceCategoryEntityResponseCollection {
+  data: [ServiceCategoryEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input ServiceCategoryFiltersInput {
+  and: [ServiceCategoryFiltersInput]
+  createdAt: DateTimeFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: ServiceCategoryFiltersInput
+  not: ServiceCategoryFiltersInput
+  or: [ServiceCategoryFiltersInput]
+  publishedAt: DateTimeFilterInput
+  services: ServiceFiltersInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input ServiceCategoryInput {
+  publishedAt: DateTime
+  services: [ID]
+  slug: String
+  title: String
+}
+
+type ServiceCategoryRelationResponseCollection {
+  data: [ServiceCategoryEntity!]!
+}
+
+type ServiceEntity {
+  attributes: Service
+  id: ID
+}
+
+type ServiceEntityResponse {
+  data: ServiceEntity
+}
+
+type ServiceEntityResponseCollection {
+  data: [ServiceEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input ServiceFiltersInput {
+  and: [ServiceFiltersInput]
+  createdAt: DateTimeFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: ServiceFiltersInput
+  not: ServiceFiltersInput
+  or: [ServiceFiltersInput]
+  publishedAt: DateTimeFilterInput
+  serviceCategories: ServiceCategoryFiltersInput
+  slug: StringFilterInput
+  title: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input ServiceInput {
+  publishedAt: DateTime
+  serviceCategories: [ID]
+  slug: String
+  title: String
+}
+
+type ServiceRelationResponseCollection {
+  data: [ServiceEntity!]!
 }
 
 type Sitemap {
@@ -1807,6 +2100,7 @@ input StringFilterInput {
 }
 
 type Tag {
+  articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   createdAt: DateTime
   locale: String
   localizations(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
@@ -1832,6 +2126,7 @@ type TagEntityResponseCollection {
 
 input TagFiltersInput {
   and: [TagFiltersInput]
+  articles: ArticleFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -1845,6 +2140,7 @@ input TagFiltersInput {
 }
 
 input TagInput {
+  articles: [ID]
   publishedAt: DateTime
   slug: String
   title: String

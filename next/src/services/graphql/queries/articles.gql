@@ -17,9 +17,14 @@ fragment ArticleCardEntity on ArticleEntity {
       }
     }
     addedAt
-    category {
+    articleCategory {
       data {
-        ...CategoryEntity
+        ...ArticleCategoryEntity
+      }
+    }
+    tags {
+      data {
+        ...TagEntity
       }
     }
   }

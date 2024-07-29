@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_services_homepage_sections",
+  "info": {
+    "displayName": "services homepage section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "tiles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.homepage-service-tile",
+      "max": 3
+    },
+    "showMoreLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    }
+  }
+}

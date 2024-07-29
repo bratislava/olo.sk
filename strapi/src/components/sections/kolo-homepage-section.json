@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_kolo_homepage_sections",
+  "info": {
+    "displayName": "kolo homepage section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "text": {
+      "type": "text"
+    },
+    "mainCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.link",
+      "max": 2
+    },
+    "branchesTitle": {
+      "type": "string"
+    },
+    "branches": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::branch.branch"
+    },
+    "showMoreLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    }
+  }
+}

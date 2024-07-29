@@ -474,6 +474,69 @@ input ComponentItemsFooterColumnInput {
   title: String
 }
 
+type ComponentItemsHeroMainTile {
+  id: ID!
+  link: ComponentItemsLink
+  text: String
+}
+
+input ComponentItemsHeroMainTileFiltersInput {
+  and: [ComponentItemsHeroMainTileFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsHeroMainTileFiltersInput
+  or: [ComponentItemsHeroMainTileFiltersInput]
+  text: StringFilterInput
+}
+
+input ComponentItemsHeroMainTileInput {
+  id: ID
+  link: ComponentItemsLinkInput
+  text: String
+}
+
+type ComponentItemsHeroSmallTile {
+  icon: String
+  id: ID!
+  link: ComponentItemsLink
+}
+
+input ComponentItemsHeroSmallTileFiltersInput {
+  and: [ComponentItemsHeroSmallTileFiltersInput]
+  icon: StringFilterInput
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsHeroSmallTileFiltersInput
+  or: [ComponentItemsHeroSmallTileFiltersInput]
+}
+
+input ComponentItemsHeroSmallTileInput {
+  icon: String
+  id: ID
+  link: ComponentItemsLinkInput
+}
+
+type ComponentItemsHomepageServiceTile {
+  id: ID!
+  link: ComponentItemsLink
+  text: String
+  title: String!
+}
+
+input ComponentItemsHomepageServiceTileFiltersInput {
+  and: [ComponentItemsHomepageServiceTileFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsHomepageServiceTileFiltersInput
+  or: [ComponentItemsHomepageServiceTileFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsHomepageServiceTileInput {
+  id: ID
+  link: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -664,6 +727,32 @@ input ComponentMenuMenuSectionInput {
   specialSectionType: ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE
 }
 
+type ComponentSectionsArticlesHomepageSection {
+  articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
+  id: ID!
+  showMoreLink: ComponentItemsLink
+  text: String
+  title: String
+}
+
+input ComponentSectionsArticlesHomepageSectionFiltersInput {
+  and: [ComponentSectionsArticlesHomepageSectionFiltersInput]
+  articles: ArticleFiltersInput
+  not: ComponentSectionsArticlesHomepageSectionFiltersInput
+  or: [ComponentSectionsArticlesHomepageSectionFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsArticlesHomepageSectionInput {
+  articles: [ID]
+  id: ID
+  showMoreLink: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -742,6 +831,29 @@ input ComponentSectionsColumnsListInput {
   title: String
 }
 
+type ComponentSectionsHeroHomepageSection {
+  id: ID!
+  mainTiles(filters: ComponentItemsHeroMainTileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsHeroMainTile]
+  slides(filters: ComponentItemsSlideFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSlide]
+  smallTiles(filters: ComponentItemsHeroSmallTileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsHeroSmallTile]
+}
+
+input ComponentSectionsHeroHomepageSectionFiltersInput {
+  and: [ComponentSectionsHeroHomepageSectionFiltersInput]
+  mainTiles: ComponentItemsHeroMainTileFiltersInput
+  not: ComponentSectionsHeroHomepageSectionFiltersInput
+  or: [ComponentSectionsHeroHomepageSectionFiltersInput]
+  slides: ComponentItemsSlideFiltersInput
+  smallTiles: ComponentItemsHeroSmallTileFiltersInput
+}
+
+input ComponentSectionsHeroHomepageSectionInput {
+  id: ID
+  mainTiles: [ComponentItemsHeroMainTileInput]
+  slides: [ComponentItemsSlideInput]
+  smallTiles: [ComponentItemsHeroSmallTileInput]
+}
+
 type ComponentSectionsImageAndText {
   backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR!
   id: ID!
@@ -807,6 +919,38 @@ input ComponentSectionsImageAndTextOverlappedInput {
   title: String
 }
 
+type ComponentSectionsKoloHomepageSection {
+  branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
+  branchesTitle: String
+  id: ID!
+  mainCards(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
+  showMoreLink: ComponentItemsLink
+  text: String
+  title: String
+}
+
+input ComponentSectionsKoloHomepageSectionFiltersInput {
+  and: [ComponentSectionsKoloHomepageSectionFiltersInput]
+  branches: BranchFiltersInput
+  branchesTitle: StringFilterInput
+  mainCards: ComponentItemsLinkFiltersInput
+  not: ComponentSectionsKoloHomepageSectionFiltersInput
+  or: [ComponentSectionsKoloHomepageSectionFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsKoloHomepageSectionInput {
+  branches: [ID]
+  branchesTitle: String
+  id: ID
+  mainCards: [ComponentItemsLinkInput]
+  showMoreLink: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
 type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
@@ -845,6 +989,32 @@ input ComponentSectionsRichtextInput {
   backgroundColor: ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR
   content: String
   id: ID
+}
+
+type ComponentSectionsServicesHomepageSection {
+  id: ID!
+  showMoreLink: ComponentItemsLink
+  text: String
+  tiles(filters: ComponentItemsHomepageServiceTileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsHomepageServiceTile]
+  title: String
+}
+
+input ComponentSectionsServicesHomepageSectionFiltersInput {
+  and: [ComponentSectionsServicesHomepageSectionFiltersInput]
+  not: ComponentSectionsServicesHomepageSectionFiltersInput
+  or: [ComponentSectionsServicesHomepageSectionFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  tiles: ComponentItemsHomepageServiceTileFiltersInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsServicesHomepageSectionInput {
+  id: ID
+  showMoreLink: ComponentItemsLinkInput
+  text: String
+  tiles: [ComponentItemsHomepageServiceTileInput]
+  title: String
 }
 
 type ComponentSectionsTable {
@@ -1339,14 +1509,16 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
+  articlesSection: ComponentSectionsArticlesHomepageSection
   createdAt: DateTime
-  featuredArticles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
+  heroSection: ComponentSectionsHeroHomepageSection
+  koloSection: ComponentSectionsKoloHomepageSection
   locale: String
   localizations: HomepageRelationResponseCollection
-  slides(filters: ComponentItemsSlideFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSlide]
+  servicesSection: ComponentSectionsServicesHomepageSection
   updatedAt: DateTime
 }
 
@@ -1366,19 +1538,23 @@ type HomepageEntityResponseCollection {
 
 input HomepageFiltersInput {
   and: [HomepageFiltersInput]
+  articlesSection: ComponentSectionsArticlesHomepageSectionFiltersInput
   createdAt: DateTimeFilterInput
-  featuredArticles: ArticleFiltersInput
+  heroSection: ComponentSectionsHeroHomepageSectionFiltersInput
+  koloSection: ComponentSectionsKoloHomepageSectionFiltersInput
   locale: StringFilterInput
   localizations: HomepageFiltersInput
   not: HomepageFiltersInput
   or: [HomepageFiltersInput]
-  slides: ComponentItemsSlideFiltersInput
+  servicesSection: ComponentSectionsServicesHomepageSectionFiltersInput
   updatedAt: DateTimeFilterInput
 }
 
 input HomepageInput {
-  featuredArticles: [ID]
-  slides: [ComponentItemsSlideInput]
+  articlesSection: ComponentSectionsArticlesHomepageSectionInput
+  heroSection: ComponentSectionsHeroHomepageSectionInput
+  koloSection: ComponentSectionsKoloHomepageSectionInput
+  servicesSection: ComponentSectionsServicesHomepageSectionInput
 }
 
 type HomepageRelationResponseCollection {

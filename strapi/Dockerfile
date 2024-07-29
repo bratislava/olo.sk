@@ -14,7 +14,8 @@ COPY ./package.json ./yarn.lock ./
 # Uncomment if you need any to apply any patches
 # COPY patches ./patches
 # copy any installation files for Strapi plugins you want to build. For example:
-# COPY src/plugins/<package-name>/package.json src/plugins/<package-name>/yarn.lock ./src/plugins/<package-name>
+# COPY src/plugins/<package-name>/package.json src/plugins/<package-name>/yarn.lock ./src/plugins/<package-name>/
+COPY src/plugins/wysiwyg/package.json src/plugins/wysiwyg/yarn.lock src/plugins/wysiwyg/patches ./src/plugins/wysiwyg/
 # Or leave empty (do not add anyting) if you don't have any custom plugins (most likely ./plugins directory)
 
 FROM build-base AS install-prod
@@ -44,7 +45,7 @@ EXPOSE 1337
 ARG GIT_COMMIT="undefined"
 ENV GIT_COMMIT=$GIT_COMMIT
 LABEL org.opencontainers.image.revision="${GIT_COMMIT}" \
-      org.opencontainers.image.source="https://github.com/bratislava/bratislava.sk" \
+      org.opencontainers.image.source="https://github.com/bratislava/olo.sk" \
       org.opencontainers.image.licenses="EUPL-1.2"
 ENTRYPOINT [ "/sbin/tini", "--" ]
 
@@ -65,4 +66,8 @@ COPY --chown=node:node --from=build /build/app/dist ./dist
 # - plugins/<name>/dist/
 # - plugins/<name>/*.js
 # Or leave empty (do not add anyting) if you don't have any custom plugins (most likely ./plugins directory)
+COPY --chown=node:node --from=install-prod /build/src/plugins/wysiwyg/yarn.lock ./src/plugins/wysiwyg/yarn.lock
+COPY --chown=node:node --from=install-prod /build/src/plugins/wysiwyg/package.json ./src/plugins/wysiwyg/package.json
+COPY --chown=node:node --from=build /build/app/src/plugins/wysiwyg/dist ./src/plugins/wysiwyg/dist
+COPY --chown=node:node --from=build /build/app/src/plugins/wysiwyg/*.js ./src/plugins/wysiwyg/
 CMD [ "strapi", "start" ]

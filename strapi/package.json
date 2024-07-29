@@ -8,10 +8,10 @@
     "name": "City of Bratislava"
   },
   "scripts": {
-    "build": "strapi build",
+    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && strapi build",
     "dev": "yarn develop",
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
-    "postinstall": "patch-package",
+    "postinstall": "yarn --cwd ./src/plugins/wysiwyg/ install",
     "start": "strapi start",
     "strapi": "strapi"
   },
@@ -21,7 +21,6 @@
     "@strapi/plugin-i18n": "4.24.2",
     "@strapi/plugin-users-permissions": "4.24.2",
     "@strapi/strapi": "4.24.2",
-    "patch-package": "^6.5.1",
     "pg": "^8.11.3",
     "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",

@@ -36,13 +36,13 @@ const PageHeaderFeaturedNews = ({ header }: Props) => {
             .map((article) => {
               if (!article?.attributes) return null
 
-              const { title: articleTitle, category, coverMedia } = article.attributes
+              const { title: articleTitle, articleCategory, coverMedia } = article.attributes
 
               return (
                 <li>
                   <ArticleCard
                     title={articleTitle}
-                    tagText={category?.data?.attributes?.title}
+                    tagText={articleCategory?.data?.attributes?.title}
                     imgSrc={coverMedia?.data?.attributes?.url}
                     linkHref={getFullPath(article) ?? '#'}
                   />

@@ -30,7 +30,7 @@ export const ArticlePageHeader: Story = {
         __typename: 'ArticleEntity' as const,
         attributes: {
           ...args,
-          category: { data: { attributes: { title: args.categoryTitle, slug: '' } } },
+          articleCategory: { data: { attributes: { title: args.categoryTitle, slug: '' } } },
         },
       }}
     />

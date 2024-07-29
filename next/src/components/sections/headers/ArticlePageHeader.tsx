@@ -18,8 +18,8 @@ type Props = {
 const ArticlePageHeader = ({ article }: Props) => {
   if (!article.attributes) return null
 
-  const { title, coverMedia, category, addedAt } = article.attributes
-  const tagText = category?.data?.attributes?.title
+  const { title, coverMedia, articleCategory, addedAt } = article.attributes
+  const tagText = articleCategory?.data?.attributes?.title
   const imageUrl = coverMedia?.data?.attributes?.url
 
   return (

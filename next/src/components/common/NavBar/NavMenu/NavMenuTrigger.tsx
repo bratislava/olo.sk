@@ -19,7 +19,10 @@ const NavMenuTrigger = forwardRef<HTMLButtonElement, NavMenuTriggerProps>(
         // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
         onPointerMove={(event) => event.preventDefault()}
         onPointerLeave={(event) => event.preventDefault()}
-        className={cn('rotate-menu-trigger flex items-center justify-center gap-0.5', className)}
+        className={cn(
+          'rotate-menu-trigger flex items-center justify-center gap-0.5 px-4 py-5',
+          className,
+        )}
       >
         <Typography variant="p-default-bold">{label}</Typography>
         <Icon name="chevron-dole-maly" className="chevron-down-animate mb-1 size-6" aria-hidden />

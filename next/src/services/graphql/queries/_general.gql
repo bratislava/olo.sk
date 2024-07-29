@@ -23,10 +23,40 @@ fragment SitemapEntity on SitemapEntity {
   }
 }
 
+fragment NavigationEntity on NavigationEntity {
+  attributes {
+    articlesParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    documentsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    faqCategoriesParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    servicesParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    workshopsParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+  }
+}
+
 query General($locale: I18NLocaleCode!) {
-  sitemap(locale: $locale) {
+  navigation(locale: $locale) {
     data {
-      ...SitemapEntity
+      ...NavigationEntity
     }
   }
   footer(locale: $locale) {

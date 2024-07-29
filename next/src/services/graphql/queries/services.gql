@@ -1,8 +1,15 @@
-fragment ServiceEntity on ServiceEntity {
+fragment ServiceSlugEntity on ServiceEntity {
+  __typename
   id
   attributes {
     title
     slug
+  }
+}
+
+fragment ServiceEntity on ServiceEntity {
+  ...ServiceSlugEntity
+  attributes {
     serviceCategories {
       data {
         ...ServiceCategoryEntity

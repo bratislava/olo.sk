@@ -1,9 +1,13 @@
-fragment WorkshopEntity on WorkshopEntity {
+fragment WorkshopSlugEntity on WorkshopEntity {
   id
   attributes {
     title
     slug
   }
+}
+
+fragment WorkshopEntity on WorkshopEntity {
+  ...WorkshopSlugEntity
 }
 
 query Workshops {

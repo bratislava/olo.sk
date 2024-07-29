@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "faqs",
+  "collectionName": "service_categories",
   "info": {
-    "singularName": "faq",
-    "pluralName": "faqs",
-    "displayName": "FAQs",
-    "description": ""
+    "singularName": "service-category",
+    "pluralName": "service-categories",
+    "displayName": "Služby - kategórie"
   },
   "options": {
     "draftAndPublish": true
@@ -25,20 +24,21 @@
       "type": "string",
       "required": true
     },
-    "faqCategory": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::faq-category.faq-category",
-      "inversedBy": "faqs"
-    },
-    "content": {
+    "slug": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "richtext",
+      "type": "uid",
+      "targetField": "title",
       "required": true
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service",
+      "mappedBy": "serviceCategories"
     }
   }
 }

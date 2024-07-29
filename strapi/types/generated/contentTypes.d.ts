@@ -711,7 +711,12 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: false
         }
       }>
-    category: Attribute.Relation<'api::article.article', 'manyToOne', 'api::category.category'>
+    articleCategory: Attribute.Relation<
+      'api::article.article',
+      'manyToOne',
+      'api::article-category.article-category'
+    >
+    tags: Attribute.Relation<'api::article.article', 'manyToMany', 'api::tag.tag'>
     content: Attribute.RichText &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -726,6 +731,65 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     updatedBy: Attribute.Relation<'api::article.article', 'oneToOne', 'admin::user'> &
       Attribute.Private
     localizations: Attribute.Relation<'api::article.article', 'oneToMany', 'api::article.article'>
+    locale: Attribute.String
+  }
+}
+
+export interface ApiArticleCategoryArticleCategory extends Schema.CollectionType {
+  collectionName: 'article_categories'
+  info: {
+    singularName: 'article-category'
+    pluralName: 'article-categories'
+    displayName: '\u010Cl\u00E1nky - kateg\u00F3rie'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::article-category.article-category', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    articles: Attribute.Relation<
+      'api::article-category.article-category',
+      'oneToMany',
+      'api::article.article'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::article-category.article-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::article-category.article-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::article-category.article-category',
+      'oneToMany',
+      'api::article-category.article-category'
+    >
     locale: Attribute.String
   }
 }
@@ -815,7 +879,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
           localized: true
         }
       }>
-    articles: Attribute.Relation<'api::category.category', 'oneToMany', 'api::article.article'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -869,6 +932,12 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::document.document', 'title'> & Attribute.Required
+    documentCategory: Attribute.Relation<
+      'api::document.document',
+      'manyToOne',
+      'api::document-category.document-category'
+    >
+    files: Attribute.Media & Attribute.Required
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -876,6 +945,65 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
       Attribute.Private
     updatedBy: Attribute.Relation<'api::document.document', 'oneToOne', 'admin::user'> &
       Attribute.Private
+  }
+}
+
+export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionType {
+  collectionName: 'document_categories'
+  info: {
+    singularName: 'document-category'
+    pluralName: 'document-categories'
+    displayName: 'Dokumenty - kateg\u00F3rie'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::document-category.document-category', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    dokuments: Attribute.Relation<
+      'api::document-category.document-category',
+      'oneToMany',
+      'api::document.document'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::document-category.document-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::document-category.document-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::document-category.document-category',
+      'oneToMany',
+      'api::document-category.document-category'
+    >
+    locale: Attribute.String
   }
 }
 
@@ -903,6 +1031,7 @@ export interface ApiFaqFaq extends Schema.CollectionType {
           localized: true
         }
       }>
+    faqCategory: Attribute.Relation<'api::faq.faq', 'manyToOne', 'api::faq-category.faq-category'>
     content: Attribute.RichText &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -916,6 +1045,53 @@ export interface ApiFaqFaq extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> & Attribute.Private
     updatedBy: Attribute.Relation<'api::faq.faq', 'oneToOne', 'admin::user'> & Attribute.Private
     localizations: Attribute.Relation<'api::faq.faq', 'oneToMany', 'api::faq.faq'>
+    locale: Attribute.String
+  }
+}
+
+export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
+  collectionName: 'faq_categories'
+  info: {
+    singularName: 'faq-category'
+    pluralName: 'faq-categories'
+    displayName: 'FAQs - kateg\u00F3rie'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::faq-category.faq-category', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    faqs: Attribute.Relation<'api::faq-category.faq-category', 'oneToMany', 'api::faq.faq'>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::faq-category.faq-category', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::faq-category.faq-category', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::faq-category.faq-category',
+      'oneToMany',
+      'api::faq-category.faq-category'
+    >
     locale: Attribute.String
   }
 }
@@ -1170,6 +1346,113 @@ export interface ApiPagePage extends Schema.CollectionType {
   }
 }
 
+export interface ApiServiceService extends Schema.CollectionType {
+  collectionName: 'services'
+  info: {
+    singularName: 'service'
+    pluralName: 'services'
+    displayName: 'Slu\u017Eby'
+    description: ''
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::service.service', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    serviceCategories: Attribute.Relation<
+      'api::service.service',
+      'manyToMany',
+      'api::service-category.service-category'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::service.service', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::service.service', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<'api::service.service', 'oneToMany', 'api::service.service'>
+    locale: Attribute.String
+  }
+}
+
+export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType {
+  collectionName: 'service_categories'
+  info: {
+    singularName: 'service-category'
+    pluralName: 'service-categories'
+    displayName: 'Slu\u017Eby - kateg\u00F3rie'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    slug: Attribute.UID<'api::service-category.service-category', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    services: Attribute.Relation<
+      'api::service-category.service-category',
+      'manyToMany',
+      'api::service.service'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::service-category.service-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::service-category.service-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::service-category.service-category',
+      'oneToMany',
+      'api::service-category.service-category'
+    >
+    locale: Attribute.String
+  }
+}
+
 export interface ApiSitemapSitemap extends Schema.SingleType {
   collectionName: 'sitemaps'
   info: {
@@ -1232,6 +1515,7 @@ export interface ApiTagTag extends Schema.CollectionType {
           localized: true
         }
       }>
+    articles: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::article.article'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1286,16 +1570,21 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole
       'plugin::users-permissions.user': PluginUsersPermissionsUser
       'api::article.article': ApiArticleArticle
+      'api::article-category.article-category': ApiArticleCategoryArticleCategory
       'api::branch.branch': ApiBranchBranch
       'api::category.category': ApiCategoryCategory
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
+      'api::document-category.document-category': ApiDocumentCategoryDocumentCategory
       'api::faq.faq': ApiFaqFaq
+      'api::faq-category.faq-category': ApiFaqCategoryFaqCategory
       'api::footer.footer': ApiFooterFooter
       'api::homepage.homepage': ApiHomepageHomepage
       'api::menu.menu': ApiMenuMenu
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
+      'api::service.service': ApiServiceService
+      'api::service-category.service-category': ApiServiceCategoryServiceCategory
       'api::sitemap.sitemap': ApiSitemapSitemap
       'api::tag.tag': ApiTagTag
       'api::workshop.workshop': ApiWorkshopWorkshop

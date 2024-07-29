@@ -1,0 +1,28 @@
+fragment ServiceEntity on ServiceEntity {
+  id
+  attributes {
+    title
+    slug
+    serviceCategories {
+      data {
+        ...ServiceCategoryEntity
+      }
+    }
+  }
+}
+
+query Services($locale: I18NLocaleCode!) {
+  services(locale: $locale) {
+    data {
+      ...ServiceEntity
+    }
+  }
+}
+
+query ServiceBySlug($slug: String!, $locale: I18NLocaleCode!) {
+  services(filters: { slug: { eq: $slug } }, locale: $locale) {
+    data {
+      ...ServiceEntity
+    }
+  }
+}

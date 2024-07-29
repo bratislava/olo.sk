@@ -3,6 +3,11 @@ fragment FaqEntity on FaqEntity {
   attributes {
     title
     content
+    faqCategory {
+      data {
+        ...FaqCategoryEntity
+      }
+    }
   }
 }
 

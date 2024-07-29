@@ -31,7 +31,7 @@ export type Scalars = {
 export type Article = {
   __typename?: 'Article'
   addedAt: Scalars['DateTime']['output']
-  category?: Maybe<CategoryEntityResponse>
+  articleCategory?: Maybe<ArticleCategoryEntityResponse>
   content?: Maybe<Scalars['String']['output']>
   coverMedia?: Maybe<UploadFileEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']['output']>
@@ -40,6 +40,7 @@ export type Article = {
   perex?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   slug: Scalars['String']['output']
+  tags?: Maybe<TagRelationResponseCollection>
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
@@ -49,6 +50,83 @@ export type ArticleLocalizationsArgs = {
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ArticleTagsArgs = {
+  filters?: InputMaybe<TagFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ArticleCategory = {
+  __typename?: 'ArticleCategory'
+  articles?: Maybe<ArticleRelationResponseCollection>
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<ArticleCategoryRelationResponseCollection>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  slug: Scalars['String']['output']
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type ArticleCategoryArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ArticleCategoryLocalizationsArgs = {
+  filters?: InputMaybe<ArticleCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ArticleCategoryEntity = {
+  __typename?: 'ArticleCategoryEntity'
+  attributes?: Maybe<ArticleCategory>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type ArticleCategoryEntityResponse = {
+  __typename?: 'ArticleCategoryEntityResponse'
+  data?: Maybe<ArticleCategoryEntity>
+}
+
+export type ArticleCategoryEntityResponseCollection = {
+  __typename?: 'ArticleCategoryEntityResponseCollection'
+  data: Array<ArticleCategoryEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ArticleCategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ArticleCategoryFiltersInput>>>
+  articles?: InputMaybe<ArticleFiltersInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  locale?: InputMaybe<StringFilterInput>
+  localizations?: InputMaybe<ArticleCategoryFiltersInput>
+  not?: InputMaybe<ArticleCategoryFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ArticleCategoryFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ArticleCategoryInput = {
+  articles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  slug?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ArticleCategoryRelationResponseCollection = {
+  __typename?: 'ArticleCategoryRelationResponseCollection'
+  data: Array<ArticleCategoryEntity>
 }
 
 export type ArticleEntity = {
@@ -71,7 +149,7 @@ export type ArticleEntityResponseCollection = {
 export type ArticleFiltersInput = {
   addedAt?: InputMaybe<DateTimeFilterInput>
   and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
-  category?: InputMaybe<CategoryFiltersInput>
+  articleCategory?: InputMaybe<ArticleCategoryFiltersInput>
   content?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
@@ -82,18 +160,20 @@ export type ArticleFiltersInput = {
   perex?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
   slug?: InputMaybe<StringFilterInput>
+  tags?: InputMaybe<TagFiltersInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
 export type ArticleInput = {
   addedAt?: InputMaybe<Scalars['DateTime']['input']>
-  category?: InputMaybe<Scalars['ID']['input']>
+  articleCategory?: InputMaybe<Scalars['ID']['input']>
   content?: InputMaybe<Scalars['String']['input']>
   coverMedia?: InputMaybe<Scalars['ID']['input']>
   perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
+  tags?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   title?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -201,7 +281,6 @@ export type BranchRelationResponseCollection = {
 
 export type Category = {
   __typename?: 'Category'
-  articles?: Maybe<ArticleRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<CategoryRelationResponseCollection>
@@ -209,13 +288,6 @@ export type Category = {
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
-}
-
-export type CategoryArticlesArgs = {
-  filters?: InputMaybe<ArticleFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  publicationState?: InputMaybe<PublicationState>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type CategoryLocalizationsArgs = {
@@ -244,7 +316,6 @@ export type CategoryEntityResponseCollection = {
 
 export type CategoryFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>
-  articles?: InputMaybe<ArticleFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -258,7 +329,6 @@ export type CategoryFiltersInput = {
 }
 
 export type CategoryInput = {
-  articles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
@@ -815,10 +885,88 @@ export type DateTimeFilterInput = {
 export type Document = {
   __typename?: 'Document'
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  documentCategory?: Maybe<DocumentCategoryEntityResponse>
+  files: UploadFileRelationResponseCollection
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type DocumentFilesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type DocumentCategory = {
+  __typename?: 'DocumentCategory'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  dokuments?: Maybe<DocumentRelationResponseCollection>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<DocumentCategoryRelationResponseCollection>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  slug: Scalars['String']['output']
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type DocumentCategoryDokumentsArgs = {
+  filters?: InputMaybe<DocumentFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type DocumentCategoryLocalizationsArgs = {
+  filters?: InputMaybe<DocumentCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type DocumentCategoryEntity = {
+  __typename?: 'DocumentCategoryEntity'
+  attributes?: Maybe<DocumentCategory>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type DocumentCategoryEntityResponse = {
+  __typename?: 'DocumentCategoryEntityResponse'
+  data?: Maybe<DocumentCategoryEntity>
+}
+
+export type DocumentCategoryEntityResponseCollection = {
+  __typename?: 'DocumentCategoryEntityResponseCollection'
+  data: Array<DocumentCategoryEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type DocumentCategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<DocumentCategoryFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  dokuments?: InputMaybe<DocumentFiltersInput>
+  id?: InputMaybe<IdFilterInput>
+  locale?: InputMaybe<StringFilterInput>
+  localizations?: InputMaybe<DocumentCategoryFiltersInput>
+  not?: InputMaybe<DocumentCategoryFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<DocumentCategoryFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type DocumentCategoryInput = {
+  dokuments?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  slug?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type DocumentCategoryRelationResponseCollection = {
+  __typename?: 'DocumentCategoryRelationResponseCollection'
+  data: Array<DocumentCategoryEntity>
 }
 
 export type DocumentEntity = {
@@ -841,6 +989,7 @@ export type DocumentEntityResponseCollection = {
 export type DocumentFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<DocumentFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  documentCategory?: InputMaybe<DocumentCategoryFiltersInput>
   id?: InputMaybe<IdFilterInput>
   not?: InputMaybe<DocumentFiltersInput>
   or?: InputMaybe<Array<InputMaybe<DocumentFiltersInput>>>
@@ -851,9 +1000,16 @@ export type DocumentFiltersInput = {
 }
 
 export type DocumentInput = {
+  documentCategory?: InputMaybe<Scalars['ID']['input']>
+  files?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type DocumentRelationResponseCollection = {
+  __typename?: 'DocumentRelationResponseCollection'
+  data: Array<DocumentEntity>
 }
 
 export enum Enum_Componentmenumenusection_Multicolumnbehaviour {
@@ -917,6 +1073,7 @@ export type Faq = {
   __typename?: 'Faq'
   content: Scalars['String']['output']
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  faqCategory?: Maybe<FaqCategoryEntityResponse>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<FaqRelationResponseCollection>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
@@ -929,6 +1086,76 @@ export type FaqLocalizationsArgs = {
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type FaqCategory = {
+  __typename?: 'FaqCategory'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  faqs?: Maybe<FaqRelationResponseCollection>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<FaqCategoryRelationResponseCollection>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  slug: Scalars['String']['output']
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type FaqCategoryFaqsArgs = {
+  filters?: InputMaybe<FaqFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type FaqCategoryLocalizationsArgs = {
+  filters?: InputMaybe<FaqCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type FaqCategoryEntity = {
+  __typename?: 'FaqCategoryEntity'
+  attributes?: Maybe<FaqCategory>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type FaqCategoryEntityResponse = {
+  __typename?: 'FaqCategoryEntityResponse'
+  data?: Maybe<FaqCategoryEntity>
+}
+
+export type FaqCategoryEntityResponseCollection = {
+  __typename?: 'FaqCategoryEntityResponseCollection'
+  data: Array<FaqCategoryEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type FaqCategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<FaqCategoryFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  faqs?: InputMaybe<FaqFiltersInput>
+  id?: InputMaybe<IdFilterInput>
+  locale?: InputMaybe<StringFilterInput>
+  localizations?: InputMaybe<FaqCategoryFiltersInput>
+  not?: InputMaybe<FaqCategoryFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<FaqCategoryFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type FaqCategoryInput = {
+  faqs?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  slug?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type FaqCategoryRelationResponseCollection = {
+  __typename?: 'FaqCategoryRelationResponseCollection'
+  data: Array<FaqCategoryEntity>
 }
 
 export type FaqEntity = {
@@ -952,6 +1179,7 @@ export type FaqFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<FaqFiltersInput>>>
   content?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  faqCategory?: InputMaybe<FaqCategoryFiltersInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
   localizations?: InputMaybe<FaqFiltersInput>
@@ -964,6 +1192,7 @@ export type FaqFiltersInput = {
 
 export type FaqInput = {
   content?: InputMaybe<Scalars['String']['input']>
+  faqCategory?: InputMaybe<Scalars['ID']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
@@ -1055,6 +1284,7 @@ export type FooterRelationResponseCollection = {
 
 export type GenericMorph =
   | Article
+  | ArticleCategory
   | Branch
   | Category
   | ComponentHeaderSectionsBasic
@@ -1088,13 +1318,17 @@ export type GenericMorph =
   | ComponentSectionsWorkshops
   | Contact
   | Document
+  | DocumentCategory
   | Faq
+  | FaqCategory
   | Footer
   | Homepage
   | I18NLocale
   | Menu
   | OpeningTime
   | Page
+  | Service
+  | ServiceCategory
   | Sitemap
   | Tag
   | UploadFile
@@ -1299,6 +1533,8 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>
   createArticle?: Maybe<ArticleEntityResponse>
+  createArticleCategory?: Maybe<ArticleCategoryEntityResponse>
+  createArticleCategoryLocalization?: Maybe<ArticleCategoryEntityResponse>
   createArticleLocalization?: Maybe<ArticleEntityResponse>
   createBranch?: Maybe<BranchEntityResponse>
   createBranchLocalization?: Maybe<BranchEntityResponse>
@@ -1306,7 +1542,11 @@ export type Mutation = {
   createCategoryLocalization?: Maybe<CategoryEntityResponse>
   createContact?: Maybe<ContactEntityResponse>
   createDocument?: Maybe<DocumentEntityResponse>
+  createDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
+  createDocumentCategoryLocalization?: Maybe<DocumentCategoryEntityResponse>
   createFaq?: Maybe<FaqEntityResponse>
+  createFaqCategory?: Maybe<FaqCategoryEntityResponse>
+  createFaqCategoryLocalization?: Maybe<FaqCategoryEntityResponse>
   createFaqLocalization?: Maybe<FaqEntityResponse>
   createFooterLocalization?: Maybe<FooterEntityResponse>
   createHomepageLocalization?: Maybe<HomepageEntityResponse>
@@ -1314,6 +1554,10 @@ export type Mutation = {
   createOpeningTime?: Maybe<OpeningTimeEntityResponse>
   createPage?: Maybe<PageEntityResponse>
   createPageLocalization?: Maybe<PageEntityResponse>
+  createService?: Maybe<ServiceEntityResponse>
+  createServiceCategory?: Maybe<ServiceCategoryEntityResponse>
+  createServiceCategoryLocalization?: Maybe<ServiceCategoryEntityResponse>
+  createServiceLocalization?: Maybe<ServiceEntityResponse>
   createSitemapLocalization?: Maybe<SitemapEntityResponse>
   createTag?: Maybe<TagEntityResponse>
   createTagLocalization?: Maybe<TagEntityResponse>
@@ -1325,16 +1569,21 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse
   createWorkshop?: Maybe<WorkshopEntityResponse>
   deleteArticle?: Maybe<ArticleEntityResponse>
+  deleteArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   deleteBranch?: Maybe<BranchEntityResponse>
   deleteCategory?: Maybe<CategoryEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
+  deleteDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   deleteFaq?: Maybe<FaqEntityResponse>
+  deleteFaqCategory?: Maybe<FaqCategoryEntityResponse>
   deleteFooter?: Maybe<FooterEntityResponse>
   deleteHomepage?: Maybe<HomepageEntityResponse>
   deleteMenu?: Maybe<MenuEntityResponse>
   deleteOpeningTime?: Maybe<OpeningTimeEntityResponse>
   deletePage?: Maybe<PageEntityResponse>
+  deleteService?: Maybe<ServiceEntityResponse>
+  deleteServiceCategory?: Maybe<ServiceCategoryEntityResponse>
   deleteSitemap?: Maybe<SitemapEntityResponse>
   deleteTag?: Maybe<TagEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
@@ -1356,17 +1605,22 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>
   updateArticle?: Maybe<ArticleEntityResponse>
+  updateArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   updateBranch?: Maybe<BranchEntityResponse>
   updateCategory?: Maybe<CategoryEntityResponse>
   updateContact?: Maybe<ContactEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
+  updateDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   updateFaq?: Maybe<FaqEntityResponse>
+  updateFaqCategory?: Maybe<FaqCategoryEntityResponse>
   updateFileInfo: UploadFileEntityResponse
   updateFooter?: Maybe<FooterEntityResponse>
   updateHomepage?: Maybe<HomepageEntityResponse>
   updateMenu?: Maybe<MenuEntityResponse>
   updateOpeningTime?: Maybe<OpeningTimeEntityResponse>
   updatePage?: Maybe<PageEntityResponse>
+  updateService?: Maybe<ServiceEntityResponse>
+  updateServiceCategory?: Maybe<ServiceCategoryEntityResponse>
   updateSitemap?: Maybe<SitemapEntityResponse>
   updateTag?: Maybe<TagEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
@@ -1387,6 +1641,17 @@ export type MutationChangePasswordArgs = {
 
 export type MutationCreateArticleArgs = {
   data: ArticleInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateArticleCategoryArgs = {
+  data: ArticleCategoryInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateArticleCategoryLocalizationArgs = {
+  data?: InputMaybe<ArticleCategoryInput>
+  id?: InputMaybe<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
@@ -1426,8 +1691,30 @@ export type MutationCreateDocumentArgs = {
   data: DocumentInput
 }
 
+export type MutationCreateDocumentCategoryArgs = {
+  data: DocumentCategoryInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateDocumentCategoryLocalizationArgs = {
+  data?: InputMaybe<DocumentCategoryInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationCreateFaqArgs = {
   data: FaqInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateFaqCategoryArgs = {
+  data: FaqCategoryInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateFaqCategoryLocalizationArgs = {
+  data?: InputMaybe<FaqCategoryInput>
+  id?: InputMaybe<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
@@ -1466,6 +1753,28 @@ export type MutationCreatePageArgs = {
 
 export type MutationCreatePageLocalizationArgs = {
   data?: InputMaybe<PageInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateServiceArgs = {
+  data: ServiceInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateServiceCategoryArgs = {
+  data: ServiceCategoryInput
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateServiceCategoryLocalizationArgs = {
+  data?: InputMaybe<ServiceCategoryInput>
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationCreateServiceLocalizationArgs = {
+  data?: InputMaybe<ServiceInput>
   id?: InputMaybe<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1512,6 +1821,11 @@ export type MutationDeleteArticleArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
+export type MutationDeleteArticleCategoryArgs = {
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationDeleteBranchArgs = {
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
@@ -1530,7 +1844,17 @@ export type MutationDeleteDocumentArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationDeleteDocumentCategoryArgs = {
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationDeleteFaqArgs = {
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationDeleteFaqCategoryArgs = {
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1552,6 +1876,16 @@ export type MutationDeleteOpeningTimeArgs = {
 }
 
 export type MutationDeletePageArgs = {
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationDeleteServiceArgs = {
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationDeleteServiceCategoryArgs = {
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1624,6 +1958,12 @@ export type MutationUpdateArticleArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
+export type MutationUpdateArticleCategoryArgs = {
+  data: ArticleCategoryInput
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationUpdateBranchArgs = {
   data: BranchInput
   id: Scalars['ID']['input']
@@ -1646,8 +1986,20 @@ export type MutationUpdateDocumentArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationUpdateDocumentCategoryArgs = {
+  data: DocumentCategoryInput
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type MutationUpdateFaqArgs = {
   data: FaqInput
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationUpdateFaqCategoryArgs = {
+  data: FaqCategoryInput
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1679,6 +2031,18 @@ export type MutationUpdateOpeningTimeArgs = {
 
 export type MutationUpdatePageArgs = {
   data: PageInput
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationUpdateServiceArgs = {
+  data: ServiceInput
+  id: Scalars['ID']['input']
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type MutationUpdateServiceCategoryArgs = {
+  data: ServiceCategoryInput
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1914,6 +2278,8 @@ export enum PublicationState {
 export type Query = {
   __typename?: 'Query'
   article?: Maybe<ArticleEntityResponse>
+  articleCategories?: Maybe<ArticleCategoryEntityResponseCollection>
+  articleCategory?: Maybe<ArticleCategoryEntityResponse>
   articles?: Maybe<ArticleEntityResponseCollection>
   branch?: Maybe<BranchEntityResponse>
   branches?: Maybe<BranchEntityResponseCollection>
@@ -1922,8 +2288,12 @@ export type Query = {
   contact?: Maybe<ContactEntityResponse>
   contacts?: Maybe<ContactEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
+  documentCategories?: Maybe<DocumentCategoryEntityResponseCollection>
+  documentCategory?: Maybe<DocumentCategoryEntityResponse>
   documents?: Maybe<DocumentEntityResponseCollection>
   faq?: Maybe<FaqEntityResponse>
+  faqCategories?: Maybe<FaqCategoryEntityResponseCollection>
+  faqCategory?: Maybe<FaqCategoryEntityResponse>
   faqs?: Maybe<FaqEntityResponseCollection>
   footer?: Maybe<FooterEntityResponse>
   homepage?: Maybe<HomepageEntityResponse>
@@ -1935,6 +2305,10 @@ export type Query = {
   openingTimes?: Maybe<OpeningTimeEntityResponseCollection>
   page?: Maybe<PageEntityResponse>
   pages?: Maybe<PageEntityResponseCollection>
+  service?: Maybe<ServiceEntityResponse>
+  serviceCategories?: Maybe<ServiceCategoryEntityResponseCollection>
+  serviceCategory?: Maybe<ServiceCategoryEntityResponse>
+  services?: Maybe<ServiceEntityResponseCollection>
   sitemap?: Maybe<SitemapEntityResponse>
   tag?: Maybe<TagEntityResponse>
   tags?: Maybe<TagEntityResponseCollection>
@@ -1951,6 +2325,19 @@ export type Query = {
 }
 
 export type QueryArticleArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type QueryArticleCategoriesArgs = {
+  filters?: InputMaybe<ArticleCategoryFiltersInput>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryArticleCategoryArgs = {
   id?: InputMaybe<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -2004,6 +2391,19 @@ export type QueryDocumentArgs = {
   id?: InputMaybe<Scalars['ID']['input']>
 }
 
+export type QueryDocumentCategoriesArgs = {
+  filters?: InputMaybe<DocumentCategoryFiltersInput>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryDocumentCategoryArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
 export type QueryDocumentsArgs = {
   filters?: InputMaybe<DocumentFiltersInput>
   pagination?: InputMaybe<PaginationArg>
@@ -2012,6 +2412,19 @@ export type QueryDocumentsArgs = {
 }
 
 export type QueryFaqArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type QueryFaqCategoriesArgs = {
+  filters?: InputMaybe<FaqCategoryFiltersInput>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryFaqCategoryArgs = {
   id?: InputMaybe<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -2063,6 +2476,32 @@ export type QueryPageArgs = {
 
 export type QueryPagesArgs = {
   filters?: InputMaybe<PageFiltersInput>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryServiceArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type QueryServiceCategoriesArgs = {
+  filters?: InputMaybe<ServiceCategoryFiltersInput>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryServiceCategoryArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
+}
+
+export type QueryServicesArgs = {
+  filters?: InputMaybe<ServiceFiltersInput>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
@@ -2142,6 +2581,146 @@ export type ResponseCollectionMeta = {
   pagination: Pagination
 }
 
+export type Service = {
+  __typename?: 'Service'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<ServiceRelationResponseCollection>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  serviceCategories?: Maybe<ServiceCategoryRelationResponseCollection>
+  slug: Scalars['String']['output']
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type ServiceLocalizationsArgs = {
+  filters?: InputMaybe<ServiceFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ServiceServiceCategoriesArgs = {
+  filters?: InputMaybe<ServiceCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ServiceCategory = {
+  __typename?: 'ServiceCategory'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  locale?: Maybe<Scalars['String']['output']>
+  localizations?: Maybe<ServiceCategoryRelationResponseCollection>
+  publishedAt?: Maybe<Scalars['DateTime']['output']>
+  services?: Maybe<ServiceRelationResponseCollection>
+  slug: Scalars['String']['output']
+  title: Scalars['String']['output']
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type ServiceCategoryLocalizationsArgs = {
+  filters?: InputMaybe<ServiceCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ServiceCategoryServicesArgs = {
+  filters?: InputMaybe<ServiceFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ServiceCategoryEntity = {
+  __typename?: 'ServiceCategoryEntity'
+  attributes?: Maybe<ServiceCategory>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type ServiceCategoryEntityResponse = {
+  __typename?: 'ServiceCategoryEntityResponse'
+  data?: Maybe<ServiceCategoryEntity>
+}
+
+export type ServiceCategoryEntityResponseCollection = {
+  __typename?: 'ServiceCategoryEntityResponseCollection'
+  data: Array<ServiceCategoryEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ServiceCategoryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ServiceCategoryFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  locale?: InputMaybe<StringFilterInput>
+  localizations?: InputMaybe<ServiceCategoryFiltersInput>
+  not?: InputMaybe<ServiceCategoryFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ServiceCategoryFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  services?: InputMaybe<ServiceFiltersInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ServiceCategoryInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  services?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  slug?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ServiceCategoryRelationResponseCollection = {
+  __typename?: 'ServiceCategoryRelationResponseCollection'
+  data: Array<ServiceCategoryEntity>
+}
+
+export type ServiceEntity = {
+  __typename?: 'ServiceEntity'
+  attributes?: Maybe<Service>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type ServiceEntityResponse = {
+  __typename?: 'ServiceEntityResponse'
+  data?: Maybe<ServiceEntity>
+}
+
+export type ServiceEntityResponseCollection = {
+  __typename?: 'ServiceEntityResponseCollection'
+  data: Array<ServiceEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ServiceFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  locale?: InputMaybe<StringFilterInput>
+  localizations?: InputMaybe<ServiceFiltersInput>
+  not?: InputMaybe<ServiceFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  serviceCategories?: InputMaybe<ServiceCategoryFiltersInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ServiceInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  serviceCategories?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  slug?: InputMaybe<Scalars['String']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ServiceRelationResponseCollection = {
+  __typename?: 'ServiceRelationResponseCollection'
+  data: Array<ServiceEntity>
+}
+
 export type Sitemap = {
   __typename?: 'Sitemap'
   articlesParentPage?: Maybe<PageEntityResponse>
@@ -2204,6 +2783,7 @@ export type StringFilterInput = {
 
 export type Tag = {
   __typename?: 'Tag'
+  articles?: Maybe<ArticleRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<TagRelationResponseCollection>
@@ -2211,6 +2791,13 @@ export type Tag = {
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type TagArticlesArgs = {
+  filters?: InputMaybe<ArticleFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type TagLocalizationsArgs = {
@@ -2239,6 +2826,7 @@ export type TagEntityResponseCollection = {
 
 export type TagFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>
+  articles?: InputMaybe<ArticleFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -2252,6 +2840,7 @@ export type TagFiltersInput = {
 }
 
 export type TagInput = {
+  articles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
@@ -3779,13 +4368,21 @@ export type FeaturedNewsHeaderSectionFragment = {
             } | null
           } | null
         } | null
-        category?: {
-          __typename?: 'CategoryEntityResponse'
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
           data?: {
-            __typename?: 'CategoryEntity'
+            __typename?: 'ArticleCategoryEntity'
             id?: string | null
-            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
           } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
         } | null
       } | null
     } | null
@@ -3817,13 +4414,21 @@ export type FeaturedNewsHeaderSectionFragment = {
             } | null
           } | null
         } | null
-        category?: {
-          __typename?: 'CategoryEntityResponse'
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
           data?: {
-            __typename?: 'CategoryEntity'
+            __typename?: 'ArticleCategoryEntity'
             id?: string | null
-            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
           } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
         } | null
       } | null
     } | null
@@ -3901,13 +4506,21 @@ type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
             } | null
           } | null
         } | null
-        category?: {
-          __typename?: 'CategoryEntityResponse'
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
           data?: {
-            __typename?: 'CategoryEntity'
+            __typename?: 'ArticleCategoryEntity'
             id?: string | null
-            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
           } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
         } | null
       } | null
     } | null
@@ -3939,13 +4552,21 @@ type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
             } | null
           } | null
         } | null
-        category?: {
-          __typename?: 'CategoryEntityResponse'
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
           data?: {
-            __typename?: 'CategoryEntity'
+            __typename?: 'ArticleCategoryEntity'
             id?: string | null
-            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
           } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
         } | null
       } | null
     } | null
@@ -4966,13 +5587,21 @@ export type ArticleCardEntityFragment = {
         } | null
       } | null
     } | null
-    category?: {
-      __typename?: 'CategoryEntityResponse'
+    articleCategory?: {
+      __typename?: 'ArticleCategoryEntityResponse'
       data?: {
-        __typename?: 'CategoryEntity'
+        __typename?: 'ArticleCategoryEntity'
         id?: string | null
-        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+        attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
       } | null
+    } | null
+    tags?: {
+      __typename?: 'TagRelationResponseCollection'
+      data: Array<{
+        __typename?: 'TagEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+      }>
     } | null
   } | null
 }
@@ -5003,13 +5632,21 @@ export type ArticleEntityFragment = {
         } | null
       } | null
     } | null
-    category?: {
-      __typename?: 'CategoryEntityResponse'
+    articleCategory?: {
+      __typename?: 'ArticleCategoryEntityResponse'
       data?: {
-        __typename?: 'CategoryEntity'
+        __typename?: 'ArticleCategoryEntity'
         id?: string | null
-        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+        attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
       } | null
+    } | null
+    tags?: {
+      __typename?: 'TagRelationResponseCollection'
+      data: Array<{
+        __typename?: 'TagEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+      }>
     } | null
   } | null
 }
@@ -5046,13 +5683,21 @@ export type ArticlesQuery = {
             } | null
           } | null
         } | null
-        category?: {
-          __typename?: 'CategoryEntityResponse'
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
           data?: {
-            __typename?: 'CategoryEntity'
+            __typename?: 'ArticleCategoryEntity'
             id?: string | null
-            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
           } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
         } | null
       } | null
     }>
@@ -5094,13 +5739,21 @@ export type ArticleBySlugQuery = {
             } | null
           } | null
         } | null
-        category?: {
-          __typename?: 'CategoryEntityResponse'
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
           data?: {
-            __typename?: 'CategoryEntity'
+            __typename?: 'ArticleCategoryEntity'
             id?: string | null
-            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
           } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
         } | null
       } | null
     }>
@@ -5142,13 +5795,21 @@ export type LatestArticlesQuery = {
             } | null
           } | null
         } | null
-        category?: {
-          __typename?: 'CategoryEntityResponse'
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
           data?: {
-            __typename?: 'CategoryEntity'
+            __typename?: 'ArticleCategoryEntity'
             id?: string | null
-            attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
           } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
         } | null
       } | null
     }>
@@ -5248,10 +5909,194 @@ export type CategoryBySlugQuery = {
   } | null
 }
 
+export type ArticleCategoryEntityFragment = {
+  __typename?: 'ArticleCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
+}
+
+export type ArticleCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ArticleCategoriesQuery = {
+  __typename?: 'Query'
+  articleCategories?: {
+    __typename?: 'ArticleCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ArticleCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type ArticleCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ArticleCategoryBySlugQuery = {
+  __typename?: 'Query'
+  articleCategories?: {
+    __typename?: 'ArticleCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ArticleCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type DocumentCategoryEntityFragment = {
+  __typename?: 'DocumentCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+}
+
+export type DocumentCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type DocumentCategoriesQuery = {
+  __typename?: 'Query'
+  documentCategories?: {
+    __typename?: 'DocumentCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'DocumentCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type DocumentCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type DocumentCategoryBySlugQuery = {
+  __typename?: 'Query'
+  documentCategories?: {
+    __typename?: 'DocumentCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'DocumentCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type FaqCategoryEntityFragment = {
+  __typename?: 'FaqCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'FaqCategory'; title: string; slug: string } | null
+}
+
+export type FaqCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type FaqCategoriesQuery = {
+  __typename?: 'Query'
+  faqCategories?: {
+    __typename?: 'FaqCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'FaqCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'FaqCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type FaqCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type FaqCategoryBySlugQuery = {
+  __typename?: 'Query'
+  faqCategories?: {
+    __typename?: 'FaqCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'FaqCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'FaqCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type ServiceCategoryEntityFragment = {
+  __typename?: 'ServiceCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+}
+
+export type ServiceCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ServiceCategoriesQuery = {
+  __typename?: 'Query'
+  serviceCategories?: {
+    __typename?: 'ServiceCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ServiceCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type ServiceCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ServiceCategoryBySlugQuery = {
+  __typename?: 'Query'
+  serviceCategories?: {
+    __typename?: 'ServiceCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ServiceCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
 export type DocumentEntityFragment = {
   __typename?: 'DocumentEntity'
   id?: string | null
-  attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+  attributes?: {
+    __typename?: 'Document'
+    title: string
+    slug: string
+    documentCategory?: {
+      __typename?: 'DocumentCategoryEntityResponse'
+      data?: {
+        __typename?: 'DocumentCategoryEntity'
+        id?: string | null
+        attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+      } | null
+    } | null
+    files: {
+      __typename?: 'UploadFileRelationResponseCollection'
+      data: Array<{
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          name: string
+          ext?: string | null
+          size: number
+          createdAt?: any | null
+          updatedAt?: any | null
+        } | null
+      }>
+    }
+  } | null
 }
 
 export type DocumentsQueryVariables = Exact<{ [key: string]: never }>
@@ -5263,7 +6108,35 @@ export type DocumentsQuery = {
     data: Array<{
       __typename?: 'DocumentEntity'
       id?: string | null
-      attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Document'
+        title: string
+        slug: string
+        documentCategory?: {
+          __typename?: 'DocumentCategoryEntityResponse'
+          data?: {
+            __typename?: 'DocumentCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+          } | null
+        } | null
+        files: {
+          __typename?: 'UploadFileRelationResponseCollection'
+          data: Array<{
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              name: string
+              ext?: string | null
+              size: number
+              createdAt?: any | null
+              updatedAt?: any | null
+            } | null
+          }>
+        }
+      } | null
     }>
   } | null
 }
@@ -5279,7 +6152,35 @@ export type DocumentBySlugQuery = {
     data: Array<{
       __typename?: 'DocumentEntity'
       id?: string | null
-      attributes?: { __typename?: 'Document'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Document'
+        title: string
+        slug: string
+        documentCategory?: {
+          __typename?: 'DocumentCategoryEntityResponse'
+          data?: {
+            __typename?: 'DocumentCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+          } | null
+        } | null
+        files: {
+          __typename?: 'UploadFileRelationResponseCollection'
+          data: Array<{
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              name: string
+              ext?: string | null
+              size: number
+              createdAt?: any | null
+              updatedAt?: any | null
+            } | null
+          }>
+        }
+      } | null
     }>
   } | null
 }
@@ -5287,7 +6188,19 @@ export type DocumentBySlugQuery = {
 export type FaqEntityFragment = {
   __typename?: 'FaqEntity'
   id?: string | null
-  attributes?: { __typename?: 'Faq'; title: string; content: string } | null
+  attributes?: {
+    __typename?: 'Faq'
+    title: string
+    content: string
+    faqCategory?: {
+      __typename?: 'FaqCategoryEntityResponse'
+      data?: {
+        __typename?: 'FaqCategoryEntity'
+        id?: string | null
+        attributes?: { __typename?: 'FaqCategory'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
 }
 
 export type FaqsQueryVariables = Exact<{
@@ -5301,7 +6214,19 @@ export type FaqsQuery = {
     data: Array<{
       __typename?: 'FaqEntity'
       id?: string | null
-      attributes?: { __typename?: 'Faq'; title: string; content: string } | null
+      attributes?: {
+        __typename?: 'Faq'
+        title: string
+        content: string
+        faqCategory?: {
+          __typename?: 'FaqCategoryEntityResponse'
+          data?: {
+            __typename?: 'FaqCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'FaqCategory'; title: string; slug: string } | null
+          } | null
+        } | null
+      } | null
     }>
   } | null
 }
@@ -6701,13 +7626,25 @@ export type PageEntityFragment = {
                     } | null
                   } | null
                 } | null
-                category?: {
-                  __typename?: 'CategoryEntityResponse'
+                articleCategory?: {
+                  __typename?: 'ArticleCategoryEntityResponse'
                   data?: {
-                    __typename?: 'CategoryEntity'
+                    __typename?: 'ArticleCategoryEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'ArticleCategory'
+                      title: string
+                      slug: string
+                    } | null
                   } | null
+                } | null
+                tags?: {
+                  __typename?: 'TagRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'TagEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+                  }>
                 } | null
               } | null
             } | null
@@ -6739,13 +7676,25 @@ export type PageEntityFragment = {
                     } | null
                   } | null
                 } | null
-                category?: {
-                  __typename?: 'CategoryEntityResponse'
+                articleCategory?: {
+                  __typename?: 'ArticleCategoryEntityResponse'
                   data?: {
-                    __typename?: 'CategoryEntity'
+                    __typename?: 'ArticleCategoryEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'ArticleCategory'
+                      title: string
+                      slug: string
+                    } | null
                   } | null
+                } | null
+                tags?: {
+                  __typename?: 'TagRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'TagEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+                  }>
                 } | null
               } | null
             } | null
@@ -7365,13 +8314,25 @@ export type PagesQuery = {
                         } | null
                       } | null
                     } | null
-                    category?: {
-                      __typename?: 'CategoryEntityResponse'
+                    articleCategory?: {
+                      __typename?: 'ArticleCategoryEntityResponse'
                       data?: {
-                        __typename?: 'CategoryEntity'
+                        __typename?: 'ArticleCategoryEntity'
                         id?: string | null
-                        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+                        attributes?: {
+                          __typename?: 'ArticleCategory'
+                          title: string
+                          slug: string
+                        } | null
                       } | null
+                    } | null
+                    tags?: {
+                      __typename?: 'TagRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'TagEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+                      }>
                     } | null
                   } | null
                 } | null
@@ -7403,13 +8364,25 @@ export type PagesQuery = {
                         } | null
                       } | null
                     } | null
-                    category?: {
-                      __typename?: 'CategoryEntityResponse'
+                    articleCategory?: {
+                      __typename?: 'ArticleCategoryEntityResponse'
                       data?: {
-                        __typename?: 'CategoryEntity'
+                        __typename?: 'ArticleCategoryEntity'
                         id?: string | null
-                        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+                        attributes?: {
+                          __typename?: 'ArticleCategory'
+                          title: string
+                          slug: string
+                        } | null
                       } | null
+                    } | null
+                    tags?: {
+                      __typename?: 'TagRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'TagEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+                      }>
                     } | null
                   } | null
                 } | null
@@ -8036,13 +9009,25 @@ export type PageBySlugQuery = {
                         } | null
                       } | null
                     } | null
-                    category?: {
-                      __typename?: 'CategoryEntityResponse'
+                    articleCategory?: {
+                      __typename?: 'ArticleCategoryEntityResponse'
                       data?: {
-                        __typename?: 'CategoryEntity'
+                        __typename?: 'ArticleCategoryEntity'
                         id?: string | null
-                        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+                        attributes?: {
+                          __typename?: 'ArticleCategory'
+                          title: string
+                          slug: string
+                        } | null
                       } | null
+                    } | null
+                    tags?: {
+                      __typename?: 'TagRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'TagEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+                      }>
                     } | null
                   } | null
                 } | null
@@ -8074,13 +9059,25 @@ export type PageBySlugQuery = {
                         } | null
                       } | null
                     } | null
-                    category?: {
-                      __typename?: 'CategoryEntityResponse'
+                    articleCategory?: {
+                      __typename?: 'ArticleCategoryEntityResponse'
                       data?: {
-                        __typename?: 'CategoryEntity'
+                        __typename?: 'ArticleCategoryEntity'
                         id?: string | null
-                        attributes?: { __typename?: 'Category'; title: string; slug: string } | null
+                        attributes?: {
+                          __typename?: 'ArticleCategory'
+                          title: string
+                          slug: string
+                        } | null
                       } | null
+                    } | null
+                    tags?: {
+                      __typename?: 'TagRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'TagEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+                      }>
                     } | null
                   } | null
                 } | null
@@ -8656,6 +9653,81 @@ export type PageBySlugQuery = {
   } | null
 }
 
+export type ServiceEntityFragment = {
+  __typename?: 'ServiceEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Service'
+    title: string
+    slug: string
+    serviceCategories?: {
+      __typename?: 'ServiceCategoryRelationResponseCollection'
+      data: Array<{
+        __typename?: 'ServiceCategoryEntity'
+        id?: string | null
+        attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+      }>
+    } | null
+  } | null
+}
+
+export type ServicesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ServicesQuery = {
+  __typename?: 'Query'
+  services?: {
+    __typename?: 'ServiceEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ServiceEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Service'
+        title: string
+        slug: string
+        serviceCategories?: {
+          __typename?: 'ServiceCategoryRelationResponseCollection'
+          data: Array<{
+            __typename?: 'ServiceCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
+}
+
+export type ServiceBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ServiceBySlugQuery = {
+  __typename?: 'Query'
+  services?: {
+    __typename?: 'ServiceEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ServiceEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Service'
+        title: string
+        slug: string
+        serviceCategories?: {
+          __typename?: 'ServiceCategoryRelationResponseCollection'
+          data: Array<{
+            __typename?: 'ServiceCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
+}
+
 export type TagEntityFragment = {
   __typename?: 'TagEntity'
   id?: string | null
@@ -8873,8 +9945,17 @@ export const UploadImageEntityFragmentDoc = gql`
     }
   }
 `
-export const CategoryEntityFragmentDoc = gql`
-  fragment CategoryEntity on CategoryEntity {
+export const ArticleCategoryEntityFragmentDoc = gql`
+  fragment ArticleCategoryEntity on ArticleCategoryEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const TagEntityFragmentDoc = gql`
+  fragment TagEntity on TagEntity {
     id
     attributes {
       title
@@ -8893,16 +9974,22 @@ export const ArticleCardEntityFragmentDoc = gql`
         }
       }
       addedAt
-      category {
+      articleCategory {
         data {
-          ...CategoryEntity
+          ...ArticleCategoryEntity
+        }
+      }
+      tags {
+        data {
+          ...TagEntity
         }
       }
     }
   }
   ${ArticleSlugEntityFragmentDoc}
   ${UploadImageEntityFragmentDoc}
-  ${CategoryEntityFragmentDoc}
+  ${ArticleCategoryEntityFragmentDoc}
+  ${TagEntityFragmentDoc}
 `
 export const ArticleEntityFragmentDoc = gql`
   fragment ArticleEntity on ArticleEntity {
@@ -8913,8 +10000,47 @@ export const ArticleEntityFragmentDoc = gql`
   }
   ${ArticleCardEntityFragmentDoc}
 `
+export const CategoryEntityFragmentDoc = gql`
+  fragment CategoryEntity on CategoryEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const DocumentCategoryEntityFragmentDoc = gql`
+  fragment DocumentCategoryEntity on DocumentCategoryEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
 export const DocumentEntityFragmentDoc = gql`
   fragment DocumentEntity on DocumentEntity {
+    id
+    attributes {
+      title
+      slug
+      documentCategory {
+        data {
+          ...DocumentCategoryEntity
+        }
+      }
+      files {
+        data {
+          ...UploadFileEntity
+        }
+      }
+    }
+  }
+  ${DocumentCategoryEntityFragmentDoc}
+  ${UploadFileEntityFragmentDoc}
+`
+export const FaqCategoryEntityFragmentDoc = gql`
+  fragment FaqCategoryEntity on FaqCategoryEntity {
     id
     attributes {
       title
@@ -8928,8 +10054,14 @@ export const FaqEntityFragmentDoc = gql`
     attributes {
       title
       content
+      faqCategory {
+        data {
+          ...FaqCategoryEntity
+        }
+      }
     }
   }
+  ${FaqCategoryEntityFragmentDoc}
 `
 export const LinkFragmentDoc = gql`
   fragment Link on ComponentItemsLink {
@@ -9441,14 +10573,29 @@ export const PageEntityFragmentDoc = gql`
   ${HeaderSectionsFragmentDoc}
   ${PageSectionsFragmentDoc}
 `
-export const TagEntityFragmentDoc = gql`
-  fragment TagEntity on TagEntity {
+export const ServiceCategoryEntityFragmentDoc = gql`
+  fragment ServiceCategoryEntity on ServiceCategoryEntity {
     id
     attributes {
       title
       slug
     }
   }
+`
+export const ServiceEntityFragmentDoc = gql`
+  fragment ServiceEntity on ServiceEntity {
+    id
+    attributes {
+      title
+      slug
+      serviceCategories {
+        data {
+          ...ServiceCategoryEntity
+        }
+      }
+    }
+  }
+  ${ServiceCategoryEntityFragmentDoc}
 `
 export const GeneralDocument = gql`
   query General($locale: I18NLocaleCode!) {
@@ -9542,6 +10689,86 @@ export const CategoryBySlugDocument = gql`
   }
   ${CategoryEntityFragmentDoc}
 `
+export const ArticleCategoriesDocument = gql`
+  query ArticleCategories($locale: I18NLocaleCode!) {
+    articleCategories(locale: $locale) {
+      data {
+        ...ArticleCategoryEntity
+      }
+    }
+  }
+  ${ArticleCategoryEntityFragmentDoc}
+`
+export const ArticleCategoryBySlugDocument = gql`
+  query ArticleCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    articleCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        ...ArticleCategoryEntity
+      }
+    }
+  }
+  ${ArticleCategoryEntityFragmentDoc}
+`
+export const DocumentCategoriesDocument = gql`
+  query DocumentCategories($locale: I18NLocaleCode!) {
+    documentCategories(locale: $locale) {
+      data {
+        ...DocumentCategoryEntity
+      }
+    }
+  }
+  ${DocumentCategoryEntityFragmentDoc}
+`
+export const DocumentCategoryBySlugDocument = gql`
+  query DocumentCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    documentCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        ...DocumentCategoryEntity
+      }
+    }
+  }
+  ${DocumentCategoryEntityFragmentDoc}
+`
+export const FaqCategoriesDocument = gql`
+  query FaqCategories($locale: I18NLocaleCode!) {
+    faqCategories(locale: $locale) {
+      data {
+        ...FaqCategoryEntity
+      }
+    }
+  }
+  ${FaqCategoryEntityFragmentDoc}
+`
+export const FaqCategoryBySlugDocument = gql`
+  query FaqCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    faqCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        ...FaqCategoryEntity
+      }
+    }
+  }
+  ${FaqCategoryEntityFragmentDoc}
+`
+export const ServiceCategoriesDocument = gql`
+  query ServiceCategories($locale: I18NLocaleCode!) {
+    serviceCategories(locale: $locale) {
+      data {
+        ...ServiceCategoryEntity
+      }
+    }
+  }
+  ${ServiceCategoryEntityFragmentDoc}
+`
+export const ServiceCategoryBySlugDocument = gql`
+  query ServiceCategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    serviceCategories(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        ...ServiceCategoryEntity
+      }
+    }
+  }
+  ${ServiceCategoryEntityFragmentDoc}
+`
 export const DocumentsDocument = gql`
   query Documents {
     documents {
@@ -9601,6 +10828,26 @@ export const PageBySlugDocument = gql`
     }
   }
   ${PageEntityFragmentDoc}
+`
+export const ServicesDocument = gql`
+  query Services($locale: I18NLocaleCode!) {
+    services(locale: $locale) {
+      data {
+        ...ServiceEntity
+      }
+    }
+  }
+  ${ServiceEntityFragmentDoc}
+`
+export const ServiceBySlugDocument = gql`
+  query ServiceBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    services(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        ...ServiceEntity
+      }
+    }
+  }
+  ${ServiceEntityFragmentDoc}
 `
 export const TagsDocument = gql`
   query Tags {
@@ -9775,6 +11022,126 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables,
       )
     },
+    ArticleCategories(
+      variables: ArticleCategoriesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticleCategoriesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticleCategoriesQuery>(ArticleCategoriesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ArticleCategories',
+        'query',
+        variables,
+      )
+    },
+    ArticleCategoryBySlug(
+      variables: ArticleCategoryBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticleCategoryBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticleCategoryBySlugQuery>(ArticleCategoryBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ArticleCategoryBySlug',
+        'query',
+        variables,
+      )
+    },
+    DocumentCategories(
+      variables: DocumentCategoriesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<DocumentCategoriesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<DocumentCategoriesQuery>(DocumentCategoriesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'DocumentCategories',
+        'query',
+        variables,
+      )
+    },
+    DocumentCategoryBySlug(
+      variables: DocumentCategoryBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<DocumentCategoryBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<DocumentCategoryBySlugQuery>(DocumentCategoryBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'DocumentCategoryBySlug',
+        'query',
+        variables,
+      )
+    },
+    FaqCategories(
+      variables: FaqCategoriesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<FaqCategoriesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<FaqCategoriesQuery>(FaqCategoriesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'FaqCategories',
+        'query',
+        variables,
+      )
+    },
+    FaqCategoryBySlug(
+      variables: FaqCategoryBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<FaqCategoryBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<FaqCategoryBySlugQuery>(FaqCategoryBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'FaqCategoryBySlug',
+        'query',
+        variables,
+      )
+    },
+    ServiceCategories(
+      variables: ServiceCategoriesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ServiceCategoriesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ServiceCategoriesQuery>(ServiceCategoriesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ServiceCategories',
+        'query',
+        variables,
+      )
+    },
+    ServiceCategoryBySlug(
+      variables: ServiceCategoryBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ServiceCategoryBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ServiceCategoryBySlugQuery>(ServiceCategoryBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ServiceCategoryBySlug',
+        'query',
+        variables,
+      )
+    },
     Documents(
       variables?: DocumentsQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
@@ -9861,6 +11228,36 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'PageBySlug',
+        'query',
+        variables,
+      )
+    },
+    Services(
+      variables: ServicesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ServicesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ServicesQuery>(ServicesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Services',
+        'query',
+        variables,
+      )
+    },
+    ServiceBySlug(
+      variables: ServiceBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ServiceBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ServiceBySlugQuery>(ServiceBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ServiceBySlug',
         'query',
         variables,
       )

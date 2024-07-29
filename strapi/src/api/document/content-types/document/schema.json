@@ -20,6 +20,21 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "documentCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::document-category.document-category",
+      "inversedBy": "dokuments"
+    },
+    "files": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
     }
   }
 }

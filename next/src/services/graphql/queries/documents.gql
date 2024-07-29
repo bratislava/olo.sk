@@ -3,9 +3,18 @@ fragment DocumentEntity on DocumentEntity {
   attributes {
     title
     slug
+    documentCategory {
+      data {
+        ...DocumentCategoryEntity
+      }
+    }
+    files {
+      data {
+        ...UploadFileEntity
+      }
+    }
   }
 }
-
 
 query Documents {
   documents {

@@ -33,6 +33,12 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "tags"
     }
   }
 }

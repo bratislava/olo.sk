@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { client } from '@/src/services/graphql'
 import { getPagePath } from '@/src/utils/getPagePath'
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { pathname } = req.query
 

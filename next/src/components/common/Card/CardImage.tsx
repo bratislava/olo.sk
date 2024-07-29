@@ -13,7 +13,7 @@ const imageSizes = generateImageSizes({ default: '100vw', md: '50vw', lg: '33vw'
 
 const CardImage = ({ imgSrc, className }: CardImageProps) => {
   return (
-    <div className={cn('relative size-full shrink-0 overflow-hidden', className)}>
+    <div className={cn('relative shrink-0 overflow-hidden', className)}>
       {imgSrc ? (
         <Image src={imgSrc} sizes={imageSizes} alt="" fill className="object-cover" />
       ) : (

@@ -1,4 +1,4 @@
-fragment CategoryEntity on CategoryEntity {
+fragment TagEntity on TagEntity {
   id
   attributes {
     title
@@ -6,18 +6,18 @@ fragment CategoryEntity on CategoryEntity {
   }
 }
 
-query Categories($locale: I18NLocaleCode!) {
-  categories(locale: $locale) {
+query Tags {
+  tags {
     data {
-      ...CategoryEntity
+      ...TagEntity
     }
   }
 }
 
-query CategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
-  categories(filters: { slug: { eq: $slug } }, locale: $locale) {
+query TagBySlug($slug: String!) {
+  tags(filters: { slug: { eq: $slug } }) {
     data {
-      ...CategoryEntity
+      ...TagEntity
     }
   }
 }

@@ -1,28 +1,3 @@
-fragment SitemapEntity on SitemapEntity {
-  attributes {
-    articlesParentPage {
-      data {
-        ...PageSlugEntity
-      }
-    }
-    documentsParentPage {
-      data {
-        ...PageSlugEntity
-      }
-    }
-    faqsParentPage {
-      data {
-        ...PageSlugEntity
-      }
-    }
-    workshopsParentPage {
-      data {
-        ...PageSlugEntity
-      }
-    }
-  }
-}
-
 fragment NavigationEntity on NavigationEntity {
   attributes {
     articlesParentPage {

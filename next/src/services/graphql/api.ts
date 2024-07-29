@@ -1,6 +1,5 @@
 import { GraphQLClient, RequestOptions } from 'graphql-request'
 import gql from 'graphql-tag'
-
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -278,66 +277,6 @@ export type BranchInput = {
 export type BranchRelationResponseCollection = {
   __typename?: 'BranchRelationResponseCollection'
   data: Array<BranchEntity>
-}
-
-export type Category = {
-  __typename?: 'Category'
-  createdAt?: Maybe<Scalars['DateTime']['output']>
-  locale?: Maybe<Scalars['String']['output']>
-  localizations?: Maybe<CategoryRelationResponseCollection>
-  publishedAt?: Maybe<Scalars['DateTime']['output']>
-  slug: Scalars['String']['output']
-  title: Scalars['String']['output']
-  updatedAt?: Maybe<Scalars['DateTime']['output']>
-}
-
-export type CategoryLocalizationsArgs = {
-  filters?: InputMaybe<CategoryFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  publicationState?: InputMaybe<PublicationState>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
-}
-
-export type CategoryEntity = {
-  __typename?: 'CategoryEntity'
-  attributes?: Maybe<Category>
-  id?: Maybe<Scalars['ID']['output']>
-}
-
-export type CategoryEntityResponse = {
-  __typename?: 'CategoryEntityResponse'
-  data?: Maybe<CategoryEntity>
-}
-
-export type CategoryEntityResponseCollection = {
-  __typename?: 'CategoryEntityResponseCollection'
-  data: Array<CategoryEntity>
-  meta: ResponseCollectionMeta
-}
-
-export type CategoryFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  locale?: InputMaybe<StringFilterInput>
-  localizations?: InputMaybe<CategoryFiltersInput>
-  not?: InputMaybe<CategoryFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>
-  publishedAt?: InputMaybe<DateTimeFilterInput>
-  slug?: InputMaybe<StringFilterInput>
-  title?: InputMaybe<StringFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
-
-export type CategoryInput = {
-  publishedAt?: InputMaybe<Scalars['DateTime']['input']>
-  slug?: InputMaybe<Scalars['String']['input']>
-  title?: InputMaybe<Scalars['String']['input']>
-}
-
-export type CategoryRelationResponseCollection = {
-  __typename?: 'CategoryRelationResponseCollection'
-  data: Array<CategoryEntity>
 }
 
 export type ComponentHeaderSectionsBasic = {
@@ -1293,7 +1232,6 @@ export type GenericMorph =
   | Article
   | ArticleCategory
   | Branch
-  | Category
   | ComponentHeaderSectionsBasic
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsFeaturedNews
@@ -1337,7 +1275,6 @@ export type GenericMorph =
   | Page
   | Service
   | ServiceCategory
-  | Sitemap
   | Tag
   | UploadFile
   | UploadFolder
@@ -1546,8 +1483,6 @@ export type Mutation = {
   createArticleLocalization?: Maybe<ArticleEntityResponse>
   createBranch?: Maybe<BranchEntityResponse>
   createBranchLocalization?: Maybe<BranchEntityResponse>
-  createCategory?: Maybe<CategoryEntityResponse>
-  createCategoryLocalization?: Maybe<CategoryEntityResponse>
   createContact?: Maybe<ContactEntityResponse>
   createDocument?: Maybe<DocumentEntityResponse>
   createDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
@@ -1567,7 +1502,6 @@ export type Mutation = {
   createServiceCategory?: Maybe<ServiceCategoryEntityResponse>
   createServiceCategoryLocalization?: Maybe<ServiceCategoryEntityResponse>
   createServiceLocalization?: Maybe<ServiceEntityResponse>
-  createSitemapLocalization?: Maybe<SitemapEntityResponse>
   createTag?: Maybe<TagEntityResponse>
   createTagLocalization?: Maybe<TagEntityResponse>
   createUploadFile?: Maybe<UploadFileEntityResponse>
@@ -1580,7 +1514,6 @@ export type Mutation = {
   deleteArticle?: Maybe<ArticleEntityResponse>
   deleteArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   deleteBranch?: Maybe<BranchEntityResponse>
-  deleteCategory?: Maybe<CategoryEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
   deleteDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
@@ -1594,7 +1527,6 @@ export type Mutation = {
   deletePage?: Maybe<PageEntityResponse>
   deleteService?: Maybe<ServiceEntityResponse>
   deleteServiceCategory?: Maybe<ServiceCategoryEntityResponse>
-  deleteSitemap?: Maybe<SitemapEntityResponse>
   deleteTag?: Maybe<TagEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1617,7 +1549,6 @@ export type Mutation = {
   updateArticle?: Maybe<ArticleEntityResponse>
   updateArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   updateBranch?: Maybe<BranchEntityResponse>
-  updateCategory?: Maybe<CategoryEntityResponse>
   updateContact?: Maybe<ContactEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
   updateDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
@@ -1632,7 +1563,6 @@ export type Mutation = {
   updatePage?: Maybe<PageEntityResponse>
   updateService?: Maybe<ServiceEntityResponse>
   updateServiceCategory?: Maybe<ServiceCategoryEntityResponse>
-  updateSitemap?: Maybe<SitemapEntityResponse>
   updateTag?: Maybe<TagEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>
@@ -1679,17 +1609,6 @@ export type MutationCreateBranchArgs = {
 
 export type MutationCreateBranchLocalizationArgs = {
   data?: InputMaybe<BranchInput>
-  id?: InputMaybe<Scalars['ID']['input']>
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-}
-
-export type MutationCreateCategoryArgs = {
-  data: CategoryInput
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-}
-
-export type MutationCreateCategoryLocalizationArgs = {
-  data?: InputMaybe<CategoryInput>
   id?: InputMaybe<Scalars['ID']['input']>
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1796,12 +1715,6 @@ export type MutationCreateServiceLocalizationArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
-export type MutationCreateSitemapLocalizationArgs = {
-  data?: InputMaybe<SitemapInput>
-  id?: InputMaybe<Scalars['ID']['input']>
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-}
-
 export type MutationCreateTagArgs = {
   data: TagInput
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
@@ -1844,11 +1757,6 @@ export type MutationDeleteArticleCategoryArgs = {
 }
 
 export type MutationDeleteBranchArgs = {
-  id: Scalars['ID']['input']
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-}
-
-export type MutationDeleteCategoryArgs = {
   id: Scalars['ID']['input']
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
@@ -1908,10 +1816,6 @@ export type MutationDeleteServiceArgs = {
 
 export type MutationDeleteServiceCategoryArgs = {
   id: Scalars['ID']['input']
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-}
-
-export type MutationDeleteSitemapArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
@@ -1991,12 +1895,6 @@ export type MutationUpdateBranchArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
-export type MutationUpdateCategoryArgs = {
-  data: CategoryInput
-  id: Scalars['ID']['input']
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-}
-
 export type MutationUpdateContactArgs = {
   data: ContactInput
   id: Scalars['ID']['input']
@@ -2070,11 +1968,6 @@ export type MutationUpdateServiceArgs = {
 export type MutationUpdateServiceCategoryArgs = {
   data: ServiceCategoryInput
   id: Scalars['ID']['input']
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-}
-
-export type MutationUpdateSitemapArgs = {
-  data: SitemapInput
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
@@ -2346,8 +2239,6 @@ export type Query = {
   articles?: Maybe<ArticleEntityResponseCollection>
   branch?: Maybe<BranchEntityResponse>
   branches?: Maybe<BranchEntityResponseCollection>
-  categories?: Maybe<CategoryEntityResponseCollection>
-  category?: Maybe<CategoryEntityResponse>
   contact?: Maybe<ContactEntityResponse>
   contacts?: Maybe<ContactEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
@@ -2373,7 +2264,6 @@ export type Query = {
   serviceCategories?: Maybe<ServiceCategoryEntityResponseCollection>
   serviceCategory?: Maybe<ServiceCategoryEntityResponse>
   services?: Maybe<ServiceEntityResponseCollection>
-  sitemap?: Maybe<SitemapEntityResponse>
   tag?: Maybe<TagEntityResponse>
   tags?: Maybe<TagEntityResponseCollection>
   uploadFile?: Maybe<UploadFileEntityResponse>
@@ -2425,19 +2315,6 @@ export type QueryBranchesArgs = {
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
-}
-
-export type QueryCategoriesArgs = {
-  filters?: InputMaybe<CategoryFiltersInput>
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
-  pagination?: InputMaybe<PaginationArg>
-  publicationState?: InputMaybe<PublicationState>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
-}
-
-export type QueryCategoryArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type QueryContactArgs = {
@@ -2574,10 +2451,6 @@ export type QueryServicesArgs = {
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
-}
-
-export type QuerySitemapArgs = {
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>
 }
 
 export type QueryTagArgs = {
@@ -2787,41 +2660,6 @@ export type ServiceInput = {
 export type ServiceRelationResponseCollection = {
   __typename?: 'ServiceRelationResponseCollection'
   data: Array<ServiceEntity>
-}
-
-export type Sitemap = {
-  __typename?: 'Sitemap'
-  articlesParentPage?: Maybe<PageEntityResponse>
-  createdAt?: Maybe<Scalars['DateTime']['output']>
-  documentsParentPage?: Maybe<PageEntityResponse>
-  faqsParentPage?: Maybe<PageEntityResponse>
-  locale?: Maybe<Scalars['String']['output']>
-  localizations?: Maybe<SitemapRelationResponseCollection>
-  updatedAt?: Maybe<Scalars['DateTime']['output']>
-  workshopsParentPage?: Maybe<PageEntityResponse>
-}
-
-export type SitemapEntity = {
-  __typename?: 'SitemapEntity'
-  attributes?: Maybe<Sitemap>
-  id?: Maybe<Scalars['ID']['output']>
-}
-
-export type SitemapEntityResponse = {
-  __typename?: 'SitemapEntityResponse'
-  data?: Maybe<SitemapEntity>
-}
-
-export type SitemapInput = {
-  articlesParentPage?: InputMaybe<Scalars['ID']['input']>
-  documentsParentPage?: InputMaybe<Scalars['ID']['input']>
-  faqsParentPage?: InputMaybe<Scalars['ID']['input']>
-  workshopsParentPage?: InputMaybe<Scalars['ID']['input']>
-}
-
-export type SitemapRelationResponseCollection = {
-  __typename?: 'SitemapRelationResponseCollection'
-  data: Array<SitemapEntity>
 }
 
 export type StringFilterInput = {
@@ -3343,6 +3181,204 @@ export type WorkshopRelationResponseCollection = {
 
 export type WorkshopSectionsDynamicZone = ComponentSectionsRichtext | Error
 
+export type TagEntityFragment = {
+  __typename?: 'TagEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+}
+
+export type TagsQueryVariables = Exact<{ [key: string]: never }>
+
+export type TagsQuery = {
+  __typename?: 'Query'
+  tags?: {
+    __typename?: 'TagEntityResponseCollection'
+    data: Array<{
+      __typename?: 'TagEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type TagBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type TagBySlugQuery = {
+  __typename?: 'Query'
+  tags?: {
+    __typename?: 'TagEntityResponseCollection'
+    data: Array<{
+      __typename?: 'TagEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type ArticleCategoryEntityFragment = {
+  __typename?: 'ArticleCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
+}
+
+export type ArticleCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ArticleCategoriesQuery = {
+  __typename?: 'Query'
+  articleCategories?: {
+    __typename?: 'ArticleCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ArticleCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type ArticleCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ArticleCategoryBySlugQuery = {
+  __typename?: 'Query'
+  articleCategories?: {
+    __typename?: 'ArticleCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ArticleCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type DocumentCategoryEntityFragment = {
+  __typename?: 'DocumentCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+}
+
+export type DocumentCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type DocumentCategoriesQuery = {
+  __typename?: 'Query'
+  documentCategories?: {
+    __typename?: 'DocumentCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'DocumentCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type DocumentCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type DocumentCategoryBySlugQuery = {
+  __typename?: 'Query'
+  documentCategories?: {
+    __typename?: 'DocumentCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'DocumentCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type FaqCategorySlugEntityFragment = {
+  __typename: 'FaqCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+}
+
+export type FaqCategoryEntityFragment = {
+  __typename: 'FaqCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+}
+
+export type FaqCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type FaqCategoriesQuery = {
+  __typename?: 'Query'
+  faqCategories?: {
+    __typename?: 'FaqCategoryEntityResponseCollection'
+    data: Array<{
+      __typename: 'FaqCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+    }>
+  } | null
+}
+
+export type FaqCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type FaqCategoryBySlugQuery = {
+  __typename?: 'Query'
+  faqCategories?: {
+    __typename?: 'FaqCategoryEntityResponseCollection'
+    data: Array<{
+      __typename: 'FaqCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+    }>
+  } | null
+}
+
+export type ServiceCategoryEntityFragment = {
+  __typename?: 'ServiceCategoryEntity'
+  id?: string | null
+  attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+}
+
+export type ServiceCategoriesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ServiceCategoriesQuery = {
+  __typename?: 'Query'
+  serviceCategories?: {
+    __typename?: 'ServiceCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ServiceCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
+export type ServiceCategoryBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type ServiceCategoryBySlugQuery = {
+  __typename?: 'Query'
+  serviceCategories?: {
+    __typename?: 'ServiceCategoryEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ServiceCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
 export type LinkFragment = {
   __typename?: 'ComponentItemsLink'
   label?: string | null
@@ -3504,237 +3540,6 @@ export type FileItemFragment = {
       } | null
     } | null
   }
-}
-
-export type SitemapEntityFragment = {
-  __typename?: 'SitemapEntity'
-  attributes?: {
-    __typename?: 'Sitemap'
-    articlesParentPage?: {
-      __typename?: 'PageEntityResponse'
-      data?: {
-        __typename: 'PageEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Page'
-          title: string
-          slug: string
-          parentPage?: {
-            __typename?: 'PageEntityResponse'
-            data?: {
-              __typename?: 'PageEntity'
-              attributes?: {
-                __typename?: 'Page'
-                slug: string
-                title: string
-                parentPage?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: {
-                      __typename?: 'Page'
-                      slug: string
-                      title: string
-                      parentPage?: {
-                        __typename?: 'PageEntityResponse'
-                        data?: {
-                          __typename?: 'PageEntity'
-                          attributes?: {
-                            __typename?: 'Page'
-                            slug: string
-                            title: string
-                            parentPage?: {
-                              __typename?: 'PageEntityResponse'
-                              data?: {
-                                __typename?: 'PageEntity'
-                                attributes?: {
-                                  __typename?: 'Page'
-                                  slug: string
-                                  title: string
-                                } | null
-                              } | null
-                            } | null
-                          } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-            } | null
-          } | null
-        } | null
-      } | null
-    } | null
-    documentsParentPage?: {
-      __typename?: 'PageEntityResponse'
-      data?: {
-        __typename: 'PageEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Page'
-          title: string
-          slug: string
-          parentPage?: {
-            __typename?: 'PageEntityResponse'
-            data?: {
-              __typename?: 'PageEntity'
-              attributes?: {
-                __typename?: 'Page'
-                slug: string
-                title: string
-                parentPage?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: {
-                      __typename?: 'Page'
-                      slug: string
-                      title: string
-                      parentPage?: {
-                        __typename?: 'PageEntityResponse'
-                        data?: {
-                          __typename?: 'PageEntity'
-                          attributes?: {
-                            __typename?: 'Page'
-                            slug: string
-                            title: string
-                            parentPage?: {
-                              __typename?: 'PageEntityResponse'
-                              data?: {
-                                __typename?: 'PageEntity'
-                                attributes?: {
-                                  __typename?: 'Page'
-                                  slug: string
-                                  title: string
-                                } | null
-                              } | null
-                            } | null
-                          } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-            } | null
-          } | null
-        } | null
-      } | null
-    } | null
-    faqsParentPage?: {
-      __typename?: 'PageEntityResponse'
-      data?: {
-        __typename: 'PageEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Page'
-          title: string
-          slug: string
-          parentPage?: {
-            __typename?: 'PageEntityResponse'
-            data?: {
-              __typename?: 'PageEntity'
-              attributes?: {
-                __typename?: 'Page'
-                slug: string
-                title: string
-                parentPage?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: {
-                      __typename?: 'Page'
-                      slug: string
-                      title: string
-                      parentPage?: {
-                        __typename?: 'PageEntityResponse'
-                        data?: {
-                          __typename?: 'PageEntity'
-                          attributes?: {
-                            __typename?: 'Page'
-                            slug: string
-                            title: string
-                            parentPage?: {
-                              __typename?: 'PageEntityResponse'
-                              data?: {
-                                __typename?: 'PageEntity'
-                                attributes?: {
-                                  __typename?: 'Page'
-                                  slug: string
-                                  title: string
-                                } | null
-                              } | null
-                            } | null
-                          } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-            } | null
-          } | null
-        } | null
-      } | null
-    } | null
-    workshopsParentPage?: {
-      __typename?: 'PageEntityResponse'
-      data?: {
-        __typename: 'PageEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Page'
-          title: string
-          slug: string
-          parentPage?: {
-            __typename?: 'PageEntityResponse'
-            data?: {
-              __typename?: 'PageEntity'
-              attributes?: {
-                __typename?: 'Page'
-                slug: string
-                title: string
-                parentPage?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: {
-                      __typename?: 'Page'
-                      slug: string
-                      title: string
-                      parentPage?: {
-                        __typename?: 'PageEntityResponse'
-                        data?: {
-                          __typename?: 'PageEntity'
-                          attributes?: {
-                            __typename?: 'Page'
-                            slug: string
-                            title: string
-                            parentPage?: {
-                              __typename?: 'PageEntityResponse'
-                              data?: {
-                                __typename?: 'PageEntity'
-                                attributes?: {
-                                  __typename?: 'Page'
-                                  slug: string
-                                  title: string
-                                } | null
-                              } | null
-                            } | null
-                          } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-            } | null
-          } | null
-        } | null
-      } | null
-    } | null
-  } | null
 }
 
 export type NavigationEntityFragment = {
@@ -6470,207 +6275,6 @@ export type BranchBySlugQuery = {
         title: string
         slug: string
       } | null
-    }>
-  } | null
-}
-
-export type CategoryEntityFragment = {
-  __typename?: 'CategoryEntity'
-  id?: string | null
-  attributes?: { __typename?: 'Category'; title: string; slug: string } | null
-}
-
-export type CategoriesQueryVariables = Exact<{
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type CategoriesQuery = {
-  __typename?: 'Query'
-  categories?: {
-    __typename?: 'CategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'CategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'Category'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type CategoryBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type CategoryBySlugQuery = {
-  __typename?: 'Query'
-  categories?: {
-    __typename?: 'CategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'CategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'Category'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type ArticleCategoryEntityFragment = {
-  __typename?: 'ArticleCategoryEntity'
-  id?: string | null
-  attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
-}
-
-export type ArticleCategoriesQueryVariables = Exact<{
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type ArticleCategoriesQuery = {
-  __typename?: 'Query'
-  articleCategories?: {
-    __typename?: 'ArticleCategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'ArticleCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type ArticleCategoryBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type ArticleCategoryBySlugQuery = {
-  __typename?: 'Query'
-  articleCategories?: {
-    __typename?: 'ArticleCategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'ArticleCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type DocumentCategoryEntityFragment = {
-  __typename?: 'DocumentCategoryEntity'
-  id?: string | null
-  attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
-}
-
-export type DocumentCategoriesQueryVariables = Exact<{
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type DocumentCategoriesQuery = {
-  __typename?: 'Query'
-  documentCategories?: {
-    __typename?: 'DocumentCategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'DocumentCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type DocumentCategoryBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type DocumentCategoryBySlugQuery = {
-  __typename?: 'Query'
-  documentCategories?: {
-    __typename?: 'DocumentCategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'DocumentCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type FaqCategorySlugEntityFragment = {
-  __typename: 'FaqCategoryEntity'
-  id?: string | null
-  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
-}
-
-export type FaqCategoryEntityFragment = {
-  __typename: 'FaqCategoryEntity'
-  id?: string | null
-  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
-}
-
-export type FaqCategoriesQueryVariables = Exact<{
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type FaqCategoriesQuery = {
-  __typename?: 'Query'
-  faqCategories?: {
-    __typename?: 'FaqCategoryEntityResponseCollection'
-    data: Array<{
-      __typename: 'FaqCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
-    }>
-  } | null
-}
-
-export type FaqCategoryBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type FaqCategoryBySlugQuery = {
-  __typename?: 'Query'
-  faqCategories?: {
-    __typename?: 'FaqCategoryEntityResponseCollection'
-    data: Array<{
-      __typename: 'FaqCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
-    }>
-  } | null
-}
-
-export type ServiceCategoryEntityFragment = {
-  __typename?: 'ServiceCategoryEntity'
-  id?: string | null
-  attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
-}
-
-export type ServiceCategoriesQueryVariables = Exact<{
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type ServiceCategoriesQuery = {
-  __typename?: 'Query'
-  serviceCategories?: {
-    __typename?: 'ServiceCategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'ServiceCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type ServiceCategoryBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type ServiceCategoryBySlugQuery = {
-  __typename?: 'Query'
-  serviceCategories?: {
-    __typename?: 'ServiceCategoryEntityResponseCollection'
-    data: Array<{
-      __typename?: 'ServiceCategoryEntity'
-      id?: string | null
-      attributes?: { __typename?: 'ServiceCategory'; title: string; slug: string } | null
     }>
   } | null
 }
@@ -10691,42 +10295,6 @@ export type ServiceBySlugQuery = {
   } | null
 }
 
-export type TagEntityFragment = {
-  __typename?: 'TagEntity'
-  id?: string | null
-  attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
-}
-
-export type TagsQueryVariables = Exact<{ [key: string]: never }>
-
-export type TagsQuery = {
-  __typename?: 'Query'
-  tags?: {
-    __typename?: 'TagEntityResponseCollection'
-    data: Array<{
-      __typename?: 'TagEntity'
-      id?: string | null
-      attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
-export type TagBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-}>
-
-export type TagBySlugQuery = {
-  __typename?: 'Query'
-  tags?: {
-    __typename?: 'TagEntityResponseCollection'
-    data: Array<{
-      __typename?: 'TagEntity'
-      id?: string | null
-      attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
-    }>
-  } | null
-}
-
 export type WorkshopSlugEntityFragment = {
   __typename?: 'WorkshopEntity'
   id?: string | null
@@ -10855,33 +10423,6 @@ export const PageSlugEntityFragmentDoc = gql`
   }
   ${PageParentPagesFragmentDoc}
 `
-export const SitemapEntityFragmentDoc = gql`
-  fragment SitemapEntity on SitemapEntity {
-    attributes {
-      articlesParentPage {
-        data {
-          ...PageSlugEntity
-        }
-      }
-      documentsParentPage {
-        data {
-          ...PageSlugEntity
-        }
-      }
-      faqsParentPage {
-        data {
-          ...PageSlugEntity
-        }
-      }
-      workshopsParentPage {
-        data {
-          ...PageSlugEntity
-        }
-      }
-    }
-  }
-  ${PageSlugEntityFragmentDoc}
-`
 export const NavigationEntityFragmentDoc = gql`
   fragment NavigationEntity on NavigationEntity {
     attributes {
@@ -11000,15 +10541,6 @@ export const ArticleEntityFragmentDoc = gql`
     }
   }
   ${ArticleCardEntityFragmentDoc}
-`
-export const CategoryEntityFragmentDoc = gql`
-  fragment CategoryEntity on CategoryEntity {
-    id
-    attributes {
-      title
-      slug
-    }
-  }
 `
 export const DocumentSlugEntityFragmentDoc = gql`
   fragment DocumentSlugEntity on DocumentEntity {
@@ -11640,97 +11172,25 @@ export const ServiceEntityFragmentDoc = gql`
   ${ServiceSlugEntityFragmentDoc}
   ${ServiceCategoryEntityFragmentDoc}
 `
-export const GeneralDocument = gql`
-  query General($locale: I18NLocaleCode!) {
-    navigation(locale: $locale) {
+export const TagsDocument = gql`
+  query Tags {
+    tags {
       data {
-        ...NavigationEntity
-      }
-    }
-    footer(locale: $locale) {
-      data {
-        ...FooterEntity
-      }
-    }
-    menu(locale: $locale) {
-      data {
-        ...MenuEntity
+        ...TagEntity
       }
     }
   }
-  ${NavigationEntityFragmentDoc}
-  ${FooterEntityFragmentDoc}
-  ${MenuEntityFragmentDoc}
+  ${TagEntityFragmentDoc}
 `
-export const ArticlesDocument = gql`
-  query Articles {
-    articles {
+export const TagBySlugDocument = gql`
+  query TagBySlug($slug: String!) {
+    tags(filters: { slug: { eq: $slug } }) {
       data {
-        ...ArticleEntity
+        ...TagEntity
       }
     }
   }
-  ${ArticleEntityFragmentDoc}
-`
-export const ArticleBySlugDocument = gql`
-  query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
-    articles(filters: { slug: { eq: $slug } }, locale: $locale) {
-      data {
-        ...ArticleEntity
-      }
-    }
-  }
-  ${ArticleEntityFragmentDoc}
-`
-export const LatestArticlesDocument = gql`
-  query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
-    articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
-      data {
-        ...ArticleEntity
-      }
-    }
-  }
-  ${ArticleEntityFragmentDoc}
-`
-export const BranchesDocument = gql`
-  query Branches($locale: I18NLocaleCode!) {
-    branches(locale: $locale) {
-      data {
-        ...BranchEntity
-      }
-    }
-  }
-  ${BranchEntityFragmentDoc}
-`
-export const BranchBySlugDocument = gql`
-  query BranchBySlug($slug: String!, $locale: I18NLocaleCode!) {
-    branches(filters: { slug: { eq: $slug } }, locale: $locale) {
-      data {
-        ...BranchEntity
-      }
-    }
-  }
-  ${BranchEntityFragmentDoc}
-`
-export const CategoriesDocument = gql`
-  query Categories($locale: I18NLocaleCode!) {
-    categories(locale: $locale) {
-      data {
-        ...CategoryEntity
-      }
-    }
-  }
-  ${CategoryEntityFragmentDoc}
-`
-export const CategoryBySlugDocument = gql`
-  query CategoryBySlug($slug: String!, $locale: I18NLocaleCode!) {
-    categories(filters: { slug: { eq: $slug } }, locale: $locale) {
-      data {
-        ...CategoryEntity
-      }
-    }
-  }
-  ${CategoryEntityFragmentDoc}
+  ${TagEntityFragmentDoc}
 `
 export const ArticleCategoriesDocument = gql`
   query ArticleCategories($locale: I18NLocaleCode!) {
@@ -11812,6 +11272,78 @@ export const ServiceCategoryBySlugDocument = gql`
   }
   ${ServiceCategoryEntityFragmentDoc}
 `
+export const GeneralDocument = gql`
+  query General($locale: I18NLocaleCode!) {
+    navigation(locale: $locale) {
+      data {
+        ...NavigationEntity
+      }
+    }
+    footer(locale: $locale) {
+      data {
+        ...FooterEntity
+      }
+    }
+    menu(locale: $locale) {
+      data {
+        ...MenuEntity
+      }
+    }
+  }
+  ${NavigationEntityFragmentDoc}
+  ${FooterEntityFragmentDoc}
+  ${MenuEntityFragmentDoc}
+`
+export const ArticlesDocument = gql`
+  query Articles {
+    articles {
+      data {
+        ...ArticleEntity
+      }
+    }
+  }
+  ${ArticleEntityFragmentDoc}
+`
+export const ArticleBySlugDocument = gql`
+  query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    articles(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        ...ArticleEntity
+      }
+    }
+  }
+  ${ArticleEntityFragmentDoc}
+`
+export const LatestArticlesDocument = gql`
+  query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
+    articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
+      data {
+        ...ArticleEntity
+      }
+    }
+  }
+  ${ArticleEntityFragmentDoc}
+`
+export const BranchesDocument = gql`
+  query Branches($locale: I18NLocaleCode!) {
+    branches(locale: $locale) {
+      data {
+        ...BranchEntity
+      }
+    }
+  }
+  ${BranchEntityFragmentDoc}
+`
+export const BranchBySlugDocument = gql`
+  query BranchBySlug($slug: String!, $locale: I18NLocaleCode!) {
+    branches(filters: { slug: { eq: $slug } }, locale: $locale) {
+      data {
+        ...BranchEntity
+      }
+    }
+  }
+  ${BranchEntityFragmentDoc}
+`
 export const DocumentsDocument = gql`
   query Documents {
     documents {
@@ -11892,26 +11424,6 @@ export const ServiceBySlugDocument = gql`
   }
   ${ServiceEntityFragmentDoc}
 `
-export const TagsDocument = gql`
-  query Tags {
-    tags {
-      data {
-        ...TagEntity
-      }
-    }
-  }
-  ${TagEntityFragmentDoc}
-`
-export const TagBySlugDocument = gql`
-  query TagBySlug($slug: String!) {
-    tags(filters: { slug: { eq: $slug } }) {
-      data {
-        ...TagEntity
-      }
-    }
-  }
-  ${TagEntityFragmentDoc}
-`
 export const WorkshopsDocument = gql`
   query Workshops {
     workshops {
@@ -11945,122 +11457,32 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    General(
-      variables: GeneralQueryVariables,
+    Tags(
+      variables?: TagsQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<GeneralQuery> {
+    ): Promise<TagsQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<GeneralQuery>(GeneralDocument, variables, {
+          client.request<TagsQuery>(TagsDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'General',
+        'Tags',
         'query',
         variables,
       )
     },
-    Articles(
-      variables?: ArticlesQueryVariables,
+    TagBySlug(
+      variables: TagBySlugQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<ArticlesQuery> {
+    ): Promise<TagBySlugQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<ArticlesQuery>(ArticlesDocument, variables, {
+          client.request<TagBySlugQuery>(TagBySlugDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'Articles',
-        'query',
-        variables,
-      )
-    },
-    ArticleBySlug(
-      variables: ArticleBySlugQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<ArticleBySlugQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<ArticleBySlugQuery>(ArticleBySlugDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'ArticleBySlug',
-        'query',
-        variables,
-      )
-    },
-    LatestArticles(
-      variables: LatestArticlesQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<LatestArticlesQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<LatestArticlesQuery>(LatestArticlesDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'LatestArticles',
-        'query',
-        variables,
-      )
-    },
-    Branches(
-      variables: BranchesQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<BranchesQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<BranchesQuery>(BranchesDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'Branches',
-        'query',
-        variables,
-      )
-    },
-    BranchBySlug(
-      variables: BranchBySlugQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<BranchBySlugQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<BranchBySlugQuery>(BranchBySlugDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'BranchBySlug',
-        'query',
-        variables,
-      )
-    },
-    Categories(
-      variables: CategoriesQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<CategoriesQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<CategoriesQuery>(CategoriesDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'Categories',
-        'query',
-        variables,
-      )
-    },
-    CategoryBySlug(
-      variables: CategoryBySlugQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<CategoryBySlugQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<CategoryBySlugQuery>(CategoryBySlugDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'CategoryBySlug',
+        'TagBySlug',
         'query',
         variables,
       )
@@ -12185,6 +11607,96 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables,
       )
     },
+    General(
+      variables: GeneralQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<GeneralQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GeneralQuery>(GeneralDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'General',
+        'query',
+        variables,
+      )
+    },
+    Articles(
+      variables?: ArticlesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticlesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticlesQuery>(ArticlesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Articles',
+        'query',
+        variables,
+      )
+    },
+    ArticleBySlug(
+      variables: ArticleBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticleBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticleBySlugQuery>(ArticleBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ArticleBySlug',
+        'query',
+        variables,
+      )
+    },
+    LatestArticles(
+      variables: LatestArticlesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<LatestArticlesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<LatestArticlesQuery>(LatestArticlesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'LatestArticles',
+        'query',
+        variables,
+      )
+    },
+    Branches(
+      variables: BranchesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<BranchesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<BranchesQuery>(BranchesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Branches',
+        'query',
+        variables,
+      )
+    },
+    BranchBySlug(
+      variables: BranchBySlugQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<BranchBySlugQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<BranchBySlugQuery>(BranchBySlugDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'BranchBySlug',
+        'query',
+        variables,
+      )
+    },
     Documents(
       variables?: DocumentsQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
@@ -12301,36 +11813,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'ServiceBySlug',
-        'query',
-        variables,
-      )
-    },
-    Tags(
-      variables?: TagsQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<TagsQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<TagsQuery>(TagsDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'Tags',
-        'query',
-        variables,
-      )
-    },
-    TagBySlug(
-      variables: TagBySlugQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<TagBySlugQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<TagBySlugQuery>(TagBySlugDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'TagBySlug',
         'query',
         variables,
       )

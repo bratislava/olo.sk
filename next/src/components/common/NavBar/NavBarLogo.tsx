@@ -3,6 +3,7 @@ import * as React from 'react'
 
 import OloLogo from '@/src/assets/images/olo-logo.svg'
 import Button from '@/src/components/common/Button/Button'
+import cn from '@/src/utils/cn'
 
 type NavBarLogoProps = {
   className?: string
@@ -12,7 +13,7 @@ const NavBarLogo = ({ className }: NavBarLogoProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={className}>
+    <div className={cn('-m-1.5 rounded p-1.5', className)}>
       <Button
         variant="unstyled"
         href="/"

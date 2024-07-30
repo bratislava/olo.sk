@@ -7,6 +7,8 @@ import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { ServicesHomepageSectionFragment } from '@/src/services/graphql/api'
+import { isDefined } from '@/src/utils/isDefined'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type Props = {
   section: ServicesHomepageSectionFragment | null | undefined
@@ -17,7 +19,8 @@ type Props = {
  */
 
 const ServicesHomepageSection = ({ section }: Props) => {
-  const { title, text, showMoreLink } = section ?? {}
+  const { title, text, showMoreLink, tiles } = section ?? {}
+  const { getLinkProps } = useGetLinkProps()
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -25,44 +28,42 @@ const ServicesHomepageSection = ({ section }: Props) => {
       <div className="flex flex-col gap-4 lg:gap-12">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
-        <div className="grid gap-8 border border-dashed border-action-background-default lg:grid-cols-3">
-          {['Služby pre obyvateľov', 'Služby pre firmy', 'Služby pre správcovské spoločnosti'].map(
-            (card) => {
-              // TODO proper component
-              return (
-                <CardBase
-                  hasWhiteSectionBackground={false}
-                  variant="background-white"
-                  className="px-6 py-5"
-                >
-                  <div className="flex flex-col gap-5">
-                    <div className="flex flex-col gap-2">
-                      <Typography
-                        variant="h6"
-                        as="h3"
-                        className_onlyWhenNecessary="group-hover/CardBase:underline"
-                      >
-                        {card}
-                      </Typography>
-                      <Typography>subtext</Typography>
-                    </div>
-                    <SidebarDivider />
+        <div className="grid gap-8 lg:grid-cols-3">
+          {tiles?.filter(isDefined).map((card) => {
+            return (
+              <CardBase
+                hasWhiteSectionBackground={false}
+                variant="background-white"
+                className="px-6 py-5"
+              >
+                <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-2">
+                    <Typography
+                      variant="h6"
+                      as="h3"
+                      className_onlyWhenNecessary="group-hover/CardBase:underline"
+                    >
+                      {card.title}
+                    </Typography>
+                    {card.text ? <Typography>{card.text}</Typography> : null}
+                  </div>
+
+                  <SidebarDivider />
+
+                  {card?.link ? (
                     <Button
                       asLink
-                      href="#"
                       variant="black-link"
                       fullWidth
                       className="justify-between"
                       stretched
-                    >
-                      {/* TODO translation */}
-                      Prejsť na ponuku
-                    </Button>
-                  </div>
-                </CardBase>
-              )
-            },
-          )}
+                      {...getLinkProps(card.link)}
+                    />
+                  ) : null}
+                </div>
+              </CardBase>
+            )
+          })}
         </div>
       </div>
     </SectionContainer>

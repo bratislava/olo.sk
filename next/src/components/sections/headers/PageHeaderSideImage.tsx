@@ -25,14 +25,15 @@ const PageHeaderSideImage = ({ title, perex, header, breadcrumbs }: Props) => {
 
   return (
     <div className="relative flex flex-col">
-      {/* TODO breadcrumbs will go here */}
       {/* Screen : desktop */}
       <div className="max-lg:hidden">
         {/* This container ensures that the text part of header scales correctly with window width  */}
         <SectionContainer background="secondary">
           <div className="grid grid-cols-2 gap-12">
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <HeaderTitleText title={title} text={perex} className="col-[1] grow" />
+            <div>
+              <Breadcrumbs breadcrumbs={breadcrumbs} />
+              <HeaderTitleText title={title} text={perex} className="col-[1] grow lg:py-24" />
+            </div>
           </div>
         </SectionContainer>
         {/* This div serves as an empty space for the image to overlap correctly */}
@@ -51,6 +52,7 @@ const PageHeaderSideImage = ({ title, perex, header, breadcrumbs }: Props) => {
       {/* Screen: mobile */}
       <div className="lg:hidden">
         <SectionContainer background="secondary">
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
           <div className="flex flex-col">
             <HeaderTitleText title={title} text={perex} />
             <div className="relative aspect-[320/222] overflow-hidden max-lg:-mx-4">

@@ -302,18 +302,19 @@ input ComponentHeaderSectionsGalleryInput {
 }
 
 type ComponentHeaderSectionsIcon {
-  icon: UploadFileEntityResponse!
+  iconName: String!
   id: ID!
 }
 
 input ComponentHeaderSectionsIconFiltersInput {
   and: [ComponentHeaderSectionsIconFiltersInput]
+  iconName: StringFilterInput
   not: ComponentHeaderSectionsIconFiltersInput
   or: [ComponentHeaderSectionsIconFiltersInput]
 }
 
 input ComponentHeaderSectionsIconInput {
-  icon: ID
+  iconName: String
   id: ID
 }
 

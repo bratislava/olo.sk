@@ -52,7 +52,7 @@ export interface HeaderSectionsIcon extends Schema.Component {
     description: ''
   }
   attributes: {
-    icon: Attribute.Media & Attribute.Required
+    iconName: Attribute.String & Attribute.Required
   }
 }
 

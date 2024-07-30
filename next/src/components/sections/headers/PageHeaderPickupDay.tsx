@@ -8,6 +8,7 @@ import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import ResponsiveCarousel from '@/src/components/common/Carousel/ResponsiveCarousel'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { PickupDayHeaderSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
@@ -37,6 +38,7 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
   const locale = i18n.language
   const { carouselTitle, anchors } = header
   const { getFullPath } = useGetFullPath()
+  const { sitemap } = useGeneralContext()
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
@@ -85,7 +87,11 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
       <div className="flex flex-col gap-6 py-6 lg:py-12">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <Typography variant="h2">{carouselTitle}</Typography>
-          <Button variant="black-link" href="/articles" asLink>
+          <Button
+            variant="black-link"
+            href={getFullPath(sitemap?.data?.attributes?.articlesParentPage?.data) ?? '#'}
+            asLink
+          >
             {t('pageHeaderPickupDay.allNews')}
           </Button>
         </div>

@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 
 import Footer from '@/src/components/common/Footer/Footer'
-import NavBarPlaceholder from '@/src/components/placeholder/NavBarPlaceholder'
+import NavBar from '@/src/components/common/NavBar/NavBar'
 
 type PageLayoutProps = {
   className?: string
@@ -14,7 +14,7 @@ const PageLayout = ({ className, children }: PropsWithChildren<PageLayoutProps>)
       {/* <CookieConsent className="z-30" /> */}
 
       <header className="relative z-30">
-        <NavBarPlaceholder />
+        <NavBar />
       </header>
 
       <main className="relative z-0">{children}</main>

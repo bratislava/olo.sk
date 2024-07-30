@@ -1,6 +1,6 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
-import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
+import Icon, { iconNameMap, isBaIcon } from '@/src/components/common/Icon/Icon'
+import OloIcon, { isOloIcon, oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -19,12 +19,6 @@ export type BasicRowCardProps = {
       iconName: keyof typeof iconNameMap | keyof typeof oloIconNameMap
     }
 )
-
-// TODO maybe extract to separate util or Icon provider component
-const isOloIcon = (iconName: string): iconName is keyof typeof oloIconNameMap =>
-  iconName in oloIconNameMap
-
-const isBaIcon = (iconName: string): iconName is keyof typeof iconNameMap => iconName in iconNameMap
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-9981&m=dev

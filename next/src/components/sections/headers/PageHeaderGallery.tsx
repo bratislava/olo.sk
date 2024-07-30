@@ -75,7 +75,8 @@ const PageHeaderGallery = ({ title, perex, header }: Props) => {
                   )
                 })
                 // eslint-disable-next-line unicorn/no-array-callback-reference
-                .filter(isDefined)}
+                .filter(isDefined)
+                .slice(0, 3)}
               <div className="absolute bottom-4 right-4 z-1">
                 {/* TODO add button functionality */}
                 <Button variant="category-plain" className="bg-white">
@@ -108,7 +109,7 @@ const PageHeaderGallery = ({ title, perex, header }: Props) => {
         </div>
       </SectionContainer>
       {/* This div serves as an empty space for the image to overlap correctly */}
-      <div className="h-14 bg-background-primary max-lg:hidden" />
+      <div aria-hidden className="h-14 bg-background-primary max-lg:hidden" />
     </>
   )
 }

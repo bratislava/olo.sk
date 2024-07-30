@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import placeholderIconUrl from '@/src/assets/icons/pomoc.svg?url'
+import { iconNameMap } from '@/src/components/common/Icon/Icon'
+import { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
 import { IconHeaderSectionFragment } from '@/src/services/graphql/api'
 
 import PageHeaderIconComponent from './PageHeaderIcon'
@@ -16,6 +17,13 @@ const meta: Meta<Props> = {
     title: 'Nevyviezli mi odpad',
     perex:
       'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
+    iconName: 'pomoc',
+  },
+  argTypes: {
+    iconName: {
+      control: { type: 'select' },
+      options: [...Object.keys(iconNameMap), ...Object.keys(oloIconNameMap)].sort(),
+    },
   },
 }
 
@@ -25,10 +33,7 @@ export const PageHeaderIcon: Story = {
   name: 'Ikonka',
   render: (args: Props) => (
     <PageHeaderIconComponent
-      header={{
-        ...args,
-        icon: { data: { attributes: { name: 'icon-1', url: placeholderIconUrl } } },
-      }}
+      header={{ iconName: args.iconName }}
       title={args.title}
       perex={args.perex}
     />

@@ -73,6 +73,9 @@ export const iconNameMap = {
   'zrusit-kruh': 'CrossInCircleIcon',
 } satisfies Record<string, keyof typeof Icons>
 
+export const isBaIcon = (iconName: string): iconName is keyof typeof iconNameMap =>
+  iconName in iconNameMap
+
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
 export type IconProps = {

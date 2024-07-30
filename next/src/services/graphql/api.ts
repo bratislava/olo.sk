@@ -374,7 +374,7 @@ export type ComponentHeaderSectionsGalleryMediasArgs = {
 
 export type ComponentHeaderSectionsIcon = {
   __typename?: 'ComponentHeaderSectionsIcon'
-  icon: UploadFileEntityResponse
+  iconName: Scalars['String']['output']
   id: Scalars['ID']['output']
 }
 
@@ -4403,22 +4403,7 @@ export type FeaturedNewsHeaderSectionFragment = {
 
 export type IconHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsIcon'
-  icon: {
-    __typename?: 'UploadFileEntityResponse'
-    data?: {
-      __typename?: 'UploadFileEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'UploadFile'
-        url: string
-        width?: number | null
-        height?: number | null
-        caption?: string | null
-        alternativeText?: string | null
-        name: string
-      } | null
-    } | null
-  }
+  iconName: string
 }
 
 export type PickupDayHeaderSectionFragment = {
@@ -4550,22 +4535,7 @@ type HeaderSections_ComponentHeaderSectionsGallery_Fragment = {
 
 type HeaderSections_ComponentHeaderSectionsIcon_Fragment = {
   __typename: 'ComponentHeaderSectionsIcon'
-  icon: {
-    __typename?: 'UploadFileEntityResponse'
-    data?: {
-      __typename?: 'UploadFileEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'UploadFile'
-        url: string
-        width?: number | null
-        height?: number | null
-        caption?: string | null
-        alternativeText?: string | null
-        name: string
-      } | null
-    } | null
-  }
+  iconName: string
 }
 
 type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
@@ -7661,25 +7631,7 @@ export type PageEntityFragment = {
             }>
           }
         }
-      | {
-          __typename: 'ComponentHeaderSectionsIcon'
-          icon: {
-            __typename?: 'UploadFileEntityResponse'
-            data?: {
-              __typename?: 'UploadFileEntity'
-              id?: string | null
-              attributes?: {
-                __typename?: 'UploadFile'
-                url: string
-                width?: number | null
-                height?: number | null
-                caption?: string | null
-                alternativeText?: string | null
-                name: string
-              } | null
-            } | null
-          }
-        }
+      | { __typename: 'ComponentHeaderSectionsIcon'; iconName: string }
       | {
           __typename: 'ComponentHeaderSectionsImage'
           media: {
@@ -8337,25 +8289,7 @@ export type PagesQuery = {
                 }>
               }
             }
-          | {
-              __typename: 'ComponentHeaderSectionsIcon'
-              icon: {
-                __typename?: 'UploadFileEntityResponse'
-                data?: {
-                  __typename?: 'UploadFileEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'UploadFile'
-                    url: string
-                    width?: number | null
-                    height?: number | null
-                    caption?: string | null
-                    alternativeText?: string | null
-                    name: string
-                  } | null
-                } | null
-              }
-            }
+          | { __typename: 'ComponentHeaderSectionsIcon'; iconName: string }
           | {
               __typename: 'ComponentHeaderSectionsImage'
               media: {
@@ -9020,25 +8954,7 @@ export type PageBySlugQuery = {
                 }>
               }
             }
-          | {
-              __typename: 'ComponentHeaderSectionsIcon'
-              icon: {
-                __typename?: 'UploadFileEntityResponse'
-                data?: {
-                  __typename?: 'UploadFileEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'UploadFile'
-                    url: string
-                    width?: number | null
-                    height?: number | null
-                    caption?: string | null
-                    alternativeText?: string | null
-                    name: string
-                  } | null
-                } | null
-              }
-            }
+          | { __typename: 'ComponentHeaderSectionsIcon'; iconName: string }
           | {
               __typename: 'ComponentHeaderSectionsImage'
               media: {
@@ -10205,13 +10121,8 @@ export const GalleryHeaderSectionFragmentDoc = gql`
 `
 export const IconHeaderSectionFragmentDoc = gql`
   fragment IconHeaderSection on ComponentHeaderSectionsIcon {
-    icon {
-      data {
-        ...UploadImageEntity
-      }
-    }
+    iconName
   }
-  ${UploadImageEntityFragmentDoc}
 `
 export const AnchorFragmentDoc = gql`
   fragment Anchor on ComponentItemsAnchor {

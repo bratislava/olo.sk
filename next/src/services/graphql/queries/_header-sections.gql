@@ -46,11 +46,7 @@ fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
 }
 
 fragment IconHeaderSection on ComponentHeaderSectionsIcon {
-  icon {
-    data {
-      ...UploadImageEntity
-    }
-  }
+  iconName
 }
 
 fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {

@@ -1,9 +1,6 @@
 import React from 'react'
 
-import Button from '@/src/components/common/Button/Button'
-import CardBase from '@/src/components/common/Card/CardBase'
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
-import Typography from '@/src/components/common/Typography/Typography'
+import ServicesTile from '@/src/components/common/Card/ServicesTile'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { ServicesHomepageSectionFragment } from '@/src/services/graphql/api'
@@ -32,37 +29,11 @@ const ServicesHomepageSection = ({ section }: Props) => {
         <div className="grid gap-4 lg:grid-cols-3 lg:gap-8">
           {tiles?.filter(isDefined).map((card) => {
             return (
-              <CardBase
-                hasWhiteSectionBackground={false}
-                variant="background-white"
-                className="px-6 py-5"
-              >
-                <div className="flex h-full flex-col gap-5">
-                  <div className="flex grow flex-col gap-2">
-                    <Typography
-                      variant="h6"
-                      as="h3"
-                      className_onlyWhenNecessary="group-hover/CardBase:underline"
-                    >
-                      {card.title}
-                    </Typography>
-                    {card.text ? <Typography>{card.text}</Typography> : null}
-                  </div>
-
-                  <SidebarDivider />
-
-                  {card?.link ? (
-                    <Button
-                      asLink
-                      variant="black-link"
-                      fullWidth
-                      className="justify-between"
-                      stretched
-                      {...getLinkProps(card.link)}
-                    />
-                  ) : null}
-                </div>
-              </CardBase>
+              <ServicesTile
+                title={card.title}
+                text={card.text}
+                linkProps={getLinkProps(card.link)}
+              />
             )
           })}
         </div>

@@ -5,6 +5,10 @@ import React from 'react'
 
 import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
 import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
+import ArticlesHomepageSection from '@/src/components/sections/hompage/ArticlesHomepageSection'
+import HeroHomepageSection from '@/src/components/sections/hompage/HeroHomepageSection'
+import KoloHomepageSection from '@/src/components/sections/hompage/KoloHomepageSection'
+import ServicesHomepageSection from '@/src/components/sections/hompage/ServicesHomepageSection'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api'
@@ -56,6 +60,10 @@ const Homepage = ({ homepage, general }: PageProps) => {
   return (
     <GeneralContextProvider general={general}>
       <PageLayoutPlaceholder>
+        <HeroHomepageSection section={homepage.attributes?.heroSection} />
+        <ArticlesHomepageSection section={homepage.attributes?.articlesSection} />
+        <KoloHomepageSection section={homepage.attributes?.koloSection} />
+        <ServicesHomepageSection section={homepage.attributes?.servicesSection} />
         <HomePageContentPlaceholder />
       </PageLayoutPlaceholder>
     </GeneralContextProvider>

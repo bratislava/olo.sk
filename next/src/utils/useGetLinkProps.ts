@@ -21,7 +21,7 @@ export const useGetLinkProps = () => {
   // eslint-disable-next-line sonarjs/cognitive-complexity
   const getLinkProps = (link: LinkFragment | MenuLinkFragment | null | undefined) => {
     let href = '#'
-    let label = link?.label ?? undefined
+    let label = link?.label ?? ''
     let target: '_blank' | undefined
 
     if (!link) {

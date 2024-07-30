@@ -8,8 +8,8 @@ import Typography from '@/src/components/common/Typography/Typography'
 
 type HomepageMainTileProps = {
   title: string
-  text: string
   linkHref: string
+  text?: string | null | undefined
   ariaLabel?: string
   hasWhiteBackground?: boolean
   className?: string
@@ -36,6 +36,7 @@ const HomepageMainTile = ({
       className={className}
     >
       <div className="flex h-full flex-col items-start justify-between p-4 lg:p-6">
+        {/* Keep the div here even if it's empty to fill the space */}
         <Typography variant="p-default">{text}</Typography>
         <div className="flex flex-col gap-4 self-stretch">
           <Typography

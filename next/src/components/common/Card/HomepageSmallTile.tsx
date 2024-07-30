@@ -28,7 +28,7 @@ const HomepageSmallTile = ({
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
     >
-      <div className="flex flex-col items-center gap-6 px-4 py-5">
+      <div className="flex flex-col items-center gap-6 px-4 py-5 text-center">
         <div className="rounded-[20px] bg-background-secondary p-4">
           <OloIcon name={iconName} className="size-6" />
         </div>

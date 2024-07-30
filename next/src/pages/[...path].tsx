@@ -19,7 +19,7 @@ import { isDefined } from '@/src/utils/isDefined'
 
 type PageProps = {
   general: GeneralQuery
-  page: PageEntityFragment
+  entity: PageEntityFragment
 }
 
 type StaticParams = {
@@ -61,26 +61,26 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ pages }, general, translations] = await Promise.all([
+  const [{ pages: entities }, general, translations] = await Promise.all([
     client.PageBySlug({ slug, locale }),
     client.General({ locale }),
     serverSideTranslations(locale),
   ])
 
-  const page = pages?.data[0]
-  if (!page) {
+  const entity = entities?.data[0]
+  if (!entity) {
     return { notFound: true }
   }
 
   /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
-  const pagePath = getPagePath(page)
+  const pagePath = getPagePath(entity)
   if (pagePath !== pathJoined) {
     return { notFound: true }
   }
 
   return {
     props: {
-      page,
+      entity,
       general,
       ...translations,
     },
@@ -88,7 +88,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 }
 
-const Page = ({ page, general }: PageProps) => {
+const Page = ({ entity: page, general }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook

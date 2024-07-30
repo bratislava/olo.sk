@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_hero_homepage_sections",
+  "info": {
+    "displayName": "hero homepage section"
+  },
+  "options": {},
+  "attributes": {
+    "slides": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "items.slide"
+    },
+    "mainTiles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.hero-main-tile",
+      "max": 2
+    },
+    "smallTiles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.hero-small-tile",
+      "max": 6
+    }
+  }
+}

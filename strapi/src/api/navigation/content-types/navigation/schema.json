@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "sitemaps",
+  "collectionName": "navigations",
   "info": {
-    "singularName": "sitemap",
-    "pluralName": "sitemaps",
-    "displayName": "Sitemapa",
+    "singularName": "navigation",
+    "pluralName": "navigations",
+    "displayName": "Navigation",
     "description": ""
   },
   "options": {
@@ -26,7 +26,12 @@
       "relation": "oneToOne",
       "target": "api::page.page"
     },
-    "faqsParentPage": {
+    "faqCategoriesParentPage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
+    },
+    "servicesParentPage": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::page.page"

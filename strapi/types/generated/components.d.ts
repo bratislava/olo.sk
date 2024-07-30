@@ -152,6 +152,40 @@ export interface ItemsFooterColumn extends Schema.Component {
   }
 }
 
+export interface ItemsHeroMainTile extends Schema.Component {
+  collectionName: 'components_items_hero_main_tiles'
+  info: {
+    displayName: 'hero main tile'
+  }
+  attributes: {
+    text: Attribute.String
+    link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsHeroSmallTile extends Schema.Component {
+  collectionName: 'components_items_hero_small_tiles'
+  info: {
+    displayName: 'hero small tile'
+  }
+  attributes: {
+    icon: Attribute.String
+    link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsHomepageServiceTile extends Schema.Component {
+  collectionName: 'components_items_homepage_service_tiles'
+  info: {
+    displayName: 'homepage service tile'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    link: Attribute.Component<'items.link'>
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -166,6 +200,8 @@ export interface ItemsLink extends Schema.Component {
     article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>
     branch: Attribute.Relation<'items.link', 'oneToOne', 'api::branch.branch'>
     document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
+    service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
+    workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
   }
 }
 
@@ -259,6 +295,23 @@ export interface MenuMenuSection extends Schema.Component {
   }
 }
 
+export interface SectionsArticlesHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_articles_homepage_sections'
+  info: {
+    displayName: 'articles homepage section'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    articles: Attribute.Relation<
+      'sections.articles-homepage-section',
+      'oneToMany',
+      'api::article.article'
+    >
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsBranches extends Schema.Component {
   collectionName: 'components_sections_branches'
   info: {
@@ -310,6 +363,35 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsHeroHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_hero_homepage_sections'
+  info: {
+    displayName: 'hero homepage section'
+  }
+  attributes: {
+    slides: Attribute.Component<'items.slide', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    mainTiles: Attribute.Component<'items.hero-main-tile', true> &
+      Attribute.SetMinMax<
+        {
+          max: 2
+        },
+        number
+      >
+    smallTiles: Attribute.Component<'items.hero-small-tile', true> &
+      Attribute.SetMinMax<
+        {
+          max: 6
+        },
+        number
+      >
+  }
+}
+
 export interface SectionsImageAndTextOverlapped extends Schema.Component {
   collectionName: 'components_sections_image_and_text_overlappeds'
   info: {
@@ -351,6 +433,31 @@ export interface SectionsImageAndText extends Schema.Component {
   }
 }
 
+export interface SectionsKoloHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_kolo_homepage_sections'
+  info: {
+    displayName: 'kolo homepage section'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    mainCards: Attribute.Component<'items.link', true> &
+      Attribute.SetMinMax<
+        {
+          max: 2
+        },
+        number
+      >
+    branchesTitle: Attribute.String
+    branches: Attribute.Relation<
+      'sections.kolo-homepage-section',
+      'oneToMany',
+      'api::branch.branch'
+    >
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsOrderedCards extends Schema.Component {
   collectionName: 'components_sections_ordered_cards'
   info: {
@@ -381,6 +488,25 @@ export interface SectionsRichtext extends Schema.Component {
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
+  }
+}
+
+export interface SectionsServicesHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_services_homepage_sections'
+  info: {
+    displayName: 'services homepage section'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    tiles: Attribute.Component<'items.homepage-service-tile', true> &
+      Attribute.SetMinMax<
+        {
+          max: 3
+        },
+        number
+      >
+    showMoreLink: Attribute.Component<'items.link'>
   }
 }
 
@@ -426,6 +552,9 @@ declare module '@strapi/types' {
       'items.columns-list-item': ItemsColumnsListItem
       'items.file-item': ItemsFileItem
       'items.footer-column': ItemsFooterColumn
+      'items.hero-main-tile': ItemsHeroMainTile
+      'items.hero-small-tile': ItemsHeroSmallTile
+      'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.link': ItemsLink
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
@@ -433,13 +562,17 @@ declare module '@strapi/types' {
       'menu.menu-item': MenuMenuItem
       'menu.menu-link': MenuMenuLink
       'menu.menu-section': MenuMenuSection
+      'sections.articles-homepage-section': SectionsArticlesHomepageSection
       'sections.branches': SectionsBranches
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
+      'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText
+      'sections.kolo-homepage-section': SectionsKoloHomepageSection
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
+      'sections.services-homepage-section': SectionsServicesHomepageSection
       'sections.table': SectionsTable
       'sections.workshops': SectionsWorkshops
     }

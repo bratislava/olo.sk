@@ -14,7 +14,7 @@ import { ArticleEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
 
 type PageProps = {
   general: GeneralQuery
-  article: ArticleEntityFragment
+  entity: ArticleEntityFragment
 }
 
 type StaticParams = {
@@ -57,20 +57,20 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ articles }, general, translations] = await Promise.all([
+  const [{ articles: entities }, general, translations] = await Promise.all([
     client.ArticleBySlug({ slug, locale }),
     client.General({ locale }),
     serverSideTranslations(locale),
   ])
 
-  const article = articles?.data[0]
-  if (!article) {
+  const entity = entities?.data[0]
+  if (!entity) {
     return { notFound: true }
   }
 
   return {
     props: {
-      article,
+      entity,
       general,
       ...translations,
     },
@@ -78,14 +78,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 }
 
-const Page = ({ article, general }: PageProps) => {
+const Page = ({ entity, general }: PageProps) => {
   const { t } = useTranslation()
 
-  if (!article.attributes) {
+  if (!entity.attributes) {
     return null
   }
 
-  const { title, perex, content } = article.attributes
+  const { title, perex, content } = entity.attributes
 
   return (
     <GeneralContextProvider general={general}>
@@ -96,7 +96,7 @@ const Page = ({ article, general }: PageProps) => {
       </Head>
 
       <PageLayout>
-        <ArticlePageHeader article={article} />
+        <ArticlePageHeader article={entity} />
 
         {/* TODO separate outer div(s) to Article Section with narrow layout */}
         <div className="mx-auto max-lg:px-4 lg:max-w-[50rem] lg:px-0">

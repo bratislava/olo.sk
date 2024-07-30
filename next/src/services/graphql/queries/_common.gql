@@ -13,20 +13,22 @@ fragment Link on ComponentItemsLink {
   }
   branch {
     data {
-      __typename
-      attributes {
-        title
-        slug
-      }
+      ...BranchSlugEntity
     }
   }
   document {
     data {
-      __typename
-      attributes {
-        title
-        slug
-      }
+      ...DocumentSlugEntity
+    }
+  }
+  service {
+    data {
+      ...ServiceSlugEntity
+    }
+  }
+  workshop {
+    data {
+      ...WorkshopSlugEntity
     }
   }
 }

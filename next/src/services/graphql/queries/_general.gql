@@ -1,4 +1,4 @@
-fragment SitemapEntity on SitemapEntity {
+fragment NavigationEntity on NavigationEntity {
   attributes {
     articlesParentPage {
       data {
@@ -10,7 +10,12 @@ fragment SitemapEntity on SitemapEntity {
         ...PageSlugEntity
       }
     }
-    faqsParentPage {
+    faqCategoriesParentPage {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    servicesParentPage {
       data {
         ...PageSlugEntity
       }
@@ -24,9 +29,9 @@ fragment SitemapEntity on SitemapEntity {
 }
 
 query General($locale: I18NLocaleCode!) {
-  sitemap(locale: $locale) {
+  navigation(locale: $locale) {
     data {
-      ...SitemapEntity
+      ...NavigationEntity
     }
   }
   footer(locale: $locale) {

@@ -38,7 +38,7 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
   const locale = i18n.language
   const { carouselTitle, anchors } = header
   const { getFullPath } = useGetFullPath()
-  const { sitemap } = useGeneralContext()
+  const { navigation } = useGeneralContext()
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
@@ -89,7 +89,7 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
           <Typography variant="h2">{carouselTitle}</Typography>
           <Button
             variant="black-link"
-            href={getFullPath(sitemap?.data?.attributes?.articlesParentPage?.data) ?? '#'}
+            href={getFullPath(navigation?.data?.attributes?.articlesParentPage?.data) ?? '#'}
             asLink
           >
             {t('pageHeaderPickupDay.allNews')}

@@ -197,54 +197,6 @@ type BranchRelationResponseCollection {
   data: [BranchEntity!]!
 }
 
-type Category {
-  createdAt: DateTime
-  locale: String
-  localizations(filters: CategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): CategoryRelationResponseCollection
-  publishedAt: DateTime
-  slug: String!
-  title: String!
-  updatedAt: DateTime
-}
-
-type CategoryEntity {
-  attributes: Category
-  id: ID
-}
-
-type CategoryEntityResponse {
-  data: CategoryEntity
-}
-
-type CategoryEntityResponseCollection {
-  data: [CategoryEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input CategoryFiltersInput {
-  and: [CategoryFiltersInput]
-  createdAt: DateTimeFilterInput
-  id: IDFilterInput
-  locale: StringFilterInput
-  localizations: CategoryFiltersInput
-  not: CategoryFiltersInput
-  or: [CategoryFiltersInput]
-  publishedAt: DateTimeFilterInput
-  slug: StringFilterInput
-  title: StringFilterInput
-  updatedAt: DateTimeFilterInput
-}
-
-input CategoryInput {
-  publishedAt: DateTime
-  slug: String
-  title: String
-}
-
-type CategoryRelationResponseCollection {
-  data: [CategoryEntity!]!
-}
-
 type ComponentHeaderSectionsBranchMap {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -470,6 +422,69 @@ input ComponentItemsFooterColumnInput {
   title: String
 }
 
+type ComponentItemsHeroMainTile {
+  id: ID!
+  link: ComponentItemsLink
+  text: String
+}
+
+input ComponentItemsHeroMainTileFiltersInput {
+  and: [ComponentItemsHeroMainTileFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsHeroMainTileFiltersInput
+  or: [ComponentItemsHeroMainTileFiltersInput]
+  text: StringFilterInput
+}
+
+input ComponentItemsHeroMainTileInput {
+  id: ID
+  link: ComponentItemsLinkInput
+  text: String
+}
+
+type ComponentItemsHeroSmallTile {
+  icon: String
+  id: ID!
+  link: ComponentItemsLink
+}
+
+input ComponentItemsHeroSmallTileFiltersInput {
+  and: [ComponentItemsHeroSmallTileFiltersInput]
+  icon: StringFilterInput
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsHeroSmallTileFiltersInput
+  or: [ComponentItemsHeroSmallTileFiltersInput]
+}
+
+input ComponentItemsHeroSmallTileInput {
+  icon: String
+  id: ID
+  link: ComponentItemsLinkInput
+}
+
+type ComponentItemsHomepageServiceTile {
+  id: ID!
+  link: ComponentItemsLink
+  text: String
+  title: String!
+}
+
+input ComponentItemsHomepageServiceTileFiltersInput {
+  and: [ComponentItemsHomepageServiceTileFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsHomepageServiceTileFiltersInput
+  or: [ComponentItemsHomepageServiceTileFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsHomepageServiceTileInput {
+  id: ID
+  link: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
 type ComponentItemsLink {
   article: ArticleEntityResponse
   branch: BranchEntityResponse
@@ -477,7 +492,9 @@ type ComponentItemsLink {
   id: ID!
   label: String
   page: PageEntityResponse
+  service: ServiceEntityResponse
   url: String
+  workshop: WorkshopEntityResponse
 }
 
 input ComponentItemsLinkFiltersInput {
@@ -489,7 +506,9 @@ input ComponentItemsLinkFiltersInput {
   not: ComponentItemsLinkFiltersInput
   or: [ComponentItemsLinkFiltersInput]
   page: PageFiltersInput
+  service: ServiceFiltersInput
   url: StringFilterInput
+  workshop: WorkshopFiltersInput
 }
 
 input ComponentItemsLinkInput {
@@ -499,7 +518,9 @@ input ComponentItemsLinkInput {
   id: ID
   label: String
   page: ID
+  service: ID
   url: String
+  workshop: ID
 }
 
 type ComponentItemsOpeningHoursItem {
@@ -654,6 +675,32 @@ input ComponentMenuMenuSectionInput {
   specialSectionType: ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE
 }
 
+type ComponentSectionsArticlesHomepageSection {
+  articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
+  id: ID!
+  showMoreLink: ComponentItemsLink
+  text: String
+  title: String
+}
+
+input ComponentSectionsArticlesHomepageSectionFiltersInput {
+  and: [ComponentSectionsArticlesHomepageSectionFiltersInput]
+  articles: ArticleFiltersInput
+  not: ComponentSectionsArticlesHomepageSectionFiltersInput
+  or: [ComponentSectionsArticlesHomepageSectionFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsArticlesHomepageSectionInput {
+  articles: [ID]
+  id: ID
+  showMoreLink: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -732,6 +779,29 @@ input ComponentSectionsColumnsListInput {
   title: String
 }
 
+type ComponentSectionsHeroHomepageSection {
+  id: ID!
+  mainTiles(filters: ComponentItemsHeroMainTileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsHeroMainTile]
+  slides(filters: ComponentItemsSlideFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSlide]
+  smallTiles(filters: ComponentItemsHeroSmallTileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsHeroSmallTile]
+}
+
+input ComponentSectionsHeroHomepageSectionFiltersInput {
+  and: [ComponentSectionsHeroHomepageSectionFiltersInput]
+  mainTiles: ComponentItemsHeroMainTileFiltersInput
+  not: ComponentSectionsHeroHomepageSectionFiltersInput
+  or: [ComponentSectionsHeroHomepageSectionFiltersInput]
+  slides: ComponentItemsSlideFiltersInput
+  smallTiles: ComponentItemsHeroSmallTileFiltersInput
+}
+
+input ComponentSectionsHeroHomepageSectionInput {
+  id: ID
+  mainTiles: [ComponentItemsHeroMainTileInput]
+  slides: [ComponentItemsSlideInput]
+  smallTiles: [ComponentItemsHeroSmallTileInput]
+}
+
 type ComponentSectionsImageAndText {
   backgroundColor: ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR!
   id: ID!
@@ -797,6 +867,38 @@ input ComponentSectionsImageAndTextOverlappedInput {
   title: String
 }
 
+type ComponentSectionsKoloHomepageSection {
+  branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
+  branchesTitle: String
+  id: ID!
+  mainCards(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
+  showMoreLink: ComponentItemsLink
+  text: String
+  title: String
+}
+
+input ComponentSectionsKoloHomepageSectionFiltersInput {
+  and: [ComponentSectionsKoloHomepageSectionFiltersInput]
+  branches: BranchFiltersInput
+  branchesTitle: StringFilterInput
+  mainCards: ComponentItemsLinkFiltersInput
+  not: ComponentSectionsKoloHomepageSectionFiltersInput
+  or: [ComponentSectionsKoloHomepageSectionFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsKoloHomepageSectionInput {
+  branches: [ID]
+  branchesTitle: String
+  id: ID
+  mainCards: [ComponentItemsLinkInput]
+  showMoreLink: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
 type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
@@ -835,6 +937,32 @@ input ComponentSectionsRichtextInput {
   backgroundColor: ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR
   content: String
   id: ID
+}
+
+type ComponentSectionsServicesHomepageSection {
+  id: ID!
+  showMoreLink: ComponentItemsLink
+  text: String
+  tiles(filters: ComponentItemsHomepageServiceTileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsHomepageServiceTile]
+  title: String
+}
+
+input ComponentSectionsServicesHomepageSectionFiltersInput {
+  and: [ComponentSectionsServicesHomepageSectionFiltersInput]
+  not: ComponentSectionsServicesHomepageSectionFiltersInput
+  or: [ComponentSectionsServicesHomepageSectionFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  tiles: ComponentItemsHomepageServiceTileFiltersInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsServicesHomepageSectionInput {
+  id: ID
+  showMoreLink: ComponentItemsLinkInput
+  text: String
+  tiles: [ComponentItemsHomepageServiceTileInput]
+  title: String
 }
 
 type ComponentSectionsTable {
@@ -1329,14 +1457,16 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | Category | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | OpeningTime | Page | Service | ServiceCategory | Sitemap | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
+  articlesSection: ComponentSectionsArticlesHomepageSection
   createdAt: DateTime
-  featuredArticles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
+  heroSection: ComponentSectionsHeroHomepageSection
+  koloSection: ComponentSectionsKoloHomepageSection
   locale: String
   localizations: HomepageRelationResponseCollection
-  slides(filters: ComponentItemsSlideFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSlide]
+  servicesSection: ComponentSectionsServicesHomepageSection
   updatedAt: DateTime
 }
 
@@ -1356,19 +1486,23 @@ type HomepageEntityResponseCollection {
 
 input HomepageFiltersInput {
   and: [HomepageFiltersInput]
+  articlesSection: ComponentSectionsArticlesHomepageSectionFiltersInput
   createdAt: DateTimeFilterInput
-  featuredArticles: ArticleFiltersInput
+  heroSection: ComponentSectionsHeroHomepageSectionFiltersInput
+  koloSection: ComponentSectionsKoloHomepageSectionFiltersInput
   locale: StringFilterInput
   localizations: HomepageFiltersInput
   not: HomepageFiltersInput
   or: [HomepageFiltersInput]
-  slides: ComponentItemsSlideFiltersInput
+  servicesSection: ComponentSectionsServicesHomepageSectionFiltersInput
   updatedAt: DateTimeFilterInput
 }
 
 input HomepageInput {
-  featuredArticles: [ID]
-  slides: [ComponentItemsSlideInput]
+  articlesSection: ComponentSectionsArticlesHomepageSectionInput
+  heroSection: ComponentSectionsHeroHomepageSectionInput
+  koloSection: ComponentSectionsKoloHomepageSectionInput
+  servicesSection: ComponentSectionsServicesHomepageSectionInput
 }
 
 type HomepageRelationResponseCollection {
@@ -1579,8 +1713,6 @@ type Mutation {
   createArticleLocalization(data: ArticleInput, id: ID, locale: I18NLocaleCode): ArticleEntityResponse
   createBranch(data: BranchInput!, locale: I18NLocaleCode): BranchEntityResponse
   createBranchLocalization(data: BranchInput, id: ID, locale: I18NLocaleCode): BranchEntityResponse
-  createCategory(data: CategoryInput!, locale: I18NLocaleCode): CategoryEntityResponse
-  createCategoryLocalization(data: CategoryInput, id: ID, locale: I18NLocaleCode): CategoryEntityResponse
   createContact(data: ContactInput!): ContactEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
   createDocumentCategory(data: DocumentCategoryInput!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
@@ -1592,6 +1724,7 @@ type Mutation {
   createFooterLocalization(data: FooterInput, id: ID, locale: I18NLocaleCode): FooterEntityResponse
   createHomepageLocalization(data: HomepageInput, id: ID, locale: I18NLocaleCode): HomepageEntityResponse
   createMenuLocalization(data: MenuInput, id: ID, locale: I18NLocaleCode): MenuEntityResponse
+  createNavigationLocalization(data: NavigationInput, id: ID, locale: I18NLocaleCode): NavigationEntityResponse
   createOpeningTime(data: OpeningTimeInput!): OpeningTimeEntityResponse
   createPage(data: PageInput!, locale: I18NLocaleCode): PageEntityResponse
   createPageLocalization(data: PageInput, id: ID, locale: I18NLocaleCode): PageEntityResponse
@@ -1599,7 +1732,6 @@ type Mutation {
   createServiceCategory(data: ServiceCategoryInput!, locale: I18NLocaleCode): ServiceCategoryEntityResponse
   createServiceCategoryLocalization(data: ServiceCategoryInput, id: ID, locale: I18NLocaleCode): ServiceCategoryEntityResponse
   createServiceLocalization(data: ServiceInput, id: ID, locale: I18NLocaleCode): ServiceEntityResponse
-  createSitemapLocalization(data: SitemapInput, id: ID, locale: I18NLocaleCode): SitemapEntityResponse
   createTag(data: TagInput!, locale: I18NLocaleCode): TagEntityResponse
   createTagLocalization(data: TagInput, id: ID, locale: I18NLocaleCode): TagEntityResponse
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
@@ -1614,7 +1746,6 @@ type Mutation {
   deleteArticle(id: ID!, locale: I18NLocaleCode): ArticleEntityResponse
   deleteArticleCategory(id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   deleteBranch(id: ID!, locale: I18NLocaleCode): BranchEntityResponse
-  deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
   deleteDocumentCategory(id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
@@ -1623,11 +1754,11 @@ type Mutation {
   deleteFooter(locale: I18NLocaleCode): FooterEntityResponse
   deleteHomepage(locale: I18NLocaleCode): HomepageEntityResponse
   deleteMenu(locale: I18NLocaleCode): MenuEntityResponse
+  deleteNavigation(locale: I18NLocaleCode): NavigationEntityResponse
   deleteOpeningTime(id: ID!): OpeningTimeEntityResponse
   deletePage(id: ID!, locale: I18NLocaleCode): PageEntityResponse
   deleteService(id: ID!, locale: I18NLocaleCode): ServiceEntityResponse
   deleteServiceCategory(id: ID!, locale: I18NLocaleCode): ServiceCategoryEntityResponse
-  deleteSitemap(locale: I18NLocaleCode): SitemapEntityResponse
   deleteTag(id: ID!, locale: I18NLocaleCode): TagEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
@@ -1658,7 +1789,6 @@ type Mutation {
   updateArticle(data: ArticleInput!, id: ID!, locale: I18NLocaleCode): ArticleEntityResponse
   updateArticleCategory(data: ArticleCategoryInput!, id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   updateBranch(data: BranchInput!, id: ID!, locale: I18NLocaleCode): BranchEntityResponse
-  updateCategory(data: CategoryInput!, id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
   updateDocumentCategory(data: DocumentCategoryInput!, id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
@@ -1668,11 +1798,11 @@ type Mutation {
   updateFooter(data: FooterInput!, locale: I18NLocaleCode): FooterEntityResponse
   updateHomepage(data: HomepageInput!, locale: I18NLocaleCode): HomepageEntityResponse
   updateMenu(data: MenuInput!, locale: I18NLocaleCode): MenuEntityResponse
+  updateNavigation(data: NavigationInput!, locale: I18NLocaleCode): NavigationEntityResponse
   updateOpeningTime(data: OpeningTimeInput!, id: ID!): OpeningTimeEntityResponse
   updatePage(data: PageInput!, id: ID!, locale: I18NLocaleCode): PageEntityResponse
   updateService(data: ServiceInput!, id: ID!, locale: I18NLocaleCode): ServiceEntityResponse
   updateServiceCategory(data: ServiceCategoryInput!, id: ID!, locale: I18NLocaleCode): ServiceCategoryEntityResponse
-  updateSitemap(data: SitemapInput!, locale: I18NLocaleCode): SitemapEntityResponse
   updateTag(data: TagInput!, id: ID!, locale: I18NLocaleCode): TagEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
   updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
@@ -1684,6 +1814,59 @@ type Mutation {
   updateUsersPermissionsUser(data: UsersPermissionsUserInput!, id: ID!): UsersPermissionsUserEntityResponse!
   updateWorkshop(data: WorkshopInput!, id: ID!): WorkshopEntityResponse
   upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID): UploadFileEntityResponse!
+}
+
+type Navigation {
+  articlesParentPage: PageEntityResponse
+  createdAt: DateTime
+  documentsParentPage: PageEntityResponse
+  faqCategoriesParentPage: PageEntityResponse
+  locale: String
+  localizations: NavigationRelationResponseCollection
+  servicesParentPage: PageEntityResponse
+  updatedAt: DateTime
+  workshopsParentPage: PageEntityResponse
+}
+
+type NavigationEntity {
+  attributes: Navigation
+  id: ID
+}
+
+type NavigationEntityResponse {
+  data: NavigationEntity
+}
+
+type NavigationEntityResponseCollection {
+  data: [NavigationEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input NavigationFiltersInput {
+  and: [NavigationFiltersInput]
+  articlesParentPage: PageFiltersInput
+  createdAt: DateTimeFilterInput
+  documentsParentPage: PageFiltersInput
+  faqCategoriesParentPage: PageFiltersInput
+  locale: StringFilterInput
+  localizations: NavigationFiltersInput
+  not: NavigationFiltersInput
+  or: [NavigationFiltersInput]
+  servicesParentPage: PageFiltersInput
+  updatedAt: DateTimeFilterInput
+  workshopsParentPage: PageFiltersInput
+}
+
+input NavigationInput {
+  articlesParentPage: ID
+  documentsParentPage: ID
+  faqCategoriesParentPage: ID
+  servicesParentPage: ID
+  workshopsParentPage: ID
+}
+
+type NavigationRelationResponseCollection {
+  data: [NavigationEntity!]!
 }
 
 type OpeningTime {
@@ -1825,8 +2008,6 @@ type Query {
   articles(filters: ArticleFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleEntityResponseCollection
   branch(id: ID, locale: I18NLocaleCode): BranchEntityResponse
   branches(filters: BranchFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchEntityResponseCollection
-  categories(filters: CategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): CategoryEntityResponseCollection
-  category(id: ID, locale: I18NLocaleCode): CategoryEntityResponse
   contact(id: ID): ContactEntityResponse
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
   document(id: ID): DocumentEntityResponse
@@ -1843,6 +2024,7 @@ type Query {
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
   me: UsersPermissionsMe
   menu(locale: I18NLocaleCode): MenuEntityResponse
+  navigation(locale: I18NLocaleCode): NavigationEntityResponse
   openingTime(id: ID): OpeningTimeEntityResponse
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeEntityResponseCollection
   page(id: ID, locale: I18NLocaleCode): PageEntityResponse
@@ -1851,7 +2033,6 @@ type Query {
   serviceCategories(filters: ServiceCategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryEntityResponseCollection
   serviceCategory(id: ID, locale: I18NLocaleCode): ServiceCategoryEntityResponse
   services(filters: ServiceFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceEntityResponseCollection
-  sitemap(locale: I18NLocaleCode): SitemapEntityResponse
   tag(id: ID, locale: I18NLocaleCode): TagEntityResponse
   tags(filters: TagFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
@@ -1970,56 +2151,6 @@ input ServiceInput {
 
 type ServiceRelationResponseCollection {
   data: [ServiceEntity!]!
-}
-
-type Sitemap {
-  articlesParentPage: PageEntityResponse
-  createdAt: DateTime
-  documentsParentPage: PageEntityResponse
-  faqsParentPage: PageEntityResponse
-  locale: String
-  localizations: SitemapRelationResponseCollection
-  updatedAt: DateTime
-  workshopsParentPage: PageEntityResponse
-}
-
-type SitemapEntity {
-  attributes: Sitemap
-  id: ID
-}
-
-type SitemapEntityResponse {
-  data: SitemapEntity
-}
-
-type SitemapEntityResponseCollection {
-  data: [SitemapEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input SitemapFiltersInput {
-  and: [SitemapFiltersInput]
-  articlesParentPage: PageFiltersInput
-  createdAt: DateTimeFilterInput
-  documentsParentPage: PageFiltersInput
-  faqsParentPage: PageFiltersInput
-  locale: StringFilterInput
-  localizations: SitemapFiltersInput
-  not: SitemapFiltersInput
-  or: [SitemapFiltersInput]
-  updatedAt: DateTimeFilterInput
-  workshopsParentPage: PageFiltersInput
-}
-
-input SitemapInput {
-  articlesParentPage: ID
-  documentsParentPage: ID
-  faqsParentPage: ID
-  workshopsParentPage: ID
-}
-
-type SitemapRelationResponseCollection {
-  data: [SitemapEntity!]!
 }
 
 input StringFilterInput {

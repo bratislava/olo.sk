@@ -16,20 +16,45 @@
     }
   },
   "attributes": {
-    "slides": {
+    "heroSection": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "component": "items.slide"
+      "component": "sections.hero-homepage-section"
     },
-    "featuredArticles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article"
+    "articlesSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.articles-homepage-section"
+    },
+    "koloSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.kolo-homepage-section"
+    },
+    "servicesSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.services-homepage-section"
     }
   }
 }

@@ -848,53 +848,6 @@ export interface ApiBranchBranch extends Schema.CollectionType {
   }
 }
 
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories'
-  info: {
-    singularName: 'category'
-    pluralName: 'categories'
-    displayName: 'Kateg\u00F3rie'
-    description: ''
-  }
-  options: {
-    draftAndPublish: true
-  }
-  pluginOptions: {
-    i18n: {
-      localized: true
-    }
-  }
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true
-        }
-      }>
-    slug: Attribute.UID<'api::category.category', 'title'> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true
-        }
-      }>
-    createdAt: Attribute.DateTime
-    updatedAt: Attribute.DateTime
-    publishedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::category.category', 'oneToOne', 'admin::user'> &
-      Attribute.Private
-    updatedBy: Attribute.Relation<'api::category.category', 'oneToOne', 'admin::user'> &
-      Attribute.Private
-    localizations: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::category.category'
-    >
-    locale: Attribute.String
-  }
-}
-
 export interface ApiContactContact extends Schema.CollectionType {
   collectionName: 'contacts'
   info: {
@@ -1177,17 +1130,30 @@ export interface ApiHomepageHomepage extends Schema.SingleType {
     }
   }
   attributes: {
-    slides: Attribute.Component<'items.slide', true> &
+    heroSection: Attribute.Component<'sections.hero-homepage-section'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
         }
       }>
-    featuredArticles: Attribute.Relation<
-      'api::homepage.homepage',
-      'oneToMany',
-      'api::article.article'
-    >
+    articlesSection: Attribute.Component<'sections.articles-homepage-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    koloSection: Attribute.Component<'sections.kolo-homepage-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    servicesSection: Attribute.Component<'sections.services-homepage-section'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::homepage.homepage', 'oneToOne', 'admin::user'> &
@@ -1231,6 +1197,63 @@ export interface ApiMenuMenu extends Schema.SingleType {
     createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private
     updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private
     localizations: Attribute.Relation<'api::menu.menu', 'oneToMany', 'api::menu.menu'>
+    locale: Attribute.String
+  }
+}
+
+export interface ApiNavigationNavigation extends Schema.SingleType {
+  collectionName: 'navigations'
+  info: {
+    singularName: 'navigation'
+    pluralName: 'navigations'
+    displayName: 'Navigation'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  pluginOptions: {
+    i18n: {
+      localized: true
+    }
+  }
+  attributes: {
+    articlesParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    documentsParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    faqCategoriesParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    servicesParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    workshopsParentPage: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToOne',
+      'api::page.page'
+    >
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::navigation.navigation', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::navigation.navigation', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    localizations: Attribute.Relation<
+      'api::navigation.navigation',
+      'oneToMany',
+      'api::navigation.navigation'
+    >
     locale: Attribute.String
   }
 }
@@ -1452,38 +1475,6 @@ export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType
   }
 }
 
-export interface ApiSitemapSitemap extends Schema.SingleType {
-  collectionName: 'sitemaps'
-  info: {
-    singularName: 'sitemap'
-    pluralName: 'sitemaps'
-    displayName: 'Sitemapa'
-    description: ''
-  }
-  options: {
-    draftAndPublish: false
-  }
-  pluginOptions: {
-    i18n: {
-      localized: true
-    }
-  }
-  attributes: {
-    articlesParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
-    documentsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
-    faqsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
-    workshopsParentPage: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'api::page.page'>
-    createdAt: Attribute.DateTime
-    updatedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'admin::user'> &
-      Attribute.Private
-    updatedBy: Attribute.Relation<'api::sitemap.sitemap', 'oneToOne', 'admin::user'> &
-      Attribute.Private
-    localizations: Attribute.Relation<'api::sitemap.sitemap', 'oneToMany', 'api::sitemap.sitemap'>
-    locale: Attribute.String
-  }
-}
-
 export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags'
   info: {
@@ -1571,7 +1562,6 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle
       'api::article-category.article-category': ApiArticleCategoryArticleCategory
       'api::branch.branch': ApiBranchBranch
-      'api::category.category': ApiCategoryCategory
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
       'api::document-category.document-category': ApiDocumentCategoryDocumentCategory
@@ -1580,11 +1570,11 @@ declare module '@strapi/types' {
       'api::footer.footer': ApiFooterFooter
       'api::homepage.homepage': ApiHomepageHomepage
       'api::menu.menu': ApiMenuMenu
+      'api::navigation.navigation': ApiNavigationNavigation
       'api::opening-time.opening-time': ApiOpeningTimeOpeningTime
       'api::page.page': ApiPagePage
       'api::service.service': ApiServiceService
       'api::service-category.service-category': ApiServiceCategoryServiceCategory
-      'api::sitemap.sitemap': ApiSitemapSitemap
       'api::tag.tag': ApiTagTag
       'api::workshop.workshop': ApiWorkshopWorkshop
     }

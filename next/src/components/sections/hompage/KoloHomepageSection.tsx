@@ -31,7 +31,7 @@ const KoloHomepageSection = ({ section }: Props) => {
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-12">
-      <div className="flex flex-col gap-4 lg:gap-12">
+      <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
         <div className="grid gap-4 lg:grid-cols-2 lg:gap-8">

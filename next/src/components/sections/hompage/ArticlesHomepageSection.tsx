@@ -28,7 +28,7 @@ const ArticlesHomepageSection = ({ section }: Props) => {
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="secondary" className="py-6 lg:py-12">
-      <div className="flex flex-col gap-4 lg:gap-12">
+      <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
         <ResponsiveCarousel

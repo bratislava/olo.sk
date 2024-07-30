@@ -7,8 +7,8 @@ import { MenuLinkFragment, MenuSectionFragment } from '@/src/services/graphql/ap
 import cn from '@/src/utils/cn'
 
 type NavMenuContentProps = {
-  sections: MenuSectionFragment[] | any // TODO: Remove - temporary solution for BA pipeline to pass
-  seeAllLink: MenuLinkFragment | any // TODO: Remove - temporary solution for BA pipeline to pass
+  sections: MenuSectionFragment[] | any // TODO: Temporary solution
+  seeAllLink: MenuLinkFragment | any // TODO: Temporary solution
   className?: string
 }
 
@@ -35,20 +35,20 @@ const NavMenuContent = ({ sections, seeAllLink, className }: NavMenuContentProps
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
           // onClick={(event) => event.stopPropagation()}
         >
-          {sections?.map((section: any, index: number) => {
+          {sections?.map((section: MenuSectionFragment, index: number) => {
             return (
               <div className="flex gap-8">
-                {/* eslint-disable-next-line react/no-array-index-key */}
                 {index > 0 && <NavMenuContentDivider variant="horizontal" />}
-                {/* eslint-disable-next-line react/no-array-index-key */}
-                <NavMenuSection key={index} section={section} />
+                <NavMenuSection key={section?.id} section={section} />
               </div>
             )
           })}
         </ul>
         {/* seeAllLink */}
         <div className="flex w-full items-start justify-start py-6">
-          <NavMenuLink id={seeAllLink?.id} label={seeAllLink?.label} url={seeAllLink?.url} />
+          <NavMenuLink id={seeAllLink?.id} url={seeAllLink?.url}>
+            {seeAllLink?.label}
+          </NavMenuLink>
         </div>
       </div>
     </NavigationMenuContent>

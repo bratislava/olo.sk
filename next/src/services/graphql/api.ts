@@ -7896,6 +7896,228 @@ export type ArticlesHomepageSectionFragment = {
   } | null
 }
 
+export type KoloHomepageSectionFragment = {
+  __typename?: 'ComponentSectionsKoloHomepageSection'
+  title?: string | null
+  text?: string | null
+  branchesTitle?: string | null
+  mainCards?: Array<{
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null> | null
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        address?: string | null
+        title: string
+        slug: string
+      } | null
+    }>
+  } | null
+  showMoreLink?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
+}
+
 export type HomepageEntityFragment = {
   __typename?: 'HomepageEntity'
   id?: string | null
@@ -13278,6 +13500,26 @@ export const BranchEntityFragmentDoc = gql`
   }
   ${BranchSlugEntityFragmentDoc}
 `
+export const KoloHomepageSectionFragmentDoc = gql`
+  fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {
+    title
+    text
+    mainCards {
+      ...Link
+    }
+    branchesTitle
+    branches {
+      data {
+        ...BranchEntity
+      }
+    }
+    showMoreLink {
+      ...Link
+    }
+  }
+  ${LinkFragmentDoc}
+  ${BranchEntityFragmentDoc}
+`
 export const HomepageServiceTileFragmentDoc = gql`
   fragment HomepageServiceTile on ComponentItemsHomepageServiceTile {
     title
@@ -13299,20 +13541,7 @@ export const HomepageEntityFragmentDoc = gql`
         ...ArticlesHomepageSection
       }
       koloSection {
-        title
-        text
-        mainCards {
-          ...Link
-        }
-        branchesTitle
-        branches {
-          data {
-            ...BranchEntity
-          }
-        }
-        showMoreLink {
-          ...Link
-        }
+        ...KoloHomepageSection
       }
       servicesSection {
         title
@@ -13328,9 +13557,9 @@ export const HomepageEntityFragmentDoc = gql`
   }
   ${HeroHomepageSectionFragmentDoc}
   ${ArticlesHomepageSectionFragmentDoc}
-  ${LinkFragmentDoc}
-  ${BranchEntityFragmentDoc}
+  ${KoloHomepageSectionFragmentDoc}
   ${HomepageServiceTileFragmentDoc}
+  ${LinkFragmentDoc}
 `
 export const MenuLinkFragmentDoc = gql`
   fragment MenuLink on ComponentMenuMenuLink {

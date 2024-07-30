@@ -56,6 +56,23 @@ fragment ArticlesHomepageSection on ComponentSectionsArticlesHomepageSection {
   }
 }
 
+fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {
+  title
+  text
+  mainCards {
+    ...Link
+  }
+  branchesTitle
+  branches {
+    data {
+      ...BranchEntity
+    }
+  }
+  showMoreLink {
+    ...Link
+  }
+}
+
 fragment HomepageEntity on HomepageEntity {
   id
   attributes {
@@ -66,20 +83,7 @@ fragment HomepageEntity on HomepageEntity {
       ...ArticlesHomepageSection
     }
     koloSection {
-      title
-      text
-      mainCards {
-        ...Link
-      }
-      branchesTitle
-      branches {
-        data {
-          ...BranchEntity
-        }
-      }
-      showMoreLink {
-        ...Link
-      }
+      ...KoloHomepageSection
     }
     servicesSection {
       title

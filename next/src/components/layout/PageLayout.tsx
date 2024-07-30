@@ -12,12 +12,13 @@ const PageLayout = ({ className, children }: PropsWithChildren<PageLayoutProps>)
     // Z-indices are set to create stacking contexts for easier z-index management.
     <div className={className}>
       {/* <CookieConsent className="z-30" /> */}
-
-      <header className="relative z-30">
+      <div>
         <NavBar />
-      </header>
+      </div>
 
       <main className="relative z-0">{children}</main>
+
+      {/* <NavMenuPlaceholder /> */}
 
       <Footer />
     </div>

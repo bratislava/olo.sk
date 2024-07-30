@@ -13,6 +13,7 @@ import Icon from '@/src/components/common/Icon/Icon'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
 import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
+import { usePlaceholderMenuData } from '@/src/components/placeholder/usePlaceholderMenuData'
 import cn from '@/src/utils/cn'
 
 type NavMenuProps = {
@@ -24,8 +25,8 @@ const NavMenu = ({ className }: NavMenuProps) => {
   const pathname = usePathname()
   const { menuValue, setMenuValue } = useNavMenuContext()
   const { t } = useTranslation()
+  const { menus } = usePlaceholderMenuData() // TODO: Temporary
 
-  // TODO: Temporary solution for BA pipeline to pass
   /*  const menus = useMemo(() => {
       return getParsedMenus(menu)
     }, [menu]) */
@@ -43,19 +44,10 @@ const NavMenu = ({ className }: NavMenuProps) => {
     >
       <div className="flex items-center justify-between px-24">
         <NavigationMenuList className="flex items-center">
-          {['Odpad', 'Služby', 'Aktuality', 'KOLO', 'ZEVO', 'O nás'].map(
+          {menus.map(
             // TODO: Temporary solution
-            (menuItem, index: number) => (
-              <NavMenuItem
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                menuItem={{
-                  id: index.toString(),
-                  label: menuItem,
-                  sections: [],
-                  seeAllLink: null,
-                }}
-              />
+            (menuItem: any) => (
+              <NavMenuItem key={menuItem?.id} menuItem={menuItem} />
             ),
           )}
         </NavigationMenuList>

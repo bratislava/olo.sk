@@ -33,7 +33,7 @@ const NavMenuContent = ({ sections, seeAllLink, className }: NavMenuContentProps
         <ul
           className="grid w-full grid-cols-3 gap-8 py-8"
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
-          onClick={(event) => event.stopPropagation()}
+          // onClick={(event) => event.stopPropagation()}
         >
           {sections?.map((section: any, index: number) => {
             return (

@@ -5,7 +5,9 @@ import { PickupDayHeaderSectionFragment } from '@/src/services/graphql/api'
 
 import PageHeaderPickupDayComponent from './PageHeaderPickupDay'
 
-type Props = PickupDayHeaderSectionFragment
+type Props = PickupDayHeaderSectionFragment & {
+  title: string
+}
 
 const meta: Meta<Props> = {
   title: 'Page Headers/Odvozový deň',
@@ -30,6 +32,7 @@ export const PageHeaderPickupDay: Story = {
         header={{
           ...args,
         }}
+        title={args.title}
       />
       {Array.from({ length: 4 }).map((_, index) => {
         return (

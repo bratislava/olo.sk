@@ -197,26 +197,6 @@ type BranchRelationResponseCollection {
   data: [BranchEntity!]!
 }
 
-type ComponentHeaderSectionsBasic {
-  id: ID!
-  text: String
-  title: String!
-}
-
-input ComponentHeaderSectionsBasicFiltersInput {
-  and: [ComponentHeaderSectionsBasicFiltersInput]
-  not: ComponentHeaderSectionsBasicFiltersInput
-  or: [ComponentHeaderSectionsBasicFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentHeaderSectionsBasicInput {
-  id: ID
-  text: String
-  title: String
-}
-
 type ComponentHeaderSectionsBranchMap {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -239,8 +219,6 @@ type ComponentHeaderSectionsFeaturedNews {
   firstArticle: ArticleEntityResponse
   id: ID!
   secondArticle: ArticleEntityResponse
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsFeaturedNewsFiltersInput {
@@ -250,8 +228,6 @@ input ComponentHeaderSectionsFeaturedNewsFiltersInput {
   not: ComponentHeaderSectionsFeaturedNewsFiltersInput
   or: [ComponentHeaderSectionsFeaturedNewsFiltersInput]
   secondArticle: ArticleFiltersInput
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsFeaturedNewsInput {
@@ -259,81 +235,62 @@ input ComponentHeaderSectionsFeaturedNewsInput {
   firstArticle: ID
   id: ID
   secondArticle: ID
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsGallery {
   id: ID!
   medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsGalleryFiltersInput {
   and: [ComponentHeaderSectionsGalleryFiltersInput]
   not: ComponentHeaderSectionsGalleryFiltersInput
   or: [ComponentHeaderSectionsGalleryFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsGalleryInput {
   id: ID
   medias: [ID]
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsIcon {
-  icon: UploadFileEntityResponse!
+  iconName: String!
   id: ID!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsIconFiltersInput {
   and: [ComponentHeaderSectionsIconFiltersInput]
+  iconName: StringFilterInput
   not: ComponentHeaderSectionsIconFiltersInput
   or: [ComponentHeaderSectionsIconFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsIconInput {
-  icon: ID
+  iconName: String
   id: ID
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsImage {
   id: ID!
   media: UploadFileEntityResponse!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsImageFiltersInput {
   and: [ComponentHeaderSectionsImageFiltersInput]
   not: ComponentHeaderSectionsImageFiltersInput
   or: [ComponentHeaderSectionsImageFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsImageInput {
   id: ID
   media: ID
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsPickupDay {
   anchors(filters: ComponentItemsAnchorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsAnchor]
   carouselTitle: String!
   id: ID!
-  title: String!
+  showMoreLink: ComponentItemsLink
 }
 
 input ComponentHeaderSectionsPickupDayFiltersInput {
@@ -342,36 +299,30 @@ input ComponentHeaderSectionsPickupDayFiltersInput {
   carouselTitle: StringFilterInput
   not: ComponentHeaderSectionsPickupDayFiltersInput
   or: [ComponentHeaderSectionsPickupDayFiltersInput]
-  title: StringFilterInput
+  showMoreLink: ComponentItemsLinkFiltersInput
 }
 
 input ComponentHeaderSectionsPickupDayInput {
   anchors: [ComponentItemsAnchorInput]
   carouselTitle: String
   id: ID
-  title: String
+  showMoreLink: ComponentItemsLinkInput
 }
 
 type ComponentHeaderSectionsSideImage {
   id: ID!
   media: UploadFileEntityResponse!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsSideImageFiltersInput {
   and: [ComponentHeaderSectionsSideImageFiltersInput]
   not: ComponentHeaderSectionsSideImageFiltersInput
   or: [ComponentHeaderSectionsSideImageFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsSideImageInput {
   id: ID
   media: ID
-  text: String
-  title: String
 }
 
 type ComponentItemsAnchor {
@@ -1509,7 +1460,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2011,7 +1962,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsBasic | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 

@@ -1,6 +1,4 @@
 fragment ImageHeaderSection on ComponentHeaderSectionsImage {
-  title
-  text
   media {
     data {
       ...UploadImageEntity
@@ -9,8 +7,6 @@ fragment ImageHeaderSection on ComponentHeaderSectionsImage {
 }
 
 fragment SideImageHeaderSection on ComponentHeaderSectionsSideImage {
-  title
-  text
   media {
     data {
       ...UploadImageEntity
@@ -19,8 +15,6 @@ fragment SideImageHeaderSection on ComponentHeaderSectionsSideImage {
 }
 
 fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
-  title
-  text
   medias(pagination: { limit: -1 }) {
     data {
       ...UploadImageEntity
@@ -37,14 +31,7 @@ fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
   }
 }
 
-fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
-  title
-  text
-}
-
 fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
-  title
-  text
   articlesTitle
   firstArticle {
     data {
@@ -59,20 +46,16 @@ fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
 }
 
 fragment IconHeaderSection on ComponentHeaderSectionsIcon {
-  title
-  text
-  icon {
-    data {
-      ...UploadImageEntity
-    }
-  }
+  iconName
 }
 
 fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
-  title
   carouselTitle
   anchors {
     ...Anchor
+  }
+  showMoreLink {
+    ...Link
   }
 }
 
@@ -85,10 +68,6 @@ fragment HeaderSections on PageHeaderDynamicZone {
 
   ... on ComponentHeaderSectionsSideImage {
     ...SideImageHeaderSection
-  }
-
-  ... on ComponentHeaderSectionsBasic {
-    ...BasicHeaderSection
   }
 
   ... on ComponentHeaderSectionsFeaturedNews {

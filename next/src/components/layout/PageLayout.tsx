@@ -1,20 +1,20 @@
 import React, { PropsWithChildren } from 'react'
 
 import Footer from '@/src/components/common/Footer/Footer'
-import NavBarPlaceholder from '@/src/components/placeholder/NavBarPlaceholder'
+import NavBar from '@/src/components/common/NavBar/NavBar'
 
 type PageLayoutProps = {
   className?: string
 }
 
-const PageLayoutPlaceholder = ({ className, children }: PropsWithChildren<PageLayoutProps>) => {
+const PageLayout = ({ className, children }: PropsWithChildren<PageLayoutProps>) => {
   return (
     // Z-indices are set to create stacking contexts for easier z-index management.
     <div className={className}>
       {/* <CookieConsent className="z-30" /> */}
 
       <header className="relative z-30">
-        <NavBarPlaceholder />
+        <NavBar />
       </header>
 
       <main className="relative z-0">{children}</main>
@@ -24,4 +24,4 @@ const PageLayoutPlaceholder = ({ className, children }: PropsWithChildren<PageLa
   )
 }
 
-export default PageLayoutPlaceholder
+export default PageLayout

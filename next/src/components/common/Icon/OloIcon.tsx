@@ -26,10 +26,14 @@ export const oloIconNameMap = {
   'social-media-linkedin': 'LinkedInIcon',
 } satisfies Record<string, keyof typeof OloIcons>
 
+export type OloIconName = keyof typeof oloIconNameMap
+
+export const isOloIcon = (iconName: string): iconName is OloIconName => iconName in oloIconNameMap
+
 type OloIconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
 export type OloIconProps = {
-  name: keyof typeof oloIconNameMap
+  name: OloIconName
   className?: string
 }
 

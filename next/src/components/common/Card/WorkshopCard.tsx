@@ -2,13 +2,13 @@ import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
-import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
+import OloIcon, { OloIconName } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type WorkshopCardProps = {
   title: string
   linkHref: string
-  iconName?: keyof typeof oloIconNameMap
+  iconName?: OloIconName
   hasWhiteBackground?: boolean
   className?: string
 }

@@ -6,20 +6,9 @@
   },
   "options": {},
   "attributes": {
-    "title": {
+    "iconName": {
       "type": "string",
       "required": true
-    },
-    "text": {
-      "type": "text"
-    },
-    "icon": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
     }
   }
 }

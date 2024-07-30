@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import Icon, { IconName } from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -10,7 +10,7 @@ export type DocumentRowCardProps = {
   title: string
   linkHref: string
   metaData?: string[]
-  iconName?: keyof typeof iconNameMap
+  iconName?: IconName
   hasBottomBorder?: boolean
   className?: string
   ariaLabel?: string

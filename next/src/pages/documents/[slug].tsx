@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
+import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
@@ -75,12 +75,12 @@ const Page = ({ entity, general }: PageProps) => {
         <title>{title}</title>
       </Head>
 
-      <PageLayoutPlaceholder>
+      <PageLayout>
         {/* TODO separate outer div(s) to Article Section with narrow layout */}
         <SectionContainer background="secondary">
           <HeaderTitleText title={title} />
         </SectionContainer>
-      </PageLayoutPlaceholder>
+      </PageLayout>
     </GeneralContextProvider>
   )
 }

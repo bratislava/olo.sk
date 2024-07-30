@@ -3,8 +3,8 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
+import PageLayout from '@/src/components/layout/PageLayout'
 import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import ArticlesHomepageSection from '@/src/components/sections/hompage/ArticlesHomepageSection'
 import HeroHomepageSection from '@/src/components/sections/hompage/HeroHomepageSection'
 import KoloHomepageSection from '@/src/components/sections/hompage/KoloHomepageSection'
@@ -59,13 +59,13 @@ const Homepage = ({ homepage, general }: PageProps) => {
    */
   return (
     <GeneralContextProvider general={general}>
-      <PageLayoutPlaceholder>
+      <PageLayout>
         <HeroHomepageSection section={homepage.attributes?.heroSection} />
         <ArticlesHomepageSection section={homepage.attributes?.articlesSection} />
         <KoloHomepageSection section={homepage.attributes?.koloSection} />
         <ServicesHomepageSection section={homepage.attributes?.servicesSection} />
         <HomePageContentPlaceholder />
-      </PageLayoutPlaceholder>
+      </PageLayout>
     </GeneralContextProvider>
 
     // TODO replace placeholder with proper component based on homepage props. Example below (needs to be a proper component, however):

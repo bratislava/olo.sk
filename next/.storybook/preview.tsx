@@ -5,7 +5,6 @@ import i18n from './i18n'
 import React from 'react'
 import { GeneralContextProvider } from '../src/providers/GeneralContextProvider'
 import { client } from '../src/services/graphql'
-import BAQueryClientProvider from '../src/providers/BAQueryClientProvider'
 
 export const loaders = [
   async () => ({

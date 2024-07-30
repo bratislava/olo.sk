@@ -2,22 +2,18 @@
   "collectionName": "components_header_sections_side_images",
   "info": {
     "displayName": "Obrázok vpravo",
-    "icon": "picture"
+    "icon": "picture",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "text": {
-      "type": "text"
-    },
     "media": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

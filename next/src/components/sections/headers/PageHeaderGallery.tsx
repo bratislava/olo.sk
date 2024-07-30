@@ -10,6 +10,9 @@ import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 
 type Props = {
+  title: string
+  perex?: string | null | undefined
+
   header: GalleryHeaderSectionFragment
 }
 
@@ -17,10 +20,10 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1183-12889&m=dev
  */
 
-const PageHeaderGallery = ({ header }: Props) => {
+const PageHeaderGallery = ({ title, perex, header }: Props) => {
   const { t } = useTranslation()
 
-  const { title, text, medias } = header
+  const { medias } = header
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredImages = medias.data.filter(isDefined) ?? []
@@ -29,7 +32,7 @@ const PageHeaderGallery = ({ header }: Props) => {
   return (
     <>
       <SectionContainer background="secondary">
-        <HeaderTitleText title={title} text={text} />
+        <HeaderTitleText title={title} text={perex} />
         {/* Screen: desktop */}
         <div className="max-lg:hidden">
           <div className="relative lg:top-14 lg:-mt-14">
@@ -72,7 +75,8 @@ const PageHeaderGallery = ({ header }: Props) => {
                   )
                 })
                 // eslint-disable-next-line unicorn/no-array-callback-reference
-                .filter(isDefined)}
+                .filter(isDefined)
+                .slice(0, 3)}
               <div className="absolute bottom-4 right-4 z-1">
                 {/* TODO add button functionality */}
                 <Button variant="category-plain" className="bg-white">
@@ -105,7 +109,7 @@ const PageHeaderGallery = ({ header }: Props) => {
         </div>
       </SectionContainer>
       {/* This div serves as an empty space for the image to overlap correctly */}
-      <div className="h-14 max-lg:hidden" />
+      <div aria-hidden className="h-14 bg-background-primary max-lg:hidden" />
     </>
   )
 }

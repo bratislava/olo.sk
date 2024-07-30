@@ -53,7 +53,6 @@
     "header": {
       "type": "dynamiczone",
       "components": [
-        "header-sections.basic",
         "header-sections.featured-news",
         "header-sections.gallery",
         "header-sections.icon",

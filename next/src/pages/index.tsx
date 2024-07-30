@@ -8,6 +8,7 @@ import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceh
 import ArticlesHomepageSection from '@/src/components/sections/hompage/ArticlesHomepageSection'
 import HeroHomepageSection from '@/src/components/sections/hompage/HeroHomepageSection'
 import KoloHomepageSection from '@/src/components/sections/hompage/KoloHomepageSection'
+import ServicesHomepageSection from '@/src/components/sections/hompage/ServicesHomepageSection'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api'
@@ -62,6 +63,7 @@ const Homepage = ({ homepage, general }: PageProps) => {
         <HeroHomepageSection section={homepage.attributes?.heroSection} />
         <ArticlesHomepageSection section={homepage.attributes?.articlesSection} />
         <KoloHomepageSection section={homepage.attributes?.koloSection} />
+        <ServicesHomepageSection section={homepage.attributes?.servicesSection} />
         <HomePageContentPlaceholder />
       </PageLayoutPlaceholder>
     </GeneralContextProvider>

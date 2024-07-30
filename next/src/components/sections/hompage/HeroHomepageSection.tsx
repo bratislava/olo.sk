@@ -26,7 +26,7 @@ const HeroHomepageSection = ({ section }: Props) => {
       <div className="flex flex-col gap-4 lg:gap-12">
         <div className="grid h-[450px] grid-rows-2 gap-4 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-6">
           {/* TODO slider */}
-          <div className="border-content-default rounded-xl border border-dashed bg-background-tertiary lg:col-span-2 lg:row-span-2" />
+          <div className="border-content-default rounded-xl border border-dashed border-action-background-default bg-background-tertiary lg:col-span-2 lg:row-span-2" />
 
           {mainTiles?.filter(isDefined).map((tile) => {
             const { children: label, href } = getLinkProps(tile.link)

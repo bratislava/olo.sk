@@ -73,6 +73,17 @@ fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {
   }
 }
 
+fragment ServicesHomepageSection on ComponentSectionsServicesHomepageSection {
+  title
+  text
+  tiles {
+    ...HomepageServiceTile
+  }
+  showMoreLink {
+    ...Link
+  }
+}
+
 fragment HomepageEntity on HomepageEntity {
   id
   attributes {
@@ -86,14 +97,7 @@ fragment HomepageEntity on HomepageEntity {
       ...KoloHomepageSection
     }
     servicesSection {
-      title
-      text
-      tiles {
-        ...HomepageServiceTile
-      }
-      showMoreLink {
-        ...Link
-      }
+      ...ServicesHomepageSection
     }
   }
 }

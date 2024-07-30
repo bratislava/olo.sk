@@ -6,7 +6,7 @@ import * as React from 'react'
 
 import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import Markdown from '@/src/components/formatting/Markdown'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
+import PageLayout from '@/src/components/layout/PageLayout'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
@@ -95,7 +95,7 @@ const Page = ({ article, general }: PageProps) => {
         {perex && <meta name="description" content={perex} />}
       </Head>
 
-      <PageLayoutPlaceholder>
+      <PageLayout>
         <ArticlePageHeader article={article} />
 
         {/* TODO separate outer div(s) to Article Section with narrow layout */}
@@ -110,7 +110,7 @@ const Page = ({ article, general }: PageProps) => {
             />
           </div>
         </div>
-      </PageLayoutPlaceholder>
+      </PageLayout>
     </GeneralContextProvider>
   )
 }

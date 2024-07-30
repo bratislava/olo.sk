@@ -6,13 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "text": {
-      "type": "text"
-    },
     "icon": {
       "type": "media",
       "multiple": false,

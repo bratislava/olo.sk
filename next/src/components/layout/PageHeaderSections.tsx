@@ -8,37 +8,45 @@ import PageHeaderImage from '@/src/components/sections/headers/PageHeaderImage'
 import PageHeaderPickupDay from '@/src/components/sections/headers/PageHeaderPickupDay'
 import PageHeaderSideImage from '@/src/components/sections/headers/PageHeaderSideImage'
 import { HeaderSectionsFragment } from '@/src/services/graphql/api'
+import { Breadcrumb } from '@/src/utils/getPageBreadcrumbs'
 
 type Props = {
+  title: string
+  perex?: string | null | undefined
   header: HeaderSectionsFragment | null | undefined
+  breadcrumbs: Breadcrumb[]
 }
 
-const PageHeaderSection = ({ header }: Props) => {
+const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
   switch (header?.__typename) {
     case 'ComponentHeaderSectionsImage':
-      return <PageHeaderImage header={header} />
+      return <PageHeaderImage header={header} title={title} perex={perex} />
 
     case 'ComponentHeaderSectionsSideImage':
-      return <PageHeaderSideImage header={header} />
-
-    case 'ComponentHeaderSectionsBasic':
-      return <PageHeaderBasic header={header} />
+      return (
+        <PageHeaderSideImage
+          header={header}
+          title={title}
+          perex={perex}
+          breadcrumbs={breadcrumbs}
+        />
+      )
 
     case 'ComponentHeaderSectionsFeaturedNews':
-      return <PageHeaderFeaturedNews header={header} />
+      return <PageHeaderFeaturedNews header={header} title={title} perex={perex} />
 
     case 'ComponentHeaderSectionsGallery':
-      return <PageHeaderGallery header={header} />
+      return <PageHeaderGallery header={header} title={title} perex={perex} />
 
     case 'ComponentHeaderSectionsIcon':
-      return <PageHeaderIcon header={header} />
+      return <PageHeaderIcon header={header} title={title} perex={perex} />
 
     // eslint-disable-next-line no-secrets/no-secrets
     case 'ComponentHeaderSectionsPickupDay':
-      return <PageHeaderPickupDay header={header} />
+      return <PageHeaderPickupDay header={header} title={title} />
 
     default:
-      return null
+      return <PageHeaderBasic title={title} perex={perex} />
   }
 }
 

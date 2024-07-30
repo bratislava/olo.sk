@@ -7,9 +7,9 @@ import { useEffect, useMemo } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
+import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
@@ -111,8 +111,6 @@ const Page = ({ page, general }: PageProps) => {
   const { title, perex, sections } = page.attributes
   const [header] = page.attributes.header ?? []
 
-  // const title = useTitle(blogPostTitle)
-
   return (
     <GeneralContextProvider general={general}>
       {/* TODO common Head/Seo component */}
@@ -121,21 +119,17 @@ const Page = ({ page, general }: PageProps) => {
         {perex && <meta name="description" content={perex} />}
       </Head>
 
-      <PageLayoutPlaceholder>
-        {/* TODO consider extracting to PageContent */}
+      <PageLayout>
+        {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
         <SectionContainer background="secondary">
-          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+          )}
         </SectionContainer>
-        <PageHeaderSections header={header} />
+        <PageHeaderSections header={header} title={title} perex={perex} breadcrumbs={breadcrumbs} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />
-      </PageLayoutPlaceholder>
-      {/* <GlobalCategoryColorProvider */}
-      {/*   color={blogPost?.attributes?.tag?.data?.attributes?.pageCategory?.data?.attributes?.color} */}
-      {/* /> */}
-      {/* <PageLayout> */}
-      {/*   <BlogPostPageContentTmp blogPost={blogPost} /> */}
-      {/* </PageLayout> */}
+      </PageLayout>
     </GeneralContextProvider>
   )
 }

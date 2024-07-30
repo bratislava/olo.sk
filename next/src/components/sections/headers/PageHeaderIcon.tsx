@@ -6,6 +6,8 @@ import { IconHeaderSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 
 type Props = {
+  title: string
+  perex?: string | null | undefined
   header: IconHeaderSectionFragment
 }
 
@@ -13,8 +15,8 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13454&m=dev
  */
 
-const PageHeaderIcon = ({ header }: Props) => {
-  const { title, text, icon } = header
+const PageHeaderIcon = ({ title, perex, header }: Props) => {
+  const { icon } = header
 
   const iconUrl = icon.data?.attributes?.url
 
@@ -30,7 +32,7 @@ const PageHeaderIcon = ({ header }: Props) => {
           </div>
           <div className={cn('flex flex-col items-start gap-4 lg:gap-5 lg:pt-1')}>
             <Typography variant="h1">{title}</Typography>
-            {text ? <Typography variant="p-default">{text}</Typography> : null}
+            {perex ? <Typography variant="p-default">{perex}</Typography> : null}
           </div>
         </div>
       </div>

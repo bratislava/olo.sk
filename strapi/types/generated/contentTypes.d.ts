@@ -1298,7 +1298,6 @@ export interface ApiPagePage extends Schema.CollectionType {
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
     header: Attribute.DynamicZone<
       [
-        'header-sections.basic',
         'header-sections.featured-news',
         'header-sections.gallery',
         'header-sections.icon',

@@ -3,8 +3,8 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
+import PageLayout from '@/src/components/layout/PageLayout'
 import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api'
@@ -55,9 +55,9 @@ const Homepage = ({ homepage, general }: PageProps) => {
    */
   return (
     <GeneralContextProvider general={general}>
-      <PageLayoutPlaceholder>
+      <PageLayout>
         <HomePageContentPlaceholder />
-      </PageLayoutPlaceholder>
+      </PageLayout>
     </GeneralContextProvider>
 
     // TODO replace placeholder with proper component based on homepage props. Example below (needs to be a proper component, however):

@@ -339,13 +339,6 @@ export type CategoryRelationResponseCollection = {
   data: Array<CategoryEntity>
 }
 
-export type ComponentHeaderSectionsBasic = {
-  __typename?: 'ComponentHeaderSectionsBasic'
-  id: Scalars['ID']['output']
-  text?: Maybe<Scalars['String']['output']>
-  title: Scalars['String']['output']
-}
-
 export type ComponentHeaderSectionsBranchMap = {
   __typename?: 'ComponentHeaderSectionsBranchMap'
   branches?: Maybe<BranchRelationResponseCollection>
@@ -365,16 +358,12 @@ export type ComponentHeaderSectionsFeaturedNews = {
   firstArticle?: Maybe<ArticleEntityResponse>
   id: Scalars['ID']['output']
   secondArticle?: Maybe<ArticleEntityResponse>
-  text?: Maybe<Scalars['String']['output']>
-  title: Scalars['String']['output']
 }
 
 export type ComponentHeaderSectionsGallery = {
   __typename?: 'ComponentHeaderSectionsGallery'
   id: Scalars['ID']['output']
   medias: UploadFileRelationResponseCollection
-  text?: Maybe<Scalars['String']['output']>
-  title: Scalars['String']['output']
 }
 
 export type ComponentHeaderSectionsGalleryMediasArgs = {
@@ -387,16 +376,12 @@ export type ComponentHeaderSectionsIcon = {
   __typename?: 'ComponentHeaderSectionsIcon'
   icon: UploadFileEntityResponse
   id: Scalars['ID']['output']
-  text?: Maybe<Scalars['String']['output']>
-  title: Scalars['String']['output']
 }
 
 export type ComponentHeaderSectionsImage = {
   __typename?: 'ComponentHeaderSectionsImage'
   id: Scalars['ID']['output']
   media: UploadFileEntityResponse
-  text?: Maybe<Scalars['String']['output']>
-  title: Scalars['String']['output']
 }
 
 export type ComponentHeaderSectionsPickupDay = {
@@ -404,7 +389,6 @@ export type ComponentHeaderSectionsPickupDay = {
   anchors?: Maybe<Array<Maybe<ComponentItemsAnchor>>>
   carouselTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
-  title: Scalars['String']['output']
 }
 
 export type ComponentHeaderSectionsPickupDayAnchorsArgs = {
@@ -417,8 +401,6 @@ export type ComponentHeaderSectionsSideImage = {
   __typename?: 'ComponentHeaderSectionsSideImage'
   id: Scalars['ID']['output']
   media: UploadFileEntityResponse
-  text?: Maybe<Scalars['String']['output']>
-  title: Scalars['String']['output']
 }
 
 export type ComponentItemsAnchor = {
@@ -1287,7 +1269,6 @@ export type GenericMorph =
   | ArticleCategory
   | Branch
   | Category
-  | ComponentHeaderSectionsBasic
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
@@ -2218,7 +2199,6 @@ export type PageFiltersInput = {
 }
 
 export type PageHeaderDynamicZone =
-  | ComponentHeaderSectionsBasic
   | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsIcon
@@ -4258,8 +4238,6 @@ export type GeneralQuery = {
 
 export type ImageHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsImage'
-  title: string
-  text?: string | null
   media: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -4280,8 +4258,6 @@ export type ImageHeaderSectionFragment = {
 
 export type SideImageHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsSideImage'
-  title: string
-  text?: string | null
   media: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -4302,8 +4278,6 @@ export type SideImageHeaderSectionFragment = {
 
 export type GalleryHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsGallery'
-  title: string
-  text?: string | null
   medias: {
     __typename?: 'UploadFileRelationResponseCollection'
     data: Array<{
@@ -4330,16 +4304,8 @@ export type BranchMapHeaderSectionFragment = {
   } | null
 }
 
-export type BasicHeaderSectionFragment = {
-  __typename?: 'ComponentHeaderSectionsBasic'
-  title: string
-  text?: string | null
-}
-
 export type FeaturedNewsHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsFeaturedNews'
-  title: string
-  text?: string | null
   articlesTitle: string
   firstArticle?: {
     __typename?: 'ArticleEntityResponse'
@@ -4437,8 +4403,6 @@ export type FeaturedNewsHeaderSectionFragment = {
 
 export type IconHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsIcon'
-  title: string
-  text?: string | null
   icon: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -4459,7 +4423,6 @@ export type IconHeaderSectionFragment = {
 
 export type PickupDayHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsPickupDay'
-  title: string
   carouselTitle: string
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
@@ -4468,16 +4431,8 @@ export type PickupDayHeaderSectionFragment = {
   } | null> | null
 }
 
-type HeaderSections_ComponentHeaderSectionsBasic_Fragment = {
-  __typename: 'ComponentHeaderSectionsBasic'
-  title: string
-  text?: string | null
-}
-
 type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
   __typename: 'ComponentHeaderSectionsFeaturedNews'
-  title: string
-  text?: string | null
   articlesTitle: string
   firstArticle?: {
     __typename?: 'ArticleEntityResponse'
@@ -4575,8 +4530,6 @@ type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
 
 type HeaderSections_ComponentHeaderSectionsGallery_Fragment = {
   __typename: 'ComponentHeaderSectionsGallery'
-  title: string
-  text?: string | null
   medias: {
     __typename?: 'UploadFileRelationResponseCollection'
     data: Array<{
@@ -4597,8 +4550,6 @@ type HeaderSections_ComponentHeaderSectionsGallery_Fragment = {
 
 type HeaderSections_ComponentHeaderSectionsIcon_Fragment = {
   __typename: 'ComponentHeaderSectionsIcon'
-  title: string
-  text?: string | null
   icon: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -4619,8 +4570,6 @@ type HeaderSections_ComponentHeaderSectionsIcon_Fragment = {
 
 type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
   __typename: 'ComponentHeaderSectionsImage'
-  title: string
-  text?: string | null
   media: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -4641,7 +4590,6 @@ type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
 
 type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
   __typename: 'ComponentHeaderSectionsPickupDay'
-  title: string
   carouselTitle: string
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
@@ -4652,8 +4600,6 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
 
 type HeaderSections_ComponentHeaderSectionsSideImage_Fragment = {
   __typename: 'ComponentHeaderSectionsSideImage'
-  title: string
-  text?: string | null
   media: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -4675,7 +4621,6 @@ type HeaderSections_ComponentHeaderSectionsSideImage_Fragment = {
 type HeaderSections_Error_Fragment = { __typename: 'Error' }
 
 export type HeaderSectionsFragment =
-  | HeaderSections_ComponentHeaderSectionsBasic_Fragment
   | HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment
   | HeaderSections_ComponentHeaderSectionsGallery_Fragment
   | HeaderSections_ComponentHeaderSectionsIcon_Fragment
@@ -7593,11 +7538,8 @@ export type PageEntityFragment = {
     title: string
     slug: string
     header?: Array<
-      | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
       | {
           __typename: 'ComponentHeaderSectionsFeaturedNews'
-          title: string
-          text?: string | null
           articlesTitle: string
           firstArticle?: {
             __typename?: 'ArticleEntityResponse'
@@ -7702,8 +7644,6 @@ export type PageEntityFragment = {
         }
       | {
           __typename: 'ComponentHeaderSectionsGallery'
-          title: string
-          text?: string | null
           medias: {
             __typename?: 'UploadFileRelationResponseCollection'
             data: Array<{
@@ -7723,8 +7663,6 @@ export type PageEntityFragment = {
         }
       | {
           __typename: 'ComponentHeaderSectionsIcon'
-          title: string
-          text?: string | null
           icon: {
             __typename?: 'UploadFileEntityResponse'
             data?: {
@@ -7744,8 +7682,6 @@ export type PageEntityFragment = {
         }
       | {
           __typename: 'ComponentHeaderSectionsImage'
-          title: string
-          text?: string | null
           media: {
             __typename?: 'UploadFileEntityResponse'
             data?: {
@@ -7765,7 +7701,6 @@ export type PageEntityFragment = {
         }
       | {
           __typename: 'ComponentHeaderSectionsPickupDay'
-          title: string
           carouselTitle: string
           anchors?: Array<{
             __typename?: 'ComponentItemsAnchor'
@@ -7775,8 +7710,6 @@ export type PageEntityFragment = {
         }
       | {
           __typename: 'ComponentHeaderSectionsSideImage'
-          title: string
-          text?: string | null
           media: {
             __typename?: 'UploadFileEntityResponse'
             data?: {
@@ -8281,11 +8214,8 @@ export type PagesQuery = {
         title: string
         slug: string
         header?: Array<
-          | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
               __typename: 'ComponentHeaderSectionsFeaturedNews'
-              title: string
-              text?: string | null
               articlesTitle: string
               firstArticle?: {
                 __typename?: 'ArticleEntityResponse'
@@ -8390,8 +8320,6 @@ export type PagesQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsGallery'
-              title: string
-              text?: string | null
               medias: {
                 __typename?: 'UploadFileRelationResponseCollection'
                 data: Array<{
@@ -8411,8 +8339,6 @@ export type PagesQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsIcon'
-              title: string
-              text?: string | null
               icon: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -8432,8 +8358,6 @@ export type PagesQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsImage'
-              title: string
-              text?: string | null
               media: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -8453,7 +8377,6 @@ export type PagesQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsPickupDay'
-              title: string
               carouselTitle: string
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
@@ -8463,8 +8386,6 @@ export type PagesQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsSideImage'
-              title: string
-              text?: string | null
               media: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -8976,11 +8897,8 @@ export type PageBySlugQuery = {
         title: string
         slug: string
         header?: Array<
-          | { __typename: 'ComponentHeaderSectionsBasic'; title: string; text?: string | null }
           | {
               __typename: 'ComponentHeaderSectionsFeaturedNews'
-              title: string
-              text?: string | null
               articlesTitle: string
               firstArticle?: {
                 __typename?: 'ArticleEntityResponse'
@@ -9085,8 +9003,6 @@ export type PageBySlugQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsGallery'
-              title: string
-              text?: string | null
               medias: {
                 __typename?: 'UploadFileRelationResponseCollection'
                 data: Array<{
@@ -9106,8 +9022,6 @@ export type PageBySlugQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsIcon'
-              title: string
-              text?: string | null
               icon: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -9127,8 +9041,6 @@ export type PageBySlugQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsImage'
-              title: string
-              text?: string | null
               media: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -9148,7 +9060,6 @@ export type PageBySlugQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsPickupDay'
-              title: string
               carouselTitle: string
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
@@ -9158,8 +9069,6 @@ export type PageBySlugQuery = {
             }
           | {
               __typename: 'ComponentHeaderSectionsSideImage'
-              title: string
-              text?: string | null
               media: {
                 __typename?: 'UploadFileEntityResponse'
                 data?: {
@@ -10250,8 +10159,6 @@ export const OpeningTimeEntityFragmentDoc = gql`
 `
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {
-    title
-    text
     media {
       data {
         ...UploadImageEntity
@@ -10262,8 +10169,6 @@ export const ImageHeaderSectionFragmentDoc = gql`
 `
 export const SideImageHeaderSectionFragmentDoc = gql`
   fragment SideImageHeaderSection on ComponentHeaderSectionsSideImage {
-    title
-    text
     media {
       data {
         ...UploadImageEntity
@@ -10272,16 +10177,8 @@ export const SideImageHeaderSectionFragmentDoc = gql`
   }
   ${UploadImageEntityFragmentDoc}
 `
-export const BasicHeaderSectionFragmentDoc = gql`
-  fragment BasicHeaderSection on ComponentHeaderSectionsBasic {
-    title
-    text
-  }
-`
 export const FeaturedNewsHeaderSectionFragmentDoc = gql`
   fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
-    title
-    text
     articlesTitle
     firstArticle {
       data {
@@ -10298,8 +10195,6 @@ export const FeaturedNewsHeaderSectionFragmentDoc = gql`
 `
 export const GalleryHeaderSectionFragmentDoc = gql`
   fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
-    title
-    text
     medias(pagination: { limit: -1 }) {
       data {
         ...UploadImageEntity
@@ -10310,8 +10205,6 @@ export const GalleryHeaderSectionFragmentDoc = gql`
 `
 export const IconHeaderSectionFragmentDoc = gql`
   fragment IconHeaderSection on ComponentHeaderSectionsIcon {
-    title
-    text
     icon {
       data {
         ...UploadImageEntity
@@ -10328,7 +10221,6 @@ export const AnchorFragmentDoc = gql`
 `
 export const PickupDayHeaderSectionFragmentDoc = gql`
   fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
-    title
     carouselTitle
     anchors {
       ...Anchor
@@ -10345,9 +10237,6 @@ export const HeaderSectionsFragmentDoc = gql`
     ... on ComponentHeaderSectionsSideImage {
       ...SideImageHeaderSection
     }
-    ... on ComponentHeaderSectionsBasic {
-      ...BasicHeaderSection
-    }
     ... on ComponentHeaderSectionsFeaturedNews {
       ...FeaturedNewsHeaderSection
     }
@@ -10363,7 +10252,6 @@ export const HeaderSectionsFragmentDoc = gql`
   }
   ${ImageHeaderSectionFragmentDoc}
   ${SideImageHeaderSectionFragmentDoc}
-  ${BasicHeaderSectionFragmentDoc}
   ${FeaturedNewsHeaderSectionFragmentDoc}
   ${GalleryHeaderSectionFragmentDoc}
   ${IconHeaderSectionFragmentDoc}

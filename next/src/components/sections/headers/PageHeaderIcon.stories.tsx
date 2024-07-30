@@ -5,13 +5,17 @@ import { IconHeaderSectionFragment } from '@/src/services/graphql/api'
 
 import PageHeaderIconComponent from './PageHeaderIcon'
 
-type Props = IconHeaderSectionFragment
+type Props = IconHeaderSectionFragment & {
+  title: string
+  perex?: string
+}
 
 const meta: Meta<Props> = {
   title: 'Page Headers/Ikonka',
   args: {
     title: 'Nevyviezli mi odpad',
-    text: 'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
+    perex:
+      'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
   },
 }
 
@@ -25,6 +29,8 @@ export const PageHeaderIcon: Story = {
         ...args,
         icon: { data: { attributes: { name: 'icon-1', url: placeholderIconUrl } } },
       }}
+      title={args.title}
+      perex={args.perex}
     />
   ),
 }

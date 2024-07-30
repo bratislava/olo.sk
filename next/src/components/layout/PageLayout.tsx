@@ -7,7 +7,7 @@ type PageLayoutProps = {
   className?: string
 }
 
-const PageLayoutPlaceholder = ({ className, children }: PropsWithChildren<PageLayoutProps>) => {
+const PageLayout = ({ className, children }: PropsWithChildren<PageLayoutProps>) => {
   return (
     // Z-indices are set to create stacking contexts for easier z-index management.
     <div className={className}>
@@ -24,4 +24,4 @@ const PageLayoutPlaceholder = ({ className, children }: PropsWithChildren<PageLa
   )
 }
 
-export default PageLayoutPlaceholder
+export default PageLayout

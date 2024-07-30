@@ -5,13 +5,17 @@ import { GalleryHeaderSectionFragment } from '@/src/services/graphql/api'
 
 import PageHeaderGalleryComponent from './PageHeaderGallery'
 
-type Props = GalleryHeaderSectionFragment
+type Props = GalleryHeaderSectionFragment & {
+  title: string
+  perex?: string
+}
 
 const meta: Meta<Props> = {
   title: 'Page Headers/Galéria',
   args: {
     title: 'KOLO Pestovateľská',
-    text: 'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
+    perex:
+      'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
     medias: {
       data: [
         { attributes: { url: imagePlaceholder.src, name: 'placeholder' } },
@@ -31,6 +35,8 @@ export const PageHeaderGallery: Story = {
       header={{
         ...args,
       }}
+      title={args.title}
+      perex={args.perex}
     />
   ),
 }

@@ -5,7 +5,10 @@ import { FeaturedNewsHeaderSectionFragment } from '@/src/services/graphql/api'
 
 import PageHeaderFeaturedNewsComponent from './PageHeaderFeaturedNews'
 
-type Props = FeaturedNewsHeaderSectionFragment
+type Props = FeaturedNewsHeaderSectionFragment & {
+  title: string
+  perex?: string
+}
 
 const dummyArticleData = {
   __typename: 'ArticleEntity' as const,
@@ -22,7 +25,8 @@ const meta: Meta<Props> = {
   title: 'Page Headers/Aktuality (články)',
   args: {
     title: 'Aktuality',
-    text: 'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
+    perex:
+      'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
     articlesTitle: 'Headline',
     firstArticle: { data: dummyArticleData },
     secondArticle: { data: dummyArticleData },
@@ -38,6 +42,8 @@ export const PageHeaderFeaturedNews: Story = {
       header={{
         ...args,
       }}
+      title={args.title}
+      perex={args.perex}
     />
   ),
 }

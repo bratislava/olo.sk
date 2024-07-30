@@ -15,6 +15,7 @@ import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 type Props = {
+  title: string
   header: PickupDayHeaderSectionFragment
 }
 
@@ -31,10 +32,10 @@ const isCurrentWeekEven = () => {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13579&m=dev
  */
 
-const PageHeaderPickupDay = ({ header }: Props) => {
+const PageHeaderPickupDay = ({ title, header }: Props) => {
   const { t, i18n } = useTranslation()
   const locale = i18n.language
-  const { title, carouselTitle, anchors } = header
+  const { carouselTitle, anchors } = header
   const { getFullPath } = useGetFullPath()
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
@@ -97,7 +98,12 @@ const PageHeaderPickupDay = ({ header }: Props) => {
               .map((article) => {
                 if (!article.attributes) return null
 
-                const { title: articleTitle, coverMedia, category, slug } = article.attributes
+                const {
+                  title: articleTitle,
+                  coverMedia,
+                  articleCategory,
+                  slug,
+                } = article.attributes
 
                 return (
                   <ArticleCard
@@ -105,7 +111,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
                     title={articleTitle}
                     linkHref={getFullPath(article) ?? '#'}
                     imgSrc={coverMedia?.data?.attributes?.url}
-                    tagText={category?.data?.attributes?.title}
+                    tagText={articleCategory?.data?.attributes?.title}
                   />
                 )
               })

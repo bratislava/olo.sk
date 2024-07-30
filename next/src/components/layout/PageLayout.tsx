@@ -18,8 +18,6 @@ const PageLayout = ({ className, children }: PropsWithChildren<PageLayoutProps>)
 
       <main className="relative z-0">{children}</main>
 
-      {/* <NavMenuPlaceholder /> */}
-
       <Footer />
     </div>
   )

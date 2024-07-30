@@ -5,14 +5,17 @@ import Link from '@/src/components/common/Link/Link'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Typography from '@/src/components/common/Typography/Typography'
 import { MenuLinkFragment } from '@/src/services/graphql/api'
+import cn from '@/src/utils/cn'
 
-type NavMenuLinkProps = MenuLinkFragment
+type NavMenuLinkProps = {
+  className?: string
+} & MenuLinkFragment
 
-const NavMenuLink = ({ label, url }: NavMenuLinkProps) => {
+const NavMenuLink = ({ label, url, className }: NavMenuLinkProps) => {
   const { setMobileMenuOpen } = useNavMenuContext()
 
   return (
-    <li className="flex">
+    <li className={cn('flex', className)}>
       <NavigationMenuLink onClick={() => setMobileMenuOpen(false)} className="flex gap-4">
         <Icon name="sipka-doprava" />
         <Link href={url as Object} variant="unstyled">

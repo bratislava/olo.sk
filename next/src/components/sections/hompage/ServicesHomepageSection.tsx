@@ -28,7 +28,8 @@ const ServicesHomepageSection = ({ section }: Props) => {
       <div className="flex flex-col gap-4 lg:gap-12">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
-        <div className="grid gap-8 lg:grid-cols-3">
+        {/* TODO use Carousel on mobile https://github.com/bratislava/olo.sk/issues/275 */}
+        <div className="grid gap-4 lg:grid-cols-3 lg:gap-8">
           {tiles?.filter(isDefined).map((card) => {
             return (
               <CardBase
@@ -36,8 +37,8 @@ const ServicesHomepageSection = ({ section }: Props) => {
                 variant="background-white"
                 className="px-6 py-5"
               >
-                <div className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-2">
+                <div className="flex h-full flex-col gap-5">
+                  <div className="flex grow flex-col gap-2">
                     <Typography
                       variant="h6"
                       as="h3"

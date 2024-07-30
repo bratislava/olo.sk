@@ -41,8 +41,9 @@ const HeroHomepageSection = ({ section }: Props) => {
             const { children: label, href } = getLinkProps(tile.link)
 
             return (
-              <li>
+              <li className="[&>*]:h-full">
                 <HomepageSmallTile
+                  // TODO icon https://github.com/bratislava/olo.sk/issues/276
                   // iconName={tile?.icon ?? undefined}
                   title={label}
                   linkHref={href}

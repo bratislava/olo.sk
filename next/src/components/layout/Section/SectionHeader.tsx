@@ -1,11 +1,10 @@
 import React from 'react'
 
+import Button from '@/src/components/common/Button/Button'
 import Typography from '@/src/components/common/Typography/Typography'
 import { LinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
-
-import Button from '../../common/Button/Button'
 
 type SectionHeaderProps = {
   title?: string | null | undefined

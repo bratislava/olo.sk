@@ -21,6 +21,7 @@ const ArticlesHomepageSection = ({ section }: Props) => {
 
   const { title, text, articles, showMoreLink } = section ?? {}
 
+  // TODO add latest news to fill specific amount of articles https://github.com/bratislava/olo.sk/issues/274
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredArticles = articles?.data.filter(isDefined) ?? []
 
@@ -31,6 +32,7 @@ const ArticlesHomepageSection = ({ section }: Props) => {
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
         <ResponsiveCarousel
+          desktop={4}
           shiftVariant="byPage"
           controlsVariant="side"
           hasVerticalPadding={false}

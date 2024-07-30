@@ -34,7 +34,7 @@ const KoloHomepageSection = ({ section }: Props) => {
       <div className="flex flex-col gap-4 lg:gap-12">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-2 lg:gap-8">
           {mainCards?.filter(isDefined).map((card) => {
             const { children: label, href } = getLinkProps(card)
 
@@ -47,7 +47,7 @@ const KoloHomepageSection = ({ section }: Props) => {
 
         {branchesTitle ? <Typography variant="h3">{branchesTitle}</Typography> : null}
 
-        <div className="flex gap-4 max-lg:flex-col lg:gap-8">
+        <div className="grid gap-4 lg:auto-cols-fr lg:grid-flow-col lg:gap-8">
           {filteredBranches
             .map((branch) => {
               if (!branch.attributes) return null

@@ -25,6 +25,7 @@ const NavMenu = ({ className }: NavMenuProps) => {
   const { menuValue, setMenuValue } = useNavMenuContext()
   const { t } = useTranslation()
 
+  // TODO: Temporary solution for BA pipeline to pass
   /*  const menus = useMemo(() => {
       return getParsedMenus(menu)
     }, [menu]) */

@@ -24,7 +24,9 @@ const NavMenuContent = ({ sections, seeAllLink, className }: NavMenuContentProps
           className,
         )}
       >
-        {/* TODO: Add sections */}
+        {/* TODO: Temporary solution - add proper sections */}
+        {sections?.map((section: any) => section && <p>{section?.label}</p>)}
+        {seeAllLink?.label}
       </div>
     </NavigationMenuContent>
   )

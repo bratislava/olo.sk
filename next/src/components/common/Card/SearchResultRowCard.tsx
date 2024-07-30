@@ -3,13 +3,13 @@ import { useTranslation } from 'next-i18next'
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import Icon, { IconName } from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type SearchResultRowCardProps = {
   title: string
   linkHref: string
-  iconName?: keyof typeof iconNameMap
+  iconName?: IconName
   imgSrc?: string
   metadata?: string[]
   className?: string

@@ -71,12 +71,13 @@ export interface HeaderSectionsImage extends Schema.Component {
 export interface HeaderSectionsPickupDay extends Schema.Component {
   collectionName: 'components_header_sections_pickup_days'
   info: {
-    displayName: 'Odvodzov\u00FD de\u0148'
+    displayName: 'Odvozov\u00FD de\u0148'
     description: ''
   }
   attributes: {
     carouselTitle: Attribute.String & Attribute.Required
     anchors: Attribute.Component<'items.anchor', true>
+    showMoreLink: Attribute.Component<'items.link'>
   }
 }
 

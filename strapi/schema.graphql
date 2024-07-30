@@ -290,6 +290,7 @@ type ComponentHeaderSectionsPickupDay {
   anchors(filters: ComponentItemsAnchorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsAnchor]
   carouselTitle: String!
   id: ID!
+  showMoreLink: ComponentItemsLink
 }
 
 input ComponentHeaderSectionsPickupDayFiltersInput {
@@ -298,12 +299,14 @@ input ComponentHeaderSectionsPickupDayFiltersInput {
   carouselTitle: StringFilterInput
   not: ComponentHeaderSectionsPickupDayFiltersInput
   or: [ComponentHeaderSectionsPickupDayFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
 }
 
 input ComponentHeaderSectionsPickupDayInput {
   anchors: [ComponentItemsAnchorInput]
   carouselTitle: String
   id: ID
+  showMoreLink: ComponentItemsLinkInput
 }
 
 type ComponentHeaderSectionsSideImage {

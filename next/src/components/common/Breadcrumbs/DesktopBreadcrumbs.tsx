@@ -20,7 +20,7 @@ const DesktopBreadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
           <Icon name="domcek" className="size-5" />
         </Link>
       </li>
-      {...breadcrumbs.map((breadcrumb, index) => {
+      {breadcrumbs.map((breadcrumb, index) => {
         const isLast = index === breadcrumbs.length - 1
 
         return (

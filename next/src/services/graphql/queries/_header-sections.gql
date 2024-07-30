@@ -54,6 +54,9 @@ fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
   anchors {
     ...Anchor
   }
+  showMoreLink {
+    ...Link
+  }
 }
 
 fragment HeaderSections on PageHeaderDynamicZone {

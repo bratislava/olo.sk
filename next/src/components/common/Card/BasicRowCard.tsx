@@ -1,6 +1,6 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap, isBaIcon } from '@/src/components/common/Icon/Icon'
-import OloIcon, { isOloIcon, oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
+import Icon, { IconName, isBaIcon } from '@/src/components/common/Icon/Icon'
+import OloIcon, { isOloIcon, OloIconName } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -16,7 +16,7 @@ export type BasicRowCardProps = {
   | {
       variant: 'icon-value'
       label?: never
-      iconName: keyof typeof iconNameMap | keyof typeof oloIconNameMap
+      iconName: IconName | OloIconName
     }
 )
 

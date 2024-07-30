@@ -1,12 +1,12 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
+import OloIcon, { OloIconName } from '@/src/components/common/Icon/OloIcon'
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type HomepageSmallTileProps = {
   title: string
   linkHref: string
-  iconName?: keyof typeof oloIconNameMap
+  iconName?: OloIconName
   hasWhiteBackground?: boolean
   className?: string
 }

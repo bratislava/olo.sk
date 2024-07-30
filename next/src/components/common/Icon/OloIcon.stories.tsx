@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import OloIconComponent, { oloIconNameMap } from './OloIcon'
+import OloIconComponent, { OloIconName, oloIconNameMap } from './OloIcon'
 
 const meta: Meta<typeof OloIconComponent> = {
   component: OloIconComponent,
@@ -26,7 +26,7 @@ export const OloIcon: Story = {
         {Object.keys(oloIconNameMap).map((name) => {
           return (
             <div className="flex w-[8rem] items-center gap-2 bg-white p-2 shadow-sm">
-              <OloIconComponent key={name} name={name as keyof typeof oloIconNameMap} />
+              <OloIconComponent key={name} name={name as OloIconName} />
               <p className="text-[0.6rem]">{name}</p>
             </div>
           )

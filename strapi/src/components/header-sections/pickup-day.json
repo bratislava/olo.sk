@@ -1,7 +1,7 @@
 {
   "collectionName": "components_header_sections_pickup_days",
   "info": {
-    "displayName": "Odvodzový deň",
+    "displayName": "Odvozový deň",
     "description": ""
   },
   "options": {},
@@ -14,6 +14,11 @@
       "type": "component",
       "repeatable": true,
       "component": "items.anchor"
+    },
+    "showMoreLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
     }
   }
 }

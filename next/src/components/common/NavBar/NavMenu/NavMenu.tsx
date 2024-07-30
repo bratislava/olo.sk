@@ -6,15 +6,13 @@ import {
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import * as React from 'react'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
-import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
 import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
-import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
 
 type NavMenuProps = {
@@ -22,14 +20,14 @@ type NavMenuProps = {
 }
 
 const NavMenu = ({ className }: NavMenuProps) => {
-  const { menu } = useGeneralContext()
+  // const { menu } = useGeneralContext()
   const pathname = usePathname()
   const { menuValue, setMenuValue } = useNavMenuContext()
   const { t } = useTranslation()
 
-  const menus = useMemo(() => {
-    return getParsedMenus(menu)
-  }, [menu])
+  /*  const menus = useMemo(() => {
+      return getParsedMenus(menu)
+    }, [menu]) */
 
   useEffect(() => {
     setMenuValue('')

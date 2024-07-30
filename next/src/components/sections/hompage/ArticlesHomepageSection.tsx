@@ -19,7 +19,7 @@ type Props = {
 const ArticlesHomepageSection = ({ section }: Props) => {
   const { getFullPath } = useGetFullPath()
 
-  const { title, text, articles } = section ?? {}
+  const { title, text, articles, showMoreLink } = section ?? {}
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredArticles = articles?.data.filter(isDefined) ?? []
@@ -28,8 +28,7 @@ const ArticlesHomepageSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="secondary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-4 lg:gap-12">
-        {/* TODO showMoreLink */}
-        <SectionHeader title={title ?? ''} text={text} />
+        <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
         <ResponsiveCarousel
           shiftVariant="byPage"

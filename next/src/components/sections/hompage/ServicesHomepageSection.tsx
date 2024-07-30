@@ -17,14 +17,13 @@ type Props = {
  */
 
 const ServicesHomepageSection = ({ section }: Props) => {
-  const { title, text } = section ?? {}
+  const { title, text, showMoreLink } = section ?? {}
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="secondary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-4 lg:gap-12">
-        {/* TODO showMoreLink */}
-        <SectionHeader title={title ?? ''} text={text} />
+        <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
         <div className="grid gap-8 border border-dashed border-action-background-default lg:grid-cols-3">
           {['Služby pre obyvateľov', 'Služby pre firmy', 'Služby pre správcovské spoločnosti'].map(

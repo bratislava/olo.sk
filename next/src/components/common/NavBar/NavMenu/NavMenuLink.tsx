@@ -1,4 +1,4 @@
-import { NavigationMenuLink } from '@radix-ui/react-navigation-menu'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { PropsWithChildren } from 'react'
 
 import Icon from '@/src/components/common/Icon/Icon'
@@ -17,12 +17,12 @@ const NavMenuLink = ({ children, url, className }: PropsWithChildren<NavMenuLink
 
   return (
     <li className={cn('flex', className)}>
-      <NavigationMenuLink onClick={() => setMobileMenuOpen(false)} className="flex gap-4">
+      <NavigationMenu.Link onClick={() => setMobileMenuOpen(false)} className="flex gap-4">
         <Icon name="sipka-doprava" />
         <Link href={url as Object} variant="unstyled">
           <Typography variant="p-default">{children}</Typography>
         </Link>
-      </NavigationMenuLink>
+      </NavigationMenu.Link>
     </li>
   )
 }

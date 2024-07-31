@@ -1,4 +1,4 @@
-import { NavigationMenuContent } from '@radix-ui/react-navigation-menu'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
 import NavMenuContentDivider from '@/src/components/common/NavBar/NavMenu/NavMenuContentDivider'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
@@ -16,7 +16,7 @@ const NavMenuContent = ({ sections, seeAllLink, className }: NavMenuContentProps
   // TODO: Parse/group menuCells into groupedSections
 
   return (
-    <NavigationMenuContent
+    <NavigationMenu.Content
       // To disable "onHover" behaviour, needs to be set also in NavMenuTrigger
       // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
       onPointerMove={(event) => event.preventDefault()}
@@ -51,7 +51,7 @@ const NavMenuContent = ({ sections, seeAllLink, className }: NavMenuContentProps
           </NavMenuLink>
         </div>
       </div>
-    </NavigationMenuContent>
+    </NavigationMenu.Content>
   )
 }
 

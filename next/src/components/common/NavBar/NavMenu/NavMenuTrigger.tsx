@@ -1,4 +1,4 @@
-import { NavigationMenuTrigger } from '@radix-ui/react-navigation-menu'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import React, { forwardRef } from 'react'
 
 import Icon from '@/src/components/common/Icon/Icon'
@@ -13,7 +13,7 @@ type NavMenuTriggerProps = {
 const NavMenuTrigger = forwardRef<HTMLButtonElement, NavMenuTriggerProps>(
   ({ label, className }, forwardedRef) => {
     return (
-      <NavigationMenuTrigger
+      <NavigationMenu.Trigger
         ref={forwardedRef}
         // To disable "onHover" behaviour, needs to be set also in NavMenuContent
         // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
@@ -26,7 +26,7 @@ const NavMenuTrigger = forwardRef<HTMLButtonElement, NavMenuTriggerProps>(
       >
         <Typography variant="p-default-bold">{label}</Typography>
         <Icon name="chevron-dole-maly" className="chevron-down-animate mb-1 size-6" aria-hidden />
-      </NavigationMenuTrigger>
+      </NavigationMenu.Trigger>
     )
   },
 )

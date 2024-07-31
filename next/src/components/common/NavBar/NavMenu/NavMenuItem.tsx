@@ -1,4 +1,4 @@
-import { NavigationMenuItem } from '@radix-ui/react-navigation-menu'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
 import { MenuItemFragment } from '@/src/services/graphql/api'
 
@@ -11,10 +11,10 @@ type NavMenuItemProps = {
 
 const NavMenuItem = ({ menuItem }: NavMenuItemProps) => {
   return (
-    <NavigationMenuItem>
+    <NavigationMenu.Item>
       <NavMenuTrigger label={menuItem.label} />
       <NavMenuContent sections={menuItem.sections} seeAllLink={menuItem.seeAllLink} />
-    </NavigationMenuItem>
+    </NavigationMenu.Item>
   )
 }
 

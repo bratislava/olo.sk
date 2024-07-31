@@ -1,8 +1,4 @@
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuViewport,
-} from '@radix-ui/react-navigation-menu'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import * as React from 'react'
@@ -36,21 +32,21 @@ const NavMenu = ({ className }: NavMenuProps) => {
   }, [pathname, setMenuValue])
 
   return (
-    <NavigationMenu
+    <NavigationMenu.Root
       value={menuValue}
       onValueChange={setMenuValue}
       aria-label={t('navBar.aria.navBarAriaLabel')}
       className={cn('border-b border-border-default bg-background-primary', className)}
     >
       <div className="flex items-center justify-between px-24">
-        <NavigationMenuList className="flex items-center">
+        <NavigationMenu.List className="flex items-center">
           {menus.map(
             // TODO: Temporary solution
             (menuItem: any) => (
               <NavMenuItem key={menuItem?.id} menuItem={menuItem} />
             ),
           )}
-        </NavigationMenuList>
+        </NavigationMenu.List>
 
         <PlaceholderWrapper className="border-action-background-default">
           <Button
@@ -67,11 +63,11 @@ const NavMenu = ({ className }: NavMenuProps) => {
       </div>
 
       {/* Together with onCLick in NavMenuContent, it closes the menu on click outside of container area */}
-      <NavigationMenuViewport
+      <NavigationMenu.Viewport
         onClick={() => setMenuValue('')}
         className="absolute z-[29] h-screen w-full"
       />
-    </NavigationMenu>
+    </NavigationMenu.Root>
   )
 }
 

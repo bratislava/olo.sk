@@ -58,7 +58,8 @@
         "header-sections.icon",
         "header-sections.image",
         "header-sections.side-image",
-        "header-sections.pickup-day"
+        "header-sections.pickup-day",
+        "header-sections.basic"
       ],
       "max": 1,
       "pluginOptions": {

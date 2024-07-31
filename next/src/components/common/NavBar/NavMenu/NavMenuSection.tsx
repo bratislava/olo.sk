@@ -13,32 +13,33 @@ type NavMenuSectionProps = {
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { getLinkProps } = useGetLinkProps()
+  const { label, colSpan, multicolumnBehaviour, hasDivider, specialSectionType, links } = section
 
   return (
     <li
       className={cn(
         'flex w-full flex-col gap-6',
         {
-          'col-span-1': section?.colSpan === 1,
-          'col-span-2': section?.colSpan === 2,
-          'w-[50vw]': section?.multicolumnBehaviour === 'split_equally', // "fullWidth" is default
+          'col-span-1': colSpan === 1,
+          'col-span-2': colSpan === 2,
+          'w-[50vw]': multicolumnBehaviour === 'split_equally', // "fullWidth" is default
         },
         className,
       )}
     >
       <div>
         <div className="pb-4">
-          <Typography variant="h6">{section.label}</Typography>
+          <Typography variant="h6">{label}</Typography>
         </div>
-        {section?.hasDivider ? <NavMenuContentDivider variant="vertical" /> : null}
+        {hasDivider ? <NavMenuContentDivider variant="vertical" /> : null}
       </div>
 
       {/* Menu links or Article cards */}
       <ul className="flex flex-col gap-4 bg-background-primary">
-        {section?.links?.map((link, index: number) => {
+        {links?.map((link, index: number) => {
           const { children, href } = getLinkProps(link)
 
-          return section?.specialSectionType === 'latest_articles' ? (
+          return specialSectionType === 'latest_articles' ? (
             <div className="flex flex-col gap-4">
               {index > 0 && <NavMenuContentDivider variant="vertical" />}
               <MenuItemArticleCard

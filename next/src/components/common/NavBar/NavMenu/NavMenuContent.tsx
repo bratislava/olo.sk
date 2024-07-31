@@ -29,17 +29,11 @@ const NavMenuContent = ({
       onPointerLeave={(event) => event.preventDefault()}
       className="w-screen bg-background-primary"
     >
-      <div
-        className={cn(
-          'relative z-[29] flex flex-col items-start justify-start px-28 shadow',
-          className,
-        )}
-      >
-        {/* Menu sections - TODO: Do not hard-code `grid-cols-3` */}
+      <div className="relative z-[29] flex flex-col items-start justify-start px-28 shadow">
         <ul
-          className="grid w-full grid-cols-3 gap-8 py-8"
+          className={cn('grid w-full grid-cols-3 gap-8 py-8', className)}
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
-          // onClick={(event) => event.stopPropagation()}
+          onClick={(event) => event.stopPropagation()}
         >
           {sections?.map((section: MenuSectionFragment, index: number) => {
             return (
@@ -50,7 +44,6 @@ const NavMenuContent = ({
             )
           })}
         </ul>
-        {/* seeAllLink */}
         <div className="flex w-full items-start justify-start py-6">
           <NavMenuLink id={seeAllLinkChildren as string} url={seeAllLinkHref}>
             {seeAllLinkChildren}

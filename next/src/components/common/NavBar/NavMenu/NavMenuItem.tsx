@@ -21,6 +21,7 @@ const NavMenuItem = ({ menuItem }: NavMenuItemProps) => {
         sections={menuItem?.sections}
         seeAllLinkChildren={children}
         seeAllLinkHref={href}
+        className="grid-cols-3"
       />
     </NavigationMenu.Item>
   )

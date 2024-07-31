@@ -13,16 +13,15 @@ const NavBarLogo = ({ className }: NavBarLogoProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={cn('-m-1.5 shrink-0 rounded p-1.5', className)}>
-      <Button
-        variant="unstyled"
-        href="/"
-        asLink
-        aria-label={t('navBar.aria.logoButton')}
-        icon={<OloLogo />}
-        hasLinkIcon={false}
-      />
-    </div>
+    <Button
+      variant="unstyled"
+      href="/"
+      asLink
+      aria-label={t('navBar.aria.logoButton')}
+      icon={<OloLogo />}
+      hasLinkIcon={false}
+      className={cn('-m-1.5 shrink-0 p-1.5', className)}
+    />
   )
 }
 

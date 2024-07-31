@@ -4,24 +4,21 @@ import { PropsWithChildren } from 'react'
 import Icon from '@/src/components/common/Icon/Icon'
 import Link from '@/src/components/common/Link/Link'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
-import Typography from '@/src/components/common/Typography/Typography'
-import { MenuLinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
+import { LinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuLinkProps = {
   className?: string
-} & MenuLinkFragment
+} & LinkProps
 
-const NavMenuLink = ({ children, url, className }: PropsWithChildren<NavMenuLinkProps>) => {
+const NavMenuLink = ({ className, ...rest }: PropsWithChildren<NavMenuLinkProps>) => {
   const { setMobileMenuOpen } = useNavMenuContext()
 
   return (
     <li className={cn('flex', className)}>
       <NavigationMenu.Link onClick={() => setMobileMenuOpen(false)} className="flex gap-4">
         <Icon name="sipka-doprava" />
-        <Link href={url as Object} variant="unstyled">
-          <Typography variant="p-default">{children}</Typography>
-        </Link>
+        <Link variant="unstyled" {...rest} />
       </NavigationMenu.Link>
     </li>
   )

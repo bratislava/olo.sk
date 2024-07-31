@@ -1,46 +1,55 @@
-import { MenuEntityResponse } from '@/src/services/graphql/api'
+import { GeneralQuery } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 
-export const getParsedMenus = (menu: MenuEntityResponse) => {
-  return menu?.data?.attributes?.menuItems?.map((menuItem) => {
-    if (!menuItem?.sections) return null
+export const getParsedMenus = (menu: GeneralQuery['menu']) => {
+  return (
+    menu?.data?.attributes?.menuItems
+      ?.filter(isDefined)
+      ?.map((menuItem) => {
+        const {
+          id: menuItemId,
+          label: menuItemLabel,
+          seeAllLink: menuSeeAllLink,
+          sections,
+        } = menuItem
 
-    const { id: menuItemId, label: menuItemLabel, seeAllLink: menuSeeAllLink, sections } = menuItem
+        const menuSections =
+          sections
+            ?.filter(isDefined)
+            .map((section) => {
+              const {
+                id: sectionId,
+                label: sectionLabel,
+                colSpan: sectionColSpan,
+                multicolumnBehaviour: sectionMulticolumnBehaviour,
+                hasDivider: sectionHasDivider,
+                specialSectionType: sectionSpecialSectionType,
+                links,
+              } = section
 
-    const menuSections =
-      sections
-        .map((section) => {
-          if (!section) return null
+              const sectionLinks = links?.filter(isDefined) ?? []
 
-          const {
-            id: sectionId,
-            label: sectionLabel,
-            colSpan: sectionColSpan,
-            multicolumnBehaviour: sectionMulticolumnBehaviour,
-            hasDivider: sectionHasDivider,
-            specialSectionType: sectionSpecialSectionType,
-            links,
-          } = section
+              return {
+                id: sectionId,
+                label: sectionLabel,
+                colSpan: sectionColSpan,
+                multicolumnBehaviour: sectionMulticolumnBehaviour,
+                hasDivider: sectionHasDivider,
+                specialSectionType: sectionSpecialSectionType,
+                links: sectionLinks,
+              }
+            })
+            // eslint-disable-next-line unicorn/no-array-callback-reference
+            .filter(isDefined) ?? []
 
-          const sectionLinks = links?.filter(isDefined) ?? []
-
-          return {
-            id: sectionId,
-            label: sectionLabel,
-            colSpan: sectionColSpan,
-            multicolumnBehaviour: sectionMulticolumnBehaviour,
-            hasDivider: sectionHasDivider,
-            specialSectionType: sectionSpecialSectionType,
-            links: sectionLinks,
-          }
-        })
-        .filter((element) => isDefined(element)) ?? []
-
-    return {
-      id: menuItemId,
-      label: menuItemLabel,
-      seeAllLink: menuSeeAllLink,
-      sections: menuSections,
-    }
-  })
+        return {
+          id: menuItemId,
+          label: menuItemLabel,
+          seeAllLink: menuSeeAllLink,
+          sections: menuSections,
+        }
+      })
+      // eslint-disable-next-line unicorn/no-array-callback-reference
+      .filter(isDefined) ?? []
+  )
 }

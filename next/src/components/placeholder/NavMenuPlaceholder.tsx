@@ -8,10 +8,9 @@ import React from 'react'
 
 import NavMenuContent from '@/src/components/common/NavBar/NavMenu/NavMenuContent'
 import NavMenuTrigger from '@/src/components/common/NavBar/NavMenu/NavMenuTrigger'
-import { usePlaceholderMenuData } from '@/src/components/placeholder/usePlaceholderMenuData' //  <NavigationMenuList className="flex justify-center"> makes the content f-w
 
 const NavMenuPlaceholder = () => {
-  const { sections, seeAllLink } = usePlaceholderMenuData()
+  // const { sections, seeAllLink } = usePlaceholderMenuData()
 
   return (
     <NavigationMenu>
@@ -20,7 +19,8 @@ const NavMenuPlaceholder = () => {
           <NavigationMenuTrigger />
           <div className="my-[40px] bg-waste-plastic">
             <NavMenuTrigger label="Odpad" />
-            <NavMenuContent sections={sections} seeAllLink={seeAllLink} />
+            {/* Types didn't match in dummy data */}
+            <NavMenuContent sections={[]} seeAllLinkProps={undefined} />
           </div>
         </NavigationMenuItem>
       </NavigationMenuList>

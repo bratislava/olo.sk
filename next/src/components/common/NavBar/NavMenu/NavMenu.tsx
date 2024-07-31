@@ -10,7 +10,6 @@ import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMen
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
 import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
-import { MenuItemFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 
 type NavMenuProps = {
@@ -39,9 +38,7 @@ const NavMenu = ({ className }: NavMenuProps) => {
     >
       <div className="flex items-center justify-between px-24">
         <NavigationMenu.List className="flex items-center">
-          {menus?.map((menuItem) => (
-            <NavMenuItem key={menuItem?.id} menuItem={menuItem as MenuItemFragment} />
-          ))}
+          {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
         </NavigationMenu.List>
 
         <PlaceholderWrapper className="border-action-background-default">

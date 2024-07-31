@@ -1,13 +1,13 @@
 import MenuItemArticleCard from '@/src/components/common/Card/MenuItemArticleCard'
+import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import NavMenuContentDivider from '@/src/components/common/NavBar/NavMenu/NavMenuContentDivider'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Typography from '@/src/components/common/Typography/Typography'
-import { MenuSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuSectionProps = {
-  section: MenuSectionFragment
+  section: ReturnType<typeof getParsedMenus>[number]['sections'][number]
   className?: string
 }
 
@@ -36,23 +36,21 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
 
       {/* Menu links or Article cards */}
       <ul className="flex flex-col gap-4 bg-background-primary">
-        {links?.map((link, index: number) => {
-          const { children, href } = getLinkProps(link)
+        {links.map((link, index: number) => {
+          const linkProps = getLinkProps(link)
 
           return specialSectionType === 'latest_articles' ? (
-            <div className="flex flex-col gap-4" key={link?.id}>
+            <div className="flex flex-col gap-4" key={link.id}>
               {index > 0 && <NavMenuContentDivider variant="vertical" />}
               <MenuItemArticleCard
                 // TODO: Temporary implementation
-                title={link?.label as string}
-                linkHref={link?.url as string}
+                title={linkProps.children ?? ''}
+                linkHref={linkProps.href}
                 tagText="Category"
               />
             </div>
           ) : (
-            <NavMenuLink key={link?.id} id={link?.id as string} url={href}>
-              {children}
-            </NavMenuLink>
+            <NavMenuLink key={link?.id} {...linkProps} />
           )
         })}
       </ul>

@@ -3,6 +3,7 @@ import React from 'react'
 import BranchesSection from '@/src/components/sections/BranchesSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
+import FaqSection from '@/src/components/sections/FaqSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
@@ -17,7 +18,6 @@ type Props = {
 
 const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
   switch (section.__typename) {
-    // TODO to be removed, just as example
     case 'ComponentSectionsRichtext':
       return <RichtextSection section={section} />
 
@@ -45,6 +45,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsTable':
       return <TableSection section={section} />
+
+    case 'ComponentSectionsFaq':
+      return <FaqSection section={section} />
 
     default:
       return null

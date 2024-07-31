@@ -2605,6 +2605,18 @@
     p-map "4.0.0"
     yup "0.32.9"
 
+"@strapi/utils@^4.2.3":
+  version "4.25.5"
+  resolved "https://registry.yarnpkg.com/@strapi/utils/-/utils-4.25.5.tgz#52502aa911c60dab4b7fb4d458b1c116fb5182b8"
+  integrity sha512-1lS7C7jWZzBDoX+CpdsamhrOT1T5Kp3vQHiTcfNXlE+2ricOcad00Sv+f3pktuR124rxhkCuRGHRfVe002QXcg==
+  dependencies:
+    "@sindresorhus/slugify" "1.1.0"
+    date-fns "2.30.0"
+    http-errors "1.8.1"
+    lodash "4.17.21"
+    p-map "4.0.0"
+    yup "0.32.9"
+
 "@swc/core-darwin-arm64@1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@swc/core-darwin-arm64/-/core-darwin-arm64-1.7.1.tgz#a11d2c8396292e6de8e807bc9275af8eea29faff"
@@ -4565,6 +4577,13 @@ cross-env@^7.0.3:
   integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
   dependencies:
     cross-spawn "^7.0.1"
+
+cross-fetch@^3.1.5:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.8.tgz#0327eba65fd68a7d119f8fb2bf9334a1a7956f82"
+  integrity sha512-cvA+JwZoU0Xq+h6WkMvAUqPEYy92Obet6UdKLfW60qn99ftItKjB5T+BkyWOFWe2pUyfQ+IJHmpOTznqk1M6Kg==
+  dependencies:
+    node-fetch "^2.6.12"
 
 cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
@@ -7656,6 +7675,13 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==
 
+meilisearch@^0.27.0:
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.27.0.tgz#8bd57ddb77b975f93e054cb977b951c488ece297"
+  integrity sha512-kZOZFIuSO7c6xRf+Y2/9/h6A9pl0sCl/G44X4KuaSwxGbruOZPhmxbeVEgLHBv4pUFvQ56rNVTA/2d/5GCU1YA==
+  dependencies:
+    cross-fetch "^3.1.5"
+
 memfs@^3.4.1, memfs@^3.4.12:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/memfs/-/memfs-3.6.0.tgz#d7a2110f86f79dd950a8b6df6d57bc984aa185f6"
@@ -7999,7 +8025,7 @@ node-addon-api@^6.1.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-6.1.0.tgz#ac8470034e58e67d0c6f1204a18ae6995d9c0d76"
   integrity sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==
 
-node-fetch@2.7.0, node-fetch@^2.6.7:
+node-fetch@2.7.0, node-fetch@^2.6.12, node-fetch@^2.6.7:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
   integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==
@@ -10045,6 +10071,13 @@ statuses@2.0.1, statuses@^2.0.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
+
+"strapi-plugin-meilisearch@https://github.com/bratislava/strapi-plugin-meilisearch.git":
+  version "0.7.1"
+  resolved "https://github.com/bratislava/strapi-plugin-meilisearch.git#6ca8a2a8542a9d50c3c1762861bd91bfb6726f00"
+  dependencies:
+    "@strapi/utils" "^4.2.3"
+    meilisearch "^0.27.0"
 
 strapi-provider-upload-ts-minio@^3.1.0:
   version "3.1.0"

@@ -44,7 +44,7 @@ const SectionHeader = ({
 
       {showMoreLink ? (
         // Styling is a bit different from Figma, to make it more consistent. Adding mt-2 when title is used for better alignment to center of first line
-        <div className={cn({ 'mt-2': title })}>
+        <div className={cn({ 'lg:mt-2': title })}>
           <Button asLink variant="black-link" {...getLinkProps(showMoreLink)} />
         </div>
       ) : null}

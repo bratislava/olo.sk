@@ -78,7 +78,8 @@
         "sections.ordered-cards",
         "sections.richtext",
         "sections.table",
-        "sections.workshops"
+        "sections.workshops",
+        "sections.faq"
       ],
       "pluginOptions": {
         "i18n": {

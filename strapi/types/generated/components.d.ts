@@ -364,6 +364,22 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsFaq extends Schema.Component {
+  collectionName: 'components_sections_faqs'
+  info: {
+    displayName: 'FAQ'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+    faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsHeroHomepageSection extends Schema.Component {
   collectionName: 'components_sections_hero_homepage_sections'
   info: {
@@ -567,6 +583,7 @@ declare module '@strapi/types' {
       'sections.branches': SectionsBranches
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
+      'sections.faq': SectionsFaq
       'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText

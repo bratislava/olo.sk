@@ -1351,6 +1351,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.richtext',
         'sections.table',
         'sections.workshops',
+        'sections.faq',
       ]
     > &
       Attribute.SetPluginOptions<{

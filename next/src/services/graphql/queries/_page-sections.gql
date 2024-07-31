@@ -108,6 +108,19 @@ fragment TableSection on ComponentSectionsTable {
   anchorId
 }
 
+fragment FaqSection on ComponentSectionsFaq {
+  title
+  backgroundColorFaq: backgroundColor
+  showMoreLink {
+    ...Link
+  }
+  faqs {
+    data {
+      ...FaqEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -145,5 +158,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsTable {
     ...TableSection
+  }
+
+  ... on ComponentSectionsFaq {
+    ...FaqSection
   }
 }

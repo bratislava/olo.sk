@@ -768,6 +768,22 @@ export type ComponentSectionsColumnsListRightColumnArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSectionsFaq = {
+  __typename?: 'ComponentSectionsFaq'
+  backgroundColor: Enum_Componentsectionsfaq_Backgroundcolor
+  faqs?: Maybe<FaqRelationResponseCollection>
+  id: Scalars['ID']['output']
+  showMoreLink?: Maybe<ComponentItemsLink>
+  title: Scalars['String']['output']
+}
+
+export type ComponentSectionsFaqFaqsArgs = {
+  filters?: InputMaybe<FaqFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsHeroHomepageSection = {
   __typename?: 'ComponentSectionsHeroHomepageSection'
   id: Scalars['ID']['output']
@@ -1142,6 +1158,12 @@ export enum Enum_Componentsectionscolumns_Backgroundcolor {
   Tertiary = 'tertiary',
 }
 
+export enum Enum_Componentsectionsfaq_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
 export enum Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor {
   Primary = 'primary',
   Secondary = 'secondary',
@@ -1421,6 +1443,7 @@ export type GenericMorph =
   | ComponentSectionsBranches
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsFaq
   | ComponentSectionsHeroHomepageSection
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
@@ -2362,6 +2385,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsBranches
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsFaq
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOrderedCards
@@ -5758,6 +5782,133 @@ export type TableSectionFragment = {
   anchorId?: string | null
 }
 
+export type FaqSectionFragment = {
+  __typename?: 'ComponentSectionsFaq'
+  title: string
+  backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
+  showMoreLink?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
+  faqs?: {
+    __typename?: 'FaqRelationResponseCollection'
+    data: Array<{
+      __typename?: 'FaqEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Faq'
+        title: string
+        content: string
+        faqCategory?: {
+          __typename?: 'FaqCategoryEntityResponse'
+          data?: {
+            __typename: 'FaqCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+          } | null
+        } | null
+      } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsBranches_Fragment = {
   __typename: 'ComponentSectionsBranches'
   title: string
@@ -5850,6 +6001,133 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
       } | null
     } | null
   } | null> | null
+}
+
+type PageSections_ComponentSectionsFaq_Fragment = {
+  __typename: 'ComponentSectionsFaq'
+  title: string
+  backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
+  showMoreLink?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          title: string
+          slug: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename?: 'WorkshopEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      } | null
+    } | null
+  } | null
+  faqs?: {
+    __typename?: 'FaqRelationResponseCollection'
+    data: Array<{
+      __typename?: 'FaqEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Faq'
+        title: string
+        content: string
+        faqCategory?: {
+          __typename?: 'FaqCategoryEntityResponse'
+          data?: {
+            __typename: 'FaqCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+          } | null
+        } | null
+      } | null
+    }>
+  } | null
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -6247,6 +6525,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsBranches_Fragment
   | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsColumnsList_Fragment
+  | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
@@ -11402,6 +11681,132 @@ export type PageEntityFragment = {
           } | null> | null
         }
       | {
+          __typename: 'ComponentSectionsFaq'
+          title: string
+          backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
+          showMoreLink?: {
+            __typename?: 'ComponentItemsLink'
+            label?: string | null
+            url?: string | null
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Page'
+                  title: string
+                  slug: string
+                  parentPage?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename?: 'PageEntity'
+                      attributes?: {
+                        __typename?: 'Page'
+                        slug: string
+                        title: string
+                        parentPage?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename?: 'PageEntity'
+                            attributes?: {
+                              __typename?: 'Page'
+                              slug: string
+                              title: string
+                              parentPage?: {
+                                __typename?: 'PageEntityResponse'
+                                data?: {
+                                  __typename?: 'PageEntity'
+                                  attributes?: {
+                                    __typename?: 'Page'
+                                    slug: string
+                                    title: string
+                                    parentPage?: {
+                                      __typename?: 'PageEntityResponse'
+                                      data?: {
+                                        __typename?: 'PageEntity'
+                                        attributes?: {
+                                          __typename?: 'Page'
+                                          slug: string
+                                          title: string
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+            article?: {
+              __typename?: 'ArticleEntityResponse'
+              data?: {
+                __typename: 'ArticleEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              } | null
+            } | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename: 'BranchEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+              } | null
+            } | null
+            document?: {
+              __typename?: 'DocumentEntityResponse'
+              data?: {
+                __typename: 'DocumentEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+              } | null
+            } | null
+            service?: {
+              __typename?: 'ServiceEntityResponse'
+              data?: {
+                __typename: 'ServiceEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+              } | null
+            } | null
+            workshop?: {
+              __typename?: 'WorkshopEntityResponse'
+              data?: {
+                __typename?: 'WorkshopEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null
+          faqs?: {
+            __typename?: 'FaqRelationResponseCollection'
+            data: Array<{
+              __typename?: 'FaqEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Faq'
+                title: string
+                content: string
+                faqCategory?: {
+                  __typename?: 'FaqCategoryEntityResponse'
+                  data?: {
+                    __typename: 'FaqCategoryEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+                  } | null
+                } | null
+              } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsImageAndText'
           title: string
           text?: string | null
@@ -12213,6 +12618,136 @@ export type PagesQuery = {
                   } | null
                 } | null
               } | null> | null
+            }
+          | {
+              __typename: 'ComponentSectionsFaq'
+              title: string
+              backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
+              showMoreLink?: {
+                __typename?: 'ComponentItemsLink'
+                label?: string | null
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename: 'BranchEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename: 'DocumentEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  } | null
+                } | null
+              } | null
+              faqs?: {
+                __typename?: 'FaqRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'FaqEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Faq'
+                    title: string
+                    content: string
+                    faqCategory?: {
+                      __typename?: 'FaqCategoryEntityResponse'
+                      data?: {
+                        __typename: 'FaqCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'FaqCategory'
+                          slug: string
+                          title: string
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                }>
+              } | null
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -13035,6 +13570,136 @@ export type PageBySlugQuery = {
               } | null> | null
             }
           | {
+              __typename: 'ComponentSectionsFaq'
+              title: string
+              backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
+              showMoreLink?: {
+                __typename?: 'ComponentItemsLink'
+                label?: string | null
+                url?: string | null
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      title: string
+                      slug: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            parentPage?: {
+                              __typename?: 'PageEntityResponse'
+                              data?: {
+                                __typename?: 'PageEntity'
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  parentPage?: {
+                                    __typename?: 'PageEntityResponse'
+                                    data?: {
+                                      __typename?: 'PageEntity'
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                        parentPage?: {
+                                          __typename?: 'PageEntityResponse'
+                                          data?: {
+                                            __typename?: 'PageEntity'
+                                            attributes?: {
+                                              __typename?: 'Page'
+                                              slug: string
+                                              title: string
+                                            } | null
+                                          } | null
+                                        } | null
+                                      } | null
+                                    } | null
+                                  } | null
+                                } | null
+                              } | null
+                            } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+                article?: {
+                  __typename?: 'ArticleEntityResponse'
+                  data?: {
+                    __typename: 'ArticleEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  } | null
+                } | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename: 'BranchEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+                  } | null
+                } | null
+                document?: {
+                  __typename?: 'DocumentEntityResponse'
+                  data?: {
+                    __typename: 'DocumentEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                  } | null
+                } | null
+                service?: {
+                  __typename?: 'ServiceEntityResponse'
+                  data?: {
+                    __typename: 'ServiceEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                  } | null
+                } | null
+                workshop?: {
+                  __typename?: 'WorkshopEntityResponse'
+                  data?: {
+                    __typename?: 'WorkshopEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  } | null
+                } | null
+              } | null
+              faqs?: {
+                __typename?: 'FaqRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'FaqEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Faq'
+                    title: string
+                    content: string
+                    faqCategory?: {
+                      __typename?: 'FaqCategoryEntityResponse'
+                      data?: {
+                        __typename: 'FaqCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'FaqCategory'
+                          slug: string
+                          title: string
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                }>
+              } | null
+            }
+          | {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
@@ -13760,37 +14425,6 @@ export const DocumentEntityFragmentDoc = gql`
   ${DocumentCategoryEntityFragmentDoc}
   ${UploadFileEntityFragmentDoc}
 `
-export const FaqCategorySlugEntityFragmentDoc = gql`
-  fragment FaqCategorySlugEntity on FaqCategoryEntity {
-    __typename
-    id
-    attributes {
-      slug
-      title
-    }
-  }
-`
-export const FaqCategoryEntityFragmentDoc = gql`
-  fragment FaqCategoryEntity on FaqCategoryEntity {
-    ...FaqCategorySlugEntity
-  }
-  ${FaqCategorySlugEntityFragmentDoc}
-`
-export const FaqEntityFragmentDoc = gql`
-  fragment FaqEntity on FaqEntity {
-    id
-    attributes {
-      title
-      content
-      faqCategory {
-        data {
-          ...FaqCategoryEntity
-        }
-      }
-    }
-  }
-  ${FaqCategoryEntityFragmentDoc}
-`
 export const ArticleSlugEntityFragmentDoc = gql`
   fragment ArticleSlugEntity on ArticleEntity {
     __typename
@@ -14430,6 +15064,53 @@ export const TableSectionFragmentDoc = gql`
     anchorId
   }
 `
+export const FaqCategorySlugEntityFragmentDoc = gql`
+  fragment FaqCategorySlugEntity on FaqCategoryEntity {
+    __typename
+    id
+    attributes {
+      slug
+      title
+    }
+  }
+`
+export const FaqCategoryEntityFragmentDoc = gql`
+  fragment FaqCategoryEntity on FaqCategoryEntity {
+    ...FaqCategorySlugEntity
+  }
+  ${FaqCategorySlugEntityFragmentDoc}
+`
+export const FaqEntityFragmentDoc = gql`
+  fragment FaqEntity on FaqEntity {
+    id
+    attributes {
+      title
+      content
+      faqCategory {
+        data {
+          ...FaqCategoryEntity
+        }
+      }
+    }
+  }
+  ${FaqCategoryEntityFragmentDoc}
+`
+export const FaqSectionFragmentDoc = gql`
+  fragment FaqSection on ComponentSectionsFaq {
+    title
+    backgroundColorFaq: backgroundColor
+    showMoreLink {
+      ...Link
+    }
+    faqs {
+      data {
+        ...FaqEntity
+      }
+    }
+  }
+  ${LinkFragmentDoc}
+  ${FaqEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -14460,6 +15141,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsTable {
       ...TableSection
     }
+    ... on ComponentSectionsFaq {
+      ...FaqSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -14470,6 +15154,7 @@ export const PageSectionsFragmentDoc = gql`
   ${WorkshopsSectionFragmentDoc}
   ${ColumnsListSectionFragmentDoc}
   ${TableSectionFragmentDoc}
+  ${FaqSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

@@ -31,7 +31,7 @@ const FaqSection = ({ section }: Props) => {
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} showMoreLink={showMoreLink} />
         <AccordionGroup
-          className={cn('px-5 py-0.5', {
+          className={cn('px-5 py-2', {
             'border-none': backgroundColorFaq !== Enum_Componentsectionsfaq_Backgroundcolor.Primary,
           })}
           accordionData={filteredFaqs

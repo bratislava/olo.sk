@@ -40,11 +40,10 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
           const { children, href } = getLinkProps(link)
 
           return specialSectionType === 'latest_articles' ? (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4" key={link?.id}>
               {index > 0 && <NavMenuContentDivider variant="vertical" />}
               <MenuItemArticleCard
                 // TODO: Temporary implementation
-                key={link?.id}
                 title={link?.label as string}
                 linkHref={link?.url as string}
                 tagText="Category"

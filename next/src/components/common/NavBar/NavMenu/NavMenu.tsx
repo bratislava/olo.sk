@@ -1,8 +1,7 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import * as React from 'react'
-import { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
@@ -24,9 +23,8 @@ const NavMenu = ({ className }: NavMenuProps) => {
   const { menuValue, setMenuValue } = useNavMenuContext()
   const { t } = useTranslation()
 
-  const menus = useMemo(() => {
-    return getParsedMenus(menu) // TODO: Resolve the type
-  }, [menu])
+  // TODO: Resolve the type
+  const menus = useMemo(() => getParsedMenus(menu), [menu])
 
   useEffect(() => {
     setMenuValue('')

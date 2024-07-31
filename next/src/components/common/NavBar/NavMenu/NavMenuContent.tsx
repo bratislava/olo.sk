@@ -7,7 +7,7 @@ import { MenuSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 
 type NavMenuContentProps = {
-  sections: MenuSectionFragment[] | any
+  sections: MenuSectionFragment[]
   seeAllLinkHref?: string
   seeAllLinkChildren?: string
   className?: string
@@ -37,9 +37,9 @@ const NavMenuContent = ({
         >
           {sections?.map((section: MenuSectionFragment, index: number) => {
             return (
-              <div className="flex gap-8">
+              <div className="flex gap-8" key={section?.id}>
                 {index > 0 && <NavMenuContentDivider variant="horizontal" />}
-                <NavMenuSection key={section?.id} section={section} />
+                <NavMenuSection section={section} />
               </div>
             )
           })}

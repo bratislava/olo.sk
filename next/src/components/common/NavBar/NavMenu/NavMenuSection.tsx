@@ -30,7 +30,7 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
         <div className="pb-4">
           <Typography variant="h6">{section.label}</Typography>
         </div>
-        {section.hasDivider ? <NavMenuContentDivider variant="vertical" /> : null}
+        {section?.hasDivider ? <NavMenuContentDivider variant="vertical" /> : null}
       </div>
 
       {/* Menu links or Article cards */}

@@ -2,14 +2,16 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
+import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
 import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
-import { usePlaceholderMenuData } from '@/src/components/placeholder/usePlaceholderMenuData'
+import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
+import { MenuItemFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 
 type NavMenuProps = {
@@ -17,15 +19,14 @@ type NavMenuProps = {
 }
 
 const NavMenu = ({ className }: NavMenuProps) => {
-  // const { menu } = useGeneralContext()
+  const { menu } = useGeneralContext()
   const pathname = usePathname()
   const { menuValue, setMenuValue } = useNavMenuContext()
   const { t } = useTranslation()
-  const { menus } = usePlaceholderMenuData() // TODO: Temporary
 
-  /*  const menus = useMemo(() => {
-      return getParsedMenus(menu)
-    }, [menu]) */
+  const menus = useMemo(() => {
+    return getParsedMenus(menu) // TODO: Resolve the type
+  }, [menu])
 
   useEffect(() => {
     setMenuValue('')
@@ -40,12 +41,9 @@ const NavMenu = ({ className }: NavMenuProps) => {
     >
       <div className="flex items-center justify-between px-24">
         <NavigationMenu.List className="flex items-center">
-          {menus.map(
-            // TODO: Temporary solution
-            (menuItem: any) => (
-              <NavMenuItem key={menuItem?.id} menuItem={menuItem} />
-            ),
-          )}
+          {menus?.map((menuItem) => (
+            <NavMenuItem key={menuItem?.id} menuItem={menuItem as MenuItemFragment} />
+          ))}
         </NavigationMenu.List>
 
         <PlaceholderWrapper className="border-action-background-default">

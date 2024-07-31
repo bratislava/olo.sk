@@ -3,16 +3,22 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import NavMenuContentDivider from '@/src/components/common/NavBar/NavMenu/NavMenuContentDivider'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import NavMenuSection from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
-import { MenuLinkFragment, MenuSectionFragment } from '@/src/services/graphql/api'
+import { MenuSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 
 type NavMenuContentProps = {
-  sections: MenuSectionFragment[] | any // TODO: Temporary solution
-  seeAllLink: MenuLinkFragment | any // TODO: Temporary solution
+  sections: MenuSectionFragment[] | any
+  seeAllLinkHref?: string
+  seeAllLinkChildren?: string
   className?: string
 }
 
-const NavMenuContent = ({ sections, seeAllLink, className }: NavMenuContentProps) => {
+const NavMenuContent = ({
+  sections,
+  seeAllLinkHref,
+  seeAllLinkChildren,
+  className,
+}: NavMenuContentProps) => {
   // TODO: Parse/group menuCells into groupedSections
 
   return (
@@ -46,8 +52,8 @@ const NavMenuContent = ({ sections, seeAllLink, className }: NavMenuContentProps
         </ul>
         {/* seeAllLink */}
         <div className="flex w-full items-start justify-start py-6">
-          <NavMenuLink id={seeAllLink?.id} url={seeAllLink?.url}>
-            {seeAllLink?.label}
+          <NavMenuLink id={seeAllLinkChildren as string} url={seeAllLinkHref}>
+            {seeAllLinkChildren}
           </NavMenuLink>
         </div>
       </div>

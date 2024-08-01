@@ -76,7 +76,7 @@ fragment WorkshopsSection on ComponentSectionsWorkshops {
   showAll
   workshops {
     data {
-      ...WorkshopEntity
+      ...WorkshopSlugEntity
     }
   }
 }
@@ -121,6 +121,13 @@ fragment FaqSection on ComponentSectionsFaq {
   }
 }
 
+fragment FilesSection on ComponentSectionsFiles {
+  title
+  files {
+    ...FileItem
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -162,5 +169,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsFaq {
     ...FaqSection
+  }
+
+  ... on ComponentSectionsFiles {
+    ...FilesSection
   }
 }

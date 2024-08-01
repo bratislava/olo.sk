@@ -8,6 +8,11 @@ fragment WorkshopSlugEntity on WorkshopEntity {
 
 fragment WorkshopEntity on WorkshopEntity {
   ...WorkshopSlugEntity
+  attributes {
+    sections {
+      ...PageSections
+    }
+  }
 }
 
 query Workshops {

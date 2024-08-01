@@ -73,13 +73,14 @@
         "sections.branches",
         "sections.columns",
         "sections.columns-list",
+        "sections.faq",
+        "sections.files",
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
         "sections.ordered-cards",
         "sections.richtext",
         "sections.table",
-        "sections.workshops",
-        "sections.faq"
+        "sections.workshops"
       ],
       "pluginOptions": {
         "i18n": {

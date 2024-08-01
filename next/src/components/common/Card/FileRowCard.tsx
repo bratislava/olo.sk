@@ -6,7 +6,7 @@ import Icon, { IconName } from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-export type DocumentRowCardProps = {
+export type FileRowCardProps = {
   title: string
   linkHref: string
   metaData?: string[]
@@ -20,7 +20,7 @@ export type DocumentRowCardProps = {
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=42-2223&mode=dev
  */
 
-const DocumentRowCard = ({
+const FileRowCard = ({
   title,
   linkHref,
   metaData,
@@ -28,7 +28,7 @@ const DocumentRowCard = ({
   hasBottomBorder = false,
   className,
   ariaLabel,
-}: DocumentRowCardProps) => {
+}: FileRowCardProps) => {
   const { t } = useTranslation()
 
   return (
@@ -93,4 +93,4 @@ const DocumentRowCard = ({
   )
 }
 
-export default DocumentRowCard
+export default FileRowCard

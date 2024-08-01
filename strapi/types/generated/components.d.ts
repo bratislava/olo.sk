@@ -380,6 +380,25 @@ export interface SectionsFaq extends Schema.Component {
   }
 }
 
+export interface SectionsFiles extends Schema.Component {
+  collectionName: 'components_sections_files'
+  info: {
+    displayName: 'files'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    files: Attribute.Component<'items.file-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+  }
+}
+
 export interface SectionsHeroHomepageSection extends Schema.Component {
   collectionName: 'components_sections_hero_homepage_sections'
   info: {
@@ -584,6 +603,7 @@ declare module '@strapi/types' {
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
       'sections.faq': SectionsFaq
+      'sections.files': SectionsFiles
       'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText

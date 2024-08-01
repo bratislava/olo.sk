@@ -1008,6 +1008,7 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
     singularName: 'faq-category'
     pluralName: 'faq-categories'
     displayName: 'FAQs - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1033,6 +1034,12 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
         }
       }>
     faqs: Attribute.Relation<'api::faq-category.faq-category', 'oneToMany', 'api::faq.faq'>
+    banner: Attribute.Component<'sections.banner'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1342,6 +1349,7 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
+        'sections.banner',
         'sections.branches',
         'sections.columns',
         'sections.columns-list',

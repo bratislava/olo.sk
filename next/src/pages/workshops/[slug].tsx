@@ -96,7 +96,7 @@ const Page = ({ entity, general }: PageProps) => {
           <HeaderTitleText title={title} />
         </SectionContainer>
         {/* TODO fix y-padding so we don't change it from here */}
-        <div className="py-6 lg:py-12 [&>*]:py-3 [&>*]:lg:py-6">
+        <div className="flex flex-col py-6 lg:py-12 [&>*]:py-3 [&>*]:lg:py-6">
           <Sections sections={sections?.filter(isDefined) ?? []} />
         </div>
       </PageLayout>

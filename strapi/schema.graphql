@@ -704,6 +704,37 @@ input ComponentSectionsArticlesHomepageSectionInput {
   title: String
 }
 
+type ComponentSectionsBanner {
+  id: ID!
+  image: UploadFileEntityResponse!
+  primaryButtonLink: ComponentItemsLink!
+  secondaryButtonLink: ComponentItemsLink
+  text: String
+  title: String!
+  variant: ENUM_COMPONENTSECTIONSBANNER_VARIANT!
+}
+
+input ComponentSectionsBannerFiltersInput {
+  and: [ComponentSectionsBannerFiltersInput]
+  not: ComponentSectionsBannerFiltersInput
+  or: [ComponentSectionsBannerFiltersInput]
+  primaryButtonLink: ComponentItemsLinkFiltersInput
+  secondaryButtonLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+  variant: StringFilterInput
+}
+
+input ComponentSectionsBannerInput {
+  id: ID
+  image: ID
+  primaryButtonLink: ComponentItemsLinkInput
+  secondaryButtonLink: ComponentItemsLinkInput
+  text: String
+  title: String
+  variant: ENUM_COMPONENTSECTIONSBANNER_VARIANT
+}
+
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -1273,6 +1304,11 @@ enum ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE {
   latest_articles
 }
 
+enum ENUM_COMPONENTSECTIONSBANNER_VARIANT {
+  background_black
+  background_grey
+}
+
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
   primary
   secondary
@@ -1338,6 +1374,7 @@ type Faq {
 }
 
 type FaqCategory {
+  banner: ComponentSectionsBanner
   createdAt: DateTime
   faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
   locale: String
@@ -1364,6 +1401,7 @@ type FaqCategoryEntityResponseCollection {
 
 input FaqCategoryFiltersInput {
   and: [FaqCategoryFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
   createdAt: DateTimeFilterInput
   faqs: FaqFiltersInput
   id: IDFilterInput
@@ -1378,6 +1416,7 @@ input FaqCategoryFiltersInput {
 }
 
 input FaqCategoryInput {
+  banner: ComponentSectionsBannerInput
   faqs: [ID]
   publishedAt: DateTime
   slug: String
@@ -1512,7 +1551,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2033,7 +2072,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

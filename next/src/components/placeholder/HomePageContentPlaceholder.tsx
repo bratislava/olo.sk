@@ -29,6 +29,11 @@ const HomePageContentPlaceholder = () => {
     queryKey: ['workshops'],
   })
 
+  const { data: faqCategoriesData } = useQuery({
+    queryFn: () => client.FaqCategories({ locale: 'sk' }),
+    queryKey: ['faqcategories'],
+  })
+
   const filteredPagesData = pagesData?.pages?.data.filter(
     (page) => isDefined(page?.attributes?.slug) && isDefined(page?.attributes?.title),
   )
@@ -39,6 +44,11 @@ const HomePageContentPlaceholder = () => {
 
   const filteredWorkshopsData = workshopsData?.workshops?.data.filter(
     (workshop) => isDefined(workshop?.attributes?.slug) && isDefined(workshop?.attributes?.title),
+  )
+
+  const filteredFaqCategoryData = faqCategoriesData?.faqCategories?.data.filter(
+    (faqCategory) =>
+      isDefined(faqCategory?.attributes?.slug) && isDefined(faqCategory?.attributes?.title),
   )
 
   return (
@@ -83,6 +93,21 @@ const HomePageContentPlaceholder = () => {
                   <Typography variant="p-default">•</Typography>
                   <Link variant="underlined" href={getFullPath(workshop) ?? '#'}>
                     {workshop.attributes?.title}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <Typography variant="h4">FAQ kategórie</Typography>
+          <div className="flex flex-col gap-2">
+            {filteredFaqCategoryData?.map((faqCategory) => (
+              <div key={faqCategory.id}>
+                <div className="flex flex-row gap-2">
+                  <Typography variant="p-default">•</Typography>
+                  <Link variant="underlined" href={getFullPath(faqCategory) ?? '#'}>
+                    {faqCategory.attributes?.title}
                   </Link>
                 </div>
               </div>

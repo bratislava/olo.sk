@@ -313,6 +313,23 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
   }
 }
 
+export interface SectionsBanner extends Schema.Component {
+  collectionName: 'components_sections_banners'
+  info: {
+    displayName: 'Banner'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    variant: Attribute.Enumeration<['background-grey', 'background-black']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'background-grey'>
+    image: Attribute.Media & Attribute.Required
+    primaryButtonLink: Attribute.Component<'items.link'> & Attribute.Required
+    secondaryButtonLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsBranches extends Schema.Component {
   collectionName: 'components_sections_branches'
   info: {
@@ -599,6 +616,7 @@ declare module '@strapi/types' {
       'menu.menu-link': MenuMenuLink
       'menu.menu-section': MenuMenuSection
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
+      'sections.banner': SectionsBanner
       'sections.branches': SectionsBranches
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns

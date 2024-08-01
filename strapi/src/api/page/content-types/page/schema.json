@@ -70,6 +70,7 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
+        "sections.banner",
         "sections.branches",
         "sections.columns",
         "sections.columns-list",

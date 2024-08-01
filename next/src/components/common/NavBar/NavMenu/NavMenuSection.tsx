@@ -50,7 +50,9 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
               />
             </div>
           ) : (
-            <NavMenuLink key={link?.id} {...linkProps} />
+            <NavMenuLink key={link?.id} {...linkProps}>
+              {linkProps.children}
+            </NavMenuLink>
           )
         })}
       </ul>

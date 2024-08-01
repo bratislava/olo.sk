@@ -41,12 +41,13 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
           })}
         </ul>
         {seeAllLinkProps?.children ? (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
           <div
             className="flex w-full items-start justify-start border-t border-border-default py-6"
             // Together with onCLick in Viewport, it closes the menu on click outside of container area
             onClick={(event) => event.stopPropagation()}
           >
-            <NavMenuLink {...seeAllLinkProps} />
+            <NavMenuLink {...seeAllLinkProps}>{seeAllLinkProps.children}</NavMenuLink>
           </div>
         ) : null}
       </div>

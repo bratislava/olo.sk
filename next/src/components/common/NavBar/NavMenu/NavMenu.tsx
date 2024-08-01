@@ -34,10 +34,10 @@ const NavMenu = ({ className }: NavMenuProps) => {
       value={menuValue}
       onValueChange={setMenuValue}
       aria-label={t('navBar.aria.navBarAriaLabel')}
-      className={cn('border-b border-border-default bg-background-primary', className)}
+      className={cn(className)}
     >
-      <div className="flex items-center justify-between px-24">
-        <NavigationMenu.List className="flex items-center">
+      <div className="flex items-center justify-between">
+        <NavigationMenu.List className="flex items-center gap-4">
           {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
         </NavigationMenu.List>
 

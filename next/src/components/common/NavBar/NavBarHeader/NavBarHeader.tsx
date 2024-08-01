@@ -19,7 +19,7 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={cn('w-full bg-action-background-default px-[7rem] py-3', className)}>
+    <div className={cn('w-full bg-action-background-default py-3', className)}>
       <div className="flex items-center justify-between">
         <div className="flex gap-4 py-0.5">
           <NavBarLogo />

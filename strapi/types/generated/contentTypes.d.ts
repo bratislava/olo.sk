@@ -1327,7 +1327,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'header-sections.image',
         'header-sections.side-image',
         'header-sections.pickup-day',
-        'header-sections.basic',
       ]
     > &
       Attribute.SetPluginOptions<{

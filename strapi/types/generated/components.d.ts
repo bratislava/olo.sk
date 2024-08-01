@@ -1,16 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
-export interface HeaderSectionsBasic extends Schema.Component {
-  collectionName: 'components_header_sections_basics'
-  info: {
-    displayName: 'basic'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-  }
-}
-
 export interface HeaderSectionsBranchMap extends Schema.Component {
   collectionName: 'components_header_sections_branch_maps'
   info: {
@@ -568,7 +557,6 @@ export interface SectionsWorkshops extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'header-sections.basic': HeaderSectionsBasic
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.featured-news': HeaderSectionsFeaturedNews
       'header-sections.gallery': HeaderSectionsGallery

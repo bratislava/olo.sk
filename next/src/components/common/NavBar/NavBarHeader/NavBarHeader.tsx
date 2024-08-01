@@ -6,6 +6,7 @@ import Icon from '@/src/components/common/Icon/Icon'
 import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
 import NavBarHorizontalDivider from '@/src/components/common/NavBar/NavMenu/NavBarHorizontalDivider'
 import Typography from '@/src/components/common/Typography/Typography'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 import cn from '@/src/utils/cn'
 import { useCurrentWeekParity } from '@/src/utils/useCurrentWeekParity'
@@ -19,7 +20,7 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={cn('w-full bg-action-background-default py-3', className)}>
+    <SectionContainer className={cn('bg-action-background-default py-3', className)}>
       <div className="flex items-center justify-between">
         <div className="flex gap-4 py-0.5">
           <NavBarLogo />
@@ -41,7 +42,7 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
           </Button>
         </PlaceholderWrapper>
       </div>
-    </div>
+    </SectionContainer>
   )
 }
 

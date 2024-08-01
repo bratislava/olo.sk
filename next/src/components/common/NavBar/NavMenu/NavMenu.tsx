@@ -23,7 +23,6 @@ const NavMenu = ({ className }: NavMenuProps) => {
   const { menuValue, setMenuValue } = useNavMenuContext()
   const { t } = useTranslation()
 
-  // TODO: Resolve the type
   const menus = useMemo(() => getParsedMenus(menu), [menu])
 
   useEffect(() => {

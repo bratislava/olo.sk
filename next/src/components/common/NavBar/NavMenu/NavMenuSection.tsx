@@ -1,6 +1,6 @@
 import MenuItemArticleCard from '@/src/components/common/Card/MenuItemArticleCard'
+import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
-import NavMenuContentDivider from '@/src/components/common/NavBar/NavMenu/NavMenuContentDivider'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -31,7 +31,7 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
         <div className="pb-4">
           <Typography variant="h6">{label}</Typography>
         </div>
-        {hasDivider ? <NavMenuContentDivider variant="vertical" /> : null}
+        {hasDivider ? <NavBarDivider variant="vertical" /> : null}
       </div>
 
       {/* Menu links or Article cards */}
@@ -41,7 +41,7 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
 
           return specialSectionType === 'latest_articles' ? (
             <div className="flex flex-col gap-4" key={link.id}>
-              {index > 0 && <NavMenuContentDivider variant="vertical" />}
+              {index > 0 && <NavBarDivider variant="vertical" />}
               <MenuItemArticleCard
                 // TODO: Temporary implementation
                 title={linkProps.children ?? ''}

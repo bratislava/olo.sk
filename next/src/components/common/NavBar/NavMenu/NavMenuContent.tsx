@@ -1,7 +1,7 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
+import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
-import NavMenuContentDivider from '@/src/components/common/NavBar/NavMenu/NavMenuContentDivider'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import NavMenuSection from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
 import cn from '@/src/utils/cn'
@@ -24,7 +24,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       onPointerLeave={(event) => event.preventDefault()}
       className="w-screen bg-background-primary"
     >
-      <div className="relative z-[29] flex flex-col items-start justify-start px-28 shadow">
+      <div className="relative z-[29] flex flex-col items-start justify-start px-28 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
         <ul
           className={cn('grid w-full grid-cols-3 gap-8 py-8', className)}
@@ -34,7 +34,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
           {sections.map((section, index: number) => {
             return (
               <div className="flex gap-8" key={section?.id}>
-                {index > 0 && <NavMenuContentDivider variant="horizontal" />}
+                {index > 0 && <NavBarDivider variant="horizontal" />}
                 <NavMenuSection section={section} />
               </div>
             )

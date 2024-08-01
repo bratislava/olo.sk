@@ -9,7 +9,7 @@ type PlaceholderWrapperProps = {
 
 const PlaceholderWrapper = ({ children, className }: PlaceholderWrapperProps) => {
   return (
-    <div className={cn('border-2 border-dashed border-white', className)}>
+    <div className={cn('border border-dashed border-white', className)}>
       <div className="opacity-25">{children}</div>
     </div>
   )

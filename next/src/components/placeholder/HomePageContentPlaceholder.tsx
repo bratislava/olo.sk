@@ -24,12 +24,21 @@ const HomePageContentPlaceholder = () => {
     queryKey: ['articles'],
   })
 
+  const { data: workshopsData } = useQuery({
+    queryFn: () => client.Workshops(),
+    queryKey: ['workshops'],
+  })
+
   const filteredPagesData = pagesData?.pages?.data.filter(
     (page) => isDefined(page?.attributes?.slug) && isDefined(page?.attributes?.title),
   )
 
   const filteredArticlesData = articlesData?.articles?.data.filter(
     (article) => isDefined(article?.attributes?.slug) && isDefined(article?.attributes?.title),
+  )
+
+  const filteredWorkshopsData = workshopsData?.workshops?.data.filter(
+    (workshop) => isDefined(workshop?.attributes?.slug) && isDefined(workshop?.attributes?.title),
   )
 
   return (
@@ -59,6 +68,21 @@ const HomePageContentPlaceholder = () => {
                   <Typography variant="p-default">•</Typography>
                   <Link variant="underlined" href={getFullPath(article) ?? '#'}>
                     {article.attributes?.title}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <Typography variant="h4">Workshopy</Typography>
+          <div className="flex flex-col gap-2">
+            {filteredWorkshopsData?.map((workshop) => (
+              <div key={workshop.id}>
+                <div className="flex flex-row gap-2">
+                  <Typography variant="p-default">•</Typography>
+                  <Link variant="underlined" href={getFullPath(workshop) ?? '#'}>
+                    {workshop.attributes?.title}
                   </Link>
                 </div>
               </div>

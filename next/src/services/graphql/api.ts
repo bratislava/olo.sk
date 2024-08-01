@@ -3683,7 +3683,7 @@ export type LinkFragment = {
   workshop?: {
     __typename?: 'WorkshopEntityResponse'
     data?: {
-      __typename?: 'WorkshopEntity'
+      __typename: 'WorkshopEntity'
       id?: string | null
       attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     } | null
@@ -4440,7 +4440,7 @@ export type GeneralQuery = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -4542,7 +4542,7 @@ export type GeneralQuery = {
           workshop?: {
             __typename?: 'WorkshopEntityResponse'
             data?: {
-              __typename?: 'WorkshopEntity'
+              __typename: 'WorkshopEntity'
               id?: string | null
               attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             } | null
@@ -4646,7 +4646,7 @@ export type GeneralQuery = {
               workshop?: {
                 __typename?: 'WorkshopEntityResponse'
                 data?: {
-                  __typename?: 'WorkshopEntity'
+                  __typename: 'WorkshopEntity'
                   id?: string | null
                   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                 } | null
@@ -4748,7 +4748,7 @@ export type GeneralQuery = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -5033,7 +5033,7 @@ export type PickupDayHeaderSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -5286,7 +5286,7 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -5458,7 +5458,7 @@ export type ImageAndTextSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -5559,7 +5559,7 @@ export type ImageAndTextSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -5712,7 +5712,7 @@ export type ImageAndTextOverlappedSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -5748,7 +5748,7 @@ export type WorkshopsSectionFragment = {
   workshops?: {
     __typename?: 'WorkshopRelationResponseCollection'
     data: Array<{
-      __typename?: 'WorkshopEntity'
+      __typename: 'WorkshopEntity'
       id?: string | null
       attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     }>
@@ -5907,7 +5907,7 @@ export type FaqSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -6153,7 +6153,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -6323,7 +6323,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -6424,7 +6424,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -6549,7 +6549,7 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -6588,7 +6588,7 @@ type PageSections_ComponentSectionsWorkshops_Fragment = {
   workshops?: {
     __typename?: 'WorkshopRelationResponseCollection'
     data: Array<{
-      __typename?: 'WorkshopEntity'
+      __typename: 'WorkshopEntity'
       id?: string | null
       attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     }>
@@ -7201,7 +7201,7 @@ export type FooterColumnItemFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -7312,7 +7312,7 @@ export type FooterFragment = {
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename?: 'WorkshopEntity'
+          __typename: 'WorkshopEntity'
           id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
@@ -7414,7 +7414,7 @@ export type FooterFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -7527,7 +7527,7 @@ export type FooterEntityFragment = {
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename?: 'WorkshopEntity'
+            __typename: 'WorkshopEntity'
             id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
@@ -7629,7 +7629,7 @@ export type FooterEntityFragment = {
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename?: 'WorkshopEntity'
+          __typename: 'WorkshopEntity'
           id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
@@ -7759,7 +7759,7 @@ export type HeroMainTileFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -7865,7 +7865,7 @@ export type HeroSmallTileFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -7972,7 +7972,7 @@ export type HomepageServiceTileFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -8102,7 +8102,7 @@ export type HeroHomepageSectionFragment = {
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename?: 'WorkshopEntity'
+          __typename: 'WorkshopEntity'
           id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
@@ -8207,7 +8207,7 @@ export type HeroHomepageSectionFragment = {
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename?: 'WorkshopEntity'
+          __typename: 'WorkshopEntity'
           id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
@@ -8362,7 +8362,7 @@ export type ArticlesHomepageSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -8470,7 +8470,7 @@ export type KoloHomepageSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -8584,7 +8584,7 @@ export type KoloHomepageSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -8695,7 +8695,7 @@ export type ServicesHomepageSectionFragment = {
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename?: 'WorkshopEntity'
+          __typename: 'WorkshopEntity'
           id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
@@ -8797,7 +8797,7 @@ export type ServicesHomepageSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -8932,7 +8932,7 @@ export type HomepageEntityFragment = {
           workshop?: {
             __typename?: 'WorkshopEntityResponse'
             data?: {
-              __typename?: 'WorkshopEntity'
+              __typename: 'WorkshopEntity'
               id?: string | null
               attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             } | null
@@ -9037,7 +9037,7 @@ export type HomepageEntityFragment = {
           workshop?: {
             __typename?: 'WorkshopEntityResponse'
             data?: {
-              __typename?: 'WorkshopEntity'
+              __typename: 'WorkshopEntity'
               id?: string | null
               attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             } | null
@@ -9191,7 +9191,7 @@ export type HomepageEntityFragment = {
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename?: 'WorkshopEntity'
+            __typename: 'WorkshopEntity'
             id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
@@ -9298,7 +9298,7 @@ export type HomepageEntityFragment = {
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename?: 'WorkshopEntity'
+            __typename: 'WorkshopEntity'
             id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
@@ -9412,7 +9412,7 @@ export type HomepageEntityFragment = {
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename?: 'WorkshopEntity'
+            __typename: 'WorkshopEntity'
             id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
@@ -9522,7 +9522,7 @@ export type HomepageEntityFragment = {
           workshop?: {
             __typename?: 'WorkshopEntityResponse'
             data?: {
-              __typename?: 'WorkshopEntity'
+              __typename: 'WorkshopEntity'
               id?: string | null
               attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             } | null
@@ -9624,7 +9624,7 @@ export type HomepageEntityFragment = {
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename?: 'WorkshopEntity'
+            __typename: 'WorkshopEntity'
             id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
@@ -9769,7 +9769,7 @@ export type HomepageQuery = {
               workshop?: {
                 __typename?: 'WorkshopEntityResponse'
                 data?: {
-                  __typename?: 'WorkshopEntity'
+                  __typename: 'WorkshopEntity'
                   id?: string | null
                   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                 } | null
@@ -9874,7 +9874,7 @@ export type HomepageQuery = {
               workshop?: {
                 __typename?: 'WorkshopEntityResponse'
                 data?: {
-                  __typename?: 'WorkshopEntity'
+                  __typename: 'WorkshopEntity'
                   id?: string | null
                   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                 } | null
@@ -10032,7 +10032,7 @@ export type HomepageQuery = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -10139,7 +10139,7 @@ export type HomepageQuery = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -10253,7 +10253,7 @@ export type HomepageQuery = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -10363,7 +10363,7 @@ export type HomepageQuery = {
               workshop?: {
                 __typename?: 'WorkshopEntityResponse'
                 data?: {
-                  __typename?: 'WorkshopEntity'
+                  __typename: 'WorkshopEntity'
                   id?: string | null
                   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                 } | null
@@ -10465,7 +10465,7 @@ export type HomepageQuery = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -10554,7 +10554,7 @@ export type MenuLinkFragment = {
   workshop?: {
     __typename?: 'WorkshopEntityResponse'
     data?: {
-      __typename?: 'WorkshopEntity'
+      __typename: 'WorkshopEntity'
       id?: string | null
       attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
     } | null
@@ -10646,7 +10646,7 @@ export type MenuSectionFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -10743,7 +10743,7 @@ export type MenuItemFragment = {
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename?: 'WorkshopEntity'
+          __typename: 'WorkshopEntity'
           id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
@@ -10845,7 +10845,7 @@ export type MenuItemFragment = {
     workshop?: {
       __typename?: 'WorkshopEntityResponse'
       data?: {
-        __typename?: 'WorkshopEntity'
+        __typename: 'WorkshopEntity'
         id?: string | null
         attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
       } | null
@@ -10944,7 +10944,7 @@ export type MenuFragment = {
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename?: 'WorkshopEntity'
+            __typename: 'WorkshopEntity'
             id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
@@ -11046,7 +11046,7 @@ export type MenuFragment = {
       workshop?: {
         __typename?: 'WorkshopEntityResponse'
         data?: {
-          __typename?: 'WorkshopEntity'
+          __typename: 'WorkshopEntity'
           id?: string | null
           attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
         } | null
@@ -11148,7 +11148,7 @@ export type MenuEntityFragment = {
           workshop?: {
             __typename?: 'WorkshopEntityResponse'
             data?: {
-              __typename?: 'WorkshopEntity'
+              __typename: 'WorkshopEntity'
               id?: string | null
               attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             } | null
@@ -11250,7 +11250,7 @@ export type MenuEntityFragment = {
         workshop?: {
           __typename?: 'WorkshopEntityResponse'
           data?: {
-            __typename?: 'WorkshopEntity'
+            __typename: 'WorkshopEntity'
             id?: string | null
             attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
           } | null
@@ -11636,7 +11636,7 @@ export type PageEntityFragment = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -11856,7 +11856,7 @@ export type PageEntityFragment = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -12024,7 +12024,7 @@ export type PageEntityFragment = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -12125,7 +12125,7 @@ export type PageEntityFragment = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -12249,7 +12249,7 @@ export type PageEntityFragment = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -12284,7 +12284,7 @@ export type PageEntityFragment = {
           workshops?: {
             __typename?: 'WorkshopRelationResponseCollection'
             data: Array<{
-              __typename?: 'WorkshopEntity'
+              __typename: 'WorkshopEntity'
               id?: string | null
               attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
             }>
@@ -12599,7 +12599,7 @@ export type PagesQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -12819,7 +12819,7 @@ export type PagesQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -12991,7 +12991,7 @@ export type PagesQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -13092,7 +13092,7 @@ export type PagesQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -13216,7 +13216,7 @@ export type PagesQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -13251,7 +13251,7 @@ export type PagesQuery = {
               workshops?: {
                 __typename?: 'WorkshopRelationResponseCollection'
                 data: Array<{
-                  __typename?: 'WorkshopEntity'
+                  __typename: 'WorkshopEntity'
                   id?: string | null
                   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                 }>
@@ -13573,7 +13573,7 @@ export type PageBySlugQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -13793,7 +13793,7 @@ export type PageBySlugQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -13965,7 +13965,7 @@ export type PageBySlugQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -14066,7 +14066,7 @@ export type PageBySlugQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -14190,7 +14190,7 @@ export type PageBySlugQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -14225,7 +14225,7 @@ export type PageBySlugQuery = {
               workshops?: {
                 __typename?: 'WorkshopRelationResponseCollection'
                 data: Array<{
-                  __typename?: 'WorkshopEntity'
+                  __typename: 'WorkshopEntity'
                   id?: string | null
                   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                 }>
@@ -14365,13 +14365,13 @@ export type ServiceBySlugQuery = {
 }
 
 export type WorkshopSlugEntityFragment = {
-  __typename?: 'WorkshopEntity'
+  __typename: 'WorkshopEntity'
   id?: string | null
   attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
 }
 
 export type WorkshopEntityFragment = {
-  __typename?: 'WorkshopEntity'
+  __typename: 'WorkshopEntity'
   id?: string | null
   attributes?: {
     __typename?: 'Workshop'
@@ -14477,7 +14477,7 @@ export type WorkshopEntityFragment = {
             workshop?: {
               __typename?: 'WorkshopEntityResponse'
               data?: {
-                __typename?: 'WorkshopEntity'
+                __typename: 'WorkshopEntity'
                 id?: string | null
                 attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
               } | null
@@ -14546,7 +14546,7 @@ export type WorkshopsQuery = {
   workshops?: {
     __typename?: 'WorkshopEntityResponseCollection'
     data: Array<{
-      __typename?: 'WorkshopEntity'
+      __typename: 'WorkshopEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Workshop'
@@ -14652,7 +14652,7 @@ export type WorkshopsQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -14729,7 +14729,7 @@ export type WorkshopBySlugQuery = {
   workshops?: {
     __typename?: 'WorkshopEntityResponseCollection'
     data: Array<{
-      __typename?: 'WorkshopEntity'
+      __typename: 'WorkshopEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Workshop'
@@ -14835,7 +14835,7 @@ export type WorkshopBySlugQuery = {
                 workshop?: {
                   __typename?: 'WorkshopEntityResponse'
                   data?: {
-                    __typename?: 'WorkshopEntity'
+                    __typename: 'WorkshopEntity'
                     id?: string | null
                     attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
                   } | null
@@ -15092,6 +15092,7 @@ export const ServiceSlugEntityFragmentDoc = gql`
 `
 export const WorkshopSlugEntityFragmentDoc = gql`
   fragment WorkshopSlugEntity on WorkshopEntity {
+    __typename
     id
     attributes {
       title

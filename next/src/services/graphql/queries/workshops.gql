@@ -1,4 +1,5 @@
 fragment WorkshopSlugEntity on WorkshopEntity {
+  __typename
   id
   attributes {
     title

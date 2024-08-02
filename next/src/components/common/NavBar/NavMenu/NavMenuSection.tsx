@@ -18,10 +18,8 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   return (
     <li className={cn('flex w-full flex-col gap-6', className)}>
       <div>
-        <Typography variant="h6" className_onlyWhenNecessary="pb-4">
-          {label}
-        </Typography>
-        <NavBarDivider variant="horizontal" />
+        <Typography variant="h6">{label}</Typography>
+        <NavBarDivider variant="horizontal" className="pt-4" />
       </div>
 
       {/* Menu links or Article cards */}
@@ -31,7 +29,7 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
 
           return specialSectionType === 'latest_articles' ? (
             <div className="flex flex-col gap-4" key={link.id}>
-              {index > 0 && <NavBarDivider variant="vertical" />}
+              {index > 0 ? <NavBarDivider variant="vertical" /> : null}
               <MenuItemArticleCard
                 title={linkProps.children ?? ''}
                 linkHref={linkProps.href}

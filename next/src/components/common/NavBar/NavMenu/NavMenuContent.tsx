@@ -1,6 +1,5 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
-import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import NavMenuContentCell from '@/src/components/common/NavBar/NavMenu/NavMenuContentCell'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
@@ -31,7 +30,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       <div className="relative z-[29] flex flex-col items-start justify-start px-28 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
         <ul
-          className={cn('grid w-full gap-8 py-8', className)}
+          className={cn('grid w-full py-8', className)}
           onClick={(event) => event.stopPropagation()}
         >
           {navMenuCells.map((cell, index: number) => {
@@ -40,6 +39,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
                 <NavMenuContentCell
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
+                  // The first "proper" section sets divider implicitly. No need to pass hasDivider prop
                   colSpan={1}
                   className="flex flex-col gap-12"
                 >
@@ -51,12 +51,14 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
             }
 
             return (
-              <div className="flex gap-8">
-                {index > 0 ? <NavBarDivider variant="vertical" /> : null}
-                <NavMenuContentCell key={cell.id} colSpan={cell.colSpan}>
-                  <NavMenuSection section={cell} />
-                </NavMenuContentCell>
-              </div>
+              <NavMenuContentCell
+                key={cell.id}
+                colSpan={cell.colSpan}
+                multicolumnBehaviour={cell.multicolumnBehaviour}
+                hasDivider={cell.hasDivider}
+              >
+                <NavMenuSection section={cell} />
+              </NavMenuContentCell>
             )
           })}
         </ul>

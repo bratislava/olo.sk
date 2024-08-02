@@ -2,10 +2,12 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
 import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
+import NavMenuContentCell from '@/src/components/common/NavBar/NavMenu/NavMenuContentCell'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import NavMenuSection from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
 import cn from '@/src/utils/cn'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
+import { useNavMenuCells } from '@/src/utils/useSectionGrouper'
 
 type NavMenuContentProps = {
   sections: ReturnType<typeof getParsedMenus>[number]['sections']
@@ -13,8 +15,10 @@ type NavMenuContentProps = {
   className?: string
 }
 
+export type SectionType = ReturnType<typeof getParsedMenus>[number]['sections'][number]
+
 const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContentProps) => {
-  // TODO: Parse/group menuCells into groupedSections
+  const { navMenuCells } = useNavMenuCells(sections)
 
   return (
     <NavigationMenu.Content
@@ -27,19 +31,36 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       <div className="relative z-[29] flex flex-col items-start justify-start px-28 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]">
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
         <ul
-          className={cn('grid w-full grid-cols-3 gap-8 py-8', className)}
-          // Together with onCLick in Viewport, it closes the menu on click outside of container area
+          className={cn('grid w-full gap-8 py-8', className)}
           onClick={(event) => event.stopPropagation()}
         >
-          {sections.map((section, index: number) => {
+          {navMenuCells.map((cell, index: number) => {
+            if (Array.isArray(cell)) {
+              return (
+                <NavMenuContentCell
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  colSpan={1}
+                  className="flex flex-col gap-12"
+                >
+                  {cell.map((section) => {
+                    return <NavMenuSection section={section} />
+                  })}
+                </NavMenuContentCell>
+              )
+            }
+
             return (
-              <div className="flex gap-8" key={section?.id}>
-                {index > 0 && <NavBarDivider variant="horizontal" />}
-                <NavMenuSection section={section} />
+              <div className="flex gap-8">
+                {index > 0 ? <NavBarDivider variant="vertical" /> : null}
+                <NavMenuContentCell key={cell.id} colSpan={cell.colSpan}>
+                  <NavMenuSection section={cell} />
+                </NavMenuContentCell>
               </div>
             )
           })}
         </ul>
+
         {seeAllLinkProps?.children ? (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
           <div

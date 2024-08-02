@@ -13,17 +13,18 @@ const NavMenuContentCell = ({
   className,
 }: PropsWithChildren<NavMenuContentCellProps>) => {
   return (
-    <div
-      className={cn(
-        'flex w-full flex-col gap-12',
-        {
-          'col-span-1': colSpan === 1,
-          'col-span-2': colSpan === 2,
-        },
-        className,
-      )}
-    >
-      {children}
+    <div className="h-full w-full">
+      <div
+        className={cn(
+          {
+            'col-span-1': colSpan === 1,
+            'col-span-2': colSpan === 2,
+          },
+          className,
+        )}
+      >
+        {children}
+      </div>
     </div>
   )
 }

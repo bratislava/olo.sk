@@ -13,29 +13,19 @@ type NavMenuSectionProps = {
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { getLinkProps } = useGetLinkProps()
-  const { label, colSpan, multicolumnBehaviour, hasDivider, specialSectionType, links } = section
+  const { label, specialSectionType, links } = section
 
   return (
-    <li
-      className={cn(
-        'flex w-full flex-col gap-6',
-        {
-          'col-span-1': colSpan === 1,
-          'col-span-2': colSpan === 2,
-          'w-[50vw]': multicolumnBehaviour === 'split_equally', // "fullWidth" is default
-        },
-        className,
-      )}
-    >
+    <li className={cn('flex w-full flex-col gap-6', className)}>
       <div>
-        <div className="pb-4">
-          <Typography variant="h6">{label}</Typography>
-        </div>
-        {hasDivider ? <NavBarDivider variant="vertical" /> : null}
+        <Typography variant="h6" className_onlyWhenNecessary="pb-4">
+          {label}
+        </Typography>
+        <NavBarDivider variant="horizontal" />
       </div>
 
       {/* Menu links or Article cards */}
-      <ul className="flex flex-col gap-4 bg-background-primary">
+      <ul className="flex flex-col gap-5 bg-background-primary">
         {links.map((link, index: number) => {
           const linkProps = getLinkProps(link)
 
@@ -43,9 +33,9 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
             <div className="flex flex-col gap-4" key={link.id}>
               {index > 0 && <NavBarDivider variant="vertical" />}
               <MenuItemArticleCard
-                // TODO: Temporary implementation
                 title={linkProps.children ?? ''}
                 linkHref={linkProps.href}
+                // TODO: Temporary implementation
                 tagText="Category"
               />
             </div>

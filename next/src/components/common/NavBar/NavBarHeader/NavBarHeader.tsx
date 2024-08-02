@@ -3,7 +3,6 @@ import * as React from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
-import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
@@ -21,9 +20,9 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
   return (
     <SectionContainer className={cn('bg-action-background-default py-3', className)}>
       <div className="flex items-center justify-between">
-        <div className="flex gap-4 py-0.5">
+        <div className="flex h-full gap-4 py-0.5">
           <NavBarLogo />
-          <NavBarDivider variant="vertical" className="border-[0.03rem] border-content-secondary" />
+          <div className="border-r border-content-secondary" />
           <Typography variant="p-small">{currentWeekMessage}</Typography>
         </div>
 

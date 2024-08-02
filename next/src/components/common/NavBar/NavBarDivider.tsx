@@ -5,20 +5,14 @@ type NavMenuContentDividerProps = {
   className?: string
 }
 
-const NavBarDivider = ({ variant, className }: NavMenuContentDividerProps) => {
-  return (
-    <div
-      aria-hidden
-      className={cn(
-        'border-border-default',
-        {
-          'border-l': variant === 'horizontal',
-          'border-b': variant === 'vertical',
-        },
-        className,
-      )}
-    />
-  )
-}
+const NavBarDivider = ({ variant, className }: NavMenuContentDividerProps) => (
+  <div
+    className={cn(
+      variant === 'vertical' ? 'h-full border-r' : 'w-full border-b',
+      'border-border-default',
+      className,
+    )}
+  />
+)
 
 export default NavBarDivider

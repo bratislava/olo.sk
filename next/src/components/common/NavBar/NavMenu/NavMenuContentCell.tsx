@@ -15,7 +15,6 @@ const NavMenuContentCell = ({
   children,
   colSpan,
   hasDivider, // Assumption: First section doesn't have divider (hasDivider = false)
-  multicolumnBehaviour,
   className,
 }: PropsWithChildren<NavMenuContentCellProps>) => {
   return (

@@ -35,7 +35,8 @@ const DocumentPageHeader = ({ document }: Props) => {
     filteredFiles?.length === 1
       ? formatFileExtension(filteredFiles[0]?.media.data?.attributes?.ext ?? '')
       : null
-  const metadata = [publishedAtString, fileExtensionString]
+  // eslint-disable-next-line unicorn/no-array-callback-reference
+  const metadata = [publishedAtString, fileExtensionString].filter(isDefined)
 
   return (
     <SectionContainer background="secondary">
@@ -48,24 +49,20 @@ const DocumentPageHeader = ({ document }: Props) => {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-1">
               <Typography variant="h1">{title}</Typography>
-              {metadata?.length ? (
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  {
-                    // eslint-disable-next-line unicorn/no-array-callback-reference
-                    metadata.filter(isDefined).map((item, index) => (
-                      <Fragment key={item}>
-                        {index > 0 ? (
-                          <div
-                            className="size-1 rounded-full bg-content-secondary max-sm:hidden"
-                            aria-hidden
-                          />
-                        ) : null}
-                        <Typography>{item}</Typography>
-                      </Fragment>
-                    ))
-                  }
-                </div>
-              ) : null}
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+                {metadata.map((item, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <Fragment key={index}>
+                    {index > 0 ? (
+                      <div
+                        className="size-1 rounded-full bg-content-secondary max-sm:hidden"
+                        aria-hidden
+                      />
+                    ) : null}
+                    <Typography>{item}</Typography>
+                  </Fragment>
+                ))}
+              </div>
             </div>
             {filteredFiles.length === 1 ? (
               <Button

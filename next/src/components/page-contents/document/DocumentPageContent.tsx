@@ -58,8 +58,9 @@ const DocumentPageContent = ({ document }: Props) => {
           <div className="flex flex-col gap-4">
             <SectionHeader title={`${t('documentPageContent.detailsTitle')}`} />
             <div className="flex flex-col gap-4">
-              {detailItems.map(({ label, value }) => (
-                <div className="flex flex-col flex-wrap sm:flex-row sm:gap-x-6" key={label}>
+              {detailItems.map(({ label, value }, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <div className="flex flex-col flex-wrap sm:flex-row sm:gap-x-6" key={index}>
                   <Typography className_onlyWhenNecessary="basis-1/3">{`${label}:`}</Typography>
                   <Typography>{value}</Typography>
                 </div>

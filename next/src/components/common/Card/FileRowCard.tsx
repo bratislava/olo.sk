@@ -54,7 +54,8 @@ const FileRowCard = ({
               {metaData?.length ? (
                 <div className="flex items-center gap-3">
                   {metaData.map((item, index) => (
-                    <Fragment key={item}>
+                    // eslint-disable-next-line react/no-array-index-key
+                    <Fragment key={index}>
                       {index > 0 ? (
                         <div className="size-1 rounded-full bg-content-secondary" aria-hidden />
                       ) : null}

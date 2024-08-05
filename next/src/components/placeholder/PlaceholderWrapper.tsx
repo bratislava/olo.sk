@@ -1,11 +1,18 @@
 import React from 'react'
 
+import cn from '@/src/utils/cn'
+
 type PlaceholderWrapperProps = {
   children: React.ReactNode
+  className?: string
 }
 
-const PlaceholderWrapper = ({ children }: PlaceholderWrapperProps) => {
-  return <div className="border-1 border-dashed border-action-background-default">{children}</div>
+const PlaceholderWrapper = ({ children, className }: PlaceholderWrapperProps) => {
+  return (
+    <div className={cn('border-2 border-dashed border-white', className)}>
+      <div className="opacity-25">{children}</div>
+    </div>
+  )
 }
 
 export default PlaceholderWrapper

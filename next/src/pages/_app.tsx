@@ -4,6 +4,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 
+import { NavMenuContextProvider } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import BAQueryClientProvider from '@/src/providers/BAQueryClientProvider'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -30,12 +31,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         {/*     <QueryParamProvider adapter={NextAdapter}> */}
         {/*       <BAI18nProvider> */}
         {/*         <OverlayProvider> */}
-        {/* <NavMenuContextProvider> */}
-        {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
-        <div id="root">
-          <Component {...pageProps} />
-        </div>
-        {/* </NavMenuContextProvider> */}
+        <NavMenuContextProvider>
+          {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
+          <div id="root">
+            <Component {...pageProps} />
+          </div>
+        </NavMenuContextProvider>
         {/* </OverlayProvider> */}
         {/* </BAI18nProvider> */}
         {/* </QueryParamProvider> */}

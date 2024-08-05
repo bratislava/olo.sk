@@ -39,6 +39,11 @@ const HomePageContentPlaceholder = () => {
     queryKey: ['documents'],
   })
 
+  const { data: servicesData } = useQuery({
+    queryFn: () => client.Services({ locale: 'sk' }),
+    queryKey: ['services'],
+  })
+
   const filteredPagesData = pagesData?.pages?.data.filter(
     (page) => isDefined(page?.attributes?.slug) && isDefined(page?.attributes?.title),
   )
@@ -58,6 +63,10 @@ const HomePageContentPlaceholder = () => {
 
   const filteredDocumentsData = documentsData?.documents?.data.filter(
     (document) => isDefined(document?.attributes?.slug) && isDefined(document?.attributes?.title),
+  )
+
+  const filteredServicesData = servicesData?.services?.data.filter(
+    (service) => isDefined(service?.attributes?.slug) && isDefined(service?.attributes?.title),
   )
 
   return (
@@ -132,6 +141,21 @@ const HomePageContentPlaceholder = () => {
                   <Typography variant="p-default">•</Typography>
                   <Link variant="underlined" href={getFullPath(document) ?? '#'}>
                     {document.attributes?.title}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <Typography variant="h4">Služby</Typography>
+          <div className="flex flex-col gap-2">
+            {filteredServicesData?.map((service) => (
+              <div key={service.id}>
+                <div className="flex flex-row gap-2">
+                  <Typography variant="p-default">•</Typography>
+                  <Link variant="underlined" href={getFullPath(service) ?? '#'}>
+                    {service.attributes?.title}
                   </Link>
                 </div>
               </div>

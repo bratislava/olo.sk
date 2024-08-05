@@ -1370,6 +1370,13 @@ enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {
   tertiary
 }
 
+enum ENUM_SERVICECATEGORY_CATEGORYCOLOR {
+  blue
+  green
+  none
+  red
+}
+
 type Error {
   code: String!
   message: String
@@ -2160,9 +2167,11 @@ type ResponseCollectionMeta {
 
 type Service {
   createdAt: DateTime
+  image: UploadFileEntityResponse
   locale: String
   localizations(filters: ServiceFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceRelationResponseCollection
   publishedAt: DateTime
+  sections: [ServiceSectionsDynamicZone]
   serviceCategories(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
   slug: String!
   title: String!
@@ -2170,6 +2179,7 @@ type Service {
 }
 
 type ServiceCategory {
+  categoryColor: ENUM_SERVICECATEGORY_CATEGORYCOLOR!
   createdAt: DateTime
   locale: String
   localizations(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
@@ -2196,6 +2206,7 @@ type ServiceCategoryEntityResponseCollection {
 
 input ServiceCategoryFiltersInput {
   and: [ServiceCategoryFiltersInput]
+  categoryColor: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -2210,6 +2221,7 @@ input ServiceCategoryFiltersInput {
 }
 
 input ServiceCategoryInput {
+  categoryColor: ENUM_SERVICECATEGORY_CATEGORYCOLOR
   publishedAt: DateTime
   services: [ID]
   slug: String
@@ -2250,7 +2262,9 @@ input ServiceFiltersInput {
 }
 
 input ServiceInput {
+  image: ID
   publishedAt: DateTime
+  sections: [ServiceSectionsDynamicZoneInput!]
   serviceCategories: [ID]
   slug: String
   title: String
@@ -2259,6 +2273,10 @@ input ServiceInput {
 type ServiceRelationResponseCollection {
   data: [ServiceEntity!]!
 }
+
+union ServiceSectionsDynamicZone = ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsRichtext | Error
+
+scalar ServiceSectionsDynamicZoneInput
 
 input StringFilterInput {
   and: [String]

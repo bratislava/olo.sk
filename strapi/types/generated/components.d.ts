@@ -400,7 +400,7 @@ export interface SectionsFaq extends Schema.Component {
 export interface SectionsFiles extends Schema.Component {
   collectionName: 'components_sections_files'
   info: {
-    displayName: 'files'
+    displayName: 'Files'
     description: ''
   }
   attributes: {

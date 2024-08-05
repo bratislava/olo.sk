@@ -1425,6 +1425,18 @@ export interface ApiServiceService extends Schema.CollectionType {
       'manyToMany',
       'api::service-category.service-category'
     >
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.files', 'sections.faq']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1443,6 +1455,7 @@ export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType
     singularName: 'service-category'
     pluralName: 'service-categories'
     displayName: 'Slu\u017Eby - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1472,6 +1485,14 @@ export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType
       'manyToMany',
       'api::service.service'
     >
+    categoryColor: Attribute.Enumeration<['none', 'red', 'green', 'blue']> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }> &
+      Attribute.DefaultTo<'none'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

@@ -118,6 +118,7 @@ fragment ServiceCategoryEntity on ServiceCategoryEntity {
   attributes {
     title
     slug
+    categoryColor
   }
 }
 

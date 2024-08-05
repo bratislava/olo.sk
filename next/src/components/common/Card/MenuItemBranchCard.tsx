@@ -20,7 +20,7 @@ const MenuItemBranchCard = ({ title, subText, linkHref, className }: MenuItemBra
   const { t } = useTranslation()
 
   return (
-    <CardBase className={cn('bg-background-primary', className)} variant="unstyled">
+    <CardBase className={cn(className)} variant="unstyled">
       <div className="flex flex-col items-start gap-2">
         <Typography variant="h6">{title}</Typography>
 

@@ -2,6 +2,7 @@ import React from 'react'
 
 import BannerSection from '@/src/components/sections/BannerSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
+import CardsListSection from '@/src/components/sections/CardsListSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
 import FaqSection from '@/src/components/sections/FaqSection'
@@ -56,6 +57,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsBanner':
       return <BannerSection section={section} />
+
+    case 'ComponentSectionsCardsList':
+      return <CardsListSection section={section} />
 
     default:
       return null

@@ -104,6 +104,17 @@ export interface ItemsAnchor extends Schema.Component {
   }
 }
 
+export interface ItemsCardsListItem extends Schema.Component {
+  collectionName: 'components_items_cards_list_items'
+  info: {
+    displayName: 'Cards List item'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
 export interface ItemsColumnsItem extends Schema.Component {
   collectionName: 'components_items_columns_items'
   info: {
@@ -341,6 +352,19 @@ export interface SectionsBranches extends Schema.Component {
     text: Attribute.Text
     showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
+export interface SectionsCardsList extends Schema.Component {
+  collectionName: 'components_sections_cards_lists'
+  info: {
+    displayName: 'Cards List'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    cards: Attribute.Component<'items.cards-list-item', true>
   }
 }
 
@@ -601,6 +625,7 @@ declare module '@strapi/types' {
       'header-sections.pickup-day': HeaderSectionsPickupDay
       'header-sections.side-image': HeaderSectionsSideImage
       'items.anchor': ItemsAnchor
+      'items.cards-list-item': ItemsCardsListItem
       'items.columns-item': ItemsColumnsItem
       'items.columns-list-item': ItemsColumnsListItem
       'items.file-item': ItemsFileItem
@@ -618,6 +643,7 @@ declare module '@strapi/types' {
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
       'sections.banner': SectionsBanner
       'sections.branches': SectionsBranches
+      'sections.cards-list': SectionsCardsList
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
       'sections.faq': SectionsFaq

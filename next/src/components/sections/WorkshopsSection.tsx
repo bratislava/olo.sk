@@ -28,13 +28,14 @@ const WorkshopsSection = ({ section }: Props) => {
         <SectionHeader title={title} text={text} />
         <ul className=" grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
           {filteredWorkshops
-            .map((workshop) => {
+            .map((workshop, index) => {
               if (!workshop.attributes) return null
 
               const { title: workshopTitle, slug } = workshop.attributes
 
               return (
-                <li>
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index}>
                   <WorkshopCard title={workshopTitle} linkHref={`/workshopy/${slug}`} />
                 </li>
               )

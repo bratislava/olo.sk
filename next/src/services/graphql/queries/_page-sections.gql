@@ -145,6 +145,17 @@ fragment BannerSection on ComponentSectionsBanner {
   }
 }
 
+fragment CardsListSection on ComponentSectionsCardsList {
+  title
+  text
+  cardsCardsList: cards {
+    title
+    link {
+      ...Link
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -194,5 +205,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBanner {
     ...BannerSection
+  }
+
+  ... on ComponentSectionsCardsList {
+    ...CardsListSection
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "service-category",
     "pluralName": "service-categories",
-    "displayName": "Služby - kategórie"
+    "displayName": "Služby - kategórie",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -39,6 +40,22 @@
       "relation": "manyToMany",
       "target": "api::service.service",
       "mappedBy": "serviceCategories"
+    },
+    "categoryColor": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "red",
+        "green",
+        "blue"
+      ],
+      "required": true,
+      "default": "none"
     }
   }
 }

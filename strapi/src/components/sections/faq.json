@@ -12,7 +12,11 @@
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["primary", "secondary", "tertiary"],
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
       "default": "primary",
       "required": true
     },

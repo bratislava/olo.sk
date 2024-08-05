@@ -1,7 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
 
-import BadgeComponent from './Badge'
+import BadgeComponent, { BadgeProps } from './Badge'
+
+type BadgeVariant = BadgeProps['variant']
+
+const variantsToRender: Record<BadgeVariant, string> = {
+  public: 'Pre občanov',
+  firms: 'Pre firmy',
+  institutions: 'Pre správcovské organizácie',
+}
+
+const variantsToRenderKeys = Object.keys(variantsToRender) as BadgeVariant[]
 
 const meta: Meta<typeof BadgeComponent> = {
   component: BadgeComponent,
@@ -15,10 +24,14 @@ type Story = StoryObj<typeof BadgeComponent>
 export const Badge: Story = {
   args: {
     variant: 'public',
+    label: variantsToRender.public,
   },
-  render: (args) => (
+  parameters: {
+    controls: { exclude: ['label', 'className'] },
+  },
+  render: ({ variant }) => (
     <div className="flex flex-col items-start">
-      <BadgeComponent {...args} />
+      <BadgeComponent label={variantsToRender[variant]} variant={variant} />
     </div>
   ),
 }
@@ -26,12 +39,10 @@ export const Badge: Story = {
 export const AllBadges: Story = {
   name: 'All badge variants',
   render: () => {
-    const variantsToRender = ['public', 'firms', 'institutions']
-
     return (
       <div className="flex items-center justify-center gap-4">
-        {variantsToRender.map((variant: any) => (
-          <BadgeComponent key={variant} variant={variant} />
+        {variantsToRenderKeys.map((variant) => (
+          <BadgeComponent label={variantsToRender[variant]} key={variant} variant={variant} />
         ))}
       </div>
     )

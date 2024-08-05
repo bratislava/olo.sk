@@ -38,6 +38,9 @@ export const useGetLinkProps = () => {
     } else if (link.branch?.data?.attributes) {
       label = link.label ?? link.branch.data.attributes.title
       href = getFullPath(link.branch.data) ?? '#'
+    } else if (link.workshop?.data?.attributes) {
+      label = link.label ?? link.workshop.data.attributes.title
+      href = getFullPath(link.workshop.data) ?? '#'
     } else if ('document' in link && link.document?.data?.attributes) {
       label = link.label ?? link.document.data.attributes.title
       href = getFullPath(link.document.data) ?? '#'

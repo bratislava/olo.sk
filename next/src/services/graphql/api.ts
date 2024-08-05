@@ -377,16 +377,16 @@ export type ComponentItemsColumnsItemFiltersInput = {
 
 export type ComponentItemsColumnsListItem = {
   __typename?: 'ComponentItemsColumnsListItem'
+  content: Scalars['String']['output']
   icon?: Maybe<UploadFileEntityResponse>
   id: Scalars['ID']['output']
-  text: Scalars['String']['output']
 }
 
 export type ComponentItemsColumnsListItemFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentItemsColumnsListItemFiltersInput>>>
+  content?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ComponentItemsColumnsListItemFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsColumnsListItemFiltersInput>>>
-  text?: InputMaybe<StringFilterInput>
 }
 
 export type ComponentItemsFileItem = {
@@ -5735,7 +5735,7 @@ export type ColumnsListSectionFragment = {
   backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
   leftColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    text: string
+    content: string
     icon?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -5755,7 +5755,7 @@ export type ColumnsListSectionFragment = {
   } | null> | null
   rightColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    text: string
+    content: string
     icon?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -5963,7 +5963,7 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
   backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
   leftColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    text: string
+    content: string
     icon?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -5983,7 +5983,7 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
   } | null> | null
   rightColumn?: Array<{
     __typename?: 'ComponentItemsColumnsListItem'
-    text: string
+    content: string
     icon?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -11641,7 +11641,7 @@ export type PageEntityFragment = {
           backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
           leftColumn?: Array<{
             __typename?: 'ComponentItemsColumnsListItem'
-            text: string
+            content: string
             icon?: {
               __typename?: 'UploadFileEntityResponse'
               data?: {
@@ -11661,7 +11661,7 @@ export type PageEntityFragment = {
           } | null> | null
           rightColumn?: Array<{
             __typename?: 'ComponentItemsColumnsListItem'
-            text: string
+            content: string
             icon?: {
               __typename?: 'UploadFileEntityResponse'
               data?: {
@@ -12580,7 +12580,7 @@ export type PagesQuery = {
               backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
               leftColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                text: string
+                content: string
                 icon?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -12600,7 +12600,7 @@ export type PagesQuery = {
               } | null> | null
               rightColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                text: string
+                content: string
                 icon?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -13530,7 +13530,7 @@ export type PageBySlugQuery = {
               backgroundColorColumnList?: Enum_Componentsectionscolumnslist_Backgroundcolor | null
               leftColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                text: string
+                content: string
                 icon?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -13550,7 +13550,7 @@ export type PageBySlugQuery = {
               } | null> | null
               rightColumn?: Array<{
                 __typename?: 'ComponentItemsColumnsListItem'
-                text: string
+                content: string
                 icon?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -15044,7 +15044,7 @@ export const ColumnsListSectionFragmentDoc = gql`
           ...UploadImageEntity
         }
       }
-      text
+      content
     }
     rightColumn {
       icon {
@@ -15052,7 +15052,7 @@ export const ColumnsListSectionFragmentDoc = gql`
           ...UploadImageEntity
         }
       }
-      text
+      content
     }
   }
   ${UploadImageEntityFragmentDoc}

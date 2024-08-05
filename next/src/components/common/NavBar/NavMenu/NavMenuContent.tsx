@@ -39,13 +39,14 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
                 <NavMenuContentCell
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
-                  // The first "proper" section sets divider implicitly. No need to pass hasDivider prop
                   colSpan={1}
-                  className="flex flex-col gap-12"
+                  hasDivider
                 >
-                  {cell.map((section) => {
-                    return <NavMenuSection section={section} />
-                  })}
+                  <div className="flex flex-col gap-y-12">
+                    {cell.map((section) => {
+                      return <NavMenuSection section={section} />
+                    })}
+                  </div>
                 </NavMenuContentCell>
               )
             }

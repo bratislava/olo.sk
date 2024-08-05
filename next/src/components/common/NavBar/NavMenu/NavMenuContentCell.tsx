@@ -12,7 +12,7 @@ type NavMenuContentCellProps = {
 const NavMenuContentCell = ({
   children,
   colSpan,
-  hasDivider, // Assumption: First section doesn't have divider (hasDivider = false)
+  hasDivider, // Assumption: Last section doesn't have divider (hasDivider = false)
   className,
 }: PropsWithChildren<NavMenuContentCellProps>) => {
   return (
@@ -26,8 +26,8 @@ const NavMenuContentCell = ({
         className,
       )}
     >
-      {hasDivider ? <NavBarDivider variant="vertical" className="px-8" /> : null}
       {children}
+      {hasDivider ? <NavBarDivider variant="vertical" className="px-8" /> : null}
     </div>
   )
 }

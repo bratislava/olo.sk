@@ -5,7 +5,7 @@ import { splitNavMenuSectionLinks } from '@/src/components/common/NavBar/NavMenu
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-const NavMenuSectionDual = ({ section, className }: NavMenuSectionProps) => {
+const TwoColumnNavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { getLinkProps } = useGetLinkProps()
   const [firstGroup, secondGroup] = splitNavMenuSectionLinks(section.links)
 
@@ -32,4 +32,4 @@ const NavMenuSectionDual = ({ section, className }: NavMenuSectionProps) => {
   )
 }
 
-export default NavMenuSectionDual
+export default TwoColumnNavMenuSection

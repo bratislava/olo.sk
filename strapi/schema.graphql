@@ -1197,10 +1197,14 @@ input DateTimeFilterInput {
 
 type Document {
   createdAt: DateTime
+  description: String
   documentCategory: DocumentCategoryEntityResponse
-  files(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
+  files(filters: ComponentItemsFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFileItem]!
+  identificationNumber: String
+  priceWithoutTax: String
   publishedAt: DateTime
   slug: String!
+  supplier: String
   title: String!
   updatedAt: DateTime
 }
@@ -1273,21 +1277,30 @@ type DocumentEntityResponseCollection {
 input DocumentFiltersInput {
   and: [DocumentFiltersInput]
   createdAt: DateTimeFilterInput
+  description: StringFilterInput
   documentCategory: DocumentCategoryFiltersInput
+  files: ComponentItemsFileItemFiltersInput
   id: IDFilterInput
+  identificationNumber: StringFilterInput
   not: DocumentFiltersInput
   or: [DocumentFiltersInput]
+  priceWithoutTax: StringFilterInput
   publishedAt: DateTimeFilterInput
   slug: StringFilterInput
+  supplier: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input DocumentInput {
+  description: String
   documentCategory: ID
-  files: [ID]
+  files: [ComponentItemsFileItemInput]
+  identificationNumber: String
+  priceWithoutTax: String
   publishedAt: DateTime
   slug: String
+  supplier: String
   title: String
 }
 

@@ -121,11 +121,11 @@ const Page = ({ entity: page, general }: PageProps) => {
 
       <PageLayout>
         {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
-        <SectionContainer background="secondary">
-          {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
+        {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
+          <SectionContainer background="secondary">
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-          )}
-        </SectionContainer>
+          </SectionContainer>
+        )}
         <PageHeaderSections header={header} title={title} perex={perex} breadcrumbs={breadcrumbs} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />

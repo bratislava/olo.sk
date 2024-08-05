@@ -21,7 +21,8 @@ const FileRowGroup = ({ fileRowCardData, className }: FileRowGroupProps) => {
       {fileRowCardData.length > 0
         ? fileRowCardData.map((fileRowCard, index) => {
             return (
-              <li>
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index}>
                 <FileRowCard
                   {...fileRowCard}
                   hasBottomBorder={index < fileRowCardData.length - 1}

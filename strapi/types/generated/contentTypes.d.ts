@@ -885,12 +885,23 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::document.document', 'title'> & Attribute.Required
+    identificationNumber: Attribute.String
+    supplier: Attribute.String
+    priceWithoutTax: Attribute.String
     documentCategory: Attribute.Relation<
       'api::document.document',
       'manyToOne',
       'api::document-category.document-category'
     >
-    files: Attribute.Media & Attribute.Required
+    files: Attribute.Component<'items.file-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+    description: Attribute.Text
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next'
+import { Fragment } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
@@ -53,12 +54,12 @@ const FileRowCard = ({
               {metaData?.length ? (
                 <div className="flex items-center gap-3">
                   {metaData.map((item, index) => (
-                    <>
+                    <Fragment key={item}>
                       {index > 0 ? (
-                        <div className="size-1 rounded-full bg-content-secondary" />
+                        <div className="size-1 rounded-full bg-content-secondary" aria-hidden />
                       ) : null}
                       <Typography variant="p-small">{item}</Typography>
-                    </>
+                    </Fragment>
                   ))}
                 </div>
               ) : null}

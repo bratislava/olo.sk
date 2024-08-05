@@ -34,6 +34,11 @@ const HomePageContentPlaceholder = () => {
     queryKey: ['faqcategories'],
   })
 
+  const { data: documentsData } = useQuery({
+    queryFn: () => client.Documents(),
+    queryKey: ['documents'],
+  })
+
   const filteredPagesData = pagesData?.pages?.data.filter(
     (page) => isDefined(page?.attributes?.slug) && isDefined(page?.attributes?.title),
   )
@@ -49,6 +54,10 @@ const HomePageContentPlaceholder = () => {
   const filteredFaqCategoryData = faqCategoriesData?.faqCategories?.data.filter(
     (faqCategory) =>
       isDefined(faqCategory?.attributes?.slug) && isDefined(faqCategory?.attributes?.title),
+  )
+
+  const filteredDocumentsData = documentsData?.documents?.data.filter(
+    (document) => isDefined(document?.attributes?.slug) && isDefined(document?.attributes?.title),
   )
 
   return (
@@ -108,6 +117,21 @@ const HomePageContentPlaceholder = () => {
                   <Typography variant="p-default">•</Typography>
                   <Link variant="underlined" href={getFullPath(faqCategory) ?? '#'}>
                     {faqCategory.attributes?.title}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <Typography variant="h4">Dokumenty</Typography>
+          <div className="flex flex-col gap-2">
+            {filteredDocumentsData?.map((document) => (
+              <div key={document.id}>
+                <div className="flex flex-row gap-2">
+                  <Typography variant="p-default">•</Typography>
+                  <Link variant="underlined" href={getFullPath(document) ?? '#'}>
+                    {document.attributes?.title}
                   </Link>
                 </div>
               </div>

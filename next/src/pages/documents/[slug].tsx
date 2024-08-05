@@ -2,13 +2,17 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
+import { useMemo } from 'react'
 
+import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
+import DocumentPageContent from '@/src/components/page-contents/document/DocumentPageContent'
+import DocumentPageHeader from '@/src/components/sections/headers/DocumentPageHeader'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { DocumentEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
+import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 
 type PageProps = {
   general: GeneralQuery
@@ -62,6 +66,16 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 }
 
 const Page = ({ entity, general }: PageProps) => {
+  // TODO consider extracting this to a hook for all detail pages
+  const documentsParentPage = general.navigation?.data?.attributes?.documentsParentPage?.data
+  const breadcrumbs = useMemo(
+    () => [
+      ...getPageBreadcrumbs(documentsParentPage),
+      { title: entity.attributes?.title ?? '', path: null },
+    ],
+    [documentsParentPage, entity.attributes?.title],
+  )
+
   if (!entity.attributes) {
     return null
   }
@@ -76,10 +90,11 @@ const Page = ({ entity, general }: PageProps) => {
       </Head>
 
       <PageLayout>
-        {/* TODO separate outer div(s) to Article Section with narrow layout */}
         <SectionContainer background="secondary">
-          <HeaderTitleText title={title} />
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
         </SectionContainer>
+        <DocumentPageHeader document={entity} />
+        <DocumentPageContent document={entity} />
       </PageLayout>
     </GeneralContextProvider>
   )

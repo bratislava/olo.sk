@@ -403,6 +403,12 @@ export type ComponentItemsFileItemFiltersInput = {
   title?: InputMaybe<StringFilterInput>
 }
 
+export type ComponentItemsFileItemInput = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  media?: InputMaybe<Scalars['ID']['input']>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
 export type ComponentItemsFooterColumn = {
   __typename?: 'ComponentItemsFooterColumn'
   id: Scalars['ID']['output']
@@ -1062,16 +1068,20 @@ export type DateTimeFilterInput = {
 export type Document = {
   __typename?: 'Document'
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  description?: Maybe<Scalars['String']['output']>
   documentCategory?: Maybe<DocumentCategoryEntityResponse>
-  files: UploadFileRelationResponseCollection
+  files: Array<Maybe<ComponentItemsFileItem>>
+  identificationNumber?: Maybe<Scalars['String']['output']>
+  priceWithoutTax?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   slug: Scalars['String']['output']
+  supplier?: Maybe<Scalars['String']['output']>
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
 export type DocumentFilesArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>
+  filters?: InputMaybe<ComponentItemsFileItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
@@ -1166,21 +1176,30 @@ export type DocumentEntityResponseCollection = {
 export type DocumentFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<DocumentFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  description?: InputMaybe<StringFilterInput>
   documentCategory?: InputMaybe<DocumentCategoryFiltersInput>
+  files?: InputMaybe<ComponentItemsFileItemFiltersInput>
   id?: InputMaybe<IdFilterInput>
+  identificationNumber?: InputMaybe<StringFilterInput>
   not?: InputMaybe<DocumentFiltersInput>
   or?: InputMaybe<Array<InputMaybe<DocumentFiltersInput>>>
+  priceWithoutTax?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
   slug?: InputMaybe<StringFilterInput>
+  supplier?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
 export type DocumentInput = {
+  description?: InputMaybe<Scalars['String']['input']>
   documentCategory?: InputMaybe<Scalars['ID']['input']>
-  files?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  files?: InputMaybe<Array<InputMaybe<ComponentItemsFileItemInput>>>
+  identificationNumber?: InputMaybe<Scalars['String']['input']>
+  priceWithoutTax?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
+  supplier?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -8617,6 +8636,11 @@ export type DocumentEntityFragment = {
     __typename?: 'Document'
     title: string
     slug: string
+    publishedAt?: any | null
+    identificationNumber?: string | null
+    supplier?: string | null
+    priceWithoutTax?: string | null
+    description?: string | null
     documentCategory?: {
       __typename?: 'DocumentCategoryEntityResponse'
       data?: {
@@ -8625,22 +8649,26 @@ export type DocumentEntityFragment = {
         attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
       } | null
     } | null
-    files: {
-      __typename?: 'UploadFileRelationResponseCollection'
-      data: Array<{
-        __typename?: 'UploadFileEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'UploadFile'
-          url: string
-          name: string
-          ext?: string | null
-          size: number
-          createdAt?: any | null
-          updatedAt?: any | null
+    files: Array<{
+      __typename?: 'ComponentItemsFileItem'
+      title?: string | null
+      media: {
+        __typename?: 'UploadFileEntityResponse'
+        data?: {
+          __typename?: 'UploadFileEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'UploadFile'
+            url: string
+            name: string
+            ext?: string | null
+            size: number
+            createdAt?: any | null
+            updatedAt?: any | null
+          } | null
         } | null
-      }>
-    }
+      }
+    } | null>
   } | null
 }
 
@@ -8657,6 +8685,11 @@ export type DocumentsQuery = {
         __typename?: 'Document'
         title: string
         slug: string
+        publishedAt?: any | null
+        identificationNumber?: string | null
+        supplier?: string | null
+        priceWithoutTax?: string | null
+        description?: string | null
         documentCategory?: {
           __typename?: 'DocumentCategoryEntityResponse'
           data?: {
@@ -8665,22 +8698,26 @@ export type DocumentsQuery = {
             attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
           } | null
         } | null
-        files: {
-          __typename?: 'UploadFileRelationResponseCollection'
-          data: Array<{
-            __typename?: 'UploadFileEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'UploadFile'
-              url: string
-              name: string
-              ext?: string | null
-              size: number
-              createdAt?: any | null
-              updatedAt?: any | null
+        files: Array<{
+          __typename?: 'ComponentItemsFileItem'
+          title?: string | null
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                name: string
+                ext?: string | null
+                size: number
+                createdAt?: any | null
+                updatedAt?: any | null
+              } | null
             } | null
-          }>
-        }
+          }
+        } | null>
       } | null
     }>
   } | null
@@ -8701,6 +8738,11 @@ export type DocumentBySlugQuery = {
         __typename?: 'Document'
         title: string
         slug: string
+        publishedAt?: any | null
+        identificationNumber?: string | null
+        supplier?: string | null
+        priceWithoutTax?: string | null
+        description?: string | null
         documentCategory?: {
           __typename?: 'DocumentCategoryEntityResponse'
           data?: {
@@ -8709,22 +8751,26 @@ export type DocumentBySlugQuery = {
             attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
           } | null
         } | null
-        files: {
-          __typename?: 'UploadFileRelationResponseCollection'
-          data: Array<{
-            __typename?: 'UploadFileEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'UploadFile'
-              url: string
-              name: string
-              ext?: string | null
-              size: number
-              createdAt?: any | null
-              updatedAt?: any | null
+        files: Array<{
+          __typename?: 'ComponentItemsFileItem'
+          title?: string | null
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                name: string
+                ext?: string | null
+                size: number
+                createdAt?: any | null
+                updatedAt?: any | null
+              } | null
             } | null
-          }>
-        }
+          }
+        } | null>
       } | null
     }>
   } | null
@@ -19511,27 +19557,41 @@ export const UploadFileEntityFragmentDoc = gql`
     }
   }
 `
+export const FileItemFragmentDoc = gql`
+  fragment FileItem on ComponentItemsFileItem {
+    title
+    media {
+      data {
+        ...UploadFileEntity
+      }
+    }
+  }
+  ${UploadFileEntityFragmentDoc}
+`
 export const DocumentEntityFragmentDoc = gql`
   fragment DocumentEntity on DocumentEntity {
     ...DocumentSlugEntity
     attributes {
       title
       slug
+      publishedAt
+      identificationNumber
+      supplier
+      priceWithoutTax
       documentCategory {
         data {
           ...DocumentCategoryEntity
         }
       }
       files {
-        data {
-          ...UploadFileEntity
-        }
+        ...FileItem
       }
+      description
     }
   }
   ${DocumentSlugEntityFragmentDoc}
   ${DocumentCategoryEntityFragmentDoc}
-  ${UploadFileEntityFragmentDoc}
+  ${FileItemFragmentDoc}
 `
 export const ArticleSlugEntityFragmentDoc = gql`
   fragment ArticleSlugEntity on ArticleEntity {
@@ -20248,17 +20308,6 @@ export const FaqSectionFragmentDoc = gql`
   }
   ${LinkFragmentDoc}
   ${FaqEntityFragmentDoc}
-`
-export const FileItemFragmentDoc = gql`
-  fragment FileItem on ComponentItemsFileItem {
-    title
-    media {
-      data {
-        ...UploadFileEntity
-      }
-    }
-  }
-  ${UploadFileEntityFragmentDoc}
 `
 export const FilesSectionFragmentDoc = gql`
   fragment FilesSection on ComponentSectionsFiles {

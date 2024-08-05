@@ -30,11 +30,14 @@ const BasicRowCard = ({ variant, value, label, iconName, className }: BasicRowCa
       <div className="py-3 lg:py-4">
         {variant === 'icon-value' ? (
           <div className="flex gap-3 lg:gap-4">
-            {isBaIcon(iconName) ? (
-              <Icon name={iconName} className="size-5 lg:size-6" />
-            ) : isOloIcon(iconName) ? (
-              <OloIcon name={iconName} className="size-5 lg:size-6" />
-            ) : null}
+            {
+              // TODO This should be extracted to a separate component
+              isBaIcon(iconName) ? (
+                <Icon name={iconName} className="size-5 lg:size-6" />
+              ) : isOloIcon(iconName) ? (
+                <OloIcon name={iconName} className="size-5 lg:size-6" />
+              ) : null
+            }
             <Typography variant="p-default">{value}</Typography>
           </div>
         ) : variant === 'label-value-horizontal' ? (

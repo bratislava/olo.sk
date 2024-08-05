@@ -5,9 +5,11 @@ fragment RichtextSection on ComponentSectionsRichtext {
 
 fragment OrderedCardsSection on ComponentSectionsOrderedCards {
   title
+  variantOrderedCards: variant
   cards {
     title
     text
+    iconName
   }
 }
 

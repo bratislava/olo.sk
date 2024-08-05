@@ -547,6 +547,7 @@ input ComponentItemsOpeningHoursItemInput {
 }
 
 type ComponentItemsOrderedCardsItem {
+  iconName: String
   id: ID!
   text: String!
   title: String!
@@ -554,6 +555,7 @@ type ComponentItemsOrderedCardsItem {
 
 input ComponentItemsOrderedCardsItemFiltersInput {
   and: [ComponentItemsOrderedCardsItemFiltersInput]
+  iconName: StringFilterInput
   not: ComponentItemsOrderedCardsItemFiltersInput
   or: [ComponentItemsOrderedCardsItemFiltersInput]
   text: StringFilterInput
@@ -561,6 +563,7 @@ input ComponentItemsOrderedCardsItemFiltersInput {
 }
 
 input ComponentItemsOrderedCardsItemInput {
+  iconName: String
   id: ID
   text: String
   title: String
@@ -983,6 +986,7 @@ type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
   title: String!
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT!
 }
 
 input ComponentSectionsOrderedCardsFiltersInput {
@@ -991,12 +995,14 @@ input ComponentSectionsOrderedCardsFiltersInput {
   not: ComponentSectionsOrderedCardsFiltersInput
   or: [ComponentSectionsOrderedCardsFiltersInput]
   title: StringFilterInput
+  variant: StringFilterInput
 }
 
 input ComponentSectionsOrderedCardsInput {
   cards: [ComponentItemsOrderedCardsItemInput]
   id: ID
   title: String
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT
 }
 
 type ComponentSectionsRichtext {
@@ -1362,6 +1368,11 @@ enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   left
   right
+}
+
+enum ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT {
+  icons
+  numbers
 }
 
 enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {

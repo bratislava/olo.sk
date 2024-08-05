@@ -1,12 +1,10 @@
 import { PropsWithChildren } from 'react'
 
 import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
-import { Enum_Componentmenumenusection_Multicolumnbehaviour } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 
 type NavMenuContentCellProps = {
   colSpan: number
-  multicolumnBehaviour?: Enum_Componentmenumenusection_Multicolumnbehaviour | null | undefined
   hasDivider?: boolean
   className?: string
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 
-import AccordionGroup from '@/src/components/common/Accordion/AccordionGroup'
-import Markdown from '@/src/components/formatting/Markdown'
+import FaqGroup from '@/src/components/common/FaqGroup/FaqGroup'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import {
@@ -30,21 +29,11 @@ const FaqSection = ({ section }: Props) => {
     <SectionContainer background={backgroundColorFaq} className="py-6 lg:py-18">
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} showMoreLink={showMoreLink} />
-        <AccordionGroup
-          className={cn('px-5 py-2', {
+        <FaqGroup
+          faqs={filteredFaqs}
+          className={cn({
             'border-none': backgroundColorFaq !== Enum_Componentsectionsfaq_Backgroundcolor.Primary,
           })}
-          accordionData={filteredFaqs
-            .map((faq) => {
-              if (!faq.attributes) return null
-
-              return {
-                title: faq.attributes.title,
-                children: <Markdown content={faq.attributes.content} />,
-              }
-            })
-            // eslint-disable-next-line unicorn/no-array-callback-reference
-            .filter(isDefined)}
         />
       </div>
     </SectionContainer>

@@ -704,6 +704,37 @@ input ComponentSectionsArticlesHomepageSectionInput {
   title: String
 }
 
+type ComponentSectionsBanner {
+  id: ID!
+  image: UploadFileEntityResponse!
+  primaryButtonLink: ComponentItemsLink!
+  secondaryButtonLink: ComponentItemsLink
+  text: String
+  title: String!
+  variant: ENUM_COMPONENTSECTIONSBANNER_VARIANT!
+}
+
+input ComponentSectionsBannerFiltersInput {
+  and: [ComponentSectionsBannerFiltersInput]
+  not: ComponentSectionsBannerFiltersInput
+  or: [ComponentSectionsBannerFiltersInput]
+  primaryButtonLink: ComponentItemsLinkFiltersInput
+  secondaryButtonLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+  variant: StringFilterInput
+}
+
+input ComponentSectionsBannerInput {
+  id: ID
+  image: ID
+  primaryButtonLink: ComponentItemsLinkInput
+  secondaryButtonLink: ComponentItemsLinkInput
+  text: String
+  title: String
+  variant: ENUM_COMPONENTSECTIONSBANNER_VARIANT
+}
+
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -805,6 +836,26 @@ input ComponentSectionsFaqInput {
   faqs: [ID]
   id: ID
   showMoreLink: ComponentItemsLinkInput
+  title: String
+}
+
+type ComponentSectionsFiles {
+  files(filters: ComponentItemsFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFileItem]!
+  id: ID!
+  title: String!
+}
+
+input ComponentSectionsFilesFiltersInput {
+  and: [ComponentSectionsFilesFiltersInput]
+  files: ComponentItemsFileItemFiltersInput
+  not: ComponentSectionsFilesFiltersInput
+  or: [ComponentSectionsFilesFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentSectionsFilesInput {
+  files: [ComponentItemsFileItemInput]
+  id: ID
   title: String
 }
 
@@ -1146,10 +1197,14 @@ input DateTimeFilterInput {
 
 type Document {
   createdAt: DateTime
+  description: String
   documentCategory: DocumentCategoryEntityResponse
-  files(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
+  files(filters: ComponentItemsFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFileItem]!
+  identificationNumber: String
+  priceWithoutTax: String
   publishedAt: DateTime
   slug: String!
+  supplier: String
   title: String!
   updatedAt: DateTime
 }
@@ -1222,21 +1277,30 @@ type DocumentEntityResponseCollection {
 input DocumentFiltersInput {
   and: [DocumentFiltersInput]
   createdAt: DateTimeFilterInput
+  description: StringFilterInput
   documentCategory: DocumentCategoryFiltersInput
+  files: ComponentItemsFileItemFiltersInput
   id: IDFilterInput
+  identificationNumber: StringFilterInput
   not: DocumentFiltersInput
   or: [DocumentFiltersInput]
+  priceWithoutTax: StringFilterInput
   publishedAt: DateTimeFilterInput
   slug: StringFilterInput
+  supplier: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input DocumentInput {
+  description: String
   documentCategory: ID
-  files: [ID]
+  files: [ComponentItemsFileItemInput]
+  identificationNumber: String
+  priceWithoutTax: String
   publishedAt: DateTime
   slug: String
+  supplier: String
   title: String
 }
 
@@ -1251,6 +1315,11 @@ enum ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR {
 
 enum ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE {
   latest_articles
+}
+
+enum ENUM_COMPONENTSECTIONSBANNER_VARIANT {
+  background_black
+  background_grey
 }
 
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
@@ -1301,6 +1370,13 @@ enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {
   tertiary
 }
 
+enum ENUM_SERVICECATEGORY_CATEGORYCOLOR {
+  blue
+  green
+  none
+  red
+}
+
 type Error {
   code: String!
   message: String
@@ -1318,6 +1394,7 @@ type Faq {
 }
 
 type FaqCategory {
+  banner: ComponentSectionsBanner
   createdAt: DateTime
   faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
   locale: String
@@ -1344,6 +1421,7 @@ type FaqCategoryEntityResponseCollection {
 
 input FaqCategoryFiltersInput {
   and: [FaqCategoryFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
   createdAt: DateTimeFilterInput
   faqs: FaqFiltersInput
   id: IDFilterInput
@@ -1358,6 +1436,7 @@ input FaqCategoryFiltersInput {
 }
 
 input FaqCategoryInput {
+  banner: ComponentSectionsBannerInput
   faqs: [ID]
   publishedAt: DateTime
   slug: String
@@ -1492,7 +1571,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2013,7 +2092,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 
@@ -2088,9 +2167,11 @@ type ResponseCollectionMeta {
 
 type Service {
   createdAt: DateTime
+  image: UploadFileEntityResponse
   locale: String
   localizations(filters: ServiceFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceRelationResponseCollection
   publishedAt: DateTime
+  sections: [ServiceSectionsDynamicZone]
   serviceCategories(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
   slug: String!
   title: String!
@@ -2098,6 +2179,7 @@ type Service {
 }
 
 type ServiceCategory {
+  categoryColor: ENUM_SERVICECATEGORY_CATEGORYCOLOR!
   createdAt: DateTime
   locale: String
   localizations(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
@@ -2124,6 +2206,7 @@ type ServiceCategoryEntityResponseCollection {
 
 input ServiceCategoryFiltersInput {
   and: [ServiceCategoryFiltersInput]
+  categoryColor: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -2138,6 +2221,7 @@ input ServiceCategoryFiltersInput {
 }
 
 input ServiceCategoryInput {
+  categoryColor: ENUM_SERVICECATEGORY_CATEGORYCOLOR
   publishedAt: DateTime
   services: [ID]
   slug: String
@@ -2178,7 +2262,9 @@ input ServiceFiltersInput {
 }
 
 input ServiceInput {
+  image: ID
   publishedAt: DateTime
+  sections: [ServiceSectionsDynamicZoneInput!]
   serviceCategories: [ID]
   slug: String
   title: String
@@ -2187,6 +2273,10 @@ input ServiceInput {
 type ServiceRelationResponseCollection {
   data: [ServiceEntity!]!
 }
+
+union ServiceSectionsDynamicZone = ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsRichtext | Error
+
+scalar ServiceSectionsDynamicZoneInput
 
 input StringFilterInput {
   and: [String]
@@ -2677,6 +2767,6 @@ type WorkshopRelationResponseCollection {
   data: [WorkshopEntity!]!
 }
 
-union WorkshopSectionsDynamicZone = ComponentSectionsRichtext | Error
+union WorkshopSectionsDynamicZone = ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsRichtext | Error
 
 scalar WorkshopSectionsDynamicZoneInput

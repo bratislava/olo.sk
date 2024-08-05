@@ -1,4 +1,5 @@
 export { default as CareerCalendarIcon } from './career-calendar.svg'
+export { default as ChatIcon } from './chat.svg'
 export { default as DirectionsIcon } from './directions.svg'
 export { default as BusIcon } from './directions-bus.svg'
 export { default as LiveHelpIcon } from './live-help.svg'

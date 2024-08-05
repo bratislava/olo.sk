@@ -1,8 +1,8 @@
-import DocumentRowCard, { DocumentRowCardProps } from '@/src/components/common/Card/DocumentRowCard'
+import FileRowCard, { FileRowCardProps } from '@/src/components/common/Card/FileRowCard'
 import cn from '@/src/utils/cn'
 
-export type DocumentRowGroupProps = {
-  documentRowCardData: DocumentRowCardProps[]
+export type FileRowGroupProps = {
+  fileRowCardData: FileRowCardProps[]
   className?: string
 }
 
@@ -10,7 +10,7 @@ export type DocumentRowGroupProps = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=42-2223&t=saBmDcGK6L78yd2K-4
  */
 
-const DocumentRowGroup = ({ documentRowCardData, className }: DocumentRowGroupProps) => {
+const FileRowGroup = ({ fileRowCardData, className }: FileRowGroupProps) => {
   return (
     <ul
       className={cn(
@@ -18,13 +18,14 @@ const DocumentRowGroup = ({ documentRowCardData, className }: DocumentRowGroupPr
         className,
       )}
     >
-      {documentRowCardData.length > 0
-        ? documentRowCardData.map((documentRowCard, index) => {
+      {fileRowCardData.length > 0
+        ? fileRowCardData.map((fileRowCard, index) => {
             return (
-              <li>
-                <DocumentRowCard
-                  {...documentRowCard}
-                  hasBottomBorder={index < documentRowCardData.length - 1}
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index}>
+                <FileRowCard
+                  {...fileRowCard}
+                  hasBottomBorder={index < fileRowCardData.length - 1}
                   // elevate z-index to show focus ring on top of other cards
                   className="focus-within:z-1 focus-within:ring-offset-0"
                 />
@@ -36,4 +37,4 @@ const DocumentRowGroup = ({ documentRowCardData, className }: DocumentRowGroupPr
   )
 }
 
-export default DocumentRowGroup
+export default FileRowGroup

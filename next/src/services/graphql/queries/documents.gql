@@ -12,16 +12,19 @@ fragment DocumentEntity on DocumentEntity {
   attributes {
     title
     slug
+    publishedAt
+    identificationNumber
+    supplier
+    priceWithoutTax
     documentCategory {
       data {
         ...DocumentCategoryEntity
       }
     }
     files {
-      data {
-        ...UploadFileEntity
-      }
+      ...FileItem
     }
+    description
   }
 }
 

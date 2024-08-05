@@ -5,13 +5,16 @@ import Button from '@/src/components/common/Button/Button'
 import CardBase, { CardBaseProps } from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
+import { serviceCategoryMap } from '@/src/components/sections/headers/ServicePageHeader'
+import { ServiceCategoryEntityFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
+import { isDefined } from '@/src/utils/isDefined'
 
 type ServiceCardProps = {
   title: string
   linkHref: string
   className?: string
-  serviceCategories: Array<'public' | 'firms' | 'institutions'>
+  serviceCategories: ServiceCategoryEntityFragment[]
 } & Omit<CardBaseProps, 'variant'>
 
 /**
@@ -42,9 +45,19 @@ const ServiceCard = ({
             {title}
           </Typography>
           <div className="flex flex-wrap items-start justify-start gap-2">
-            {serviceCategories.map((category) => (
-              <Badge variant={category} />
-            ))}
+            {serviceCategories
+              .map((category) => {
+                if (!category.attributes) return null
+
+                return (
+                  <Badge
+                    label={category.attributes?.title}
+                    variant={serviceCategoryMap[category.attributes.categoryColor]}
+                  />
+                )
+              })
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+              .filter(isDefined)}
           </div>
         </div>
         <div className="flex items-center gap-6">

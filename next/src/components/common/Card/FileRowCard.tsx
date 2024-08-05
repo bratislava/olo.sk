@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next'
+import { Fragment } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
@@ -6,7 +7,7 @@ import Icon, { IconName } from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-export type DocumentRowCardProps = {
+export type FileRowCardProps = {
   title: string
   linkHref: string
   metaData?: string[]
@@ -20,7 +21,7 @@ export type DocumentRowCardProps = {
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=42-2223&mode=dev
  */
 
-const DocumentRowCard = ({
+const FileRowCard = ({
   title,
   linkHref,
   metaData,
@@ -28,7 +29,7 @@ const DocumentRowCard = ({
   hasBottomBorder = false,
   className,
   ariaLabel,
-}: DocumentRowCardProps) => {
+}: FileRowCardProps) => {
   const { t } = useTranslation()
 
   return (
@@ -53,12 +54,13 @@ const DocumentRowCard = ({
               {metaData?.length ? (
                 <div className="flex items-center gap-3">
                   {metaData.map((item, index) => (
-                    <>
+                    // eslint-disable-next-line react/no-array-index-key
+                    <Fragment key={index}>
                       {index > 0 ? (
-                        <div className="size-1 rounded-full bg-content-secondary" />
+                        <div className="size-1 rounded-full bg-content-secondary" aria-hidden />
                       ) : null}
                       <Typography variant="p-small">{item}</Typography>
-                    </>
+                    </Fragment>
                   ))}
                 </div>
               ) : null}
@@ -93,4 +95,4 @@ const DocumentRowCard = ({
   )
 }
 
-export default DocumentRowCard
+export default FileRowCard

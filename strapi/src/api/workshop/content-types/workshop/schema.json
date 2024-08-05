@@ -24,7 +24,9 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
-        "sections.richtext"
+        "sections.richtext",
+        "sections.faq",
+        "sections.files"
       ]
     }
   }

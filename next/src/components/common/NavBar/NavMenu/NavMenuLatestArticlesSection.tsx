@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
+import { Fragment } from 'react'
 
 import MenuItemArticleCard from '@/src/components/common/Card/MenuItemArticleCard'
 import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
@@ -34,16 +35,16 @@ const NavMenuLatestArticlesSection = ({ className }: NavMenuLatestArticlesSectio
             const { title, coverMedia, articleCategory } = article.attributes
 
             return (
-              <>
+              // eslint-disable-next-line react/no-array-index-key
+              <Fragment key={index}>
                 {index > 0 ? <NavBarDivider variant="horizontal" /> : null}
                 <MenuItemArticleCard
-                  key={title}
                   title={title}
                   linkHref={getFullPath(article) ?? '#'}
                   imgSrc={coverMedia?.data?.attributes?.url}
                   tagText={articleCategory?.data?.attributes?.title ?? ''}
                 />
-              </>
+              </Fragment>
             )
           })
           // eslint-disable-next-line unicorn/no-array-callback-reference

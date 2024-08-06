@@ -48,23 +48,24 @@ const KoloHomepageSection = ({ section }: Props) => {
         <div className="flex flex-col gap-4">
           {branchesTitle ? <Typography variant="h3">{branchesTitle}</Typography> : null}
 
-          <div className="grid gap-4 lg:auto-cols-fr lg:grid-flow-col lg:gap-8">
+          <ul className="grid gap-4 lg:auto-cols-fr lg:grid-flow-col lg:gap-8">
             {filteredBranches
               .map((branch) => {
                 if (!branch.attributes) return null
 
                 return (
-                  <BranchCard
-                    title={branch?.attributes.title}
-                    linkHref={getFullPath(branch) ?? '#'} // TODO remove the fallback value
-                    address={branch?.attributes.address ?? ''} // TODO remove the fallback value
-                    className="grow"
-                  />
+                  <li className="[&>*]:h-full">
+                    <BranchCard
+                      title={branch?.attributes.title}
+                      linkHref={getFullPath(branch) ?? '#'} // TODO remove the fallback value
+                      address={branch?.attributes.address ?? ''} // TODO remove the fallback value
+                    />
+                  </li>
                 )
               })
               // eslint-disable-next-line unicorn/no-array-callback-reference
               .filter(isDefined)}
-          </div>
+          </ul>
         </div>
       </div>
     </SectionContainer>

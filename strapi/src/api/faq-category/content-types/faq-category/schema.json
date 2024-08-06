@@ -4,7 +4,8 @@
   "info": {
     "singularName": "faq-category",
     "pluralName": "faq-categories",
-    "displayName": "FAQs - kategórie"
+    "displayName": "FAQs - kategórie",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -39,6 +40,16 @@
       "relation": "oneToMany",
       "target": "api::faq.faq",
       "mappedBy": "faqCategory"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.banner"
     }
   }
 }

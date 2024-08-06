@@ -1,4 +1,5 @@
 fragment WorkshopSlugEntity on WorkshopEntity {
+  __typename
   id
   attributes {
     title
@@ -8,6 +9,11 @@ fragment WorkshopSlugEntity on WorkshopEntity {
 
 fragment WorkshopEntity on WorkshopEntity {
   ...WorkshopSlugEntity
+  attributes {
+    sections {
+      ...PageSections
+    }
+  }
 }
 
 query Workshops {

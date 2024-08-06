@@ -1,9 +1,12 @@
 import React from 'react'
 
+import BannerSection from '@/src/components/sections/BannerSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
+import DividerSection from '@/src/components/sections/DividerSection'
 import FaqSection from '@/src/components/sections/FaqSection'
+import FilesSection from '@/src/components/sections/FilesSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
@@ -48,6 +51,15 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsFaq':
       return <FaqSection section={section} />
+
+    case 'ComponentSectionsFiles':
+      return <FilesSection section={section} />
+
+    case 'ComponentSectionsBanner':
+      return <BannerSection section={section} />
+
+    case 'ComponentSectionsDivider':
+      return <DividerSection section={section} />
 
     default:
       return null

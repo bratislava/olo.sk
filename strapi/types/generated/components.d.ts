@@ -313,6 +313,23 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
   }
 }
 
+export interface SectionsBanner extends Schema.Component {
+  collectionName: 'components_sections_banners'
+  info: {
+    displayName: 'Banner'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    variant: Attribute.Enumeration<['background-grey', 'background-black']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'background-grey'>
+    image: Attribute.Media & Attribute.Required
+    primaryButtonLink: Attribute.Component<'items.link'> & Attribute.Required
+    secondaryButtonLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsBranches extends Schema.Component {
   collectionName: 'components_sections_branches'
   info: {
@@ -364,6 +381,19 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsDivider extends Schema.Component {
+  collectionName: 'components_sections_dividers'
+  info: {
+    displayName: 'Divider'
+    description: ''
+  }
+  attributes: {
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+  }
+}
+
 export interface SectionsFaq extends Schema.Component {
   collectionName: 'components_sections_faqs'
   info: {
@@ -377,6 +407,25 @@ export interface SectionsFaq extends Schema.Component {
       Attribute.DefaultTo<'primary'>
     faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
     showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsFiles extends Schema.Component {
+  collectionName: 'components_sections_files'
+  info: {
+    displayName: 'Files'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    files: Attribute.Component<'items.file-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
   }
 }
 
@@ -580,10 +629,13 @@ declare module '@strapi/types' {
       'menu.menu-link': MenuMenuLink
       'menu.menu-section': MenuMenuSection
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
+      'sections.banner': SectionsBanner
       'sections.branches': SectionsBranches
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
+      'sections.divider': SectionsDivider
       'sections.faq': SectionsFaq
+      'sections.files': SectionsFiles
       'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText

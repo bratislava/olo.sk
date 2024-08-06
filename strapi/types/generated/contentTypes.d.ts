@@ -885,12 +885,23 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::document.document', 'title'> & Attribute.Required
+    identificationNumber: Attribute.String
+    supplier: Attribute.String
+    priceWithoutTax: Attribute.String
     documentCategory: Attribute.Relation<
       'api::document.document',
       'manyToOne',
       'api::document-category.document-category'
     >
-    files: Attribute.Media & Attribute.Required
+    files: Attribute.Component<'items.file-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+    description: Attribute.Text
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1008,6 +1019,7 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
     singularName: 'faq-category'
     pluralName: 'faq-categories'
     displayName: 'FAQs - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1033,6 +1045,12 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
         }
       }>
     faqs: Attribute.Relation<'api::faq-category.faq-category', 'oneToMany', 'api::faq.faq'>
+    banner: Attribute.Component<'sections.banner'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1342,16 +1360,19 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
+        'sections.banner',
         'sections.branches',
         'sections.columns',
         'sections.columns-list',
+        'sections.divider',
+        'sections.faq',
+        'sections.files',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.ordered-cards',
         'sections.richtext',
         'sections.table',
         'sections.workshops',
-        'sections.faq',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1405,6 +1426,18 @@ export interface ApiServiceService extends Schema.CollectionType {
       'manyToMany',
       'api::service-category.service-category'
     >
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.files', 'sections.faq']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1423,6 +1456,7 @@ export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType
     singularName: 'service-category'
     pluralName: 'service-categories'
     displayName: 'Slu\u017Eby - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1452,6 +1486,14 @@ export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType
       'manyToMany',
       'api::service.service'
     >
+    categoryColor: Attribute.Enumeration<['none', 'red', 'green', 'blue']> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }> &
+      Attribute.DefaultTo<'none'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1531,7 +1573,7 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
-    sections: Attribute.DynamicZone<['sections.richtext']>
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.files']>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

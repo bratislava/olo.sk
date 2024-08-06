@@ -22,6 +22,7 @@ const meta: Meta<Props> = {
 
 const getWorkshopsDummyData = (count: number): WorkshopEntityFragment[] => {
   return Array.from({ length: count }).map((_, index) => ({
+    __typename: 'WorkshopEntity',
     attributes: { title: `Workshop ${index + 1}`, slug: `#` },
   }))
 }

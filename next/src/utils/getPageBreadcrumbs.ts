@@ -7,7 +7,9 @@ export type Breadcrumb = {
 
 // Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/utils/pageUtils_Deprecated.ts#L93
 
-export const getPageBreadcrumbs = (page: PageParentPagesFragment): Breadcrumb[] => {
+export const getPageBreadcrumbs = (
+  page: PageParentPagesFragment | null | undefined,
+): Breadcrumb[] => {
   const current = page
   if (!current) {
     return []

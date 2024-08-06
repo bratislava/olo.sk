@@ -13,6 +13,7 @@ import cn from '@/src/utils/cn'
 export const oloIconNameMap = {
   // size 24 px
   'career-calendar': 'CareerCalendarIcon',
+  chat: 'ChatIcon',
   directions: 'DirectionsIcon',
   'live-help': 'LiveHelpIcon',
   'social-media-facebook-footer': 'FacebookFooterIcon',

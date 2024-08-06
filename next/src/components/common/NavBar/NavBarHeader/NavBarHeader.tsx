@@ -5,7 +5,6 @@ import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
 import Typography from '@/src/components/common/Typography/Typography'
-import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import cn from '@/src/utils/cn'
 import { useCurrentWeekParity } from '@/src/utils/useCurrentWeekParity'
 
@@ -18,8 +17,8 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
   const { t } = useTranslation()
 
   return (
-    <SectionContainer className={cn('bg-action-background-default py-3', className)}>
-      <div className="flex items-center justify-between">
+    <div className={cn('bg-action-background-default py-3', className)}>
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 lg:px-8">
         <div className="flex h-full gap-4 py-0.5">
           <NavBarLogo />
           <div className="border-r border-content-secondary" />
@@ -38,7 +37,7 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
           {t('navBar.contactsButton')}
         </Button>
       </div>
-    </SectionContainer>
+    </div>
   )
 }
 

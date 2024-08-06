@@ -25,7 +25,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
       onPointerMove={(event) => event.preventDefault()}
       onPointerLeave={(event) => event.preventDefault()}
-      className="w-screen bg-background-primary"
+      className="w-screen border-t border-border-default bg-background-primary"
     >
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
@@ -43,7 +43,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
                   colSpan={1}
                   hasDivider
                 >
-                  <div className="clear-both flex flex-col gap-y-12">
+                  <div className="flex flex-col gap-y-12">
                     {cell.map((section) => {
                       return <NavMenuSection section={section} />
                     })}

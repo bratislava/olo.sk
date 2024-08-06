@@ -8,7 +8,6 @@ import Icon from '@/src/components/common/Icon/Icon'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
-import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
@@ -35,10 +34,8 @@ const NavMenu = ({ className }: NavMenuProps) => {
       onValueChange={setMenuValue}
       aria-label={t('navBar.aria.navBarAriaLabel')}
     >
-      <SectionContainer
-        className={cn('border-b border-border-default bg-background-primary', className)}
-      >
-        <div className="flex items-center justify-between">
+      <div className={cn('border-b border-border-default bg-background-primary', className)}>
+        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 lg:px-8">
           <NavigationMenu.List className="flex items-center gap-4">
             {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
           </NavigationMenu.List>
@@ -62,7 +59,7 @@ const NavMenu = ({ className }: NavMenuProps) => {
           onClick={() => setMenuValue('')}
           className="absolute z-[29] h-screen w-full"
         />
-      </SectionContainer>
+      </div>
     </NavigationMenu.Root>
   )
 }

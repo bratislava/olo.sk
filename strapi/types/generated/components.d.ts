@@ -381,6 +381,19 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsDivider extends Schema.Component {
+  collectionName: 'components_sections_dividers'
+  info: {
+    displayName: 'Divider'
+    description: ''
+  }
+  attributes: {
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+  }
+}
+
 export interface SectionsFaq extends Schema.Component {
   collectionName: 'components_sections_faqs'
   info: {
@@ -620,6 +633,7 @@ declare module '@strapi/types' {
       'sections.branches': SectionsBranches
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
+      'sections.divider': SectionsDivider
       'sections.faq': SectionsFaq
       'sections.files': SectionsFiles
       'sections.hero-homepage-section': SectionsHeroHomepageSection

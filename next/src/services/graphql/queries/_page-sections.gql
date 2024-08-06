@@ -145,6 +145,10 @@ fragment BannerSection on ComponentSectionsBanner {
   }
 }
 
+fragment DividerSection on ComponentSectionsDivider {
+  backgroundColorDivider: backgroundColor
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -194,5 +198,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBanner {
     ...BannerSection
+  }
+
+  ... on ComponentSectionsDivider {
+    ...DividerSection
   }
 }

@@ -32,7 +32,6 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         className="relative z-[29] flex flex-col items-start justify-start px-28 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]"
         onClick={(event) => event.stopPropagation()}
       >
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
         <ul className={cn('grid w-full py-8', className)}>
           {navMenuCells.map((cell, index: number) => {
             if (Array.isArray(cell)) {

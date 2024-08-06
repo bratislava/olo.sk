@@ -12,7 +12,7 @@ type NavMenuContentCellProps = {
 const NavMenuContentCell = ({
   children,
   colSpan,
-  hasDivider, // Assumption: Last section doesn't have divider (hasDivider = false)
+  hasDivider,
   className,
 }: PropsWithChildren<NavMenuContentCellProps>) => {
   return (

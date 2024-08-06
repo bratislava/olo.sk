@@ -10,6 +10,7 @@ import TwoColumnNavMenuSection from '@/src/components/common/NavBar/NavMenu/TwoC
 import Typography from '@/src/components/common/Typography/Typography'
 import { MenuLinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
+import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 export type NavMenuSectionProps = {
@@ -22,51 +23,44 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { label, specialSectionType, links, multicolumnBehaviour } = section
 
   const renderSectionLink = (link: MenuLinkFragment, index: number) => {
-    const linkProps = getLinkProps(link)
+    // const linkProps = getLinkProps(link)
+    const { children, href, subText, target } = getLinkProps(link)
     const divider = index > 0 ? <NavBarDivider variant="horizontal" /> : null
 
     if (specialSectionType === 'latest_articles') {
       return (
-        <div className="flex flex-col gap-4" key={link?.id}>
+        <div className="flex flex-col gap-4" key={link.id}>
           {divider}
-          <MenuItemArticleCard
-            title={linkProps.children ?? ''}
-            linkHref={linkProps.href}
-            tagText="Category"
-          />
+          <MenuItemArticleCard title={children ?? ''} linkHref={href} tagText="Category" />
         </div>
       )
     }
 
-    if (link?.workshop?.data) {
+    if (isDefined(link.workshop?.data)) {
       return (
-        <Fragment key={link?.id}>
+        <Fragment key={link.id}>
           {divider}
           <MenuItemWorkshopCard
-            title={linkProps.children ?? ''}
+            title={children ?? ''}
             subText="Not included within Strapi data"
-            linkHref={linkProps.href}
+            linkHref={href}
           />
         </Fragment>
       )
     }
 
-    if (link?.branch?.data) {
+    if (isDefined(link.branch?.data)) {
       return (
-        <Fragment key={link?.id}>
+        <Fragment key={link.id}>
           {index > 0 ? <NavBarDivider variant="horizontal" className="py-2" /> : null}
-          <MenuItemBranchCard
-            title={linkProps.children ?? ''}
-            subText={link?.branch?.data?.attributes?.address ?? ''}
-            linkHref={linkProps.href}
-          />
+          <MenuItemBranchCard title={children ?? ''} subText={subText ?? ''} linkHref={href} />
         </Fragment>
       )
     }
 
     return (
-      <NavMenuLink key={link?.id} {...linkProps}>
-        {linkProps.children}
+      <NavMenuLink key={link.id} href={href} target={target}>
+        {children}
       </NavMenuLink>
     )
   }

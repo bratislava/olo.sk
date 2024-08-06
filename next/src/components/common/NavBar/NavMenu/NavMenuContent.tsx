@@ -27,12 +27,13 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       onPointerLeave={(event) => event.preventDefault()}
       className="w-screen bg-background-primary"
     >
-      <div className="relative z-[29] flex flex-col items-start justify-start px-28 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]">
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      <div
+        className="relative z-[29] flex flex-col items-start justify-start px-28 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]"
+        onClick={(event) => event.stopPropagation()}
+      >
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
-        <ul
-          className={cn('grid w-full py-8', className)}
-          onClick={(event) => event.stopPropagation()}
-        >
+        <ul className={cn('grid w-full py-8', className)}>
           {navMenuCells.map((cell, index: number) => {
             if (Array.isArray(cell)) {
               return (
@@ -42,7 +43,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
                   colSpan={1}
                   hasDivider
                 >
-                  <div className="flex flex-col gap-y-12">
+                  <div className="clear-both flex flex-col gap-y-12">
                     {cell.map((section) => {
                       return <NavMenuSection section={section} />
                     })}

@@ -16,9 +16,9 @@ const NavMenuContentCell = ({
   className,
 }: PropsWithChildren<NavMenuContentCellProps>) => {
   return (
-    <div
+    <li
       className={cn(
-        'flex',
+        'flex justify-start',
         {
           'col-span-1': colSpan === 1,
           'col-span-2': colSpan === 2,
@@ -28,7 +28,7 @@ const NavMenuContentCell = ({
     >
       {children}
       {hasDivider ? <NavBarDivider variant="vertical" className="px-8" /> : null}
-    </div>
+    </li>
   )
 }
 

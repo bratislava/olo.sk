@@ -814,6 +814,12 @@ export type ComponentSectionsColumnsListRightColumnArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSectionsDivider = {
+  __typename?: 'ComponentSectionsDivider'
+  backgroundColor: Enum_Componentsectionsdivider_Backgroundcolor
+  id: Scalars['ID']['output']
+}
+
 export type ComponentSectionsFaq = {
   __typename?: 'ComponentSectionsFaq'
   backgroundColor: Enum_Componentsectionsfaq_Backgroundcolor
@@ -1235,6 +1241,12 @@ export enum Enum_Componentsectionscolumns_Backgroundcolor {
   Tertiary = 'tertiary',
 }
 
+export enum Enum_Componentsectionsdivider_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
 export enum Enum_Componentsectionsfaq_Backgroundcolor {
   Primary = 'primary',
   Secondary = 'secondary',
@@ -1531,6 +1543,7 @@ export type GenericMorph =
   | ComponentSectionsBranches
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsDivider
   | ComponentSectionsFaq
   | ComponentSectionsFiles
   | ComponentSectionsHeroHomepageSection
@@ -2475,6 +2488,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsBranches
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsDivider
   | ComponentSectionsFaq
   | ComponentSectionsFiles
   | ComponentSectionsImageAndText
@@ -7226,6 +7240,11 @@ export type BannerSectionFragment = {
   } | null
 }
 
+export type DividerSectionFragment = {
+  __typename?: 'ComponentSectionsDivider'
+  backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
+}
+
 type PageSections_ComponentSectionsBanner_Fragment = {
   __typename: 'ComponentSectionsBanner'
   title: string
@@ -7543,6 +7562,11 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
       } | null
     } | null
   } | null> | null
+}
+
+type PageSections_ComponentSectionsDivider_Fragment = {
+  __typename: 'ComponentSectionsDivider'
+  backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
 }
 
 type PageSections_ComponentSectionsFaq_Fragment = {
@@ -8329,6 +8353,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsBranches_Fragment
   | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsColumnsList_Fragment
+  | PageSections_ComponentSectionsDivider_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsFiles_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
@@ -14209,6 +14234,10 @@ export type PageEntityFragment = {
           } | null> | null
         }
       | {
+          __typename: 'ComponentSectionsDivider'
+          backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
+        }
+      | {
           __typename: 'ComponentSectionsFaq'
           title: string
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
@@ -15670,6 +15699,10 @@ export type PagesQuery = {
                   } | null
                 } | null
               } | null> | null
+            }
+          | {
+              __typename: 'ComponentSectionsDivider'
+              backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
             }
           | {
               __typename: 'ComponentSectionsFaq'
@@ -17144,6 +17177,10 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               } | null> | null
+            }
+          | {
+              __typename: 'ComponentSectionsDivider'
+              backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
             }
           | {
               __typename: 'ComponentSectionsFaq'
@@ -21730,6 +21767,11 @@ export const FilesSectionFragmentDoc = gql`
   }
   ${FileItemFragmentDoc}
 `
+export const DividerSectionFragmentDoc = gql`
+  fragment DividerSection on ComponentSectionsDivider {
+    backgroundColorDivider: backgroundColor
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -21769,6 +21811,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsBanner {
       ...BannerSection
     }
+    ... on ComponentSectionsDivider {
+      ...DividerSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -21782,6 +21827,7 @@ export const PageSectionsFragmentDoc = gql`
   ${FaqSectionFragmentDoc}
   ${FilesSectionFragmentDoc}
   ${BannerSectionFragmentDoc}
+  ${DividerSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

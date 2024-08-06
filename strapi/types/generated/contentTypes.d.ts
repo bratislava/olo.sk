@@ -1364,6 +1364,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.branches',
         'sections.columns',
         'sections.columns-list',
+        'sections.divider',
         'sections.faq',
         'sections.files',
         'sections.image-and-text',

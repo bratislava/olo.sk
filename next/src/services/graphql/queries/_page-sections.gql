@@ -5,9 +5,11 @@ fragment RichtextSection on ComponentSectionsRichtext {
 
 fragment OrderedCardsSection on ComponentSectionsOrderedCards {
   title
+  variantOrderedCards: variant
   cards {
     title
     text
+    iconName
   }
 }
 
@@ -145,6 +147,10 @@ fragment BannerSection on ComponentSectionsBanner {
   }
 }
 
+fragment DividerSection on ComponentSectionsDivider {
+  backgroundColorDivider: backgroundColor
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -194,5 +200,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBanner {
     ...BannerSection
+  }
+
+  ... on ComponentSectionsDivider {
+    ...DividerSection
   }
 }

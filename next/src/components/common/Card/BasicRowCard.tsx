@@ -31,7 +31,7 @@ const BasicRowCard = ({ variant, value, label, iconName, className }: BasicRowCa
         {variant === 'icon-value' ? (
           <div className="flex gap-3 lg:gap-4">
             {
-              // TODO Extract this into a separate component
+              // TODO This should be extracted to a separate component
               isBaIcon(iconName) ? (
                 <Icon name={iconName} className="size-5 lg:size-6" />
               ) : isOloIcon(iconName) ? (

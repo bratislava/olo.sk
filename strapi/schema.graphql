@@ -547,6 +547,7 @@ input ComponentItemsOpeningHoursItemInput {
 }
 
 type ComponentItemsOrderedCardsItem {
+  iconName: String
   id: ID!
   text: String!
   title: String!
@@ -554,6 +555,7 @@ type ComponentItemsOrderedCardsItem {
 
 input ComponentItemsOrderedCardsItemFiltersInput {
   and: [ComponentItemsOrderedCardsItemFiltersInput]
+  iconName: StringFilterInput
   not: ComponentItemsOrderedCardsItemFiltersInput
   or: [ComponentItemsOrderedCardsItemFiltersInput]
   text: StringFilterInput
@@ -561,6 +563,7 @@ input ComponentItemsOrderedCardsItemFiltersInput {
 }
 
 input ComponentItemsOrderedCardsItemInput {
+  iconName: String
   id: ID
   text: String
   title: String
@@ -813,6 +816,23 @@ input ComponentSectionsColumnsListInput {
   title: String
 }
 
+type ComponentSectionsDivider {
+  backgroundColor: ENUM_COMPONENTSECTIONSDIVIDER_BACKGROUNDCOLOR!
+  id: ID!
+}
+
+input ComponentSectionsDividerFiltersInput {
+  and: [ComponentSectionsDividerFiltersInput]
+  backgroundColor: StringFilterInput
+  not: ComponentSectionsDividerFiltersInput
+  or: [ComponentSectionsDividerFiltersInput]
+}
+
+input ComponentSectionsDividerInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSDIVIDER_BACKGROUNDCOLOR
+  id: ID
+}
+
 type ComponentSectionsFaq {
   backgroundColor: ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR!
   faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
@@ -983,6 +1003,7 @@ type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
   title: String!
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT!
 }
 
 input ComponentSectionsOrderedCardsFiltersInput {
@@ -991,12 +1012,14 @@ input ComponentSectionsOrderedCardsFiltersInput {
   not: ComponentSectionsOrderedCardsFiltersInput
   or: [ComponentSectionsOrderedCardsFiltersInput]
   title: StringFilterInput
+  variant: StringFilterInput
 }
 
 input ComponentSectionsOrderedCardsInput {
   cards: [ComponentItemsOrderedCardsItemInput]
   id: ID
   title: String
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT
 }
 
 type ComponentSectionsRichtext {
@@ -1334,6 +1357,12 @@ enum ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR {
   tertiary
 }
 
+enum ENUM_COMPONENTSECTIONSDIVIDER_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 enum ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR {
   primary
   secondary
@@ -1362,6 +1391,11 @@ enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_BACKGROUNDCOLOR {
 enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   left
   right
+}
+
+enum ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT {
+  icons
+  numbers
 }
 
 enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {
@@ -1571,7 +1605,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2092,7 +2126,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

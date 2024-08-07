@@ -25,7 +25,7 @@ const PageHeaderIcon = ({ title, perex, header }: Props) => {
         <div className="flex flex-col items-start gap-4 lg:flex-row lg:gap-6">
           <div className="rounded-2xl bg-background-primary p-4">
             {
-              // TODO Extract this into a separate component
+              // TODO This should be extracted to a separate component
               isBaIcon(iconName) ? (
                 <Icon name={iconName} className="size-6" />
               ) : isOloIcon(iconName) ? (

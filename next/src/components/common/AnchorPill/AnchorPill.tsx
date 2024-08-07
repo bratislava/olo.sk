@@ -21,7 +21,7 @@ const AnchorPill = ({ text, targetId }: AnchorPillProps) => {
       await router.replace({ query: { ...router.query, scrollId: targetId } }, undefined, {
         shallow: true,
       })
-      targetElement.scrollIntoView({ behavior: 'smooth' })
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }
 

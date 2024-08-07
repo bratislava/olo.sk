@@ -1,50 +1,49 @@
 import { meiliClient } from '../meiliClient'
-import { PageMeili, SearchIndexWrapped } from '../types'
+import { ArticleMeili, SearchIndexWrapped } from '../types'
 import { getMeilisearchPageOptions, unwrapFromSearchIndex } from '../utils'
 
-export type PagesFilters = {
+export type ArticlesFilters = {
   search: string
   page: number
   pageSize: number
 }
 
-export const pagesDefaultFilters: PagesFilters = {
+export const pagesDefaultFilters: ArticlesFilters = {
   search: '',
   page: 1,
   pageSize: 5,
 }
 
-export const getMeiliPagesQueryKey = (filters: PagesFilters, locale: string) => [
+export const getMeiliArticlesQueryKey = (filters: ArticlesFilters, locale: string) => [
   'Search',
-  'Pages',
+  'Articles',
   filters,
   locale,
 ]
 
-export const meiliPagesFetcher = (filters: PagesFilters, locale: string) => {
+export const meiliArticlesFetcher = (filters: ArticlesFilters, locale: string) => {
   return meiliClient
     .index('search_index')
-    .search<SearchIndexWrapped<'page', PageMeili>>(filters.search, {
+    .search<SearchIndexWrapped<'article', ArticleMeili>>(filters.search, {
       ...getMeilisearchPageOptions({
         page: filters.page ?? pagesDefaultFilters.page,
         pageSize: filters.pageSize ?? pagesDefaultFilters.pageSize,
       }),
-      filter: ['type = "page"', `locale = ${locale}`],
-      sort: [],
+      filter: ['type = "article"', `locale = ${locale}`],
+      sort: ['article.publishedAtTimestamp:desc'],
       attributesToRetrieve: [
         // Only properties that are required to display listing are retrieved
-        'page.title',
-        'page.slug',
-        'page.parentPage',
+        'article.title',
+        'article.slug',
       ],
     })
-    .then(unwrapFromSearchIndex('page'))
+    .then(unwrapFromSearchIndex('article'))
     .then((response) => {
-      const hits = response.hits.map((page) => {
+      const hits = response.hits.map((article) => {
         return {
           // used in useGetFullPath to distinguish between different types of entities
           type: response.type,
-          ...page,
+          ...article,
         } as const
       })
 

@@ -1,4 +1,4 @@
-import { Page } from '../graphql/api'
+import { Article, Page, UploadFile } from '../graphql/api'
 
 /**
  * A type that describes an entity wrapped in shared search index.
@@ -17,11 +17,19 @@ export type SearchIndexWrapped<T extends string, K extends object> = {
 // Meilisearch doesn't nest entities in `data.attributes`, therefore in order to use Strapi types we need to `Omit` those
 // attributes that are nested and replace them with their direct representations.
 
-export type MixedResults = SearchIndexWrapped<'page', PageMeili>
+export type MixedResults =
+  | SearchIndexWrapped<'page', PageMeili>
+  | SearchIndexWrapped<'article', ArticleMeili>
 
-export type PageMeili = Omit<Page, '__typename' | 'parentPage' | 'childPages'> & {
-  // pageCategory?: Omit<PageCategory, '__typename' | 'pages'>
-  // pageBackgroundImage?: UploadFile
+// used to distinguish between content types after fetching
+export type MeiliEntity = ({ type: 'page' } & PageMeili) | ({ type: 'article' } & ArticleMeili)
+
+export type PageMeili = Omit<Page, '__typename' | 'childPages'> & {
+  parentPage?: { title: string; slug: string; parentPage?: PageMeili }
+}
+
+export type ArticleMeili = Omit<Article, '__typename' | 'coverImage'> & {
+  coverImage?: UploadFile
 }
 
 // export type BlogPostMeili = Omit<BlogPost, '__typename' | 'author' | 'tag' | 'coverImage'> & {

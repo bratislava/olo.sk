@@ -4,6 +4,8 @@ resources:
   - ingress.yml
   - service-storybook.yml
   - storybook-nginx-conf.yml
+  - stateful-set-meilisearch.yml
+  - service-meilisearch.yml
 configurations:
   - configuration.yml
 
@@ -24,3 +26,7 @@ configMapGenerator:
     namespace: ${NAMESPACE}
     envs:
       - .env
+  - name: ${BUILD_REPOSITORY_NAME}-meilisearch
+    namespace: ${NAMESPACE}
+    envs:
+      - .meilisearch.env

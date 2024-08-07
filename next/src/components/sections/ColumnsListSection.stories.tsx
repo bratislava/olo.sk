@@ -24,61 +24,61 @@ const meta: Meta<Props> = {
     backgroundColorColumnList: Enum_Componentsectionscolumnslist_Backgroundcolor.Primary,
     leftColumn: [
       {
-        text: 'práca v stabilnej a perspektívnej spoločnosti',
+        content: 'práca v stabilnej a perspektívnej spoločnosti',
         icon: iconDummyData,
       },
       {
-        text: 'plat vo výške 50 % priemerného mesačného zárobku',
+        content: 'plat vo výške 50 % priemerného mesačného zárobku',
         icon: iconDummyData,
       },
       {
-        text: 'plat vo výške 100 % priemerného mesačného zárobku',
+        content: 'plat vo výške 100 % priemerného mesačného zárobku',
         icon: iconDummyData,
       },
       {
-        text: 'príspevok do III. piliera – DDS',
+        content: 'príspevok do III. piliera – DDS',
         icon: iconDummyData,
       },
       {
-        text: 'odmeny pri pracovných a životných jubileách',
+        content: 'odmeny pri pracovných a životných jubileách',
         icon: iconDummyData,
       },
       {
-        text: 'ročná odmena za hospodársky výsledok',
+        content: 'ročná odmena za hospodársky výsledok',
         icon: iconDummyData,
       },
       {
-        text: 'každoročná valorizácia základnej mzdy',
+        content: 'každoročná valorizácia základnej mzdy',
         icon: iconDummyData,
       },
     ],
     rightColumn: [
       {
-        text: 'vybrané mzdové zvýhodnenia za sobotu a nedeľu nad rámec Zákonníka práce',
+        content: 'vybrané mzdové zvýhodnenia za sobotu a nedeľu nad rámec Zákonníka práce',
         icon: iconDummyData,
       },
       {
-        text: 'nadštandardný príspevok na stravovanie',
+        content: 'nadštandardný príspevok na stravovanie',
         icon: iconDummyData,
       },
       {
-        text: 'dovolenka naviac',
+        content: 'dovolenka naviac',
         icon: iconDummyData,
       },
       {
-        text: 'karta MultiSport',
+        content: 'karta MultiSport',
         icon: iconDummyData,
       },
       {
-        text: 'sociálna výpomoc pri zložitých životných situáciách',
+        content: 'sociálna výpomoc pri zložitých životných situáciách',
         icon: iconDummyData,
       },
       {
-        text: 'psychologické poradenstvo',
+        content: 'psychologické poradenstvo',
         icon: iconDummyData,
       },
       {
-        text: 'ďalšie benefity v zmysle kolektívnej zmluvy',
+        content: 'ďalšie benefity v zmysle kolektívnej zmluvy',
         icon: iconDummyData,
       },
     ],

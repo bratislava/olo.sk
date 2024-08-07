@@ -7,14 +7,15 @@
   "options": {},
   "attributes": {
     "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
-    "text": {
-      "type": "text",
+    "content": {
+      "type": "richtext",
       "required": true
     }
   }

@@ -345,6 +345,26 @@ input ComponentItemsAnchorInput {
   targetId: String
 }
 
+type ComponentItemsCardsListItem {
+  id: ID!
+  link: ComponentItemsLink!
+  title: String!
+}
+
+input ComponentItemsCardsListItemFiltersInput {
+  and: [ComponentItemsCardsListItemFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsCardsListItemFiltersInput
+  or: [ComponentItemsCardsListItemFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentItemsCardsListItemInput {
+  id: ID
+  link: ComponentItemsLinkInput
+  title: String
+}
+
 type ComponentItemsColumnsItem {
   id: ID!
   image: UploadFileEntityResponse
@@ -368,22 +388,22 @@ input ComponentItemsColumnsItemInput {
 }
 
 type ComponentItemsColumnsListItem {
+  content: String!
   icon: UploadFileEntityResponse
   id: ID!
-  text: String!
 }
 
 input ComponentItemsColumnsListItemFiltersInput {
   and: [ComponentItemsColumnsListItemFiltersInput]
+  content: StringFilterInput
   not: ComponentItemsColumnsListItemFiltersInput
   or: [ComponentItemsColumnsListItemFiltersInput]
-  text: StringFilterInput
 }
 
 input ComponentItemsColumnsListItemInput {
+  content: String
   icon: ID
   id: ID
-  text: String
 }
 
 type ComponentItemsFileItem {
@@ -547,6 +567,7 @@ input ComponentItemsOpeningHoursItemInput {
 }
 
 type ComponentItemsOrderedCardsItem {
+  iconName: String
   id: ID!
   text: String!
   title: String!
@@ -554,6 +575,7 @@ type ComponentItemsOrderedCardsItem {
 
 input ComponentItemsOrderedCardsItemFiltersInput {
   and: [ComponentItemsOrderedCardsItemFiltersInput]
+  iconName: StringFilterInput
   not: ComponentItemsOrderedCardsItemFiltersInput
   or: [ComponentItemsOrderedCardsItemFiltersInput]
   text: StringFilterInput
@@ -561,6 +583,7 @@ input ComponentItemsOrderedCardsItemFiltersInput {
 }
 
 input ComponentItemsOrderedCardsItemInput {
+  iconName: String
   id: ID
   text: String
   title: String
@@ -777,6 +800,29 @@ input ComponentSectionsBranchesInput {
   branches: [ID]
   id: ID
   showAll: Boolean
+  text: String
+  title: String
+}
+
+type ComponentSectionsCardsList {
+  cards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
+  id: ID!
+  text: String
+  title: String!
+}
+
+input ComponentSectionsCardsListFiltersInput {
+  and: [ComponentSectionsCardsListFiltersInput]
+  cards: ComponentItemsCardsListItemFiltersInput
+  not: ComponentSectionsCardsListFiltersInput
+  or: [ComponentSectionsCardsListFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsCardsListInput {
+  cards: [ComponentItemsCardsListItemInput]
+  id: ID
   text: String
   title: String
 }
@@ -1020,6 +1066,7 @@ type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
   title: String!
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT!
 }
 
 input ComponentSectionsOrderedCardsFiltersInput {
@@ -1028,12 +1075,14 @@ input ComponentSectionsOrderedCardsFiltersInput {
   not: ComponentSectionsOrderedCardsFiltersInput
   or: [ComponentSectionsOrderedCardsFiltersInput]
   title: StringFilterInput
+  variant: StringFilterInput
 }
 
 input ComponentSectionsOrderedCardsInput {
   cards: [ComponentItemsOrderedCardsItemInput]
   id: ID
   title: String
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT
 }
 
 type ComponentSectionsRichtext {
@@ -1407,6 +1456,11 @@ enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   right
 }
 
+enum ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT {
+  icons
+  numbers
+}
+
 enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {
   primary
   secondary
@@ -1614,7 +1668,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2135,7 +2189,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 
@@ -2317,7 +2371,7 @@ type ServiceRelationResponseCollection {
   data: [ServiceEntity!]!
 }
 
-union ServiceSectionsDynamicZone = ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsRichtext | Error
+union ServiceSectionsDynamicZone = ComponentSectionsCardsList | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsRichtext | Error
 
 scalar ServiceSectionsDynamicZoneInput
 

@@ -72,6 +72,7 @@
       "components": [
         "sections.banner",
         "sections.branches",
+        "sections.cards-list",
         "sections.columns",
         "sections.columns-list",
         "sections.divider",

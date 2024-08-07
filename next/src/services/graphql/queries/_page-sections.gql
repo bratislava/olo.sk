@@ -151,6 +151,17 @@ fragment DividerSection on ComponentSectionsDivider {
   backgroundColorDivider: backgroundColor
 }
 
+fragment CardsListSection on ComponentSectionsCardsList {
+  title
+  text
+  cardsCardsList: cards {
+    title
+    link {
+      ...Link
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -204,5 +215,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsDivider {
     ...DividerSection
+  }
+
+  ... on ComponentSectionsCardsList {
+    ...CardsListSection
   }
 }

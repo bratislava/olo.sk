@@ -136,7 +136,7 @@ export interface ItemsColumnsListItem extends Schema.Component {
   }
   attributes: {
     icon: Attribute.Media
-    text: Attribute.Text & Attribute.Required
+    content: Attribute.RichText & Attribute.Required
   }
 }
 
@@ -237,6 +237,7 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text & Attribute.Required
+    iconName: Attribute.String
   }
 }
 
@@ -405,6 +406,19 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsDivider extends Schema.Component {
+  collectionName: 'components_sections_dividers'
+  info: {
+    displayName: 'Divider'
+    description: ''
+  }
+  attributes: {
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+  }
+}
+
 export interface SectionsFaq extends Schema.Component {
   collectionName: 'components_sections_faqs'
   info: {
@@ -543,6 +557,9 @@ export interface SectionsOrderedCards extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
+    variant: Attribute.Enumeration<['numbers', 'icons']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'numbers'>
     cards: Attribute.Component<'items.ordered-cards-item', true> &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -646,6 +663,7 @@ declare module '@strapi/types' {
       'sections.cards-list': SectionsCardsList
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
+      'sections.divider': SectionsDivider
       'sections.faq': SectionsFaq
       'sections.files': SectionsFiles
       'sections.hero-homepage-section': SectionsHeroHomepageSection

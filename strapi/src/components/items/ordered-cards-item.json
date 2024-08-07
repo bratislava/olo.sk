@@ -13,6 +13,9 @@
     "text": {
       "type": "text",
       "required": true
+    },
+    "iconName": {
+      "type": "string"
     }
   }
 }

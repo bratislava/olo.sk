@@ -42,12 +42,7 @@ const HeroHomepageSection = ({ section }: Props) => {
 
             return (
               <li className="[&>*]:h-full">
-                <HomepageSmallTile
-                  // TODO icon https://github.com/bratislava/olo.sk/issues/276
-                  // iconName={tile?.icon ?? undefined}
-                  title={label}
-                  linkHref={href}
-                />
+                <HomepageSmallTile iconName={tile?.icon ?? ''} title={label} linkHref={href} />
               </li>
             )
           })}

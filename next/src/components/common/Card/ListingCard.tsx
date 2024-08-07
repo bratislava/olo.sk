@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import Typography from '@/src/components/common/Typography/Typography'
@@ -7,6 +9,7 @@ import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 type ListingCardProps = {
   title: string
   link: LinkFragment | null | undefined
+  ariaLabel?: string
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -18,10 +21,11 @@ type ListingCardProps = {
 const ListingCard = ({
   title,
   link,
-  // linkHref,
+  ariaLabel,
   hasWhiteBackground = true,
   className,
 }: ListingCardProps) => {
+  const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
   return (
@@ -38,10 +42,12 @@ const ListingCard = ({
           {title}
         </Typography>
         <Button
+          variant="icon-wrapped"
           asLink
           stretched
+          aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
           className="size-10 rounded-lg bg-background-secondary"
-          variant="icon-wrapped"
+          // this button should only shows the arrow link icon so we need to force no children
           {...{ ...getLinkProps(link), children: null }}
         />
       </div>

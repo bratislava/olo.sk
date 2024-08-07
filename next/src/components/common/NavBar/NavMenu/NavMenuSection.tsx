@@ -12,6 +12,7 @@ import { MenuLinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
+import { useMostRecentWorkshopDate } from '@/src/utils/useMostRecentWorkshopDate'
 
 export type NavMenuSectionProps = {
   section: ReturnType<typeof getParsedMenus>[number]['sections'][number]
@@ -20,6 +21,7 @@ export type NavMenuSectionProps = {
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { getLinkProps } = useGetLinkProps()
+  const { getMostRecentWorkshopDateMessage } = useMostRecentWorkshopDate()
   const { label, specialSectionType, links, multicolumnBehaviour } = section
 
   const renderSectionLink = (link: MenuLinkFragment, index: number) => {
@@ -27,12 +29,14 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
     const divider = index > 0 ? <NavBarDivider variant="horizontal" /> : null
 
     if (isDefined(link.workshop?.data)) {
+      const { mostRecentDateMessage } = getMostRecentWorkshopDateMessage(link.workshop?.data)
+
       return (
         <Fragment key={link.id}>
           {divider}
           <MenuItemWorkshopCard
             title={children ?? ''}
-            subText="Not included within Strapi data"
+            subText={mostRecentDateMessage ?? ''}
             linkHref={href}
           />
         </Fragment>

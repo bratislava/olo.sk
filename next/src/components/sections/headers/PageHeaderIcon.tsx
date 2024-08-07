@@ -24,13 +24,16 @@ const PageHeaderIcon = ({ title, perex, header }: Props) => {
       <div className="py-6 lg:max-w-[50rem] lg:py-12">
         <div className="flex flex-col items-start gap-4 lg:flex-row lg:gap-6">
           <div className="rounded-2xl bg-background-primary p-4">
-            {isBaIcon(iconName) ? (
-              <Icon name={iconName} className="size-6" />
-            ) : isOloIcon(iconName) ? (
-              <OloIcon name={iconName} className="size-6" />
-            ) : (
-              <div className="size-6" aria-hidden />
-            )}
+            {
+              // TODO Extract this into a separate component
+              isBaIcon(iconName) ? (
+                <Icon name={iconName} className="size-6" />
+              ) : isOloIcon(iconName) ? (
+                <OloIcon name={iconName} className="size-6" />
+              ) : (
+                <div className="size-6" aria-hidden />
+              )
+            }
           </div>
           <div className={cn('flex flex-col items-start gap-4 lg:gap-5 lg:pt-1')}>
             <Typography variant="h1">{title}</Typography>

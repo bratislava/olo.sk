@@ -7,6 +7,7 @@ import Typography from '@/src/components/common/Typography/Typography'
 type HomepageSmallTileProps = {
   title: string
   linkHref: string
+  // TODO change when common icon name type is ready
   iconName?: string
   hasWhiteBackground?: boolean
   className?: string
@@ -31,11 +32,14 @@ const HomepageSmallTile = ({
     >
       <div className="flex flex-col items-center gap-6 px-4 py-5 text-center">
         <div className="rounded-[20px] bg-background-secondary p-4">
-          {isBaIcon(iconName) ? (
-            <Icon name={iconName} className="size-6" />
-          ) : isOloIcon(iconName) ? (
-            <OloIcon name={iconName} className="size-6" />
-          ) : null}
+          {
+            // TODO Extract this into a separate component
+            isBaIcon(iconName) ? (
+              <Icon name={iconName} className="size-6" />
+            ) : isOloIcon(iconName) ? (
+              <OloIcon name={iconName} className="size-6" />
+            ) : null
+          }
         </div>
         <div className="flex flex-col gap-4">
           <Link variant="unstyled" href={linkHref} stretched>

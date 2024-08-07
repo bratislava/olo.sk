@@ -5,6 +5,7 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
+import { useTransformOloMarkdownLinks } from '@/src/components/formatting/useTransformOloMarkdownLinks'
 import cn from '@/src/utils/cn'
 
 import styles from './Markdown.module.scss'
@@ -25,8 +26,9 @@ export type MarkdownProps = {
  */
 
 // TODO Apply correct styling when figma design is ready
-
 const Markdown = ({ content, className }: MarkdownProps) => {
+  const { transformOloMarkdownLinks } = useTransformOloMarkdownLinks()
+
   return (
     <ReactMarkdown
       remarkPlugins={[remarkUnwrapImages, remarkGfm]}
@@ -144,7 +146,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
         hr: () => <hr className="my-8 border-t border-border-default" />,
       }}
     >
-      {content ?? ''}
+      {content ? transformOloMarkdownLinks(content) : ''}
     </ReactMarkdown>
   )
 }

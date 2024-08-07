@@ -3,6 +3,7 @@ import { RefObject, useState } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 import { useEventListener } from 'usehooks-ts'
 
+// copied from Marianum: https://github.com/bratislava/marianum.sk/blob/master/next/utils/useHorizontalScrollFade.ts
 export const useHorizontalScrollFade = ({
   ref,
   classNameLeft = 'scroll-fade-left',

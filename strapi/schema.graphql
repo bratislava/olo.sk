@@ -368,22 +368,22 @@ input ComponentItemsColumnsItemInput {
 }
 
 type ComponentItemsColumnsListItem {
+  content: String!
   icon: UploadFileEntityResponse
   id: ID!
-  text: String!
 }
 
 input ComponentItemsColumnsListItemFiltersInput {
   and: [ComponentItemsColumnsListItemFiltersInput]
+  content: StringFilterInput
   not: ComponentItemsColumnsListItemFiltersInput
   or: [ComponentItemsColumnsListItemFiltersInput]
-  text: StringFilterInput
 }
 
 input ComponentItemsColumnsListItemInput {
+  content: String
   icon: ID
   id: ID
-  text: String
 }
 
 type ComponentItemsFileItem {

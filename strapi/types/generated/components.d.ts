@@ -125,7 +125,7 @@ export interface ItemsColumnsListItem extends Schema.Component {
   }
   attributes: {
     icon: Attribute.Media
-    text: Attribute.Text & Attribute.Required
+    content: Attribute.RichText & Attribute.Required
   }
 }
 

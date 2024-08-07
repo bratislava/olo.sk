@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-import Typography from '@/src/components/common/Typography/Typography'
+import Markdown from '@/src/components/formatting/Markdown'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { ColumnsListSectionFragment } from '@/src/services/graphql/api'
@@ -45,7 +45,7 @@ const ColumnsListSection = ({ section }: Props) => {
                             </div>
                           ) : null}
                           {/* TODO discuss whether we want to use rich text here instead */}
-                          <Typography variant="p-default">{columnItem.text}</Typography>
+                          <Markdown content={columnItem.content} />
                         </div>
                       )
                     })

@@ -92,7 +92,7 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
         ...UploadImageEntity
       }
     }
-    text
+    content
   }
   rightColumn {
     icon {
@@ -100,7 +100,7 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
         ...UploadImageEntity
       }
     }
-    text
+    content
   }
 }
 

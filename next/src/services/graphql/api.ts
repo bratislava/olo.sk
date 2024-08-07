@@ -565,6 +565,7 @@ export type ComponentItemsOpeningHoursItemInput = {
 
 export type ComponentItemsOrderedCardsItem = {
   __typename?: 'ComponentItemsOrderedCardsItem'
+  iconName?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
   text: Scalars['String']['output']
   title: Scalars['String']['output']
@@ -572,6 +573,7 @@ export type ComponentItemsOrderedCardsItem = {
 
 export type ComponentItemsOrderedCardsItemFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentItemsOrderedCardsItemFiltersInput>>>
+  iconName?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ComponentItemsOrderedCardsItemFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsOrderedCardsItemFiltersInput>>>
   text?: InputMaybe<StringFilterInput>
@@ -944,6 +946,7 @@ export type ComponentSectionsOrderedCards = {
   cards: Array<Maybe<ComponentItemsOrderedCardsItem>>
   id: Scalars['ID']['output']
   title: Scalars['String']['output']
+  variant: Enum_Componentsectionsorderedcards_Variant
 }
 
 export type ComponentSectionsOrderedCardsCardsArgs = {
@@ -1275,6 +1278,11 @@ export enum Enum_Componentsectionsimageandtext_Backgroundcolor {
 export enum Enum_Componentsectionsimageandtext_Imageposition {
   Left = 'left',
   Right = 'right',
+}
+
+export enum Enum_Componentsectionsorderedcards_Variant {
+  Icons = 'icons',
+  Numbers = 'numbers',
 }
 
 export enum Enum_Componentsectionsrichtext_Backgroundcolor {
@@ -6153,10 +6161,12 @@ export type RichtextSectionFragment = {
 export type OrderedCardsSectionFragment = {
   __typename?: 'ComponentSectionsOrderedCards'
   title: string
+  variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
   cards: Array<{
     __typename?: 'ComponentItemsOrderedCardsItem'
     title: string
     text: string
+    iconName?: string | null
   } | null>
 }
 
@@ -8311,10 +8321,12 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
 type PageSections_ComponentSectionsOrderedCards_Fragment = {
   __typename: 'ComponentSectionsOrderedCards'
   title: string
+  variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
   cards: Array<{
     __typename?: 'ComponentItemsOrderedCardsItem'
     title: string
     text: string
+    iconName?: string | null
   } | null>
 }
 
@@ -15015,10 +15027,12 @@ export type PageEntityFragment = {
       | {
           __typename: 'ComponentSectionsOrderedCards'
           title: string
+          variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
           cards: Array<{
             __typename?: 'ComponentItemsOrderedCardsItem'
             title: string
             text: string
+            iconName?: string | null
           } | null>
         }
       | {
@@ -16486,10 +16500,12 @@ export type PagesQuery = {
           | {
               __typename: 'ComponentSectionsOrderedCards'
               title: string
+              variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
               cards: Array<{
                 __typename?: 'ComponentItemsOrderedCardsItem'
                 title: string
                 text: string
+                iconName?: string | null
               } | null>
             }
           | {
@@ -17964,10 +17980,12 @@ export type PageBySlugQuery = {
           | {
               __typename: 'ComponentSectionsOrderedCards'
               title: string
+              variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
               cards: Array<{
                 __typename?: 'ComponentItemsOrderedCardsItem'
                 title: string
                 text: string
+                iconName?: string | null
               } | null>
             }
           | {
@@ -21558,9 +21576,11 @@ export const RichtextSectionFragmentDoc = gql`
 export const OrderedCardsSectionFragmentDoc = gql`
   fragment OrderedCardsSection on ComponentSectionsOrderedCards {
     title
+    variantOrderedCards: variant
     cards {
       title
       text
+      iconName
     }
   }
 `

@@ -226,6 +226,7 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
   attributes: {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text & Attribute.Required
+    iconName: Attribute.String
   }
 }
 
@@ -532,6 +533,9 @@ export interface SectionsOrderedCards extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
+    variant: Attribute.Enumeration<['numbers', 'icons']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'numbers'>
     cards: Attribute.Component<'items.ordered-cards-item', true> &
       Attribute.Required &
       Attribute.SetMinMax<

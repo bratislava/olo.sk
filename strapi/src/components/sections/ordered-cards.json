@@ -10,6 +10,12 @@
       "type": "string",
       "required": true
     },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["numbers", "icons"],
+      "default": "numbers",
+      "required": true
+    },
     "cards": {
       "type": "component",
       "repeatable": true,

@@ -13,6 +13,7 @@ import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
 import TableSection from '@/src/components/sections/TableSection'
+import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment } from '@/src/services/graphql/api'
 
@@ -64,6 +65,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsCardsList':
       return <CardsListSection section={section} />
+
+    case 'ComponentSectionsWasteSortingCards':
+      return <WasteSortingCardsSection section={section} />
 
     default:
       return null

@@ -1373,6 +1373,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.ordered-cards',
         'sections.richtext',
         'sections.table',
+        'sections.waste-sorting-cards',
         'sections.workshops',
       ]
     > &

@@ -256,6 +256,34 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface ItemsWasteSortingCardsItem extends Schema.Component {
+  collectionName: 'components_items_waste_sorting_cards_items'
+  info: {
+    displayName: 'Waste Sorting Cards item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    variant: Attribute.Enumeration<
+      [
+        'mixed',
+        'paper',
+        'plastic',
+        'glass',
+        'kitchen',
+        'cookingOilsAndFats',
+        'organic',
+        'civicAmenitySite',
+        'cemetery',
+        'christmasTrees',
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'mixed'>
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
 export interface MenuMenuItem extends Schema.Component {
   collectionName: 'components_menu_menu_items'
   info: {
@@ -617,6 +645,19 @@ export interface SectionsTable extends Schema.Component {
   }
 }
 
+export interface SectionsWasteSortingCards extends Schema.Component {
+  collectionName: 'components_sections_waste_sorting_cards'
+  info: {
+    displayName: 'Waste Sorting Cards'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.waste-sorting-cards-item', true>
+  }
+}
+
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
@@ -654,6 +695,7 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'menu.menu-item': MenuMenuItem
       'menu.menu-link': MenuMenuLink
       'menu.menu-section': MenuMenuSection
@@ -674,6 +716,7 @@ declare module '@strapi/types' {
       'sections.richtext': SectionsRichtext
       'sections.services-homepage-section': SectionsServicesHomepageSection
       'sections.table': SectionsTable
+      'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.workshops': SectionsWorkshops
     }
   }

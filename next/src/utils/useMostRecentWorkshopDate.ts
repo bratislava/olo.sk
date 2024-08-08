@@ -1,12 +1,12 @@
 import { useTranslation } from 'next-i18next'
 
-import { WorkshopEntityFragment } from '@/src/services/graphql/api'
+import { WorkshopSlugEntityFragment } from '@/src/services/graphql/api'
 import { getLatestWorkshopDateAsISOString } from '@/src/utils/getLatestWorkshopDateAsISOString'
 
 export const useMostRecentWorkshopDate = () => {
   const { t } = useTranslation()
 
-  const getMostRecentWorkshopDateMessage = (workshop?: WorkshopEntityFragment) => {
+  const getMostRecentWorkshopDateMessage = (workshop?: WorkshopSlugEntityFragment) => {
     const dates = workshop?.attributes?.dates
     if (!workshop?.attributes || !dates) return { mostRecentDateMessage: null }
 

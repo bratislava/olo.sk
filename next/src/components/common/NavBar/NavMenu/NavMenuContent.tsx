@@ -25,11 +25,11 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
       onPointerMove={(event) => event.preventDefault()}
       onPointerLeave={(event) => event.preventDefault()}
-      className="w-screen border-t border-border-default bg-background-primary"
+      className="w-screen border-t border-border-default bg-background-primary shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]"
     >
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
-        className="relative z-[29] flex flex-col items-start justify-start px-28 shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]"
+        className="relative z-[29] mx-auto flex max-w-screen-xl flex-col items-start justify-start px-4 lg:px-8"
         onClick={(event) => event.stopPropagation()}
       >
         <ul className={cn('grid w-full py-8', className)}>
@@ -42,10 +42,10 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
                   colSpan={1}
                   hasDivider
                 >
-                  <div className="flex flex-col gap-y-12">
-                    {cell.map((section) => {
-                      return <NavMenuSection section={section} />
-                    })}
+                  <div className="flex grow flex-col gap-y-12">
+                    {cell.map((section) => (
+                      <NavMenuSection section={section} />
+                    ))}
                   </div>
                 </NavMenuContentCell>
               )

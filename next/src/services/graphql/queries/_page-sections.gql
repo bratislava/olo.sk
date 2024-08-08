@@ -162,6 +162,11 @@ fragment CardsListSection on ComponentSectionsCardsList {
   }
 }
 
+fragment ServicesSection on ComponentSectionsServices {
+  titleServices: title
+  text
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -219,5 +224,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsCardsList {
     ...CardsListSection
+  }
+
+  ... on ComponentSectionsServices {
+    ...ServicesSection
   }
 }

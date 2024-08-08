@@ -5,9 +5,11 @@ fragment RichtextSection on ComponentSectionsRichtext {
 
 fragment OrderedCardsSection on ComponentSectionsOrderedCards {
   title
+  variantOrderedCards: variant
   cards {
     title
     text
+    iconName
   }
 }
 
@@ -90,7 +92,7 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
         ...UploadImageEntity
       }
     }
-    text
+    content
   }
   rightColumn {
     icon {
@@ -98,7 +100,7 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
         ...UploadImageEntity
       }
     }
-    text
+    content
   }
 }
 
@@ -142,6 +144,21 @@ fragment BannerSection on ComponentSectionsBanner {
   }
   secondaryButtonLink {
     ...Link
+  }
+}
+
+fragment DividerSection on ComponentSectionsDivider {
+  backgroundColorDivider: backgroundColor
+}
+
+fragment CardsListSection on ComponentSectionsCardsList {
+  title
+  text
+  cardsCardsList: cards {
+    title
+    link {
+      ...Link
+    }
   }
 }
 
@@ -198,6 +215,14 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBanner {
     ...BannerSection
+  }
+
+  ... on ComponentSectionsDivider {
+    ...DividerSection
+  }
+
+  ... on ComponentSectionsCardsList {
+    ...CardsListSection
   }
 
   ... on ComponentSectionsArticles {

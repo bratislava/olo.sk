@@ -1,13 +1,15 @@
 import { useTranslation } from 'next-i18next'
 
+import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon from '@/src/components/common/Icon/Icon'
-import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
+import { LinkFragment } from '@/src/services/graphql/api'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type ListingCardProps = {
   title: string
-  linkHref: string
+  link: LinkFragment | null | undefined
+  ariaLabel?: string
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -18,11 +20,13 @@ type ListingCardProps = {
 
 const ListingCard = ({
   title,
-  linkHref,
+  link,
+  ariaLabel,
   hasWhiteBackground = true,
   className,
 }: ListingCardProps) => {
   const { t } = useTranslation()
+  const { getLinkProps } = useGetLinkProps()
 
   return (
     <CardBase
@@ -30,26 +34,22 @@ const ListingCard = ({
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
     >
-      <div className="flex flex-col gap-8 p-4">
+      <div className="flex h-full flex-col justify-between gap-6 p-4" title={title}>
         <Typography
           variant="h6"
           className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
         >
           {title}
         </Typography>
-        <div className="flex items-center gap-6">
-          <Link
-            variant="underlined"
-            href={linkHref}
-            stretched
-            className="text-size-button-default font-bold"
-          >
-            {t('common.findOutMore')}
-          </Link>
-          <div className="ml-auto flex size-10 items-center justify-center rounded-lg bg-background-secondary">
-            <Icon name="sipka-doprava" className="size-6" />
-          </div>
-        </div>
+        <Button
+          variant="icon-wrapped"
+          asLink
+          stretched
+          aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
+          className="size-10 rounded-lg bg-background-secondary"
+          // this button should only shows the arrow link icon so we need to force no children
+          {...{ ...getLinkProps(link), children: null }}
+        />
       </div>
     </CardBase>
   )

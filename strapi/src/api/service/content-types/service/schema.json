@@ -42,9 +42,10 @@
       "inversedBy": "services"
     },
     "image": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -58,7 +59,7 @@
         }
       },
       "type": "dynamiczone",
-      "components": ["sections.richtext", "sections.files", "sections.faq"]
+      "components": ["sections.richtext", "sections.cards-list", "sections.faq", "sections.files"]
     }
   }
 }

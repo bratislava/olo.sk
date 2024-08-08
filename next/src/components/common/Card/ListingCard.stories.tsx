@@ -10,7 +10,7 @@ const meta: Meta<typeof ListingCardComponent> = {
   },
   args: {
     title: 'ListingCard title',
-    linkHref: '#',
+    link: { url: '/' },
     hasWhiteBackground: true,
   },
   tags: ['autodocs'],

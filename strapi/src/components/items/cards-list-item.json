@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_items_cards_list_items",
+  "info": {
+    "displayName": "Cards List item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link",
+      "required": true
+    }
+  }
+}

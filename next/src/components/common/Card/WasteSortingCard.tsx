@@ -86,13 +86,7 @@ const WasteSortingCard = ({
     <CardBase
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteBackground}
-      className={cn(
-        {
-          // don't darken border when no linkHref is passed
-          'hover:border-border-default': !linkHref,
-        },
-        className,
-      )}
+      className={className}
       title={title}
     >
       <div

@@ -22,21 +22,21 @@ export type NavMenuSectionProps = {
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { getLinkProps } = useGetLinkProps()
   const { getMostRecentWorkshopDateMessage } = useMostRecentWorkshopDate()
-  const { label, specialSectionType, links, multicolumnBehaviour } = section
+  const { label, specialSectionType, links, multicolumnBehaviour, colSpan } = section
 
   const renderSectionLink = (link: MenuLinkFragment, index: number) => {
     const { children, href, subText, target } = getLinkProps(link)
     const divider = index > 0 ? <NavBarDivider variant="horizontal" /> : null
 
     if (isDefined(link.workshop?.data)) {
-      const { mostRecentDateMessage } = getMostRecentWorkshopDateMessage(link.workshop?.data)
-
       return (
         <Fragment key={link.id}>
           {divider}
           <MenuItemWorkshopCard
             title={children ?? ''}
-            subText={mostRecentDateMessage ?? ''}
+            subText={
+              getMostRecentWorkshopDateMessage(link.workshop?.data).mostRecentDateMessage ?? ''
+            }
             linkHref={href}
           />
         </Fragment>
@@ -60,11 +60,11 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   }
 
   const renderSection = () => {
-    if (specialSectionType === 'latest_articles') {
+    if (specialSectionType === 'latest_articles' && label === 'Najnovšie články') {
       return <NavMenuLatestArticlesSection />
     }
 
-    if (multicolumnBehaviour === 'split_equally') {
+    if (multicolumnBehaviour === 'split_equally' && colSpan > 1) {
       return <NavMenuTwoColumnSection section={section} />
     }
 

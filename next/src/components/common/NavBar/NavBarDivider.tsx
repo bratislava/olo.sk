@@ -6,7 +6,7 @@ type NavMenuContentDividerProps = {
 }
 
 const NavBarDivider = ({ variant, className }: NavMenuContentDividerProps) => (
-  <div className={cn(className)}>
+  <div aria-hidden className={cn(className)}>
     <div
       className={cn(
         variant === 'vertical' ? 'h-full border-r' : 'w-full border-b',

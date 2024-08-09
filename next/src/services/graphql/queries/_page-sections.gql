@@ -162,6 +162,17 @@ fragment CardsListSection on ComponentSectionsCardsList {
   }
 }
 
+fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
+  titleFaqCategories: title
+  text
+  showAll
+  faqCategories {
+    data {
+      ...FaqCategorySlugEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -219,5 +230,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsCardsList {
     ...CardsListSection
+  }
+
+  ... on ComponentSectionsFaqCategories {
+    ...FaqCategoriesSection
   }
 }

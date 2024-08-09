@@ -28,6 +28,12 @@
         "sections.faq",
         "sections.files"
       ]
+    },
+    "dates": {
+      "displayName": "workshopDate",
+      "type": "component",
+      "repeatable": true,
+      "component": "items.workshop-date"
     }
   }
 }

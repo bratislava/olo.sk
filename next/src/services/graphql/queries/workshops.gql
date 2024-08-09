@@ -1,33 +1,37 @@
 fragment WorkshopSlugEntity on WorkshopEntity {
-  __typename
-  id
-  attributes {
-    title
-    slug
-  }
+    __typename
+    id
+    attributes {
+        title
+        slug
+        dates {
+            label
+            value
+        }
+    }
 }
 
 fragment WorkshopEntity on WorkshopEntity {
-  ...WorkshopSlugEntity
-  attributes {
-    sections {
-      ...PageSections
+    ...WorkshopSlugEntity
+    attributes {
+        sections {
+            ...PageSections
+        }
     }
-  }
 }
 
 query Workshops {
-  workshops {
-    data {
-      ...WorkshopEntity
+    workshops {
+        data {
+            ...WorkshopEntity
+        }
     }
-  }
 }
 
 query WorkshopBySlug($slug: String!) {
-  workshops(filters: { slug: { eq: $slug } }) {
-    data {
-      ...WorkshopEntity
+    workshops(filters: { slug: { eq: $slug } }) {
+        data {
+            ...WorkshopEntity
+        }
     }
-  }
 }

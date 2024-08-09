@@ -3,7 +3,7 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
-function cn(...args: ClassValue[]) {
+function cn(...args: ClassValue[]): string {
   return twMerge(clsx(args))
 }
 

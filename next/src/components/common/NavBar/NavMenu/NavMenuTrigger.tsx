@@ -20,7 +20,7 @@ const NavMenuTrigger = forwardRef<HTMLButtonElement, NavMenuTriggerProps>(
         onPointerMove={(event) => event.preventDefault()}
         onPointerLeave={(event) => event.preventDefault()}
         className={cn(
-          'rotate-menu-trigger flex items-center justify-center gap-0.5 px-4 py-5',
+          'rotate-menu-trigger flex items-center justify-center gap-0.5 py-5',
           className,
         )}
       >

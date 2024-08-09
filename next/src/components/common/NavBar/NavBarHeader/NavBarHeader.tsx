@@ -4,9 +4,7 @@ import * as React from 'react'
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
-import NavBarHorizontalDivider from '@/src/components/common/NavBar/NavMenu/NavBarHorizontalDivider'
 import Typography from '@/src/components/common/Typography/Typography'
-import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 import cn from '@/src/utils/cn'
 import { useCurrentWeekParity } from '@/src/utils/useCurrentWeekParity'
 
@@ -19,27 +17,25 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={cn('w-full bg-action-background-default px-[7rem] py-3', className)}>
-      <div className="flex items-center justify-between">
-        <div className="flex gap-4 py-0.5">
+    <div className={cn('bg-action-background-default py-3', className)}>
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 lg:px-8">
+        <div className="flex h-full gap-4 py-0.5">
           <NavBarLogo />
-          <NavBarHorizontalDivider />
+          <div className="border-r border-content-secondary" />
           <Typography variant="p-small">{currentWeekMessage}</Typography>
         </div>
 
-        <PlaceholderWrapper>
-          <Button
-            href="/" // TODO: Provide valid path
-            asLink
-            hasLinkIcon={false}
-            aria-label={t('navBar.contactsButton')}
-            variant="icon-wrapped"
-            className="flex items-center justify-center"
-          >
-            <Icon name="telefon" className="size-6" />
-            {t('navBar.contactsButton')}
-          </Button>
-        </PlaceholderWrapper>
+        <Button
+          href="kontakty"
+          asLink
+          hasLinkIcon={false}
+          aria-label={t('navBar.contactsButton')}
+          variant="icon-wrapped"
+          className="flex items-center justify-center"
+        >
+          <Icon name="telefon" className="size-6" />
+          {t('navBar.contactsButton')}
+        </Button>
       </div>
     </div>
   )

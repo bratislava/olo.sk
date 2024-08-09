@@ -9,8 +9,8 @@ type MenuItemArticleCardProps = {
   title: string
   linkHref: string
   tagText: string
-  className?: string
   imgSrc?: string
+  className?: string
 }
 
 /**
@@ -19,10 +19,10 @@ type MenuItemArticleCardProps = {
 
 const MenuItemArticleCard = ({
   title,
-  className,
   linkHref,
   imgSrc,
   tagText,
+  className,
 }: MenuItemArticleCardProps) => {
   return (
     <CardBase className={cn('rounded-lg', className)}>

@@ -11,7 +11,8 @@ import {
   ServiceSlugEntityFragment,
   WorkshopSlugEntityFragment,
 } from '@/src/services/graphql/api'
-import { getPagePath } from '@/src/utils/getPagePath'
+import { MeiliEntity } from '@/src/services/meili/types'
+import { getMeiliPagePath, getPagePath } from '@/src/utils/getPagePath'
 
 export type UnionSlugEntityType =
   | PageSlugEntityFragment
@@ -76,11 +77,39 @@ export const getFullPathFn = (
   return null
 }
 
+/**
+ * Returns full path for Meili reponse
+ */
+export const getFullMeiliPathFn = (
+  entity: MeiliEntity,
+  navigation: NavigationEntityFragment | null | undefined,
+) => {
+  if (entity.type === 'page') {
+    return getMeiliPagePath(entity)
+  }
+
+  if (entity.type === 'article' && navigation?.attributes?.articlesParentPage?.data) {
+    // return 'hiiii'
+
+    return `${getPagePath(navigation.attributes.articlesParentPage.data)}/${entity.slug}`
+  }
+
+  // TODO other types
+
+  return null
+}
+
 export const useGetFullPath = () => {
   const { navigation } = useGeneralContext()
 
   const getFullPath = useMemo(
-    () => (entity: UnionSlugEntityType) => getFullPathFn(entity, navigation?.data),
+    () => (entity: UnionSlugEntityType | MeiliEntity) => {
+      if (entity && 'type' in entity) {
+        return getFullMeiliPathFn(entity, navigation?.data)
+      }
+
+      return getFullPathFn(entity, navigation?.data)
+    },
     [navigation],
   )
 

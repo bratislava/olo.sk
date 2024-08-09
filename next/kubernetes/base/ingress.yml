@@ -14,6 +14,7 @@ spec:
     - hosts:
         - ${BRATISKA_HOSTNAME}
         - www.${BRATISKA_HOSTNAME}
+        - ${BUILD_REPOSITORY_NAME}-meilisearch.${DEPLOYMENT_ENV}bratislava.sk
       secretName: ${BUILD_REPOSITORY_NAME}-tls
   rules:
     - host: ${BRATISKA_HOSTNAME}
@@ -56,3 +57,13 @@ spec:
                 name: ${BUILD_REPOSITORY_NAME}-storybook
                 port:
                   number: 8080
+    - host: ${BUILD_REPOSITORY_NAME}-meilisearch.${DEPLOYMENT_ENV}bratislava.sk
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: ${BUILD_REPOSITORY_NAME}-meilisearch
+                port:
+                  number: 80

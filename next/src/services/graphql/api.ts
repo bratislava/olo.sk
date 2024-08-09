@@ -723,6 +723,12 @@ export type ComponentMenuMenuSectionInput = {
   specialSectionType?: InputMaybe<Enum_Componentmenumenusection_Specialsectiontype>
 }
 
+export type ComponentSectionsArticles = {
+  __typename?: 'ComponentSectionsArticles'
+  id: Scalars['ID']['output']
+  title: Scalars['String']['output']
+}
+
 export type ComponentSectionsArticlesHomepageSection = {
   __typename?: 'ComponentSectionsArticlesHomepageSection'
   articles?: Maybe<ArticleRelationResponseCollection>
@@ -1576,6 +1582,7 @@ export type GenericMorph =
   | ComponentMenuMenuItem
   | ComponentMenuMenuLink
   | ComponentMenuMenuSection
+  | ComponentSectionsArticles
   | ComponentSectionsArticlesHomepageSection
   | ComponentSectionsBanner
   | ComponentSectionsBranches
@@ -2523,6 +2530,7 @@ export type PageRelationResponseCollection = {
 }
 
 export type PageSectionsDynamicZone =
+  | ComponentSectionsArticles
   | ComponentSectionsBanner
   | ComponentSectionsBranches
   | ComponentSectionsCardsList
@@ -7399,6 +7407,13 @@ export type CardsListSectionFragment = {
   } | null> | null
 }
 
+export type ArticlesSectionFragment = { __typename?: 'ComponentSectionsArticles'; title: string }
+
+type PageSections_ComponentSectionsArticles_Fragment = {
+  __typename: 'ComponentSectionsArticles'
+  title: string
+}
+
 type PageSections_ComponentSectionsBanner_Fragment = {
   __typename: 'ComponentSectionsBanner'
   title: string
@@ -8616,6 +8631,7 @@ type PageSections_ComponentSectionsWorkshops_Fragment = {
 type PageSections_Error_Fragment = { __typename: 'Error' }
 
 export type PageSectionsFragment =
+  | PageSections_ComponentSectionsArticles_Fragment
   | PageSections_ComponentSectionsBanner_Fragment
   | PageSections_ComponentSectionsBranches_Fragment
   | PageSections_ComponentSectionsCardsList_Fragment
@@ -8851,6 +8867,67 @@ export type LatestArticlesQuery = {
       attributes?: {
         __typename?: 'Article'
         content?: string | null
+        perex?: string | null
+        addedAt: any
+        slug: string
+        title: string
+        coverMedia?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
+        articleCategory?: {
+          __typename?: 'ArticleCategoryEntityResponse'
+          data?: {
+            __typename?: 'ArticleCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
+          } | null
+        } | null
+        tags?: {
+          __typename?: 'TagRelationResponseCollection'
+          data: Array<{
+            __typename?: 'TagEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
+}
+
+export type SearchArticlesQueryVariables = Exact<{
+  search: Scalars['String']['input']
+  page: Scalars['Int']['input']
+  pageSize: Scalars['Int']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type SearchArticlesQuery = {
+  __typename?: 'Query'
+  articles?: {
+    __typename?: 'ArticleEntityResponseCollection'
+    meta: {
+      __typename?: 'ResponseCollectionMeta'
+      pagination: { __typename?: 'Pagination'; total: number }
+    }
+    data: Array<{
+      __typename: 'ArticleEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Article'
         perex?: string | null
         addedAt: any
         slug: string
@@ -14186,6 +14263,7 @@ export type PageEntityFragment = {
       | null
     > | null
     sections?: Array<
+      | { __typename: 'ComponentSectionsArticles'; title: string }
       | {
           __typename: 'ComponentSectionsBanner'
           title: string
@@ -15765,6 +15843,7 @@ export type PagesQuery = {
           | null
         > | null
         sections?: Array<
+          | { __typename: 'ComponentSectionsArticles'; title: string }
           | {
               __typename: 'ComponentSectionsBanner'
               title: string
@@ -17355,6 +17434,7 @@ export type PageBySlugQuery = {
           | null
         > | null
         sections?: Array<
+          | { __typename: 'ComponentSectionsArticles'; title: string }
           | {
               __typename: 'ComponentSectionsBanner'
               title: string
@@ -22721,6 +22801,11 @@ export const CardsListSectionFragmentDoc = gql`
   }
   ${LinkFragmentDoc}
 `
+export const ArticlesSectionFragmentDoc = gql`
+  fragment ArticlesSection on ComponentSectionsArticles {
+    title
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -22766,6 +22851,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsCardsList {
       ...CardsListSection
     }
+    ... on ComponentSectionsArticles {
+      ...ArticlesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -22781,6 +22869,7 @@ export const PageSectionsFragmentDoc = gql`
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}
   ${CardsListSectionFragmentDoc}
+  ${ArticlesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
@@ -22996,6 +23085,26 @@ export const LatestArticlesDocument = gql`
     }
   }
   ${ArticleEntityFragmentDoc}
+`
+export const SearchArticlesDocument = gql`
+  query SearchArticles($search: String!, $page: Int!, $pageSize: Int!, $locale: I18NLocaleCode!) {
+    articles(
+      filters: { title: { containsi: $search } }
+      sort: "addedAt:desc"
+      pagination: { page: $page, pageSize: $pageSize }
+      locale: $locale
+    ) {
+      meta {
+        pagination {
+          total
+        }
+      }
+      data {
+        ...ArticleCardEntity
+      }
+    }
+  }
+  ${ArticleCardEntityFragmentDoc}
 `
 export const BranchesDocument = gql`
   query Branches($locale: I18NLocaleCode!) {
@@ -23336,6 +23445,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'LatestArticles',
+        'query',
+        variables,
+      )
+    },
+    SearchArticles(
+      variables: SearchArticlesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<SearchArticlesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<SearchArticlesQuery>(SearchArticlesDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'SearchArticles',
         'query',
         variables,
       )

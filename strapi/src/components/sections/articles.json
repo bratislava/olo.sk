@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_articles",
+  "info": {
+    "displayName": "Articles"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

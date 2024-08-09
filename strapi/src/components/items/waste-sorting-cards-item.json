@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_items_waste_sorting_cards_items",
+  "info": {
+    "displayName": "Waste Sorting Cards item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "mixed",
+        "paper",
+        "plastic",
+        "glass",
+        "kitchen",
+        "cookingOilsAndFats",
+        "organic",
+        "civicAmenitySite",
+        "cemetery",
+        "christmasTrees"
+      ],
+      "default": "mixed",
+      "required": true
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link",
+      "required": true
+    }
+  }
+}

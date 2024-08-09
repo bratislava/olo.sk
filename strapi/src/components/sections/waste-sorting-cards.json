@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_waste_sorting_cards",
+  "info": {
+    "displayName": "Waste Sorting Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.waste-sorting-cards-item"
+    }
+  }
+}

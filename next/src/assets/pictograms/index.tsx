@@ -1,4 +1,6 @@
 export { default as PigCoinBankIcon } from './pig-coin-bank.svg'
+export { default as WasteCemeteryIcon } from './waste-cemetery.svg'
+export { default as WasteChristmasTreesIcon } from './waste-christmas-trees.svg'
 export { default as WasteCivicAmenitySiteIcon } from './waste-civic-amenity-site.svg'
 export { default as WasteGlassIcon } from './waste-glass.svg'
 export { default as WasteKitchenIcon } from './waste-kitchen.svg'

@@ -991,6 +991,13 @@ export type ComponentSectionsRichtext = {
   id: Scalars['ID']['output']
 }
 
+export type ComponentSectionsServices = {
+  __typename?: 'ComponentSectionsServices'
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
 export type ComponentSectionsServicesHomepageSection = {
   __typename?: 'ComponentSectionsServicesHomepageSection'
   id: Scalars['ID']['output']
@@ -1591,6 +1598,7 @@ export type GenericMorph =
   | ComponentSectionsKoloHomepageSection
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
+  | ComponentSectionsServices
   | ComponentSectionsServicesHomepageSection
   | ComponentSectionsTable
   | ComponentSectionsWorkshops
@@ -2535,6 +2543,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
+  | ComponentSectionsServices
   | ComponentSectionsTable
   | ComponentSectionsWorkshops
   | Error
@@ -7399,6 +7408,12 @@ export type CardsListSectionFragment = {
   } | null> | null
 }
 
+export type ServicesSectionFragment = {
+  __typename?: 'ComponentSectionsServices'
+  text?: string | null
+  titleServices?: string | null
+}
+
 type PageSections_ComponentSectionsBanner_Fragment = {
   __typename: 'ComponentSectionsBanner'
   title: string
@@ -8591,6 +8606,12 @@ type PageSections_ComponentSectionsRichtext_Fragment = {
   backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
 }
 
+type PageSections_ComponentSectionsServices_Fragment = {
+  __typename: 'ComponentSectionsServices'
+  text?: string | null
+  titleServices?: string | null
+}
+
 type PageSections_ComponentSectionsTable_Fragment = {
   __typename: 'ComponentSectionsTable'
   title: string
@@ -8628,6 +8649,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
+  | PageSections_ComponentSectionsServices_Fragment
   | PageSections_ComponentSectionsTable_Fragment
   | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
@@ -15407,6 +15429,11 @@ export type PageEntityFragment = {
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
         }
       | {
+          __typename: 'ComponentSectionsServices'
+          text?: string | null
+          titleServices?: string | null
+        }
+      | {
           __typename: 'ComponentSectionsTable'
           title: string
           text?: string | null
@@ -16988,6 +17015,11 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
+          | {
+              __typename: 'ComponentSectionsServices'
+              text?: string | null
+              titleServices?: string | null
             }
           | {
               __typename: 'ComponentSectionsTable'
@@ -18578,6 +18610,11 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
+          | {
+              __typename: 'ComponentSectionsServices'
+              text?: string | null
+              titleServices?: string | null
             }
           | {
               __typename: 'ComponentSectionsTable'
@@ -22721,6 +22758,12 @@ export const CardsListSectionFragmentDoc = gql`
   }
   ${LinkFragmentDoc}
 `
+export const ServicesSectionFragmentDoc = gql`
+  fragment ServicesSection on ComponentSectionsServices {
+    titleServices: title
+    text
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -22766,6 +22809,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsCardsList {
       ...CardsListSection
     }
+    ... on ComponentSectionsServices {
+      ...ServicesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -22781,6 +22827,7 @@ export const PageSectionsFragmentDoc = gql`
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}
   ${CardsListSectionFragmentDoc}
+  ${ServicesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

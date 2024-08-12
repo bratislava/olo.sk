@@ -8,7 +8,8 @@ export const useMostRecentWorkshopDate = () => {
 
   const getMostRecentWorkshopDateMessage = (workshop?: WorkshopSlugEntityFragment) => {
     const dates = workshop?.attributes?.dates
-    if (!workshop?.attributes || !dates) return { mostRecentDateMessage: null }
+    if (!workshop?.attributes || !dates || dates.length === 0)
+      return { mostRecentDateMessage: null }
 
     const mostRecentDate = dates.find(
       (date) => date?.value === getLatestWorkshopDateAsISOString(workshop),

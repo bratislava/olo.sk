@@ -256,6 +256,18 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface ItemsWorkshopDate extends Schema.Component {
+  collectionName: 'components_items_workshop_dates'
+  info: {
+    displayName: 'Workshop date'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    value: Attribute.DateTime & Attribute.Required
+  }
+}
+
 export interface MenuMenuItem extends Schema.Component {
   collectionName: 'components_menu_menu_items'
   info: {
@@ -416,6 +428,24 @@ export interface SectionsDivider extends Schema.Component {
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
+  }
+}
+
+export interface SectionsFaqCategories extends Schema.Component {
+  collectionName: 'components_sections_faq_categories'
+  info: {
+    displayName: 'FAQ Categories'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    faqCategories: Attribute.Relation<
+      'sections.faq-categories',
+      'oneToMany',
+      'api::faq-category.faq-category'
+    >
   }
 }
 
@@ -665,6 +695,7 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'items.workshop-date': ItemsWorkshopDate
       'menu.menu-item': MenuMenuItem
       'menu.menu-link': MenuMenuLink
       'menu.menu-section': MenuMenuSection
@@ -675,6 +706,7 @@ declare module '@strapi/types' {
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
       'sections.divider': SectionsDivider
+      'sections.faq-categories': SectionsFaqCategories
       'sections.faq': SectionsFaq
       'sections.files': SectionsFiles
       'sections.hero-homepage-section': SectionsHeroHomepageSection

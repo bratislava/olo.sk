@@ -624,6 +624,27 @@ export type ComponentItemsSlideInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentItemsWorkshopDate = {
+  __typename?: 'ComponentItemsWorkshopDate'
+  id: Scalars['ID']['output']
+  label: Scalars['String']['output']
+  value: Scalars['DateTime']['output']
+}
+
+export type ComponentItemsWorkshopDateFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsWorkshopDateFiltersInput>>>
+  label?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentItemsWorkshopDateFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsWorkshopDateFiltersInput>>>
+  value?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ComponentItemsWorkshopDateInput = {
+  id?: InputMaybe<Scalars['ID']['input']>
+  label?: InputMaybe<Scalars['String']['input']>
+  value?: InputMaybe<Scalars['DateTime']['input']>
+}
+
 export type ComponentMenuMenuItem = {
   __typename?: 'ComponentMenuMenuItem'
   id: Scalars['ID']['output']
@@ -1573,6 +1594,7 @@ export type GenericMorph =
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
+  | ComponentItemsWorkshopDate
   | ComponentMenuMenuItem
   | ComponentMenuMenuLink
   | ComponentMenuMenuSection
@@ -3473,11 +3495,18 @@ export type UsersPermissionsUserRelationResponseCollection = {
 export type Workshop = {
   __typename?: 'Workshop'
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  dates?: Maybe<Array<Maybe<ComponentItemsWorkshopDate>>>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<WorkshopSectionsDynamicZone>>>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type WorkshopDatesArgs = {
+  filters?: InputMaybe<ComponentItemsWorkshopDateFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type WorkshopEntity = {
@@ -3500,6 +3529,7 @@ export type WorkshopEntityResponseCollection = {
 export type WorkshopFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  dates?: InputMaybe<ComponentItemsWorkshopDateFiltersInput>
   id?: InputMaybe<IdFilterInput>
   not?: InputMaybe<WorkshopFiltersInput>
   or?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
@@ -3510,6 +3540,7 @@ export type WorkshopFiltersInput = {
 }
 
 export type WorkshopInput = {
+  dates?: InputMaybe<Array<InputMaybe<ComponentItemsWorkshopDateInput>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['WorkshopSectionsDynamicZoneInput']['input']>>
   slug?: InputMaybe<Scalars['String']['input']>
@@ -3780,7 +3811,16 @@ export type FaqCategoryEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       }
@@ -3881,7 +3921,16 @@ export type FaqCategoryEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null
@@ -4030,7 +4079,16 @@ export type FaqCategoriesQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           }
@@ -4131,7 +4189,16 @@ export type FaqCategoriesQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -4283,7 +4350,16 @@ export type FaqCategoryBySlugQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           }
@@ -4384,7 +4460,16 @@ export type FaqCategoryBySlugQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -4545,7 +4630,16 @@ export type LinkFragment = {
     data?: {
       __typename: 'WorkshopEntity'
       id?: string | null
-      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Workshop'
+        title: string
+        slug: string
+        dates?: Array<{
+          __typename?: 'ComponentItemsWorkshopDate'
+          label: string
+          value: any
+        } | null> | null
+      } | null
     } | null
   } | null
 }
@@ -5302,7 +5396,16 @@ export type GeneralQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null> | null
@@ -5404,7 +5507,16 @@ export type GeneralQuery = {
             data?: {
               __typename: 'WorkshopEntity'
               id?: string | null
-              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+              attributes?: {
+                __typename?: 'Workshop'
+                title: string
+                slug: string
+                dates?: Array<{
+                  __typename?: 'ComponentItemsWorkshopDate'
+                  label: string
+                  value: any
+                } | null> | null
+              } | null
             } | null
           } | null
         } | null> | null
@@ -5508,7 +5620,16 @@ export type GeneralQuery = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             } | null> | null
@@ -5610,7 +5731,16 @@ export type GeneralQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -5895,7 +6025,16 @@ export type PickupDayHeaderSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -6148,7 +6287,16 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -6322,7 +6470,16 @@ export type ImageAndTextSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -6423,7 +6580,16 @@ export type ImageAndTextSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -6576,7 +6742,16 @@ export type ImageAndTextOverlappedSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -6612,7 +6787,16 @@ export type WorkshopsSectionFragment = {
     data: Array<{
       __typename: 'WorkshopEntity'
       id?: string | null
-      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Workshop'
+        title: string
+        slug: string
+        dates?: Array<{
+          __typename?: 'ComponentItemsWorkshopDate'
+          label: string
+          value: any
+        } | null> | null
+      } | null
     }>
   } | null
 }
@@ -6771,7 +6955,16 @@ export type FaqSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -6919,7 +7112,16 @@ export type FaqSectionFragment = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 }
@@ -7020,7 +7222,16 @@ export type FaqSectionFragment = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -7176,7 +7387,16 @@ export type BannerSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   }
@@ -7277,7 +7497,16 @@ export type BannerSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -7392,7 +7621,16 @@ export type CardsListSectionFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     }
@@ -7517,7 +7755,16 @@ type PageSections_ComponentSectionsBanner_Fragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   }
@@ -7618,7 +7865,16 @@ type PageSections_ComponentSectionsBanner_Fragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -7748,7 +8004,16 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     }
@@ -7935,7 +8200,16 @@ type PageSections_ComponentSectionsFaq_Fragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -8083,7 +8357,16 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 }
@@ -8184,7 +8467,16 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -8341,7 +8633,16 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -8442,7 +8743,16 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -8567,7 +8877,16 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -8608,7 +8927,16 @@ type PageSections_ComponentSectionsWorkshops_Fragment = {
     data: Array<{
       __typename: 'WorkshopEntity'
       id?: string | null
-      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Workshop'
+        title: string
+        slug: string
+        dates?: Array<{
+          __typename?: 'ComponentItemsWorkshopDate'
+          label: string
+          value: any
+        } | null> | null
+      } | null
     }>
   } | null
 }
@@ -9247,7 +9575,16 @@ export type FaqEntityFragment = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             }
@@ -9348,7 +9685,16 @@ export type FaqEntityFragment = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             } | null
@@ -9509,7 +9855,16 @@ export type FaqsQuery = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 }
@@ -9610,7 +9965,16 @@ export type FaqsQuery = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -9723,7 +10087,16 @@ export type FooterColumnItemFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null> | null
@@ -9834,7 +10207,16 @@ export type FooterFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     } | null> | null
@@ -9936,7 +10318,16 @@ export type FooterFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null> | null
@@ -10049,7 +10440,16 @@ export type FooterEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null> | null
@@ -10151,7 +10551,16 @@ export type FooterEntityFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     } | null> | null
@@ -10281,7 +10690,16 @@ export type HeroMainTileFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -10387,7 +10805,16 @@ export type HeroSmallTileFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -10494,7 +10921,16 @@ export type HomepageServiceTileFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -10624,7 +11060,16 @@ export type HeroHomepageSectionFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     } | null
@@ -10729,7 +11174,16 @@ export type HeroHomepageSectionFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     } | null
@@ -10884,7 +11338,16 @@ export type ArticlesHomepageSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -10992,7 +11455,16 @@ export type KoloHomepageSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null> | null
@@ -11106,7 +11578,16 @@ export type KoloHomepageSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -11217,7 +11698,16 @@ export type ServicesHomepageSectionFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     } | null
@@ -11319,7 +11809,16 @@ export type ServicesHomepageSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -11454,7 +11953,16 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'WorkshopEntity'
               id?: string | null
-              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+              attributes?: {
+                __typename?: 'Workshop'
+                title: string
+                slug: string
+                dates?: Array<{
+                  __typename?: 'ComponentItemsWorkshopDate'
+                  label: string
+                  value: any
+                } | null> | null
+              } | null
             } | null
           } | null
         } | null
@@ -11559,7 +12067,16 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'WorkshopEntity'
               id?: string | null
-              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+              attributes?: {
+                __typename?: 'Workshop'
+                title: string
+                slug: string
+                dates?: Array<{
+                  __typename?: 'ComponentItemsWorkshopDate'
+                  label: string
+                  value: any
+                } | null> | null
+              } | null
             } | null
           } | null
         } | null
@@ -11713,7 +12230,16 @@ export type HomepageEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null
@@ -11820,7 +12346,16 @@ export type HomepageEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null> | null
@@ -11934,7 +12469,16 @@ export type HomepageEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null
@@ -12044,7 +12588,16 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'WorkshopEntity'
               id?: string | null
-              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+              attributes?: {
+                __typename?: 'Workshop'
+                title: string
+                slug: string
+                dates?: Array<{
+                  __typename?: 'ComponentItemsWorkshopDate'
+                  label: string
+                  value: any
+                } | null> | null
+              } | null
             } | null
           } | null
         } | null
@@ -12146,7 +12699,16 @@ export type HomepageEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null
@@ -12291,7 +12853,16 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             } | null
@@ -12396,7 +12967,16 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             } | null
@@ -12554,7 +13134,16 @@ export type HomepageQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -12661,7 +13250,16 @@ export type HomepageQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null> | null
@@ -12775,7 +13373,16 @@ export type HomepageQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -12885,7 +13492,16 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             } | null
@@ -12987,7 +13603,16 @@ export type HomepageQuery = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -13076,7 +13701,16 @@ export type MenuLinkFragment = {
     data?: {
       __typename: 'WorkshopEntity'
       id?: string | null
-      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+      attributes?: {
+        __typename?: 'Workshop'
+        title: string
+        slug: string
+        dates?: Array<{
+          __typename?: 'ComponentItemsWorkshopDate'
+          label: string
+          value: any
+        } | null> | null
+      } | null
     } | null
   } | null
 }
@@ -13168,7 +13802,16 @@ export type MenuSectionFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null> | null
@@ -13265,7 +13908,16 @@ export type MenuItemFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     } | null> | null
@@ -13367,7 +14019,16 @@ export type MenuItemFragment = {
       data?: {
         __typename: 'WorkshopEntity'
         id?: string | null
-        attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{
+            __typename?: 'ComponentItemsWorkshopDate'
+            label: string
+            value: any
+          } | null> | null
+        } | null
       } | null
     } | null
   } | null
@@ -13466,7 +14127,16 @@ export type MenuFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null> | null
@@ -13568,7 +14238,16 @@ export type MenuFragment = {
         data?: {
           __typename: 'WorkshopEntity'
           id?: string | null
-          attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              label: string
+              value: any
+            } | null> | null
+          } | null
         } | null
       } | null
     } | null
@@ -13670,7 +14349,16 @@ export type MenuEntityFragment = {
             data?: {
               __typename: 'WorkshopEntity'
               id?: string | null
-              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+              attributes?: {
+                __typename?: 'Workshop'
+                title: string
+                slug: string
+                dates?: Array<{
+                  __typename?: 'ComponentItemsWorkshopDate'
+                  label: string
+                  value: any
+                } | null> | null
+              } | null
             } | null
           } | null
         } | null> | null
@@ -13772,7 +14460,16 @@ export type MenuEntityFragment = {
           data?: {
             __typename: 'WorkshopEntity'
             id?: string | null
-            attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                label: string
+                value: any
+              } | null> | null
+            } | null
           } | null
         } | null
       } | null
@@ -14158,7 +14855,16 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -14304,7 +15010,16 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           }
@@ -14405,7 +15120,16 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -14533,7 +15257,16 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             }
@@ -14716,7 +15449,16 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -14884,6 +15626,11 @@ export type PageEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                dates?: Array<{
+                                  __typename?: 'ComponentItemsWorkshopDate'
+                                  label: string
+                                  value: any
+                                } | null> | null
                               } | null
                             } | null
                           } | null
@@ -15005,6 +15752,11 @@ export type PageEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                dates?: Array<{
+                                  __typename?: 'ComponentItemsWorkshopDate'
+                                  label: string
+                                  value: any
+                                } | null> | null
                               } | null
                             } | null
                           } | null
@@ -15160,7 +15912,16 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -15261,7 +16022,16 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -15385,7 +16155,16 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -15422,7 +16201,16 @@ export type PageEntityFragment = {
             data: Array<{
               __typename: 'WorkshopEntity'
               id?: string | null
-              attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+              attributes?: {
+                __typename?: 'Workshop'
+                title: string
+                slug: string
+                dates?: Array<{
+                  __typename?: 'ComponentItemsWorkshopDate'
+                  label: string
+                  value: any
+                } | null> | null
+              } | null
             }>
           } | null
         }
@@ -15737,7 +16525,16 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -15883,7 +16680,16 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               }
@@ -15984,7 +16790,16 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -16112,7 +16927,16 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 }
@@ -16295,7 +17119,16 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -16467,6 +17300,11 @@ export type PagesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -16588,6 +17426,11 @@ export type PagesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -16743,7 +17586,16 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -16844,7 +17696,16 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -16968,7 +17829,16 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -17005,7 +17875,16 @@ export type PagesQuery = {
                 data: Array<{
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 }>
               } | null
             }
@@ -17327,7 +18206,16 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -17473,7 +18361,16 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               }
@@ -17574,7 +18471,16 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -17702,7 +18608,16 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 }
@@ -17885,7 +18800,16 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -18057,6 +18981,11 @@ export type PageBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -18178,6 +19107,11 @@ export type PageBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -18333,7 +19267,16 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -18434,7 +19377,16 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -18558,7 +19510,16 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -18595,7 +19556,16 @@ export type PageBySlugQuery = {
                 data: Array<{
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 }>
               } | null
             }
@@ -18798,7 +19768,16 @@ export type ServiceEntityFragment = {
                 data?: {
                   __typename: 'WorkshopEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      label: string
+                      value: any
+                    } | null> | null
+                  } | null
                 } | null
               } | null
             }
@@ -18905,7 +19884,16 @@ export type ServiceEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -19073,6 +20061,11 @@ export type ServiceEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                dates?: Array<{
+                                  __typename?: 'ComponentItemsWorkshopDate'
+                                  label: string
+                                  value: any
+                                } | null> | null
                               } | null
                             } | null
                           } | null
@@ -19194,6 +20187,11 @@ export type ServiceEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                dates?: Array<{
+                                  __typename?: 'ComponentItemsWorkshopDate'
+                                  label: string
+                                  value: any
+                                } | null> | null
                               } | null
                             } | null
                           } | null
@@ -19390,7 +20388,16 @@ export type ServicesQuery = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 }
@@ -19497,7 +20504,16 @@ export type ServicesQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -19669,6 +20685,11 @@ export type ServicesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -19790,6 +20811,11 @@ export type ServicesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -19989,7 +21015,16 @@ export type ServiceBySlugQuery = {
                     data?: {
                       __typename: 'WorkshopEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          label: string
+                          value: any
+                        } | null> | null
+                      } | null
                     } | null
                   } | null
                 }
@@ -20096,7 +21131,16 @@ export type ServiceBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -20268,6 +21312,11 @@ export type ServiceBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -20389,6 +21438,11 @@ export type ServiceBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -20441,7 +21495,16 @@ export type ServiceBySlugQuery = {
 export type WorkshopSlugEntityFragment = {
   __typename: 'WorkshopEntity'
   id?: string | null
-  attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+  attributes?: {
+    __typename?: 'Workshop'
+    title: string
+    slug: string
+    dates?: Array<{
+      __typename?: 'ComponentItemsWorkshopDate'
+      label: string
+      value: any
+    } | null> | null
+  } | null
 }
 
 export type WorkshopEntityFragment = {
@@ -20553,7 +21616,16 @@ export type WorkshopEntityFragment = {
               data?: {
                 __typename: 'WorkshopEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    label: string
+                    value: any
+                  } | null> | null
+                } | null
               } | null
             } | null
           } | null
@@ -20721,6 +21793,11 @@ export type WorkshopEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                dates?: Array<{
+                                  __typename?: 'ComponentItemsWorkshopDate'
+                                  label: string
+                                  value: any
+                                } | null> | null
                               } | null
                             } | null
                           } | null
@@ -20842,6 +21919,11 @@ export type WorkshopEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                dates?: Array<{
+                                  __typename?: 'ComponentItemsWorkshopDate'
+                                  label: string
+                                  value: any
+                                } | null> | null
                               } | null
                             } | null
                           } | null
@@ -20886,6 +21968,11 @@ export type WorkshopEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    dates?: Array<{
+      __typename?: 'ComponentItemsWorkshopDate'
+      label: string
+      value: any
+    } | null> | null
   } | null
 }
 
@@ -21004,7 +22091,16 @@ export type WorkshopsQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -21176,6 +22272,11 @@ export type WorkshopsQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -21297,6 +22398,11 @@ export type WorkshopsQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -21341,6 +22447,11 @@ export type WorkshopsQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        dates?: Array<{
+          __typename?: 'ComponentItemsWorkshopDate'
+          label: string
+          value: any
+        } | null> | null
       } | null
     }>
   } | null
@@ -21463,7 +22574,16 @@ export type WorkshopBySlugQuery = {
                   data?: {
                     __typename: 'WorkshopEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Workshop'; title: string; slug: string } | null
+                    attributes?: {
+                      __typename?: 'Workshop'
+                      title: string
+                      slug: string
+                      dates?: Array<{
+                        __typename?: 'ComponentItemsWorkshopDate'
+                        label: string
+                        value: any
+                      } | null> | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -21635,6 +22755,11 @@ export type WorkshopBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -21756,6 +22881,11 @@ export type WorkshopBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    dates?: Array<{
+                                      __typename?: 'ComponentItemsWorkshopDate'
+                                      label: string
+                                      value: any
+                                    } | null> | null
                                   } | null
                                 } | null
                               } | null
@@ -21800,6 +22930,11 @@ export type WorkshopBySlugQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        dates?: Array<{
+          __typename?: 'ComponentItemsWorkshopDate'
+          label: string
+          value: any
+        } | null> | null
       } | null
     }>
   } | null
@@ -22013,6 +23148,10 @@ export const WorkshopSlugEntityFragmentDoc = gql`
     attributes {
       title
       slug
+      dates {
+        label
+        value
+      }
     }
   }
 `

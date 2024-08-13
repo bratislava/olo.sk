@@ -1577,6 +1577,7 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
     sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.files']>
+    dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

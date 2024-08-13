@@ -28,7 +28,7 @@ const FaqSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColorFaq} className="py-6 lg:py-18">
       <div className="flex flex-col gap-6">
-        <SectionHeader title={title} showMoreLink={showMoreLink} />
+        {title || showMoreLink ? <SectionHeader title={title} showMoreLink={showMoreLink} /> : null}
         <FaqGroup
           faqs={filteredFaqs}
           className={cn({

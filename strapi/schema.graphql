@@ -1620,7 +1620,7 @@ type FaqCategory {
   localizations(filters: FaqCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqCategoryRelationResponseCollection
   publishedAt: DateTime
   slug: String!
-  title: String!
+  title: String
   updatedAt: DateTime
 }
 

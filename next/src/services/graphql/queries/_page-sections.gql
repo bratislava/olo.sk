@@ -190,6 +190,10 @@ fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
   }
 }
 
+fragment ArticlesSection on ComponentSectionsArticles {
+  title
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -259,5 +263,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsWasteSortingCards {
     ...WasteSortingCardsSection
+  }
+
+  ... on ComponentSectionsArticles {
+    ...ArticlesSection
   }
 }

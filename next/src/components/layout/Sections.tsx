@@ -1,5 +1,6 @@
 import React from 'react'
 
+import ArticlesSection from '@/src/components/sections/ArticlesSection'
 import BannerSection from '@/src/components/sections/BannerSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
 import CardsListSection from '@/src/components/sections/CardsListSection'
@@ -76,6 +77,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsWasteSortingCards':
       return <WasteSortingCardsSection section={section} />
+
+    case 'ComponentSectionsArticles':
+      return <ArticlesSection section={section} />
 
     default:
       return null

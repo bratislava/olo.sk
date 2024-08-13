@@ -5,8 +5,7 @@ fragment WorkshopSlugEntity on WorkshopEntity {
         title
         slug
         dates {
-            label
-            value
+            datetime
         }
     }
 }

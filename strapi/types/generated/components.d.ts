@@ -291,8 +291,8 @@ export interface ItemsWorkshopDate extends Schema.Component {
     description: ''
   }
   attributes: {
-    label: Attribute.String & Attribute.Required
-    value: Attribute.DateTime & Attribute.Required
+    internalName: Attribute.String & Attribute.Private
+    datetime: Attribute.DateTime & Attribute.Required
   }
 }
 

@@ -634,6 +634,17 @@ export interface SectionsServicesHomepageSection extends Schema.Component {
   }
 }
 
+export interface SectionsServices extends Schema.Component {
+  collectionName: 'components_sections_services'
+  info: {
+    displayName: 'Services (all)'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.String
+  }
+}
+
 export interface SectionsTable extends Schema.Component {
   collectionName: 'components_sections_tables'
   info: {
@@ -705,6 +716,7 @@ declare module '@strapi/types' {
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
       'sections.services-homepage-section': SectionsServicesHomepageSection
+      'sections.services': SectionsServices
       'sections.table': SectionsTable
       'sections.workshops': SectionsWorkshops
     }

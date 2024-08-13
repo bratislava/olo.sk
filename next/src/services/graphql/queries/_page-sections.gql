@@ -173,6 +173,11 @@ fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
   }
 }
 
+fragment ServicesSection on ComponentSectionsServices {
+  titleServices: title
+  text
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -234,5 +239,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsFaqCategories {
     ...FaqCategoriesSection
+  }
+
+  ... on ComponentSectionsServices {
+    ...ServicesSection
   }
 }

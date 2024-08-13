@@ -13,6 +13,7 @@ import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTex
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
+import ServicesSection from '@/src/components/sections/ServicesSection'
 import TableSection from '@/src/components/sections/TableSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment } from '@/src/services/graphql/api'
@@ -68,6 +69,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsFaqCategories':
       return <FaqCategoriesSection section={section} />
+
+    case 'ComponentSectionsServices':
+      return <ServicesSection section={section} />
 
     default:
       return null

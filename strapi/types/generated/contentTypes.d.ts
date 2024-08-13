@@ -1373,6 +1373,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.image-and-text-overlapped',
         'sections.ordered-cards',
         'sections.richtext',
+        'sections.services',
         'sections.table',
         'sections.workshops',
       ]

@@ -618,23 +618,22 @@ input ComponentItemsSlideInput {
 }
 
 type ComponentItemsWorkshopDate {
+  datetime: DateTime!
   id: ID!
-  label: String!
-  value: DateTime!
 }
 
 input ComponentItemsWorkshopDateFiltersInput {
   and: [ComponentItemsWorkshopDateFiltersInput]
-  label: StringFilterInput
+  datetime: DateTimeFilterInput
+  internalName: StringFilterInput
   not: ComponentItemsWorkshopDateFiltersInput
   or: [ComponentItemsWorkshopDateFiltersInput]
-  value: DateTimeFilterInput
 }
 
 input ComponentItemsWorkshopDateInput {
+  datetime: DateTime
   id: ID
-  label: String
-  value: DateTime
+  internalName: String
 }
 
 type ComponentMenuMenuItem {

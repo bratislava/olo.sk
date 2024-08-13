@@ -7,7 +7,7 @@ import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 
 type BannerProps = {
-  variant: 'background-grey' | 'background-black'
+  variant: 'background-grey' | 'background-black' | 'background-yellow'
   title: string
   subtext?: string | null | undefined
   button1LinkHref: string
@@ -37,6 +37,10 @@ const Banner = ({
     <div
       className={cn(
         'flex h-full w-full flex-col overflow-hidden rounded-2xl lg:flex-row [&>*]:basis-[50%]',
+        {
+          // eslint-disable-next-line sonarjs/no-duplicate-string
+          'lg:[&>*]:basis-[100%]': variant === 'background-yellow',
+        },
         className,
       )}
     >
@@ -45,14 +49,23 @@ const Banner = ({
           'bg-background-tertiary': variant === 'background-grey',
           'bg-background-primaryInverted text-content-primaryInverted':
             variant === 'background-black',
+          'gap-4 bg-background-secondary px-4 py-6 lg:gap-12 lg:p-10':
+            variant === 'background-yellow',
         })}
       >
         <div className="flex flex-col gap-2 lg:gap-4">
           <Typography variant="h3">{title}</Typography>
-          {subtext ? <Typography variant="p-default">{subtext}</Typography> : null}
+          {variant === 'background-yellow' ? null : subtext ? (
+            <Typography variant="p-default">{subtext}</Typography>
+          ) : null}
         </div>
         <div className="flex gap-4">
-          <Button href={button1LinkHref} asLink hasLinkIcon={false} variant="category-solid">
+          <Button
+            href={button1LinkHref}
+            asLink
+            hasLinkIcon={variant === 'background-yellow'}
+            variant="category-solid"
+          >
             {button1Text}
           </Button>
           {button2LinkHref && button2Text ? (
@@ -69,19 +82,21 @@ const Banner = ({
           ) : null}
         </div>
       </div>
-      <div className="relative max-lg:aspect-[288/244]">
-        {imgSrc ? (
-          <Image
-            src={imgSrc}
-            alt=""
-            fill
-            sizes={generateImageSizes({ default: '50vw' })}
-            className="object-cover"
-          />
-        ) : (
-          <ImagePlaceholder />
-        )}
-      </div>
+      {variant === 'background-yellow' ? null : (
+        <div className="relative max-lg:aspect-[288/244]">
+          {imgSrc ? (
+            <Image
+              src={imgSrc}
+              alt=""
+              fill
+              sizes={generateImageSizes({ default: '50vw' })}
+              className="object-cover"
+            />
+          ) : (
+            <ImagePlaceholder />
+          )}
+        </div>
+      )}
     </div>
   )
 }

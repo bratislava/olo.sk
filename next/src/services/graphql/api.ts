@@ -888,6 +888,22 @@ export type ComponentSectionsFaqFaqsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSectionsFaqCategories = {
+  __typename?: 'ComponentSectionsFaqCategories'
+  faqCategories?: Maybe<FaqCategoryRelationResponseCollection>
+  id: Scalars['ID']['output']
+  showAll: Scalars['Boolean']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsFaqCategoriesFaqCategoriesArgs = {
+  filters?: InputMaybe<FaqCategoryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsFiles = {
   __typename?: 'ComponentSectionsFiles'
   files: Array<Maybe<ComponentItemsFileItem>>
@@ -1606,6 +1622,7 @@ export type GenericMorph =
   | ComponentSectionsColumnsList
   | ComponentSectionsDivider
   | ComponentSectionsFaq
+  | ComponentSectionsFaqCategories
   | ComponentSectionsFiles
   | ComponentSectionsHeroHomepageSection
   | ComponentSectionsImageAndText
@@ -2552,6 +2569,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsColumnsList
   | ComponentSectionsDivider
   | ComponentSectionsFaq
+  | ComponentSectionsFaqCategories
   | ComponentSectionsFiles
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
@@ -7637,6 +7655,21 @@ export type CardsListSectionFragment = {
   } | null> | null
 }
 
+export type FaqCategoriesSectionFragment = {
+  __typename?: 'ComponentSectionsFaqCategories'
+  text?: string | null
+  showAll: boolean
+  titleFaqCategories?: string | null
+  faqCategories?: {
+    __typename?: 'FaqCategoryRelationResponseCollection'
+    data: Array<{
+      __typename: 'FaqCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsBanner_Fragment = {
   __typename: 'ComponentSectionsBanner'
   title: string
@@ -8489,6 +8522,21 @@ type PageSections_ComponentSectionsFaq_Fragment = {
   } | null
 }
 
+type PageSections_ComponentSectionsFaqCategories_Fragment = {
+  __typename: 'ComponentSectionsFaqCategories'
+  text?: string | null
+  showAll: boolean
+  titleFaqCategories?: string | null
+  faqCategories?: {
+    __typename?: 'FaqCategoryRelationResponseCollection'
+    data: Array<{
+      __typename: 'FaqCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsFiles_Fragment = {
   __typename: 'ComponentSectionsFiles'
   title: string
@@ -8951,6 +8999,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsColumnsList_Fragment
   | PageSections_ComponentSectionsDivider_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
+  | PageSections_ComponentSectionsFaqCategories_Fragment
   | PageSections_ComponentSectionsFiles_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
@@ -15770,6 +15819,20 @@ export type PageEntityFragment = {
           } | null
         }
       | {
+          __typename: 'ComponentSectionsFaqCategories'
+          text?: string | null
+          showAll: boolean
+          titleFaqCategories?: string | null
+          faqCategories?: {
+            __typename?: 'FaqCategoryRelationResponseCollection'
+            data: Array<{
+              __typename: 'FaqCategoryEntity'
+              id?: string | null
+              attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsFiles'
           title: string
           files: Array<{
@@ -17440,6 +17503,20 @@ export type PagesQuery = {
                       } | null
                     } | null
                   } | null
+                }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsFaqCategories'
+              text?: string | null
+              showAll: boolean
+              titleFaqCategories?: string | null
+              faqCategories?: {
+                __typename?: 'FaqCategoryRelationResponseCollection'
+                data: Array<{
+                  __typename: 'FaqCategoryEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
                 }>
               } | null
             }
@@ -19121,6 +19198,20 @@ export type PageBySlugQuery = {
                       } | null
                     } | null
                   } | null
+                }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsFaqCategories'
+              text?: string | null
+              showAll: boolean
+              titleFaqCategories?: string | null
+              faqCategories?: {
+                __typename?: 'FaqCategoryRelationResponseCollection'
+                data: Array<{
+                  __typename: 'FaqCategoryEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
                 }>
               } | null
             }
@@ -23860,6 +23951,19 @@ export const CardsListSectionFragmentDoc = gql`
   }
   ${LinkFragmentDoc}
 `
+export const FaqCategoriesSectionFragmentDoc = gql`
+  fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
+    titleFaqCategories: title
+    text
+    showAll
+    faqCategories {
+      data {
+        ...FaqCategorySlugEntity
+      }
+    }
+  }
+  ${FaqCategorySlugEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -23905,6 +24009,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsCardsList {
       ...CardsListSection
     }
+    ... on ComponentSectionsFaqCategories {
+      ...FaqCategoriesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -23920,6 +24027,7 @@ export const PageSectionsFragmentDoc = gql`
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}
   ${CardsListSectionFragmentDoc}
+  ${FaqCategoriesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

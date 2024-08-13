@@ -431,6 +431,24 @@ export interface SectionsDivider extends Schema.Component {
   }
 }
 
+export interface SectionsFaqCategories extends Schema.Component {
+  collectionName: 'components_sections_faq_categories'
+  info: {
+    displayName: 'FAQ Categories'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    faqCategories: Attribute.Relation<
+      'sections.faq-categories',
+      'oneToMany',
+      'api::faq-category.faq-category'
+    >
+  }
+}
+
 export interface SectionsFaq extends Schema.Component {
   collectionName: 'components_sections_faqs'
   info: {
@@ -677,6 +695,7 @@ declare module '@strapi/types' {
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
       'sections.divider': SectionsDivider
+      'sections.faq-categories': SectionsFaqCategories
       'sections.faq': SectionsFaq
       'sections.files': SectionsFiles
       'sections.hero-homepage-section': SectionsHeroHomepageSection

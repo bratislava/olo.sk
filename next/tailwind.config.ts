@@ -140,6 +140,8 @@ const config: Config = {
         kitchen: 'rgb(var(--token-waste-kitchen))',
         organic: 'rgb(var(--token-waste-organic))',
         mixed: 'rgb(var(--token-waste-mixed))',
+        cemetery: 'rgb(var(--token-waste-cemetery))',
+        christmasTrees: 'rgb(var(--token-waste-christmasTrees))',
       },
     },
     extend: {

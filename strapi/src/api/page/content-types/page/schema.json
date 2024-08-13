@@ -78,12 +78,15 @@
         "sections.columns-list",
         "sections.divider",
         "sections.faq",
+        "sections.faq-categories",
         "sections.files",
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
         "sections.ordered-cards",
         "sections.richtext",
+        "sections.services",
         "sections.table",
+        "sections.waste-sorting-cards",
         "sections.workshops"
       ],
       "pluginOptions": {

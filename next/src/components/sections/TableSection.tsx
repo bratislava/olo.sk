@@ -15,7 +15,6 @@ type Props = {
  */
 
 const TableSection = ({ section }: Props) => {
-  // TODO implement showing all workshops based on showAll prop
   const { title, anchorId } = section
 
   return (

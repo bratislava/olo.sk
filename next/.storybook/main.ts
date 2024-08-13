@@ -68,5 +68,12 @@ const config: StorybookConfig = {
 
     return config
   },
+  // https://storybook.js.org/docs/configure/environment-variables#using-storybook-configuration
+  env: (config) => ({
+    ...config,
+    NODE_ENV: process.env.NODE_ENV,
+    NEXT_PUBLIC_DEPLOYMENT: process.env.NEXT_PUBLIC_DEPLOYMENT,
+    NEXT_PUBLIC_STRAPI_URL: process.env.NEXT_PUBLIC_STRAPI_URL,
+  }),
 }
 export default config

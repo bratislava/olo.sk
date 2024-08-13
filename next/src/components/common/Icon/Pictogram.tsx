@@ -11,6 +11,8 @@ export const pictogramNameMap = {
   kitchenWaste: 'WasteKitchenIcon',
   organic: 'WasteOrganicIcon',
   mixed: 'WasteMixedIcon',
+  cemetery: 'WasteCemeteryIcon',
+  christmasTrees: 'WasteChristmasTreesIcon',
   // other
   pigCoinBank: 'PigCoinBankIcon',
 } satisfies Record<string, keyof typeof Pictograms>

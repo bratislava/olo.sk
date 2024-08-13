@@ -173,6 +173,23 @@ fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
   }
 }
 
+fragment ServicesSection on ComponentSectionsServices {
+  titleServices: title
+  text
+}
+
+fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
+  titleWasteSortingCards: title
+  text
+  cardsWasteSortingCards: cards {
+    title
+    variant
+    link {
+      ...Link
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -234,5 +251,13 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsFaqCategories {
     ...FaqCategoriesSection
+  }
+
+  ... on ComponentSectionsServices {
+    ...ServicesSection
+  }
+
+  ... on ComponentSectionsWasteSortingCards {
+    ...WasteSortingCardsSection
   }
 }

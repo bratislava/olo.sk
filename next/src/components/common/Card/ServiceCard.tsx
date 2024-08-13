@@ -36,8 +36,8 @@ const ServiceCard = ({
       hasWhiteSectionBackground={hasWhiteSectionBackground}
       className={cn('p-4 lg:p-6', className)}
     >
-      <div className="flex flex-col gap-8 lg:gap-12">
-        <div className="flex flex-col items-start justify-start gap-3 lg:gap-4">
+      <div className="flex h-full flex-col gap-8 lg:gap-12">
+        <div className="flex h-full flex-col items-start justify-start gap-3 lg:gap-4">
           <Typography
             variant="h6"
             className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

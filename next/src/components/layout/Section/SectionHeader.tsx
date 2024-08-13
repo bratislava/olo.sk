@@ -11,8 +11,8 @@ type SectionHeaderProps = {
   text?: string | null | undefined
   isFullWidth?: boolean
   isCentered?: boolean
-  className?: string
   showMoreLink?: LinkFragment | null | undefined
+  className?: string
 }
 
 const SectionHeader = ({
@@ -20,13 +20,18 @@ const SectionHeader = ({
   text,
   isFullWidth = false,
   isCentered = false,
-  className,
   showMoreLink,
+  className,
 }: SectionHeaderProps) => {
   const { getLinkProps } = useGetLinkProps()
 
   return (
-    <div className="flex justify-between gap-6 max-lg:flex-col">
+    <div
+      className={cn('flex items-center lg:justify-end', {
+        'flex items-start gap-y-6 max-lg:flex-col lg:justify-between': title,
+        'lg:justify-start': !showMoreLink,
+      })}
+    >
       <div
         className={cn(
           'flex w-full flex-col items-start gap-4 empty:hidden',

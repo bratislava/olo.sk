@@ -256,6 +256,46 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface ItemsWasteSortingCardsItem extends Schema.Component {
+  collectionName: 'components_items_waste_sorting_cards_items'
+  info: {
+    displayName: 'Waste Sorting Cards item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    variant: Attribute.Enumeration<
+      [
+        'mixed',
+        'paper',
+        'plastic',
+        'glass',
+        'kitchen',
+        'cookingOilsAndFats',
+        'organic',
+        'civicAmenitySite',
+        'cemetery',
+        'christmasTrees',
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'mixed'>
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
+export interface ItemsWorkshopDate extends Schema.Component {
+  collectionName: 'components_items_workshop_dates'
+  info: {
+    displayName: 'Workshop date'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    value: Attribute.DateTime & Attribute.Required
+  }
+}
+
 export interface MenuMenuItem extends Schema.Component {
   collectionName: 'components_menu_menu_items'
   info: {
@@ -696,6 +736,8 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
+      'items.workshop-date': ItemsWorkshopDate
       'menu.menu-item': MenuMenuItem
       'menu.menu-link': MenuMenuLink
       'menu.menu-section': MenuMenuSection

@@ -5,6 +5,8 @@ resources:
   # Comment-out these lines if no database is used
   - stateful-set.yml
   - service-database.yml
+  - stateful-set-meilisearch.yml
+  - service-meilisearch.yml
 configurations:
   - configuration.yml
 
@@ -26,3 +28,7 @@ configMapGenerator:
     namespace: ${NAMESPACE}
     envs:
       - .database.env
+  - name: ${BUILD_REPOSITORY_NAME}-meilisearch
+    namespace: ${NAMESPACE}
+    envs:
+      - .meilisearch.env

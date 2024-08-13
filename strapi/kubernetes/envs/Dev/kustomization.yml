@@ -1,6 +1,7 @@
 resources:
   - ../../base
   - ./secrets/database.secret.yml
+  - ./secrets/meilisearch.secret.yml
 
 generatorOptions:
   disableNameSuffixHash: true

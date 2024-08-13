@@ -2,7 +2,8 @@ import * as React from 'react'
 
 import Icon from '@/src/components/common/Icon/Icon'
 import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
-import Typography from '@/src/components/common/Typography/Typography'
+import NavBarMobileCurrentWeekMessage from '@/src/components/common/NavBar/NavBarMobileCurrentWeekMessage'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 import cn from '@/src/utils/cn'
 import { useCurrentWeekParity } from '@/src/utils/useCurrentWeekParity'
@@ -16,7 +17,7 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
 
   return (
     <div className={cn(className)}>
-      <div className="fixed top-0 z-30 w-full border-b border-border-default bg-background-primary p-4">
+      <SectionContainer className="fixed top-0 z-30 w-full border-b border-border-default bg-background-primary py-4">
         <div className="flex items-center justify-between">
           <NavBarLogo className="text-action-background-default" />
           {/* TODO: Temporary solution - should be implemented as Buttons */}
@@ -27,12 +28,8 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
             </div>
           </PlaceholderWrapper>
         </div>
-      </div>
-      <div aria-hidden className="h-[3.813rem]" />
-
-      <div className="w-full bg-action-background-default px-4 py-2 text-center">
-        <Typography variant="p-small">{currentWeekMessage}</Typography>
-      </div>
+      </SectionContainer>
+      <NavBarMobileCurrentWeekMessage currentWeekMessage={currentWeekMessage} />
     </div>
   )
 }

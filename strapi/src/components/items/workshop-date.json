@@ -6,11 +6,12 @@
   },
   "options": {},
   "attributes": {
-    "label": {
+    "internalName": {
       "type": "string",
-      "required": true
+      "required": false,
+      "private": true
     },
-    "value": {
+    "datetime": {
       "type": "datetime",
       "required": true
     }

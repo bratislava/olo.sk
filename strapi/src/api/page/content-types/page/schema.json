@@ -85,6 +85,7 @@
         "sections.richtext",
         "sections.services",
         "sections.table",
+        "sections.waste-sorting-cards",
         "sections.workshops"
       ],
       "pluginOptions": {

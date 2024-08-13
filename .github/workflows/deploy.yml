@@ -174,6 +174,15 @@ jobs:
           registry: ${{ vars.HARBOR_REGISTRY }}
           username: ${{ secrets.HARBOR_REGISTRY_USERNAME }}
           password: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      - name: Prep Build Envs
+        run: |
+          if [[ "${{ steps.conditions.outputs.prod }}" == "true" ]]; then
+            cp .env.bratiska-cli-build.prod .env.production.local
+          elif [[ "${{ steps.conditions.outputs.staging }}" == "true" ]]; then
+            cp .env.bratiska-cli-build.staging .env.production.local
+          else
+            cp .env.bratiska-cli-build.dev .env.production.local
+          fi
       - name: Build and Push
         uses: docker/build-push-action@v5
         with:

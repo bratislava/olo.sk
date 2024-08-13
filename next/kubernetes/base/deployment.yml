@@ -23,8 +23,8 @@ spec:
               containerPort: ${INTERNAL_APP_PORT}
           resources:
             limits:
-              cpu: 900m
-              memory: 8Gi
+              cpu: ${NEXT_CPU_LIMITS}
+              memory: ${NEXT_MEMORY_LIMITS}
             requests:
               cpu: ${NEXT_CPU_REQUESTS}
               memory: ${NEXT_MEMORY_REQUESTS}
@@ -80,8 +80,3 @@ spec:
       terminationGracePeriodSeconds: 30
       imagePullSecrets:
         - name: ${IMAGE_PULL_SECRET}
-envFrom:
-  - secretRef:
-      name: ${BUILD_REPOSITORY_NAME}-meilisearch-secret
-  - configMapRef:
-      name: ${BUILD_REPOSITORY_NAME}-meilisearch

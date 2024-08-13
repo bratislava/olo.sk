@@ -44,7 +44,13 @@ spec:
           volumeMounts:
             - name: ${BUILD_REPOSITORY_NAME}-meilisearch-data-storage
               mountPath: /meili_data
-          resources: {}
+          resources:
+            requests:
+              cpu: ${MEILI_CPU_REQUESTS}
+              memory: ${MEILI_MEMORY_REQUESTS}
+            limits:
+              cpu: ${MEILI_CPU_LIMITS}
+              memory: ${MEILI_MEMORY_LIMITS}
   volumeClaimTemplates:
     - metadata:
         name: ${BUILD_REPOSITORY_NAME}-meilisearch-data-storage

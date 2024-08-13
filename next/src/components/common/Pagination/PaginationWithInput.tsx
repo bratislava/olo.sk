@@ -49,7 +49,7 @@ const PaginationWithInput = ({
               // widen input field slightly for more than 3 digits
               'w-[4.37rem]': inputValue.toString().length > 3,
             })}
-            aria-label={t('pagination.aria.goToPage', { inputValue })}
+            aria-label={t('pagination.aria.goToPage', { page: inputValue })}
             type="number"
             value={inputValue}
             onFocus={handleInputFocus}

@@ -159,6 +159,7 @@ const config: Config = {
       },
       spacing: {
         4.5: '1.125rem', // 18px
+        13: '3.25rem', // 52px
         18: '4.5rem', // 72px
       },
       zIndex: {

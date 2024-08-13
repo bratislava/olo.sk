@@ -1359,6 +1359,7 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
+        'sections.articles',
         'sections.banner',
         'sections.branches',
         'sections.cards-list',

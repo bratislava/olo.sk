@@ -7664,6 +7664,27 @@ export type CardsListSectionFragment = {
   } | null> | null
 }
 
+export type FaqCategoriesSectionFragment = {
+  __typename?: 'ComponentSectionsFaqCategories'
+  text?: string | null
+  showAll: boolean
+  titleFaqCategories?: string | null
+  faqCategories?: {
+    __typename?: 'FaqCategoryRelationResponseCollection'
+    data: Array<{
+      __typename: 'FaqCategoryEntity'
+      id?: string | null
+      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+    }>
+  } | null
+}
+
+export type ServicesSectionFragment = {
+  __typename?: 'ComponentSectionsServices'
+  text?: string | null
+  titleServices?: string | null
+}
+
 type PageSections_ComponentSectionsBanner_Fragment = {
   __typename: 'ComponentSectionsBanner'
   title: string
@@ -23967,6 +23988,25 @@ export const CardsListSectionFragmentDoc = gql`
   }
   ${LinkFragmentDoc}
 `
+export const FaqCategoriesSectionFragmentDoc = gql`
+  fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
+    titleFaqCategories: title
+    text
+    showAll
+    faqCategories {
+      data {
+        ...FaqCategorySlugEntity
+      }
+    }
+  }
+  ${FaqCategorySlugEntityFragmentDoc}
+`
+export const ServicesSectionFragmentDoc = gql`
+  fragment ServicesSection on ComponentSectionsServices {
+    titleServices: title
+    text
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -24012,6 +24052,12 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsCardsList {
       ...CardsListSection
     }
+    ... on ComponentSectionsFaqCategories {
+      ...FaqCategoriesSection
+    }
+    ... on ComponentSectionsServices {
+      ...ServicesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -24027,6 +24073,8 @@ export const PageSectionsFragmentDoc = gql`
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}
   ${CardsListSectionFragmentDoc}
+  ${FaqCategoriesSectionFragmentDoc}
+  ${ServicesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

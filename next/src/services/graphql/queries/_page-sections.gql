@@ -162,6 +162,22 @@ fragment CardsListSection on ComponentSectionsCardsList {
   }
 }
 
+fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
+  titleFaqCategories: title
+  text
+  showAll
+  faqCategories {
+    data {
+      ...FaqCategorySlugEntity
+    }
+  }
+}
+
+fragment ServicesSection on ComponentSectionsServices {
+  titleServices: title
+  text
+}
+
 fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
   titleWasteSortingCards: title
   text
@@ -231,6 +247,14 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsCardsList {
     ...CardsListSection
+  }
+
+  ... on ComponentSectionsFaqCategories {
+    ...FaqCategoriesSection
+  }
+
+  ... on ComponentSectionsServices {
+    ...ServicesSection
   }
 
   ... on ComponentSectionsWasteSortingCards {

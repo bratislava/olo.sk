@@ -617,27 +617,24 @@ input ComponentItemsSlideInput {
   title: String
 }
 
-type ComponentItemsWasteSortingCardsItem {
+type ComponentItemsWorkshopDate {
   id: ID!
-  link: ComponentItemsLink!
-  title: String!
-  variant: ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT!
+  label: String!
+  value: DateTime!
 }
 
-input ComponentItemsWasteSortingCardsItemFiltersInput {
-  and: [ComponentItemsWasteSortingCardsItemFiltersInput]
-  link: ComponentItemsLinkFiltersInput
-  not: ComponentItemsWasteSortingCardsItemFiltersInput
-  or: [ComponentItemsWasteSortingCardsItemFiltersInput]
-  title: StringFilterInput
-  variant: StringFilterInput
+input ComponentItemsWorkshopDateFiltersInput {
+  and: [ComponentItemsWorkshopDateFiltersInput]
+  label: StringFilterInput
+  not: ComponentItemsWorkshopDateFiltersInput
+  or: [ComponentItemsWorkshopDateFiltersInput]
+  value: DateTimeFilterInput
 }
 
-input ComponentItemsWasteSortingCardsItemInput {
+input ComponentItemsWorkshopDateInput {
   id: ID
-  link: ComponentItemsLinkInput
-  title: String
-  variant: ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT
+  label: String
+  value: DateTime
 }
 
 type ComponentMenuMenuItem {
@@ -907,6 +904,32 @@ type ComponentSectionsFaq {
   title: String!
 }
 
+type ComponentSectionsFaqCategories {
+  faqCategories(filters: FaqCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqCategoryRelationResponseCollection
+  id: ID!
+  showAll: Boolean!
+  text: String
+  title: String
+}
+
+input ComponentSectionsFaqCategoriesFiltersInput {
+  and: [ComponentSectionsFaqCategoriesFiltersInput]
+  faqCategories: FaqCategoryFiltersInput
+  not: ComponentSectionsFaqCategoriesFiltersInput
+  or: [ComponentSectionsFaqCategoriesFiltersInput]
+  showAll: BooleanFilterInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsFaqCategoriesInput {
+  faqCategories: [ID]
+  id: ID
+  showAll: Boolean
+  text: String
+  title: String
+}
+
 input ComponentSectionsFaqFiltersInput {
   and: [ComponentSectionsFaqFiltersInput]
   backgroundColor: StringFilterInput
@@ -1108,6 +1131,20 @@ input ComponentSectionsRichtextInput {
   id: ID
 }
 
+type ComponentSectionsServices {
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsServicesFiltersInput {
+  and: [ComponentSectionsServicesFiltersInput]
+  not: ComponentSectionsServicesFiltersInput
+  or: [ComponentSectionsServicesFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
 type ComponentSectionsServicesHomepageSection {
   id: ID!
   showMoreLink: ComponentItemsLink
@@ -1134,6 +1171,12 @@ input ComponentSectionsServicesHomepageSectionInput {
   title: String
 }
 
+input ComponentSectionsServicesInput {
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsTable {
   anchorId: String
   id: ID!
@@ -1152,29 +1195,6 @@ input ComponentSectionsTableFiltersInput {
 
 input ComponentSectionsTableInput {
   anchorId: String
-  id: ID
-  text: String
-  title: String
-}
-
-type ComponentSectionsWasteSortingCards {
-  cards(filters: ComponentItemsWasteSortingCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWasteSortingCardsItem]
-  id: ID!
-  text: String
-  title: String
-}
-
-input ComponentSectionsWasteSortingCardsFiltersInput {
-  and: [ComponentSectionsWasteSortingCardsFiltersInput]
-  cards: ComponentItemsWasteSortingCardsItemFiltersInput
-  not: ComponentSectionsWasteSortingCardsFiltersInput
-  or: [ComponentSectionsWasteSortingCardsFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentSectionsWasteSortingCardsInput {
-  cards: [ComponentItemsWasteSortingCardsItemInput]
   id: ID
   text: String
   title: String
@@ -1418,19 +1438,6 @@ input DocumentInput {
 
 type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
-}
-
-enum ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT {
-  cemetery
-  christmasTrees
-  civicAmenitySite
-  cookingOilsAndFats
-  glass
-  kitchen
-  mixed
-  organic
-  paper
-  plastic
 }
 
 enum ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR {
@@ -1707,7 +1714,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWasteSortingCardsItem | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2228,7 +2235,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsTable | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 
@@ -2859,6 +2866,7 @@ type UsersPermissionsUserRelationResponseCollection {
 
 type Workshop {
   createdAt: DateTime
+  dates(filters: ComponentItemsWorkshopDateFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWorkshopDate]
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZone]
   slug: String!
@@ -2883,6 +2891,7 @@ type WorkshopEntityResponseCollection {
 input WorkshopFiltersInput {
   and: [WorkshopFiltersInput]
   createdAt: DateTimeFilterInput
+  dates: ComponentItemsWorkshopDateFiltersInput
   id: IDFilterInput
   not: WorkshopFiltersInput
   or: [WorkshopFiltersInput]
@@ -2893,6 +2902,7 @@ input WorkshopFiltersInput {
 }
 
 input WorkshopInput {
+  dates: [ComponentItemsWorkshopDateInput]
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZoneInput!]
   slug: String

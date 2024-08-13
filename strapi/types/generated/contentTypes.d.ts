@@ -1367,11 +1367,13 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.columns-list',
         'sections.divider',
         'sections.faq',
+        'sections.faq-categories',
         'sections.files',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.ordered-cards',
         'sections.richtext',
+        'sections.services',
         'sections.table',
         'sections.waste-sorting-cards',
         'sections.workshops',
@@ -1578,6 +1580,7 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
     sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.files']>
+    dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

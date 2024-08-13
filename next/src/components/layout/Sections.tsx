@@ -6,12 +6,14 @@ import CardsListSection from '@/src/components/sections/CardsListSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
 import DividerSection from '@/src/components/sections/DividerSection'
+import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection'
 import FaqSection from '@/src/components/sections/FaqSection'
 import FilesSection from '@/src/components/sections/FilesSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
+import ServicesSection from '@/src/components/sections/ServicesSection'
 import TableSection from '@/src/components/sections/TableSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
@@ -65,6 +67,12 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsCardsList':
       return <CardsListSection section={section} />
+
+    case 'ComponentSectionsFaqCategories':
+      return <FaqCategoriesSection section={section} />
+
+    case 'ComponentSectionsServices':
+      return <ServicesSection section={section} />
 
     case 'ComponentSectionsWasteSortingCards':
       return <WasteSortingCardsSection section={section} />

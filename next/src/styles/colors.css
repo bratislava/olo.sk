@@ -72,7 +72,9 @@
   --color-waste-yellow: 254 219 0; /*#FEDB00*/
   --color-waste-green: 0 156 79; /*#009C4F*/
   --color-waste-red: 252 76 2; /*#FC4C02*/
+  --color-waste-red-bratislava: 215 25 32; /*#D71920*/
   --color-waste-brown: 116 79 40; /*#744F28*/
+  --color-waste-brown-dark: 57 49 42; /*#392A31*/
 
   /* OLO badge categories */
   --color-badge-red: 255 220 195; /*#FFDCC3*/
@@ -123,6 +125,8 @@
   --token-waste-kitchen: var(--color-waste-brown);
   --token-waste-organic: var(--color-waste-brown);
   --token-waste-mixed: var(--color-grey-700);
+  --token-waste-cemetery: var(--color-waste-brown-dark);
+  --token-waste-christmasTrees: var(--color-waste-red-bratislava);
 
   --token-badge-public: var(--color-badge-red);
   --token-badge-firms: var(--color-badge-green);

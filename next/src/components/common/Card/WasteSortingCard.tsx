@@ -8,7 +8,7 @@ import Pictogram from '@/src/components/common/Icon/Pictogram'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-const wasteTypesMap = {
+export const wasteTypesMap = {
   paper: {
     pictogramName: 'paper',
     className: 'bg-waste-paper',
@@ -49,9 +49,19 @@ const wasteTypesMap = {
     className: 'bg-waste-mixed',
     pictogramClassName: 'text-background-primary',
   },
+  cemetery: {
+    pictogramName: 'cemetery',
+    className: 'bg-waste-cemetery',
+    pictogramClassName: 'text-background-primary',
+  },
+  christmasTrees: {
+    pictogramName: 'christmasTrees',
+    className: 'bg-waste-christmasTrees',
+    pictogramClassName: 'text-background-primary',
+  },
 } as const
 
-type WasteSortingCardProps = {
+export type WasteSortingCardProps = {
   title: string
   linkHref: string
   wasteType: keyof typeof wasteTypesMap
@@ -77,24 +87,29 @@ const WasteSortingCard = ({
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
+      title={title}
     >
       <div
         className={cn(
-          'flex aspect-[280/164] flex-col items-center justify-center rounded-t-lg lg:aspect-[280/204]',
+          'flex aspect-[280/164] shrink-0 flex-col items-center justify-center rounded-t-lg lg:aspect-[280/204]',
           wasteTypesMap[wasteType]?.className,
         )}
       >
         <div className="flex size-[124px] items-center justify-center">
-          <Pictogram
-            name={wasteTypesMap[wasteType].pictogramName}
-            className={wasteTypesMap[wasteType].pictogramClassName}
-          />
+          {wasteType in wasteTypesMap ? (
+            <Pictogram
+              name={wasteTypesMap[wasteType].pictogramName}
+              className={wasteTypesMap[wasteType].pictogramClassName}
+            />
+          ) : null}
         </div>
       </div>
-      <div className="flex flex-col gap-4 p-4 lg:gap-5 lg:px-5">
+      <div className="flex h-full flex-col justify-between gap-4 p-4 lg:gap-5 lg:px-5">
         <Typography
           variant="h5"
-          className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+          className_onlyWhenNecessary={cn('line-clamp-3', {
+            'group-hover/CardBase:underline': linkHref,
+          })}
         >
           {title}
         </Typography>

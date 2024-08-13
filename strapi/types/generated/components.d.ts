@@ -256,6 +256,46 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface ItemsWasteSortingCardsItem extends Schema.Component {
+  collectionName: 'components_items_waste_sorting_cards_items'
+  info: {
+    displayName: 'Waste Sorting Cards item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    variant: Attribute.Enumeration<
+      [
+        'mixed',
+        'paper',
+        'plastic',
+        'glass',
+        'kitchen',
+        'cookingOilsAndFats',
+        'organic',
+        'civicAmenitySite',
+        'cemetery',
+        'christmasTrees',
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'mixed'>
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
+export interface ItemsWorkshopDate extends Schema.Component {
+  collectionName: 'components_items_workshop_dates'
+  info: {
+    displayName: 'Workshop date'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    value: Attribute.DateTime & Attribute.Required
+  }
+}
+
 export interface MenuMenuItem extends Schema.Component {
   collectionName: 'components_menu_menu_items'
   info: {
@@ -416,6 +456,24 @@ export interface SectionsDivider extends Schema.Component {
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
+  }
+}
+
+export interface SectionsFaqCategories extends Schema.Component {
+  collectionName: 'components_sections_faq_categories'
+  info: {
+    displayName: 'FAQ Categories'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    faqCategories: Attribute.Relation<
+      'sections.faq-categories',
+      'oneToMany',
+      'api::faq-category.faq-category'
+    >
   }
 }
 
@@ -604,6 +662,17 @@ export interface SectionsServicesHomepageSection extends Schema.Component {
   }
 }
 
+export interface SectionsServices extends Schema.Component {
+  collectionName: 'components_sections_services'
+  info: {
+    displayName: 'Services (all)'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.String
+  }
+}
+
 export interface SectionsTable extends Schema.Component {
   collectionName: 'components_sections_tables'
   info: {
@@ -614,6 +683,19 @@ export interface SectionsTable extends Schema.Component {
     title: Attribute.String & Attribute.Required
     anchorId: Attribute.String
     text: Attribute.Text
+  }
+}
+
+export interface SectionsWasteSortingCards extends Schema.Component {
+  collectionName: 'components_sections_waste_sorting_cards'
+  info: {
+    displayName: 'Waste Sorting Cards'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.waste-sorting-cards-item', true>
   }
 }
 
@@ -654,6 +736,8 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
+      'items.workshop-date': ItemsWorkshopDate
       'menu.menu-item': MenuMenuItem
       'menu.menu-link': MenuMenuLink
       'menu.menu-section': MenuMenuSection
@@ -664,6 +748,7 @@ declare module '@strapi/types' {
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
       'sections.divider': SectionsDivider
+      'sections.faq-categories': SectionsFaqCategories
       'sections.faq': SectionsFaq
       'sections.files': SectionsFiles
       'sections.hero-homepage-section': SectionsHeroHomepageSection
@@ -673,7 +758,9 @@ declare module '@strapi/types' {
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
       'sections.services-homepage-section': SectionsServicesHomepageSection
+      'sections.services': SectionsServices
       'sections.table': SectionsTable
+      'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.workshops': SectionsWorkshops
     }
   }

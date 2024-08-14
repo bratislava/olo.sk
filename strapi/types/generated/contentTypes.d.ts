@@ -1031,6 +1031,7 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
@@ -1340,7 +1341,6 @@ export interface ApiPagePage extends Schema.CollectionType {
       [
         'header-sections.featured-news',
         'header-sections.gallery',
-        'header-sections.icon',
         'header-sections.image',
         'header-sections.side-image',
         'header-sections.pickup-day',
@@ -1359,6 +1359,7 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
+        'sections.richtext',
         'sections.articles',
         'sections.banner',
         'sections.branches',
@@ -1368,15 +1369,14 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.divider',
         'sections.faq',
         'sections.faq-categories',
-        'sections.files',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
-        'sections.ordered-cards',
-        'sections.richtext',
         'sections.services',
-        'sections.table',
         'sections.waste-sorting-cards',
         'sections.workshops',
+        'sections.documents',
+        'sections.ordered-cards',
+        'sections.table',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1437,7 +1437,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         }
       }>
     sections: Attribute.DynamicZone<
-      ['sections.richtext', 'sections.cards-list', 'sections.faq', 'sections.files']
+      ['sections.richtext', 'sections.cards-list', 'sections.faq', 'sections.documents']
     > &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1579,7 +1579,7 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
-    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.files']>
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.documents']>
     dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime

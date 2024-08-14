@@ -32,7 +32,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         className="relative z-[29] mx-auto flex max-w-screen-xl flex-col items-start justify-start px-4 lg:px-8"
         onClick={(event) => event.stopPropagation()}
       >
-        <ul className={cn('grid w-full py-8', className)}>
+        <ul className={cn('grid w-full grid-cols-3 py-8', className)}>
           {navMenuCells.map((cell, index: number) => {
             if (Array.isArray(cell)) {
               return (

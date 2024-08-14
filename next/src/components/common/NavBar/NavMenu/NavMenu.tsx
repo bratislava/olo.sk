@@ -8,7 +8,6 @@ import Icon from '@/src/components/common/Icon/Icon'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
-import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
 
@@ -36,22 +35,25 @@ const NavMenu = ({ className }: NavMenuProps) => {
     >
       <div className={cn('border-b border-border-default bg-background-primary', className)}>
         <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 lg:px-8">
-          <NavigationMenu.List className="flex items-center gap-4">
+          <NavigationMenu.List className="flex first:-ml-4">
             {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
           </NavigationMenu.List>
 
-          <PlaceholderWrapper className="border-action-background-default">
-            <Button
-              href="/" // TODO: Provide valid path
-              asLink
-              hasLinkIcon={false}
-              aria-label={t('navBar.aria.searchButton')}
-              variant="icon-wrapped"
-              className="px-4 py-5"
-            >
-              <Icon name="lupa" className="size-6" />
-            </Button>
-          </PlaceholderWrapper>
+          {/* TODO this may be potentially part of the NavigationMenu.List */}
+          <Button
+            href="/" // TODO: Provide valid path
+            asLink
+            icon={
+              <Icon
+                name="lupa"
+                className="size-6 border border-dashed border-action-background-default"
+              />
+            }
+            hasLinkIcon={false}
+            aria-label={t('navBar.aria.searchButton')}
+            variant="icon-wrapped"
+            className="-mr-4 px-4 py-5"
+          />
         </div>
 
         {/* Together with onCLick in NavMenuContent, it closes the menu on click outside of container area */}

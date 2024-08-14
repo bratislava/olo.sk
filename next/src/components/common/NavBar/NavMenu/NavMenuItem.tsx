@@ -19,7 +19,6 @@ const NavMenuItem = ({ menuItem }: NavMenuItemProps) => {
       <NavMenuContent
         sections={menuItem.sections}
         seeAllLinkProps={getLinkProps(menuItem.seeAllLink)}
-        className="grid-cols-3"
       />
     </NavigationMenu.Item>
   )

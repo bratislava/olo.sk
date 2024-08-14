@@ -7,9 +7,9 @@ import CardsListSection from '@/src/components/sections/CardsListSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
 import DividerSection from '@/src/components/sections/DividerSection'
+import DocumentsSection from '@/src/components/sections/DocumentsSection'
 import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection'
 import FaqSection from '@/src/components/sections/FaqSection'
-import FilesSection from '@/src/components/sections/FilesSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
@@ -57,8 +57,11 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
     case 'ComponentSectionsFaq':
       return <FaqSection section={section} />
 
-    case 'ComponentSectionsFiles':
-      return <FilesSection section={section} />
+    case 'ComponentSectionsDocuments':
+      return <DocumentsSection section={section} />
+
+    // case 'ComponentSectionsFiles':
+    //   return <FilesSection section={section} />
 
     case 'ComponentSectionsBanner':
       return <BannerSection section={section} />

@@ -79,7 +79,10 @@ const PageHeaderGallery = ({ title, perex, header }: Props) => {
                 .slice(0, 3)}
               <div className="absolute bottom-4 right-4 z-1">
                 {/* TODO add button functionality */}
-                <Button variant="category-plain" className="bg-white">
+                <Button
+                  variant="category-plain"
+                  className="border border-dashed border-action-background-default bg-white"
+                >
                   {t('pageHeaderGallery.buttonText')}
                 </Button>
               </div>

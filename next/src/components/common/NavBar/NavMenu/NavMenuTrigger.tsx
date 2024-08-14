@@ -20,12 +20,16 @@ const NavMenuTrigger = forwardRef<HTMLButtonElement, NavMenuTriggerProps>(
         onPointerMove={(event) => event.preventDefault()}
         onPointerLeave={(event) => event.preventDefault()}
         className={cn(
-          'rotate-menu-trigger flex items-center justify-center gap-0.5 py-5',
+          'flex items-center justify-center gap-0.5 px-4 py-5 underline-offset-2 data-[state=open]:underline hover:bg-background-tertiary',
           className,
         )}
       >
-        <Typography variant="p-default-bold">{label}</Typography>
-        <Icon name="chevron-dole-maly" className="chevron-down-animate mb-1 size-6" aria-hidden />
+        {/* For some reason, Figma uses line-height 150%, but it actually aligns as 100% in Figma in this case, so we manually use 100% here */}
+        <Typography variant="p-default-bold" className_onlyWhenNecessary="leading-1">
+          {label}
+        </Typography>
+
+        <Icon name="chevron-dole-maly" className="size-6" aria-hidden />
       </NavigationMenu.Trigger>
     )
   },

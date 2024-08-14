@@ -1368,7 +1368,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.divider',
         'sections.faq',
         'sections.faq-categories',
-        'sections.files',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.ordered-cards',
@@ -1436,9 +1435,7 @@ export interface ApiServiceService extends Schema.CollectionType {
           localized: true
         }
       }>
-    sections: Attribute.DynamicZone<
-      ['sections.richtext', 'sections.cards-list', 'sections.faq', 'sections.files']
-    > &
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.cards-list', 'sections.faq']> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
@@ -1579,7 +1576,7 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
-    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.files']>
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq']>
     dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime

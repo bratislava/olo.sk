@@ -2630,7 +2630,6 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsDivider
   | ComponentSectionsFaq
   | ComponentSectionsFaqCategories
-  | ComponentSectionsFiles
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOrderedCards
@@ -3102,7 +3101,6 @@ export type ServiceRelationResponseCollection = {
 export type ServiceSectionsDynamicZone =
   | ComponentSectionsCardsList
   | ComponentSectionsFaq
-  | ComponentSectionsFiles
   | ComponentSectionsRichtext
   | Error
 
@@ -3632,11 +3630,7 @@ export type WorkshopRelationResponseCollection = {
   data: Array<WorkshopEntity>
 }
 
-export type WorkshopSectionsDynamicZone =
-  | ComponentSectionsFaq
-  | ComponentSectionsFiles
-  | ComponentSectionsRichtext
-  | Error
+export type WorkshopSectionsDynamicZone = ComponentSectionsFaq | ComponentSectionsRichtext | Error
 
 export type TagEntityFragment = {
   __typename?: 'TagEntity'
@@ -8658,31 +8652,6 @@ type PageSections_ComponentSectionsFaqCategories_Fragment = {
   } | null
 }
 
-type PageSections_ComponentSectionsFiles_Fragment = {
-  __typename: 'ComponentSectionsFiles'
-  title: string
-  files: Array<{
-    __typename?: 'ComponentItemsFileItem'
-    title?: string | null
-    media: {
-      __typename?: 'UploadFileEntityResponse'
-      data?: {
-        __typename?: 'UploadFileEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'UploadFile'
-          url: string
-          name: string
-          ext?: string | null
-          size: number
-          createdAt?: any | null
-          updatedAt?: any | null
-        } | null
-      } | null
-    }
-  } | null>
-}
-
 type PageSections_ComponentSectionsImageAndText_Fragment = {
   __typename: 'ComponentSectionsImageAndText'
   title: string
@@ -9232,7 +9201,6 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsDivider_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsFaqCategories_Fragment
-  | PageSections_ComponentSectionsFiles_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
@@ -16044,30 +16012,6 @@ export type PageEntityFragment = {
           } | null
         }
       | {
-          __typename: 'ComponentSectionsFiles'
-          title: string
-          files: Array<{
-            __typename?: 'ComponentItemsFileItem'
-            title?: string | null
-            media: {
-              __typename?: 'UploadFileEntityResponse'
-              data?: {
-                __typename?: 'UploadFileEntity'
-                id?: string | null
-                attributes?: {
-                  __typename?: 'UploadFile'
-                  url: string
-                  name: string
-                  ext?: string | null
-                  size: number
-                  createdAt?: any | null
-                  updatedAt?: any | null
-                } | null
-              } | null
-            }
-          } | null>
-        }
-      | {
           __typename: 'ComponentSectionsImageAndText'
           title: string
           text?: string | null
@@ -17843,30 +17787,6 @@ export type PagesQuery = {
                   attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
                 }>
               } | null
-            }
-          | {
-              __typename: 'ComponentSectionsFiles'
-              title: string
-              files: Array<{
-                __typename?: 'ComponentItemsFileItem'
-                title?: string | null
-                media: {
-                  __typename?: 'UploadFileEntityResponse'
-                  data?: {
-                    __typename?: 'UploadFileEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'UploadFile'
-                      url: string
-                      name: string
-                      ext?: string | null
-                      size: number
-                      createdAt?: any | null
-                      updatedAt?: any | null
-                    } | null
-                  } | null
-                }
-              } | null>
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -19653,30 +19573,6 @@ export type PageBySlugQuery = {
               } | null
             }
           | {
-              __typename: 'ComponentSectionsFiles'
-              title: string
-              files: Array<{
-                __typename?: 'ComponentItemsFileItem'
-                title?: string | null
-                media: {
-                  __typename?: 'UploadFileEntityResponse'
-                  data?: {
-                    __typename?: 'UploadFileEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'UploadFile'
-                      url: string
-                      name: string
-                      ext?: string | null
-                      size: number
-                      createdAt?: any | null
-                      updatedAt?: any | null
-                    } | null
-                  } | null
-                }
-              } | null>
-            }
-          | {
               __typename: 'ComponentSectionsImageAndText'
               title: string
               text?: string | null
@@ -20849,30 +20745,6 @@ export type ServiceEntityFragment = {
           } | null
         }
       | {
-          __typename: 'ComponentSectionsFiles'
-          title: string
-          files: Array<{
-            __typename?: 'ComponentItemsFileItem'
-            title?: string | null
-            media: {
-              __typename?: 'UploadFileEntityResponse'
-              data?: {
-                __typename?: 'UploadFileEntity'
-                id?: string | null
-                attributes?: {
-                  __typename?: 'UploadFile'
-                  url: string
-                  name: string
-                  ext?: string | null
-                  size: number
-                  createdAt?: any | null
-                  updatedAt?: any | null
-                } | null
-              } | null
-            }
-          } | null>
-        }
-      | {
           __typename: 'ComponentSectionsRichtext'
           content?: string | null
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -21467,30 +21339,6 @@ export type ServicesQuery = {
                   } | null
                 }>
               } | null
-            }
-          | {
-              __typename: 'ComponentSectionsFiles'
-              title: string
-              files: Array<{
-                __typename?: 'ComponentItemsFileItem'
-                title?: string | null
-                media: {
-                  __typename?: 'UploadFileEntityResponse'
-                  data?: {
-                    __typename?: 'UploadFileEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'UploadFile'
-                      url: string
-                      name: string
-                      ext?: string | null
-                      size: number
-                      createdAt?: any | null
-                      updatedAt?: any | null
-                    } | null
-                  } | null
-                }
-              } | null>
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -22092,30 +21940,6 @@ export type ServiceBySlugQuery = {
               } | null
             }
           | {
-              __typename: 'ComponentSectionsFiles'
-              title: string
-              files: Array<{
-                __typename?: 'ComponentItemsFileItem'
-                title?: string | null
-                media: {
-                  __typename?: 'UploadFileEntityResponse'
-                  data?: {
-                    __typename?: 'UploadFileEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'UploadFile'
-                      url: string
-                      name: string
-                      ext?: string | null
-                      size: number
-                      createdAt?: any | null
-                      updatedAt?: any | null
-                    } | null
-                  } | null
-                }
-              } | null>
-            }
-          | {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -22566,30 +22390,6 @@ export type WorkshopEntityFragment = {
           } | null
         }
       | {
-          __typename: 'ComponentSectionsFiles'
-          title: string
-          files: Array<{
-            __typename?: 'ComponentItemsFileItem'
-            title?: string | null
-            media: {
-              __typename?: 'UploadFileEntityResponse'
-              data?: {
-                __typename?: 'UploadFileEntity'
-                id?: string | null
-                attributes?: {
-                  __typename?: 'UploadFile'
-                  url: string
-                  name: string
-                  ext?: string | null
-                  size: number
-                  createdAt?: any | null
-                  updatedAt?: any | null
-                } | null
-              } | null
-            }
-          } | null>
-        }
-      | {
           __typename: 'ComponentSectionsRichtext'
           content?: string | null
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -23036,30 +22836,6 @@ export type WorkshopsQuery = {
                   } | null
                 }>
               } | null
-            }
-          | {
-              __typename: 'ComponentSectionsFiles'
-              title: string
-              files: Array<{
-                __typename?: 'ComponentItemsFileItem'
-                title?: string | null
-                media: {
-                  __typename?: 'UploadFileEntityResponse'
-                  data?: {
-                    __typename?: 'UploadFileEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'UploadFile'
-                      url: string
-                      name: string
-                      ext?: string | null
-                      size: number
-                      createdAt?: any | null
-                      updatedAt?: any | null
-                    } | null
-                  } | null
-                }
-              } | null>
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -23514,30 +23290,6 @@ export type WorkshopBySlugQuery = {
               } | null
             }
           | {
-              __typename: 'ComponentSectionsFiles'
-              title: string
-              files: Array<{
-                __typename?: 'ComponentItemsFileItem'
-                title?: string | null
-                media: {
-                  __typename?: 'UploadFileEntityResponse'
-                  data?: {
-                    __typename?: 'UploadFileEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'UploadFile'
-                      url: string
-                      name: string
-                      ext?: string | null
-                      size: number
-                      createdAt?: any | null
-                      updatedAt?: any | null
-                    } | null
-                  } | null
-                }
-              } | null>
-            }
-          | {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -23659,25 +23411,6 @@ export const IconHeaderSectionFragmentDoc = gql`
     iconName
   }
 `
-export const DocumentSlugEntityFragmentDoc = gql`
-  fragment DocumentSlugEntity on DocumentEntity {
-    __typename
-    id
-    attributes {
-      slug
-      title
-    }
-  }
-`
-export const DocumentCategoryEntityFragmentDoc = gql`
-  fragment DocumentCategoryEntity on DocumentCategoryEntity {
-    id
-    attributes {
-      title
-      slug
-    }
-  }
-`
 export const UploadFileEntityFragmentDoc = gql`
   fragment UploadFileEntity on UploadFileEntity {
     id
@@ -23701,6 +23434,34 @@ export const FileItemFragmentDoc = gql`
     }
   }
   ${UploadFileEntityFragmentDoc}
+`
+export const FilesSectionFragmentDoc = gql`
+  fragment FilesSection on ComponentSectionsFiles {
+    title
+    files {
+      ...FileItem
+    }
+  }
+  ${FileItemFragmentDoc}
+`
+export const DocumentSlugEntityFragmentDoc = gql`
+  fragment DocumentSlugEntity on DocumentEntity {
+    __typename
+    id
+    attributes {
+      slug
+      title
+    }
+  }
+`
+export const DocumentCategoryEntityFragmentDoc = gql`
+  fragment DocumentCategoryEntity on DocumentCategoryEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
 `
 export const DocumentEntityFragmentDoc = gql`
   fragment DocumentEntity on DocumentEntity {
@@ -24439,15 +24200,6 @@ export const FaqSectionFragmentDoc = gql`
   ${LinkFragmentDoc}
   ${FaqEntityFragmentDoc}
 `
-export const FilesSectionFragmentDoc = gql`
-  fragment FilesSection on ComponentSectionsFiles {
-    title
-    files {
-      ...FileItem
-    }
-  }
-  ${FileItemFragmentDoc}
-`
 export const DividerSectionFragmentDoc = gql`
   fragment DividerSection on ComponentSectionsDivider {
     backgroundColorDivider: backgroundColor
@@ -24537,9 +24289,6 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsFaq {
       ...FaqSection
     }
-    ... on ComponentSectionsFiles {
-      ...FilesSection
-    }
     ... on ComponentSectionsBanner {
       ...BannerSection
     }
@@ -24572,7 +24321,6 @@ export const PageSectionsFragmentDoc = gql`
   ${ColumnsListSectionFragmentDoc}
   ${TableSectionFragmentDoc}
   ${FaqSectionFragmentDoc}
-  ${FilesSectionFragmentDoc}
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}
   ${CardsListSectionFragmentDoc}

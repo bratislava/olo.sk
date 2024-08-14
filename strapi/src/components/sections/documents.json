@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_documents",
+  "info": {
+    "displayName": "Dokumenty",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document"
+    }
+  }
+}

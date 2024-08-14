@@ -4,14 +4,14 @@ import { FileRowCardProps } from '@/src/components/common/Card/FileRowCard'
 import FileRowGroup from '@/src/components/common/Card/FileRowGroup'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import { FilesSectionFragment } from '@/src/services/graphql/api'
+import { DocumentsSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { formatFileExtension } from '@/src/utils/formatFileExtension'
 import { formatFileSize } from '@/src/utils/formatFileSize'
 import { isDefined } from '@/src/utils/isDefined'
 
 type Props = {
-  section: FilesSectionFragment | null | undefined
+  section: DocumentsSectionFragment | null | undefined
   className?: string
 }
 
@@ -19,19 +19,26 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13877&t=welewzgz8FI2CbQy-4
  */
 
-// TODO remove this component, use DocumentsSection
+const DocumentsSection = ({ section, className }: Props) => {
+  const { titleDocuments: title, text, documents } = section ?? {}
 
-const FilesSection = ({ section, className }: Props) => {
-  const { title, files } = section ?? {}
-
-  // eslint-disable-next-line unicorn/no-array-callback-reference
-  const filteredFiles = files?.filter(isDefined) ?? []
+  // TODO Now we take only first file from the document - discuss with the team
+  /* eslint-disable unicorn/no-array-callback-reference */
+  const filteredFiles =
+    documents?.data
+      ?.filter(isDefined)
+      .map((document) => document.attributes)
+      .filter(isDefined)
+      .map((document) => (document.files.length > 0 ? document.files[0] : null))
+      .filter(isDefined) ?? []
+  /* eslint-enable unicorn/no-array-callback-reference */
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer className={cn('py-6 lg:py-18', className)}>
       <div className="flex flex-col gap-6">
-        <SectionHeader title={title} />
+        <SectionHeader title={title} text={text} />
+
         <FileRowGroup
           fileRowCardData={filteredFiles
             .map((file): FileRowCardProps | null => {
@@ -57,4 +64,4 @@ const FilesSection = ({ section, className }: Props) => {
   )
 }
 
-export default FilesSection
+export default DocumentsSection

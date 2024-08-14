@@ -894,6 +894,21 @@ export type ComponentSectionsDivider = {
   id: Scalars['ID']['output']
 }
 
+export type ComponentSectionsDocuments = {
+  __typename?: 'ComponentSectionsDocuments'
+  documents?: Maybe<DocumentRelationResponseCollection>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsDocumentsDocumentsArgs = {
+  filters?: InputMaybe<DocumentFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsFaq = {
   __typename?: 'ComponentSectionsFaq'
   backgroundColor: Enum_Componentsectionsfaq_Backgroundcolor
@@ -1679,6 +1694,7 @@ export type GenericMorph =
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
   | ComponentSectionsDivider
+  | ComponentSectionsDocuments
   | ComponentSectionsFaq
   | ComponentSectionsFaqCategories
   | ComponentSectionsFiles
@@ -2628,6 +2644,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
   | ComponentSectionsDivider
+  | ComponentSectionsDocuments
   | ComponentSectionsFaq
   | ComponentSectionsFaqCategories
   | ComponentSectionsImageAndText
@@ -3100,6 +3117,7 @@ export type ServiceRelationResponseCollection = {
 
 export type ServiceSectionsDynamicZone =
   | ComponentSectionsCardsList
+  | ComponentSectionsDocuments
   | ComponentSectionsFaq
   | ComponentSectionsRichtext
   | Error
@@ -3630,7 +3648,11 @@ export type WorkshopRelationResponseCollection = {
   data: Array<WorkshopEntity>
 }
 
-export type WorkshopSectionsDynamicZone = ComponentSectionsFaq | ComponentSectionsRichtext | Error
+export type WorkshopSectionsDynamicZone =
+  | ComponentSectionsDocuments
+  | ComponentSectionsFaq
+  | ComponentSectionsRichtext
+  | Error
 
 export type TagEntityFragment = {
   __typename?: 'TagEntity'
@@ -7293,6 +7315,57 @@ export type FilesSectionFragment = {
   } | null>
 }
 
+export type DocumentsSectionFragment = {
+  __typename?: 'ComponentSectionsDocuments'
+  text?: string | null
+  titleDocuments?: string | null
+  documents?: {
+    __typename?: 'DocumentRelationResponseCollection'
+    data: Array<{
+      __typename: 'DocumentEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Document'
+        title: string
+        slug: string
+        publishedAt?: any | null
+        identificationNumber?: string | null
+        supplier?: string | null
+        priceWithoutTax?: string | null
+        description?: string | null
+        documentCategory?: {
+          __typename?: 'DocumentCategoryEntityResponse'
+          data?: {
+            __typename?: 'DocumentCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+          } | null
+        } | null
+        files: Array<{
+          __typename?: 'ComponentItemsFileItem'
+          title?: string | null
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                name: string
+                ext?: string | null
+                size: number
+                createdAt?: any | null
+                updatedAt?: any | null
+              } | null
+            } | null
+          }
+        } | null>
+      } | null
+    }>
+  } | null
+}
+
 export type BannerSectionFragment = {
   __typename?: 'ComponentSectionsBanner'
   title: string
@@ -8253,6 +8326,57 @@ type PageSections_ComponentSectionsDivider_Fragment = {
   backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
 }
 
+type PageSections_ComponentSectionsDocuments_Fragment = {
+  __typename: 'ComponentSectionsDocuments'
+  text?: string | null
+  titleDocuments?: string | null
+  documents?: {
+    __typename?: 'DocumentRelationResponseCollection'
+    data: Array<{
+      __typename: 'DocumentEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Document'
+        title: string
+        slug: string
+        publishedAt?: any | null
+        identificationNumber?: string | null
+        supplier?: string | null
+        priceWithoutTax?: string | null
+        description?: string | null
+        documentCategory?: {
+          __typename?: 'DocumentCategoryEntityResponse'
+          data?: {
+            __typename?: 'DocumentCategoryEntity'
+            id?: string | null
+            attributes?: { __typename?: 'DocumentCategory'; title: string; slug: string } | null
+          } | null
+        } | null
+        files: Array<{
+          __typename?: 'ComponentItemsFileItem'
+          title?: string | null
+          media: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                name: string
+                ext?: string | null
+                size: number
+                createdAt?: any | null
+                updatedAt?: any | null
+              } | null
+            } | null
+          }
+        } | null>
+      } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsFaq_Fragment = {
   __typename: 'ComponentSectionsFaq'
   title: string
@@ -9199,6 +9323,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsColumnsList_Fragment
   | PageSections_ComponentSectionsDivider_Fragment
+  | PageSections_ComponentSectionsDocuments_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsFaqCategories_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
@@ -15580,6 +15705,60 @@ export type PageEntityFragment = {
           backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
         }
       | {
+          __typename: 'ComponentSectionsDocuments'
+          text?: string | null
+          titleDocuments?: string | null
+          documents?: {
+            __typename?: 'DocumentRelationResponseCollection'
+            data: Array<{
+              __typename: 'DocumentEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Document'
+                title: string
+                slug: string
+                publishedAt?: any | null
+                identificationNumber?: string | null
+                supplier?: string | null
+                priceWithoutTax?: string | null
+                description?: string | null
+                documentCategory?: {
+                  __typename?: 'DocumentCategoryEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentCategoryEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'DocumentCategory'
+                      title: string
+                      slug: string
+                    } | null
+                  } | null
+                } | null
+                files: Array<{
+                  __typename?: 'ComponentItemsFileItem'
+                  title?: string | null
+                  media: {
+                    __typename?: 'UploadFileEntityResponse'
+                    data?: {
+                      __typename?: 'UploadFileEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'UploadFile'
+                        url: string
+                        name: string
+                        ext?: string | null
+                        size: number
+                        createdAt?: any | null
+                        updatedAt?: any | null
+                      } | null
+                    } | null
+                  }
+                } | null>
+              } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsFaq'
           title: string
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
@@ -17351,6 +17530,60 @@ export type PagesQuery = {
           | {
               __typename: 'ComponentSectionsDivider'
               backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
+            }
+          | {
+              __typename: 'ComponentSectionsDocuments'
+              text?: string | null
+              titleDocuments?: string | null
+              documents?: {
+                __typename?: 'DocumentRelationResponseCollection'
+                data: Array<{
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Document'
+                    title: string
+                    slug: string
+                    publishedAt?: any | null
+                    identificationNumber?: string | null
+                    supplier?: string | null
+                    priceWithoutTax?: string | null
+                    description?: string | null
+                    documentCategory?: {
+                      __typename?: 'DocumentCategoryEntityResponse'
+                      data?: {
+                        __typename?: 'DocumentCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'DocumentCategory'
+                          title: string
+                          slug: string
+                        } | null
+                      } | null
+                    } | null
+                    files: Array<{
+                      __typename?: 'ComponentItemsFileItem'
+                      title?: string | null
+                      media: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            name: string
+                            ext?: string | null
+                            size: number
+                            createdAt?: any | null
+                            updatedAt?: any | null
+                          } | null
+                        } | null
+                      }
+                    } | null>
+                  } | null
+                }>
+              } | null
             }
           | {
               __typename: 'ComponentSectionsFaq'
@@ -19137,6 +19370,60 @@ export type PageBySlugQuery = {
               backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
             }
           | {
+              __typename: 'ComponentSectionsDocuments'
+              text?: string | null
+              titleDocuments?: string | null
+              documents?: {
+                __typename?: 'DocumentRelationResponseCollection'
+                data: Array<{
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Document'
+                    title: string
+                    slug: string
+                    publishedAt?: any | null
+                    identificationNumber?: string | null
+                    supplier?: string | null
+                    priceWithoutTax?: string | null
+                    description?: string | null
+                    documentCategory?: {
+                      __typename?: 'DocumentCategoryEntityResponse'
+                      data?: {
+                        __typename?: 'DocumentCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'DocumentCategory'
+                          title: string
+                          slug: string
+                        } | null
+                      } | null
+                    } | null
+                    files: Array<{
+                      __typename?: 'ComponentItemsFileItem'
+                      title?: string | null
+                      media: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            name: string
+                            ext?: string | null
+                            size: number
+                            createdAt?: any | null
+                            updatedAt?: any | null
+                          } | null
+                        } | null
+                      }
+                    } | null>
+                  } | null
+                }>
+              } | null
+            }
+          | {
               __typename: 'ComponentSectionsFaq'
               title: string
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
@@ -20327,6 +20614,60 @@ export type ServiceEntityFragment = {
           } | null> | null
         }
       | {
+          __typename: 'ComponentSectionsDocuments'
+          text?: string | null
+          titleDocuments?: string | null
+          documents?: {
+            __typename?: 'DocumentRelationResponseCollection'
+            data: Array<{
+              __typename: 'DocumentEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Document'
+                title: string
+                slug: string
+                publishedAt?: any | null
+                identificationNumber?: string | null
+                supplier?: string | null
+                priceWithoutTax?: string | null
+                description?: string | null
+                documentCategory?: {
+                  __typename?: 'DocumentCategoryEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentCategoryEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'DocumentCategory'
+                      title: string
+                      slug: string
+                    } | null
+                  } | null
+                } | null
+                files: Array<{
+                  __typename?: 'ComponentItemsFileItem'
+                  title?: string | null
+                  media: {
+                    __typename?: 'UploadFileEntityResponse'
+                    data?: {
+                      __typename?: 'UploadFileEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'UploadFile'
+                        url: string
+                        name: string
+                        ext?: string | null
+                        size: number
+                        createdAt?: any | null
+                        updatedAt?: any | null
+                      } | null
+                    } | null
+                  }
+                } | null>
+              } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsFaq'
           title: string
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
@@ -20917,6 +21258,60 @@ export type ServicesQuery = {
                   } | null
                 }
               } | null> | null
+            }
+          | {
+              __typename: 'ComponentSectionsDocuments'
+              text?: string | null
+              titleDocuments?: string | null
+              documents?: {
+                __typename?: 'DocumentRelationResponseCollection'
+                data: Array<{
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Document'
+                    title: string
+                    slug: string
+                    publishedAt?: any | null
+                    identificationNumber?: string | null
+                    supplier?: string | null
+                    priceWithoutTax?: string | null
+                    description?: string | null
+                    documentCategory?: {
+                      __typename?: 'DocumentCategoryEntityResponse'
+                      data?: {
+                        __typename?: 'DocumentCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'DocumentCategory'
+                          title: string
+                          slug: string
+                        } | null
+                      } | null
+                    } | null
+                    files: Array<{
+                      __typename?: 'ComponentItemsFileItem'
+                      title?: string | null
+                      media: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            name: string
+                            ext?: string | null
+                            size: number
+                            createdAt?: any | null
+                            updatedAt?: any | null
+                          } | null
+                        } | null
+                      }
+                    } | null>
+                  } | null
+                }>
+              } | null
             }
           | {
               __typename: 'ComponentSectionsFaq'
@@ -21518,6 +21913,60 @@ export type ServiceBySlugQuery = {
               } | null> | null
             }
           | {
+              __typename: 'ComponentSectionsDocuments'
+              text?: string | null
+              titleDocuments?: string | null
+              documents?: {
+                __typename?: 'DocumentRelationResponseCollection'
+                data: Array<{
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Document'
+                    title: string
+                    slug: string
+                    publishedAt?: any | null
+                    identificationNumber?: string | null
+                    supplier?: string | null
+                    priceWithoutTax?: string | null
+                    description?: string | null
+                    documentCategory?: {
+                      __typename?: 'DocumentCategoryEntityResponse'
+                      data?: {
+                        __typename?: 'DocumentCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'DocumentCategory'
+                          title: string
+                          slug: string
+                        } | null
+                      } | null
+                    } | null
+                    files: Array<{
+                      __typename?: 'ComponentItemsFileItem'
+                      title?: string | null
+                      media: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            name: string
+                            ext?: string | null
+                            size: number
+                            createdAt?: any | null
+                            updatedAt?: any | null
+                          } | null
+                        } | null
+                      }
+                    } | null>
+                  } | null
+                }>
+              } | null
+            }
+          | {
               __typename: 'ComponentSectionsFaq'
               title: string
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
@@ -21972,6 +22421,60 @@ export type WorkshopEntityFragment = {
     slug: string
     sections?: Array<
       | {
+          __typename: 'ComponentSectionsDocuments'
+          text?: string | null
+          titleDocuments?: string | null
+          documents?: {
+            __typename?: 'DocumentRelationResponseCollection'
+            data: Array<{
+              __typename: 'DocumentEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Document'
+                title: string
+                slug: string
+                publishedAt?: any | null
+                identificationNumber?: string | null
+                supplier?: string | null
+                priceWithoutTax?: string | null
+                description?: string | null
+                documentCategory?: {
+                  __typename?: 'DocumentCategoryEntityResponse'
+                  data?: {
+                    __typename?: 'DocumentCategoryEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'DocumentCategory'
+                      title: string
+                      slug: string
+                    } | null
+                  } | null
+                } | null
+                files: Array<{
+                  __typename?: 'ComponentItemsFileItem'
+                  title?: string | null
+                  media: {
+                    __typename?: 'UploadFileEntityResponse'
+                    data?: {
+                      __typename?: 'UploadFileEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'UploadFile'
+                        url: string
+                        name: string
+                        ext?: string | null
+                        size: number
+                        createdAt?: any | null
+                        updatedAt?: any | null
+                      } | null
+                    } | null
+                  }
+                } | null>
+              } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsFaq'
           title: string
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
@@ -22415,6 +22918,60 @@ export type WorkshopsQuery = {
         title: string
         slug: string
         sections?: Array<
+          | {
+              __typename: 'ComponentSectionsDocuments'
+              text?: string | null
+              titleDocuments?: string | null
+              documents?: {
+                __typename?: 'DocumentRelationResponseCollection'
+                data: Array<{
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Document'
+                    title: string
+                    slug: string
+                    publishedAt?: any | null
+                    identificationNumber?: string | null
+                    supplier?: string | null
+                    priceWithoutTax?: string | null
+                    description?: string | null
+                    documentCategory?: {
+                      __typename?: 'DocumentCategoryEntityResponse'
+                      data?: {
+                        __typename?: 'DocumentCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'DocumentCategory'
+                          title: string
+                          slug: string
+                        } | null
+                      } | null
+                    } | null
+                    files: Array<{
+                      __typename?: 'ComponentItemsFileItem'
+                      title?: string | null
+                      media: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            name: string
+                            ext?: string | null
+                            size: number
+                            createdAt?: any | null
+                            updatedAt?: any | null
+                          } | null
+                        } | null
+                      }
+                    } | null>
+                  } | null
+                }>
+              } | null
+            }
           | {
               __typename: 'ComponentSectionsFaq'
               title: string
@@ -22867,6 +23424,60 @@ export type WorkshopBySlugQuery = {
         title: string
         slug: string
         sections?: Array<
+          | {
+              __typename: 'ComponentSectionsDocuments'
+              text?: string | null
+              titleDocuments?: string | null
+              documents?: {
+                __typename?: 'DocumentRelationResponseCollection'
+                data: Array<{
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Document'
+                    title: string
+                    slug: string
+                    publishedAt?: any | null
+                    identificationNumber?: string | null
+                    supplier?: string | null
+                    priceWithoutTax?: string | null
+                    description?: string | null
+                    documentCategory?: {
+                      __typename?: 'DocumentCategoryEntityResponse'
+                      data?: {
+                        __typename?: 'DocumentCategoryEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'DocumentCategory'
+                          title: string
+                          slug: string
+                        } | null
+                      } | null
+                    } | null
+                    files: Array<{
+                      __typename?: 'ComponentItemsFileItem'
+                      title?: string | null
+                      media: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            name: string
+                            ext?: string | null
+                            size: number
+                            createdAt?: any | null
+                            updatedAt?: any | null
+                          } | null
+                        } | null
+                      }
+                    } | null>
+                  } | null
+                }>
+              } | null
+            }
           | {
               __typename: 'ComponentSectionsFaq'
               title: string
@@ -23444,50 +24055,6 @@ export const FilesSectionFragmentDoc = gql`
   }
   ${FileItemFragmentDoc}
 `
-export const DocumentSlugEntityFragmentDoc = gql`
-  fragment DocumentSlugEntity on DocumentEntity {
-    __typename
-    id
-    attributes {
-      slug
-      title
-    }
-  }
-`
-export const DocumentCategoryEntityFragmentDoc = gql`
-  fragment DocumentCategoryEntity on DocumentCategoryEntity {
-    id
-    attributes {
-      title
-      slug
-    }
-  }
-`
-export const DocumentEntityFragmentDoc = gql`
-  fragment DocumentEntity on DocumentEntity {
-    ...DocumentSlugEntity
-    attributes {
-      title
-      slug
-      publishedAt
-      identificationNumber
-      supplier
-      priceWithoutTax
-      documentCategory {
-        data {
-          ...DocumentCategoryEntity
-        }
-      }
-      files {
-        ...FileItem
-      }
-      description
-    }
-  }
-  ${DocumentSlugEntityFragmentDoc}
-  ${DocumentCategoryEntityFragmentDoc}
-  ${FileItemFragmentDoc}
-`
 export const ArticleSlugEntityFragmentDoc = gql`
   fragment ArticleSlugEntity on ArticleEntity {
     __typename
@@ -23505,6 +24072,16 @@ export const BranchSlugEntityFragmentDoc = gql`
     attributes {
       title
       slug
+    }
+  }
+`
+export const DocumentSlugEntityFragmentDoc = gql`
+  fragment DocumentSlugEntity on DocumentEntity {
+    __typename
+    id
+    attributes {
+      slug
+      title
     }
   }
 `
@@ -24200,6 +24777,52 @@ export const FaqSectionFragmentDoc = gql`
   ${LinkFragmentDoc}
   ${FaqEntityFragmentDoc}
 `
+export const DocumentCategoryEntityFragmentDoc = gql`
+  fragment DocumentCategoryEntity on DocumentCategoryEntity {
+    id
+    attributes {
+      title
+      slug
+    }
+  }
+`
+export const DocumentEntityFragmentDoc = gql`
+  fragment DocumentEntity on DocumentEntity {
+    ...DocumentSlugEntity
+    attributes {
+      title
+      slug
+      publishedAt
+      identificationNumber
+      supplier
+      priceWithoutTax
+      documentCategory {
+        data {
+          ...DocumentCategoryEntity
+        }
+      }
+      files {
+        ...FileItem
+      }
+      description
+    }
+  }
+  ${DocumentSlugEntityFragmentDoc}
+  ${DocumentCategoryEntityFragmentDoc}
+  ${FileItemFragmentDoc}
+`
+export const DocumentsSectionFragmentDoc = gql`
+  fragment DocumentsSection on ComponentSectionsDocuments {
+    titleDocuments: title
+    text
+    documents {
+      data {
+        ...DocumentEntity
+      }
+    }
+  }
+  ${DocumentEntityFragmentDoc}
+`
 export const DividerSectionFragmentDoc = gql`
   fragment DividerSection on ComponentSectionsDivider {
     backgroundColorDivider: backgroundColor
@@ -24289,6 +24912,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsFaq {
       ...FaqSection
     }
+    ... on ComponentSectionsDocuments {
+      ...DocumentsSection
+    }
     ... on ComponentSectionsBanner {
       ...BannerSection
     }
@@ -24321,6 +24947,7 @@ export const PageSectionsFragmentDoc = gql`
   ${ColumnsListSectionFragmentDoc}
   ${TableSectionFragmentDoc}
   ${FaqSectionFragmentDoc}
+  ${DocumentsSectionFragmentDoc}
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}
   ${CardsListSectionFragmentDoc}

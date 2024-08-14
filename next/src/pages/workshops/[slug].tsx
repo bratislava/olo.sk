@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
       general,
       ...translations,
     },
-    revalidate: 10,
+    revalidate: 1, // TODO change to 10
   }
 }
 

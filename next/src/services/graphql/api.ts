@@ -1454,7 +1454,7 @@ export type FaqCategory = {
   localizations?: Maybe<FaqCategoryRelationResponseCollection>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   slug: Scalars['String']['output']
-  title: Scalars['String']['output']
+  title?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
@@ -3756,7 +3756,7 @@ export type DocumentCategoryBySlugQuery = {
 export type FaqCategorySlugEntityFragment = {
   __typename: 'FaqCategoryEntity'
   id?: string | null
-  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+  attributes?: { __typename?: 'FaqCategory'; slug: string; title?: string | null } | null
 }
 
 export type FaqCategoryEntityFragment = {
@@ -3765,7 +3765,7 @@ export type FaqCategoryEntityFragment = {
   attributes?: {
     __typename?: 'FaqCategory'
     slug: string
-    title: string
+    title?: string | null
     faqs?: {
       __typename?: 'FaqRelationResponseCollection'
       data: Array<{
@@ -4031,7 +4031,7 @@ export type FaqCategoriesQuery = {
       attributes?: {
         __typename?: 'FaqCategory'
         slug: string
-        title: string
+        title?: string | null
         faqs?: {
           __typename?: 'FaqRelationResponseCollection'
           data: Array<{
@@ -4300,7 +4300,7 @@ export type FaqCategoryBySlugQuery = {
       attributes?: {
         __typename?: 'FaqCategory'
         slug: string
-        title: string
+        title?: string | null
         faqs?: {
           __typename?: 'FaqRelationResponseCollection'
           data: Array<{
@@ -7024,7 +7024,7 @@ export type FaqSectionFragment = {
             attributes?: {
               __typename?: 'FaqCategory'
               slug: string
-              title: string
+              title?: string | null
               faqs?: {
                 __typename?: 'FaqRelationResponseCollection'
                 data: Array<{
@@ -7675,7 +7675,7 @@ export type FaqCategoriesSectionFragment = {
     data: Array<{
       __typename: 'FaqCategoryEntity'
       id?: string | null
-      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+      attributes?: { __typename?: 'FaqCategory'; slug: string; title?: string | null } | null
     }>
   } | null
 }
@@ -7797,8 +7797,7 @@ export type WasteSortingCardsSectionFragment = {
             slug: string
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
-              label: string
-              value: any
+              datetime: any
             } | null> | null
           } | null
         } | null
@@ -8394,7 +8393,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
             attributes?: {
               __typename?: 'FaqCategory'
               slug: string
-              title: string
+              title?: string | null
               faqs?: {
                 __typename?: 'FaqRelationResponseCollection'
                 data: Array<{
@@ -8661,7 +8660,7 @@ type PageSections_ComponentSectionsFaqCategories_Fragment = {
     data: Array<{
       __typename: 'FaqCategoryEntity'
       id?: string | null
-      attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+      attributes?: { __typename?: 'FaqCategory'; slug: string; title?: string | null } | null
     }>
   } | null
 }
@@ -9199,8 +9198,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
             slug: string
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
-              label: string
-              value: any
+              datetime: any
             } | null> | null
           } | null
         } | null
@@ -9801,7 +9799,7 @@ export type FaqEntityFragment = {
         attributes?: {
           __typename?: 'FaqCategory'
           slug: string
-          title: string
+          title?: string | null
           faqs?: {
             __typename?: 'FaqRelationResponseCollection'
             data: Array<{
@@ -10079,7 +10077,7 @@ export type FaqsQuery = {
             attributes?: {
               __typename?: 'FaqCategory'
               slug: string
-              title: string
+              title?: string | null
               faqs?: {
                 __typename?: 'FaqRelationResponseCollection'
                 data: Array<{
@@ -15751,7 +15749,7 @@ export type PageEntityFragment = {
                     attributes?: {
                       __typename?: 'FaqCategory'
                       slug: string
-                      title: string
+                      title?: string | null
                       faqs?: {
                         __typename?: 'FaqRelationResponseCollection'
                         data: Array<{
@@ -16049,7 +16047,11 @@ export type PageEntityFragment = {
             data: Array<{
               __typename: 'FaqCategoryEntity'
               id?: string | null
-              attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+              attributes?: {
+                __typename?: 'FaqCategory'
+                slug: string
+                title?: string | null
+              } | null
             }>
           } | null
         }
@@ -16588,8 +16590,7 @@ export type PageEntityFragment = {
                     slug: string
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
-                      label: string
-                      value: any
+                      datetime: any
                     } | null> | null
                   } | null
                 } | null
@@ -17550,7 +17551,7 @@ export type PagesQuery = {
                         attributes?: {
                           __typename?: 'FaqCategory'
                           slug: string
-                          title: string
+                          title?: string | null
                           faqs?: {
                             __typename?: 'FaqRelationResponseCollection'
                             data: Array<{
@@ -17852,7 +17853,11 @@ export type PagesQuery = {
                 data: Array<{
                   __typename: 'FaqCategoryEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'FaqCategory'
+                    slug: string
+                    title?: string | null
+                  } | null
                 }>
               } | null
             }
@@ -18391,8 +18396,7 @@ export type PagesQuery = {
                         slug: string
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
-                          label: string
-                          value: any
+                          datetime: any
                         } | null> | null
                       } | null
                     } | null
@@ -19360,7 +19364,7 @@ export type PageBySlugQuery = {
                         attributes?: {
                           __typename?: 'FaqCategory'
                           slug: string
-                          title: string
+                          title?: string | null
                           faqs?: {
                             __typename?: 'FaqRelationResponseCollection'
                             data: Array<{
@@ -19662,7 +19666,11 @@ export type PageBySlugQuery = {
                 data: Array<{
                   __typename: 'FaqCategoryEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'FaqCategory'
+                    slug: string
+                    title?: string | null
+                  } | null
                 }>
               } | null
             }
@@ -20201,8 +20209,7 @@ export type PageBySlugQuery = {
                         slug: string
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
-                          label: string
-                          value: any
+                          datetime: any
                         } | null> | null
                       } | null
                     } | null
@@ -20575,7 +20582,7 @@ export type ServiceEntityFragment = {
                     attributes?: {
                       __typename?: 'FaqCategory'
                       slug: string
-                      title: string
+                      title?: string | null
                       faqs?: {
                         __typename?: 'FaqRelationResponseCollection'
                         data: Array<{
@@ -21191,7 +21198,7 @@ export type ServicesQuery = {
                         attributes?: {
                           __typename?: 'FaqCategory'
                           slug: string
-                          title: string
+                          title?: string | null
                           faqs?: {
                             __typename?: 'FaqRelationResponseCollection'
                             data: Array<{
@@ -21814,7 +21821,7 @@ export type ServiceBySlugQuery = {
                         attributes?: {
                           __typename?: 'FaqCategory'
                           slug: string
-                          title: string
+                          title?: string | null
                           faqs?: {
                             __typename?: 'FaqRelationResponseCollection'
                             data: Array<{
@@ -22292,7 +22299,7 @@ export type WorkshopEntityFragment = {
                     attributes?: {
                       __typename?: 'FaqCategory'
                       slug: string
-                      title: string
+                      title?: string | null
                       faqs?: {
                         __typename?: 'FaqRelationResponseCollection'
                         data: Array<{
@@ -22760,7 +22767,7 @@ export type WorkshopsQuery = {
                         attributes?: {
                           __typename?: 'FaqCategory'
                           slug: string
-                          title: string
+                          title?: string | null
                           faqs?: {
                             __typename?: 'FaqRelationResponseCollection'
                             data: Array<{
@@ -23236,7 +23243,7 @@ export type WorkshopBySlugQuery = {
                         attributes?: {
                           __typename?: 'FaqCategory'
                           slug: string
-                          title: string
+                          title?: string | null
                           faqs?: {
                             __typename?: 'FaqRelationResponseCollection'
                             data: Array<{

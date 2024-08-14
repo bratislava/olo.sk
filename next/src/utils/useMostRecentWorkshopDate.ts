@@ -1,7 +1,6 @@
 import { useTranslation } from 'next-i18next'
 
 import { WorkshopSlugEntityFragment } from '@/src/services/graphql/api'
-import { getLatestWorkshopDateAsISOString } from '@/src/utils/getLatestWorkshopDateAsISOString'
 
 export const useMostRecentWorkshopDate = () => {
   const { t } = useTranslation()
@@ -11,11 +10,13 @@ export const useMostRecentWorkshopDate = () => {
     if (!workshop?.attributes || !dates || dates.length === 0)
       return { mostRecentDateMessage: null }
 
-    const mostRecentDate = dates.find(
-      (date) => date?.value === getLatestWorkshopDateAsISOString(workshop),
-    )
+    // TODO: Implement a new function to handle the parsing and formatting of dates
+    /*    const mostRecentDate = dates.find(
+          (date) => date?.datetime === getLatestWorkshopDateAsISOString(workshop),
+        ) */
+
     const mostRecentDateMessage = t('navBar.workshopCard.messageMostRecentDate', {
-      mostRecentDate: mostRecentDate?.label,
+      mostRecentDate: '21. september 2024 o 9:00',
     })
 
     return { mostRecentDateMessage }

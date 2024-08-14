@@ -1,7 +1,7 @@
 {
   "collectionName": "components_sections_columns",
   "info": {
-    "displayName": "Columns",
+    "displayName": "Stĺpce (nadpis, text, obrázok)",
     "description": ""
   },
   "options": {},
@@ -15,11 +15,7 @@
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": [
-        "primary",
-        "secondary",
-        "tertiary"
-      ],
+      "enum": ["primary", "secondary", "tertiary"],
       "default": "primary",
       "required": true
     },

@@ -1,7 +1,7 @@
 {
   "collectionName": "components_sections_image_and_text_overlappeds",
   "info": {
-    "displayName": "Image and Text Overlapped",
+    "displayName": "Text s obrázkom (prekrytý)",
     "description": ""
   },
   "options": {},
@@ -15,22 +15,13 @@
     },
     "imagePosition": {
       "type": "enumeration",
-      "enum": [
-        "left",
-        "right",
-        "left-shifted",
-        "right-shifted"
-      ],
+      "enum": ["left", "right", "left-shifted", "right-shifted"],
       "required": true,
       "default": "left"
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": [
-        "primary",
-        "secondary",
-        "tertiary"
-      ],
+      "enum": ["primary", "secondary", "tertiary"],
       "default": "primary",
       "required": true
     },
@@ -38,9 +29,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "link": {
       "type": "component",

@@ -1,7 +1,7 @@
 {
   "collectionName": "components_sections_columns_lists",
   "info": {
-    "displayName": "Columns List",
+    "displayName": "Stĺpce so zoznamom (ikonka + text)",
     "description": ""
   },
   "options": {},
@@ -12,11 +12,7 @@
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": [
-        "primary",
-        "secondary",
-        "tertiary"
-      ]
+      "enum": ["primary", "secondary", "tertiary"]
     },
     "leftColumn": {
       "type": "component",

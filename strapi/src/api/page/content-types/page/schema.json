@@ -55,7 +55,6 @@
       "components": [
         "header-sections.featured-news",
         "header-sections.gallery",
-        "header-sections.icon",
         "header-sections.image",
         "header-sections.side-image",
         "header-sections.pickup-day"
@@ -79,7 +78,6 @@
         "sections.divider",
         "sections.faq",
         "sections.faq-categories",
-        "sections.files",
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
         "sections.ordered-cards",

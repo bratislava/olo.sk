@@ -59,7 +59,7 @@ export interface HeaderSectionsIcon extends Schema.Component {
 export interface HeaderSectionsImage extends Schema.Component {
   collectionName: 'components_header_sections_images'
   info: {
-    displayName: 'Obr\u00E1zok'
+    displayName: 'Obr\u00E1zok na cel\u00FA \u0161\u00EDrku'
     icon: 'picture'
     description: ''
   }
@@ -368,7 +368,8 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
 export interface SectionsArticles extends Schema.Component {
   collectionName: 'components_sections_articles'
   info: {
-    displayName: 'Articles'
+    displayName: '\u010Cl\u00E1nky'
+    description: ''
   }
   attributes: {
     title: Attribute.String & Attribute.Required
@@ -395,7 +396,7 @@ export interface SectionsBanner extends Schema.Component {
 export interface SectionsBranches extends Schema.Component {
   collectionName: 'components_sections_branches'
   info: {
-    displayName: 'Branches'
+    displayName: 'Pobo\u010Dky'
     description: ''
   }
   attributes: {
@@ -409,7 +410,7 @@ export interface SectionsBranches extends Schema.Component {
 export interface SectionsCardsList extends Schema.Component {
   collectionName: 'components_sections_cards_lists'
   info: {
-    displayName: 'Cards List'
+    displayName: 'Odkazy'
     description: ''
   }
   attributes: {
@@ -422,7 +423,7 @@ export interface SectionsCardsList extends Schema.Component {
 export interface SectionsColumnsList extends Schema.Component {
   collectionName: 'components_sections_columns_lists'
   info: {
-    displayName: 'Columns List'
+    displayName: 'St\u013Apce so zoznamom (ikonka + text)'
     description: ''
   }
   attributes: {
@@ -436,7 +437,7 @@ export interface SectionsColumnsList extends Schema.Component {
 export interface SectionsColumns extends Schema.Component {
   collectionName: 'components_sections_columns'
   info: {
-    displayName: 'Columns'
+    displayName: 'St\u013Apce (nadpis, text, obr\u00E1zok)'
     description: ''
   }
   attributes: {
@@ -472,7 +473,7 @@ export interface SectionsDivider extends Schema.Component {
 export interface SectionsFaqCategories extends Schema.Component {
   collectionName: 'components_sections_faq_categories'
   info: {
-    displayName: 'FAQ Categories'
+    displayName: 'FAQ kateg\u00F3rie'
     description: ''
   }
   attributes: {
@@ -506,7 +507,7 @@ export interface SectionsFaq extends Schema.Component {
 export interface SectionsFiles extends Schema.Component {
   collectionName: 'components_sections_files'
   info: {
-    displayName: 'Files'
+    displayName: 'S\u00FAbory'
     description: ''
   }
   attributes: {
@@ -554,7 +555,7 @@ export interface SectionsHeroHomepageSection extends Schema.Component {
 export interface SectionsImageAndTextOverlapped extends Schema.Component {
   collectionName: 'components_sections_image_and_text_overlappeds'
   info: {
-    displayName: 'Image and Text Overlapped'
+    displayName: 'Text s obr\u00E1zkom (prekryt\u00FD)'
     description: ''
   }
   attributes: {
@@ -574,7 +575,7 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
 export interface SectionsImageAndText extends Schema.Component {
   collectionName: 'components_sections_image_and_texts'
   info: {
-    displayName: 'Image and Text'
+    displayName: 'Text s obr\u00E1zkom'
     description: ''
   }
   attributes: {
@@ -620,7 +621,7 @@ export interface SectionsKoloHomepageSection extends Schema.Component {
 export interface SectionsOrderedCards extends Schema.Component {
   collectionName: 'components_sections_ordered_cards'
   info: {
-    displayName: 'Ordered Cards'
+    displayName: 'Karty na \u017Eltom pozad\u00ED'
     description: ''
   }
   attributes: {
@@ -675,7 +676,7 @@ export interface SectionsServicesHomepageSection extends Schema.Component {
 export interface SectionsServices extends Schema.Component {
   collectionName: 'components_sections_services'
   info: {
-    displayName: 'Services (all)'
+    displayName: 'Slu\u017Eby'
   }
   attributes: {
     title: Attribute.String
@@ -686,7 +687,7 @@ export interface SectionsServices extends Schema.Component {
 export interface SectionsTable extends Schema.Component {
   collectionName: 'components_sections_tables'
   info: {
-    displayName: 'Tabu\u013Eka'
+    displayName: 'Tabu\u013Eka (placeholder)'
     description: ''
   }
   attributes: {
@@ -699,7 +700,7 @@ export interface SectionsTable extends Schema.Component {
 export interface SectionsWasteSortingCards extends Schema.Component {
   collectionName: 'components_sections_waste_sorting_cards'
   info: {
-    displayName: 'Waste Sorting Cards'
+    displayName: 'Komodity'
     description: ''
   }
   attributes: {
@@ -712,7 +713,7 @@ export interface SectionsWasteSortingCards extends Schema.Component {
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
-    displayName: 'Workshops'
+    displayName: 'Workshopy'
     description: ''
   }
   attributes: {

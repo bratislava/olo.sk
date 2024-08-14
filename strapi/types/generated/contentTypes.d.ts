@@ -1031,6 +1031,7 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true

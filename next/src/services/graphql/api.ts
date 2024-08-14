@@ -2599,7 +2599,6 @@ export type PageFiltersInput = {
 export type PageHeaderDynamicZone =
   | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
-  | ComponentHeaderSectionsIcon
   | ComponentHeaderSectionsImage
   | ComponentHeaderSectionsPickupDay
   | ComponentHeaderSectionsSideImage
@@ -6220,11 +6219,6 @@ type HeaderSections_ComponentHeaderSectionsGallery_Fragment = {
   }
 }
 
-type HeaderSections_ComponentHeaderSectionsIcon_Fragment = {
-  __typename: 'ComponentHeaderSectionsIcon'
-  iconName: string
-}
-
 type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
   __typename: 'ComponentHeaderSectionsImage'
   media: {
@@ -6386,7 +6380,6 @@ type HeaderSections_Error_Fragment = { __typename: 'Error' }
 export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment
   | HeaderSections_ComponentHeaderSectionsGallery_Fragment
-  | HeaderSections_ComponentHeaderSectionsIcon_Fragment
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
   | HeaderSections_ComponentHeaderSectionsPickupDay_Fragment
   | HeaderSections_ComponentHeaderSectionsSideImage_Fragment
@@ -15004,7 +14997,6 @@ export type PageEntityFragment = {
             }>
           }
         }
-      | { __typename: 'ComponentHeaderSectionsIcon'; iconName: string }
       | {
           __typename: 'ComponentHeaderSectionsImage'
           media: {
@@ -16802,7 +16794,6 @@ export type PagesQuery = {
                 }>
               }
             }
-          | { __typename: 'ComponentHeaderSectionsIcon'; iconName: string }
           | {
               __typename: 'ComponentHeaderSectionsImage'
               media: {
@@ -18611,7 +18602,6 @@ export type PageBySlugQuery = {
                 }>
               }
             }
-          | { __typename: 'ComponentHeaderSectionsIcon'; iconName: string }
           | {
               __typename: 'ComponentHeaderSectionsImage'
               media: {
@@ -23664,6 +23654,11 @@ export const BranchMapHeaderSectionFragmentDoc = gql`
     }
   }
 `
+export const IconHeaderSectionFragmentDoc = gql`
+  fragment IconHeaderSection on ComponentHeaderSectionsIcon {
+    iconName
+  }
+`
 export const DocumentSlugEntityFragmentDoc = gql`
   fragment DocumentSlugEntity on DocumentEntity {
     __typename
@@ -24189,11 +24184,6 @@ export const GalleryHeaderSectionFragmentDoc = gql`
   }
   ${UploadImageEntityFragmentDoc}
 `
-export const IconHeaderSectionFragmentDoc = gql`
-  fragment IconHeaderSection on ComponentHeaderSectionsIcon {
-    iconName
-  }
-`
 export const AnchorFragmentDoc = gql`
   fragment Anchor on ComponentItemsAnchor {
     label
@@ -24228,9 +24218,6 @@ export const HeaderSectionsFragmentDoc = gql`
     ... on ComponentHeaderSectionsGallery {
       ...GalleryHeaderSection
     }
-    ... on ComponentHeaderSectionsIcon {
-      ...IconHeaderSection
-    }
     ... on ComponentHeaderSectionsPickupDay {
       ...PickupDayHeaderSection
     }
@@ -24239,7 +24226,6 @@ export const HeaderSectionsFragmentDoc = gql`
   ${SideImageHeaderSectionFragmentDoc}
   ${FeaturedNewsHeaderSectionFragmentDoc}
   ${GalleryHeaderSectionFragmentDoc}
-  ${IconHeaderSectionFragmentDoc}
   ${PickupDayHeaderSectionFragmentDoc}
 `
 export const RichtextSectionFragmentDoc = gql`

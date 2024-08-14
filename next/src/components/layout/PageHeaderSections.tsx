@@ -3,7 +3,6 @@ import React from 'react'
 import PageHeaderBasic from '@/src/components/sections/headers/PageHeaderBasic'
 import PageHeaderFeaturedNews from '@/src/components/sections/headers/PageHeaderFeaturedNews'
 import PageHeaderGallery from '@/src/components/sections/headers/PageHeaderGallery'
-import PageHeaderIcon from '@/src/components/sections/headers/PageHeaderIcon'
 import PageHeaderImage from '@/src/components/sections/headers/PageHeaderImage'
 import PageHeaderPickupDay from '@/src/components/sections/headers/PageHeaderPickupDay'
 import PageHeaderSideImage from '@/src/components/sections/headers/PageHeaderSideImage'
@@ -38,8 +37,8 @@ const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
     case 'ComponentHeaderSectionsGallery':
       return <PageHeaderGallery header={header} title={title} perex={perex} />
 
-    case 'ComponentHeaderSectionsIcon':
-      return <PageHeaderIcon header={header} title={title} perex={perex} />
+    // case 'ComponentHeaderSectionsIcon':
+    //   return <PageHeaderIcon header={header} title={title} perex={perex} />
 
     // eslint-disable-next-line no-secrets/no-secrets
     case 'ComponentHeaderSectionsPickupDay':

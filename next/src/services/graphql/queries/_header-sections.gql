@@ -78,9 +78,9 @@ fragment HeaderSections on PageHeaderDynamicZone {
     ...GalleryHeaderSection
   }
 
-  ... on ComponentHeaderSectionsIcon {
-    ...IconHeaderSection
-  }
+  #  ... on ComponentHeaderSectionsIcon {
+  #    ...IconHeaderSection
+  #  }
 
   ... on ComponentHeaderSectionsPickupDay {
     ...PickupDayHeaderSection

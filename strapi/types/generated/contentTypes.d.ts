@@ -1341,7 +1341,6 @@ export interface ApiPagePage extends Schema.CollectionType {
       [
         'header-sections.featured-news',
         'header-sections.gallery',
-        'header-sections.icon',
         'header-sections.image',
         'header-sections.side-image',
         'header-sections.pickup-day',

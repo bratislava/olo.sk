@@ -25,7 +25,8 @@
       "type": "dynamiczone",
       "components": [
         "sections.richtext",
-        "sections.faq"
+        "sections.faq",
+        "sections.documents"
       ]
     },
     "dates": {

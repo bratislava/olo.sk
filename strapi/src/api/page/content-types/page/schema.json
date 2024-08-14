@@ -69,6 +69,7 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
+        "sections.richtext",
         "sections.articles",
         "sections.banner",
         "sections.branches",
@@ -80,12 +81,12 @@
         "sections.faq-categories",
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
-        "sections.ordered-cards",
-        "sections.richtext",
         "sections.services",
-        "sections.table",
         "sections.waste-sorting-cards",
-        "sections.workshops"
+        "sections.workshops",
+        "sections.documents",
+        "sections.ordered-cards",
+        "sections.table"
       ],
       "pluginOptions": {
         "i18n": {

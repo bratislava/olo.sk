@@ -130,6 +130,16 @@ fragment FilesSection on ComponentSectionsFiles {
   }
 }
 
+fragment DocumentsSection on ComponentSectionsDocuments {
+  titleDocuments: title
+  text
+  documents {
+    data {
+      ...DocumentEntity
+    }
+  }
+}
+
 fragment BannerSection on ComponentSectionsBanner {
   title
   text
@@ -235,6 +245,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsFaq {
     ...FaqSection
+  }
+
+  ... on ComponentSectionsDocuments {
+    ...DocumentsSection
   }
 
   #  ... on ComponentSectionsFiles {

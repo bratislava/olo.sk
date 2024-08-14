@@ -64,7 +64,8 @@
       "components": [
         "sections.richtext",
         "sections.cards-list",
-        "sections.faq"
+        "sections.faq",
+        "sections.documents"
       ]
     }
   }

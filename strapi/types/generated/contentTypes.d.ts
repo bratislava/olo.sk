@@ -1359,6 +1359,7 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
+        'sections.richtext',
         'sections.articles',
         'sections.banner',
         'sections.branches',
@@ -1370,12 +1371,12 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.faq-categories',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
-        'sections.ordered-cards',
-        'sections.richtext',
         'sections.services',
-        'sections.table',
         'sections.waste-sorting-cards',
         'sections.workshops',
+        'sections.documents',
+        'sections.ordered-cards',
+        'sections.table',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1435,7 +1436,9 @@ export interface ApiServiceService extends Schema.CollectionType {
           localized: true
         }
       }>
-    sections: Attribute.DynamicZone<['sections.richtext', 'sections.cards-list', 'sections.faq']> &
+    sections: Attribute.DynamicZone<
+      ['sections.richtext', 'sections.cards-list', 'sections.faq', 'sections.documents']
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
@@ -1576,7 +1579,7 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
-    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq']>
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.documents']>
     dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime

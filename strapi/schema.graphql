@@ -1137,7 +1137,7 @@ type ComponentSectionsKoloHomepageSection {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   branchesTitle: String
   id: ID!
-  mainCards(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
+  mainCards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
   showMoreLink: ComponentItemsLink
   text: String
   title: String
@@ -1147,7 +1147,7 @@ input ComponentSectionsKoloHomepageSectionFiltersInput {
   and: [ComponentSectionsKoloHomepageSectionFiltersInput]
   branches: BranchFiltersInput
   branchesTitle: StringFilterInput
-  mainCards: ComponentItemsLinkFiltersInput
+  mainCards: ComponentItemsCardsListItemFiltersInput
   not: ComponentSectionsKoloHomepageSectionFiltersInput
   or: [ComponentSectionsKoloHomepageSectionFiltersInput]
   showMoreLink: ComponentItemsLinkFiltersInput
@@ -1159,7 +1159,7 @@ input ComponentSectionsKoloHomepageSectionInput {
   branches: [ID]
   branchesTitle: String
   id: ID
-  mainCards: [ComponentItemsLinkInput]
+  mainCards: [ComponentItemsCardsListItemInput]
   showMoreLink: ComponentItemsLinkInput
   text: String
   title: String

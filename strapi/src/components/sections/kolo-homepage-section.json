@@ -15,7 +15,7 @@
     "mainCards": {
       "type": "component",
       "repeatable": true,
-      "component": "items.link",
+      "component": "items.cards-list-item",
       "max": 2
     },
     "branchesTitle": {

@@ -1,111 +1,118 @@
 fragment SlideItem on ComponentItemsSlide {
-  title
-  text
-  media {
-    data {
-      ...UploadImageEntity
+    title
+    text
+    media {
+        data {
+            ...UploadImageEntity
+        }
     }
-  }
-  backgroundColor
+    backgroundColor
+}
+
+fragment CardsListItem on ComponentItemsCardsListItem {
+    title
+    link {
+        ...Link
+    }
 }
 
 fragment HeroMainTile on ComponentItemsHeroMainTile {
-  text
-  link {
-    ...Link
-  }
+    text
+    link {
+        ...Link
+    }
 }
 
 fragment HeroSmallTile on ComponentItemsHeroSmallTile {
-  icon
-  link {
-    ...Link
-  }
+    icon
+    link {
+        ...Link
+    }
 }
 
 fragment HomepageServiceTile on ComponentItemsHomepageServiceTile {
-  title
-  text
-  link {
-    ...Link
-  }
+    title
+    text
+    link {
+        ...Link
+    }
 }
 
 fragment HeroHomepageSection on ComponentSectionsHeroHomepageSection {
-  slides {
-    ...SlideItem
-  }
-  mainTiles {
-    ...HeroMainTile
-  }
-  smallTiles {
-    ...HeroSmallTile
-  }
+    slides {
+        ...SlideItem
+    }
+    mainTiles {
+        ...HeroMainTile
+    }
+    smallTiles {
+        ...HeroSmallTile
+    }
 }
 
 fragment ArticlesHomepageSection on ComponentSectionsArticlesHomepageSection {
-  title
-  text
-  articles {
-    data {
-      ...ArticleEntity
+    title
+    text
+    articles {
+        data {
+            ...ArticleEntity
+        }
     }
-  }
-  showMoreLink {
-    ...Link
-  }
+    showMoreLink {
+        ...Link
+    }
 }
 
 fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {
-  title
-  text
-  mainCards {
-    ...Link
-  }
-  branchesTitle
-  branches {
-    data {
-      ...BranchEntity
+    title
+    text
+    mainCards {
+        ...CardsListItem
     }
-  }
-  showMoreLink {
-    ...Link
-  }
+    branchesTitle
+    branches {
+        data {
+            ...BranchEntity
+        }
+    }
+    showMoreLink {
+        ...Link
+    }
 }
 
 fragment ServicesHomepageSection on ComponentSectionsServicesHomepageSection {
-  title
-  text
-  tiles {
-    ...HomepageServiceTile
-  }
-  showMoreLink {
-    ...Link
-  }
+    title
+    text
+    tiles {
+        ...HomepageServiceTile
+    }
+    showMoreLink {
+        ...Link
+    }
 }
 
 fragment HomepageEntity on HomepageEntity {
-  id
-  attributes {
-    heroSection {
-      ...HeroHomepageSection
+    id
+    attributes {
+        heroSection {
+            ...HeroHomepageSection
+        }
+        articlesSection {
+            ...ArticlesHomepageSection
+        }
+        koloSection {
+            ...KoloHomepageSection
+        }
+        servicesSection {
+            ...ServicesHomepageSection
+        }
     }
-    articlesSection {
-      ...ArticlesHomepageSection
-    }
-    koloSection {
-      ...KoloHomepageSection
-    }
-    servicesSection {
-      ...ServicesHomepageSection
-    }
-  }
 }
 
 query Homepage($locale: I18NLocaleCode!) {
-  homepage(locale: $locale) {
-    data {
-      ...HomepageEntity
+    homepage(locale: $locale) {
+        data {
+            ...HomepageEntity
+        }
     }
-  }
 }

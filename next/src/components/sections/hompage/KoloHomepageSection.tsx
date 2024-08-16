@@ -7,6 +7,7 @@ import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { KoloHomepageSectionFragment } from '@/src/services/graphql/api'
+import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
@@ -34,7 +35,11 @@ const KoloHomepageSection = ({ section }: Props) => {
       <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
-        <div className="grid gap-4 lg:grid-cols-2 lg:gap-8">
+        <div
+          className={cn({
+            'grid gap-4 lg:grid-cols-2 lg:gap-8': mainCards && mainCards?.length > 1,
+          })}
+        >
           {mainCards?.filter(isDefined).map((card) => {
             const { children: label, href } = getLinkProps(card)
 

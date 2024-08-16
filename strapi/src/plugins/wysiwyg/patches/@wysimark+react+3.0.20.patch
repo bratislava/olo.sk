@@ -1,8 +1,26 @@
 diff --git a/node_modules/@wysimark/react/.dist/browser/index.esm.js b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-index 46d1f77..5fd2d08 100644
+index 46d1f77..2c90b43 100644
 --- a/node_modules/@wysimark/react/.dist/browser/index.esm.js
 +++ b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-@@ -6385,7 +6385,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
+@@ -6314,7 +6314,16 @@ function deleteFragmentWithProtectedTypes(editor, protectedTypes) {
+   );
+   Editor44.withoutNormalizing(editor, () => {
+     for (const range of reversedRanges) {
+-      Transforms30.delete(editor, { at: range });
++      const tableContentNodes = Editor.nodes(editor, {
++        at: range.anchor.path, 
++        // mode defaults to "all", so this also searches the Editor's children
++        match: (node) => {return (node.type === 'table-content')},
++      })
++
++      for (const tableContentNode of tableContentNodes) {
++        Transforms.select(editor, tableContentNode[1])
++        Editor.insertFragment(editor, [{ text: "" }])
++      }
+     }
+     Transforms30.collapse(editor, { edge: "start" });
+   });
+@@ -6385,7 +6394,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
    Editor45.withoutNormalizing(editor, () => {
      const { columns } = tableElement;
      const nextColumns = [...columns];
@@ -15,7 +33,7 @@ index 46d1f77..5fd2d08 100644
      Transforms31.setNodes(editor, { columns: nextColumns }, { at: tablePath });
      tableElement.children.forEach((rowElement, i) => {
        Transforms31.insertNodes(editor, createCell(nextCellIndex), {
-@@ -7563,12 +7567,12 @@ var Emoji = () => /* @__PURE__ */ jsxs27(TablerIcon, { children: [
+@@ -7563,12 +7576,12 @@ var Emoji = () => /* @__PURE__ */ jsxs27(TablerIcon, { children: [
  
  // src/toolbar-plugin/items/block-items.tsx
  var blockItems = [
@@ -34,7 +52,7 @@ index 46d1f77..5fd2d08 100644
    {
      icon: H2,
      title: "Heading 2",
-@@ -7800,26 +7804,26 @@ var dialogItems = [
+@@ -7800,26 +7813,26 @@ var dialogItems = [
      more: true,
      Component: TableDialog
    },
@@ -81,7 +99,7 @@ index 46d1f77..5fd2d08 100644
  ];
  var expandedDialogItems = dialogItems;
  var compactDialogItems = [
-@@ -7883,13 +7887,13 @@ var listItems = [
+@@ -7883,13 +7896,13 @@ var listItems = [
      title: "Numbered List",
      hotkey: "super+7",
      action: (editor) => editor.list.convertOrderedList(false)
@@ -101,7 +119,7 @@ index 46d1f77..5fd2d08 100644
  ];
  
  // src/toolbar-plugin/items/quote-items.tsx
-@@ -7921,13 +7925,13 @@ var dropdownItems = [
+@@ -7921,13 +7934,13 @@ var dropdownItems = [
      title: "Block Quote",
      more: true,
      children: quoteItems
@@ -121,7 +139,7 @@ index 46d1f77..5fd2d08 100644
  ];
  
  // src/toolbar-plugin/components/dialog/anchor-dialog.tsx
-@@ -8048,13 +8052,13 @@ var secondaryMarkItems = [
+@@ -8048,13 +8061,13 @@ var secondaryMarkItems = [
      action: (editor) => editor.marksPlugin.toggleStrike()
    },
    "divider",

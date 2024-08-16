@@ -11,7 +11,10 @@ RUN yarn config set network-timeout 600000 -g \
 
 COPY . ./
 
-RUN yarn build-storybook
+# If the build command fails it reports as successful due to 'send crash report' prompt
+# Setting STORYBOOK_ENABLE_CRASH_REPORTS=0 doesn't work and doesn't get rid of it
+# We have to manually pass to stdin 'n' as 'no'
+RUN echo "n" | yarn build-storybook
 
 FROM nginx:1.26-alpine AS prod
 

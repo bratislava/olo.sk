@@ -3,8 +3,9 @@ import '@/src/styles/globals.css'
 import { I18nextProvider } from 'react-i18next'
 import i18n from './i18n'
 import React from 'react'
-import { GeneralContextProvider } from '../src/providers/GeneralContextProvider'
-import { client } from '../src/services/graphql'
+import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
+import { client } from '@/src/services/graphql'
+import BAQueryClientProvider from '@/src/providers/BAQueryClientProvider'
 
 export const loaders = [
   async () => ({
@@ -15,11 +16,13 @@ export const loaders = [
 const preview: Preview = {
   decorators: [
     (Story, { loaded: general }) => (
-      <GeneralContextProvider general={general}>
-        <I18nextProvider i18n={i18n}>
-          <Story />
-        </I18nextProvider>
-      </GeneralContextProvider>
+      <BAQueryClientProvider>
+        <GeneralContextProvider general={general}>
+          <I18nextProvider i18n={i18n}>
+            <Story />
+          </I18nextProvider>
+        </GeneralContextProvider>
+      </BAQueryClientProvider>
     ),
   ],
   parameters: {

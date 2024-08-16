@@ -9,7 +9,13 @@ import {
 
 import ImageAndTextOverlappedSectionComponent from './ImageAndTextOverlappedSection'
 
-type Props = ImageAndTextOverlappedSectionFragment & { imageUrl: string }
+type Props = ImageAndTextOverlappedSectionFragment & {
+  imageUrl: string
+  hasPrimaryButton: boolean
+  primaryButtonLabel: string
+  hasSecondaryButton: boolean
+  secondaryButtonLabel: string
+}
 
 const meta: Meta<Props> = {
   title: 'Sections/Image And Text Overlapped',
@@ -21,6 +27,10 @@ const meta: Meta<Props> = {
     imagePositionImageAndTextOverlapped:
       Enum_Componentsectionsimageandtextoverlapped_Imageposition.Left,
     imageUrl: imagePlaceholder.src,
+    hasPrimaryButton: true,
+    primaryButtonLabel: 'primary',
+    hasSecondaryButton: true,
+    secondaryButtonLabel: 'secondary',
   },
   argTypes: {
     backgroundColorImageAndTextOverlapped: {
@@ -37,6 +47,12 @@ const meta: Meta<Props> = {
         type: 'inline-radio',
       },
     },
+    primaryButtonLabel: {
+      if: { arg: 'hasPrimaryButton' },
+    },
+    secondaryButtonLabel: {
+      if: { arg: 'hasSecondaryButton' },
+    },
   },
 }
 
@@ -48,8 +64,13 @@ export const ImageAndTextOverlappedSection: Story = {
     <ImageAndTextOverlappedSectionComponent
       section={{
         ...args,
-        link: { url: '#', label: 'Čítať viac' },
         image: { data: { attributes: { url: args.imageUrl, name: '' } } },
+        primaryButton: args.hasPrimaryButton
+          ? { label: args.primaryButtonLabel, url: '' }
+          : undefined,
+        secondaryButton: args.hasSecondaryButton
+          ? { label: args.secondaryButtonLabel, url: '' }
+          : undefined,
       }}
     />
   ),

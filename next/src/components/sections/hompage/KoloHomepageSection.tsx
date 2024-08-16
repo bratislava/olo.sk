@@ -1,7 +1,7 @@
 import React from 'react'
 
+import HalfBanner from '@/src/components/common/Banner/HalfBanner'
 import BranchCard from '@/src/components/common/Card/BranchCard'
-import HomepageMainTile from '@/src/components/common/Card/HomepageMainTile'
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
@@ -30,7 +30,7 @@ const KoloHomepageSection = ({ section }: Props) => {
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
-    <SectionContainer background="primary" className="py-6 lg:py-12">
+    <SectionContainer className="py-6 lg:py-12">
       <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
@@ -38,8 +38,7 @@ const KoloHomepageSection = ({ section }: Props) => {
           {mainCards?.filter(isDefined).map((card) => {
             const { children: label, href } = getLinkProps(card)
 
-            // TODO proper component
-            return <HomepageMainTile title={label} linkHref={href} />
+            return <HalfBanner title={card?.label ?? ''} buttonLinkHref={href} buttonText={label} />
           })}
         </div>
 

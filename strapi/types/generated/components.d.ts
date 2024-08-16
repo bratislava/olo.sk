@@ -444,7 +444,7 @@ export interface SectionsColumns extends Schema.Component {
   }
   attributes: {
     title: Attribute.String
-    text: Attribute.String
+    text: Attribute.Text
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>

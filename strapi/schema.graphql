@@ -745,13 +745,15 @@ input ComponentMenuMenuSectionInput {
 
 type ComponentSectionsArticles {
   id: ID!
-  title: String!
+  text: String
+  title: String
 }
 
 input ComponentSectionsArticlesFiltersInput {
   and: [ComponentSectionsArticlesFiltersInput]
   not: ComponentSectionsArticlesFiltersInput
   or: [ComponentSectionsArticlesFiltersInput]
+  text: StringFilterInput
   title: StringFilterInput
 }
 
@@ -783,6 +785,7 @@ input ComponentSectionsArticlesHomepageSectionInput {
 
 input ComponentSectionsArticlesInput {
   id: ID
+  text: String
   title: String
 }
 
@@ -822,7 +825,7 @@ type ComponentSectionsBranches {
   id: ID!
   showAll: Boolean!
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsBranchesFiltersInput {
@@ -847,7 +850,7 @@ type ComponentSectionsCardsList {
   cards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
   id: ID!
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsCardsListFiltersInput {
@@ -871,7 +874,7 @@ type ComponentSectionsColumns {
   id: ID!
   items(filters: ComponentItemsColumnsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsItem]!
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsColumnsFiltersInput {
@@ -897,7 +900,8 @@ type ComponentSectionsColumnsList {
   id: ID!
   leftColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
   rightColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
-  title: String!
+  text: String
+  title: String
 }
 
 input ComponentSectionsColumnsListFiltersInput {
@@ -907,6 +911,7 @@ input ComponentSectionsColumnsListFiltersInput {
   not: ComponentSectionsColumnsListFiltersInput
   or: [ComponentSectionsColumnsListFiltersInput]
   rightColumn: ComponentItemsColumnsListItemFiltersInput
+  text: StringFilterInput
   title: StringFilterInput
 }
 
@@ -915,6 +920,7 @@ input ComponentSectionsColumnsListInput {
   id: ID
   leftColumn: [ComponentItemsColumnsListItemInput]
   rightColumn: [ComponentItemsColumnsListItemInput]
+  text: String
   title: String
 }
 
@@ -963,7 +969,8 @@ type ComponentSectionsFaq {
   faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
   id: ID!
   showMoreLink: ComponentItemsLink
-  title: String!
+  text: String
+  title: String
 }
 
 type ComponentSectionsFaqCategories {
@@ -999,6 +1006,7 @@ input ComponentSectionsFaqFiltersInput {
   not: ComponentSectionsFaqFiltersInput
   or: [ComponentSectionsFaqFiltersInput]
   showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
   title: StringFilterInput
 }
 
@@ -1007,13 +1015,15 @@ input ComponentSectionsFaqInput {
   faqs: [ID]
   id: ID
   showMoreLink: ComponentItemsLinkInput
+  text: String
   title: String
 }
 
 type ComponentSectionsFiles {
   files(filters: ComponentItemsFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFileItem]!
   id: ID!
-  title: String!
+  text: String
+  title: String
 }
 
 input ComponentSectionsFilesFiltersInput {
@@ -1021,12 +1031,14 @@ input ComponentSectionsFilesFiltersInput {
   files: ComponentItemsFileItemFiltersInput
   not: ComponentSectionsFilesFiltersInput
   or: [ComponentSectionsFilesFiltersInput]
+  text: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsFilesInput {
   files: [ComponentItemsFileItemInput]
   id: ID
+  text: String
   title: String
 }
 
@@ -1061,7 +1073,7 @@ type ComponentSectionsImageAndText {
   primaryButton: ComponentItemsLink
   secondaryButton: ComponentItemsLink
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsImageAndTextFiltersInput {
@@ -1092,18 +1104,20 @@ type ComponentSectionsImageAndTextOverlapped {
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
-  link: ComponentItemsLink
+  primaryButton: ComponentItemsLink
+  secondaryButton: ComponentItemsLink
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsImageAndTextOverlappedFiltersInput {
   and: [ComponentSectionsImageAndTextOverlappedFiltersInput]
   backgroundColor: StringFilterInput
   imagePosition: StringFilterInput
-  link: ComponentItemsLinkFiltersInput
   not: ComponentSectionsImageAndTextOverlappedFiltersInput
   or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  primaryButton: ComponentItemsLinkFiltersInput
+  secondaryButton: ComponentItemsLinkFiltersInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -1113,7 +1127,8 @@ input ComponentSectionsImageAndTextOverlappedInput {
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
-  link: ComponentItemsLinkInput
+  primaryButton: ComponentItemsLinkInput
+  secondaryButton: ComponentItemsLinkInput
   text: String
   title: String
 }
@@ -1153,7 +1168,8 @@ input ComponentSectionsKoloHomepageSectionInput {
 type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
-  title: String!
+  text: String
+  title: String
   variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT!
 }
 
@@ -1162,6 +1178,7 @@ input ComponentSectionsOrderedCardsFiltersInput {
   cards: ComponentItemsOrderedCardsItemFiltersInput
   not: ComponentSectionsOrderedCardsFiltersInput
   or: [ComponentSectionsOrderedCardsFiltersInput]
+  text: StringFilterInput
   title: StringFilterInput
   variant: StringFilterInput
 }
@@ -1169,6 +1186,7 @@ input ComponentSectionsOrderedCardsFiltersInput {
 input ComponentSectionsOrderedCardsInput {
   cards: [ComponentItemsOrderedCardsItemInput]
   id: ID
+  text: String
   title: String
   variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT
 }
@@ -1243,7 +1261,7 @@ type ComponentSectionsTable {
   anchorId: String
   id: ID!
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsTableFiltersInput {
@@ -1289,7 +1307,7 @@ type ComponentSectionsWorkshops {
   id: ID!
   showAll: Boolean!
   text: String
-  title: String!
+  title: String
   workshops(filters: WorkshopFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): WorkshopRelationResponseCollection
 }
 

@@ -22,7 +22,7 @@ type Props = {
 // TODO remove this component, use DocumentsSection
 
 const FilesSection = ({ section, className }: Props) => {
-  const { title, files } = section ?? {}
+  const { title, text, files } = section ?? {}
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredFiles = files?.filter(isDefined) ?? []
@@ -31,7 +31,8 @@ const FilesSection = ({ section, className }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer className={cn('py-6 lg:py-18', className)}>
       <div className="flex flex-col gap-6">
-        <SectionHeader title={title} />
+        <SectionHeader title={title} text={text} />
+
         <FileRowGroup
           fileRowCardData={filteredFiles
             .map((file): FileRowCardProps | null => {

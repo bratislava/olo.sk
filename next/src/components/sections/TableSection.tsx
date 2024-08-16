@@ -15,13 +15,14 @@ type Props = {
  */
 
 const TableSection = ({ section }: Props) => {
-  const { title, anchorId } = section
+  const { title, text, anchorId } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div id={anchorId ?? undefined} className="flex flex-col gap-6 lg:gap-12">
-        <SectionHeader title={title} />
+        <SectionHeader title={title} text={text} />
+
         {/* TODO replace with proper table */}
         <div className="flex">
           <PlaceholderWrapper className="-m-2 rounded-lg border-action-background-default p-2 opacity-100">

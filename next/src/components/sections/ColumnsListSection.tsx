@@ -16,13 +16,20 @@ type Props = {
  */
 
 const ColumnsListSection = ({ section }: Props) => {
-  const { title, backgroundColorColumnList: backgroundColor, leftColumn, rightColumn } = section
+  const {
+    title,
+    text,
+    backgroundColorColumnList: backgroundColor,
+    leftColumn,
+    rightColumn,
+  } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColor ?? 'primary'} className="w-full py-6 lg:py-18">
       <div className="flex flex-col gap-6 lg:gap-8">
-        <SectionHeader title={title} />
+        <SectionHeader title={title} text={text} />
+
         <div className="grid gap-3 lg:grid-cols-2 lg:gap-8">
           {[leftColumn, rightColumn]
             .filter((column) => column?.length)

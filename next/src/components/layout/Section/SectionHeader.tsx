@@ -25,6 +25,10 @@ const SectionHeader = ({
 }: SectionHeaderProps) => {
   const { getLinkProps } = useGetLinkProps()
 
+  if (!title && !text && !showMoreLink) {
+    return null
+  }
+
   return (
     <div
       className={cn('flex items-center lg:justify-end', {
@@ -32,20 +36,22 @@ const SectionHeader = ({
         'lg:justify-start': !showMoreLink,
       })}
     >
-      <div
-        className={cn(
-          'flex w-full flex-col items-start gap-4 empty:hidden',
-          // 50rem = 800px
-          {
-            'items-center text-center': isCentered,
-            'max-w-[50rem]': !isFullWidth,
-          },
-          className,
-        )}
-      >
-        {title ? <Typography variant="h2">{title}</Typography> : null}
-        {text ? <Typography variant="p-default">{text}</Typography> : null}
-      </div>
+      {title || text ? (
+        <div
+          className={cn(
+            'flex w-full flex-col items-start gap-4',
+            // 50rem = 800px
+            {
+              'items-center text-center': isCentered,
+              'max-w-[50rem]': !isFullWidth,
+            },
+            className,
+          )}
+        >
+          {title ? <Typography variant="h2">{title}</Typography> : null}
+          {text ? <Typography variant="p-default">{text}</Typography> : null}
+        </div>
+      ) : null}
 
       {showMoreLink ? (
         // Styling is a bit different from Figma, to make it more consistent. Adding mt-2 when title is used for better alignment to center of first line

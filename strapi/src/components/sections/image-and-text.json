@@ -8,20 +8,27 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
       "type": "text"
     },
     "imagePosition": {
       "type": "enumeration",
-      "enum": ["left", "right"],
+      "enum": [
+        "left",
+        "right"
+      ],
       "default": "left",
       "required": true
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["primary", "secondary", "tertiary"],
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
       "default": "primary",
       "required": true
     },
@@ -29,7 +36,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "primaryButton": {
       "displayName": "primary button",

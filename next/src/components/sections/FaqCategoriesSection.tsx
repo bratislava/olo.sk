@@ -24,12 +24,12 @@ const FaqCategoriesSection = ({ section }: Props) => {
 
   const { getFullPath } = useGetFullPath()
 
-  const { titleFaqCategories: title, text, faqCategories, showAll } = section
+  const { title, text, faqCategories, showAll } = section
 
   // TODO consider optimalizing so that we don't fetch this much when showAll is false
   const { data: allFaqCategories } = useQuery({
     queryFn: () => client.FaqCategories({ locale }),
-    queryKey: ['faqcategories', locale],
+    queryKey: ['faqCategories', locale],
   })
 
   const faqCategoriesToRender =
@@ -40,7 +40,7 @@ const FaqCategoriesSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-6">
-        {title || text ? <SectionHeader title={title} text={text} /> : null}
+        <SectionHeader title={title} text={text} />
         <ul className=" grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {faqCategoriesToRender
             .map((faqCategory, index) => {

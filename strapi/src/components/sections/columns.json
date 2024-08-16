@@ -8,14 +8,18 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
       "type": "string"
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["primary", "secondary", "tertiary"],
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
       "default": "primary",
       "required": true
     },

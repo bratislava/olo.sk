@@ -25,11 +25,7 @@ const Editor = ({ onChange, name, value = '', disabled = false }: EditorProps) =
 
   return (
     <Wrapper>
-      <div
-        style={{
-          backgroundColor: 'white',
-        }}
-      >
+      <div style={{ backgroundColor: 'white' }}>
         <Editable
           editor={editor}
           value={value}

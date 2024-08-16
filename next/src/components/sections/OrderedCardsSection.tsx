@@ -21,18 +21,18 @@ type Props = {
  */
 
 const OrderedCardsSection = ({ section }: Props) => {
-  const { title, variantOrderedCards: variant, cards } = section
+  const { title, text, variantOrderedCards: variant, cards } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="secondary" className="py-6 lg:py-18">
       <div className="flex flex-col items-center gap-6 lg:gap-12">
-        <SectionHeader title={title} isCentered />
+        <SectionHeader title={title} text={text} isCentered />
         <ol className="grid w-full gap-4 lg:grid-cols-2 lg:gap-8">
           {
             // eslint-disable-next-line unicorn/no-array-callback-reference
             cards.filter(isDefined).map((card, index) => {
-              const { title: cardTitle, text, iconName } = card
+              const { title: cardTitle, text: cardText, iconName } = card
 
               // TODO This should be extracted to a separate component
               const CardIcon = iconName ? (
@@ -61,8 +61,10 @@ const OrderedCardsSection = ({ section }: Props) => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Typography variant="h5">{cardTitle}</Typography>
-                    <Typography>{text}</Typography>
+                    <Typography variant="h5" as="h3">
+                      {cardTitle}
+                    </Typography>
+                    <Typography>{cardText}</Typography>
                   </div>
                 </li>
               )

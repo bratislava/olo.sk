@@ -53,7 +53,7 @@ const ImageAndTextSection = ({ section }: Props) => {
   const TextContent = (
     <div className="flex grow flex-col gap-6">
       <SectionHeader title={title} text={text} />
-      <div className="flex gap-4">
+      <div className="flex gap-4 empty:hidden">
         {primaryButton ? (
           <Button
             variant="category-solid"

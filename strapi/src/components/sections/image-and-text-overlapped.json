@@ -8,20 +8,29 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
       "type": "text"
     },
     "imagePosition": {
       "type": "enumeration",
-      "enum": ["left", "right", "left-shifted", "right-shifted"],
+      "enum": [
+        "left",
+        "right",
+        "left-shifted",
+        "right-shifted"
+      ],
       "required": true,
       "default": "left"
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["primary", "secondary", "tertiary"],
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
       "default": "primary",
       "required": true
     },
@@ -29,9 +38,16 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
-    "link": {
+    "primaryButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    },
+    "secondaryButton": {
       "type": "component",
       "repeatable": false,
       "component": "items.link"

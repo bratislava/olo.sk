@@ -30,7 +30,7 @@ const ArticlesSection = ({ section }: Props) => {
   const { t, i18n } = useTranslation()
   const locale = i18n?.language
 
-  const { title } = section
+  const { title, text } = section
 
   const [routerQueryValue] = useQueryParam('keyword', withDefault(StringParam, ''))
   const [input, setInput] = useState('')
@@ -81,7 +81,7 @@ const ArticlesSection = ({ section }: Props) => {
     <SectionContainer background="primary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-6 lg:gap-12">
         <div className="flex flex-col gap-6 lg:gap-8">
-          <SectionHeader title={title} />
+          <SectionHeader title={title} text={text} />
           <SearchBar
             ref={searchRef}
             input={input}

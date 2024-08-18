@@ -1,5 +1,5 @@
 diff --git a/node_modules/@wysimark/react/.dist/browser/index.esm.js b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-index 46d1f77..8c598ae 100644
+index 46d1f77..b3d09c1 100644
 --- a/node_modules/@wysimark/react/.dist/browser/index.esm.js
 +++ b/node_modules/@wysimark/react/.dist/browser/index.esm.js
 @@ -6314,7 +6314,16 @@ function deleteFragmentWithProtectedTypes(editor, protectedTypes) {
@@ -250,17 +250,20 @@ index 46d1f77..8c598ae 100644
    {
      icon: RemoveStyles,
      title: "Remove Styles",
-@@ -8594,6 +8653,32 @@ var PasteMarkdownPlugin = createPlugin(
+@@ -8594,6 +8653,35 @@ var PasteMarkdownPlugin = createPlugin(
        editableProps: {
          onPaste(e) {
            const { types } = e.clipboardData;
 +          const clipboardText = JSON.stringify(e.clipboardData.getData("text"));
 +          // Pasting a table
-+          // TODO: Crash on pasting table from Excel
-+          // TODO: Crash on deleting table when selection begins outside table and ends inside the last cell 
 +          if (clipboardText.includes("\\t")) {
-+            const parsedTableRows = clipboardText.replaceAll(/(^")|("$)/g,"").replaceAll("\\r\\n", "\\r").split("\\r");
-+            const parsedTable = parsedTableRows.map((row) => row.split("\\t"));
++            // this regex cleans up the " character that is added to the beginning and end of the clipboard text
++            // and also removes the empty line represented by \r\n which appears only when copying from Excel 
++            const parsedTableRows = clipboardText.replaceAll(/(^")|("$)|("\\r\\n"$)/g,"").replaceAll("\\r\\n", "\\r").split("\\r");
++            const parsedTable = parsedTableRows.map((row) => {
++              // for some reason, Excel adds an extra \r containing an empty string at the end of the last row we need to remove
++              if (row === "") return null;
++              return row.split("\\t")}).filter((row) => !!row);
 +            const rowCount = parsedTable?.length ?? 0;
 +            const columnCount = parsedTable[0]?.length ?? 0;
 +
@@ -271,11 +274,11 @@ index 46d1f77..8c598ae 100644
 +            })
 +
 +            for (const node of tableCellNodes) {
-+              const nodePath = node[1]
-+              const nodeRowIndex = nodePath[1]
-+              const nodeColumnIndex = nodePath[2]
-+              Transforms46.select(editor, nodePath)
-+              Editor59.insertFragment(editor, [{ text: parsedTable[nodeRowIndex][nodeColumnIndex] }])
++                const nodePath = node[1]
++                const nodeRowIndex = nodePath[1]
++                const nodeColumnIndex = nodePath[2]
++                Transforms46.select(editor, nodePath)
++                Editor59.insertFragment(editor, [{ text: parsedTable[nodeRowIndex][nodeColumnIndex] }])
 +            }
 +            stopEvent(e);
 +            return true

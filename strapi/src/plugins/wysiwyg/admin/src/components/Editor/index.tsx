@@ -25,12 +25,14 @@ const Editor = ({ onChange, name, value = '', disabled = false }: EditorProps) =
 
   return (
     <Wrapper>
-      <Editable
-        editor={editor}
-        value={value}
-        onChange={(data) => onChange({ target: { name, value: data } })}
-        placeholder="Type something here..."
-      />
+      <div style={{ backgroundColor: 'white' }}>
+        <Editable
+          editor={editor}
+          value={value}
+          onChange={(data) => onChange({ target: { name, value: data } })}
+          placeholder="Type something here..."
+        />
+      </div>
       {/* TODO remove, useful for dev */}
       <div style={{ backgroundColor: '#eee', padding: 32, marginTop: 8, borderRadius: 8 }}>
         <code style={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>{value}</code>

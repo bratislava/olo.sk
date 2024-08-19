@@ -30,16 +30,16 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
     const divider = index > 0 ? <NavBarDivider variant="horizontal" /> : null
 
     if (isDefined(link.workshop?.data)) {
+      const mostRecentWorkshopDate = getMostRecentWorkshopDate(link.workshop?.data)
+
       return (
         <Fragment key={link.id}>
           {divider}
           <MenuItemWorkshopCard
             title={children ?? ''}
             subText={
-              getMostRecentWorkshopDate(link.workshop?.data)
-                ? t('navBar.workshopCard.messageMostRecentDate', {
-                    mostRecentWorkshopDate: getMostRecentWorkshopDate(link.workshop?.data),
-                  })
+              mostRecentWorkshopDate
+                ? t('navBar.workshopCard.messageMostRecentDate', { mostRecentWorkshopDate })
                 : ''
             }
             linkHref={href}

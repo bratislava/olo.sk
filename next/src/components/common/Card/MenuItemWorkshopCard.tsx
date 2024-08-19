@@ -42,7 +42,7 @@ const MenuItemWorkshopCard = ({
               {title}
             </Typography>
           </Link>
-          <Typography variant="p-small">{subText}</Typography>
+          {subText ? <Typography variant="p-small">{subText}</Typography> : null}
         </div>
       </div>
     </CardBase>

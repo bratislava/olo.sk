@@ -12,9 +12,21 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "label": {
-      "type": "string",
-      "required": true
+    "name": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": ["images"],
+      "type": "media",
+      "multiple": false
+    },
+    "document": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::document.document"
     }
   }
 }

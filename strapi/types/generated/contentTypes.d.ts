@@ -860,7 +860,10 @@ export interface ApiContactContact extends Schema.CollectionType {
     draftAndPublish: true
   }
   attributes: {
-    label: Attribute.String & Attribute.Required
+    name: Attribute.String
+    position: Attribute.String
+    image: Attribute.Media
+    document: Attribute.Relation<'api::contact.contact', 'oneToOne', 'api::document.document'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

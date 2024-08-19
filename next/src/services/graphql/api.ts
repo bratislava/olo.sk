@@ -1143,7 +1143,10 @@ export type ComponentSectionsWorkshopsWorkshopsArgs = {
 export type Contact = {
   __typename?: 'Contact'
   createdAt?: Maybe<Scalars['DateTime']['output']>
-  label: Scalars['String']['output']
+  document?: Maybe<DocumentEntityResponse>
+  image?: Maybe<UploadFileEntityResponse>
+  name?: Maybe<Scalars['String']['output']>
+  position?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
@@ -1168,16 +1171,21 @@ export type ContactEntityResponseCollection = {
 export type ContactFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ContactFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  document?: InputMaybe<DocumentFiltersInput>
   id?: InputMaybe<IdFilterInput>
-  label?: InputMaybe<StringFilterInput>
+  name?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ContactFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ContactFiltersInput>>>
+  position?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
 export type ContactInput = {
-  label?: InputMaybe<Scalars['String']['input']>
+  document?: InputMaybe<Scalars['ID']['input']>
+  image?: InputMaybe<Scalars['ID']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  position?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
 }
 
@@ -9945,6 +9953,82 @@ export type BranchBySlugQuery = {
         address?: string | null
         title: string
         slug: string
+      } | null
+    }>
+  } | null
+}
+
+export type ContactEntityFragment = {
+  __typename?: 'ContactEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Contact'
+    name?: string | null
+    position?: string | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+  } | null
+}
+
+export type ContactsQueryVariables = Exact<{ [key: string]: never }>
+
+export type ContactsQuery = {
+  __typename?: 'Query'
+  contacts?: {
+    __typename?: 'ContactEntityResponseCollection'
+    data: Array<{
+      __typename?: 'ContactEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Contact'
+        name?: string | null
+        position?: string | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
+        document?: {
+          __typename?: 'DocumentEntityResponse'
+          data?: {
+            __typename: 'DocumentEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -24647,6 +24731,19 @@ export const FilesSectionFragmentDoc = gql`
   }
   ${FileItemFragmentDoc}
 `
+export const UploadImageEntityFragmentDoc = gql`
+  fragment UploadImageEntity on UploadFileEntity {
+    id
+    attributes {
+      url
+      width
+      height
+      caption
+      alternativeText
+      name
+    }
+  }
+`
 export const DocumentSlugEntityFragmentDoc = gql`
   fragment DocumentSlugEntity on DocumentEntity {
     __typename
@@ -24656,6 +24753,27 @@ export const DocumentSlugEntityFragmentDoc = gql`
       title
     }
   }
+`
+export const ContactEntityFragmentDoc = gql`
+  fragment ContactEntity on ContactEntity {
+    id
+    attributes {
+      name
+      position
+      image {
+        data {
+          ...UploadImageEntity
+        }
+      }
+      document {
+        data {
+          ...DocumentSlugEntity
+        }
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+  ${DocumentSlugEntityFragmentDoc}
 `
 export const DocumentSearchEntityFragmentDoc = gql`
   fragment DocumentSearchEntity on DocumentEntity {
@@ -24790,19 +24908,6 @@ export const FooterEntityFragmentDoc = gql`
     }
   }
   ${FooterFragmentDoc}
-`
-export const UploadImageEntityFragmentDoc = gql`
-  fragment UploadImageEntity on UploadFileEntity {
-    id
-    attributes {
-      url
-      width
-      height
-      caption
-      alternativeText
-      name
-    }
-  }
 `
 export const SlideItemFragmentDoc = gql`
   fragment SlideItem on ComponentItemsSlide {
@@ -25828,6 +25933,16 @@ export const BranchBySlugDocument = gql`
   }
   ${BranchEntityFragmentDoc}
 `
+export const ContactsDocument = gql`
+  query Contacts {
+    contacts {
+      data {
+        ...ContactEntity
+      }
+    }
+  }
+  ${ContactEntityFragmentDoc}
+`
 export const DocumentsDocument = gql`
   query Documents {
     documents {
@@ -26192,6 +26307,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'BranchBySlug',
+        'query',
+        variables,
+      )
+    },
+    Contacts(
+      variables?: ContactsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ContactsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ContactsQuery>(ContactsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Contacts',
         'query',
         variables,
       )

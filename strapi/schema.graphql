@@ -1334,7 +1334,10 @@ input ComponentSectionsWorkshopsInput {
 
 type Contact {
   createdAt: DateTime
-  label: String!
+  document: DocumentEntityResponse
+  image: UploadFileEntityResponse
+  name: String
+  position: String
   publishedAt: DateTime
   updatedAt: DateTime
 }
@@ -1356,16 +1359,21 @@ type ContactEntityResponseCollection {
 input ContactFiltersInput {
   and: [ContactFiltersInput]
   createdAt: DateTimeFilterInput
+  document: DocumentFiltersInput
   id: IDFilterInput
-  label: StringFilterInput
+  name: StringFilterInput
   not: ContactFiltersInput
   or: [ContactFiltersInput]
+  position: StringFilterInput
   publishedAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input ContactInput {
-  label: String
+  document: ID
+  image: ID
+  name: String
+  position: String
   publishedAt: DateTime
 }
 

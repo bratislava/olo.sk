@@ -1,0 +1,25 @@
+fragment ContactEntity on ContactEntity {
+  id
+  attributes {
+    name
+    position
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    document {
+      data {
+        ...DocumentSlugEntity
+      }
+    }
+  }
+}
+
+query Contacts {
+  contacts {
+    data {
+      ...ContactEntity
+    }
+  }
+}

@@ -15,8 +15,8 @@
     },
     "showAll": {
       "type": "boolean",
-      "required": true,
-      "default": false
+      "default": false,
+      "required": true
     },
     "branches": {
       "type": "relation",

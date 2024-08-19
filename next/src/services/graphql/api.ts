@@ -911,6 +911,7 @@ export type ComponentSectionsDocuments = {
   __typename?: 'ComponentSectionsDocuments'
   documents?: Maybe<DocumentRelationResponseCollection>
   id: Scalars['ID']['output']
+  showAll: Scalars['Boolean']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
@@ -7562,6 +7563,7 @@ export type DocumentsSectionFragment = {
   __typename?: 'ComponentSectionsDocuments'
   title?: string | null
   text?: string | null
+  showAll: boolean
   documents?: {
     __typename?: 'DocumentRelationResponseCollection'
     data: Array<{
@@ -8579,6 +8581,7 @@ type PageSections_ComponentSectionsDocuments_Fragment = {
   __typename: 'ComponentSectionsDocuments'
   title?: string | null
   text?: string | null
+  showAll: boolean
   documents?: {
     __typename?: 'DocumentRelationResponseCollection'
     data: Array<{
@@ -10078,6 +10081,25 @@ export type DocumentSlugEntityFragment = {
   __typename: 'DocumentEntity'
   id?: string | null
   attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+}
+
+export type DocumentSearchEntityFragment = {
+  __typename: 'DocumentEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Document'
+    publishedAt?: any | null
+    updatedAt?: any | null
+    slug: string
+    title: string
+    documentCategory?: {
+      __typename?: 'DocumentCategoryEntityResponse'
+      data?: {
+        __typename?: 'DocumentCategoryEntity'
+        attributes?: { __typename?: 'DocumentCategory'; title: string } | null
+      } | null
+    } | null
+  } | null
 }
 
 export type DocumentEntityFragment = {
@@ -16403,6 +16425,7 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsDocuments'
           title?: string | null
           text?: string | null
+          showAll: boolean
           documents?: {
             __typename?: 'DocumentRelationResponseCollection'
             data: Array<{
@@ -18338,6 +18361,7 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsDocuments'
               title?: string | null
               text?: string | null
+              showAll: boolean
               documents?: {
                 __typename?: 'DocumentRelationResponseCollection'
                 data: Array<{
@@ -20284,6 +20308,7 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsDocuments'
               title?: string | null
               text?: string | null
+              showAll: boolean
               documents?: {
                 __typename?: 'DocumentRelationResponseCollection'
                 data: Array<{
@@ -21635,6 +21660,7 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsDocuments'
           title?: string | null
           text?: string | null
+          showAll: boolean
           documents?: {
             __typename?: 'DocumentRelationResponseCollection'
             data: Array<{
@@ -22282,6 +22308,7 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsDocuments'
               title?: string | null
               text?: string | null
+              showAll: boolean
               documents?: {
                 __typename?: 'DocumentRelationResponseCollection'
                 data: Array<{
@@ -22936,6 +22963,7 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsDocuments'
               title?: string | null
               text?: string | null
+              showAll: boolean
               documents?: {
                 __typename?: 'DocumentRelationResponseCollection'
                 data: Array<{
@@ -23445,6 +23473,7 @@ export type WorkshopEntityFragment = {
           __typename: 'ComponentSectionsDocuments'
           title?: string | null
           text?: string | null
+          showAll: boolean
           documents?: {
             __typename?: 'DocumentRelationResponseCollection'
             data: Array<{
@@ -23944,6 +23973,7 @@ export type WorkshopsQuery = {
               __typename: 'ComponentSectionsDocuments'
               title?: string | null
               text?: string | null
+              showAll: boolean
               documents?: {
                 __typename?: 'DocumentRelationResponseCollection'
                 data: Array<{
@@ -24451,6 +24481,7 @@ export type WorkshopBySlugQuery = {
               __typename: 'ComponentSectionsDocuments'
               title?: string | null
               text?: string | null
+              showAll: boolean
               documents?: {
                 __typename?: 'DocumentRelationResponseCollection'
                 data: Array<{
@@ -25080,6 +25111,33 @@ export const FilesSectionFragmentDoc = gql`
   }
   ${FileItemFragmentDoc}
 `
+export const DocumentSlugEntityFragmentDoc = gql`
+  fragment DocumentSlugEntity on DocumentEntity {
+    __typename
+    id
+    attributes {
+      slug
+      title
+    }
+  }
+`
+export const DocumentSearchEntityFragmentDoc = gql`
+  fragment DocumentSearchEntity on DocumentEntity {
+    ...DocumentSlugEntity
+    attributes {
+      publishedAt
+      updatedAt
+      documentCategory {
+        data {
+          attributes {
+            title
+          }
+        }
+      }
+    }
+  }
+  ${DocumentSlugEntityFragmentDoc}
+`
 export const ArticleSlugEntityFragmentDoc = gql`
   fragment ArticleSlugEntity on ArticleEntity {
     __typename
@@ -25097,16 +25155,6 @@ export const BranchSlugEntityFragmentDoc = gql`
     attributes {
       title
       slug
-    }
-  }
-`
-export const DocumentSlugEntityFragmentDoc = gql`
-  fragment DocumentSlugEntity on DocumentEntity {
-    __typename
-    id
-    attributes {
-      slug
-      title
     }
   }
 `
@@ -25859,6 +25907,7 @@ export const DocumentsSectionFragmentDoc = gql`
   fragment DocumentsSection on ComponentSectionsDocuments {
     title
     text
+    showAll
     documents {
       data {
         ...DocumentEntity

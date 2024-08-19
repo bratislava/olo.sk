@@ -961,6 +961,7 @@ input ComponentSectionsDividerInput {
 type ComponentSectionsDocuments {
   documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
   id: ID!
+  showAll: Boolean!
   text: String
   title: String
 }
@@ -970,6 +971,7 @@ input ComponentSectionsDocumentsFiltersInput {
   documents: DocumentFiltersInput
   not: ComponentSectionsDocumentsFiltersInput
   or: [ComponentSectionsDocumentsFiltersInput]
+  showAll: BooleanFilterInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -977,6 +979,7 @@ input ComponentSectionsDocumentsFiltersInput {
 input ComponentSectionsDocumentsInput {
   documents: [ID]
   id: ID
+  showAll: Boolean
   text: String
   title: String
 }

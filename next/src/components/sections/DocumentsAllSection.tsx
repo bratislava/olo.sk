@@ -29,10 +29,10 @@ type Props = {
 }
 
 /**
- * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13877&t=welewzgz8FI2CbQy-4
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1748-27133&m=dev
  */
 
-const DocumentsSection = ({ section, className }: Props) => {
+const DocumentsAllSection = ({ section, className }: Props) => {
   const { t } = useTranslation()
   const { title, text } = section ?? {}
   const { getFullPath } = useGetFullPath()
@@ -95,30 +95,33 @@ const DocumentsSection = ({ section, className }: Props) => {
           <Typography variant="p-default">{t('common.loading')}</Typography>
         ) : (
           <div className="flex flex-col gap-6">
-            <div className="overflow-hidden rounded-lg border border-border-default">
+            <ul className="divide-y divide-border-default rounded-lg border border-border-default focus-within:z-[1]">
               {data.hits
                 .map((document) => {
                   if (!document.attributes) return null
 
                   return (
-                    <SearchResultRowCard
-                      key={document.id}
-                      title={document.attributes.title}
-                      linkHref={getFullPath(document) ?? '#'}
-                      iconName="dokument"
-                      metadata={[
-                        t('documentsAllSection.metadata.publishDate', {
-                          date: formatDate(document.attributes.publishedAt),
-                        }),
-                        document.attributes.documentCategory?.data?.attributes?.title,
-                        // eslint-disable-next-line unicorn/no-array-callback-reference
-                      ].filter(isDefined)}
-                    />
+                    <li>
+                      <SearchResultRowCard
+                        key={document.id}
+                        title={document.attributes.title}
+                        linkHref={getFullPath(document) ?? '#'}
+                        iconName="dokument"
+                        className="focus-within:rounded-lg"
+                        metadata={[
+                          t('documentsAllSection.metadata.publishDate', {
+                            date: formatDate(document.attributes.publishedAt),
+                          }),
+                          document.attributes.documentCategory?.data?.attributes?.title,
+                          // eslint-disable-next-line unicorn/no-array-callback-reference
+                        ].filter(isDefined)}
+                      />
+                    </li>
                   )
                 })
                 // eslint-disable-next-line unicorn/no-array-callback-reference
                 .filter(isDefined)}
-            </div>
+            </ul>
             {data?.estimatedTotalHits ? (
               <div className="flex items-center justify-between gap-6">
                 <div>
@@ -145,4 +148,4 @@ const DocumentsSection = ({ section, className }: Props) => {
   )
 }
 
-export default DocumentsSection
+export default DocumentsAllSection

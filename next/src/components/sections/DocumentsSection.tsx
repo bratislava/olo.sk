@@ -17,7 +17,7 @@ type Props = {
 }
 
 /**
- * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13877&t=welewzgz8FI2CbQy-4
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1932-18019&m=dev
  */
 
 const DocumentsSection = ({ section, className }: Props) => {

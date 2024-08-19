@@ -33,7 +33,7 @@ const SearchResultRowCard = ({
 
   return (
     <CardBase variant="unstyled" className={className}>
-      <div className="flex items-center gap-4 border-b border-border-default bg-background-primary p-4">
+      <div className="flex items-center gap-4 p-4">
         {/* 2.25rem = 36px, 3.5rem = 56px */}
         <div className="flex size-[3.5rem] shrink-0 items-center justify-center">
           {imgSrc ? (

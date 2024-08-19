@@ -12,6 +12,11 @@
     "text": {
       "type": "text"
     },
+    "showAll": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
     "documents": {
       "type": "relation",
       "relation": "oneToMany",

@@ -35,7 +35,7 @@ const SearchResultRowCard = ({
     <CardBase variant="unstyled" className={className}>
       <div className="flex items-center gap-4 border-b border-border-default bg-background-primary p-4">
         {/* 2.25rem = 36px, 3.5rem = 56px */}
-        <div className="flex size-[3.5rem] items-center justify-center">
+        <div className="flex size-[3.5rem] shrink-0 items-center justify-center">
           {imgSrc ? (
             <CardImage imgSrc={imgSrc} className="aspect-square size-full rounded-lg" />
           ) : iconName ? (

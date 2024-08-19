@@ -1,8 +1,26 @@
 diff --git a/node_modules/@wysimark/react/.dist/browser/index.esm.js b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-index 46d1f77..5fd2d08 100644
+index 46d1f77..f9a4452 100644
 --- a/node_modules/@wysimark/react/.dist/browser/index.esm.js
 +++ b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-@@ -6385,7 +6385,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
+@@ -6314,7 +6314,16 @@ function deleteFragmentWithProtectedTypes(editor, protectedTypes) {
+   );
+   Editor44.withoutNormalizing(editor, () => {
+     for (const range of reversedRanges) {
+-      Transforms30.delete(editor, { at: range });
++      const tableContentNodes = Editor.nodes(editor, {
++        at: range.anchor.path, 
++        // mode defaults to "all", so this also searches the Editor's children
++        match: (node) => {return (node.type === 'table-content')},
++      })
++
++      for (const tableContentNode of tableContentNodes) {
++        Transforms.select(editor, tableContentNode[1])
++        Editor.insertFragment(editor, [{ text: "" }])
++      }
+     }
+     Transforms30.collapse(editor, { edge: "start" });
+   });
+@@ -6385,7 +6394,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
    Editor45.withoutNormalizing(editor, () => {
      const { columns } = tableElement;
      const nextColumns = [...columns];
@@ -15,7 +33,97 @@ index 46d1f77..5fd2d08 100644
      Transforms31.setNodes(editor, { columns: nextColumns }, { at: tablePath });
      tableElement.children.forEach((rowElement, i) => {
        Transforms31.insertNodes(editor, createCell(nextCellIndex), {
-@@ -7563,12 +7567,12 @@ var Emoji = () => /* @__PURE__ */ jsxs27(TablerIcon, { children: [
+@@ -6866,6 +6879,20 @@ var $RemoveMenuButton = styled30($MenuButton)`
+     color: firebrick;
+   }
+ `;
++var $RemoveTableButton = styled30("div")`
++  position: absolute;
++  font-size: 1.5em;
++  background: rgba(0, 0, 0, 0.2);
++  border-radius: 25%;
++  cursor: pointer;
++  svg {
++    display: block;
++  }
++  color: rgba(0, 0, 0, 0.25);
++  &:hover {
++    color: firebrick;
++  }
++`;
+ 
+ // src/table-plugin/render-element/styles/index.ts
+ var $Table = styled31("table")`
+@@ -6986,6 +7013,25 @@ var MinusIcon = (props) => /* @__PURE__ */ jsx48(
+     )
+   }
+ );
++var CrossIcon = (props) => /* @__PURE__ */ jsx48(
++  "svg",
++  {
++    xmlns: "http://www.w3.org/2000/svg",
++    viewBox: "0 0 32 32",
++    fill: "currentColor",
++    width: "1em",
++    height: "1em",
++    ...props,
++    children: /* @__PURE__ */ jsx48(
++      "path",
++      {
++        fillRule: "evenodd",
++        d: "M9.7071 9.70711C10.0976 9.31658 10.7308 9.31658 11.1213 9.70711L15.7175 14.3033L20.3137 9.70711C20.7042 9.31658 21.3374 9.31658 21.7279 9.70711C22.1184 10.0976 22.1184 10.7308 21.7279 11.1213L17.1317 15.7175L21.7279 20.3137C22.1184 20.7042 22.1184 21.3374 21.7279 21.7279C21.3374 22.1184 20.7042 22.1184 20.3137 21.7279L15.7175 17.1317L11.1213 21.7279C10.7308 22.1184 10.0976 22.1184 9.7071 21.7279C9.31658 21.3374 9.31658 20.7042 9.7071 20.3137L14.3033 15.7175L9.7071 11.1213C9.31658 10.7308 9.31658 10.0976 9.7071 9.70711Z",
++        clipRule: "evenodd"
++      }
++    )
++  }
++);
+ var BarsIcon = () => /* @__PURE__ */ jsx48(TablerIcon, { children: /* @__PURE__ */ jsx48("path", { d: "M4 6h16M4 12h16M4 18h16" }) });
+ var AlignLeft = () => /* @__PURE__ */ jsx48(TablerIcon, { children: /* @__PURE__ */ jsx48("path", { d: "M4 6h16M4 12h10M4 18h14" }) });
+ var AlignCenter = () => /* @__PURE__ */ jsx48(TablerIcon, { children: /* @__PURE__ */ jsx48("path", { d: "M4 6h16M8 12h8M6 18h12" }) });
+@@ -7031,7 +7077,7 @@ function ColumnMenu({ cellElement }) {
+         action: () => {
+           editor.tablePlugin.setTableColumnAlign({ align: "right" });
+         }
+-      }
++      },
+     ];
+     menu.open(() => /* @__PURE__ */ jsx49(Menu, { dest, items, close: menu.close }));
+   }, []);
+@@ -7188,11 +7234,13 @@ function TableCell({
+   attributes,
+   children
+ }) {
++  const editor = useSlateStatic16();
+   const tableContext = useContext2(TableContext);
+   const selected = useSelected8();
+   const showTableMenu = tableContext.isSelected && element.x === 0 && element.y === 0;
+   const showRowMenu = tableContext.isSelected && element.x === 0;
+   const showColumnMenu = tableContext.isSelected && element.y === 0;
++  const isFirstTableCell = tableContext.isSelected && element.x === 0 && element.y === 0;
+   return /* @__PURE__ */ jsxs24(
+     $TableCell,
+     {
+@@ -7204,7 +7252,18 @@ function TableCell({
+         children,
+         showTableMenu ? /* @__PURE__ */ jsx52(TableMenu, {}) : null,
+         showRowMenu ? /* @__PURE__ */ jsx52(RowMenu, { cellElement: element }) : null,
+-        showColumnMenu ? /* @__PURE__ */ jsx52(ColumnMenu, { cellElement: element }) : null
++        showColumnMenu ? /* @__PURE__ */ jsx52(ColumnMenu, { cellElement: element }) : null,
++        isFirstTableCell ? /* @__PURE__ */ jsx52(
++          $RemoveTableButton, 
++          {
++            style: {
++              top: "-1.5rem",
++              left: "-1.5rem",
++            },
++            onMouseDown: () => editor.tablePlugin.removeTable({ at: element }),
++            children: /* @__PURE__ */ jsx52(CrossIcon, {})
++          }
++        ) : null,
+       ]
+     }
+   );
+@@ -7563,12 +7622,12 @@ var Emoji = () => /* @__PURE__ */ jsxs27(TablerIcon, { children: [
  
  // src/toolbar-plugin/items/block-items.tsx
  var blockItems = [
@@ -34,7 +142,7 @@ index 46d1f77..5fd2d08 100644
    {
      icon: H2,
      title: "Heading 2",
-@@ -7800,26 +7804,26 @@ var dialogItems = [
+@@ -7800,26 +7859,26 @@ var dialogItems = [
      more: true,
      Component: TableDialog
    },
@@ -81,7 +189,7 @@ index 46d1f77..5fd2d08 100644
  ];
  var expandedDialogItems = dialogItems;
  var compactDialogItems = [
-@@ -7883,13 +7887,13 @@ var listItems = [
+@@ -7883,13 +7942,13 @@ var listItems = [
      title: "Numbered List",
      hotkey: "super+7",
      action: (editor) => editor.list.convertOrderedList(false)
@@ -101,7 +209,7 @@ index 46d1f77..5fd2d08 100644
  ];
  
  // src/toolbar-plugin/items/quote-items.tsx
-@@ -7921,13 +7925,13 @@ var dropdownItems = [
+@@ -7921,13 +7980,13 @@ var dropdownItems = [
      title: "Block Quote",
      more: true,
      children: quoteItems
@@ -121,7 +229,7 @@ index 46d1f77..5fd2d08 100644
  ];
  
  // src/toolbar-plugin/components/dialog/anchor-dialog.tsx
-@@ -8048,13 +8052,13 @@ var secondaryMarkItems = [
+@@ -8048,13 +8107,13 @@ var secondaryMarkItems = [
      action: (editor) => editor.marksPlugin.toggleStrike()
    },
    "divider",
@@ -142,3 +250,39 @@ index 46d1f77..5fd2d08 100644
    {
      icon: RemoveStyles,
      title: "Remove Styles",
+@@ -8594,6 +8653,35 @@ var PasteMarkdownPlugin = createPlugin(
+       editableProps: {
+         onPaste(e) {
+           const { types } = e.clipboardData;
++          const clipboardText = JSON.stringify(e.clipboardData.getData("text"));
++          // Pasting a table
++          if (clipboardText.includes("\\t")) {
++            // this regex cleans up the " character that is added to the beginning and end of the clipboard text
++            // and also removes the empty line represented by \r\n which appears only when copying from Excel 
++            const parsedTableRows = clipboardText.replaceAll(/(^")|("$)|("\\r?\\n"$)/g,"").replaceAll("\\r\\n", "\\r").split("\\r");
++            const parsedTable = parsedTableRows.map((row) => {
++              // for some reason, Excel adds an extra \r containing an empty string at the end of the last row we need to remove
++              if (row === "") return null;
++              return row.split("\\t")}).filter((cell) => !!cell);
++            const rowCount = parsedTable?.length ?? 0;
++            const columnCount = parsedTable[0]?.length ?? 0;
++
++            insertTable(editor, columnCount, rowCount);
++            const tableCellNodes = Editor.nodes(editor, {
++              at: editor.tablePlugin.getTableInfo().tablePath, 
++              match: (node) => {return (node.type === 'table-cell')},
++            })
++
++            for (const node of tableCellNodes) {
++                const nodePath = node[1]
++                const nodeRowIndex = nodePath[1]
++                const nodeColumnIndex = nodePath[2]
++                Transforms46.select(editor, nodePath)
++                Editor59.insertFragment(editor, [{ text: parsedTable[nodeRowIndex][nodeColumnIndex] }])
++            }
++            stopEvent(e);
++            return true
++          }
+           if (types.length !== 1 || types[0] !== "text/plain") {
+             return false;
+           }

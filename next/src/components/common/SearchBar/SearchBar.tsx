@@ -14,8 +14,9 @@ type SearchBarProps = {
   input: string
   label?: string
   setInput: Dispatch<SetStateAction<string>>
-  setSearchQuery: Dispatch<SetStateAction<string>>
+  setSearchQuery: (value: string) => void
   isLoading?: boolean
+  className?: string
 }
 
 /**
@@ -23,7 +24,7 @@ type SearchBarProps = {
  */
 
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
-  ({ placeholder, label, input, setInput, setSearchQuery, isLoading }, forwardedRef) => {
+  ({ placeholder, label, input, setInput, setSearchQuery, isLoading, className }, forwardedRef) => {
     const { t } = useTranslation()
 
     const handleSearch = () => {
@@ -35,7 +36,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
         ref={forwardedRef}
         // TODO PageHeader size dynamically
         // 10rem scroll margin works fine for all screen sizes
-        className="flex scroll-mt-[10rem] flex-col gap-y-1"
+        className={cn('flex scroll-mt-[10rem] flex-col gap-y-1', className)}
         aria-label={t('searchBar.search')}
         defaultValue={placeholder ?? t('searchBar.enterKeyword')}
         value={input}

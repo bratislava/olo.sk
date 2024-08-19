@@ -140,6 +140,7 @@ fragment FilesSection on ComponentSectionsFiles {
 fragment DocumentsSection on ComponentSectionsDocuments {
   title
   text
+  showAll
   documents {
     data {
       ...DocumentEntity

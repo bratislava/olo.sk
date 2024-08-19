@@ -13,20 +13,24 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "position": {
       "type": "string"
     },
     "image": {
-      "allowedTypes": ["images"],
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
-    "document": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::document.document"
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
     }
   }
 }

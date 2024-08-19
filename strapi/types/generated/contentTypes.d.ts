@@ -860,10 +860,10 @@ export interface ApiContactContact extends Schema.CollectionType {
     draftAndPublish: true
   }
   attributes: {
-    name: Attribute.String
+    name: Attribute.String & Attribute.Required
     position: Attribute.String
     image: Attribute.Media
-    document: Attribute.Relation<'api::contact.contact', 'oneToOne', 'api::document.document'>
+    link: Attribute.Component<'items.link'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1369,6 +1369,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.cards-list',
         'sections.columns',
         'sections.columns-list',
+        'sections.contacts',
         'sections.divider',
         'sections.faq',
         'sections.faq-categories',

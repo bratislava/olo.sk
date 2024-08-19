@@ -1,18 +1,16 @@
 import Button from '@/src/components/common/Button/Button'
 import CardImage from '@/src/components/common/Card/CardImage'
 import Typography from '@/src/components/common/Typography/Typography'
-import { FileItemFragment } from '@/src/services/graphql/api'
+import { LinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
-import { useGetDownloadAriaLabel } from '@/src/utils/useGetDownloadAriaLabel'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type PersonContactRowCardProps = {
-  // refactor type when Strapi contacts are implemented
   name: string
-  position: string
+  position: string | null | undefined
   imgSrc?: string
-  fileLinkLabel?: string
-  fileItem?: FileItemFragment
+  link?: LinkFragment | null | undefined
   className?: string
 }
 
@@ -23,25 +21,15 @@ type PersonContactRowCardProps = {
 const PersonContactRowCard = ({
   name,
   position,
-  fileLinkLabel,
-  fileItem,
+  link,
   className,
   imgSrc,
 }: PersonContactRowCardProps) => {
-  const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
+  const { getLinkProps } = useGetLinkProps()
 
-  const shouldShowLink = isDefined(fileItem) && isDefined(fileLinkLabel)
+  const shouldShowLink = isDefined(link)
 
-  const linkButton = fileItem ? (
-    <Button
-      variant="black-link"
-      asLink
-      href={fileItem.media.data?.attributes?.url ?? '#'}
-      aria-label={getDownloadAriaLabel(fileItem)}
-    >
-      {fileLinkLabel ?? fileItem?.title}
-    </Button>
-  ) : null
+  const linkButton = link ? <Button variant="black-link" asLink {...getLinkProps(link)} /> : null
 
   return (
     <div className={cn('flex flex-col gap-4', className)}>
@@ -54,9 +42,9 @@ const PersonContactRowCard = ({
             'justify-center': !shouldShowLink,
           })}
         >
-          <div className="flex flex-col items-start gap-1 self-stretch lg:gap-2">
+          <div className="flex flex-col items-start gap-1 self-stretch">
             <Typography variant="p-default-black">{name}</Typography>
-            <Typography variant="p-small">{position}</Typography>
+            {position ? <Typography variant="p-small">{position}</Typography> : null}
           </div>
           {shouldShowLink ? <div className="max-lg:hidden">{linkButton}</div> : null}
         </div>

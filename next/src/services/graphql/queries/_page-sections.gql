@@ -213,6 +213,15 @@ fragment ArticlesSection on ComponentSectionsArticles {
   text
 }
 
+fragment ContactsSection on ComponentSectionsContacts {
+  titleRequired: title
+  contacts {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -290,5 +299,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsArticles {
     ...ArticlesSection
+  }
+
+  ... on ComponentSectionsContacts {
+    ...ContactsSection
   }
 }

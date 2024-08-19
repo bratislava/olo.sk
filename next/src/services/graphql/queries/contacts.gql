@@ -8,10 +8,8 @@ fragment ContactEntity on ContactEntity {
         ...UploadImageEntity
       }
     }
-    document {
-      data {
-        ...DocumentSlugEntity
-      }
+    link {
+      ...Link
     }
   }
 }

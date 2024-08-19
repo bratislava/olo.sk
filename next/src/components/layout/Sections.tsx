@@ -6,6 +6,7 @@ import BranchesSection from '@/src/components/sections/BranchesSection'
 import CardsListSection from '@/src/components/sections/CardsListSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
+import ContactsSection from '@/src/components/sections/ContactsSection'
 import DividerSection from '@/src/components/sections/DividerSection'
 import DocumentsSection from '@/src/components/sections/DocumentsSection'
 import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection'
@@ -83,6 +84,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsArticles':
       return <ArticlesSection section={section} />
+
+    case 'ComponentSectionsContacts':
+      return <ContactsSection section={section} />
 
     default:
       return null

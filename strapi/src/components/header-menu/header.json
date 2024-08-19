@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_menu_links",
+  "info": {
+    "displayName": "header"
+  },
+  "options": {},
+  "attributes": {
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.link"
+    }
+  }
+}

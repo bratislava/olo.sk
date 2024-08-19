@@ -21,7 +21,14 @@ const BannerSection = ({ section }: Props) => {
   if (!section) {
     return null
   }
-  const { title, variant, text, image, primaryButtonLink, secondaryButtonLink } = section ?? {}
+  const {
+    titleRequired: title,
+    variant,
+    text,
+    image,
+    primaryButtonLink,
+    secondaryButtonLink,
+  } = section ?? {}
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -32,7 +39,7 @@ const BannerSection = ({ section }: Props) => {
             ? 'background-grey'
             : 'background-black'
         }
-        title={title ?? ''}
+        title={title}
         subtext={text}
         button1LinkHref={getLinkProps(primaryButtonLink).href}
         button1Text={getLinkProps(primaryButtonLink).children}

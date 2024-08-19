@@ -5,6 +5,7 @@ fragment RichtextSection on ComponentSectionsRichtext {
 
 fragment OrderedCardsSection on ComponentSectionsOrderedCards {
   title
+  text
   variantOrderedCards: variant
   cards {
     title
@@ -56,7 +57,10 @@ fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlappe
       ...UploadImageEntity
     }
   }
-  link {
+  primaryButton {
+    ...Link
+  }
+  secondaryButton {
     ...Link
   }
 }
@@ -85,6 +89,7 @@ fragment WorkshopsSection on ComponentSectionsWorkshops {
 
 fragment ColumnsListSection on ComponentSectionsColumnsList {
   title
+  text
   backgroundColorColumnList: backgroundColor
   leftColumn {
     icon {
@@ -112,6 +117,7 @@ fragment TableSection on ComponentSectionsTable {
 
 fragment FaqSection on ComponentSectionsFaq {
   title
+  text
   backgroundColorFaq: backgroundColor
   showMoreLink {
     ...Link
@@ -125,13 +131,14 @@ fragment FaqSection on ComponentSectionsFaq {
 
 fragment FilesSection on ComponentSectionsFiles {
   title
+  text
   files {
     ...FileItem
   }
 }
 
 fragment DocumentsSection on ComponentSectionsDocuments {
-  titleDocuments: title
+  title
   text
   documents {
     data {
@@ -141,7 +148,7 @@ fragment DocumentsSection on ComponentSectionsDocuments {
 }
 
 fragment BannerSection on ComponentSectionsBanner {
-  title
+  titleRequired: title
   text
   variant
   image {
@@ -173,7 +180,7 @@ fragment CardsListSection on ComponentSectionsCardsList {
 }
 
 fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
-  titleFaqCategories: title
+  title
   text
   showAll
   faqCategories {
@@ -184,12 +191,12 @@ fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
 }
 
 fragment ServicesSection on ComponentSectionsServices {
-  titleServices: title
+  title
   text
 }
 
 fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
-  titleWasteSortingCards: title
+  title
   text
   cardsWasteSortingCards: cards {
     title
@@ -202,6 +209,7 @@ fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
 
 fragment ArticlesSection on ComponentSectionsArticles {
   title
+  text
 }
 
 fragment PageSections on PageSectionsDynamicZone {

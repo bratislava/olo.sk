@@ -20,7 +20,7 @@ type Props = {
  */
 
 const DocumentsSection = ({ section, className }: Props) => {
-  const { titleDocuments: title, text, documents } = section ?? {}
+  const { title, text, documents } = section ?? {}
 
   // TODO Now we take only first file from the document - discuss with the team
   /* eslint-disable unicorn/no-array-callback-reference */

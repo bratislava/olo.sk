@@ -18,7 +18,7 @@ type Props = {
 const WasteSortingCardsSection = ({ section }: Props) => {
   const { getLinkProps } = useGetLinkProps()
 
-  const { titleWasteSortingCards: title, text, cardsWasteSortingCards: cards } = section
+  const { title, text, cardsWasteSortingCards: cards } = section
 
   const filteredCards = cards?.filter(isDefined) ?? []
 
@@ -26,7 +26,7 @@ const WasteSortingCardsSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-6">
-        {title || text ? <SectionHeader title={title} text={text} /> : null}
+        <SectionHeader title={title} text={text} />
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
           {filteredCards.map((card, index) => {
             return (

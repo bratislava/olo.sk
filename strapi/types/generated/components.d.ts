@@ -372,7 +372,8 @@ export interface SectionsArticles extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
+    text: Attribute.Text
   }
 }
 
@@ -400,7 +401,7 @@ export interface SectionsBranches extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
     text: Attribute.Text
     showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
@@ -414,7 +415,7 @@ export interface SectionsCardsList extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
     text: Attribute.Text
     cards: Attribute.Component<'items.cards-list-item', true>
   }
@@ -427,7 +428,8 @@ export interface SectionsColumnsList extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
+    text: Attribute.Text
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
     leftColumn: Attribute.Component<'items.columns-list-item', true>
     rightColumn: Attribute.Component<'items.columns-list-item', true>
@@ -441,8 +443,8 @@ export interface SectionsColumns extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.String
+    title: Attribute.String
+    text: Attribute.Text
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
@@ -508,7 +510,8 @@ export interface SectionsFaq extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String & Attribute.DefaultTo<'\u010Casto kladen\u00E9 ot\u00E1zky'>
+    text: Attribute.String
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
@@ -524,7 +527,8 @@ export interface SectionsFiles extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
+    text: Attribute.Text
     files: Attribute.Component<'items.file-item', true> &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -572,7 +576,7 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
     text: Attribute.Text
     imagePosition: Attribute.Enumeration<['left', 'right', 'left-shifted', 'right-shifted']> &
       Attribute.Required &
@@ -581,7 +585,8 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     image: Attribute.Media & Attribute.Required
-    link: Attribute.Component<'items.link'>
+    primaryButton: Attribute.Component<'items.link'>
+    secondaryButton: Attribute.Component<'items.link'>
   }
 }
 
@@ -592,7 +597,7 @@ export interface SectionsImageAndText extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
     text: Attribute.Text
     imagePosition: Attribute.Enumeration<['left', 'right']> &
       Attribute.Required &
@@ -638,7 +643,8 @@ export interface SectionsOrderedCards extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
+    text: Attribute.String
     variant: Attribute.Enumeration<['numbers', 'icons']> &
       Attribute.Required &
       Attribute.DefaultTo<'numbers'>
@@ -704,7 +710,7 @@ export interface SectionsTable extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
     anchorId: Attribute.String
     text: Attribute.Text
   }
@@ -730,7 +736,7 @@ export interface SectionsWorkshops extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
     text: Attribute.Text
     showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     workshops: Attribute.Relation<'sections.workshops', 'oneToMany', 'api::workshop.workshop'>

@@ -213,6 +213,15 @@ fragment ArticlesSection on ComponentSectionsArticles {
   text
 }
 
+fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
+  title
+  text
+  bannerTitle
+  bannerLink {
+    ...Link
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -290,5 +299,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsArticles {
     ...ArticlesSection
+  }
+
+  ... on ComponentSectionsFormCtaBanner {
+    ...FormCtaBannerSection
   }
 }

@@ -36,7 +36,7 @@ const KoloHomepageSection = ({ section }: Props) => {
 
         <div className="grid gap-4 lg:grid-cols-2 lg:gap-8">
           {mainCards?.filter(isDefined).map((card) => {
-            const { children: label, href } = getLinkProps(card)
+            const { children: label, href } = getLinkProps(card.link)
 
             // TODO proper component
             return <HomepageMainTile title={label} linkHref={href} />

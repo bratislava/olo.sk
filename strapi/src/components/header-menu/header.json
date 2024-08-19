@@ -1,13 +1,14 @@
 {
   "collectionName": "components_header_menu_links",
   "info": {
-    "displayName": "header"
+    "displayName": "header",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "links": {
+    "contactsLink": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "items.link"
     }
   }

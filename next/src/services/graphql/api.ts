@@ -282,19 +282,13 @@ export type BranchRelationResponseCollection = {
 
 export type ComponentHeaderMenuHeader = {
   __typename?: 'ComponentHeaderMenuHeader'
+  contactsLink?: Maybe<ComponentItemsLink>
   id: Scalars['ID']['output']
-  links?: Maybe<Array<Maybe<ComponentItemsLink>>>
-}
-
-export type ComponentHeaderMenuHeaderLinksArgs = {
-  filters?: InputMaybe<ComponentItemsLinkFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type ComponentHeaderMenuHeaderInput = {
+  contactsLink?: InputMaybe<ComponentItemsLinkInput>
   id?: InputMaybe<Scalars['ID']['input']>
-  links?: InputMaybe<Array<InputMaybe<ComponentItemsLinkInput>>>
 }
 
 export type ComponentHeaderSectionsBranchMap = {
@@ -5856,7 +5850,7 @@ export type GeneralQuery = {
         menuHeader?: {
           __typename?: 'ComponentHeaderMenuHeader'
           id: string
-          links?: Array<{
+          contactsLink?: {
             __typename?: 'ComponentItemsLink'
             label?: string | null
             url?: string | null
@@ -5964,7 +5958,7 @@ export type GeneralQuery = {
                 } | null
               } | null
             } | null
-          } | null> | null
+          } | null
         } | null
       } | null
     } | null
@@ -14764,7 +14758,7 @@ export type MenuItemFragment = {
 export type MenuHeaderFragment = {
   __typename?: 'ComponentHeaderMenuHeader'
   id: string
-  links?: Array<{
+  contactsLink?: {
     __typename?: 'ComponentItemsLink'
     label?: string | null
     url?: string | null
@@ -14869,7 +14863,7 @@ export type MenuHeaderFragment = {
         } | null
       } | null
     } | null
-  } | null> | null
+  } | null
 }
 
 export type MenuFragment = {
@@ -15091,7 +15085,7 @@ export type MenuFragment = {
   menuHeader?: {
     __typename?: 'ComponentHeaderMenuHeader'
     id: string
-    links?: Array<{
+    contactsLink?: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
       url?: string | null
@@ -15199,7 +15193,7 @@ export type MenuFragment = {
           } | null
         } | null
       } | null
-    } | null> | null
+    } | null
   } | null
 }
 
@@ -15424,7 +15418,7 @@ export type MenuEntityFragment = {
     menuHeader?: {
       __typename?: 'ComponentHeaderMenuHeader'
       id: string
-      links?: Array<{
+      contactsLink?: {
         __typename?: 'ComponentItemsLink'
         label?: string | null
         url?: string | null
@@ -15532,7 +15526,7 @@ export type MenuEntityFragment = {
             } | null
           } | null
         } | null
-      } | null> | null
+      } | null
     } | null
   } | null
 }
@@ -25476,7 +25470,7 @@ export const MenuItemFragmentDoc = gql`
 export const MenuHeaderFragmentDoc = gql`
   fragment MenuHeader on ComponentHeaderMenuHeader {
     id
-    links {
+    contactsLink {
       ...Link
     }
   }

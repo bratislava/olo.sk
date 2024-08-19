@@ -4,9 +4,10 @@ export interface HeaderMenuHeader extends Schema.Component {
   collectionName: 'components_header_menu_links'
   info: {
     displayName: 'header'
+    description: ''
   }
   attributes: {
-    links: Attribute.Component<'items.link', true>
+    contactsLink: Attribute.Component<'items.link'>
   }
 }
 

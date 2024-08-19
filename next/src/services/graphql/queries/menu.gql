@@ -1,65 +1,65 @@
 fragment MenuLink on ComponentMenuMenuLink {
-    id
-    label
-    url
-    page {
-        data {
-            ...PageSlugEntity
-        }
+  id
+  label
+  url
+  page {
+    data {
+      ...PageSlugEntity
     }
-    branch {
-        data {
-            ...BranchEntity
-        }
+  }
+  branch {
+    data {
+      ...BranchEntity
     }
-    workshop {
-        data {
-            ...WorkshopSlugEntity
-        }
+  }
+  workshop {
+    data {
+      ...WorkshopSlugEntity
     }
+  }
 }
 
 fragment MenuSection on ComponentMenuMenuSection {
-    id
-    label
-    colSpan
-    multicolumnBehaviour
-    links {
-        ...MenuLink
-    }
-    hasDivider
-    specialSectionType
+  id
+  label
+  colSpan
+  multicolumnBehaviour
+  links {
+    ...MenuLink
+  }
+  hasDivider
+  specialSectionType
 }
 
 fragment MenuItem on ComponentMenuMenuItem {
-    id
-    label
-    sections {
-        ...MenuSection
-    }
-    seeAllLink {
-        ...Link
-    }
+  id
+  label
+  sections {
+    ...MenuSection
+  }
+  seeAllLink {
+    ...Link
+  }
 }
 
 fragment MenuHeader on ComponentHeaderMenuHeader {
-    id
-    links {
-        ...Link
-    }
+  id
+  contactsLink {
+    ...Link
+  }
 }
 
 fragment Menu on Menu {
-    menuItems {
-        ...MenuItem
-    }
-    menuHeader {
-        ...MenuHeader
-    }
+  menuItems {
+    ...MenuItem
+  }
+  menuHeader {
+    ...MenuHeader
+  }
 }
 
 fragment MenuEntity on MenuEntity {
-    attributes {
-        ...Menu
-    }
+  attributes {
+    ...Menu
+  }
 }

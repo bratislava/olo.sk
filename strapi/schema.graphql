@@ -198,20 +198,20 @@ type BranchRelationResponseCollection {
 }
 
 type ComponentHeaderMenuHeader {
+  contactsLink: ComponentItemsLink
   id: ID!
-  links(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
 }
 
 input ComponentHeaderMenuHeaderFiltersInput {
   and: [ComponentHeaderMenuHeaderFiltersInput]
-  links: ComponentItemsLinkFiltersInput
+  contactsLink: ComponentItemsLinkFiltersInput
   not: ComponentHeaderMenuHeaderFiltersInput
   or: [ComponentHeaderMenuHeaderFiltersInput]
 }
 
 input ComponentHeaderMenuHeaderInput {
+  contactsLink: ComponentItemsLinkInput
   id: ID
-  links: [ComponentItemsLinkInput]
 }
 
 type ComponentHeaderSectionsBranchMap {

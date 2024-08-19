@@ -35,17 +35,22 @@ const KoloHomepageSection = ({ section }: Props) => {
       <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
-        <div
+        <ul
           className={cn({
             'grid gap-4 lg:grid-cols-2 lg:gap-8': mainCards && mainCards?.length > 1,
           })}
         >
-          {mainCards?.filter(isDefined).map((card) => {
+          {mainCards?.filter(isDefined).map((card, index) => {
             const { children: label, href } = getLinkProps(card)
 
-            return <HalfBanner title={card?.label ?? ''} buttonLinkHref={href} buttonText={label} />
+            return (
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index} className="h-full w-full">
+                <HalfBanner title={card.label ?? ''} buttonLinkHref={href} buttonText={label} />
+              </li>
+            )
           })}
-        </div>
+        </ul>
 
         <SidebarDivider />
 
@@ -54,11 +59,12 @@ const KoloHomepageSection = ({ section }: Props) => {
 
           <ul className="grid gap-4 lg:auto-cols-fr lg:grid-flow-col lg:gap-8">
             {filteredBranches
-              .map((branch) => {
+              .map((branch, index) => {
                 if (!branch.attributes) return null
 
                 return (
-                  <li className="[&>*]:h-full">
+                  // eslint-disable-next-line react/no-array-index-key
+                  <li key={index} className="[&>*]:h-full">
                     <BranchCard
                       title={branch?.attributes.title}
                       linkHref={getFullPath(branch) ?? '#'} // TODO remove the fallback value

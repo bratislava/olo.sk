@@ -17,16 +17,14 @@ const HalfBanner = ({ title, buttonLinkHref, buttonText, className }: HalfBanner
   return (
     <div
       className={cn(
-        'flex h-full w-full flex-col overflow-hidden rounded-2xl [&>*]:basis-[50%] lg:[&>*]:basis-[100%]',
+        'flex flex-col justify-between gap-4 overflow-hidden rounded-xl bg-background-secondary px-4 py-6 lg:gap-12 lg:p-10 [&>*]:basis-[50%] lg:[&>*]:basis-[100%]',
         className,
       )}
     >
-      <div className="flex flex-col gap-4 bg-background-secondary px-4 py-6 lg:gap-12 lg:p-10">
-        <Typography variant="h3">{title}</Typography>
-        <Button href={buttonLinkHref} asLink hasLinkIcon variant="category-solid">
-          {buttonText}
-        </Button>
-      </div>
+      <Typography variant="h4">{title}</Typography>
+      <Button href={buttonLinkHref} asLink variant="category-solid">
+        <Typography variant="button-default">{buttonText}</Typography>
+      </Button>
     </div>
   )
 }

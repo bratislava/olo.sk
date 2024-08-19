@@ -7,6 +7,21 @@ fragment DocumentSlugEntity on DocumentEntity {
   }
 }
 
+fragment DocumentSearchEntity on DocumentEntity {
+  ...DocumentSlugEntity
+  attributes {
+    publishedAt
+    updatedAt
+    documentCategory {
+      data {
+        attributes {
+          title
+        }
+      }
+    }
+  }
+}
+
 fragment DocumentEntity on DocumentEntity {
   ...DocumentSlugEntity
   attributes {

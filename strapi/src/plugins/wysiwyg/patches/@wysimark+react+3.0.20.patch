@@ -1,5 +1,5 @@
 diff --git a/node_modules/@wysimark/react/.dist/browser/index.esm.js b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-index 46d1f77..b3d09c1 100644
+index 46d1f77..f9a4452 100644
 --- a/node_modules/@wysimark/react/.dist/browser/index.esm.js
 +++ b/node_modules/@wysimark/react/.dist/browser/index.esm.js
 @@ -6314,7 +6314,16 @@ function deleteFragmentWithProtectedTypes(editor, protectedTypes) {
@@ -259,11 +259,11 @@ index 46d1f77..b3d09c1 100644
 +          if (clipboardText.includes("\\t")) {
 +            // this regex cleans up the " character that is added to the beginning and end of the clipboard text
 +            // and also removes the empty line represented by \r\n which appears only when copying from Excel 
-+            const parsedTableRows = clipboardText.replaceAll(/(^")|("$)|("\\r\\n"$)/g,"").replaceAll("\\r\\n", "\\r").split("\\r");
++            const parsedTableRows = clipboardText.replaceAll(/(^")|("$)|("\\r?\\n"$)/g,"").replaceAll("\\r\\n", "\\r").split("\\r");
 +            const parsedTable = parsedTableRows.map((row) => {
 +              // for some reason, Excel adds an extra \r containing an empty string at the end of the last row we need to remove
 +              if (row === "") return null;
-+              return row.split("\\t")}).filter((row) => !!row);
++              return row.split("\\t")}).filter((cell) => !!cell);
 +            const rowCount = parsedTable?.length ?? 0;
 +            const columnCount = parsedTable[0]?.length ?? 0;
 +

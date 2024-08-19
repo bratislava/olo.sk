@@ -7,6 +7,9 @@ fragment SlideItem on ComponentItemsSlide {
     }
   }
   backgroundColor
+  link {
+    ...Link
+  }
 }
 
 fragment HeroMainTile on ComponentItemsHeroMainTile {

@@ -4,6 +4,7 @@ import { FileRowCardProps } from '@/src/components/common/Card/FileRowCard'
 import FileRowGroup from '@/src/components/common/Card/FileRowGroup'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
+import DocumentsAllSection from '@/src/components/sections/DocumentsAllSection'
 import { DocumentsSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { formatFileExtension } from '@/src/utils/formatFileExtension'
@@ -16,11 +17,15 @@ type Props = {
 }
 
 /**
- * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13877&t=welewzgz8FI2CbQy-4
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1932-18019&m=dev
  */
 
 const DocumentsSection = ({ section, className }: Props) => {
-  const { title, text, documents } = section ?? {}
+  const { title, text, showAll, documents } = section ?? {}
+
+  if (showAll) {
+    return <DocumentsAllSection section={section} className={className} />
+  }
 
   // TODO Now we take only first file from the document - discuss with the team
   /* eslint-disable unicorn/no-array-callback-reference */

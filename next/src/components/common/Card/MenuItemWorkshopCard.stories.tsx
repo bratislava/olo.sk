@@ -8,7 +8,7 @@ const meta: Meta<typeof MenuItemWorkshopCardComponent> = {
   args: {
     title: 'Title',
     linkHref: '#',
-    subText: 'Najbližší termín: 21. február 2024 o 9:00',
+    subText: 'Najbližší termín: 21. februára 2024 o 9:00',
   },
   tags: ['autodocs'],
 }

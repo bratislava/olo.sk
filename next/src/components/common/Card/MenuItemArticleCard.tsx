@@ -1,6 +1,6 @@
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
-import NavMenuCardLink from '@/src/components/common/NavBar/NavMenu/NavMenuCardLink'
+import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Tag from '@/src/components/common/Tag/Tag'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -25,7 +25,7 @@ const MenuItemArticleCard = ({
   className,
 }: MenuItemArticleCardProps) => {
   return (
-    <NavMenuCardLink linkHref={linkHref} className={cn(className)}>
+    <NavMenuLink href={linkHref} asCardLink className={cn(className)}>
       <CardBase>
         <div className="flex flex-col items-start gap-4 lg:flex-row">
           {/* 6.25rem = 100px */}
@@ -41,7 +41,7 @@ const MenuItemArticleCard = ({
           </div>
         </div>
       </CardBase>
-    </NavMenuCardLink>
+    </NavMenuLink>
   )
 }
 

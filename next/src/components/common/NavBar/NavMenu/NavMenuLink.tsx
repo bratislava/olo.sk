@@ -8,23 +8,41 @@ import cn from '@/src/utils/cn'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuLinkProps = {
+  asCardLink?: boolean
   className?: string
 } & LinkProps
 
-const NavMenuLink = ({ className, ...rest }: PropsWithChildren<NavMenuLinkProps>) => {
+const NavMenuLink = ({
+  href,
+  target,
+  asCardLink,
+  children,
+  className,
+}: PropsWithChildren<NavMenuLinkProps>) => {
   const { setMobileMenuOpen } = useNavMenuContext()
 
   return (
     <li className={cn('flex', className)}>
-      <NavigationMenu.Link onClick={() => setMobileMenuOpen(false)} className="w-full">
-        <Button
-          variant="unstyled"
-          asLink
-          startIcon={<Icon name="sipka-doprava" />}
-          hasLinkIcon={false}
-          className="flex gap-4"
-          {...rest}
-        />
+      <NavigationMenu.Link
+        {...(asCardLink && { href })}
+        onClick={() => setMobileMenuOpen(false)}
+        className="w-full"
+      >
+        {asCardLink ? (
+          children // MenuItemCard component
+        ) : (
+          <Button
+            variant="unstyled"
+            asLink
+            startIcon={<Icon name="sipka-doprava" />}
+            hasLinkIcon={false}
+            className="flex gap-4"
+            target={target}
+            href={href}
+          >
+            {children}
+          </Button>
+        )}
       </NavigationMenu.Link>
     </li>
   )

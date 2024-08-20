@@ -1,6 +1,6 @@
 import CardBase from '@/src/components/common/Card/CardBase'
 import OloIcon, { OloIconName } from '@/src/components/common/Icon/OloIcon'
-import NavMenuCardLink from '@/src/components/common/NavBar/NavMenu/NavMenuCardLink'
+import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -24,7 +24,7 @@ const MenuItemWorkshopCard = ({
   className,
 }: MenuItemWorkshopCardProps) => {
   return (
-    <NavMenuCardLink linkHref={linkHref} className={className}>
+    <NavMenuLink href={linkHref} asCardLink className={className}>
       <CardBase>
         <div className="flex items-start gap-4">
           <div className="rounded-[20px] bg-background-secondary p-4">
@@ -47,7 +47,7 @@ const MenuItemWorkshopCard = ({
           </div>
         </div>
       </CardBase>
-    </NavMenuCardLink>
+    </NavMenuLink>
   )
 }
 

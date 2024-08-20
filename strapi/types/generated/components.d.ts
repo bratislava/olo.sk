@@ -217,6 +217,17 @@ export interface ItemsLink extends Schema.Component {
   }
 }
 
+export interface ItemsMenuHeader extends Schema.Component {
+  collectionName: 'components_items_menu_headers'
+  info: {
+    displayName: 'Menu header'
+    description: ''
+  }
+  attributes: {
+    contactsLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface ItemsOpeningHoursItem extends Schema.Component {
   collectionName: 'components_items_opening_hours_items'
   info: {
@@ -764,6 +775,7 @@ declare module '@strapi/types' {
       'items.hero-small-tile': ItemsHeroSmallTile
       'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.link': ItemsLink
+      'items.menu-header': ItemsMenuHeader
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide

@@ -6,8 +6,8 @@ import cn from '@/src/utils/cn'
 
 type MenuItemWorkshopCardProps = {
   title: string
-  subText: string
   linkHref: string
+  subText?: string
   iconName?: OloIconName
   className?: string
 }
@@ -26,24 +26,24 @@ const MenuItemWorkshopCard = ({
   return (
     <NavMenuCardLink linkHref={linkHref} className={className}>
       <CardBase>
-        <div className="flex items-start gap-4">
-          <div className="rounded-[20px] bg-background-secondary p-4">
-            <OloIcon name={iconName} className="size-6" />
-          </div>
-          <div
-            className={cn('flex flex-col items-start gap-2 self-stretch', {
-              'justify-center': !mostRecentWorkshopDate,
-            })}
-          >
+      <div className="flex items-start gap-4">
+        <div className="rounded-[20px] bg-background-secondary p-4">
+          <OloIcon name={iconName} className="size-6" />
+        </div>
+        <div
+          className={cn('flex flex-col items-start gap-2 self-stretch', {
+            'justify-center': !mostRecentWorkshopDate,
+          })}
+        >
             <Typography
               variant="h6"
               className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
             >
               {title}
             </Typography>
-            <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
-          </div>
+          {subText ? <Typography variant="p-small">{mostRecentWorkshopDate}</Typography> : null}
         </div>
+      </div>
       </CardBase>
     </NavMenuCardLink>
   )

@@ -25,6 +25,16 @@
         }
       },
       "component": "menu.menu-item"
+    },
+    "menuHeader": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "items.menu-header"
     }
   }
 }

@@ -6,7 +6,7 @@ import BannerComponent from './Banner'
 
 const meta: Meta<typeof BannerComponent> = {
   component: BannerComponent,
-  title: 'Components/Banner',
+  title: 'Components/Banner/Banner',
   args: {
     variant: 'background-grey',
     title: 'Banner title',

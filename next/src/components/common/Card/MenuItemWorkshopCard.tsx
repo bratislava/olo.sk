@@ -1,13 +1,13 @@
 import CardBase from '@/src/components/common/Card/CardBase'
 import OloIcon, { OloIconName } from '@/src/components/common/Icon/OloIcon'
-import Link from '@/src/components/common/Link/Link'
+import NavMenuCardLink from '@/src/components/common/NavBar/NavMenu/NavMenuCardLink'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
 type MenuItemWorkshopCardProps = {
   title: string
-  linkHref: string
   subText: string
+  linkHref: string
   iconName?: OloIconName
   className?: string
 }
@@ -18,34 +18,34 @@ type MenuItemWorkshopCardProps = {
 
 const MenuItemWorkshopCard = ({
   title,
-  className,
+  subText: mostRecentWorkshopDate,
   linkHref,
   iconName = 'live-help',
-  subText,
+  className,
 }: MenuItemWorkshopCardProps) => {
   return (
-    <CardBase className={className}>
-      <div className="flex items-start gap-4">
-        <div className="rounded-[20px] bg-background-secondary p-4">
-          <OloIcon name={iconName} className="size-6" />
-        </div>
-        <div
-          className={cn('flex flex-col items-start gap-2 self-stretch', {
-            'justify-center': !subText,
-          })}
-        >
-          <Link variant="unstyled" href={linkHref} stretched>
+    <NavMenuCardLink linkHref={linkHref} className={className}>
+      <CardBase>
+        <div className="flex items-start gap-4">
+          <div className="rounded-[20px] bg-background-secondary p-4">
+            <OloIcon name={iconName} className="size-6" />
+          </div>
+          <div
+            className={cn('flex flex-col items-start gap-2 self-stretch', {
+              'justify-center': !mostRecentWorkshopDate,
+            })}
+          >
             <Typography
               variant="h6"
               className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
             >
               {title}
             </Typography>
-          </Link>
-          <Typography variant="p-small">{subText}</Typography>
+            <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
+          </div>
         </div>
-      </div>
-    </CardBase>
+      </CardBase>
+    </NavMenuCardLink>
   )
 }
 

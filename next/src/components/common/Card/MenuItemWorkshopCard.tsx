@@ -7,7 +7,7 @@ import cn from '@/src/utils/cn'
 type MenuItemWorkshopCardProps = {
   title: string
   linkHref: string
-  subText: string
+  subText?: string
   iconName?: OloIconName
   className?: string
 }

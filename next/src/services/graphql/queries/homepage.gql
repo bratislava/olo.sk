@@ -12,6 +12,13 @@ fragment SlideItem on ComponentItemsSlide {
   }
 }
 
+fragment CardsListItem on ComponentItemsCardsListItem {
+  title
+  link {
+    ...Link
+  }
+}
+
 fragment HeroMainTile on ComponentItemsHeroMainTile {
   text
   link {
@@ -63,7 +70,7 @@ fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {
   title
   text
   mainCards {
-    ...Link
+    ...CardsListItem
   }
   branchesTitle
   branches {

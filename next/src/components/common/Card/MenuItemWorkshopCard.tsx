@@ -7,7 +7,7 @@ import cn from '@/src/utils/cn'
 type MenuItemWorkshopCardProps = {
   title: string
   linkHref: string
-  subText: string
+  subText?: string
   iconName?: OloIconName
   className?: string
 }
@@ -42,7 +42,7 @@ const MenuItemWorkshopCard = ({
               {title}
             </Typography>
           </Link>
-          <Typography variant="p-small">{subText}</Typography>
+          {subText ? <Typography variant="p-small">{subText}</Typography> : null}
         </div>
       </div>
     </CardBase>

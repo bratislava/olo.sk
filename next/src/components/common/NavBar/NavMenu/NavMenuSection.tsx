@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import { Fragment } from 'react'
 
 import MenuItemBranchCard from '@/src/components/common/Card/MenuItemBranchCard'
@@ -10,9 +11,9 @@ import NavMenuTwoColumnSection from '@/src/components/common/NavBar/NavMenu/NavM
 import Typography from '@/src/components/common/Typography/Typography'
 import { MenuLinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
+import { formatMostRecentWorkshopDate } from '@/src/utils/formatMostRecentWorkshopDate'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
-import { useMostRecentWorkshopDate } from '@/src/utils/useMostRecentWorkshopDate'
 
 export type NavMenuSectionProps = {
   section: ReturnType<typeof getParsedMenus>[number]['sections'][number]
@@ -20,8 +21,8 @@ export type NavMenuSectionProps = {
 }
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
+  const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
-  const { getMostRecentWorkshopDateMessage } = useMostRecentWorkshopDate()
   const { label, specialSectionType, links, multicolumnBehaviour, colSpan } = section
 
   const renderSectionLink = (link: MenuLinkFragment, index: number) => {
@@ -29,13 +30,17 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
     const divider = index > 0 ? <NavBarDivider variant="horizontal" /> : null
 
     if (isDefined(link.workshop?.data)) {
+      const mostRecentWorkshopDate = formatMostRecentWorkshopDate(link.workshop?.data)
+
       return (
         <Fragment key={link.id}>
           {divider}
           <MenuItemWorkshopCard
             title={children ?? ''}
             subText={
-              getMostRecentWorkshopDateMessage(link.workshop?.data).mostRecentDateMessage ?? ''
+              mostRecentWorkshopDate
+                ? t('navBar.workshopCard.messageMostRecentDate', { mostRecentWorkshopDate })
+                : ''
             }
             linkHref={href}
           />

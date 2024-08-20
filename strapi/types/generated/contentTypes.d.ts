@@ -1210,6 +1210,12 @@ export interface ApiMenuMenu extends Schema.SingleType {
           localized: true
         }
       }>
+    menuHeader: Attribute.Component<'items.menu-header'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private

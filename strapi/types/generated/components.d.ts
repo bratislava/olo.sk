@@ -631,7 +631,7 @@ export interface SectionsKoloHomepageSection extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    mainCards: Attribute.Component<'items.link', true> &
+    mainCards: Attribute.Component<'items.cards-list-item', true> &
       Attribute.SetMinMax<
         {
           max: 2

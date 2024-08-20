@@ -75,6 +75,16 @@
       "target": "api::tag.tag",
       "inversedBy": "articles"
     },
+    "gallery": {
+      "allowedTypes": ["images"],
+      "type": "media",
+      "multiple": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "content": {
       "pluginOptions": {
         "i18n": {

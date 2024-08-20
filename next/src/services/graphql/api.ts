@@ -280,17 +280,6 @@ export type BranchRelationResponseCollection = {
   data: Array<BranchEntity>
 }
 
-export type ComponentHeaderMenuHeader = {
-  __typename?: 'ComponentHeaderMenuHeader'
-  contactsLink?: Maybe<ComponentItemsLink>
-  id: Scalars['ID']['output']
-}
-
-export type ComponentHeaderMenuHeaderInput = {
-  contactsLink?: InputMaybe<ComponentItemsLinkInput>
-  id?: InputMaybe<Scalars['ID']['input']>
-}
-
 export type ComponentHeaderSectionsBranchMap = {
   __typename?: 'ComponentHeaderSectionsBranchMap'
   branches?: Maybe<BranchRelationResponseCollection>
@@ -572,6 +561,17 @@ export type ComponentItemsLinkInput = {
   service?: InputMaybe<Scalars['ID']['input']>
   url?: InputMaybe<Scalars['String']['input']>
   workshop?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type ComponentItemsMenuHeader = {
+  __typename?: 'ComponentItemsMenuHeader'
+  contactsLink?: Maybe<ComponentItemsLink>
+  id: Scalars['ID']['output']
+}
+
+export type ComponentItemsMenuHeaderInput = {
+  contactsLink?: InputMaybe<ComponentItemsLinkInput>
+  id?: InputMaybe<Scalars['ID']['input']>
 }
 
 export type ComponentItemsOpeningHoursItem = {
@@ -1685,7 +1685,6 @@ export type GenericMorph =
   | Article
   | ArticleCategory
   | Branch
-  | ComponentHeaderMenuHeader
   | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
@@ -1703,6 +1702,7 @@ export type GenericMorph =
   | ComponentItemsHeroSmallTile
   | ComponentItemsHomepageServiceTile
   | ComponentItemsLink
+  | ComponentItemsMenuHeader
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
@@ -1907,7 +1907,7 @@ export type Menu = {
   createdAt?: Maybe<Scalars['DateTime']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<MenuRelationResponseCollection>
-  menuHeader?: Maybe<ComponentHeaderMenuHeader>
+  menuHeader?: Maybe<ComponentItemsMenuHeader>
   menuItems?: Maybe<Array<Maybe<ComponentMenuMenuItem>>>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
@@ -1930,7 +1930,7 @@ export type MenuEntityResponse = {
 }
 
 export type MenuInput = {
-  menuHeader?: InputMaybe<ComponentHeaderMenuHeaderInput>
+  menuHeader?: InputMaybe<ComponentItemsMenuHeaderInput>
   menuItems?: InputMaybe<Array<InputMaybe<ComponentMenuMenuItemInput>>>
 }
 
@@ -5855,7 +5855,7 @@ export type GeneralQuery = {
           } | null
         } | null> | null
         menuHeader?: {
-          __typename?: 'ComponentHeaderMenuHeader'
+          __typename?: 'ComponentItemsMenuHeader'
           id: string
           contactsLink?: {
             __typename?: 'ComponentItemsLink'
@@ -15343,7 +15343,7 @@ export type MenuItemFragment = {
 }
 
 export type MenuHeaderFragment = {
-  __typename?: 'ComponentHeaderMenuHeader'
+  __typename?: 'ComponentItemsMenuHeader'
   id: string
   contactsLink?: {
     __typename?: 'ComponentItemsLink'
@@ -15670,7 +15670,7 @@ export type MenuFragment = {
     } | null
   } | null> | null
   menuHeader?: {
-    __typename?: 'ComponentHeaderMenuHeader'
+    __typename?: 'ComponentItemsMenuHeader'
     id: string
     contactsLink?: {
       __typename?: 'ComponentItemsLink'
@@ -16003,7 +16003,7 @@ export type MenuEntityFragment = {
       } | null
     } | null> | null
     menuHeader?: {
-      __typename?: 'ComponentHeaderMenuHeader'
+      __typename?: 'ComponentItemsMenuHeader'
       id: string
       contactsLink?: {
         __typename?: 'ComponentItemsLink'
@@ -26095,7 +26095,7 @@ export const MenuItemFragmentDoc = gql`
   ${LinkFragmentDoc}
 `
 export const MenuHeaderFragmentDoc = gql`
-  fragment MenuHeader on ComponentHeaderMenuHeader {
+  fragment MenuHeader on ComponentItemsMenuHeader {
     id
     contactsLink {
       ...Link

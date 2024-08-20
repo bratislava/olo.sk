@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_header_menu_links",
+  "collectionName": "components_items_menu_headers",
   "info": {
-    "displayName": "header",
+    "displayName": "Menu header",
     "description": ""
   },
   "options": {},

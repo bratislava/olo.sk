@@ -34,7 +34,7 @@
           "localized": true
         }
       },
-      "component": "header-menu.header"
+      "component": "items.menu-header"
     }
   }
 }

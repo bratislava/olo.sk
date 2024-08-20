@@ -1,16 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
-export interface HeaderMenuHeader extends Schema.Component {
-  collectionName: 'components_header_menu_links'
-  info: {
-    displayName: 'header'
-    description: ''
-  }
-  attributes: {
-    contactsLink: Attribute.Component<'items.link'>
-  }
-}
-
 export interface HeaderSectionsBranchMap extends Schema.Component {
   collectionName: 'components_header_sections_branch_maps'
   info: {
@@ -225,6 +214,17 @@ export interface ItemsLink extends Schema.Component {
     document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
     service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
+  }
+}
+
+export interface ItemsMenuHeader extends Schema.Component {
+  collectionName: 'components_items_menu_headers'
+  info: {
+    displayName: 'Menu header'
+    description: ''
+  }
+  attributes: {
+    contactsLink: Attribute.Component<'items.link'>
   }
 }
 
@@ -758,7 +758,6 @@ export interface SectionsWorkshops extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'header-menu.header': HeaderMenuHeader
       'header-sections.branch-map': HeaderSectionsBranchMap
       'header-sections.featured-news': HeaderSectionsFeaturedNews
       'header-sections.gallery': HeaderSectionsGallery
@@ -776,6 +775,7 @@ declare module '@strapi/types' {
       'items.hero-small-tile': ItemsHeroSmallTile
       'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.link': ItemsLink
+      'items.menu-header': ItemsMenuHeader
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide

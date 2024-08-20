@@ -1210,7 +1210,7 @@ export interface ApiMenuMenu extends Schema.SingleType {
           localized: true
         }
       }>
-    menuHeader: Attribute.Component<'header-menu.header'> &
+    menuHeader: Attribute.Component<'items.menu-header'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true

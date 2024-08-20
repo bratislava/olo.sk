@@ -213,6 +213,24 @@ fragment ArticlesSection on ComponentSectionsArticles {
   text
 }
 
+fragment CardSliderSection on ComponentSectionsCardSlider {
+  title
+  text
+  backgroundColorCardSlider: backgroundColor
+  cardsCardSlider: cards {
+    title
+    text
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    link {
+      ...Link
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -290,5 +308,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsArticles {
     ...ArticlesSection
+  }
+
+  ... on ComponentSectionsCardSlider {
+    ...CardSliderSection
   }
 }

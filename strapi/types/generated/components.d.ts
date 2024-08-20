@@ -104,6 +104,19 @@ export interface ItemsAnchor extends Schema.Component {
   }
 }
 
+export interface ItemsCardSliderCard extends Schema.Component {
+  collectionName: 'components_items_card_slider_cards'
+  info: {
+    displayName: 'Card Slider card'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    image: Attribute.Media & Attribute.Required
+    link: Attribute.Component<'items.link'>
+  }
+}
+
 export interface ItemsCardsListItem extends Schema.Component {
   collectionName: 'components_items_cards_list_items'
   info: {
@@ -405,6 +418,22 @@ export interface SectionsBranches extends Schema.Component {
     text: Attribute.Text
     showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
+export interface SectionsCardSlider extends Schema.Component {
+  collectionName: 'components_sections_card_sliders'
+  info: {
+    displayName: 'Karty (slider)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+    cards: Attribute.Component<'items.card-slider-card', true> & Attribute.Required
   }
 }
 
@@ -755,6 +784,7 @@ declare module '@strapi/types' {
       'header-sections.pickup-day': HeaderSectionsPickupDay
       'header-sections.side-image': HeaderSectionsSideImage
       'items.anchor': ItemsAnchor
+      'items.card-slider-card': ItemsCardSliderCard
       'items.cards-list-item': ItemsCardsListItem
       'items.columns-item': ItemsColumnsItem
       'items.columns-list-item': ItemsColumnsListItem
@@ -776,6 +806,7 @@ declare module '@strapi/types' {
       'sections.articles': SectionsArticles
       'sections.banner': SectionsBanner
       'sections.branches': SectionsBranches
+      'sections.card-slider': SectionsCardSlider
       'sections.cards-list': SectionsCardsList
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns

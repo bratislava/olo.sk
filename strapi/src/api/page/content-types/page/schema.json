@@ -74,6 +74,7 @@
         "sections.banner",
         "sections.branches",
         "sections.cards-list",
+        "sections.card-slider",
         "sections.columns",
         "sections.columns-list",
         "sections.divider",

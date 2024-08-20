@@ -1284,6 +1284,7 @@ input ComponentSectionsTableInput {
 }
 
 type ComponentSectionsWasteSortingCards {
+  banner: ComponentSectionsBanner
   cards(filters: ComponentItemsWasteSortingCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWasteSortingCardsItem]
   id: ID!
   text: String
@@ -1292,6 +1293,7 @@ type ComponentSectionsWasteSortingCards {
 
 input ComponentSectionsWasteSortingCardsFiltersInput {
   and: [ComponentSectionsWasteSortingCardsFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
   cards: ComponentItemsWasteSortingCardsItemFiltersInput
   not: ComponentSectionsWasteSortingCardsFiltersInput
   or: [ComponentSectionsWasteSortingCardsFiltersInput]
@@ -1300,6 +1302,7 @@ input ComponentSectionsWasteSortingCardsFiltersInput {
 }
 
 input ComponentSectionsWasteSortingCardsInput {
+  banner: ComponentSectionsBannerInput
   cards: [ComponentItemsWasteSortingCardsItemInput]
   id: ID
   text: String

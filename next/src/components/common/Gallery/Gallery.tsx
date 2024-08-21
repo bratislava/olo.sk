@@ -59,7 +59,7 @@ const Gallery = ({ images = [] }: GalleryProps) => {
         <div
           role="button"
           tabIndex={0}
-          aria-label={t('Gallery.aria.openGallery')}
+          aria-label={t('gallery.aria.openGallery')}
           onKeyUp={onEnterOrSpaceKeyDown(() => openAtImageIndex(0))}
           className="cursor-default focus:outline-none"
         >

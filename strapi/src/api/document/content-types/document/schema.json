@@ -34,7 +34,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::document-category.document-category",
-      "inversedBy": "dokuments"
+      "inversedBy": "documents"
     },
     "files": {
       "type": "component",

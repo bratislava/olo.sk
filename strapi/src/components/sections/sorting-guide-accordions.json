@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_sorting_guide_accordions",
+  "info": {
+    "displayName": "Triedenie (akordeóny)",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "sortingGuideAccordions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.sorting-guide-accordion-item"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.banner"
+    }
+  }
+}

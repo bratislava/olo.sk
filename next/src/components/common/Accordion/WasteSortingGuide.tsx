@@ -4,14 +4,14 @@ import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
-type WasteSortingColumnProps = {
-  title: string
-  items: { title: string }[]
+type WasteSortingColumn = {
+  columnTitle?: string | null | undefined
+  columnItems: string[]
 }
 
 type WasteSortingGuideProps = {
-  leftColumn: WasteSortingColumnProps
-  rightColumn: WasteSortingColumnProps
+  leftColumn: WasteSortingColumn
+  rightColumn: WasteSortingColumn
   className?: string
 }
 
@@ -28,14 +28,16 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
       )}
     >
       <div className="flex flex-col gap-5 p-4 lg:w-1/2 lg:px-8 lg:py-5">
-        <Typography variant="h6">{leftColumn.title}</Typography>
+        {leftColumn.columnTitle ? (
+          <Typography variant="h6">{leftColumn.columnTitle}</Typography>
+        ) : null}
         <div className="flex flex-col gap-4">
-          {leftColumn.items.length > 0
-            ? leftColumn.items.map((item) => {
+          {leftColumn.columnItems.length > 0
+            ? leftColumn.columnItems.map((columnItem) => {
                 return (
                   <div className="flex gap-4">
                     <Icon name="fajka-kruh" className="text-success" />
-                    <Typography variant="p-default">{item.title}</Typography>
+                    <Typography variant="p-default">{columnItem}</Typography>
                   </div>
                 )
               })
@@ -44,14 +46,16 @@ const WasteSortingGuide = ({ leftColumn, rightColumn, className }: WasteSortingG
       </div>
 
       <div className="flex flex-col gap-5 p-4 lg:w-1/2 lg:px-8 lg:py-5">
-        <Typography variant="h6">{rightColumn.title}</Typography>
+        {rightColumn.columnTitle ? (
+          <Typography variant="h6">{rightColumn.columnTitle}</Typography>
+        ) : null}
         <div className="flex flex-col gap-4">
-          {rightColumn.items.length > 0
-            ? rightColumn?.items.map((item) => {
+          {rightColumn.columnItems.length > 0
+            ? rightColumn?.columnItems.map((columnItem) => {
                 return (
                   <div className="flex gap-4">
                     <Icon name="zrusit-kruh" className="text-error" />
-                    <Typography variant="p-default">{item.title}</Typography>
+                    <Typography variant="p-default">{columnItem}</Typography>
                   </div>
                 )
               })

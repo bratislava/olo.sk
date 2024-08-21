@@ -16,6 +16,8 @@ import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
 import ServicesSection from '@/src/components/sections/ServicesSection'
+import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
+import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import TableSection from '@/src/components/sections/TableSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
@@ -81,6 +83,12 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsWasteSortingCards':
       return <WasteSortingCardsSection section={section} />
+
+    case 'ComponentSectionsSortingGuide':
+      return <SortingGuideSection section={section} />
+
+    case 'ComponentSectionsSortingGuideAccordions':
+      return <SortingGuideAccordionsSection section={section} />
 
     case 'ComponentSectionsArticles':
       return <ArticlesSection section={section} />

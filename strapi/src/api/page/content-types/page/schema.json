@@ -87,7 +87,9 @@
         "sections.workshops",
         "sections.documents",
         "sections.ordered-cards",
-        "sections.table"
+        "sections.table",
+        "sections.sorting-guide",
+        "sections.sorting-guide-accordions"
       ],
       "pluginOptions": {
         "i18n": {

@@ -1341,7 +1341,7 @@ export type DocumentFilesArgs = {
 export type DocumentCategory = {
   __typename?: 'DocumentCategory'
   createdAt?: Maybe<Scalars['DateTime']['output']>
-  dokuments?: Maybe<DocumentRelationResponseCollection>
+  documents?: Maybe<DocumentRelationResponseCollection>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<DocumentCategoryRelationResponseCollection>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
@@ -1350,7 +1350,7 @@ export type DocumentCategory = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
-export type DocumentCategoryDokumentsArgs = {
+export type DocumentCategoryDocumentsArgs = {
   filters?: InputMaybe<DocumentFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
@@ -1384,7 +1384,7 @@ export type DocumentCategoryEntityResponseCollection = {
 export type DocumentCategoryFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<DocumentCategoryFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
-  dokuments?: InputMaybe<DocumentFiltersInput>
+  documents?: InputMaybe<DocumentFiltersInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
   localizations?: InputMaybe<DocumentCategoryFiltersInput>
@@ -1397,7 +1397,7 @@ export type DocumentCategoryFiltersInput = {
 }
 
 export type DocumentCategoryInput = {
-  dokuments?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  documents?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>

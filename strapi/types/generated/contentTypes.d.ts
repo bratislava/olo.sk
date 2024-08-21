@@ -717,6 +717,12 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::article-category.article-category'
     >
     tags: Attribute.Relation<'api::article.article', 'manyToMany', 'api::tag.tag'>
+    gallery: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     content: Attribute.RichText &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1205,6 +1211,12 @@ export interface ApiMenuMenu extends Schema.SingleType {
   }
   attributes: {
     menuItems: Attribute.Component<'menu.menu-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    menuHeader: Attribute.Component<'items.menu-header'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true

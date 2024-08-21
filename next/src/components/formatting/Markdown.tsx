@@ -29,10 +29,7 @@ PropsWithChildren<Record<any, any>>) => {
 
   return (
     <div className="relative">
-      <div
-        className={cn('negative-x-spacing overflow-x-auto scrollbar-hide', scrollFadeClassNames)}
-        ref={tableWrapperRef}
-      >
+      <div className={cn('overflow-x-auto', scrollFadeClassNames)} ref={tableWrapperRef}>
         <table {...props} className="m-table border-separate border-spacing-0">
           {children}
         </table>

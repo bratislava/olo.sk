@@ -8,6 +8,7 @@ type Article {
   content: String
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
+  gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
   locale: String
   localizations(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   perex: String
@@ -107,6 +108,7 @@ input ArticleInput {
   articleCategory: ID
   content: String
   coverMedia: ID
+  gallery: [ID]
   perex: String
   publishedAt: DateTime
   slug: String
@@ -569,6 +571,23 @@ input ComponentItemsLinkInput {
   service: ID
   url: String
   workshop: ID
+}
+
+type ComponentItemsMenuHeader {
+  contactsLink: ComponentItemsLink
+  id: ID!
+}
+
+input ComponentItemsMenuHeaderFiltersInput {
+  and: [ComponentItemsMenuHeaderFiltersInput]
+  contactsLink: ComponentItemsLinkFiltersInput
+  not: ComponentItemsMenuHeaderFiltersInput
+  or: [ComponentItemsMenuHeaderFiltersInput]
+}
+
+input ComponentItemsMenuHeaderInput {
+  contactsLink: ComponentItemsLinkInput
+  id: ID
 }
 
 type ComponentItemsOpeningHoursItem {
@@ -1191,7 +1210,7 @@ type ComponentSectionsKoloHomepageSection {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   branchesTitle: String
   id: ID!
-  mainCards(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
+  mainCards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
   showMoreLink: ComponentItemsLink
   text: String
   title: String
@@ -1201,7 +1220,7 @@ input ComponentSectionsKoloHomepageSectionFiltersInput {
   and: [ComponentSectionsKoloHomepageSectionFiltersInput]
   branches: BranchFiltersInput
   branchesTitle: StringFilterInput
-  mainCards: ComponentItemsLinkFiltersInput
+  mainCards: ComponentItemsCardsListItemFiltersInput
   not: ComponentSectionsKoloHomepageSectionFiltersInput
   or: [ComponentSectionsKoloHomepageSectionFiltersInput]
   showMoreLink: ComponentItemsLinkFiltersInput
@@ -1213,7 +1232,7 @@ input ComponentSectionsKoloHomepageSectionInput {
   branches: [ID]
   branchesTitle: String
   id: ID
-  mainCards: [ComponentItemsLinkInput]
+  mainCards: [ComponentItemsCardsListItemInput]
   showMoreLink: ComponentItemsLinkInput
   text: String
   title: String
@@ -1335,6 +1354,7 @@ input ComponentSectionsTableInput {
 }
 
 type ComponentSectionsWasteSortingCards {
+  banner: ComponentSectionsBanner
   cards(filters: ComponentItemsWasteSortingCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWasteSortingCardsItem]
   id: ID!
   text: String
@@ -1343,6 +1363,7 @@ type ComponentSectionsWasteSortingCards {
 
 input ComponentSectionsWasteSortingCardsFiltersInput {
   and: [ComponentSectionsWasteSortingCardsFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
   cards: ComponentItemsWasteSortingCardsItemFiltersInput
   not: ComponentSectionsWasteSortingCardsFiltersInput
   or: [ComponentSectionsWasteSortingCardsFiltersInput]
@@ -1351,6 +1372,7 @@ input ComponentSectionsWasteSortingCardsFiltersInput {
 }
 
 input ComponentSectionsWasteSortingCardsInput {
+  banner: ComponentSectionsBannerInput
   cards: [ComponentItemsWasteSortingCardsItemInput]
   id: ID
   text: String
@@ -1890,7 +1912,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2100,6 +2122,7 @@ type Menu {
   createdAt: DateTime
   locale: String
   localizations: MenuRelationResponseCollection
+  menuHeader: ComponentItemsMenuHeader
   menuItems(filters: ComponentMenuMenuItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuItem]
   updatedAt: DateTime
 }
@@ -2123,6 +2146,7 @@ input MenuFiltersInput {
   createdAt: DateTimeFilterInput
   locale: StringFilterInput
   localizations: MenuFiltersInput
+  menuHeader: ComponentItemsMenuHeaderFiltersInput
   menuItems: ComponentMenuMenuItemFiltersInput
   not: MenuFiltersInput
   or: [MenuFiltersInput]
@@ -2130,6 +2154,7 @@ input MenuFiltersInput {
 }
 
 input MenuInput {
+  menuHeader: ComponentItemsMenuHeaderInput
   menuItems: [ComponentMenuMenuItemInput]
 }
 

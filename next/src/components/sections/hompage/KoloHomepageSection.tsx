@@ -41,12 +41,12 @@ const KoloHomepageSection = ({ section }: Props) => {
           })}
         >
           {mainCards?.filter(isDefined).map((card, index) => {
-            const { children: label, href } = getLinkProps(card)
+            const { children: label, href } = getLinkProps(card.link)
 
             return (
               // eslint-disable-next-line react/no-array-index-key
               <li key={index} className="h-full w-full">
-                <HalfBanner title={card.label ?? ''} buttonLinkHref={href} buttonText={label} />
+                <HalfBanner title={card.title ?? ''} buttonLinkHref={href} buttonText={label} />
               </li>
             )
           })}

@@ -18,8 +18,8 @@ const FormCtaBannerSection = ({ section }: Props) => {
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer className="py-6 lg:py-12">
-      <div className="lg: flex max-w-[50rem] flex-col gap-4 lg:gap-6">
-        {title ? <SectionHeader title={title} text={text} /> : null}
+      <div className="flex flex-col gap-4 lg:gap-6">
+        <SectionHeader title={title} text={text} />
         <FormCtaBanner title={bannerTitle} link={bannerLink} />
       </div>
     </SectionContainer>

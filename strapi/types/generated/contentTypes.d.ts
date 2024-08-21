@@ -1381,6 +1381,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.divider',
         'sections.faq',
         'sections.faq-categories',
+        'sections.form-cta-banner',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.services',
@@ -1449,7 +1450,13 @@ export interface ApiServiceService extends Schema.CollectionType {
         }
       }>
     sections: Attribute.DynamicZone<
-      ['sections.richtext', 'sections.cards-list', 'sections.faq', 'sections.documents']
+      [
+        'sections.richtext',
+        'sections.cards-list',
+        'sections.faq',
+        'sections.form-cta-banner',
+        'sections.documents',
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {

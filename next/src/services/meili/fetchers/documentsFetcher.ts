@@ -26,10 +26,7 @@ export const meiliDocumentsFetcher = (filters: DocumentsFilters) => {
   return meiliClient
     .index('search_index')
     .search<SearchIndexWrapped<'document', any>>(filters.search, {
-      ...getMeilisearchPageOptions({
-        page: filters.page ?? documentsDefaultFilters.page,
-        pageSize: filters.pageSize ?? documentsDefaultFilters.pageSize,
-      }),
+      ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
       filter: ['type = "document"'],
       attributesToRetrieve: [
         // Only properties that are required to display listing are retrieved

@@ -16,7 +16,7 @@ type Props = {
 }
 
 /**
- * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=5979-22839&m=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=3361-20820&m=dev
  */
 
 const SortingGuideSection = ({ section }: Props) => {
@@ -34,9 +34,9 @@ const SortingGuideSection = ({ section }: Props) => {
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-12">
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} isCentered isFullWidth />
-        <div className="flex flex-col gap-6 lg:gap-18">
+        <div className="flex flex-col gap-6 lg:gap-8">
           <div className="rounded-xl border border-border-default">
             <WasteSortingGuide
               leftColumn={{ columnTitle: titleGoesHere, columnItems: leftColumn }}

@@ -206,6 +206,9 @@ fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
       ...Link
     }
   }
+  banner {
+    ...BannerSection
+  }
 }
 
 fragment ArticlesSection on ComponentSectionsArticles {

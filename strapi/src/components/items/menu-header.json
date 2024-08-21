@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_items_menu_headers",
+  "info": {
+    "displayName": "Menu header",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "contactsLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    }
+  }
+}

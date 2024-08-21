@@ -42,9 +42,19 @@ fragment MenuItem on ComponentMenuMenuItem {
   }
 }
 
+fragment MenuHeader on ComponentItemsMenuHeader {
+  id
+  contactsLink {
+    ...Link
+  }
+}
+
 fragment Menu on Menu {
   menuItems {
     ...MenuItem
+  }
+  menuHeader {
+    ...MenuHeader
   }
 }
 

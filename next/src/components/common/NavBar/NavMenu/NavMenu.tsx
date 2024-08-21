@@ -8,6 +8,7 @@ import Icon from '@/src/components/common/Icon/Icon'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
 
@@ -34,30 +35,31 @@ const NavMenu = ({ className }: NavMenuProps) => {
       aria-label={t('navBar.aria.navBarAriaLabel')}
     >
       <div className={cn('border-b border-border-default bg-background-primary', className)}>
-        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 lg:px-8">
-          <NavigationMenu.List className="flex first:-ml-4">
-            {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
-          </NavigationMenu.List>
+        <SectionContainer>
+          <div className="flex items-center justify-between">
+            <NavigationMenu.List className="flex first:-ml-4">
+              {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
+            </NavigationMenu.List>
+            {/* TODO: This may be potentially part of the NavigationMenu.List */}
+            <Button
+              href="/" // TODO: Provide valid path
+              asLink
+              icon={
+                <Icon
+                  name="lupa"
+                  className="size-6 border border-dashed border-action-background-default"
+                />
+              }
+              hasLinkIcon={false}
+              aria-label={t('navBar.aria.searchButton')}
+              variant="icon-wrapped"
+              className="-mr-4 px-4 py-5"
+            />
+          </div>
+        </SectionContainer>
 
-          {/* TODO: This may be potentially part of the NavigationMenu.List */}
-          <Button
-            href="/" // TODO: Provide valid path
-            asLink
-            icon={
-              <Icon
-                name="lupa"
-                className="size-6 border border-dashed border-action-background-default"
-              />
-            }
-            hasLinkIcon={false}
-            aria-label={t('navBar.aria.searchButton')}
-            variant="icon-wrapped"
-            className="-mr-4 px-4 py-5"
-          />
-        </div>
-
-        {/* Together with onCLick in NavMenuContent, it closes the menu on click outside of container area */}
         <NavigationMenu.Viewport
+          // Together with onCLick in NavMenuContent, it closes the menu on click outside of container area
           onClick={() => setMenuValue('')}
           className="absolute z-[29] h-screen w-full"
         />

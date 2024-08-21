@@ -11,6 +11,8 @@ type NavMenuLinkProps = {
   className?: string
 } & Omit<LinkProps, 'children'>
 
+// Based on: // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
+
 const NavMenuLink = ({ className, ...rest }: PropsWithChildren<NavMenuLinkProps>) => {
   const { setMobileMenuOpen } = useNavMenuContext()
 

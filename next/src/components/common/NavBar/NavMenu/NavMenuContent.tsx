@@ -1,11 +1,11 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { useMemo } from 'react'
 
-import ClickableContainer from '@/src/components/common/NavBar/NavMenu/ClickableContainer'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import NavMenuContentCell from '@/src/components/common/NavBar/NavMenu/NavMenuContentCell'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import NavMenuSection from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import cn from '@/src/utils/cn'
 import { getNavMenuCells } from '@/src/utils/getNavMenuCells'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
@@ -32,12 +32,13 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         className,
       )}
     >
-      <ClickableContainer
-        // Together with onCLick in Viewport, it closes the menu on click outside of container area
-        handleClick={(event) => event.stopPropagation()}
-        className="relative z-[29] mx-auto flex max-w-screen-xl flex-col items-start justify-start px-4 lg:px-8"
-      >
-        <ul className="grid w-full grid-cols-3 py-8">
+      <SectionContainer className="relative z-[29]">
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
+        <ul
+          // Together with onCLick in Viewport, it closes the menu on click outside of container area
+          onClick={(event) => event.stopPropagation()}
+          className="grid w-full grid-cols-3 py-8"
+        >
           {navMenuCells.map((cell, index) => {
             if (Array.isArray(cell)) {
               return (
@@ -65,15 +66,16 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         </ul>
 
         {seeAllLinkProps?.children ? (
-          <ClickableContainer
-            // Together with onCLick in Viewport, it closes the menu on click outside of container area
-            handleClick={(event) => event.stopPropagation()}
-            className="flex w-full items-start justify-start border-t border-border-default py-6"
-          >
-            <NavMenuLink {...seeAllLinkProps} />
-          </ClickableContainer>
+          // Together with onCLick in Viewport, it closes the menu on click outside of container area
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+          <div onClick={(event) => event.stopPropagation()}>
+            <NavMenuLink
+              {...seeAllLinkProps}
+              className="flex w-full items-start justify-start border-t border-border-default py-6"
+            />
+          </div>
         ) : null}
-      </ClickableContainer>
+      </SectionContainer>
     </NavigationMenu.Content>
   )
 }

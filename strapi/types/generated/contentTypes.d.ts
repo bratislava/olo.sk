@@ -924,6 +924,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
     singularName: 'document-category'
     pluralName: 'document-categories'
     displayName: 'Dokumenty - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -948,7 +949,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
           localized: true
         }
       }>
-    dokuments: Attribute.Relation<
+    documents: Attribute.Relation<
       'api::document-category.document-category',
       'oneToMany',
       'api::document.document'

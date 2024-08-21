@@ -2,7 +2,7 @@ import { WorkshopSlugEntityFragment } from '@/src/services/graphql/api'
 
 export const formatMostRecentWorkshopDate = (workshop?: WorkshopSlugEntityFragment) => {
   const dates = workshop?.attributes?.dates
-  if (!dates?.length) return null
+  if (!dates?.length) return ''
 
   const nextWorkshop = dates
     .map((date) => new Date(date?.datetime))

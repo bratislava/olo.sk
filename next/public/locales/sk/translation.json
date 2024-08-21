@@ -37,7 +37,7 @@
   "navBar.aria.searchButton": "Hľadať",
   "navBar.branchCard.showDetails": "Zobraziť detaily",
   "navBar.contactsButton": "Kontakty",
-  "navBar.workshopCard.messageMostRecentDate": "Najbližší termín: {{mostRecentWorkshopDate}}",
+  "navBar.workshopCard.messageMostRecentDate": "Najbližší termín: {{subText}}",
   "pageHeaderGallery.buttonText": "Všetky fotky",
   "pageHeaderPickupDay.allNews": "Všetky novinky",
   "pageHeaderPickupDay.messageEvenWeek": "Tento týždeň je párny ({{weekNumber}}. týždeň)",

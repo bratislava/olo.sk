@@ -11,7 +11,6 @@ import NavMenuTwoColumnSection from '@/src/components/common/NavBar/NavMenu/NavM
 import Typography from '@/src/components/common/Typography/Typography'
 import { MenuLinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
-import { formatMostRecentWorkshopDate } from '@/src/utils/formatMostRecentWorkshopDate'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
@@ -22,26 +21,21 @@ export type NavMenuSectionProps = {
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { t } = useTranslation()
-  const { getLinkProps } = useGetLinkProps()
+  const { getLinkProps, getAdditionalLinkProps } = useGetLinkProps()
   const { label, specialSectionType, links, multicolumnBehaviour, colSpan } = section
 
   const renderSectionLink = (link: MenuLinkFragment, index: number) => {
-    const { children, href, subText, target } = getLinkProps(link)
+    const { children, href, target } = getLinkProps(link)
+    const { subText } = getAdditionalLinkProps(link)
     const divider = index > 0 ? <NavBarDivider variant="horizontal" /> : null
 
     if (isDefined(link.workshop?.data)) {
-      const mostRecentWorkshopDate = formatMostRecentWorkshopDate(link.workshop?.data)
-
       return (
         <Fragment key={link.id}>
           {divider}
           <MenuItemWorkshopCard
             title={children ?? ''}
-            subText={
-              mostRecentWorkshopDate
-                ? t('navBar.workshopCard.messageMostRecentDate', { mostRecentWorkshopDate })
-                : ''
-            }
+            subText={subText ? t('navBar.workshopCard.messageMostRecentDate', { subText }) : ''}
             linkHref={href}
           />
         </Fragment>

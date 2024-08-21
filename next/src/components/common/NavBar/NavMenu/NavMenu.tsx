@@ -33,37 +33,35 @@ const NavMenu = ({ className }: NavMenuProps) => {
       value={menuValue}
       onValueChange={setMenuValue}
       aria-label={t('navBar.aria.navBarAriaLabel')}
+      className={cn('border-b border-border-default bg-background-primary', className)}
     >
-      <div className={cn('border-b border-border-default bg-background-primary', className)}>
-        <SectionContainer>
-          <div className="flex items-center justify-between">
-            <NavigationMenu.List className="flex first:-ml-4">
-              {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
-            </NavigationMenu.List>
-            {/* TODO: This may be potentially part of the NavigationMenu.List */}
-            <Button
-              href="/" // TODO: Provide valid path
-              asLink
-              icon={
-                <Icon
-                  name="lupa"
-                  className="size-6 border border-dashed border-action-background-default"
-                />
-              }
-              hasLinkIcon={false}
-              aria-label={t('navBar.aria.searchButton')}
-              variant="icon-wrapped"
-              className="-mr-4 px-4 py-5"
-            />
+      <SectionContainer>
+        <NavigationMenu.List className="flex items-center justify-between first:-ml-4">
+          <div className="flex">
+            {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
           </div>
-        </SectionContainer>
+          <Button
+            href="/" // TODO: Provide valid path
+            asLink
+            icon={
+              <Icon
+                name="lupa"
+                className="size-6 border border-dashed border-action-background-default"
+              />
+            }
+            hasLinkIcon={false}
+            aria-label={t('navBar.aria.searchButton')}
+            variant="icon-wrapped"
+            className="-mr-4 px-4 py-5"
+          />
+        </NavigationMenu.List>
+      </SectionContainer>
 
-        <NavigationMenu.Viewport
-          // Together with onCLick in NavMenuContent, it closes the menu on click outside of container area
-          onClick={() => setMenuValue('')}
-          className="absolute z-[29] h-screen w-full"
-        />
-      </div>
+      <NavigationMenu.Viewport
+        // Together with onCLick in NavMenuContent, it closes the menu on click outside of container area
+        onClick={() => setMenuValue('')}
+        className="absolute z-[29] h-screen w-full"
+      />
     </NavigationMenu.Root>
   )
 }

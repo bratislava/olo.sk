@@ -28,11 +28,11 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       onPointerMove={(event) => event.preventDefault()}
       onPointerLeave={(event) => event.preventDefault()}
       className={cn(
-        'w-screen border-t border-border-default bg-background-primary shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]',
+        'relative z-[29] w-screen border-t border-border-default bg-background-primary shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]',
         className,
       )}
     >
-      <SectionContainer className="relative z-[29]">
+      <SectionContainer>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
         <ul
           // Together with onCLick in Viewport, it closes the menu on click outside of container area

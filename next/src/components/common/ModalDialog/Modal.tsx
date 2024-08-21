@@ -13,9 +13,10 @@ type PropsBase = {
 type Props = PropsBase
 
 /**
+ * Component based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/ModalDialog/Modal.tsx
+ *
  * From docs: A modal is an overlay element which blocks interaction with elements outside it.
  * Note: Modal only provides the overlay itself. It should be combined with Dialog to create fully accessible modal dialogs. Other overlays such as menus may also be placed in a modal overlay.
- *
  */
 const Modal = forwardRef<HTMLDivElement, Props>(
   (
@@ -30,7 +31,7 @@ const Modal = forwardRef<HTMLDivElement, Props>(
       <ModalOverlay
         ref={ref}
         className={cn(
-          'fixed left-0 top-0 z-50 flex h-[--visual-viewport-height] w-screen items-center justify-center bg-background-primaryInverted/[0.48]',
+          'fixed left-0 top-0 z-50 flex h-[--visual-viewport-height] w-screen items-center justify-center bg-content-secondary/[0.6]',
           overlayClassname,
         )}
         isDismissable={isDismissable}

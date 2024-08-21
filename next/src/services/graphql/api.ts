@@ -36,6 +36,7 @@ export type Article = {
   content?: Maybe<Scalars['String']['output']>
   coverMedia?: Maybe<UploadFileEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  gallery?: Maybe<UploadFileRelationResponseCollection>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<ArticleRelationResponseCollection>
   perex?: Maybe<Scalars['String']['output']>
@@ -44,6 +45,12 @@ export type Article = {
   tags?: Maybe<TagRelationResponseCollection>
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type ArticleGalleryArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type ArticleLocalizationsArgs = {
@@ -171,6 +178,7 @@ export type ArticleInput = {
   articleCategory?: InputMaybe<Scalars['ID']['input']>
   content?: InputMaybe<Scalars['String']['input']>
   coverMedia?: InputMaybe<Scalars['ID']['input']>
+  gallery?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
@@ -10243,6 +10251,22 @@ export type ArticleEntityFragment = {
     addedAt: any
     slug: string
     title: string
+    gallery?: {
+      __typename?: 'UploadFileRelationResponseCollection'
+      data: Array<{
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      }>
+    } | null
     coverMedia?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -10294,6 +10318,22 @@ export type ArticlesQuery = {
         addedAt: any
         slug: string
         title: string
+        gallery?: {
+          __typename?: 'UploadFileRelationResponseCollection'
+          data: Array<{
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          }>
+        } | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -10350,6 +10390,22 @@ export type ArticleBySlugQuery = {
         addedAt: any
         slug: string
         title: string
+        gallery?: {
+          __typename?: 'UploadFileRelationResponseCollection'
+          data: Array<{
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          }>
+        } | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -10406,6 +10462,22 @@ export type LatestArticlesQuery = {
         addedAt: any
         slug: string
         title: string
+        gallery?: {
+          __typename?: 'UploadFileRelationResponseCollection'
+          data: Array<{
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          }>
+        } | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -12806,6 +12878,22 @@ export type ArticlesHomepageSectionFragment = {
         addedAt: any
         slug: string
         title: string
+        gallery?: {
+          __typename?: 'UploadFileRelationResponseCollection'
+          data: Array<{
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          }>
+        } | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -13795,6 +13883,22 @@ export type HomepageEntityFragment = {
             addedAt: any
             slug: string
             title: string
+            gallery?: {
+              __typename?: 'UploadFileRelationResponseCollection'
+              data: Array<{
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              }>
+            } | null
             coverMedia?: {
               __typename?: 'UploadFileEntityResponse'
               data?: {
@@ -14801,6 +14905,22 @@ export type HomepageQuery = {
                 addedAt: any
                 slug: string
                 title: string
+                gallery?: {
+                  __typename?: 'UploadFileRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  }>
+                } | null
                 coverMedia?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -27136,9 +27256,15 @@ export const ArticleEntityFragmentDoc = gql`
     ...ArticleCardEntity
     attributes {
       content
+      gallery {
+        data {
+          ...UploadImageEntity
+        }
+      }
     }
   }
   ${ArticleCardEntityFragmentDoc}
+  ${UploadImageEntityFragmentDoc}
 `
 export const ArticlesHomepageSectionFragmentDoc = gql`
   fragment ArticlesHomepageSection on ComponentSectionsArticlesHomepageSection {

@@ -9,7 +9,7 @@ import { LinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuLinkProps = {
   className?: string
-} & LinkProps
+} & Omit<LinkProps, 'children'>
 
 const NavMenuLink = ({ className, ...rest }: PropsWithChildren<NavMenuLinkProps>) => {
   const { setMobileMenuOpen } = useNavMenuContext()

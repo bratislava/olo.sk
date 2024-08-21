@@ -39,7 +39,7 @@ const NavMenu = ({ className }: NavMenuProps) => {
             {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
           </NavigationMenu.List>
 
-          {/* TODO this may be potentially part of the NavigationMenu.List */}
+          {/* TODO: This may be potentially part of the NavigationMenu.List */}
           <Button
             href="/" // TODO: Provide valid path
             asLink

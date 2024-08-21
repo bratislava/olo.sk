@@ -1,15 +1,14 @@
+import { useTranslation } from 'next-i18next'
+
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
 import Typography from '@/src/components/common/Typography/Typography'
-import { LinkFragment } from '@/src/services/graphql/api'
-import cn from '@/src/utils/cn'
-import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type BasicCardProps = {
   title: string
-  subtext?: string | null | undefined
-  link?: LinkFragment | null | undefined
+  subtext: string
+  linkHref: string
   imgSrc?: string
   hasWhiteBackground?: boolean
   className?: string
@@ -22,38 +21,35 @@ type BasicCardProps = {
 const BasicCard = ({
   title,
   subtext,
-  link,
+  linkHref,
   imgSrc,
   hasWhiteBackground = true,
   className,
 }: BasicCardProps) => {
-  const { getLinkProps } = useGetLinkProps()
+  const { t } = useTranslation()
 
   return (
     <CardBase
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
-      title={title}
     >
       <CardImage imgSrc={imgSrc} className="aspect-[384/204] rounded-t-lg" />
-      <div className="flex h-full flex-col justify-between gap-5 px-4 py-4 lg:px-5">
+      <div className="flex flex-col gap-5 px-4 py-4 lg:px-5">
         <div className="flex flex-col gap-3">
           <Typography
             variant="h5"
-            className_onlyWhenNecessary={cn('line-clamp-3', {
-              'group-hover/CardBase:underline': !!link,
-            })}
+            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
           >
             {title}
           </Typography>
-          {subtext ? (
-            <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">
-              {subtext}
-            </Typography>
-          ) : null}
+          <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">
+            {subtext}
+          </Typography>
         </div>
-        {link ? <Button variant="black-link" {...getLinkProps(link)} asLink stretched /> : null}
+        <Button variant="black-link" href={linkHref} asLink stretched>
+          {t('common.readMore')}
+        </Button>
       </div>
     </CardBase>
   )

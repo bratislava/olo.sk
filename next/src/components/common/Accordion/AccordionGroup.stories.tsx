@@ -53,12 +53,12 @@ const accordionDefaultData = [
 ]
 const wasteSortingGuideData = {
   leftColumn: {
-    columnTitle: 'Patrí sem:',
-    columnItems: ['Item 1', 'Item 2', 'Item 3'],
+    title: 'Patrí sem:',
+    items: [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }],
   },
   rightColumn: {
-    columnTitle: 'Nepatrí sem:',
-    columnItems: ['Item 1', 'Item 2', 'Item 3'],
+    title: 'Nepatrí sem:',
+    items: [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }],
   },
 }
 

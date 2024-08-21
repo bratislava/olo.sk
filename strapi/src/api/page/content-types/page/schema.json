@@ -74,12 +74,12 @@
         "sections.banner",
         "sections.branches",
         "sections.cards-list",
-        "sections.card-slider",
         "sections.columns",
         "sections.columns-list",
         "sections.divider",
         "sections.faq",
         "sections.faq-categories",
+        "sections.form-cta-banner",
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
         "sections.services",
@@ -87,9 +87,7 @@
         "sections.workshops",
         "sections.documents",
         "sections.ordered-cards",
-        "sections.table",
-        "sections.sorting-guide",
-        "sections.sorting-guide-accordions"
+        "sections.table"
       ],
       "pluginOptions": {
         "i18n": {

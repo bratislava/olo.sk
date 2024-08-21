@@ -11,7 +11,7 @@ const meta: Meta<typeof BasicCardComponent> = {
   args: {
     title: 'BasicCard title',
     subtext: 'subtext',
-    link: { label: 'See more', url: '#' },
+    linkHref: '#',
     hasWhiteBackground: true,
   },
   tags: ['autodocs'],

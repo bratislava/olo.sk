@@ -1,8 +1,8 @@
 fragment ContactEntity on ContactEntity {
   id
   attributes {
-    name
-    position
+    label
+    text
     image {
       data {
         ...UploadImageEntity

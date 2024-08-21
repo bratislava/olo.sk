@@ -8,7 +8,7 @@ import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type PersonContactRowCardProps = {
   name: string
-  position: string | null | undefined
+  position?: string | null | undefined
   imgSrc?: string
   link?: LinkFragment | null | undefined
   className?: string

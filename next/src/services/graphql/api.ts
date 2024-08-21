@@ -524,9 +524,10 @@ export type ComponentItemsLink = {
   branch?: Maybe<BranchEntityResponse>
   document?: Maybe<DocumentEntityResponse>
   id: Scalars['ID']['output']
-  label?: Maybe<Scalars['String']['output']>
+  label: Scalars['String']['output']
   page?: Maybe<PageEntityResponse>
   service?: Maybe<ServiceEntityResponse>
+  text?: Maybe<Scalars['String']['output']>
   url?: Maybe<Scalars['String']['output']>
   workshop?: Maybe<WorkshopEntityResponse>
 }
@@ -541,6 +542,7 @@ export type ComponentItemsLinkFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<ComponentItemsLinkFiltersInput>>>
   page?: InputMaybe<PageFiltersInput>
   service?: InputMaybe<ServiceFiltersInput>
+  text?: InputMaybe<StringFilterInput>
   url?: InputMaybe<StringFilterInput>
   workshop?: InputMaybe<WorkshopFiltersInput>
 }
@@ -553,6 +555,7 @@ export type ComponentItemsLinkInput = {
   label?: InputMaybe<Scalars['String']['input']>
   page?: InputMaybe<Scalars['ID']['input']>
   service?: InputMaybe<Scalars['ID']['input']>
+  text?: InputMaybe<Scalars['String']['input']>
   url?: InputMaybe<Scalars['String']['input']>
   workshop?: InputMaybe<Scalars['ID']['input']>
 }
@@ -894,7 +897,8 @@ export type ComponentSectionsContacts = {
   __typename?: 'ComponentSectionsContacts'
   contacts?: Maybe<ContactRelationResponseCollection>
   id: Scalars['ID']['output']
-  title: Scalars['String']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentSectionsContactsContactsArgs = {
@@ -1158,10 +1162,10 @@ export type Contact = {
   __typename?: 'Contact'
   createdAt?: Maybe<Scalars['DateTime']['output']>
   image?: Maybe<UploadFileEntityResponse>
+  label: Scalars['String']['output']
   link?: Maybe<ComponentItemsLink>
-  name: Scalars['String']['output']
-  position?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
+  text?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
@@ -1186,21 +1190,21 @@ export type ContactFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ContactFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
+  label?: InputMaybe<StringFilterInput>
   link?: InputMaybe<ComponentItemsLinkFiltersInput>
-  name?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ContactFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ContactFiltersInput>>>
-  position?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  text?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
 export type ContactInput = {
   image?: InputMaybe<Scalars['ID']['input']>
+  label?: InputMaybe<Scalars['String']['input']>
   link?: InputMaybe<ComponentItemsLinkInput>
-  name?: InputMaybe<Scalars['String']['input']>
-  position?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  text?: InputMaybe<Scalars['String']['input']>
 }
 
 export type ContactRelationResponseCollection = {
@@ -3848,7 +3852,7 @@ export type FaqCategoryEntityFragment = {
       }
       primaryButtonLink: {
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -3957,7 +3961,7 @@ export type FaqCategoryEntityFragment = {
       }
       secondaryButtonLink?: {
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -4114,7 +4118,7 @@ export type FaqCategoriesQuery = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -4223,7 +4227,7 @@ export type FaqCategoriesQuery = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -4383,7 +4387,7 @@ export type FaqCategoryBySlugQuery = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -4492,7 +4496,7 @@ export type FaqCategoryBySlugQuery = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -4661,7 +4665,7 @@ export type ServiceCategoryBySlugQuery = {
 
 export type LinkFragment = {
   __typename?: 'ComponentItemsLink'
-  label?: string | null
+  label: string
   url?: string | null
   page?: {
     __typename?: 'PageEntityResponse'
@@ -5423,7 +5427,7 @@ export type GeneralQuery = {
           title: string
           links?: Array<{
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -5533,7 +5537,7 @@ export type GeneralQuery = {
         } | null> | null
         bottomLinks?: Array<{
           __typename?: 'ComponentItemsLink'
-          label?: string | null
+          label: string
           url?: string | null
           page?: {
             __typename?: 'PageEntityResponse'
@@ -5755,7 +5759,7 @@ export type GeneralQuery = {
           } | null> | null
           seeAllLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -6048,7 +6052,7 @@ export type PickupDayHeaderSectionFragment = {
   } | null> | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -6301,7 +6305,7 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
   } | null> | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -6480,7 +6484,7 @@ export type ImageAndTextSectionFragment = {
   }
   primaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -6586,7 +6590,7 @@ export type ImageAndTextSectionFragment = {
   } | null
   secondaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -6744,7 +6748,7 @@ export type ImageAndTextOverlappedSectionFragment = {
   }
   primaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -6850,7 +6854,7 @@ export type ImageAndTextOverlappedSectionFragment = {
   } | null
   secondaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -7057,7 +7061,7 @@ export type FaqSectionFragment = {
   backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -7210,7 +7214,7 @@ export type FaqSectionFragment = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -7319,7 +7323,7 @@ export type FaqSectionFragment = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -7536,7 +7540,7 @@ export type BannerSectionFragment = {
   }
   primaryButtonLink: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -7642,7 +7646,7 @@ export type BannerSectionFragment = {
   }
   secondaryButtonLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -7762,7 +7766,7 @@ export type CardsListSectionFragment = {
     title: string
     link: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -7903,7 +7907,7 @@ export type WasteSortingCardsSectionFragment = {
     variant: Enum_Componentitemswastesortingcardsitem_Variant
     link: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -8021,7 +8025,8 @@ export type ArticlesSectionFragment = {
 
 export type ContactsSectionFragment = {
   __typename?: 'ComponentSectionsContacts'
-  titleRequired: string
+  title?: string | null
+  text?: string | null
   contacts?: {
     __typename?: 'ContactRelationResponseCollection'
     data: Array<{
@@ -8029,8 +8034,8 @@ export type ContactsSectionFragment = {
       id?: string | null
       attributes?: {
         __typename?: 'Contact'
-        name: string
-        position?: string | null
+        label: string
+        text?: string | null
         image?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -8049,7 +8054,7 @@ export type ContactsSectionFragment = {
         } | null
         link?: {
           __typename?: 'ComponentItemsLink'
-          label?: string | null
+          label: string
           url?: string | null
           page?: {
             __typename?: 'PageEntityResponse'
@@ -8190,7 +8195,7 @@ type PageSections_ComponentSectionsBanner_Fragment = {
   }
   primaryButtonLink: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -8296,7 +8301,7 @@ type PageSections_ComponentSectionsBanner_Fragment = {
   }
   secondaryButtonLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -8431,7 +8436,7 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
     title: string
     link: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -8618,7 +8623,8 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
 
 type PageSections_ComponentSectionsContacts_Fragment = {
   __typename: 'ComponentSectionsContacts'
-  titleRequired: string
+  title?: string | null
+  text?: string | null
   contacts?: {
     __typename?: 'ContactRelationResponseCollection'
     data: Array<{
@@ -8626,8 +8632,8 @@ type PageSections_ComponentSectionsContacts_Fragment = {
       id?: string | null
       attributes?: {
         __typename?: 'Contact'
-        name: string
-        position?: string | null
+        label: string
+        text?: string | null
         image?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -8646,7 +8652,7 @@ type PageSections_ComponentSectionsContacts_Fragment = {
         } | null
         link?: {
           __typename?: 'ComponentItemsLink'
-          label?: string | null
+          label: string
           url?: string | null
           page?: {
             __typename?: 'PageEntityResponse'
@@ -8822,7 +8828,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
   backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -8975,7 +8981,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -9084,7 +9090,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -9239,7 +9245,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
   }
   primaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -9345,7 +9351,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
   } | null
   secondaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -9475,7 +9481,7 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
   }
   primaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -9581,7 +9587,7 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
   } | null
   secondaryButton?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -9729,7 +9735,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
     variant: Enum_Componentitemswastesortingcardsitem_Variant
     link: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -10269,8 +10275,8 @@ export type ContactEntityFragment = {
   id?: string | null
   attributes?: {
     __typename?: 'Contact'
-    name: string
-    position?: string | null
+    label: string
+    text?: string | null
     image?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -10289,7 +10295,7 @@ export type ContactEntityFragment = {
     } | null
     link?: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -10410,8 +10416,8 @@ export type ContactsQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Contact'
-        name: string
-        position?: string | null
+        label: string
+        text?: string | null
         image?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -10430,7 +10436,7 @@ export type ContactsQuery = {
         } | null
         link?: {
           __typename?: 'ComponentItemsLink'
-          label?: string | null
+          label: string
           url?: string | null
           page?: {
             __typename?: 'PageEntityResponse'
@@ -10761,7 +10767,7 @@ export type FaqEntityFragment = {
             }
             primaryButtonLink: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -10870,7 +10876,7 @@ export type FaqEntityFragment = {
             }
             secondaryButtonLink?: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -11039,7 +11045,7 @@ export type FaqsQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -11148,7 +11154,7 @@ export type FaqsQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -11269,7 +11275,7 @@ export type FooterColumnItemFragment = {
   title: string
   links?: Array<{
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -11385,7 +11391,7 @@ export type FooterFragment = {
     title: string
     links?: Array<{
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -11495,7 +11501,7 @@ export type FooterFragment = {
   } | null> | null
   bottomLinks?: Array<{
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -11613,7 +11619,7 @@ export type FooterEntityFragment = {
       title: string
       links?: Array<{
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -11723,7 +11729,7 @@ export type FooterEntityFragment = {
     } | null> | null
     bottomLinks?: Array<{
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -11861,7 +11867,7 @@ export type HeroMainTileFragment = {
   text?: string | null
   link?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -11972,7 +11978,7 @@ export type HeroSmallTileFragment = {
   icon?: string | null
   link?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -12084,7 +12090,7 @@ export type HomepageServiceTileFragment = {
   text?: string | null
   link?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -12219,7 +12225,7 @@ export type HeroHomepageSectionFragment = {
     text?: string | null
     link?: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -12332,7 +12338,7 @@ export type HeroHomepageSectionFragment = {
     icon?: string | null
     link?: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -12495,7 +12501,7 @@ export type ArticlesHomepageSectionFragment = {
   } | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -12608,7 +12614,7 @@ export type KoloHomepageSectionFragment = {
   branchesTitle?: string | null
   mainCards?: Array<{
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -12727,7 +12733,7 @@ export type KoloHomepageSectionFragment = {
   } | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -12843,7 +12849,7 @@ export type ServicesHomepageSectionFragment = {
     text?: string | null
     link?: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -12953,7 +12959,7 @@ export type ServicesHomepageSectionFragment = {
   } | null> | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -13093,7 +13099,7 @@ export type HomepageEntityFragment = {
         text?: string | null
         link?: {
           __typename?: 'ComponentItemsLink'
-          label?: string | null
+          label: string
           url?: string | null
           page?: {
             __typename?: 'PageEntityResponse'
@@ -13206,7 +13212,7 @@ export type HomepageEntityFragment = {
         icon?: string | null
         link?: {
           __typename?: 'ComponentItemsLink'
-          label?: string | null
+          label: string
           url?: string | null
           page?: {
             __typename?: 'PageEntityResponse'
@@ -13368,7 +13374,7 @@ export type HomepageEntityFragment = {
       } | null
       showMoreLink?: {
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -13483,7 +13489,7 @@ export type HomepageEntityFragment = {
       branchesTitle?: string | null
       mainCards?: Array<{
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -13605,7 +13611,7 @@ export type HomepageEntityFragment = {
       } | null
       showMoreLink?: {
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -13723,7 +13729,7 @@ export type HomepageEntityFragment = {
         text?: string | null
         link?: {
           __typename?: 'ComponentItemsLink'
-          label?: string | null
+          label: string
           url?: string | null
           page?: {
             __typename?: 'PageEntityResponse'
@@ -13833,7 +13839,7 @@ export type HomepageEntityFragment = {
       } | null> | null
       showMoreLink?: {
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -13986,7 +13992,7 @@ export type HomepageQuery = {
             text?: string | null
             link?: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -14099,7 +14105,7 @@ export type HomepageQuery = {
             icon?: string | null
             link?: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -14265,7 +14271,7 @@ export type HomepageQuery = {
           } | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -14380,7 +14386,7 @@ export type HomepageQuery = {
           branchesTitle?: string | null
           mainCards?: Array<{
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -14502,7 +14508,7 @@ export type HomepageQuery = {
           } | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -14620,7 +14626,7 @@ export type HomepageQuery = {
             text?: string | null
             link?: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -14730,7 +14736,7 @@ export type HomepageQuery = {
           } | null> | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -15136,7 +15142,7 @@ export type MenuItemFragment = {
   } | null> | null
   seeAllLink?: {
     __typename?: 'ComponentItemsLink'
-    label?: string | null
+    label: string
     url?: string | null
     page?: {
       __typename?: 'PageEntityResponse'
@@ -15350,7 +15356,7 @@ export type MenuFragment = {
     } | null> | null
     seeAllLink?: {
       __typename?: 'ComponentItemsLink'
-      label?: string | null
+      label: string
       url?: string | null
       page?: {
         __typename?: 'PageEntityResponse'
@@ -15570,7 +15576,7 @@ export type MenuEntityFragment = {
       } | null> | null
       seeAllLink?: {
         __typename?: 'ComponentItemsLink'
-        label?: string | null
+        label: string
         url?: string | null
         page?: {
           __typename?: 'PageEntityResponse'
@@ -15963,7 +15969,7 @@ export type PageEntityFragment = {
           } | null> | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -16118,7 +16124,7 @@ export type PageEntityFragment = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -16227,7 +16233,7 @@ export type PageEntityFragment = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -16363,7 +16369,7 @@ export type PageEntityFragment = {
             title: string
             link: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -16547,7 +16553,8 @@ export type PageEntityFragment = {
         }
       | {
           __typename: 'ComponentSectionsContacts'
-          titleRequired: string
+          title?: string | null
+          text?: string | null
           contacts?: {
             __typename?: 'ContactRelationResponseCollection'
             data: Array<{
@@ -16555,8 +16562,8 @@ export type PageEntityFragment = {
               id?: string | null
               attributes?: {
                 __typename?: 'Contact'
-                name: string
-                position?: string | null
+                label: string
+                text?: string | null
                 image?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -16575,7 +16582,7 @@ export type PageEntityFragment = {
                 } | null
                 link?: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -16752,7 +16759,7 @@ export type PageEntityFragment = {
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -16908,7 +16915,7 @@ export type PageEntityFragment = {
                         }
                         primaryButtonLink: {
                           __typename?: 'ComponentItemsLink'
-                          label?: string | null
+                          label: string
                           url?: string | null
                           page?: {
                             __typename?: 'PageEntityResponse'
@@ -17033,7 +17040,7 @@ export type PageEntityFragment = {
                         }
                         secondaryButtonLink?: {
                           __typename?: 'ComponentItemsLink'
-                          label?: string | null
+                          label: string
                           url?: string | null
                           page?: {
                             __typename?: 'PageEntityResponse'
@@ -17202,7 +17209,7 @@ export type PageEntityFragment = {
           }
           primaryButton?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -17311,7 +17318,7 @@ export type PageEntityFragment = {
           } | null
           secondaryButton?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -17443,7 +17450,7 @@ export type PageEntityFragment = {
           }
           primaryButton?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -17552,7 +17559,7 @@ export type PageEntityFragment = {
           } | null
           secondaryButton?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -17694,7 +17701,7 @@ export type PageEntityFragment = {
             variant: Enum_Componentitemswastesortingcardsitem_Variant
             link: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -18040,7 +18047,7 @@ export type PagesQuery = {
               } | null> | null
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -18195,7 +18202,7 @@ export type PagesQuery = {
               }
               primaryButtonLink: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -18304,7 +18311,7 @@ export type PagesQuery = {
               }
               secondaryButtonLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -18440,7 +18447,7 @@ export type PagesQuery = {
                 title: string
                 link: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -18624,7 +18631,8 @@ export type PagesQuery = {
             }
           | {
               __typename: 'ComponentSectionsContacts'
-              titleRequired: string
+              title?: string | null
+              text?: string | null
               contacts?: {
                 __typename?: 'ContactRelationResponseCollection'
                 data: Array<{
@@ -18632,8 +18640,8 @@ export type PagesQuery = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'Contact'
-                    name: string
-                    position?: string | null
+                    label: string
+                    text?: string | null
                     image?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -18652,7 +18660,7 @@ export type PagesQuery = {
                     } | null
                     link?: {
                       __typename?: 'ComponentItemsLink'
-                      label?: string | null
+                      label: string
                       url?: string | null
                       page?: {
                         __typename?: 'PageEntityResponse'
@@ -18841,7 +18849,7 @@ export type PagesQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -19001,7 +19009,7 @@ export type PagesQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -19126,7 +19134,7 @@ export type PagesQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -19295,7 +19303,7 @@ export type PagesQuery = {
               }
               primaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -19404,7 +19412,7 @@ export type PagesQuery = {
               } | null
               secondaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -19536,7 +19544,7 @@ export type PagesQuery = {
               }
               primaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -19645,7 +19653,7 @@ export type PagesQuery = {
               } | null
               secondaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -19787,7 +19795,7 @@ export type PagesQuery = {
                 variant: Enum_Componentitemswastesortingcardsitem_Variant
                 link: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -20140,7 +20148,7 @@ export type PageBySlugQuery = {
               } | null> | null
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -20295,7 +20303,7 @@ export type PageBySlugQuery = {
               }
               primaryButtonLink: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -20404,7 +20412,7 @@ export type PageBySlugQuery = {
               }
               secondaryButtonLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -20540,7 +20548,7 @@ export type PageBySlugQuery = {
                 title: string
                 link: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -20724,7 +20732,8 @@ export type PageBySlugQuery = {
             }
           | {
               __typename: 'ComponentSectionsContacts'
-              titleRequired: string
+              title?: string | null
+              text?: string | null
               contacts?: {
                 __typename?: 'ContactRelationResponseCollection'
                 data: Array<{
@@ -20732,8 +20741,8 @@ export type PageBySlugQuery = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'Contact'
-                    name: string
-                    position?: string | null
+                    label: string
+                    text?: string | null
                     image?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -20752,7 +20761,7 @@ export type PageBySlugQuery = {
                     } | null
                     link?: {
                       __typename?: 'ComponentItemsLink'
-                      label?: string | null
+                      label: string
                       url?: string | null
                       page?: {
                         __typename?: 'PageEntityResponse'
@@ -20941,7 +20950,7 @@ export type PageBySlugQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -21101,7 +21110,7 @@ export type PageBySlugQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -21226,7 +21235,7 @@ export type PageBySlugQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -21395,7 +21404,7 @@ export type PageBySlugQuery = {
               }
               primaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -21504,7 +21513,7 @@ export type PageBySlugQuery = {
               } | null
               secondaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -21636,7 +21645,7 @@ export type PageBySlugQuery = {
               }
               primaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -21745,7 +21754,7 @@ export type PageBySlugQuery = {
               } | null
               secondaryButton?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -21887,7 +21896,7 @@ export type PageBySlugQuery = {
                 variant: Enum_Componentitemswastesortingcardsitem_Variant
                 link: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -22122,7 +22131,7 @@ export type ServiceEntityFragment = {
             title: string
             link: {
               __typename?: 'ComponentItemsLink'
-              label?: string | null
+              label: string
               url?: string | null
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -22293,7 +22302,7 @@ export type ServiceEntityFragment = {
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -22449,7 +22458,7 @@ export type ServiceEntityFragment = {
                         }
                         primaryButtonLink: {
                           __typename?: 'ComponentItemsLink'
-                          label?: string | null
+                          label: string
                           url?: string | null
                           page?: {
                             __typename?: 'PageEntityResponse'
@@ -22574,7 +22583,7 @@ export type ServiceEntityFragment = {
                         }
                         secondaryButtonLink?: {
                           __typename?: 'ComponentItemsLink'
-                          label?: string | null
+                          label: string
                           url?: string | null
                           page?: {
                             __typename?: 'PageEntityResponse'
@@ -22770,7 +22779,7 @@ export type ServicesQuery = {
                 title: string
                 link: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -22941,7 +22950,7 @@ export type ServicesQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -23101,7 +23110,7 @@ export type ServicesQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -23226,7 +23235,7 @@ export type ServicesQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -23425,7 +23434,7 @@ export type ServiceBySlugQuery = {
                 title: string
                 link: {
                   __typename?: 'ComponentItemsLink'
-                  label?: string | null
+                  label: string
                   url?: string | null
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -23596,7 +23605,7 @@ export type ServiceBySlugQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -23756,7 +23765,7 @@ export type ServiceBySlugQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -23881,7 +23890,7 @@ export type ServiceBySlugQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -24106,7 +24115,7 @@ export type WorkshopEntityFragment = {
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
-            label?: string | null
+            label: string
             url?: string | null
             page?: {
               __typename?: 'PageEntityResponse'
@@ -24262,7 +24271,7 @@ export type WorkshopEntityFragment = {
                         }
                         primaryButtonLink: {
                           __typename?: 'ComponentItemsLink'
-                          label?: string | null
+                          label: string
                           url?: string | null
                           page?: {
                             __typename?: 'PageEntityResponse'
@@ -24387,7 +24396,7 @@ export type WorkshopEntityFragment = {
                         }
                         secondaryButtonLink?: {
                           __typename?: 'ComponentItemsLink'
-                          label?: string | null
+                          label: string
                           url?: string | null
                           page?: {
                             __typename?: 'PageEntityResponse'
@@ -24606,7 +24615,7 @@ export type WorkshopsQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -24766,7 +24775,7 @@ export type WorkshopsQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -24891,7 +24900,7 @@ export type WorkshopsQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -25114,7 +25123,7 @@ export type WorkshopBySlugQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
-                label?: string | null
+                label: string
                 url?: string | null
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -25274,7 +25283,7 @@ export type WorkshopBySlugQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -25399,7 +25408,7 @@ export type WorkshopBySlugQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
-                              label?: string | null
+                              label: string
                               url?: string | null
                               page?: {
                                 __typename?: 'PageEntityResponse'
@@ -26539,8 +26548,8 @@ export const ContactEntityFragmentDoc = gql`
   fragment ContactEntity on ContactEntity {
     id
     attributes {
-      name
-      position
+      label
+      text
       image {
         data {
           ...UploadImageEntity
@@ -26556,7 +26565,8 @@ export const ContactEntityFragmentDoc = gql`
 `
 export const ContactsSectionFragmentDoc = gql`
   fragment ContactsSection on ComponentSectionsContacts {
-    titleRequired: title
+    title
+    text
     contacts {
       data {
         ...ContactEntity

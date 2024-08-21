@@ -1,13 +1,16 @@
 {
   "collectionName": "components_sections_contacts",
   "info": {
-    "displayName": "Kontakty"
+    "displayName": "Kontakty",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
     },
     "contacts": {
       "type": "relation",

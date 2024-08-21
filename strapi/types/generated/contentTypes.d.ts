@@ -860,8 +860,8 @@ export interface ApiContactContact extends Schema.CollectionType {
     draftAndPublish: true
   }
   attributes: {
-    name: Attribute.String & Attribute.Required
-    position: Attribute.String
+    label: Attribute.String & Attribute.Required
+    text: Attribute.Text
     image: Attribute.Media
     link: Attribute.Component<'items.link'>
     createdAt: Attribute.DateTime

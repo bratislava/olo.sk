@@ -12,20 +12,18 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "label": {
       "type": "string",
       "required": true
     },
-    "position": {
-      "type": "string"
+    "text": {
+      "type": "text"
     },
     "image": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "link": {
       "type": "component",

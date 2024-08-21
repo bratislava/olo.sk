@@ -206,7 +206,7 @@ export interface ItemsLink extends Schema.Component {
     description: ''
   }
   attributes: {
-    label: Attribute.String
+    label: Attribute.String & Attribute.Required
     url: Attribute.String
     page: Attribute.Relation<'items.link', 'oneToOne', 'api::page.page'>
     article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>
@@ -214,6 +214,7 @@ export interface ItemsLink extends Schema.Component {
     document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
     service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
+    text: Attribute.Text
   }
 }
 
@@ -463,9 +464,11 @@ export interface SectionsContacts extends Schema.Component {
   collectionName: 'components_sections_contacts'
   info: {
     displayName: 'Kontakty'
+    description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
+    title: Attribute.String
+    text: Attribute.Text
     contacts: Attribute.Relation<'sections.contacts', 'oneToMany', 'api::contact.contact'>
   }
 }

@@ -513,9 +513,10 @@ type ComponentItemsLink {
   branch: BranchEntityResponse
   document: DocumentEntityResponse
   id: ID!
-  label: String
+  label: String!
   page: PageEntityResponse
   service: ServiceEntityResponse
+  text: String
   url: String
   workshop: WorkshopEntityResponse
 }
@@ -530,6 +531,7 @@ input ComponentItemsLinkFiltersInput {
   or: [ComponentItemsLinkFiltersInput]
   page: PageFiltersInput
   service: ServiceFiltersInput
+  text: StringFilterInput
   url: StringFilterInput
   workshop: WorkshopFiltersInput
 }
@@ -542,6 +544,7 @@ input ComponentItemsLinkInput {
   label: String
   page: ID
   service: ID
+  text: String
   url: String
   workshop: ID
 }
@@ -927,7 +930,8 @@ input ComponentSectionsColumnsListInput {
 type ComponentSectionsContacts {
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactRelationResponseCollection
   id: ID!
-  title: String!
+  text: String
+  title: String
 }
 
 input ComponentSectionsContactsFiltersInput {
@@ -935,12 +939,14 @@ input ComponentSectionsContactsFiltersInput {
   contacts: ContactFiltersInput
   not: ComponentSectionsContactsFiltersInput
   or: [ComponentSectionsContactsFiltersInput]
+  text: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsContactsInput {
   contacts: [ID]
   id: ID
+  text: String
   title: String
 }
 
@@ -1355,10 +1361,10 @@ input ComponentSectionsWorkshopsInput {
 type Contact {
   createdAt: DateTime
   image: UploadFileEntityResponse
+  label: String!
   link: ComponentItemsLink
-  name: String!
-  position: String
   publishedAt: DateTime
+  text: String
   updatedAt: DateTime
 }
 
@@ -1380,21 +1386,21 @@ input ContactFiltersInput {
   and: [ContactFiltersInput]
   createdAt: DateTimeFilterInput
   id: IDFilterInput
+  label: StringFilterInput
   link: ComponentItemsLinkFiltersInput
-  name: StringFilterInput
   not: ContactFiltersInput
   or: [ContactFiltersInput]
-  position: StringFilterInput
   publishedAt: DateTimeFilterInput
+  text: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input ContactInput {
   image: ID
+  label: String
   link: ComponentItemsLinkInput
-  name: String
-  position: String
   publishedAt: DateTime
+  text: String
 }
 
 type ContactRelationResponseCollection {

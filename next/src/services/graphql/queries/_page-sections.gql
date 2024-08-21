@@ -214,7 +214,8 @@ fragment ArticlesSection on ComponentSectionsArticles {
 }
 
 fragment ContactsSection on ComponentSectionsContacts {
-  titleRequired: title
+  title
+  text
   contacts {
     data {
       ...ContactEntity

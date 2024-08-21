@@ -30,7 +30,7 @@ const CardSliderSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColor} className="py-6 lg:py-18">
       <div className="flex flex-col gap-6 lg:gap-12">
-        {title ? <SectionHeader title={title} text={text} /> : null}
+        <SectionHeader title={title} text={text} />
         {filteredCards.length > 0 ? (
           <ResponsiveCarousel
             desktop={3}

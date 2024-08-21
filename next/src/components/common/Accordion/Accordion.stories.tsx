@@ -9,12 +9,12 @@ import AccordionComponent from './Accordion'
 
 const wasteSortingGuideData = {
   leftColumn: {
-    title: 'Patrí sem:',
-    items: [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }],
+    columnTitle: 'Patrí sem:',
+    columnItems: ['Item 1', 'Item 2', 'Item 3'],
   },
   rightColumn: {
-    title: 'Nepatrí sem:',
-    items: [{ title: 'Item 1' }, { title: 'Item 2' }, { title: 'Item 3' }],
+    columnTitle: 'Nepatrí sem:',
+    columnItems: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
   },
 }
 

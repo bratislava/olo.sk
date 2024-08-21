@@ -211,6 +211,43 @@ fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
   }
 }
 
+fragment SortingGuide on ComponentItemsSortingGuide {
+  titleGoesHere
+  titleDoesntGoHere
+  goesHereItems {
+    label
+  }
+  doesntGoHereItems {
+    label
+  }
+}
+
+fragment SortingGuideSection on ComponentSectionsSortingGuide {
+  title
+  text
+  sortingGuide {
+    ...SortingGuide
+  }
+  banner {
+    ...BannerSection
+  }
+}
+
+fragment SortingGuideAccordionsSection on ComponentSectionsSortingGuideAccordions {
+  title
+  text
+  sortingGuideAccordions {
+    title
+    wasteType
+    sortingGuide {
+      ...SortingGuide
+    }
+  }
+  banner {
+    ...BannerSection
+  }
+}
+
 fragment ArticlesSection on ComponentSectionsArticles {
   title
   text
@@ -289,6 +326,14 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsWasteSortingCards {
     ...WasteSortingCardsSection
+  }
+
+  ... on ComponentSectionsSortingGuide {
+    ...SortingGuideSection
+  }
+
+  ... on ComponentSectionsSortingGuideAccordions {
+    ...SortingGuideAccordionsSection
   }
 
   ... on ComponentSectionsArticles {

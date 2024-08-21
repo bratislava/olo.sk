@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_items_sorting_guide_accordion_items",
+  "info": {
+    "displayName": "sorting guide accordion item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "wasteType": {
+      "type": "enumeration",
+      "enum": [
+        "paper",
+        "plastic",
+        "glass",
+        "civicAmenitySite",
+        "cookingOilsAndFats",
+        "kitchen",
+        "organic",
+        "mixed",
+        "cemetery",
+        "christmasTrees"
+      ],
+      "default": "paper",
+      "required": true
+    },
+    "sortingGuide": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.sorting-guide"
+    }
+  }
+}

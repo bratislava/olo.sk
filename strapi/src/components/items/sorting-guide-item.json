@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_items_sorting_guide_items",
+  "info": {
+    "displayName": "Sorting Guide Item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

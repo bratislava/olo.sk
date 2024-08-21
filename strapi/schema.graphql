@@ -636,6 +636,72 @@ input ComponentItemsSlideInput {
   title: String
 }
 
+type ComponentItemsSortingGuide {
+  doesntGoHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
+  goesHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
+  id: ID!
+  titleDoesntGoHere: String
+  titleGoesHere: String
+}
+
+type ComponentItemsSortingGuideAccordionItem {
+  id: ID!
+  sortingGuide: ComponentItemsSortingGuide
+  title: String!
+  wasteType: ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE!
+}
+
+input ComponentItemsSortingGuideAccordionItemFiltersInput {
+  and: [ComponentItemsSortingGuideAccordionItemFiltersInput]
+  not: ComponentItemsSortingGuideAccordionItemFiltersInput
+  or: [ComponentItemsSortingGuideAccordionItemFiltersInput]
+  sortingGuide: ComponentItemsSortingGuideFiltersInput
+  title: StringFilterInput
+  wasteType: StringFilterInput
+}
+
+input ComponentItemsSortingGuideAccordionItemInput {
+  id: ID
+  sortingGuide: ComponentItemsSortingGuideInput
+  title: String
+  wasteType: ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE
+}
+
+input ComponentItemsSortingGuideFiltersInput {
+  and: [ComponentItemsSortingGuideFiltersInput]
+  doesntGoHereItems: ComponentItemsSortingGuideItemFiltersInput
+  goesHereItems: ComponentItemsSortingGuideItemFiltersInput
+  not: ComponentItemsSortingGuideFiltersInput
+  or: [ComponentItemsSortingGuideFiltersInput]
+  titleDoesntGoHere: StringFilterInput
+  titleGoesHere: StringFilterInput
+}
+
+input ComponentItemsSortingGuideInput {
+  doesntGoHereItems: [ComponentItemsSortingGuideItemInput]
+  goesHereItems: [ComponentItemsSortingGuideItemInput]
+  id: ID
+  titleDoesntGoHere: String
+  titleGoesHere: String
+}
+
+type ComponentItemsSortingGuideItem {
+  id: ID!
+  label: String!
+}
+
+input ComponentItemsSortingGuideItemFiltersInput {
+  and: [ComponentItemsSortingGuideItemFiltersInput]
+  label: StringFilterInput
+  not: ComponentItemsSortingGuideItemFiltersInput
+  or: [ComponentItemsSortingGuideItemFiltersInput]
+}
+
+input ComponentItemsSortingGuideItemInput {
+  id: ID
+  label: String
+}
+
 type ComponentItemsWasteSortingCardsItem {
   id: ID!
   link: ComponentItemsLink!
@@ -1279,6 +1345,58 @@ input ComponentSectionsServicesInput {
   title: String
 }
 
+type ComponentSectionsSortingGuide {
+  banner: ComponentSectionsBanner
+  id: ID!
+  sortingGuide: ComponentItemsSortingGuide
+  text: String
+  title: String
+}
+
+type ComponentSectionsSortingGuideAccordions {
+  banner: ComponentSectionsBanner
+  id: ID!
+  sortingGuideAccordions(filters: ComponentItemsSortingGuideAccordionItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideAccordionItem]
+  text: String
+  title: String
+}
+
+input ComponentSectionsSortingGuideAccordionsFiltersInput {
+  and: [ComponentSectionsSortingGuideAccordionsFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
+  not: ComponentSectionsSortingGuideAccordionsFiltersInput
+  or: [ComponentSectionsSortingGuideAccordionsFiltersInput]
+  sortingGuideAccordions: ComponentItemsSortingGuideAccordionItemFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsSortingGuideAccordionsInput {
+  banner: ComponentSectionsBannerInput
+  id: ID
+  sortingGuideAccordions: [ComponentItemsSortingGuideAccordionItemInput]
+  text: String
+  title: String
+}
+
+input ComponentSectionsSortingGuideFiltersInput {
+  and: [ComponentSectionsSortingGuideFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
+  not: ComponentSectionsSortingGuideFiltersInput
+  or: [ComponentSectionsSortingGuideFiltersInput]
+  sortingGuide: ComponentItemsSortingGuideFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsSortingGuideInput {
+  banner: ComponentSectionsBannerInput
+  id: ID
+  sortingGuide: ComponentItemsSortingGuideInput
+  text: String
+  title: String
+}
+
 type ComponentSectionsTable {
   anchorId: String
   id: ID!
@@ -1568,6 +1686,19 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE {
+  cemetery
+  christmasTrees
+  civicAmenitySite
+  cookingOilsAndFats
+  glass
+  kitchen
+  mixed
+  organic
+  paper
+  plastic
+}
+
 enum ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT {
   cemetery
   christmasTrees
@@ -1855,7 +1986,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2379,7 +2510,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

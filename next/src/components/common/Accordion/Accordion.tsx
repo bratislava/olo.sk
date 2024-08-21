@@ -34,7 +34,7 @@ const Accordion = ({
       isVisible
       className="relative ring-offset-2 focus-within:z-[1] focus-within:[&:has(:focus-visible)]:ring"
     >
-      <div className="bg-background-primary">
+      <div>
         <details className={cn('group flex w-full flex-col', className)}>
           <summary
             className={cn(

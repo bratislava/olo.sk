@@ -10,7 +10,17 @@ import cn from '@/src/utils/cn'
 const WasteIcon = ({
   variant,
 }: {
-  variant: 'paper' | 'plastic' | 'glass' | 'mixed' | 'organic'
+  variant:
+    | 'paper'
+    | 'plastic'
+    | 'glass'
+    | 'mixed'
+    | 'organic'
+    | 'civicAmenitySite'
+    | 'cookingOilsAndFats'
+    | 'kitchen'
+    | 'cemetery'
+    | 'christmasTrees'
 }) => {
   return (
     <div

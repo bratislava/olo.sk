@@ -1376,6 +1376,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.banner',
         'sections.branches',
         'sections.cards-list',
+        'sections.card-slider',
         'sections.columns',
         'sections.columns-list',
         'sections.divider',
@@ -1451,7 +1452,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         }
       }>
     sections: Attribute.DynamicZone<
-      ['sections.richtext', 'sections.cards-list', 'sections.faq', 'sections.documents']
+      ['sections.richtext', 'sections.documents', 'sections.faq', 'sections.cards-list']
     > &
       Attribute.SetPluginOptions<{
         i18n: {

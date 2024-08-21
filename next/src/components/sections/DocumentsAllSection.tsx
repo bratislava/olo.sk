@@ -83,7 +83,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
               className="col-span-1"
               aria-label="Kategoria"
               disabled
-              placeholder={t('documentsAllSection.filters.choseCategory')}
+              placeholder={t('documentsAllSection.filters.chooseCategory')}
             />
           </PlaceholderWrapper>
         </div>

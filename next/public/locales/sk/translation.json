@@ -1,6 +1,5 @@
 {
   "aria.close": "Zavrieť",
-  "articleGallery.aria.openArticleGallery": "Otvoriť galériu obrázkov",
   "articlePage.shareblock.buttonText": "Zdieľať článok",
   "articlePage.shareblock.text": "Páčil sa vám článok?",
   "breadcrumbs.back": "Späť",
@@ -23,7 +22,7 @@
   "documentPageContent.priceWithoutTax": "Cena bez DPH",
   "documentPageContent.publishedAt": "Dátum pridania",
   "documentPageContent.supplier": "Dodávateľ",
-  "documentsAllSection.filters.choseCategory": "Vyberte kategóriu",
+  "documentsAllSection.filters.chooseCategory": "Vyberte kategóriu",
   "documentsAllSection.metadata.publishDate": "Pridané {{date}}",
   "fileItem.aria.downloadFile": "Stiahnuť súbor",
   "fileItem.aria.downloadFileAriaLabel": "Stiahnuť súbor {{title}}, formát {{format}}, {{size}}",
@@ -32,6 +31,7 @@
   "footer.copyrightMessage.desktop": "© {{year}} OLO a. s., vytvorili",
   "footer.copyrightMessage.innovationDepartment": "Inovácie mesta Bratislava",
   "footer.copyrightMessage.mobile": "© {{year}} OLO a. s.,\n vytvorili",
+  "gallery.aria.openGallery": "Otvoriť galériu obrázkov",
   "galleryModal.aria.closeGallery": "Zavrieť galériu obrázkov",
   "gallerySlider.aria.descriptionSlider": "Posúvač",
   "imageLightBox.aria.imageLightBoxDescription": "Galéria obrázkov. Stlačte šípku vľavo pre zobrazenie predchádzajúceho obrázku. Stlačte šípku vpravo pre zobrazenie nasledujúceho obrázku. Zatvorte stlačením klávesu Escape.",

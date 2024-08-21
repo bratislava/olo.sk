@@ -17,7 +17,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "parse-translations": "i18next",
-    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E"
+    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E",
+    "update-react-aria": "yarn add @internationalized/date@latest react-aria@latest react-aria-components@latest react-stately@latest tailwindcss-react-aria-components -E"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^5.0.2",

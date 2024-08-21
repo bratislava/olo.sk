@@ -5,7 +5,7 @@ import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import StrapiImage from '@/src/components/common/Image/StrapiImage'
 import Typography from '@/src/components/common/Typography/Typography'
-import GalleryModal, { ModalProps } from '@/src/components/modals/gallery/GalleryModal'
+import GalleryModal, { GalleryModalProps } from '@/src/components/modals/gallery/GalleryModal'
 import GallerySlider from '@/src/components/modals/gallery/GallerySlider'
 import { UploadImageEntityFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
@@ -13,7 +13,7 @@ import { isDefined } from '@/src/utils/isDefined'
 export type ImageLightBoxProps = {
   images: UploadImageEntityFragment[]
   initialImageIndex: number
-} & Omit<ModalProps, 'children'>
+} & Omit<GalleryModalProps, 'children'>
 
 // based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/Gallery/ImageLightBox.tsx
 

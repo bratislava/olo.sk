@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
-import ArticleGallery from '@/src/components/common/ArticleGallery/ArticleGallery'
+import Gallery from '@/src/components/common/Gallery/Gallery'
 import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import Markdown from '@/src/components/formatting/Markdown'
 import PageLayout from '@/src/components/layout/PageLayout'
@@ -108,9 +108,7 @@ const Page = ({ entity, general }: PageProps) => {
           <div className="flex flex-col gap-6 py-6 lg:gap-12 lg:py-12">
             <div className="flex flex-col gap-6 lg:gap-8">
               <Markdown content={content} />
-              {filteredGalleryImages.length > 0 ? (
-                <ArticleGallery images={filteredGalleryImages} />
-              ) : null}
+              {filteredGalleryImages.length > 0 ? <Gallery images={filteredGalleryImages} /> : null}
             </div>
             <ShareBlock
               text={t('articlePage.shareblock.text')}

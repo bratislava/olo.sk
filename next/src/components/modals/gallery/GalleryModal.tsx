@@ -9,7 +9,7 @@ import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import cn from '@/src/utils/cn'
 
-export type ModalProps = {
+export type GalleryModalProps = {
   children: ReactNode
   showCloseButton?: boolean
   underlayClassName?: string
@@ -20,7 +20,7 @@ export type ModalProps = {
 
 // based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/Gallery/GalleryModal.tsx
 
-const GalleryModal = (props: ModalProps) => {
+const GalleryModal = (props: GalleryModalProps) => {
   const {
     isOpen,
     onClose,

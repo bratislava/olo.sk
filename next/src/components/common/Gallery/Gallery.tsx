@@ -12,13 +12,13 @@ import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 import { onEnterOrSpaceKeyDown } from '@/src/utils/onEnterOrSpaceKeyDown'
 
-// based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/ArticleGallery/ArticleGallery.tsx
+// based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/Gallery/Gallery.tsx
 
-export type ArticleGalleryProps = {
+export type GalleryProps = {
   images: UploadImageEntityFragment[]
 }
 
-const ArticleGallery = ({ images = [] }: ArticleGalleryProps) => {
+const Gallery = ({ images = [] }: GalleryProps) => {
   const { t } = useTranslation()
 
   const { width: windowWidth } = useWindowSize()
@@ -49,13 +49,19 @@ const ArticleGallery = ({ images = [] }: ArticleGalleryProps) => {
 
   return (
     <>
-      <div className="relative flex w-full flex-col">
+      <div
+        className={cn(
+          'relative flex w-full flex-col',
+          // ensures that the ring shows on focus, but not on click
+          'rounded-lg transition-all md:rounded-xl focus-within:[&:has(:focus-visible)]:ring focus-within:[&:has(:focus-visible)]:ring-offset-2',
+        )}
+      >
         <div
           role="button"
           tabIndex={0}
-          aria-label={t('articleGallery.aria.openArticleGallery')}
+          aria-label={t('Gallery.aria.openGallery')}
           onKeyUp={onEnterOrSpaceKeyDown(() => openAtImageIndex(0))}
-          className={cn('outline-primary cursor-default outline-offset-2 focus:outline-4')}
+          className="cursor-default focus:outline-none"
         >
           {displayedImages.length > 0 && (
             <div className="grid grid-cols-4 gap-2 md:grid-cols-6">
@@ -114,4 +120,4 @@ const ArticleGallery = ({ images = [] }: ArticleGalleryProps) => {
   )
 }
 
-export default ArticleGallery
+export default Gallery

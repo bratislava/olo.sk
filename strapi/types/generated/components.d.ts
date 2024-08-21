@@ -738,6 +738,7 @@ export interface SectionsWasteSortingCards extends Schema.Component {
     title: Attribute.String
     text: Attribute.Text
     cards: Attribute.Component<'items.waste-sorting-cards-item', true>
+    banner: Attribute.Component<'sections.banner'>
   }
 }
 

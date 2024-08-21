@@ -1,9 +1,11 @@
 import '../styles/globals.css'
+import '../styles/table.scss'
 
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { NextAdapter } from 'next-query-params'
+import { OverlayProvider } from 'react-aria'
 import { QueryParamProvider } from 'use-query-params'
 
 import { NavMenuContextProvider } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
@@ -32,14 +34,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <BAQueryClientProvider>
         <QueryParamProvider adapter={NextAdapter}>
           {/*       <BAI18nProvider> */}
-          {/*         <OverlayProvider> */}
-          <NavMenuContextProvider>
-            {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
-            <div id="root">
-              <Component {...pageProps} />
-            </div>
-          </NavMenuContextProvider>
-          {/* </OverlayProvider> */}
+          <OverlayProvider>
+            <NavMenuContextProvider>
+              {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
+              <div id="root">
+                <Component {...pageProps} />
+              </div>
+            </NavMenuContextProvider>
+          </OverlayProvider>
           {/* </BAI18nProvider> */}
         </QueryParamProvider>
       </BAQueryClientProvider>

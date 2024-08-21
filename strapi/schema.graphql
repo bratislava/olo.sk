@@ -8,6 +8,7 @@ type Article {
   content: String
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
+  gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
   locale: String
   localizations(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   perex: String
@@ -107,6 +108,7 @@ input ArticleInput {
   articleCategory: ID
   content: String
   coverMedia: ID
+  gallery: [ID]
   perex: String
   publishedAt: DateTime
   slug: String
@@ -1301,6 +1303,7 @@ input ComponentSectionsTableInput {
 }
 
 type ComponentSectionsWasteSortingCards {
+  banner: ComponentSectionsBanner
   cards(filters: ComponentItemsWasteSortingCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWasteSortingCardsItem]
   id: ID!
   text: String
@@ -1309,6 +1312,7 @@ type ComponentSectionsWasteSortingCards {
 
 input ComponentSectionsWasteSortingCardsFiltersInput {
   and: [ComponentSectionsWasteSortingCardsFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
   cards: ComponentItemsWasteSortingCardsItemFiltersInput
   not: ComponentSectionsWasteSortingCardsFiltersInput
   or: [ComponentSectionsWasteSortingCardsFiltersInput]
@@ -1317,6 +1321,7 @@ input ComponentSectionsWasteSortingCardsFiltersInput {
 }
 
 input ComponentSectionsWasteSortingCardsInput {
+  banner: ComponentSectionsBannerInput
   cards: [ComponentItemsWasteSortingCardsItemInput]
   id: ID
   text: String

@@ -16,6 +16,11 @@
       "type": "component",
       "repeatable": true,
       "component": "items.waste-sorting-cards-item"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.banner"
     }
   }
 }

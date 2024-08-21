@@ -4,7 +4,8 @@
   "info": {
     "singularName": "document-category",
     "pluralName": "document-categories",
-    "displayName": "Dokumenty - kategórie"
+    "displayName": "Dokumenty - kategórie",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,7 +35,7 @@
       "targetField": "title",
       "required": true
     },
-    "dokuments": {
+    "documents": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::document.document",

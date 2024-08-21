@@ -1497,7 +1497,7 @@ type Document {
 
 type DocumentCategory {
   createdAt: DateTime
-  dokuments(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
+  documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
   locale: String
   localizations(filters: DocumentCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentCategoryRelationResponseCollection
   publishedAt: DateTime
@@ -1523,7 +1523,7 @@ type DocumentCategoryEntityResponseCollection {
 input DocumentCategoryFiltersInput {
   and: [DocumentCategoryFiltersInput]
   createdAt: DateTimeFilterInput
-  dokuments: DocumentFiltersInput
+  documents: DocumentFiltersInput
   id: IDFilterInput
   locale: StringFilterInput
   localizations: DocumentCategoryFiltersInput
@@ -1536,7 +1536,7 @@ input DocumentCategoryFiltersInput {
 }
 
 input DocumentCategoryInput {
-  dokuments: [ID]
+  documents: [ID]
   publishedAt: DateTime
   slug: String
   title: String

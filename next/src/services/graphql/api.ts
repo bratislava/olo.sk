@@ -1009,6 +1009,21 @@ export type ComponentSectionsColumnsListRightColumnArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSectionsContacts = {
+  __typename?: 'ComponentSectionsContacts'
+  contacts?: Maybe<ContactRelationResponseCollection>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsContactsContactsArgs = {
+  filters?: InputMaybe<ContactFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsDivider = {
   __typename?: 'ComponentSectionsDivider'
   backgroundColor: Enum_Componentsectionsdivider_Backgroundcolor
@@ -1169,6 +1184,20 @@ export type ComponentSectionsKoloHomepageSectionInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentSectionsOpeningTimes = {
+  __typename?: 'ComponentSectionsOpeningTimes'
+  id: Scalars['ID']['output']
+  openingTimes?: Maybe<OpeningTimeRelationResponseCollection>
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsOpeningTimesOpeningTimesArgs = {
+  filters?: InputMaybe<OpeningTimeFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsOrderedCards = {
   __typename?: 'ComponentSectionsOrderedCards'
   cards: Array<Maybe<ComponentItemsOrderedCardsItem>>
@@ -1288,7 +1317,12 @@ export type Contact = {
   __typename?: 'Contact'
   createdAt?: Maybe<Scalars['DateTime']['output']>
   label: Scalars['String']['output']
+  primaryEmail?: Maybe<Scalars['String']['output']>
+  primaryPhone?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
+  secondaryEmail?: Maybe<Scalars['String']['output']>
+  secondaryPhone?: Maybe<Scalars['String']['output']>
+  text?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
@@ -1316,13 +1350,28 @@ export type ContactFiltersInput = {
   label?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ContactFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ContactFiltersInput>>>
+  primaryEmail?: InputMaybe<StringFilterInput>
+  primaryPhone?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  secondaryEmail?: InputMaybe<StringFilterInput>
+  secondaryPhone?: InputMaybe<StringFilterInput>
+  text?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
 export type ContactInput = {
   label?: InputMaybe<Scalars['String']['input']>
+  primaryEmail?: InputMaybe<Scalars['String']['input']>
+  primaryPhone?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  secondaryEmail?: InputMaybe<Scalars['String']['input']>
+  secondaryPhone?: InputMaybe<Scalars['String']['input']>
+  text?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ContactRelationResponseCollection = {
+  __typename?: 'ContactRelationResponseCollection'
+  data: Array<ContactEntity>
 }
 
 export type DateTimeFilterInput = {
@@ -1374,7 +1423,7 @@ export type DocumentFilesArgs = {
 export type DocumentCategory = {
   __typename?: 'DocumentCategory'
   createdAt?: Maybe<Scalars['DateTime']['output']>
-  dokuments?: Maybe<DocumentRelationResponseCollection>
+  documents?: Maybe<DocumentRelationResponseCollection>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<DocumentCategoryRelationResponseCollection>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
@@ -1383,7 +1432,7 @@ export type DocumentCategory = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
-export type DocumentCategoryDokumentsArgs = {
+export type DocumentCategoryDocumentsArgs = {
   filters?: InputMaybe<DocumentFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
@@ -1417,7 +1466,7 @@ export type DocumentCategoryEntityResponseCollection = {
 export type DocumentCategoryFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<DocumentCategoryFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
-  dokuments?: InputMaybe<DocumentFiltersInput>
+  documents?: InputMaybe<DocumentFiltersInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
   localizations?: InputMaybe<DocumentCategoryFiltersInput>
@@ -1430,7 +1479,7 @@ export type DocumentCategoryFiltersInput = {
 }
 
 export type DocumentCategoryInput = {
-  dokuments?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  documents?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
@@ -1869,6 +1918,7 @@ export type GenericMorph =
   | ComponentSectionsCardsList
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsContacts
   | ComponentSectionsDivider
   | ComponentSectionsDocuments
   | ComponentSectionsFaq
@@ -1878,6 +1928,7 @@ export type GenericMorph =
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsKoloHomepageSection
+  | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | ComponentSectionsServices
@@ -2824,12 +2875,14 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsCardsList
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsContacts
   | ComponentSectionsDivider
   | ComponentSectionsDocuments
   | ComponentSectionsFaq
   | ComponentSectionsFaqCategories
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
+  | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | ComponentSectionsServices
@@ -9193,6 +9246,50 @@ export type CardSliderSectionFragment = {
   } | null>
 }
 
+export type ContactsSectionFragment = {
+  __typename?: 'ComponentSectionsContacts'
+  title?: string | null
+  text?: string | null
+  contacts?: {
+    __typename?: 'ContactRelationResponseCollection'
+    data: Array<{
+      __typename?: 'ContactEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Contact'
+        label: string
+        text?: string | null
+        primaryEmail?: string | null
+        secondaryEmail?: string | null
+        primaryPhone?: string | null
+        secondaryPhone?: string | null
+      } | null
+    }>
+  } | null
+}
+
+export type OpeningTimesSectionFragment = {
+  __typename?: 'ComponentSectionsOpeningTimes'
+  title?: string | null
+  text?: string | null
+  openingTimes?: {
+    __typename?: 'OpeningTimeRelationResponseCollection'
+    data: Array<{
+      __typename?: 'OpeningTimeEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'OpeningTime'
+        internalName: string
+        openingHours?: Array<{
+          __typename?: 'ComponentItemsOpeningHoursItem'
+          label: string
+          value: string
+        } | null> | null
+      } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsArticles_Fragment = {
   __typename: 'ComponentSectionsArticles'
   title?: string | null
@@ -9783,6 +9880,28 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
       } | null
     } | null
   } | null> | null
+}
+
+type PageSections_ComponentSectionsContacts_Fragment = {
+  __typename: 'ComponentSectionsContacts'
+  title?: string | null
+  text?: string | null
+  contacts?: {
+    __typename?: 'ContactRelationResponseCollection'
+    data: Array<{
+      __typename?: 'ContactEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Contact'
+        label: string
+        text?: string | null
+        primaryEmail?: string | null
+        secondaryEmail?: string | null
+        primaryPhone?: string | null
+        secondaryPhone?: string | null
+      } | null
+    }>
+  } | null
 }
 
 type PageSections_ComponentSectionsDivider_Fragment = {
@@ -10711,6 +10830,28 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
         } | null
       } | null
     } | null
+  } | null
+}
+
+type PageSections_ComponentSectionsOpeningTimes_Fragment = {
+  __typename: 'ComponentSectionsOpeningTimes'
+  title?: string | null
+  text?: string | null
+  openingTimes?: {
+    __typename?: 'OpeningTimeRelationResponseCollection'
+    data: Array<{
+      __typename?: 'OpeningTimeEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'OpeningTime'
+        internalName: string
+        openingHours?: Array<{
+          __typename?: 'ComponentItemsOpeningHoursItem'
+          label: string
+          value: string
+        } | null> | null
+      } | null
+    }>
   } | null
 }
 
@@ -11659,12 +11800,14 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsCardsList_Fragment
   | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsColumnsList_Fragment
+  | PageSections_ComponentSectionsContacts_Fragment
   | PageSections_ComponentSectionsDivider_Fragment
   | PageSections_ComponentSectionsDocuments_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsFaqCategories_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
+  | PageSections_ComponentSectionsOpeningTimes_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_ComponentSectionsServices_Fragment
@@ -12117,6 +12260,20 @@ export type BranchBySlugQuery = {
         slug: string
       } | null
     }>
+  } | null
+}
+
+export type ContactEntityFragment = {
+  __typename?: 'ContactEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Contact'
+    label: string
+    text?: string | null
+    primaryEmail?: string | null
+    secondaryEmail?: string | null
+    primaryPhone?: string | null
+    secondaryPhone?: string | null
   } | null
 }
 
@@ -19204,6 +19361,27 @@ export type PageEntityFragment = {
           } | null> | null
         }
       | {
+          __typename: 'ComponentSectionsContacts'
+          title?: string | null
+          text?: string | null
+          contacts?: {
+            __typename?: 'ContactRelationResponseCollection'
+            data: Array<{
+              __typename?: 'ContactEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Contact'
+                label: string
+                text?: string | null
+                primaryEmail?: string | null
+                secondaryEmail?: string | null
+                primaryPhone?: string | null
+                secondaryPhone?: string | null
+              } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsDivider'
           backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
         }
@@ -20175,6 +20353,27 @@ export type PageEntityFragment = {
                 } | null
               } | null
             } | null
+          } | null
+        }
+      | {
+          __typename: 'ComponentSectionsOpeningTimes'
+          title?: string | null
+          text?: string | null
+          openingTimes?: {
+            __typename?: 'OpeningTimeRelationResponseCollection'
+            data: Array<{
+              __typename?: 'OpeningTimeEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'OpeningTime'
+                internalName: string
+                openingHours?: Array<{
+                  __typename?: 'ComponentItemsOpeningHoursItem'
+                  label: string
+                  value: string
+                } | null> | null
+              } | null
+            }>
           } | null
         }
       | {
@@ -22037,6 +22236,27 @@ export type PagesQuery = {
               } | null> | null
             }
           | {
+              __typename: 'ComponentSectionsContacts'
+              title?: string | null
+              text?: string | null
+              contacts?: {
+                __typename?: 'ContactRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'ContactEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Contact'
+                    label: string
+                    text?: string | null
+                    primaryEmail?: string | null
+                    secondaryEmail?: string | null
+                    primaryPhone?: string | null
+                    secondaryPhone?: string | null
+                  } | null
+                }>
+              } | null
+            }
+          | {
               __typename: 'ComponentSectionsDivider'
               backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
             }
@@ -23012,6 +23232,27 @@ export type PagesQuery = {
                     } | null
                   } | null
                 } | null
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsOpeningTimes'
+              title?: string | null
+              text?: string | null
+              openingTimes?: {
+                __typename?: 'OpeningTimeRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'OpeningTimeEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'OpeningTime'
+                    internalName: string
+                    openingHours?: Array<{
+                      __typename?: 'ComponentItemsOpeningHoursItem'
+                      label: string
+                      value: string
+                    } | null> | null
+                  } | null
+                }>
               } | null
             }
           | {
@@ -24881,6 +25122,27 @@ export type PageBySlugQuery = {
               } | null> | null
             }
           | {
+              __typename: 'ComponentSectionsContacts'
+              title?: string | null
+              text?: string | null
+              contacts?: {
+                __typename?: 'ContactRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'ContactEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Contact'
+                    label: string
+                    text?: string | null
+                    primaryEmail?: string | null
+                    secondaryEmail?: string | null
+                    primaryPhone?: string | null
+                    secondaryPhone?: string | null
+                  } | null
+                }>
+              } | null
+            }
+          | {
               __typename: 'ComponentSectionsDivider'
               backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
             }
@@ -25856,6 +26118,27 @@ export type PageBySlugQuery = {
                     } | null
                   } | null
                 } | null
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsOpeningTimes'
+              title?: string | null
+              text?: string | null
+              openingTimes?: {
+                __typename?: 'OpeningTimeRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'OpeningTimeEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'OpeningTime'
+                    internalName: string
+                    openingHours?: Array<{
+                      __typename?: 'ComponentItemsOpeningHoursItem'
+                      label: string
+                      value: string
+                    } | null> | null
+                  } | null
+                }>
               } | null
             }
           | {
@@ -30905,24 +31188,6 @@ export const MenuEntityFragmentDoc = gql`
   }
   ${MenuFragmentDoc}
 `
-export const OpeningHoursItemFragmentDoc = gql`
-  fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
-    label
-    value
-  }
-`
-export const OpeningTimeEntityFragmentDoc = gql`
-  fragment OpeningTimeEntity on OpeningTimeEntity {
-    id
-    attributes {
-      internalName
-      openingHours {
-        ...OpeningHoursItem
-      }
-    }
-  }
-  ${OpeningHoursItemFragmentDoc}
-`
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {
     media {
@@ -31403,6 +31668,61 @@ export const CardSliderSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const ContactEntityFragmentDoc = gql`
+  fragment ContactEntity on ContactEntity {
+    id
+    attributes {
+      label
+      text
+      primaryEmail
+      secondaryEmail
+      primaryPhone
+      secondaryPhone
+    }
+  }
+`
+export const ContactsSectionFragmentDoc = gql`
+  fragment ContactsSection on ComponentSectionsContacts {
+    title
+    text
+    contacts {
+      data {
+        ...ContactEntity
+      }
+    }
+  }
+  ${ContactEntityFragmentDoc}
+`
+export const OpeningHoursItemFragmentDoc = gql`
+  fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
+    label
+    value
+  }
+`
+export const OpeningTimeEntityFragmentDoc = gql`
+  fragment OpeningTimeEntity on OpeningTimeEntity {
+    id
+    attributes {
+      internalName
+      openingHours {
+        ...OpeningHoursItem
+      }
+    }
+  }
+  ${OpeningHoursItemFragmentDoc}
+`
+export const OpeningTimesSectionFragmentDoc = gql`
+  fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
+    title
+    text
+    openingTimes {
+      data {
+        ...OpeningTimeEntity
+      }
+    }
+  }
+  ${OpeningTimeEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -31469,6 +31789,12 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsCardSlider {
       ...CardSliderSection
     }
+    ... on ComponentSectionsContacts {
+      ...ContactsSection
+    }
+    ... on ComponentSectionsOpeningTimes {
+      ...OpeningTimesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -31491,6 +31817,8 @@ export const PageSectionsFragmentDoc = gql`
   ${SortingGuideAccordionsSectionFragmentDoc}
   ${ArticlesSectionFragmentDoc}
   ${CardSliderSectionFragmentDoc}
+  ${ContactsSectionFragmentDoc}
+  ${OpeningTimesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

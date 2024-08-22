@@ -867,6 +867,11 @@ export interface ApiContactContact extends Schema.CollectionType {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+    text: Attribute.String
+    primaryEmail: Attribute.Email
+    secondaryEmail: Attribute.Email
+    primaryPhone: Attribute.String
+    secondaryPhone: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -924,6 +929,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
     singularName: 'document-category'
     pluralName: 'document-categories'
     displayName: 'Dokumenty - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -948,7 +954,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
           localized: true
         }
       }>
-    dokuments: Attribute.Relation<
+    documents: Attribute.Relation<
       'api::document-category.document-category',
       'oneToMany',
       'api::document.document'
@@ -1392,6 +1398,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.table',
         'sections.sorting-guide',
         'sections.sorting-guide-accordions',
+        'sections.contacts',
+        'sections.opening-times',
       ]
     > &
       Attribute.SetPluginOptions<{

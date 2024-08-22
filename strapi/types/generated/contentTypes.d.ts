@@ -867,6 +867,11 @@ export interface ApiContactContact extends Schema.CollectionType {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+    text: Attribute.String
+    primaryEmail: Attribute.Email
+    secondaryEmail: Attribute.Email
+    primaryPhone: Attribute.String
+    secondaryPhone: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1391,6 +1396,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.documents',
         'sections.ordered-cards',
         'sections.table',
+        'sections.contacts',
+        'sections.opening-times',
       ]
     > &
       Attribute.SetPluginOptions<{

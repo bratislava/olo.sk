@@ -61,10 +61,9 @@
       "type": "dynamiczone",
       "components": [
         "sections.richtext",
-        "sections.cards-list",
+        "sections.documents",
         "sections.faq",
-        "sections.form-cta-banner",
-        "sections.documents"
+        "sections.cards-list"
       ]
     }
   }

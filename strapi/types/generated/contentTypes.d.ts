@@ -867,11 +867,6 @@ export interface ApiContactContact extends Schema.CollectionType {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
-    text: Attribute.String
-    primaryEmail: Attribute.Email
-    secondaryEmail: Attribute.Email
-    primaryPhone: Attribute.String
-    secondaryPhone: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -929,7 +924,6 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
     singularName: 'document-category'
     pluralName: 'document-categories'
     displayName: 'Dokumenty - kateg\u00F3rie'
-    description: ''
   }
   options: {
     draftAndPublish: true
@@ -954,7 +948,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
           localized: true
         }
       }>
-    documents: Attribute.Relation<
+    dokuments: Attribute.Relation<
       'api::document-category.document-category',
       'oneToMany',
       'api::document.document'
@@ -1382,12 +1376,12 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.banner',
         'sections.branches',
         'sections.cards-list',
+        'sections.card-slider',
         'sections.columns',
         'sections.columns-list',
         'sections.divider',
         'sections.faq',
         'sections.faq-categories',
-        'sections.form-cta-banner',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.services',
@@ -1396,8 +1390,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.documents',
         'sections.ordered-cards',
         'sections.table',
-        'sections.contacts',
-        'sections.opening-times',
+        'sections.sorting-guide',
+        'sections.sorting-guide-accordions',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1458,13 +1452,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         }
       }>
     sections: Attribute.DynamicZone<
-      [
-        'sections.richtext',
-        'sections.cards-list',
-        'sections.faq',
-        'sections.form-cta-banner',
-        'sections.documents',
-      ]
+      ['sections.richtext', 'sections.documents', 'sections.faq', 'sections.cards-list']
     > &
       Attribute.SetPluginOptions<{
         i18n: {

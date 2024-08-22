@@ -347,6 +347,31 @@ input ComponentItemsAnchorInput {
   targetId: String
 }
 
+type ComponentItemsCardSliderCard {
+  id: ID!
+  image: UploadFileEntityResponse!
+  link: ComponentItemsLink
+  text: String
+  title: String!
+}
+
+input ComponentItemsCardSliderCardFiltersInput {
+  and: [ComponentItemsCardSliderCardFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsCardSliderCardFiltersInput
+  or: [ComponentItemsCardSliderCardFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsCardSliderCardInput {
+  id: ID
+  image: ID
+  link: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
 type ComponentItemsCardsListItem {
   id: ID!
   link: ComponentItemsLink!
@@ -636,6 +661,72 @@ input ComponentItemsSlideInput {
   title: String
 }
 
+type ComponentItemsSortingGuide {
+  doesntGoHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
+  goesHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
+  id: ID!
+  titleDoesntGoHere: String
+  titleGoesHere: String
+}
+
+type ComponentItemsSortingGuideAccordionItem {
+  id: ID!
+  sortingGuide: ComponentItemsSortingGuide
+  title: String!
+  wasteType: ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE!
+}
+
+input ComponentItemsSortingGuideAccordionItemFiltersInput {
+  and: [ComponentItemsSortingGuideAccordionItemFiltersInput]
+  not: ComponentItemsSortingGuideAccordionItemFiltersInput
+  or: [ComponentItemsSortingGuideAccordionItemFiltersInput]
+  sortingGuide: ComponentItemsSortingGuideFiltersInput
+  title: StringFilterInput
+  wasteType: StringFilterInput
+}
+
+input ComponentItemsSortingGuideAccordionItemInput {
+  id: ID
+  sortingGuide: ComponentItemsSortingGuideInput
+  title: String
+  wasteType: ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE
+}
+
+input ComponentItemsSortingGuideFiltersInput {
+  and: [ComponentItemsSortingGuideFiltersInput]
+  doesntGoHereItems: ComponentItemsSortingGuideItemFiltersInput
+  goesHereItems: ComponentItemsSortingGuideItemFiltersInput
+  not: ComponentItemsSortingGuideFiltersInput
+  or: [ComponentItemsSortingGuideFiltersInput]
+  titleDoesntGoHere: StringFilterInput
+  titleGoesHere: StringFilterInput
+}
+
+input ComponentItemsSortingGuideInput {
+  doesntGoHereItems: [ComponentItemsSortingGuideItemInput]
+  goesHereItems: [ComponentItemsSortingGuideItemInput]
+  id: ID
+  titleDoesntGoHere: String
+  titleGoesHere: String
+}
+
+type ComponentItemsSortingGuideItem {
+  id: ID!
+  label: String!
+}
+
+input ComponentItemsSortingGuideItemFiltersInput {
+  and: [ComponentItemsSortingGuideItemFiltersInput]
+  label: StringFilterInput
+  not: ComponentItemsSortingGuideItemFiltersInput
+  or: [ComponentItemsSortingGuideItemFiltersInput]
+}
+
+input ComponentItemsSortingGuideItemInput {
+  id: ID
+  label: String
+}
+
 type ComponentItemsWasteSortingCardsItem {
   id: ID!
   link: ComponentItemsLink!
@@ -865,6 +956,32 @@ input ComponentSectionsBranchesInput {
   title: String
 }
 
+type ComponentSectionsCardSlider {
+  backgroundColor: ENUM_COMPONENTSECTIONSCARDSLIDER_BACKGROUNDCOLOR!
+  cards(filters: ComponentItemsCardSliderCardFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardSliderCard]!
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsCardSliderFiltersInput {
+  and: [ComponentSectionsCardSliderFiltersInput]
+  backgroundColor: StringFilterInput
+  cards: ComponentItemsCardSliderCardFiltersInput
+  not: ComponentSectionsCardSliderFiltersInput
+  or: [ComponentSectionsCardSliderFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsCardSliderInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSCARDSLIDER_BACKGROUNDCOLOR
+  cards: [ComponentItemsCardSliderCardInput]
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsCardsList {
   cards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
   id: ID!
@@ -939,29 +1056,6 @@ input ComponentSectionsColumnsListInput {
   id: ID
   leftColumn: [ComponentItemsColumnsListItemInput]
   rightColumn: [ComponentItemsColumnsListItemInput]
-  text: String
-  title: String
-}
-
-type ComponentSectionsContacts {
-  contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactRelationResponseCollection
-  id: ID!
-  text: String
-  title: String
-}
-
-input ComponentSectionsContactsFiltersInput {
-  and: [ComponentSectionsContactsFiltersInput]
-  contacts: ContactFiltersInput
-  not: ComponentSectionsContactsFiltersInput
-  or: [ComponentSectionsContactsFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentSectionsContactsInput {
-  contacts: [ID]
-  id: ID
   text: String
   title: String
 }
@@ -1082,32 +1176,6 @@ input ComponentSectionsFilesFiltersInput {
 
 input ComponentSectionsFilesInput {
   files: [ComponentItemsFileItemInput]
-  id: ID
-  text: String
-  title: String
-}
-
-type ComponentSectionsFormCtaBanner {
-  bannerLink: ComponentItemsLink!
-  bannerTitle: String!
-  id: ID!
-  text: String
-  title: String
-}
-
-input ComponentSectionsFormCtaBannerFiltersInput {
-  and: [ComponentSectionsFormCtaBannerFiltersInput]
-  bannerLink: ComponentItemsLinkFiltersInput
-  bannerTitle: StringFilterInput
-  not: ComponentSectionsFormCtaBannerFiltersInput
-  or: [ComponentSectionsFormCtaBannerFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentSectionsFormCtaBannerInput {
-  bannerLink: ComponentItemsLinkInput
-  bannerTitle: String
   id: ID
   text: String
   title: String
@@ -1236,29 +1304,6 @@ input ComponentSectionsKoloHomepageSectionInput {
   title: String
 }
 
-type ComponentSectionsOpeningTimes {
-  id: ID!
-  openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeRelationResponseCollection
-  text: String
-  title: String
-}
-
-input ComponentSectionsOpeningTimesFiltersInput {
-  and: [ComponentSectionsOpeningTimesFiltersInput]
-  not: ComponentSectionsOpeningTimesFiltersInput
-  openingTimes: OpeningTimeFiltersInput
-  or: [ComponentSectionsOpeningTimesFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentSectionsOpeningTimesInput {
-  id: ID
-  openingTimes: [ID]
-  text: String
-  title: String
-}
-
 type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
@@ -1351,6 +1396,58 @@ input ComponentSectionsServicesInput {
   title: String
 }
 
+type ComponentSectionsSortingGuide {
+  banner: ComponentSectionsBanner
+  id: ID!
+  sortingGuide: ComponentItemsSortingGuide
+  text: String
+  title: String
+}
+
+type ComponentSectionsSortingGuideAccordions {
+  banner: ComponentSectionsBanner
+  id: ID!
+  sortingGuideAccordions(filters: ComponentItemsSortingGuideAccordionItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideAccordionItem]
+  text: String
+  title: String
+}
+
+input ComponentSectionsSortingGuideAccordionsFiltersInput {
+  and: [ComponentSectionsSortingGuideAccordionsFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
+  not: ComponentSectionsSortingGuideAccordionsFiltersInput
+  or: [ComponentSectionsSortingGuideAccordionsFiltersInput]
+  sortingGuideAccordions: ComponentItemsSortingGuideAccordionItemFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsSortingGuideAccordionsInput {
+  banner: ComponentSectionsBannerInput
+  id: ID
+  sortingGuideAccordions: [ComponentItemsSortingGuideAccordionItemInput]
+  text: String
+  title: String
+}
+
+input ComponentSectionsSortingGuideFiltersInput {
+  and: [ComponentSectionsSortingGuideFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
+  not: ComponentSectionsSortingGuideFiltersInput
+  or: [ComponentSectionsSortingGuideFiltersInput]
+  sortingGuide: ComponentItemsSortingGuideFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsSortingGuideInput {
+  banner: ComponentSectionsBannerInput
+  id: ID
+  sortingGuide: ComponentItemsSortingGuideInput
+  text: String
+  title: String
+}
+
 type ComponentSectionsTable {
   anchorId: String
   id: ID!
@@ -1429,12 +1526,7 @@ input ComponentSectionsWorkshopsInput {
 type Contact {
   createdAt: DateTime
   label: String!
-  primaryEmail: String
-  primaryPhone: String
   publishedAt: DateTime
-  secondaryEmail: String
-  secondaryPhone: String
-  text: String
   updatedAt: DateTime
 }
 
@@ -1459,23 +1551,13 @@ input ContactFiltersInput {
   label: StringFilterInput
   not: ContactFiltersInput
   or: [ContactFiltersInput]
-  primaryEmail: StringFilterInput
-  primaryPhone: StringFilterInput
   publishedAt: DateTimeFilterInput
-  secondaryEmail: StringFilterInput
-  secondaryPhone: StringFilterInput
-  text: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input ContactInput {
   label: String
-  primaryEmail: String
-  primaryPhone: String
   publishedAt: DateTime
-  secondaryEmail: String
-  secondaryPhone: String
-  text: String
 }
 
 type ContactRelationResponseCollection {
@@ -1558,7 +1640,7 @@ type Document {
 
 type DocumentCategory {
   createdAt: DateTime
-  documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
+  dokuments(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
   locale: String
   localizations(filters: DocumentCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentCategoryRelationResponseCollection
   publishedAt: DateTime
@@ -1584,7 +1666,7 @@ type DocumentCategoryEntityResponseCollection {
 input DocumentCategoryFiltersInput {
   and: [DocumentCategoryFiltersInput]
   createdAt: DateTimeFilterInput
-  documents: DocumentFiltersInput
+  dokuments: DocumentFiltersInput
   id: IDFilterInput
   locale: StringFilterInput
   localizations: DocumentCategoryFiltersInput
@@ -1597,7 +1679,7 @@ input DocumentCategoryFiltersInput {
 }
 
 input DocumentCategoryInput {
-  documents: [ID]
+  dokuments: [ID]
   publishedAt: DateTime
   slug: String
   title: String
@@ -1655,6 +1737,19 @@ type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
 }
 
+enum ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE {
+  cemetery
+  christmasTrees
+  civicAmenitySite
+  cookingOilsAndFats
+  glass
+  kitchen
+  mixed
+  organic
+  paper
+  plastic
+}
+
 enum ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT {
   cemetery
   christmasTrees
@@ -1680,6 +1775,12 @@ enum ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE {
 enum ENUM_COMPONENTSECTIONSBANNER_VARIANT {
   background_black
   background_grey
+}
+
+enum ENUM_COMPONENTSECTIONSCARDSLIDER_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
 }
 
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
@@ -1942,7 +2043,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2466,7 +2567,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFormCtaBanner | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 
@@ -2648,7 +2749,7 @@ type ServiceRelationResponseCollection {
   data: [ServiceEntity!]!
 }
 
-union ServiceSectionsDynamicZone = ComponentSectionsCardsList | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFormCtaBanner | ComponentSectionsRichtext | Error
+union ServiceSectionsDynamicZone = ComponentSectionsCardsList | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsRichtext | Error
 
 scalar ServiceSectionsDynamicZoneInput
 

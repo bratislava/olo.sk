@@ -1179,7 +1179,12 @@ export type Contact = {
   __typename?: 'Contact'
   createdAt?: Maybe<Scalars['DateTime']['output']>
   label: Scalars['String']['output']
+  primaryEmail?: Maybe<Scalars['String']['output']>
+  primaryPhone?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
+  secondaryEmail?: Maybe<Scalars['String']['output']>
+  secondaryPhone?: Maybe<Scalars['String']['output']>
+  text?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
 
@@ -1207,13 +1212,23 @@ export type ContactFiltersInput = {
   label?: InputMaybe<StringFilterInput>
   not?: InputMaybe<ContactFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ContactFiltersInput>>>
+  primaryEmail?: InputMaybe<StringFilterInput>
+  primaryPhone?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  secondaryEmail?: InputMaybe<StringFilterInput>
+  secondaryPhone?: InputMaybe<StringFilterInput>
+  text?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
 
 export type ContactInput = {
   label?: InputMaybe<Scalars['String']['input']>
+  primaryEmail?: InputMaybe<Scalars['String']['input']>
+  primaryPhone?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
+  secondaryEmail?: InputMaybe<Scalars['String']['input']>
+  secondaryPhone?: InputMaybe<Scalars['String']['input']>
+  text?: InputMaybe<Scalars['String']['input']>
 }
 
 export type DateTimeFilterInput = {
@@ -10872,6 +10887,20 @@ export type BranchBySlugQuery = {
         slug: string
       } | null
     }>
+  } | null
+}
+
+export type ContactEntityFragment = {
+  __typename?: 'ContactEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Contact'
+    label: string
+    text?: string | null
+    primaryPhone?: string | null
+    secondaryPhone?: string | null
+    primaryEmail?: string | null
+    secondaryEmail?: string | null
   } | null
 }
 
@@ -27925,6 +27954,19 @@ export const FilesSectionFragmentDoc = gql`
     }
   }
   ${FileItemFragmentDoc}
+`
+export const ContactEntityFragmentDoc = gql`
+  fragment ContactEntity on ContactEntity {
+    id
+    attributes {
+      label
+      text
+      primaryPhone
+      secondaryPhone
+      primaryEmail
+      secondaryEmail
+    }
+  }
 `
 export const DocumentSlugEntityFragmentDoc = gql`
   fragment DocumentSlugEntity on DocumentEntity {

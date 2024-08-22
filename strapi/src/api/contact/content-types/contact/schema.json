@@ -15,6 +15,21 @@
     "label": {
       "type": "string",
       "required": true
+    },
+    "text": {
+      "type": "string"
+    },
+    "primaryPhone": {
+      "type": "string"
+    },
+    "secondaryPhone": {
+      "type": "string"
+    },
+    "primaryEmail": {
+      "type": "email"
+    },
+    "secondaryEmail": {
+      "type": "email"
     }
   }
 }

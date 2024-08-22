@@ -867,6 +867,11 @@ export interface ApiContactContact extends Schema.CollectionType {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+    text: Attribute.String
+    primaryPhone: Attribute.String
+    secondaryPhone: Attribute.String
+    primaryEmail: Attribute.Email
+    secondaryEmail: Attribute.Email
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

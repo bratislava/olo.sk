@@ -1383,7 +1383,12 @@ input ComponentSectionsWorkshopsInput {
 type Contact {
   createdAt: DateTime
   label: String!
+  primaryEmail: String
+  primaryPhone: String
   publishedAt: DateTime
+  secondaryEmail: String
+  secondaryPhone: String
+  text: String
   updatedAt: DateTime
 }
 
@@ -1408,13 +1413,23 @@ input ContactFiltersInput {
   label: StringFilterInput
   not: ContactFiltersInput
   or: [ContactFiltersInput]
+  primaryEmail: StringFilterInput
+  primaryPhone: StringFilterInput
   publishedAt: DateTimeFilterInput
+  secondaryEmail: StringFilterInput
+  secondaryPhone: StringFilterInput
+  text: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input ContactInput {
   label: String
+  primaryEmail: String
+  primaryPhone: String
   publishedAt: DateTime
+  secondaryEmail: String
+  secondaryPhone: String
+  text: String
 }
 
 type ContactRelationResponseCollection {

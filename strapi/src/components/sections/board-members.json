@@ -1,8 +1,7 @@
 {
-  "collectionName": "components_sections_contacts",
+  "collectionName": "components_sections_board_members",
   "info": {
-    "displayName": "Kontakty",
-    "description": ""
+    "displayName": "Správna rada"
   },
   "options": {},
   "attributes": {

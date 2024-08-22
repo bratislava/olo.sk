@@ -406,6 +406,18 @@ export interface SectionsBanner extends Schema.Component {
   }
 }
 
+export interface SectionsBoardMembers extends Schema.Component {
+  collectionName: 'components_sections_board_members'
+  info: {
+    displayName: 'Spr\u00E1vna rada'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    contacts: Attribute.Relation<'sections.board-members', 'oneToMany', 'api::contact.contact'>
+  }
+}
+
 export interface SectionsBranches extends Schema.Component {
   collectionName: 'components_sections_branches'
   info: {
@@ -468,19 +480,6 @@ export interface SectionsColumns extends Schema.Component {
         },
         number
       >
-  }
-}
-
-export interface SectionsContacts extends Schema.Component {
-  collectionName: 'components_sections_contacts'
-  info: {
-    displayName: 'Kontakty'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    contacts: Attribute.Relation<'sections.contacts', 'oneToMany', 'api::contact.contact'>
   }
 }
 
@@ -802,11 +801,11 @@ declare module '@strapi/types' {
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
       'sections.articles': SectionsArticles
       'sections.banner': SectionsBanner
+      'sections.board-members': SectionsBoardMembers
       'sections.branches': SectionsBranches
       'sections.cards-list': SectionsCardsList
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
-      'sections.contacts': SectionsContacts
       'sections.divider': SectionsDivider
       'sections.documents': SectionsDocuments
       'sections.faq-categories': SectionsFaqCategories

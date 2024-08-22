@@ -216,7 +216,7 @@ fragment ArticlesSection on ComponentSectionsArticles {
   text
 }
 
-fragment ContactsSection on ComponentSectionsContacts {
+fragment BoardMembersSection on ComponentSectionsBoardMembers {
   title
   text
   contacts {
@@ -304,8 +304,7 @@ fragment PageSections on PageSectionsDynamicZone {
   ... on ComponentSectionsArticles {
     ...ArticlesSection
   }
-
-  ... on ComponentSectionsContacts {
-    ...ContactsSection
+  ... on ComponentSectionsBoardMembers {
+    ...BoardMembersSection
   }
 }

@@ -4,18 +4,18 @@ import PersonContactRowCard from '@/src/components/common/Card/PersonContactRowC
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import { ContactsSectionFragment } from '@/src/services/graphql/api'
+import { BoardMembersSectionFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 
 type Props = {
-  section: ContactsSectionFragment
+  section: BoardMembersSectionFragment
 }
 
 /**
  * Figma (temporary link): https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=616-8377&m=dev
  */
 
-const ContactsSection = ({ section }: Props) => {
+const BoardMembersSection = ({ section }: Props) => {
   const { title, text, contacts } = section
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
@@ -55,4 +55,4 @@ const ContactsSection = ({ section }: Props) => {
   )
 }
 
-export default ContactsSection
+export default BoardMembersSection

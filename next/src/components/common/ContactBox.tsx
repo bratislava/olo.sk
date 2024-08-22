@@ -10,8 +10,8 @@ type Props = {
 }
 
 const ContactBox = ({ title, text, contacts }: Props) => (
-  <div className="flex flex-col rounded-lg border border-border-default">
-    <div className="flex flex-col items-start gap-2 self-stretch border-b border-b-[#d5d4d4] px-6 pb-[1.375rem] pt-[1.375rem]">
+  <div className="flex flex-col divide-y divide-border-default rounded-lg border border-border-default">
+    <div className="flex flex-col items-start gap-2 self-stretch px-6 py-5.5">
       <Typography variant="h5" as="h3">
         {title}
       </Typography>

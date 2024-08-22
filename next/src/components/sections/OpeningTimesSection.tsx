@@ -11,7 +11,7 @@ type Props = {
 }
 
 /**
- * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1932-17987&mode=design&t=e6RDJ09bFVN8VTqn-0
+ * Figma temporary link: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=507-9115&m=dev
  */
 
 const OpeningTimesSection = ({ section }: Props) => {

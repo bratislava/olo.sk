@@ -749,7 +749,7 @@ export type ComponentMenuMenuLinkInput = {
 export type ComponentMenuMenuSection = {
   __typename?: 'ComponentMenuMenuSection'
   colSpan: Scalars['Int']['output']
-  hasDivider: Scalars['Boolean']['output']
+  hasDividers: Scalars['Boolean']['output']
   id: Scalars['ID']['output']
   label: Scalars['String']['output']
   links?: Maybe<Array<Maybe<ComponentMenuMenuLink>>>
@@ -766,7 +766,7 @@ export type ComponentMenuMenuSectionLinksArgs = {
 export type ComponentMenuMenuSectionFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentMenuMenuSectionFiltersInput>>>
   colSpan?: InputMaybe<IntFilterInput>
-  hasDivider?: InputMaybe<BooleanFilterInput>
+  hasDividers?: InputMaybe<BooleanFilterInput>
   label?: InputMaybe<StringFilterInput>
   links?: InputMaybe<ComponentMenuMenuLinkFiltersInput>
   multicolumnBehaviour?: InputMaybe<StringFilterInput>
@@ -777,7 +777,7 @@ export type ComponentMenuMenuSectionFiltersInput = {
 
 export type ComponentMenuMenuSectionInput = {
   colSpan?: InputMaybe<Scalars['Int']['input']>
-  hasDivider?: InputMaybe<Scalars['Boolean']['input']>
+  hasDividers?: InputMaybe<Scalars['Boolean']['input']>
   id?: InputMaybe<Scalars['ID']['input']>
   label?: InputMaybe<Scalars['String']['input']>
   links?: InputMaybe<Array<InputMaybe<ComponentMenuMenuLinkInput>>>
@@ -5671,7 +5671,7 @@ export type GeneralQuery = {
             label: string
             colSpan: number
             multicolumnBehaviour?: Enum_Componentmenumenusection_Multicolumnbehaviour | null
-            hasDivider: boolean
+            hasDividers: boolean
             specialSectionType?: Enum_Componentmenumenusection_Specialsectiontype | null
             links?: Array<{
               __typename?: 'ComponentMenuMenuLink'
@@ -15878,7 +15878,7 @@ export type MenuSectionFragment = {
   label: string
   colSpan: number
   multicolumnBehaviour?: Enum_Componentmenumenusection_Multicolumnbehaviour | null
-  hasDivider: boolean
+  hasDividers: boolean
   specialSectionType?: Enum_Componentmenumenusection_Specialsectiontype | null
   links?: Array<{
     __typename?: 'ComponentMenuMenuLink'
@@ -15980,7 +15980,7 @@ export type MenuItemFragment = {
     label: string
     colSpan: number
     multicolumnBehaviour?: Enum_Componentmenumenusection_Multicolumnbehaviour | null
-    hasDivider: boolean
+    hasDividers: boolean
     specialSectionType?: Enum_Componentmenumenusection_Specialsectiontype | null
     links?: Array<{
       __typename?: 'ComponentMenuMenuLink'
@@ -16305,7 +16305,7 @@ export type MenuFragment = {
       label: string
       colSpan: number
       multicolumnBehaviour?: Enum_Componentmenumenusection_Multicolumnbehaviour | null
-      hasDivider: boolean
+      hasDividers: boolean
       specialSectionType?: Enum_Componentmenumenusection_Specialsectiontype | null
       links?: Array<{
         __typename?: 'ComponentMenuMenuLink'
@@ -16638,7 +16638,7 @@ export type MenuEntityFragment = {
         label: string
         colSpan: number
         multicolumnBehaviour?: Enum_Componentmenumenusection_Multicolumnbehaviour | null
-        hasDivider: boolean
+        hasDividers: boolean
         specialSectionType?: Enum_Componentmenumenusection_Specialsectiontype | null
         links?: Array<{
           __typename?: 'ComponentMenuMenuLink'
@@ -28331,7 +28331,7 @@ export const MenuSectionFragmentDoc = gql`
     links {
       ...MenuLink
     }
-    hasDivider
+    hasDividers
     specialSectionType
   }
   ${MenuLinkFragmentDoc}

@@ -732,7 +732,7 @@ input ComponentMenuMenuLinkInput {
 
 type ComponentMenuMenuSection {
   colSpan: Int!
-  hasDivider: Boolean!
+  hasDividers: Boolean!
   id: ID!
   label: String!
   links(filters: ComponentMenuMenuLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuLink]
@@ -743,7 +743,7 @@ type ComponentMenuMenuSection {
 input ComponentMenuMenuSectionFiltersInput {
   and: [ComponentMenuMenuSectionFiltersInput]
   colSpan: IntFilterInput
-  hasDivider: BooleanFilterInput
+  hasDividers: BooleanFilterInput
   label: StringFilterInput
   links: ComponentMenuMenuLinkFiltersInput
   multicolumnBehaviour: StringFilterInput
@@ -754,7 +754,7 @@ input ComponentMenuMenuSectionFiltersInput {
 
 input ComponentMenuMenuSectionInput {
   colSpan: Int
-  hasDivider: Boolean
+  hasDividers: Boolean
   id: ID
   label: String
   links: [ComponentMenuMenuLinkInput]

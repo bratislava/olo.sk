@@ -1,4 +1,4 @@
-import { Article, Page, UploadFile } from '../graphql/api'
+import { Article, ArticleCategory, Page, UploadFile } from '../graphql/api'
 
 /**
  * A type that describes an entity wrapped in shared search index.
@@ -28,8 +28,10 @@ export type PageMeili = Omit<Page, '__typename' | 'childPages'> & {
   parentPage?: { title: string; slug: string; parentPage?: PageMeili }
 }
 
-export type ArticleMeili = Omit<Article, '__typename' | 'coverImage'> & {
-  coverImage?: UploadFile
+export type ArticleMeili = Omit<Article, '__typename' | 'coverMedia' | 'articleCategory'> & {
+  id?: string
+  coverMedia?: UploadFile
+  articleCategory?: Pick<ArticleCategory, 'title' | 'slug'>
 }
 
 // export type BlogPostMeili = Omit<BlogPost, '__typename' | 'author' | 'tag' | 'coverImage'> & {

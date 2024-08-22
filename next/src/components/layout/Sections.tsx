@@ -11,6 +11,7 @@ import DividerSection from '@/src/components/sections/DividerSection'
 import DocumentsSection from '@/src/components/sections/DocumentsSection'
 import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection'
 import FaqSection from '@/src/components/sections/FaqSection'
+import FormCtaBannerSection from '@/src/components/sections/FormCtaBannerSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
@@ -84,6 +85,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsArticles':
       return <ArticlesSection section={section} />
+
+    case 'ComponentSectionsFormCtaBanner':
+      return <FormCtaBannerSection section={section} />
 
     case 'ComponentSectionsBoardMembers':
       return <BoardMembersSection section={section} />

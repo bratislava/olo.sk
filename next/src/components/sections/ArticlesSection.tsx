@@ -1,21 +1,24 @@
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useRef, useState } from 'react'
-import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useDebounceValue } from 'usehooks-ts'
 
 import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
 import SearchBar from '@/src/components/common/SearchBar/SearchBar'
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
-import Spinner from '@/src/components/common/Spinner/Spinner'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import { client } from '@/src/services/graphql'
 import { ArticlesSectionFragment } from '@/src/services/graphql/api'
+import {
+  articlesDefaultFilters,
+  getMeiliArticlesQueryKey,
+  meiliArticlesFetcher,
+} from '@/src/services/meili/fetchers/articlesFetcher'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
+import { useRoutePreservedState } from '@/src/utils/useRoutePreservedState'
 
 type Props = {
   section: ArticlesSectionFragment
@@ -29,52 +32,30 @@ type Props = {
 const ArticlesSection = ({ section }: Props) => {
   const { t, i18n } = useTranslation()
   const locale = i18n?.language
+  const { getFullPath } = useGetFullPath()
 
   const { title, text } = section
 
-  const [routerQueryValue] = useQueryParam('keyword', withDefault(StringParam, ''))
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
-  const [searchValue, setSearchValue] = useState(debouncedInput)
 
-  const [currentPage, setCurrentPage] = useState(1)
-
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [searchValue])
-
-  const searchFilters = {
-    search: searchValue,
-    page: currentPage,
-    pageSize: 20,
-  }
+  const [filters, setFilters] = useRoutePreservedState(articlesDefaultFilters)
 
   const searchRef = useRef<null | HTMLInputElement>(null)
 
   useEffect(() => {
     searchRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [searchFilters.page, searchFilters.pageSize])
+  }, [filters.page, filters.pageSize])
 
   useEffect(() => {
-    setInput(routerQueryValue)
-  }, [routerQueryValue])
+    setFilters((previousState) => ({ ...previousState, search: debouncedInput, page: 1 }))
+  }, [debouncedInput, setFilters])
 
-  useEffect(() => {
-    setSearchValue(debouncedInput)
-  }, [debouncedInput])
-
-  // TODO change to meilisearch and implement search and pagination
-  const { data: articlesData, status } = useQuery({
-    queryFn: () => client.SearchArticles({ ...searchFilters, locale }),
-    queryKey: ['latestArticles', { ...searchFilters, locale }],
+  const { data, isPending, isError, error, isFetching } = useQuery({
+    queryFn: () => meiliArticlesFetcher(filters, locale),
+    queryKey: getMeiliArticlesQueryKey(filters, locale),
+    placeholderData: keepPreviousData,
   })
-
-  const searchResultsCount = articlesData?.articles?.meta.pagination.total ?? 0
-
-  const { getFullPath } = useGetFullPath()
-
-  const filteredArticles =
-    articlesData?.articles?.data.filter((article) => isDefined(article?.attributes)) ?? []
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -86,57 +67,66 @@ const ArticlesSection = ({ section }: Props) => {
             ref={searchRef}
             input={input}
             setInput={setInput}
-            setSearchQuery={setSearchValue}
-            // TODO When meilisearch fetcher is implemented, set isLoading={fetchingQueriesCount > 0}
-            isLoading={status === 'pending'}
-          />
-          {searchResultsCount > 0 ? null : (
-            <Typography variant="p-default">{t('articlesSection.search.noResults')}</Typography>
-          )}
-          {status === 'pending' ? (
-            // We add padding to lessen flickering when loading
-            <Spinner className="py-[25%]" />
-          ) : null}
-          <ul className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
-            {filteredArticles.length > 0
-              ? filteredArticles
-                  .map((article) => {
-                    if (!article.attributes) return null
-
-                    const {
-                      title: articleTitle,
-                      coverMedia,
-                      articleCategory,
-                      slug,
-                    } = article.attributes
-
-                    return (
-                      <li key={slug}>
-                        <ArticleCard
-                          key={slug}
-                          title={articleTitle}
-                          linkHref={getFullPath(article) ?? '#'}
-                          imgSrc={coverMedia?.data?.attributes?.url}
-                          tagText={articleCategory?.data?.attributes?.title}
-                        />
-                      </li>
-                    )
-                  })
-                  // eslint-disable-next-line unicorn/no-array-callback-reference
-                  .filter(isDefined)
-              : null}
-          </ul>
-        </div>
-        <SidebarDivider />
-        <div className="flex justify-center">
-          <PaginationWithInput
-            currentPage={searchFilters.page}
-            totalCount={
-              searchResultsCount > 0 ? Math.ceil(searchResultsCount / searchFilters.pageSize) : 1
+            setSearchQuery={(value) =>
+              setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
             }
-            onPageChange={setCurrentPage}
+            isLoading={isFetching}
           />
+          {isError ? (
+            // TODO display proper error
+            <Typography variant="p-default">{error?.message}</Typography>
+          ) : isPending ? (
+            <Typography variant="p-default">{t('common.loading')}</Typography>
+          ) : (
+            <ul className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
+              {data.hits
+                .map((article) => {
+                  if (!article.attributes) return null
+
+                  const {
+                    title: articleTitle,
+                    coverMedia,
+                    articleCategory,
+                    slug,
+                  } = article.attributes
+
+                  return (
+                    <li key={slug}>
+                      <ArticleCard
+                        key={slug}
+                        title={articleTitle}
+                        linkHref={getFullPath(article) ?? '#'}
+                        imgSrc={coverMedia?.data?.attributes?.url}
+                        tagText={articleCategory?.data?.attributes?.title}
+                      />
+                    </li>
+                  )
+                })
+                // eslint-disable-next-line unicorn/no-array-callback-reference
+                .filter(isDefined)}
+            </ul>
+          )}
         </div>
+        {data?.estimatedTotalHits ? (
+          <>
+            <SidebarDivider />
+            <div className="flex items-center justify-between gap-6">
+              <div>
+                <Typography>
+                  {t('common.showingResults', {
+                    current: data.hits.length,
+                    total: data.estimatedTotalHits,
+                  })}
+                </Typography>
+              </div>
+              <PaginationWithInput
+                currentPage={filters.page}
+                totalCount={Math.ceil(data.estimatedTotalHits / filters.pageSize)}
+                onPageChange={(page) => setFilters((previousState) => ({ ...previousState, page }))}
+              />
+            </div>
+          </>
+        ) : null}
       </div>
     </SectionContainer>
   )

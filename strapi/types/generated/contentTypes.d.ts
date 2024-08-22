@@ -927,6 +927,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
     singularName: 'document-category'
     pluralName: 'document-categories'
     displayName: 'Dokumenty - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -951,7 +952,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
           localized: true
         }
       }>
-    dokuments: Attribute.Relation<
+    documents: Attribute.Relation<
       'api::document-category.document-category',
       'oneToMany',
       'api::document.document'
@@ -1384,6 +1385,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.divider',
         'sections.faq',
         'sections.faq-categories',
+        'sections.form-cta-banner',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.services',
@@ -1453,7 +1455,13 @@ export interface ApiServiceService extends Schema.CollectionType {
         }
       }>
     sections: Attribute.DynamicZone<
-      ['sections.richtext', 'sections.cards-list', 'sections.faq', 'sections.documents']
+      [
+        'sections.richtext',
+        'sections.cards-list',
+        'sections.faq',
+        'sections.form-cta-banner',
+        'sections.documents',
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {

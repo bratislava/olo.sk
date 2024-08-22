@@ -565,6 +565,20 @@ export interface SectionsFiles extends Schema.Component {
   }
 }
 
+export interface SectionsFormCtaBanner extends Schema.Component {
+  collectionName: 'components_sections_form_cta_banners'
+  info: {
+    displayName: 'Formul\u00E1rov\u00FD CTA banner'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    bannerTitle: Attribute.String & Attribute.Required
+    bannerLink: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
 export interface SectionsHeroHomepageSection extends Schema.Component {
   collectionName: 'components_sections_hero_homepage_sections'
   info: {
@@ -811,6 +825,7 @@ declare module '@strapi/types' {
       'sections.faq-categories': SectionsFaqCategories
       'sections.faq': SectionsFaq
       'sections.files': SectionsFiles
+      'sections.form-cta-banner': SectionsFormCtaBanner
       'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText

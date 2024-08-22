@@ -1397,6 +1397,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.ordered-cards',
         'sections.table',
         'sections.contacts',
+        'sections.opening-times',
       ]
     > &
       Attribute.SetPluginOptions<{

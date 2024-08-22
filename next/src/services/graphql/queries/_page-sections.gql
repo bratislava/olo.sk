@@ -235,6 +235,16 @@ fragment ContactsSection on ComponentSectionsContacts {
   }
 }
 
+fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
+  title
+  text
+  openingTimes {
+    data {
+      ...OpeningTimeEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -320,5 +330,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsContacts {
     ...ContactsSection
+  }
+
+  ... on ComponentSectionsOpeningTimes {
+    ...OpeningTimesSection
   }
 }

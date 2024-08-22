@@ -14,6 +14,7 @@ import FaqSection from '@/src/components/sections/FaqSection'
 import FormCtaBannerSection from '@/src/components/sections/FormCtaBannerSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
+import OpeningTimesSection from '@/src/components/sections/OpeningTimesSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
 import ServicesSection from '@/src/components/sections/ServicesSection'
@@ -91,6 +92,9 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
 
     case 'ComponentSectionsContacts':
       return <ContactsSection section={section} />
+
+    case 'ComponentSectionsOpeningTimes':
+      return <OpeningTimesSection section={section} />
 
     default:
       return null

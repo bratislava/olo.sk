@@ -675,6 +675,23 @@ export interface SectionsKoloHomepageSection extends Schema.Component {
   }
 }
 
+export interface SectionsOpeningTimes extends Schema.Component {
+  collectionName: 'components_sections_opening_times'
+  info: {
+    displayName: 'Otv\u00E1racie hodiny'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    openingTimes: Attribute.Relation<
+      'sections.opening-times',
+      'oneToMany',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
 export interface SectionsOrderedCards extends Schema.Component {
   collectionName: 'components_sections_ordered_cards'
   info: {
@@ -830,6 +847,7 @@ declare module '@strapi/types' {
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText
       'sections.kolo-homepage-section': SectionsKoloHomepageSection
+      'sections.opening-times': SectionsOpeningTimes
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
       'sections.services-homepage-section': SectionsServicesHomepageSection

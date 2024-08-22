@@ -1099,6 +1099,20 @@ export type ComponentSectionsKoloHomepageSectionInput = {
   title?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentSectionsOpeningTimes = {
+  __typename?: 'ComponentSectionsOpeningTimes'
+  id: Scalars['ID']['output']
+  openingTimes?: Maybe<OpeningTimeRelationResponseCollection>
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsOpeningTimesOpeningTimesArgs = {
+  filters?: InputMaybe<OpeningTimeFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsOrderedCards = {
   __typename?: 'ComponentSectionsOrderedCards'
   cards: Array<Maybe<ComponentItemsOrderedCardsItem>>
@@ -1782,6 +1796,7 @@ export type GenericMorph =
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsKoloHomepageSection
+  | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | ComponentSectionsServices
@@ -2733,6 +2748,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsFormCtaBanner
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
+  | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
   | ComponentSectionsRichtext
   | ComponentSectionsServices
@@ -8556,6 +8572,28 @@ export type ContactsSectionFragment = {
   } | null
 }
 
+export type OpeningTimesSectionFragment = {
+  __typename?: 'ComponentSectionsOpeningTimes'
+  title?: string | null
+  text?: string | null
+  openingTimes?: {
+    __typename?: 'OpeningTimeRelationResponseCollection'
+    data: Array<{
+      __typename?: 'OpeningTimeEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'OpeningTime'
+        internalName: string
+        openingHours?: Array<{
+          __typename?: 'ComponentItemsOpeningHoursItem'
+          label: string
+          value: string
+        } | null> | null
+      } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsArticles_Fragment = {
   __typename: 'ComponentSectionsArticles'
   title?: string | null
@@ -10075,6 +10113,28 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
   } | null
 }
 
+type PageSections_ComponentSectionsOpeningTimes_Fragment = {
+  __typename: 'ComponentSectionsOpeningTimes'
+  title?: string | null
+  text?: string | null
+  openingTimes?: {
+    __typename?: 'OpeningTimeRelationResponseCollection'
+    data: Array<{
+      __typename?: 'OpeningTimeEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'OpeningTime'
+        internalName: string
+        openingHours?: Array<{
+          __typename?: 'ComponentItemsOpeningHoursItem'
+          label: string
+          value: string
+        } | null> | null
+      } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsOrderedCards_Fragment = {
   __typename: 'ComponentSectionsOrderedCards'
   title?: string | null
@@ -10504,6 +10564,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsFormCtaBanner_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
+  | PageSections_ComponentSectionsOpeningTimes_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_ComponentSectionsServices_Fragment
@@ -19029,6 +19090,27 @@ export type PageEntityFragment = {
           } | null
         }
       | {
+          __typename: 'ComponentSectionsOpeningTimes'
+          title?: string | null
+          text?: string | null
+          openingTimes?: {
+            __typename?: 'OpeningTimeRelationResponseCollection'
+            data: Array<{
+              __typename?: 'OpeningTimeEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'OpeningTime'
+                internalName: string
+                openingHours?: Array<{
+                  __typename?: 'ComponentItemsOpeningHoursItem'
+                  label: string
+                  value: string
+                } | null> | null
+              } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsOrderedCards'
           title?: string | null
           text?: string | null
@@ -21342,6 +21424,27 @@ export type PagesQuery = {
                     } | null
                   } | null
                 } | null
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsOpeningTimes'
+              title?: string | null
+              text?: string | null
+              openingTimes?: {
+                __typename?: 'OpeningTimeRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'OpeningTimeEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'OpeningTime'
+                    internalName: string
+                    openingHours?: Array<{
+                      __typename?: 'ComponentItemsOpeningHoursItem'
+                      label: string
+                      value: string
+                    } | null> | null
+                  } | null
+                }>
               } | null
             }
           | {
@@ -23665,6 +23768,27 @@ export type PageBySlugQuery = {
                     } | null
                   } | null
                 } | null
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsOpeningTimes'
+              title?: string | null
+              text?: string | null
+              openingTimes?: {
+                __typename?: 'OpeningTimeRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'OpeningTimeEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'OpeningTime'
+                    internalName: string
+                    openingHours?: Array<{
+                      __typename?: 'ComponentItemsOpeningHoursItem'
+                      label: string
+                      value: string
+                    } | null> | null
+                  } | null
+                }>
               } | null
             }
           | {
@@ -28538,24 +28662,6 @@ export const MenuEntityFragmentDoc = gql`
   }
   ${MenuFragmentDoc}
 `
-export const OpeningHoursItemFragmentDoc = gql`
-  fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
-    label
-    value
-  }
-`
-export const OpeningTimeEntityFragmentDoc = gql`
-  fragment OpeningTimeEntity on OpeningTimeEntity {
-    id
-    attributes {
-      internalName
-      openingHours {
-        ...OpeningHoursItem
-      }
-    }
-  }
-  ${OpeningHoursItemFragmentDoc}
-`
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {
     media {
@@ -29007,6 +29113,36 @@ export const ContactsSectionFragmentDoc = gql`
   }
   ${ContactEntityFragmentDoc}
 `
+export const OpeningHoursItemFragmentDoc = gql`
+  fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
+    label
+    value
+  }
+`
+export const OpeningTimeEntityFragmentDoc = gql`
+  fragment OpeningTimeEntity on OpeningTimeEntity {
+    id
+    attributes {
+      internalName
+      openingHours {
+        ...OpeningHoursItem
+      }
+    }
+  }
+  ${OpeningHoursItemFragmentDoc}
+`
+export const OpeningTimesSectionFragmentDoc = gql`
+  fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
+    title
+    text
+    openingTimes {
+      data {
+        ...OpeningTimeEntity
+      }
+    }
+  }
+  ${OpeningTimeEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -29070,6 +29206,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsContacts {
       ...ContactsSection
     }
+    ... on ComponentSectionsOpeningTimes {
+      ...OpeningTimesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -29091,6 +29230,7 @@ export const PageSectionsFragmentDoc = gql`
   ${ArticlesSectionFragmentDoc}
   ${FormCtaBannerSectionFragmentDoc}
   ${ContactsSectionFragmentDoc}
+  ${OpeningTimesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

@@ -2,7 +2,6 @@ import { ReactNode } from 'react'
 
 // import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
 import { LinkFragment, MenuLinkFragment } from '@/src/services/graphql/api'
-import { formatMostRecentWorkshopDate } from '@/src/utils/formatMostRecentWorkshopDate'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 export type LinkProps = {
@@ -42,7 +41,6 @@ export const useGetLinkProps = () => {
     } else if (link.workshop?.data?.attributes) {
       label = link.label ?? link.workshop.data.attributes.title
       href = getFullPath(link.workshop.data) ?? '#'
-      // TODO
     } else if ('document' in link && link.document?.data?.attributes) {
       label = link.label ?? link.document.data.attributes.title
       href = getFullPath(link.document.data) ?? '#'
@@ -59,24 +57,5 @@ export const useGetLinkProps = () => {
     return { children: label, href, target }
   }
 
-  const getAdditionalLinkProps = (link: LinkFragment | MenuLinkFragment | null | undefined) => {
-    const { children: label, href, target } = getLinkProps(link)
-
-    let subText = ''
-
-    if (link?.branch?.data?.attributes && 'address' in link.branch.data.attributes) {
-      subText = link.branch.data.attributes.address ?? ''
-    } else if (link?.workshop?.data?.attributes && 'dates' in link.workshop.data.attributes) {
-      subText = formatMostRecentWorkshopDate(link.workshop.data)
-    }
-
-    return {
-      label,
-      href,
-      target,
-      subText,
-    }
-  }
-
-  return { getLinkProps, getAdditionalLinkProps }
+  return { getLinkProps }
 }

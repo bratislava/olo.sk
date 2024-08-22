@@ -11,6 +11,7 @@ import NavMenuTwoColumnSection from '@/src/components/common/NavBar/NavMenu/NavM
 import Typography from '@/src/components/common/Typography/Typography'
 import { MenuLinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
+import { formatMostRecentWorkshopDate } from '@/src/utils/formatMostRecentWorkshopDate'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
@@ -21,21 +22,27 @@ export type NavMenuSectionProps = {
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { t } = useTranslation()
-  const { getLinkProps, getAdditionalLinkProps } = useGetLinkProps()
+  const { getLinkProps } = useGetLinkProps()
   const { label, specialSectionType, links, multicolumnBehaviour, colSpan } = section
 
   const renderSectionLink = (link: MenuLinkFragment, index: number) => {
     const { children, href, target } = getLinkProps(link)
-    const { subText } = getAdditionalLinkProps(link)
     const divider = index > 0 ? <NavBarDivider variant="horizontal" /> : null
 
     if (isDefined(link.workshop?.data)) {
+      const mostRecentWorkshopDate =
+        formatMostRecentWorkshopDate(link?.workshop?.data?.attributes?.dates) ?? ''
+
       return (
         <Fragment key={link.id}>
           {divider}
           <MenuItemWorkshopCard
             title={children ?? ''}
-            subText={subText ? t('navBar.workshopCard.messageMostRecentDate', { subText }) : ''}
+            subText={
+              mostRecentWorkshopDate
+                ? t('navBar.workshopCard.messageMostRecentDate', { mostRecentWorkshopDate })
+                : ''
+            }
             linkHref={href}
           />
         </Fragment>
@@ -46,7 +53,11 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
       return (
         <Fragment key={link.id}>
           {index > 0 ? <NavBarDivider variant="horizontal" className="py-2" /> : null}
-          <MenuItemBranchCard title={children ?? ''} subText={subText ?? ''} linkHref={href} />
+          <MenuItemBranchCard
+            title={children ?? ''}
+            subText={link?.branch?.data?.attributes?.address ?? ''}
+            linkHref={href}
+          />
         </Fragment>
       )
     }

@@ -1,7 +1,12 @@
-import { WorkshopSlugEntityFragment } from '@/src/services/graphql/api'
+type WorkshopDates =
+  | Array<{
+      __typename?: 'ComponentItemsWorkshopDate'
+      datetime: any
+    } | null>
+  | null
+  | undefined // TODO: Suggestion would be appreciated
 
-export const formatMostRecentWorkshopDate = (workshop?: WorkshopSlugEntityFragment) => {
-  const dates = workshop?.attributes?.dates
+export const formatMostRecentWorkshopDate = (dates: WorkshopDates) => {
   if (!dates?.length) return ''
 
   const nextWorkshop = dates

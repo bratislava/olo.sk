@@ -22,7 +22,7 @@ export const getParsedMenus = (menu: GeneralQuery['menu']) => {
                 label: sectionLabel,
                 colSpan: sectionColSpan,
                 multicolumnBehaviour: sectionMulticolumnBehaviour,
-                hasDivider: sectionHasDivider,
+                hasDividers: sectionHasDividers,
                 specialSectionType: sectionSpecialSectionType,
                 links,
               } = section
@@ -34,7 +34,7 @@ export const getParsedMenus = (menu: GeneralQuery['menu']) => {
                 label: sectionLabel,
                 colSpan: sectionColSpan,
                 multicolumnBehaviour: sectionMulticolumnBehaviour,
-                hasDivider: sectionHasDivider,
+                hasDividers: sectionHasDividers,
                 specialSectionType: sectionSpecialSectionType,
                 links: sectionLinks,
               }

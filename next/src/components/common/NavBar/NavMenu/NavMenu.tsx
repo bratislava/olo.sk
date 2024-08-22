@@ -8,6 +8,7 @@ import Icon from '@/src/components/common/Icon/Icon'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
 
@@ -32,14 +33,13 @@ const NavMenu = ({ className }: NavMenuProps) => {
       value={menuValue}
       onValueChange={setMenuValue}
       aria-label={t('navBar.aria.navBarAriaLabel')}
+      className={cn('border-b border-border-default bg-background-primary', className)}
     >
-      <div className={cn('border-b border-border-default bg-background-primary', className)}>
-        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 lg:px-8">
-          <NavigationMenu.List className="flex first:-ml-4">
+      <SectionContainer>
+        <NavigationMenu.List className="flex items-center justify-between first:-ml-4">
+          <div className="flex">
             {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
-          </NavigationMenu.List>
-
-          {/* TODO this may be potentially part of the NavigationMenu.List */}
+          </div>
           <Button
             href="/" // TODO: Provide valid path
             asLink
@@ -54,14 +54,14 @@ const NavMenu = ({ className }: NavMenuProps) => {
             variant="icon-wrapped"
             className="-mr-4 px-4 py-5"
           />
-        </div>
+        </NavigationMenu.List>
+      </SectionContainer>
 
-        {/* Together with onCLick in NavMenuContent, it closes the menu on click outside of container area */}
-        <NavigationMenu.Viewport
-          onClick={() => setMenuValue('')}
-          className="absolute z-[29] h-screen w-full"
-        />
-      </div>
+      <NavigationMenu.Viewport
+        // Together with onCLick in NavMenuContent, it closes the menu on click outside of container area
+        onClick={() => setMenuValue('')}
+        className="absolute z-[29] h-screen w-full"
+      />
     </NavigationMenu.Root>
   )
 }

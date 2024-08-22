@@ -9,7 +9,11 @@ import { LinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuLinkProps = {
   className?: string
-} & LinkProps
+} & Omit<LinkProps, 'children'> // To be able to spread link properties as such: <NavMenuLink {...linkProps} />
+
+/**
+ * Based on: // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
+ */
 
 const NavMenuLink = ({ className, ...rest }: PropsWithChildren<NavMenuLinkProps>) => {
   const { setMobileMenuOpen } = useNavMenuContext()

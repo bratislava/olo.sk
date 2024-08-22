@@ -21,7 +21,7 @@ const NavMenuTwoColumnSection = ({ section, className }: NavMenuSectionProps) =>
               'border-r border-border-default pr-8': index <= middleItemIndex,
             })}
           >
-            <NavMenuLink {...linkProps}>{linkProps.children}</NavMenuLink>
+            <NavMenuLink {...linkProps} />
           </li>
         )
       })}

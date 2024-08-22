@@ -87,7 +87,9 @@
         "sections.workshops",
         "sections.documents",
         "sections.ordered-cards",
-        "sections.table"
+        "sections.table",
+        "sections.contacts",
+        "sections.opening-times"
       ],
       "pluginOptions": {
         "i18n": {

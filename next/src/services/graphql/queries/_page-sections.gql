@@ -225,6 +225,16 @@ fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
   }
 }
 
+fragment ContactsSection on ComponentSectionsContacts {
+  title
+  text
+  contacts {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -306,5 +316,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsFormCtaBanner {
     ...FormCtaBannerSection
+  }
+
+  ... on ComponentSectionsContacts {
+    ...ContactsSection
   }
 }

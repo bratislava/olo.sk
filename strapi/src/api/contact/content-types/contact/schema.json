@@ -19,17 +19,17 @@
     "text": {
       "type": "string"
     },
-    "primaryPhone": {
-      "type": "string"
-    },
-    "secondaryPhone": {
-      "type": "string"
-    },
     "primaryEmail": {
       "type": "email"
     },
     "secondaryEmail": {
       "type": "email"
+    },
+    "primaryPhone": {
+      "type": "string"
+    },
+    "secondaryPhone": {
+      "type": "string"
     }
   }
 }

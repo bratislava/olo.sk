@@ -470,6 +470,19 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsContacts extends Schema.Component {
+  collectionName: 'components_sections_contacts'
+  info: {
+    displayName: 'Kontakty'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    contacts: Attribute.Relation<'sections.contacts', 'oneToMany', 'api::contact.contact'>
+  }
+}
+
 export interface SectionsDivider extends Schema.Component {
   collectionName: 'components_sections_dividers'
   info: {
@@ -806,6 +819,7 @@ declare module '@strapi/types' {
       'sections.cards-list': SectionsCardsList
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
+      'sections.contacts': SectionsContacts
       'sections.divider': SectionsDivider
       'sections.documents': SectionsDocuments
       'sections.faq-categories': SectionsFaqCategories

@@ -915,6 +915,21 @@ export type ComponentSectionsColumnsListRightColumnArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSectionsContacts = {
+  __typename?: 'ComponentSectionsContacts'
+  contacts?: Maybe<ContactRelationResponseCollection>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsContactsContactsArgs = {
+  filters?: InputMaybe<ContactFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsDivider = {
   __typename?: 'ComponentSectionsDivider'
   backgroundColor: Enum_Componentsectionsdivider_Backgroundcolor
@@ -1229,6 +1244,11 @@ export type ContactInput = {
   secondaryEmail?: InputMaybe<Scalars['String']['input']>
   secondaryPhone?: InputMaybe<Scalars['String']['input']>
   text?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ContactRelationResponseCollection = {
+  __typename?: 'ContactRelationResponseCollection'
+  data: Array<ContactEntity>
 }
 
 export type DateTimeFilterInput = {
@@ -1751,6 +1771,7 @@ export type GenericMorph =
   | ComponentSectionsCardsList
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsContacts
   | ComponentSectionsDivider
   | ComponentSectionsDocuments
   | ComponentSectionsFaq
@@ -2704,6 +2725,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsCardsList
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
+  | ComponentSectionsContacts
   | ComponentSectionsDivider
   | ComponentSectionsDocuments
   | ComponentSectionsFaq
@@ -8512,6 +8534,28 @@ export type FormCtaBannerSectionFragment = {
   }
 }
 
+export type ContactsSectionFragment = {
+  __typename?: 'ComponentSectionsContacts'
+  title?: string | null
+  text?: string | null
+  contacts?: {
+    __typename?: 'ContactRelationResponseCollection'
+    data: Array<{
+      __typename?: 'ContactEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Contact'
+        label: string
+        text?: string | null
+        primaryEmail?: string | null
+        secondaryEmail?: string | null
+        primaryPhone?: string | null
+        secondaryPhone?: string | null
+      } | null
+    }>
+  } | null
+}
+
 type PageSections_ComponentSectionsArticles_Fragment = {
   __typename: 'ComponentSectionsArticles'
   title?: string | null
@@ -8965,6 +9009,28 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
       } | null
     } | null
   } | null> | null
+}
+
+type PageSections_ComponentSectionsContacts_Fragment = {
+  __typename: 'ComponentSectionsContacts'
+  title?: string | null
+  text?: string | null
+  contacts?: {
+    __typename?: 'ContactRelationResponseCollection'
+    data: Array<{
+      __typename?: 'ContactEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Contact'
+        label: string
+        text?: string | null
+        primaryEmail?: string | null
+        secondaryEmail?: string | null
+        primaryPhone?: string | null
+        secondaryPhone?: string | null
+      } | null
+    }>
+  } | null
 }
 
 type PageSections_ComponentSectionsDivider_Fragment = {
@@ -10430,6 +10496,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsCardsList_Fragment
   | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsColumnsList_Fragment
+  | PageSections_ComponentSectionsContacts_Fragment
   | PageSections_ComponentSectionsDivider_Fragment
   | PageSections_ComponentSectionsDocuments_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
@@ -10897,10 +10964,10 @@ export type ContactEntityFragment = {
     __typename?: 'Contact'
     label: string
     text?: string | null
-    primaryPhone?: string | null
-    secondaryPhone?: string | null
     primaryEmail?: string | null
     secondaryEmail?: string | null
+    primaryPhone?: string | null
+    secondaryPhone?: string | null
   } | null
 }
 
@@ -17852,6 +17919,27 @@ export type PageEntityFragment = {
           } | null> | null
         }
       | {
+          __typename: 'ComponentSectionsContacts'
+          title?: string | null
+          text?: string | null
+          contacts?: {
+            __typename?: 'ContactRelationResponseCollection'
+            data: Array<{
+              __typename?: 'ContactEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Contact'
+                label: string
+                text?: string | null
+                primaryEmail?: string | null
+                secondaryEmail?: string | null
+                primaryPhone?: string | null
+                secondaryPhone?: string | null
+              } | null
+            }>
+          } | null
+        }
+      | {
           __typename: 'ComponentSectionsDivider'
           backgroundColorDivider: Enum_Componentsectionsdivider_Backgroundcolor
         }
@@ -20141,6 +20229,27 @@ export type PagesQuery = {
                   } | null
                 } | null
               } | null> | null
+            }
+          | {
+              __typename: 'ComponentSectionsContacts'
+              title?: string | null
+              text?: string | null
+              contacts?: {
+                __typename?: 'ContactRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'ContactEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Contact'
+                    label: string
+                    text?: string | null
+                    primaryEmail?: string | null
+                    secondaryEmail?: string | null
+                    primaryPhone?: string | null
+                    secondaryPhone?: string | null
+                  } | null
+                }>
+              } | null
             }
           | {
               __typename: 'ComponentSectionsDivider'
@@ -22443,6 +22552,27 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               } | null> | null
+            }
+          | {
+              __typename: 'ComponentSectionsContacts'
+              title?: string | null
+              text?: string | null
+              contacts?: {
+                __typename?: 'ContactRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'ContactEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Contact'
+                    label: string
+                    text?: string | null
+                    primaryEmail?: string | null
+                    secondaryEmail?: string | null
+                    primaryPhone?: string | null
+                    secondaryPhone?: string | null
+                  } | null
+                }>
+              } | null
             }
           | {
               __typename: 'ComponentSectionsDivider'
@@ -27955,19 +28085,6 @@ export const FilesSectionFragmentDoc = gql`
   }
   ${FileItemFragmentDoc}
 `
-export const ContactEntityFragmentDoc = gql`
-  fragment ContactEntity on ContactEntity {
-    id
-    attributes {
-      label
-      text
-      primaryPhone
-      secondaryPhone
-      primaryEmail
-      secondaryEmail
-    }
-  }
-`
 export const DocumentSlugEntityFragmentDoc = gql`
   fragment DocumentSlugEntity on DocumentEntity {
     __typename
@@ -28865,6 +28982,31 @@ export const FormCtaBannerSectionFragmentDoc = gql`
   }
   ${LinkFragmentDoc}
 `
+export const ContactEntityFragmentDoc = gql`
+  fragment ContactEntity on ContactEntity {
+    id
+    attributes {
+      label
+      text
+      primaryEmail
+      secondaryEmail
+      primaryPhone
+      secondaryPhone
+    }
+  }
+`
+export const ContactsSectionFragmentDoc = gql`
+  fragment ContactsSection on ComponentSectionsContacts {
+    title
+    text
+    contacts {
+      data {
+        ...ContactEntity
+      }
+    }
+  }
+  ${ContactEntityFragmentDoc}
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -28925,6 +29067,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsFormCtaBanner {
       ...FormCtaBannerSection
     }
+    ... on ComponentSectionsContacts {
+      ...ContactsSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -28945,6 +29090,7 @@ export const PageSectionsFragmentDoc = gql`
   ${WasteSortingCardsSectionFragmentDoc}
   ${ArticlesSectionFragmentDoc}
   ${FormCtaBannerSectionFragmentDoc}
+  ${ContactsSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

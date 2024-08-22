@@ -5,7 +5,7 @@ import CardBase from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
 import cn from '@/src/utils/cn'
 
-type ContactRowCardProps = {
+export type ContactRowCardProps = {
   variant: 'phone' | 'mail'
   // Todo refactor to use Strapi contact types
   contact: string

@@ -3,9 +3,9 @@ fragment ContactEntity on ContactEntity {
   attributes {
     label
     text
-    primaryPhone
-    secondaryPhone
     primaryEmail
     secondaryEmail
+    primaryPhone
+    secondaryPhone
   }
 }

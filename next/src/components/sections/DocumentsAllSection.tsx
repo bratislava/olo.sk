@@ -52,7 +52,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
     setFilters((previousState) => ({ ...previousState, search: debouncedInput, page: 1 }))
   }, [debouncedInput, setFilters])
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isPending, isError, error, isFetching } = useQuery({
     queryFn: () => meiliDocumentsFetcher(filters),
     queryKey: getMeiliDocumentsQueryKey(filters),
     placeholderData: keepPreviousData,
@@ -72,7 +72,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
             setSearchQuery={(value) =>
               setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
             }
-            isLoading={isPending}
+            isLoading={isFetching}
             className="col-span-2"
           />
           {/* TODO Category select */}
@@ -83,7 +83,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
               className="col-span-1"
               aria-label="Kategoria"
               disabled
-              placeholder={t('documentsAllSection.filters.choseCategory')}
+              placeholder={t('documentsAllSection.filters.chooseCategory')}
             />
           </PlaceholderWrapper>
         </div>
@@ -126,7 +126,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
               <div className="flex items-center justify-between gap-6">
                 <div>
                   <Typography>
-                    {t('documentsAllSection.showingResults', {
+                    {t('common.showingResults', {
                       current: data.hits.length,
                       total: data.estimatedTotalHits,
                     })}

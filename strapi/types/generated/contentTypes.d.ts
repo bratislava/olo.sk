@@ -1460,7 +1460,13 @@ export interface ApiServiceService extends Schema.CollectionType {
         }
       }>
     sections: Attribute.DynamicZone<
-      ['sections.richtext', 'sections.documents', 'sections.faq', 'sections.cards-list']
+      [
+        'sections.richtext',
+        'sections.documents',
+        'sections.faq',
+        'sections.cards-list',
+        'sections.form-cta-banner',
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {

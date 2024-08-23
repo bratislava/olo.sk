@@ -63,7 +63,8 @@
         "sections.richtext",
         "sections.documents",
         "sections.faq",
-        "sections.cards-list"
+        "sections.cards-list",
+        "sections.form-cta-banner"
       ]
     }
   }

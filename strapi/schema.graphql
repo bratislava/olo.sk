@@ -1204,6 +1204,32 @@ input ComponentSectionsFilesInput {
   title: String
 }
 
+type ComponentSectionsFormCtaBanner {
+  bannerLink: ComponentItemsLink!
+  bannerTitle: String!
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsFormCtaBannerFiltersInput {
+  and: [ComponentSectionsFormCtaBannerFiltersInput]
+  bannerLink: ComponentItemsLinkFiltersInput
+  bannerTitle: StringFilterInput
+  not: ComponentSectionsFormCtaBannerFiltersInput
+  or: [ComponentSectionsFormCtaBannerFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsFormCtaBannerInput {
+  bannerLink: ComponentItemsLinkInput
+  bannerTitle: String
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsHeroHomepageSection {
   id: ID!
   mainTiles(filters: ComponentItemsHeroMainTileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsHeroMainTile]
@@ -2104,7 +2130,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2810,7 +2836,7 @@ type ServiceRelationResponseCollection {
   data: [ServiceEntity!]!
 }
 
-union ServiceSectionsDynamicZone = ComponentSectionsCardsList | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsRichtext | Error
+union ServiceSectionsDynamicZone = ComponentSectionsCardsList | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFormCtaBanner | ComponentSectionsRichtext | Error
 
 scalar ServiceSectionsDynamicZoneInput
 

@@ -271,6 +271,15 @@ fragment CardSliderSection on ComponentSectionsCardSlider {
   }
 }
 
+fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
+  title
+  text
+  bannerTitle
+  bannerLink {
+    ...Link
+  }
+}
+
 fragment ContactsSection on ComponentSectionsContacts {
   title
   text

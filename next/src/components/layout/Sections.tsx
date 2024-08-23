@@ -23,13 +23,15 @@ import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import TableSection from '@/src/components/sections/TableSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
-import { PageSectionsFragment } from '@/src/services/graphql/api'
+import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
+
+type Section = PageSectionsFragment | ServiceSectionsFragment
 
 type Props = {
-  sections: PageSectionsFragment[]
+  sections: Section[]
 }
 
-const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
+const SectionContent = ({ section }: { section: Section }) => {
   switch (section.__typename) {
     case 'ComponentSectionsRichtext':
       return <RichtextSection section={section} />

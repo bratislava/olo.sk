@@ -30,52 +30,59 @@ const HeroHomepageSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-4 lg:gap-12">
-        <div className="grid h-[450px] grid-rows-2 gap-4 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-6">
+        <div className="flex flex-col gap-4 lg:grid lg:h-[450px] lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8 lg:gap-y-6">
           {/* TODO slider */}
           <div
             className="relative overflow-hidden rounded-xl border border-dashed bg-background-tertiary lg:col-span-2 lg:row-span-2"
             style={{ background: slide?.backgroundColor ?? '#FEFEFE' }} // TODO default color?
           >
             {slide ? (
-              <div className="h-full px-6 py-8">
-                <div className="flex h-full flex-col justify-between">
-                  <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-3">
-                      <Typography variant="h3">{slide.title}</Typography>
-                      {slide.text ? (
-                        <Typography variant="p-default">{slide.text}</Typography>
-                      ) : null}
-                    </div>
-                    {slide.link ? (
-                      <Button variant="black-solid" asLink {...getLinkProps(slide.link)} />
-                    ) : null}
-                  </div>
-
-                  {/* TODO arrows functionality and aria labels */}
-                  <div className="flex gap-3">
-                    <Button
-                      variant="unstyled"
-                      icon={<Icon name="sipka-dolava" />}
-                      aria-label="todo"
-                      className="rounded-full border border-dashed bg-background-primary p-2"
-                      isDisabled
-                    />
-                    <Button
-                      variant="unstyled"
-                      icon={<Icon name="sipka-doprava" />}
-                      aria-label="todo"
-                      className="rounded-full border border-dashed bg-background-primary p-2"
-                      isDisabled
-                    />
-                  </div>
-                </div>
-
+              <div className="flex h-full flex-col">
                 {slide.media.data?.attributes?.url ? (
-                  // TODO sizes in rems, alt
-                  <div className="absolute bottom-0 right-0 flex h-[322px] w-[612px]">
-                    <Image src={slide.media.data?.attributes?.url} alt="" fill />
+                  // TODO sizes in rems
+                  <div className="relative flex aspect-heroSliderMedia lg:absolute lg:bottom-0 lg:right-0 lg:h-[322px]">
+                    <Image
+                      src={slide.media.data.attributes.url}
+                      alt={slide.media.data.attributes.alternativeText ?? ''}
+                      fill
+                      className="pointer-events-none object-contain"
+                    />
                   </div>
                 ) : null}
+
+                <div className="h-full px-4 py-6 lg:px-6 lg:py-8">
+                  <div className="flex h-full flex-col justify-between gap-4">
+                    <div className="flex flex-col gap-6">
+                      <div className="flex flex-col gap-3">
+                        <Typography variant="h3">{slide.title}</Typography>
+                        {slide.text ? (
+                          <Typography variant="p-default">{slide.text}</Typography>
+                        ) : null}
+                      </div>
+                      {slide.link ? (
+                        <Button variant="black-solid" asLink {...getLinkProps(slide.link)} />
+                      ) : null}
+                    </div>
+
+                    {/* TODO arrows functionality and aria labels */}
+                    <div className="flex gap-3">
+                      <Button
+                        variant="unstyled"
+                        icon={<Icon name="sipka-dolava" />}
+                        aria-label="todo"
+                        className="rounded-full border border-dashed bg-background-primary p-2"
+                        isDisabled
+                      />
+                      <Button
+                        variant="unstyled"
+                        icon={<Icon name="sipka-doprava" />}
+                        aria-label="todo"
+                        className="rounded-full border border-dashed bg-background-primary p-2"
+                        isDisabled
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : null}
           </div>

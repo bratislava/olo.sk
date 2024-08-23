@@ -5,6 +5,8 @@ type NavMenuContentDividerProps = {
   className?: string
 }
 
+// TODO: Will be refactored by a subsequent PR
+
 const NavBarDivider = ({ variant, className }: NavMenuContentDividerProps) => (
   <div aria-hidden className={cn(className)}>
     <div

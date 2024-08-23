@@ -867,6 +867,11 @@ export interface ApiContactContact extends Schema.CollectionType {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+    text: Attribute.String
+    primaryEmail: Attribute.Email
+    secondaryEmail: Attribute.Email
+    primaryPhone: Attribute.String
+    secondaryPhone: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1377,12 +1382,12 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.banner',
         'sections.branches',
         'sections.cards-list',
+        'sections.card-slider',
         'sections.columns',
         'sections.columns-list',
         'sections.divider',
         'sections.faq',
         'sections.faq-categories',
-        'sections.form-cta-banner',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
         'sections.services',
@@ -1391,6 +1396,10 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.documents',
         'sections.ordered-cards',
         'sections.table',
+        'sections.sorting-guide',
+        'sections.sorting-guide-accordions',
+        'sections.contacts',
+        'sections.opening-times',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1453,10 +1462,10 @@ export interface ApiServiceService extends Schema.CollectionType {
     sections: Attribute.DynamicZone<
       [
         'sections.richtext',
-        'sections.cards-list',
-        'sections.faq',
-        'sections.form-cta-banner',
         'sections.documents',
+        'sections.faq',
+        'sections.cards-list',
+        'sections.form-cta-banner',
       ]
     > &
       Attribute.SetPluginOptions<{

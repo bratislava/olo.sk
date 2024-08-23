@@ -1,15 +1,14 @@
 {
-  "collectionName": "components_sections_faqs",
+  "collectionName": "components_sections_card_sliders",
   "info": {
-    "displayName": "FAQ",
+    "displayName": "Karty (slider)",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": false,
-      "default": "Často kladené otázky"
+      "required": false
     },
     "text": {
       "type": "text"
@@ -20,15 +19,11 @@
       "default": "primary",
       "required": true
     },
-    "faqs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::faq.faq"
-    },
-    "showMoreLink": {
+    "cards": {
       "type": "component",
-      "repeatable": false,
-      "component": "items.link"
+      "repeatable": true,
+      "component": "items.card-slider-card",
+      "required": true
     }
   }
 }

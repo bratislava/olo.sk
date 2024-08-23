@@ -10,7 +10,11 @@ import { LinkProps } from '@/src/utils/useGetLinkProps'
 type NavMenuLinkProps = {
   asCardLink?: boolean
   className?: string
-} & LinkProps
+} & Omit<LinkProps, 'children'> // To be able to spread link properties as such: <NavMenuLink {...linkProps} />
+
+/**
+ * Based on: // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
+ */
 
 const NavMenuLink = ({
   href,

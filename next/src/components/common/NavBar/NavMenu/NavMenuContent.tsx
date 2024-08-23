@@ -1,12 +1,14 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { useMemo } from 'react'
 
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import NavMenuContentCell from '@/src/components/common/NavBar/NavMenu/NavMenuContentCell'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import NavMenuSection from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import cn from '@/src/utils/cn'
+import { getNavMenuCells } from '@/src/utils/getNavMenuCells'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
-import { useNavMenuCells } from '@/src/utils/useSectionGrouper'
 
 type NavMenuContentProps = {
   sections: ReturnType<typeof getParsedMenus>[number]['sections']
@@ -17,7 +19,7 @@ type NavMenuContentProps = {
 export type SectionType = ReturnType<typeof getParsedMenus>[number]['sections'][number]
 
 const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContentProps) => {
-  const { navMenuCells } = useNavMenuCells(sections)
+  const navMenuCells = useMemo(() => getNavMenuCells(sections), [sections])
 
   return (
     <NavigationMenu.Content
@@ -25,15 +27,19 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
       // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
       onPointerMove={(event) => event.preventDefault()}
       onPointerLeave={(event) => event.preventDefault()}
-      className="w-screen border-t border-border-default bg-background-primary shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]"
+      className={cn(
+        'relative z-[29] w-screen border-t border-border-default bg-background-primary shadow-[0px_4px_12px_0px_rgba(0,0,0,0.12)]',
+        className,
+      )}
     >
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div
-        className="relative z-[29] mx-auto flex max-w-screen-xl flex-col items-start justify-start px-4 lg:px-8"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <ul className={cn('grid w-full grid-cols-3 py-8', className)}>
-          {navMenuCells.map((cell, index: number) => {
+      <SectionContainer>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions,jsx-a11y/no-noninteractive-element-interactions */}
+        <ul
+          // Together with onCLick in Viewport, it closes the menu on click outside of container area
+          onClick={(event) => event.stopPropagation()}
+          className="grid w-full grid-cols-3 py-8"
+        >
+          {navMenuCells.map((cell, index) => {
             if (Array.isArray(cell)) {
               return (
                 <NavMenuContentCell
@@ -60,16 +66,16 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         </ul>
 
         {seeAllLinkProps?.children ? (
+          // Together with onCLick in Viewport, it closes the menu on click outside of container area
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-          <div
-            className="flex w-full items-start justify-start border-t border-border-default py-6"
-            // Together with onCLick in Viewport, it closes the menu on click outside of container area
-            onClick={(event) => event.stopPropagation()}
-          >
-            <NavMenuLink {...seeAllLinkProps}>{seeAllLinkProps.children}</NavMenuLink>
+          <div onClick={(event) => event.stopPropagation()}>
+            <NavMenuLink
+              {...seeAllLinkProps}
+              className="flex w-full items-start justify-start border-t border-border-default py-6"
+            />
           </div>
         ) : null}
-      </div>
+      </SectionContainer>
     </NavigationMenu.Content>
   )
 }

@@ -3,29 +3,35 @@ import React from 'react'
 import ArticlesSection from '@/src/components/sections/ArticlesSection'
 import BannerSection from '@/src/components/sections/BannerSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
+import CardSliderSection from '@/src/components/sections/CardSliderSection'
 import CardsListSection from '@/src/components/sections/CardsListSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
+import ContactsSection from '@/src/components/sections/ContactsSection'
 import DividerSection from '@/src/components/sections/DividerSection'
 import DocumentsSection from '@/src/components/sections/DocumentsSection'
 import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection'
 import FaqSection from '@/src/components/sections/FaqSection'
-import FormCtaBannerSection from '@/src/components/sections/FormCtaBannerSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
+import OpeningTimesSection from '@/src/components/sections/OpeningTimesSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
 import ServicesSection from '@/src/components/sections/ServicesSection'
+import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
+import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import TableSection from '@/src/components/sections/TableSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
-import { PageSectionsFragment } from '@/src/services/graphql/api'
+import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
+
+type Section = PageSectionsFragment | ServiceSectionsFragment
 
 type Props = {
-  sections: PageSectionsFragment[]
+  sections: Section[]
 }
 
-const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
+const SectionContent = ({ section }: { section: Section }) => {
   switch (section.__typename) {
     case 'ComponentSectionsRichtext':
       return <RichtextSection section={section} />
@@ -82,11 +88,23 @@ const SectionContent = ({ section }: { section: PageSectionsFragment }) => {
     case 'ComponentSectionsWasteSortingCards':
       return <WasteSortingCardsSection section={section} />
 
+    case 'ComponentSectionsSortingGuide':
+      return <SortingGuideSection section={section} />
+
+    case 'ComponentSectionsSortingGuideAccordions':
+      return <SortingGuideAccordionsSection section={section} />
+
     case 'ComponentSectionsArticles':
       return <ArticlesSection section={section} />
 
-    case 'ComponentSectionsFormCtaBanner':
-      return <FormCtaBannerSection section={section} />
+    case 'ComponentSectionsCardSlider':
+      return <CardSliderSection section={section} />
+
+    case 'ComponentSectionsContacts':
+      return <ContactsSection section={section} />
+
+    case 'ComponentSectionsOpeningTimes':
+      return <OpeningTimesSection section={section} />
 
     default:
       return null

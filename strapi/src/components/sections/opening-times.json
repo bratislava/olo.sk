@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_opening_times",
+  "info": {
+    "displayName": "Otváracie hodiny",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "openingTimes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::opening-time.opening-time"
+    }
+  }
+}

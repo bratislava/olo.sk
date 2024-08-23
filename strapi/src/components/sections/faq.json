@@ -12,7 +12,7 @@
       "default": "Často kladené otázky"
     },
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "backgroundColor": {
       "type": "enumeration",

@@ -470,6 +470,19 @@ export interface SectionsColumns extends Schema.Component {
   }
 }
 
+export interface SectionsContacts extends Schema.Component {
+  collectionName: 'components_sections_contacts'
+  info: {
+    displayName: 'Kontakty'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    contacts: Attribute.Relation<'sections.contacts', 'oneToMany', 'api::contact.contact'>
+  }
+}
+
 export interface SectionsDivider extends Schema.Component {
   collectionName: 'components_sections_dividers'
   info: {
@@ -662,6 +675,23 @@ export interface SectionsKoloHomepageSection extends Schema.Component {
   }
 }
 
+export interface SectionsOpeningTimes extends Schema.Component {
+  collectionName: 'components_sections_opening_times'
+  info: {
+    displayName: 'Otv\u00E1racie hodiny'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    openingTimes: Attribute.Relation<
+      'sections.opening-times',
+      'oneToMany',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
 export interface SectionsOrderedCards extends Schema.Component {
   collectionName: 'components_sections_ordered_cards'
   info: {
@@ -806,6 +836,7 @@ declare module '@strapi/types' {
       'sections.cards-list': SectionsCardsList
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
+      'sections.contacts': SectionsContacts
       'sections.divider': SectionsDivider
       'sections.documents': SectionsDocuments
       'sections.faq-categories': SectionsFaqCategories
@@ -816,6 +847,7 @@ declare module '@strapi/types' {
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.image-and-text': SectionsImageAndText
       'sections.kolo-homepage-section': SectionsKoloHomepageSection
+      'sections.opening-times': SectionsOpeningTimes
       'sections.ordered-cards': SectionsOrderedCards
       'sections.richtext': SectionsRichtext
       'sections.services-homepage-section': SectionsServicesHomepageSection

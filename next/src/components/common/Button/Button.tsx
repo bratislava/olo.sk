@@ -262,7 +262,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
         {isLoading ? (
           <>
             {loadingText}
-            <Spinner size="sm" />
+            <Spinner size="small" />
           </>
         ) : (
           icon ?? children

@@ -104,6 +104,19 @@ export interface ItemsAnchor extends Schema.Component {
   }
 }
 
+export interface ItemsCardSliderCard extends Schema.Component {
+  collectionName: 'components_items_card_slider_cards'
+  info: {
+    displayName: 'Card Slider card'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    image: Attribute.Media & Attribute.Required
+    link: Attribute.Component<'items.link'>
+  }
+}
+
 export interface ItemsCardsListItem extends Schema.Component {
   collectionName: 'components_items_cards_list_items'
   info: {
@@ -267,6 +280,58 @@ export interface ItemsSlide extends Schema.Component {
   }
 }
 
+export interface ItemsSortingGuideAccordionItem extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_accordion_items'
+  info: {
+    displayName: 'sorting guide accordion item'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    wasteType: Attribute.Enumeration<
+      [
+        'paper',
+        'plastic',
+        'glass',
+        'civicAmenitySite',
+        'cookingOilsAndFats',
+        'kitchen',
+        'organic',
+        'mixed',
+        'cemetery',
+        'christmasTrees',
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'paper'>
+    sortingGuide: Attribute.Component<'items.sorting-guide'>
+  }
+}
+
+export interface ItemsSortingGuideItem extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_items'
+  info: {
+    displayName: 'Sorting Guide Item'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+  }
+}
+
+export interface ItemsSortingGuide extends Schema.Component {
+  collectionName: 'components_items_sorting_guides'
+  info: {
+    displayName: 'Sorting Guide'
+    description: ''
+  }
+  attributes: {
+    titleGoesHere: Attribute.String & Attribute.DefaultTo<'Patr\u00ED sem'>
+    titleDoesntGoHere: Attribute.String & Attribute.DefaultTo<'Nepatr\u00ED sem'>
+    goesHereItems: Attribute.Component<'items.sorting-guide-item', true>
+    doesntGoHereItems: Attribute.Component<'items.sorting-guide-item', true>
+  }
+}
+
 export interface ItemsWasteSortingCardsItem extends Schema.Component {
   collectionName: 'components_items_waste_sorting_cards_items'
   info: {
@@ -419,6 +484,22 @@ export interface SectionsBranches extends Schema.Component {
   }
 }
 
+export interface SectionsCardSlider extends Schema.Component {
+  collectionName: 'components_sections_card_sliders'
+  info: {
+    displayName: 'Karty (slider)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+    cards: Attribute.Component<'items.card-slider-card', true> & Attribute.Required
+  }
+}
+
 export interface SectionsCardsList extends Schema.Component {
   collectionName: 'components_sections_cards_lists'
   info: {
@@ -536,7 +617,7 @@ export interface SectionsFaq extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.DefaultTo<'\u010Casto kladen\u00E9 ot\u00E1zky'>
-    text: Attribute.String
+    text: Attribute.Text
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
@@ -700,7 +781,7 @@ export interface SectionsOrderedCards extends Schema.Component {
   }
   attributes: {
     title: Attribute.String
-    text: Attribute.String
+    text: Attribute.Text
     variant: Attribute.Enumeration<['numbers', 'icons']> &
       Attribute.Required &
       Attribute.DefaultTo<'numbers'>
@@ -759,6 +840,38 @@ export interface SectionsServices extends Schema.Component {
   }
 }
 
+export interface SectionsSortingGuideAccordions extends Schema.Component {
+  collectionName: 'components_sections_sorting_guide_accordions'
+  info: {
+    displayName: 'Triedenie (akorde\u00F3ny)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    sortingGuideAccordions: Attribute.Component<'items.sorting-guide-accordion-item', true>
+    banner: Attribute.Component<'sections.banner'>
+  }
+}
+
+export interface SectionsSortingGuide extends Schema.Component {
+  collectionName: 'components_sections_sorting_guides'
+  info: {
+    displayName: 'Triedenie'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    sortingGuide: Attribute.Component<'items.sorting-guide'>
+    banner: Attribute.Component<'sections.banner'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+  }
+}
+
 export interface SectionsTable extends Schema.Component {
   collectionName: 'components_sections_tables'
   info: {
@@ -811,6 +924,7 @@ declare module '@strapi/types' {
       'header-sections.pickup-day': HeaderSectionsPickupDay
       'header-sections.side-image': HeaderSectionsSideImage
       'items.anchor': ItemsAnchor
+      'items.card-slider-card': ItemsCardSliderCard
       'items.cards-list-item': ItemsCardsListItem
       'items.columns-item': ItemsColumnsItem
       'items.columns-list-item': ItemsColumnsListItem
@@ -824,6 +938,9 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.ordered-cards-item': ItemsOrderedCardsItem
       'items.slide': ItemsSlide
+      'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
+      'items.sorting-guide-item': ItemsSortingGuideItem
+      'items.sorting-guide': ItemsSortingGuide
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.workshop-date': ItemsWorkshopDate
       'menu.menu-item': MenuMenuItem
@@ -833,6 +950,7 @@ declare module '@strapi/types' {
       'sections.articles': SectionsArticles
       'sections.banner': SectionsBanner
       'sections.branches': SectionsBranches
+      'sections.card-slider': SectionsCardSlider
       'sections.cards-list': SectionsCardsList
       'sections.columns-list': SectionsColumnsList
       'sections.columns': SectionsColumns
@@ -852,6 +970,8 @@ declare module '@strapi/types' {
       'sections.richtext': SectionsRichtext
       'sections.services-homepage-section': SectionsServicesHomepageSection
       'sections.services': SectionsServices
+      'sections.sorting-guide-accordions': SectionsSortingGuideAccordions
+      'sections.sorting-guide': SectionsSortingGuide
       'sections.table': SectionsTable
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.workshops': SectionsWorkshops

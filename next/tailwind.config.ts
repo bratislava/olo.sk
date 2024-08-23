@@ -166,6 +166,9 @@ const config: Config = {
       zIndex: {
         1: '1',
       },
+      aspectRatio: {
+        heroSliderMedia: '612/322',
+      },
     },
   },
 }

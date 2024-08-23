@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_sorting_guides",
+  "info": {
+    "displayName": "Triedenie"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "sortingGuide": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.sorting-guide"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "sections.banner"
+    }
+  }
+}

@@ -11,7 +11,7 @@
       "required": false
     },
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "variant": {
       "type": "enumeration",

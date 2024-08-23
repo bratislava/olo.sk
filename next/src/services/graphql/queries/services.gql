@@ -7,6 +7,30 @@ fragment ServiceSlugEntity on ServiceEntity {
   }
 }
 
+fragment ServiceSections on ServiceSectionsDynamicZone {
+  __typename
+
+  ... on ComponentSectionsCardsList {
+    ...CardsListSection
+  }
+
+  ... on ComponentSectionsDocuments {
+    ...DocumentsSection
+  }
+
+  ... on ComponentSectionsFaq {
+    ...FaqSection
+  }
+
+  ... on ComponentSectionsRichtext {
+    ...RichtextSection
+  }
+
+  ... on ComponentSectionsFormCtaBanner {
+    ...FormCtaBannerSection
+  }
+}
+
 fragment ServiceEntity on ServiceEntity {
   ...ServiceSlugEntity
   attributes {
@@ -21,7 +45,7 @@ fragment ServiceEntity on ServiceEntity {
       }
     }
     sections {
-      ...PageSections
+      ...ServiceSections
     }
   }
 }

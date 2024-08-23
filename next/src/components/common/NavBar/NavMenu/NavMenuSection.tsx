@@ -16,7 +16,7 @@ export type NavMenuSectionProps = {
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { label, specialSectionType, links, multicolumnBehaviour, colSpan } = section
-  
+
   return (
     <div className={cn('flex w-full flex-col gap-6', className)}>
       <div>

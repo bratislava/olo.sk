@@ -617,7 +617,7 @@ export interface SectionsFaq extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.DefaultTo<'\u010Casto kladen\u00E9 ot\u00E1zky'>
-    text: Attribute.String
+    text: Attribute.Text
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
@@ -781,7 +781,7 @@ export interface SectionsOrderedCards extends Schema.Component {
   }
   attributes: {
     title: Attribute.String
-    text: Attribute.String
+    text: Attribute.Text
     variant: Attribute.Enumeration<['numbers', 'icons']> &
       Attribute.Required &
       Attribute.DefaultTo<'numbers'>

@@ -8,11 +8,11 @@ import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
-type NavMenuLatestArticlesSectionProps = {
+type NavMenuLatestArticlesListProps = {
   className?: string
 }
 
-const NavMenuLatestArticlesSection = ({ className }: NavMenuLatestArticlesSectionProps) => {
+const NavMenuLatestArticlesList = ({ className }: NavMenuLatestArticlesListProps) => {
   const { i18n } = useTranslation()
   const locale = i18n.language
   const { getFullPath } = useGetFullPath()
@@ -54,4 +54,4 @@ const NavMenuLatestArticlesSection = ({ className }: NavMenuLatestArticlesSectio
   )
 }
 
-export default NavMenuLatestArticlesSection
+export default NavMenuLatestArticlesList

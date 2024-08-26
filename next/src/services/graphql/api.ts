@@ -30228,6 +30228,8 @@ export type ServiceBySlugQuery = {
   } | null
 }
 
+export type WorkshopDateItemFragment = { __typename?: 'ComponentItemsWorkshopDate'; datetime: any }
+
 export type WorkshopSlugEntityFragment = {
   __typename: 'WorkshopEntity'
   id?: string | null
@@ -31946,6 +31948,11 @@ export const ServiceSlugEntityFragmentDoc = gql`
     }
   }
 `
+export const WorkshopDateItemFragmentDoc = gql`
+  fragment WorkshopDateItem on ComponentItemsWorkshopDate {
+    datetime
+  }
+`
 export const WorkshopSlugEntityFragmentDoc = gql`
   fragment WorkshopSlugEntity on WorkshopEntity {
     __typename
@@ -31954,10 +31961,11 @@ export const WorkshopSlugEntityFragmentDoc = gql`
       title
       slug
       dates {
-        datetime
+        ...WorkshopDateItem
       }
     }
   }
+  ${WorkshopDateItemFragmentDoc}
 `
 export const LinkFragmentDoc = gql`
   fragment Link on ComponentItemsLink {

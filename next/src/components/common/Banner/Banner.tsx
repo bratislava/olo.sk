@@ -1,13 +1,15 @@
+import Image from 'next/image'
+
 import Button from '@/src/components/common/Button/Button'
-import CardImage from '@/src/components/common/Card/CardImage'
 import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
+import { generateImageSizes } from '@/src/utils/generateImageSizes'
 
 type BannerProps = {
   variant: 'background-grey' | 'background-black'
   title: string
-  subtext: string
+  subtext?: string | null | undefined
   button1LinkHref: string
   button1Text: string
   button2LinkHref?: string
@@ -47,7 +49,7 @@ const Banner = ({
       >
         <div className="flex flex-col gap-2 lg:gap-4">
           <Typography variant="h3">{title}</Typography>
-          <Typography variant="p-default">{subtext}</Typography>
+          {subtext ? <Typography variant="p-default">{subtext}</Typography> : null}
         </div>
         <div className="flex gap-4">
           <Button href={button1LinkHref} asLink hasLinkIcon={false} variant="category-solid">
@@ -68,7 +70,17 @@ const Banner = ({
         </div>
       </div>
       <div className="relative max-lg:aspect-[288/244]">
-        {imgSrc ? <CardImage imgSrc={imgSrc} /> : <ImagePlaceholder />}
+        {imgSrc ? (
+          <Image
+            src={imgSrc}
+            alt=""
+            fill
+            sizes={generateImageSizes({ default: '50vw' })}
+            className="object-cover"
+          />
+        ) : (
+          <ImagePlaceholder />
+        )}
       </div>
     </div>
   )

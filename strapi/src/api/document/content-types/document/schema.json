@@ -21,20 +21,30 @@
       "targetField": "title",
       "required": true
     },
+    "identificationNumber": {
+      "type": "string"
+    },
+    "supplier": {
+      "type": "string"
+    },
+    "priceWithoutTax": {
+      "type": "string"
+    },
     "documentCategory": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::document-category.document-category",
-      "inversedBy": "dokuments"
+      "inversedBy": "documents"
     },
     "files": {
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
-      "type": "media",
-      "multiple": true,
+      "type": "component",
+      "repeatable": true,
+      "component": "items.file-item",
+      "min": 1,
       "required": true
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

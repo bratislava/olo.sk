@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_card_sliders",
+  "info": {
+    "displayName": "Karty (slider)",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "text": {
+      "type": "text"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary", "tertiary"],
+      "default": "primary",
+      "required": true
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.card-slider-card",
+      "required": true
+    }
+  }
+}

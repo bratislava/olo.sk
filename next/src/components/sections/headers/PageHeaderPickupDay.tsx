@@ -1,4 +1,3 @@
-import { LocalDate } from '@js-joda/core'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 
@@ -8,34 +7,32 @@ import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import ResponsiveCarousel from '@/src/components/common/Carousel/ResponsiveCarousel'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import { PageHeaderBasicProps } from '@/src/components/sections/headers/PageHeaderBasic'
 import { client } from '@/src/services/graphql'
 import { PickupDayHeaderSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
+import { getCurrentWeekOfYear } from '@/src/utils/getCurrentWeekOfYear'
+import { isCurrentWeekEven } from '@/src/utils/isCurrentWeekEven'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-type Props = {
+type Props = Pick<PageHeaderBasicProps, 'title'> & {
   header: PickupDayHeaderSectionFragment
-}
-
-const getCurrentWeekOfYear = () => {
-  // returns the number of the current week in current year
-  return LocalDate.now().isoWeekOfWeekyear()
-}
-
-const isCurrentWeekEven = () => {
-  return getCurrentWeekOfYear() % 2 === 0
 }
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13579&m=dev
  */
 
-const PageHeaderPickupDay = ({ header }: Props) => {
+const PageHeaderPickupDay = ({ title, header }: Props) => {
   const { t, i18n } = useTranslation()
   const locale = i18n.language
-  const { title, carouselTitle, anchors } = header
+
   const { getFullPath } = useGetFullPath()
+  const { getLinkProps } = useGetLinkProps()
+
+  const { carouselTitle, anchors, showMoreLink } = header
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
@@ -84,7 +81,7 @@ const PageHeaderPickupDay = ({ header }: Props) => {
       <div className="flex flex-col gap-6 py-6 lg:py-12">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <Typography variant="h2">{carouselTitle}</Typography>
-          <Button variant="black-link" href="/articles" asLink>
+          <Button variant="black-link" asLink {...getLinkProps(showMoreLink)}>
             {t('pageHeaderPickupDay.allNews')}
           </Button>
         </div>

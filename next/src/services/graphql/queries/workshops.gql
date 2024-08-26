@@ -1,13 +1,26 @@
+fragment WorkshopDateItem on ComponentItemsWorkshopDate {
+  datetime
+}
+
 fragment WorkshopSlugEntity on WorkshopEntity {
+  __typename
   id
   attributes {
     title
     slug
+    dates {
+      ...WorkshopDateItem
+    }
   }
 }
 
 fragment WorkshopEntity on WorkshopEntity {
   ...WorkshopSlugEntity
+  attributes {
+    sections {
+      ...PageSections
+    }
+  }
 }
 
 query Workshops {

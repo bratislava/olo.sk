@@ -4,13 +4,15 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
+import Gallery from '@/src/components/common/Gallery/Gallery'
 import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import Markdown from '@/src/components/formatting/Markdown'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
+import PageLayout from '@/src/components/layout/PageLayout'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { ArticleEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
+import { isDefined } from '@/src/utils/isDefined'
 
 type PageProps = {
   general: GeneralQuery
@@ -74,7 +76,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
       general,
       ...translations,
     },
-    revalidate: 10,
+    revalidate: 1, // TODO change to 10
   }
 }
 
@@ -85,7 +87,10 @@ const Page = ({ entity, general }: PageProps) => {
     return null
   }
 
-  const { title, perex, content } = entity.attributes
+  const { title, perex, content, gallery } = entity.attributes
+
+  // eslint-disable-next-line unicorn/no-array-callback-reference
+  const filteredGalleryImages = gallery?.data.filter(isDefined) ?? []
 
   return (
     <GeneralContextProvider general={general}>
@@ -95,14 +100,15 @@ const Page = ({ entity, general }: PageProps) => {
         {perex && <meta name="description" content={perex} />}
       </Head>
 
-      <PageLayoutPlaceholder>
+      <PageLayout>
         <ArticlePageHeader article={entity} />
 
         {/* TODO separate outer div(s) to Article Section with narrow layout */}
         <div className="mx-auto max-lg:px-4 lg:max-w-[50rem] lg:px-0">
           <div className="flex flex-col gap-6 py-6 lg:gap-12 lg:py-12">
-            <div>
+            <div className="flex flex-col gap-6 lg:gap-8">
               <Markdown content={content} />
+              {filteredGalleryImages.length > 0 ? <Gallery images={filteredGalleryImages} /> : null}
             </div>
             <ShareBlock
               text={t('articlePage.shareblock.text')}
@@ -110,7 +116,7 @@ const Page = ({ entity, general }: PageProps) => {
             />
           </div>
         </div>
-      </PageLayoutPlaceholder>
+      </PageLayout>
     </GeneralContextProvider>
   )
 }

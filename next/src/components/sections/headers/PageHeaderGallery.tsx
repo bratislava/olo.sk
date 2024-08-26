@@ -1,15 +1,21 @@
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
+import { useCallback, useState } from 'react'
+import { useOverlayTriggerState } from 'react-stately'
 
 import Button from '@/src/components/common/Button/Button'
 import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import ImageLightBox from '@/src/components/modals/gallery/ImageLightBox'
 import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { GalleryHeaderSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 
 type Props = {
+  title: string
+  perex?: string | null | undefined
+
   header: GalleryHeaderSectionFragment
 }
 
@@ -17,19 +23,30 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1183-12889&m=dev
  */
 
-const PageHeaderGallery = ({ header }: Props) => {
+const PageHeaderGallery = ({ title, perex, header }: Props) => {
   const { t } = useTranslation()
 
-  const { title, text, medias } = header
+  const { medias } = header
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredImages = medias.data.filter(isDefined) ?? []
   const imageCount = filteredImages.length
 
+  const overlayState = useOverlayTriggerState({ defaultOpen: false })
+  const [initialImageIndex, setInitialImageIndex] = useState(0)
+
+  const openAtImageIndex = useCallback(
+    (index: number) => {
+      setInitialImageIndex(index)
+      overlayState.open()
+    },
+    [overlayState],
+  )
+
   return (
     <>
       <SectionContainer background="secondary">
-        <HeaderTitleText title={title} text={text} />
+        <HeaderTitleText title={title} text={perex} />
         {/* Screen: desktop */}
         <div className="max-lg:hidden">
           <div className="relative lg:top-14 lg:-mt-14">
@@ -72,10 +89,14 @@ const PageHeaderGallery = ({ header }: Props) => {
                   )
                 })
                 // eslint-disable-next-line unicorn/no-array-callback-reference
-                .filter(isDefined)}
+                .filter(isDefined)
+                .slice(0, 3)}
               <div className="absolute bottom-4 right-4 z-1">
-                {/* TODO add button functionality */}
-                <Button variant="category-plain" className="bg-white">
+                <Button
+                  variant="category-plain"
+                  className="border border-dashed border-action-background-default bg-white"
+                  onPress={() => openAtImageIndex(0)}
+                >
                   {t('pageHeaderGallery.buttonText')}
                 </Button>
               </div>
@@ -97,15 +118,25 @@ const PageHeaderGallery = ({ header }: Props) => {
             )}
           </div>
           <div className="absolute bottom-3 right-3 z-1">
-            {/* TODO add button functionality */}
-            <Button variant="category-plain" className="bg-white">
+            <Button
+              variant="category-plain"
+              className="bg-white"
+              onPress={() => openAtImageIndex(0)}
+            >
               {t('pageHeaderGallery.buttonText')}
             </Button>
           </div>
         </div>
       </SectionContainer>
       {/* This div serves as an empty space for the image to overlap correctly */}
-      <div className="h-14 max-lg:hidden" />
+      <div aria-hidden className="h-14 bg-background-primary max-lg:hidden" />
+      <ImageLightBox
+        onClose={() => overlayState.close()}
+        isOpen={overlayState.isOpen}
+        images={filteredImages}
+        initialImageIndex={initialImageIndex}
+        isDismissable
+      />
     </>
   )
 }

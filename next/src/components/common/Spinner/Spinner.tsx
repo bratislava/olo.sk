@@ -1,8 +1,7 @@
-import cx from 'classnames'
-import { twMerge } from 'tailwind-merge'
+import cn from '@/src/utils/cn'
 
 type SpinnerBase = {
-  size?: 'lg' | 'md' | 'sm'
+  size?: 'large' | 'medium' | 'small'
   className?: string
 }
 
@@ -12,22 +11,24 @@ type SpinnerBase = {
  * Note: Figma is not followed exactly, because this implementation was much easier. Sizes should be implemented as in Figma.
  */
 
-const Spinner = ({ size = 'md', className }: SpinnerBase) => {
-  // TODO change border color to use token colors
-  const style = cx('border-gray-700 border-t-gray-300 animate-spin rounded-[50%] border-solid', {
-    'h-5 w-5 border-2 border-t-2': size === 'sm',
-    'h-8 w-8 border-3 border-t-3': size === 'md',
-    'h-12 w-12 border-4 border-t-4': size === 'lg',
-  })
+const Spinner = ({ size = 'medium', className }: SpinnerBase) => {
+  const style = cn(
+    'animate-spin rounded-[50%] border-solid border-content-primary border-t-content-secondaryInverted',
+    {
+      'h-5 w-5 border-2': size === 'small',
+      'h-8 w-8 border-3': size === 'medium',
+      'h-12 w-12 border-4': size === 'large',
+    },
+  )
 
   return (
     <div
-      className={twMerge(
-        cx({
-          'h-6 w-6 p-0.5': size === 'sm',
-          'h-10 w-10 p-1': size === 'md',
-          'h-16 w-16 p-2': size === 'lg',
-        }),
+      className={cn(
+        {
+          'h-6 w-6 p-0.5': size === 'small',
+          'h-10 w-10 p-1': size === 'medium',
+          'h-16 w-16 p-2': size === 'large',
+        },
         className,
       )}
     >

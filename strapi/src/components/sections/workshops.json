@@ -1,14 +1,14 @@
 {
   "collectionName": "components_sections_workshops",
   "info": {
-    "displayName": "Workshops",
+    "displayName": "Workshopy",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
       "type": "text"

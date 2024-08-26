@@ -7,18 +7,13 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "text": {
-      "type": "text"
-    },
     "medias": {
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

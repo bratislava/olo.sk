@@ -3,13 +3,13 @@ import { useTranslation } from 'next-i18next'
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
+import Icon, { IconName } from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type SearchResultRowCardProps = {
   title: string
   linkHref: string
-  iconName?: keyof typeof iconNameMap
+  iconName?: IconName
   imgSrc?: string
   metadata?: string[]
   className?: string
@@ -33,9 +33,9 @@ const SearchResultRowCard = ({
 
   return (
     <CardBase variant="unstyled" className={className}>
-      <div className="flex items-center gap-4 border-b border-border-default bg-background-primary p-4">
+      <div className="flex items-center gap-4 p-4">
         {/* 2.25rem = 36px, 3.5rem = 56px */}
-        <div className="flex size-[3.5rem] items-center justify-center">
+        <div className="flex size-[3.5rem] shrink-0 items-center justify-center">
           {imgSrc ? (
             <CardImage imgSrc={imgSrc} className="aspect-square size-full rounded-lg" />
           ) : iconName ? (

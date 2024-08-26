@@ -1,14 +1,14 @@
 {
   "collectionName": "components_sections_image_and_text_overlappeds",
   "info": {
-    "displayName": "Image and Text Overlapped",
+    "displayName": "Text s obrázkom (prekrytý)",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
       "type": "text"
@@ -42,7 +42,12 @@
         "images"
       ]
     },
-    "link": {
+    "primaryButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
+    },
+    "secondaryButton": {
       "type": "component",
       "repeatable": false,
       "component": "items.link"

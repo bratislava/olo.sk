@@ -81,6 +81,20 @@ fragment FaqCategorySlugEntity on FaqCategoryEntity {
 
 fragment FaqCategoryEntity on FaqCategoryEntity {
   ...FaqCategorySlugEntity
+  attributes {
+    faqs {
+      data {
+        id
+        attributes {
+          title
+          content
+        }
+      }
+    }
+    banner {
+      ...BannerSection
+    }
+  }
 }
 
 query FaqCategories($locale: I18NLocaleCode!) {
@@ -104,6 +118,7 @@ fragment ServiceCategoryEntity on ServiceCategoryEntity {
   attributes {
     title
     slug
+    categoryColor
   }
 }
 

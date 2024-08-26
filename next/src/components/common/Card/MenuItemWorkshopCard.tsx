@@ -1,13 +1,14 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
+import OloIcon, { OloIconName } from '@/src/components/common/Icon/OloIcon'
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
+import cn from '@/src/utils/cn'
 
 type MenuItemWorkshopCardProps = {
   title: string
   linkHref: string
-  subText: string
-  iconName?: keyof typeof oloIconNameMap
+  subText?: string
+  iconName?: OloIconName
   className?: string
 }
 
@@ -28,7 +29,11 @@ const MenuItemWorkshopCard = ({
         <div className="rounded-[20px] bg-background-secondary p-4">
           <OloIcon name={iconName} className="size-6" />
         </div>
-        <div className="flex flex-col items-start gap-2 self-stretch">
+        <div
+          className={cn('flex flex-col items-start gap-2 self-stretch', {
+            'justify-center': !subText,
+          })}
+        >
           <Link variant="unstyled" href={linkHref} stretched>
             <Typography
               variant="h6"
@@ -37,7 +42,7 @@ const MenuItemWorkshopCard = ({
               {title}
             </Typography>
           </Link>
-          <Typography variant="p-small">{subText}</Typography>
+          {subText ? <Typography variant="p-small">{subText}</Typography> : null}
         </div>
       </div>
     </CardBase>

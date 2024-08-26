@@ -1,22 +1,22 @@
 {
   "collectionName": "components_sections_branches",
   "info": {
-    "displayName": "Branches",
+    "displayName": "Pobočky",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
       "type": "text"
     },
     "showAll": {
       "type": "boolean",
-      "required": true,
-      "default": false
+      "default": false,
+      "required": true
     },
     "branches": {
       "type": "relation",

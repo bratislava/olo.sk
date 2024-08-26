@@ -6,6 +6,8 @@ import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { ImageHeaderSectionFragment } from '@/src/services/graphql/api'
 
 type Props = {
+  title: string
+  perex?: string | null | undefined
   header: ImageHeaderSectionFragment
 }
 
@@ -13,15 +15,15 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1199-13398&t=YDBwFkSBAz7ZvIPe-4
  */
 
-const PageHeaderImage = ({ header }: Props) => {
-  const { title, text, media } = header
+const PageHeaderImage = ({ title, perex, header }: Props) => {
+  const { media } = header
 
   const { url: imageUrl } = media.data?.attributes ?? {}
 
   return (
     <>
       <SectionContainer background="secondary">
-        <HeaderTitleText title={title} text={text} />
+        <HeaderTitleText title={title} text={perex} />
         <div className="relative aspect-[1216/440] overflow-hidden max-lg:-mx-4 lg:top-18 lg:-mt-18 lg:rounded-2xl">
           {imageUrl ? (
             <Image src={imageUrl} alt="" fill className="z-1 object-cover" />

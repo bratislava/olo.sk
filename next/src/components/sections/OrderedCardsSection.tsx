@@ -1,9 +1,14 @@
 import React from 'react'
 
+import Icon, { isBaIcon } from '@/src/components/common/Icon/Icon'
+import OloIcon, { isOloIcon } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import { OrderedCardsSectionFragment } from '@/src/services/graphql/api'
+import {
+  Enum_Componentsectionsorderedcards_Variant,
+  OrderedCardsSectionFragment,
+} from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 
@@ -16,17 +21,28 @@ type Props = {
  */
 
 const OrderedCardsSection = ({ section }: Props) => {
-  const { title, cards } = section
+  const { title, text, variantOrderedCards: variant, cards } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="secondary" className="py-6 lg:py-18">
       <div className="flex flex-col items-center gap-6 lg:gap-12">
-        <SectionHeader title={title} isCentered />
+        <SectionHeader title={title} text={text} isCentered />
         <ol className="grid w-full gap-4 lg:grid-cols-2 lg:gap-8">
           {
             // eslint-disable-next-line unicorn/no-array-callback-reference
             cards.filter(isDefined).map((card, index) => {
+              const { title: cardTitle, text: cardText, iconName } = card
+
+              // TODO This should be extracted to a separate component
+              const CardIcon = iconName ? (
+                isBaIcon(iconName) ? (
+                  <Icon name={iconName} className="size-6" />
+                ) : isOloIcon(iconName) ? (
+                  <OloIcon name={iconName} className="size-6" />
+                ) : null
+              ) : null
+
               return (
                 <li
                   // eslint-disable-next-line react/no-array-index-key
@@ -37,12 +53,18 @@ const OrderedCardsSection = ({ section }: Props) => {
                 >
                   <div className="rounded-full bg-action-background-default p-4">
                     <div className="flex size-6 items-center justify-center">
-                      <Typography variant="p-default-black">{index + 1}</Typography>
+                      {variant === Enum_Componentsectionsorderedcards_Variant.Numbers ? (
+                        <Typography variant="p-default-black">{index + 1}</Typography>
+                      ) : variant === Enum_Componentsectionsorderedcards_Variant.Icons ? (
+                        CardIcon
+                      ) : null}
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Typography variant="h5">{card.title}</Typography>
-                    <Typography>{card.text}</Typography>
+                    <Typography variant="h5" as="h3">
+                      {cardTitle}
+                    </Typography>
+                    <Typography>{cardText}</Typography>
                   </div>
                 </li>
               )

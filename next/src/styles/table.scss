@@ -1,0 +1,21 @@
+// next/utils/useHorizontalScrollFade.ts
+.scroll-fade-left::before,
+.scroll-fade-right::after {
+  @apply pointer-events-none absolute top-0 z-[1] block h-full w-[25px] from-content-primary/25 to-transparent opacity-0 transition-opacity duration-200 ease-in-out content-[''];
+}
+
+.scroll-fade-left::before {
+  @apply left-0 bg-gradient-to-r;
+}
+
+.scroll-fade-left-opaque::before {
+  @apply opacity-100;
+}
+
+.scroll-fade-right::after {
+  @apply right-0 bg-gradient-to-l;
+}
+
+.scroll-fade-right-opaque::after {
+  @apply opacity-100;
+}

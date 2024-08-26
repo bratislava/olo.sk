@@ -1,14 +1,14 @@
 {
   "collectionName": "components_sections_tables",
   "info": {
-    "displayName": "Tabuľka",
+    "displayName": "Tabuľka (placeholder)",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "anchorId": {
       "type": "string"

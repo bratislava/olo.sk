@@ -698,7 +698,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true
         }
       }>
-    coverMedia: Attribute.Media &
+    coverMedia: Attribute.Media<'images'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false
@@ -717,6 +717,12 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::article-category.article-category'
     >
     tags: Attribute.Relation<'api::article.article', 'manyToMany', 'api::tag.tag'>
+    gallery: Attribute.Media<'images', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     content: Attribute.RichText &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -861,6 +867,11 @@ export interface ApiContactContact extends Schema.CollectionType {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+    text: Attribute.String
+    primaryEmail: Attribute.Email
+    secondaryEmail: Attribute.Email
+    primaryPhone: Attribute.String
+    secondaryPhone: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -885,12 +896,23 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::document.document', 'title'> & Attribute.Required
+    identificationNumber: Attribute.String
+    supplier: Attribute.String
+    priceWithoutTax: Attribute.String
     documentCategory: Attribute.Relation<
       'api::document.document',
       'manyToOne',
       'api::document-category.document-category'
     >
-    files: Attribute.Media & Attribute.Required
+    files: Attribute.Component<'items.file-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+    description: Attribute.Text
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -907,6 +929,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
     singularName: 'document-category'
     pluralName: 'document-categories'
     displayName: 'Dokumenty - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -931,7 +954,7 @@ export interface ApiDocumentCategoryDocumentCategory extends Schema.CollectionTy
           localized: true
         }
       }>
-    dokuments: Attribute.Relation<
+    documents: Attribute.Relation<
       'api::document-category.document-category',
       'oneToMany',
       'api::document.document'
@@ -1008,6 +1031,7 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
     singularName: 'faq-category'
     pluralName: 'faq-categories'
     displayName: 'FAQs - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1033,6 +1057,12 @@ export interface ApiFaqCategoryFaqCategory extends Schema.CollectionType {
         }
       }>
     faqs: Attribute.Relation<'api::faq-category.faq-category', 'oneToMany', 'api::faq.faq'>
+    banner: Attribute.Component<'sections.banner'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1192,6 +1222,12 @@ export interface ApiMenuMenu extends Schema.SingleType {
           localized: true
         }
       }>
+    menuHeader: Attribute.Component<'items.menu-header'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> & Attribute.Private
@@ -1321,10 +1357,8 @@ export interface ApiPagePage extends Schema.CollectionType {
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
     header: Attribute.DynamicZone<
       [
-        'header-sections.basic',
         'header-sections.featured-news',
         'header-sections.gallery',
-        'header-sections.icon',
         'header-sections.image',
         'header-sections.side-image',
         'header-sections.pickup-day',
@@ -1343,15 +1377,29 @@ export interface ApiPagePage extends Schema.CollectionType {
       >
     sections: Attribute.DynamicZone<
       [
+        'sections.richtext',
+        'sections.articles',
+        'sections.banner',
         'sections.branches',
+        'sections.cards-list',
+        'sections.card-slider',
         'sections.columns',
         'sections.columns-list',
+        'sections.divider',
+        'sections.faq',
+        'sections.faq-categories',
         'sections.image-and-text',
         'sections.image-and-text-overlapped',
-        'sections.ordered-cards',
-        'sections.richtext',
-        'sections.table',
+        'sections.services',
+        'sections.waste-sorting-cards',
         'sections.workshops',
+        'sections.documents',
+        'sections.ordered-cards',
+        'sections.table',
+        'sections.sorting-guide',
+        'sections.sorting-guide-accordions',
+        'sections.contacts',
+        'sections.opening-times',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1405,6 +1453,26 @@ export interface ApiServiceService extends Schema.CollectionType {
       'manyToMany',
       'api::service-category.service-category'
     >
+    image: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    sections: Attribute.DynamicZone<
+      [
+        'sections.richtext',
+        'sections.documents',
+        'sections.faq',
+        'sections.cards-list',
+        'sections.form-cta-banner',
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1423,6 +1491,7 @@ export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType
     singularName: 'service-category'
     pluralName: 'service-categories'
     displayName: 'Slu\u017Eby - kateg\u00F3rie'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1452,6 +1521,14 @@ export interface ApiServiceCategoryServiceCategory extends Schema.CollectionType
       'manyToMany',
       'api::service.service'
     >
+    categoryColor: Attribute.Enumeration<['none', 'red', 'green', 'blue']> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }> &
+      Attribute.DefaultTo<'none'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1531,7 +1608,8 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
-    sections: Attribute.DynamicZone<['sections.richtext']>
+    sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.documents']>
+    dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

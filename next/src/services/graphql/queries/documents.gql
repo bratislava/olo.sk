@@ -7,21 +7,39 @@ fragment DocumentSlugEntity on DocumentEntity {
   }
 }
 
+fragment DocumentSearchEntity on DocumentEntity {
+  ...DocumentSlugEntity
+  attributes {
+    publishedAt
+    updatedAt
+    documentCategory {
+      data {
+        attributes {
+          title
+        }
+      }
+    }
+  }
+}
+
 fragment DocumentEntity on DocumentEntity {
   ...DocumentSlugEntity
   attributes {
     title
     slug
+    publishedAt
+    identificationNumber
+    supplier
+    priceWithoutTax
     documentCategory {
       data {
         ...DocumentCategoryEntity
       }
     }
     files {
-      data {
-        ...UploadFileEntity
-      }
+      ...FileItem
     }
+    description
   }
 }
 

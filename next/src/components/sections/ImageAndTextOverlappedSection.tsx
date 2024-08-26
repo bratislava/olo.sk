@@ -3,8 +3,8 @@ import React from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
-import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import {
   Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor as Enum_Backgroundcolor,
   Enum_Componentsectionsimageandtextoverlapped_Imageposition as Enum_Imageposition,
@@ -29,7 +29,8 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
     imagePositionImageAndTextOverlapped: imagePosition,
     backgroundColorImageAndTextOverlapped: backgroundColor,
     image,
-    link,
+    primaryButton,
+    secondaryButton,
   } = section
 
   const { getLinkProps } = useGetLinkProps()
@@ -45,9 +46,25 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
 
   const TextContent = (
     <div className="flex flex-col gap-4">
-      <Typography variant="h2">{title}</Typography>
-      <Typography>{text}</Typography>
-      {link ? <Button variant="black-link" {...getLinkProps(link)} asLink /> : null}
+      <SectionHeader title={title} text={text} />
+      <div className="flex gap-4 empty:hidden">
+        {primaryButton ? (
+          <Button
+            variant="category-solid"
+            asLink
+            hasLinkIcon={false}
+            {...getLinkProps(primaryButton)}
+          />
+        ) : null}
+        {secondaryButton ? (
+          <Button
+            variant="category-outline"
+            asLink
+            hasLinkIcon={false}
+            {...getLinkProps(secondaryButton)}
+          />
+        ) : null}
+      </div>
     </div>
   )
 

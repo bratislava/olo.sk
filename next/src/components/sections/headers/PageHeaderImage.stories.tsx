@@ -5,13 +5,17 @@ import { ImageHeaderSectionFragment } from '@/src/services/graphql/api'
 
 import PageHeaderImageComponent from './PageHeaderImage'
 
-type Props = ImageHeaderSectionFragment & { imageUrl: string }
+type Props = ImageHeaderSectionFragment & {
+  title: string
+  perex?: string
+  imageUrl: string
+}
 
 const meta: Meta<Props> = {
   title: 'Page Headers/Obrázok',
   args: {
     title: 'Modernizácia a ekologizácia',
-    text: '',
+    perex: '',
     imageUrl: imagePlaceholder.src,
   },
 }
@@ -30,6 +34,8 @@ export const PageHeaderImage: Story = {
           },
         },
       }}
+      title={args.title}
+      perex={args.perex}
     />
   ),
 }

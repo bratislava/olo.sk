@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import IconComponent, { iconNameMap } from './Icon'
+import IconComponent, { IconName, iconNameMap } from './Icon'
 
 const meta: Meta<typeof IconComponent> = {
   component: IconComponent,
@@ -26,7 +26,7 @@ export const Icon: Story = {
         {Object.keys(iconNameMap).map((name) => {
           return (
             <div className="flex w-[8rem] items-center gap-2 bg-white p-2 shadow-sm">
-              <IconComponent key={name} name={name as keyof typeof iconNameMap} />{' '}
+              <IconComponent key={name} name={name as IconName} />{' '}
               <p className="text-[0.6rem]">{name}</p>
             </div>
           )

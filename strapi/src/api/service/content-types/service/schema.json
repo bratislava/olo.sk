@@ -40,6 +40,32 @@
       "relation": "manyToMany",
       "target": "api::service-category.service-category",
       "inversedBy": "services"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sections": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "sections.richtext",
+        "sections.documents",
+        "sections.faq",
+        "sections.cards-list",
+        "sections.form-cta-banner"
+      ]
     }
   }
 }

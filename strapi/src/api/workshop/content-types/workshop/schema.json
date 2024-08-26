@@ -24,8 +24,16 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
-        "sections.richtext"
+        "sections.richtext",
+        "sections.faq",
+        "sections.documents"
       ]
+    },
+    "dates": {
+      "displayName": "workshopDate",
+      "type": "component",
+      "repeatable": true,
+      "component": "items.workshop-date"
     }
   }
 }

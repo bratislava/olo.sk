@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_faq_categories",
+  "info": {
+    "displayName": "FAQ kategórie",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "showAll": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "faqCategories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::faq-category.faq-category"
+    }
+  }
+}

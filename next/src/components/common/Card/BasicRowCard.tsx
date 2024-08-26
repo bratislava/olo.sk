@@ -1,6 +1,6 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { iconNameMap } from '@/src/components/common/Icon/Icon'
-import OloIcon, { oloIconNameMap } from '@/src/components/common/Icon/OloIcon'
+import Icon, { IconName, isBaIcon } from '@/src/components/common/Icon/Icon'
+import OloIcon, { isOloIcon, OloIconName } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -16,15 +16,9 @@ export type BasicRowCardProps = {
   | {
       variant: 'icon-value'
       label?: never
-      iconName: keyof typeof iconNameMap | keyof typeof oloIconNameMap
+      iconName: IconName | OloIconName
     }
 )
-
-// TODO maybe extract to separate util or Icon provider component
-const isOloIcon = (iconName: string): iconName is keyof typeof oloIconNameMap =>
-  iconName in oloIconNameMap
-
-const isBaIcon = (iconName: string): iconName is keyof typeof iconNameMap => iconName in iconNameMap
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-9981&m=dev
@@ -36,11 +30,14 @@ const BasicRowCard = ({ variant, value, label, iconName, className }: BasicRowCa
       <div className="py-3 lg:py-4">
         {variant === 'icon-value' ? (
           <div className="flex gap-3 lg:gap-4">
-            {isBaIcon(iconName) ? (
-              <Icon name={iconName} className="size-5 lg:size-6" />
-            ) : isOloIcon(iconName) ? (
-              <OloIcon name={iconName} className="size-5 lg:size-6" />
-            ) : null}
+            {
+              // TODO This should be extracted to a separate component
+              isBaIcon(iconName) ? (
+                <Icon name={iconName} className="size-5 lg:size-6" />
+              ) : isOloIcon(iconName) ? (
+                <OloIcon name={iconName} className="size-5 lg:size-6" />
+              ) : null
+            }
             <Typography variant="p-default">{value}</Typography>
           </div>
         ) : variant === 'label-value-horizontal' ? (

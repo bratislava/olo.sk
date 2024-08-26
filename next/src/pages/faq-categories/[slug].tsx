@@ -3,12 +3,16 @@ import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 
+import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
+import FaqGroup from '@/src/components/common/FaqGroup/FaqGroup'
+import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
-import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
+import BannerSection from '@/src/components/sections/BannerSection'
+import PageHeaderIcon from '@/src/components/sections/headers/PageHeaderIcon'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { FaqCategoryEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
+import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 
 type PageProps = {
   general: GeneralQuery
@@ -57,16 +61,27 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
       general,
       ...translations,
     },
-    revalidate: 10,
+    revalidate: 1, // TODO change to 10
   }
 }
 
 const Page = ({ entity, general }: PageProps) => {
+  // TODO consider extracting this to a hook for all detail pages
+  const faqCategoriesParentPage =
+    general.navigation?.data?.attributes?.faqCategoriesParentPage?.data
+  const breadcrumbs = React.useMemo(
+    () => [
+      ...getPageBreadcrumbs(faqCategoriesParentPage),
+      { title: entity.attributes?.title ?? '', path: null },
+    ],
+    [faqCategoriesParentPage, entity.attributes?.title],
+  )
+
   if (!entity.attributes) {
     return null
   }
 
-  const { title } = entity.attributes
+  const { title, faqs, banner } = entity.attributes
 
   return (
     <GeneralContextProvider general={general}>
@@ -75,12 +90,19 @@ const Page = ({ entity, general }: PageProps) => {
         <title>{title}</title>
       </Head>
 
-      <PageLayoutPlaceholder>
-        {/* TODO Header and Content */}
+      <PageLayout>
         <SectionContainer background="secondary">
-          <HeaderTitleText title={title} />
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
         </SectionContainer>
-      </PageLayoutPlaceholder>
+        <PageHeaderIcon title={title} header={{ iconName: 'live-help' }} />
+        {/* TODO fix y-padding so we don't change it from here */}
+        <div className="flex flex-col py-6 lg:py-12 [&>*]:py-3 [&>div>*]:first:opacity-25 [&>div]:lg:py-6">
+          <SectionContainer>
+            <FaqGroup faqs={faqs?.data ?? []} />
+          </SectionContainer>
+          {banner ? <BannerSection section={banner} /> : null}
+        </div>
+      </PageLayout>
     </GeneralContextProvider>
   )
 }

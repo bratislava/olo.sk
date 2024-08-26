@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-import Typography from '@/src/components/common/Typography/Typography'
+import Markdown from '@/src/components/formatting/Markdown'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { ColumnsListSectionFragment } from '@/src/services/graphql/api'
@@ -16,13 +16,20 @@ type Props = {
  */
 
 const ColumnsListSection = ({ section }: Props) => {
-  const { title, backgroundColorColumnList: backgroundColor, leftColumn, rightColumn } = section
+  const {
+    title,
+    text,
+    backgroundColorColumnList: backgroundColor,
+    leftColumn,
+    rightColumn,
+  } = section
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColor ?? 'primary'} className="w-full py-6 lg:py-18">
       <div className="flex flex-col gap-6 lg:gap-8">
-        <SectionHeader title={title} />
+        <SectionHeader title={title} text={text} />
+
         <div className="grid gap-3 lg:grid-cols-2 lg:gap-8">
           {[leftColumn, rightColumn]
             .filter((column) => column?.length)
@@ -45,7 +52,7 @@ const ColumnsListSection = ({ section }: Props) => {
                             </div>
                           ) : null}
                           {/* TODO discuss whether we want to use rich text here instead */}
-                          <Typography variant="p-default">{columnItem.text}</Typography>
+                          <Markdown content={columnItem.content} />
                         </div>
                       )
                     })

@@ -7,9 +7,9 @@ import { useEffect, useMemo } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
+import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
       general,
       ...translations,
     },
-    revalidate: 10,
+    revalidate: 1, // TODO change to 10
   }
 }
 
@@ -111,8 +111,6 @@ const Page = ({ entity: page, general }: PageProps) => {
   const { title, perex, sections } = page.attributes
   const [header] = page.attributes.header ?? []
 
-  // const title = useTitle(blogPostTitle)
-
   return (
     <GeneralContextProvider general={general}>
       {/* TODO common Head/Seo component */}
@@ -121,21 +119,17 @@ const Page = ({ entity: page, general }: PageProps) => {
         {perex && <meta name="description" content={perex} />}
       </Head>
 
-      <PageLayoutPlaceholder>
-        {/* TODO consider extracting to PageContent */}
-        <SectionContainer background="secondary">
-          <Breadcrumbs breadcrumbs={breadcrumbs} />
-        </SectionContainer>
-        <PageHeaderSections header={header} />
+      <PageLayout>
+        {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
+        {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
+          <SectionContainer background="secondary">
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+          </SectionContainer>
+        )}
+        <PageHeaderSections header={header} title={title} perex={perex} breadcrumbs={breadcrumbs} />
 
         <Sections sections={sections?.filter(isDefined) ?? []} />
-      </PageLayoutPlaceholder>
-      {/* <GlobalCategoryColorProvider */}
-      {/*   color={blogPost?.attributes?.tag?.data?.attributes?.pageCategory?.data?.attributes?.color} */}
-      {/* /> */}
-      {/* <PageLayout> */}
-      {/*   <BlogPostPageContentTmp blogPost={blogPost} /> */}
-      {/* </PageLayout> */}
+      </PageLayout>
     </GeneralContextProvider>
   )
 }

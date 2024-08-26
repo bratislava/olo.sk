@@ -1,14 +1,17 @@
 {
   "collectionName": "components_sections_columns_lists",
   "info": {
-    "displayName": "Columns List",
+    "displayName": "Stĺpce so zoznamom (ikonka + text)",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
+    },
+    "text": {
+      "type": "text"
     },
     "backgroundColor": {
       "type": "enumeration",

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_services",
+  "info": {
+    "displayName": "Služby"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

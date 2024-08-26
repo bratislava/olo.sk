@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_waste_sorting_cards",
+  "info": {
+    "displayName": "Komodity",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.waste-sorting-cards-item"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.banner"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+fragment ContactEntity on ContactEntity {
+  id
+  attributes {
+    label
+    text
+    primaryEmail
+    secondaryEmail
+    primaryPhone
+    secondaryPhone
+  }
+}

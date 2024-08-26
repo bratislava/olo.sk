@@ -7,6 +7,16 @@ fragment SlideItem on ComponentItemsSlide {
     }
   }
   backgroundColor
+  link {
+    ...Link
+  }
+}
+
+fragment CardsListItem on ComponentItemsCardsListItem {
+  title
+  link {
+    ...Link
+  }
 }
 
 fragment HeroMainTile on ComponentItemsHeroMainTile {
@@ -31,57 +41,73 @@ fragment HomepageServiceTile on ComponentItemsHomepageServiceTile {
   }
 }
 
+fragment HeroHomepageSection on ComponentSectionsHeroHomepageSection {
+  slides {
+    ...SlideItem
+  }
+  mainTiles {
+    ...HeroMainTile
+  }
+  smallTiles {
+    ...HeroSmallTile
+  }
+}
+
+fragment ArticlesHomepageSection on ComponentSectionsArticlesHomepageSection {
+  title
+  text
+  articles {
+    data {
+      ...ArticleEntity
+    }
+  }
+  showMoreLink {
+    ...Link
+  }
+}
+
+fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {
+  title
+  text
+  mainCards {
+    ...CardsListItem
+  }
+  branchesTitle
+  branches {
+    data {
+      ...BranchEntity
+    }
+  }
+  showMoreLink {
+    ...Link
+  }
+}
+
+fragment ServicesHomepageSection on ComponentSectionsServicesHomepageSection {
+  title
+  text
+  tiles {
+    ...HomepageServiceTile
+  }
+  showMoreLink {
+    ...Link
+  }
+}
+
 fragment HomepageEntity on HomepageEntity {
   id
   attributes {
     heroSection {
-      slides {
-        ...SlideItem
-      }
-      mainTiles {
-        ...HeroMainTile
-      }
-      smallTiles {
-        ...HeroSmallTile
-      }
+      ...HeroHomepageSection
     }
     articlesSection {
-      title
-      text
-      articles {
-        data {
-          ...ArticleEntity
-        }
-      }
-      showMoreLink {
-        ...Link
-      }
+      ...ArticlesHomepageSection
     }
     koloSection {
-      title
-      text
-      mainCards {
-        ...Link
-      }
-      branchesTitle
-      branches {
-        data {
-          ...BranchEntity
-        }
-      }
-      showMoreLink {
-        ...Link
-      }
+      ...KoloHomepageSection
     }
     servicesSection {
-      title
-      text
-      tiles {
-        ...HomepageServiceTile
-      }
-      showMoreLink {
-        ...Link
-      }
+      ...ServicesHomepageSection
     }
   }
 }

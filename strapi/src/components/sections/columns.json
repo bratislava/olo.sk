@@ -1,17 +1,17 @@
 {
   "collectionName": "components_sections_columns",
   "info": {
-    "displayName": "Columns",
+    "displayName": "Stĺpce (nadpis, text, obrázok)",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "backgroundColor": {
       "type": "enumeration",

@@ -13,21 +13,33 @@
   & > h4,
   & > h5,
   & > h6 {
-    @apply mb-4 mt-10;
+    @apply mb-4 mt-8;
   }
 
-  & > ul,
-  & > ol {
-    @apply mb-8 mt-4;
+  & > h1 + p,
+  & > h2 + p,
+  & > h3 + p,
+  & > h4 + p,
+  & > h5 + p,
+  & > h6 + p {
+    @apply my-0;
   }
 
-  & > *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(ul):not(ol) {
-    @apply my-4;
+  & > *:not(h1, h2, h3, h4, h5, h6, ul, ol, blockquote, :has(img)) {
+    @apply my-6;
+  }
+
+  & > *:has(img) {
+    @apply my-8;
+  }
+
+  blockquote {
+    @apply my-10;
   }
 
   ol {
     & > li {
-      @apply my-4;
+      @apply my-3;
 
       &:first-child {
         @apply mt-0;
@@ -41,7 +53,7 @@
 
   ul {
     & > li {
-      @apply my-1;
+      @apply my-3;
 
       &:first-child {
         @apply mt-0;

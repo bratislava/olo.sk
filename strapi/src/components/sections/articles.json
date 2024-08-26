@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_articles",
+  "info": {
+    "displayName": "Články",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

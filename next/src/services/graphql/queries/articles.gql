@@ -34,6 +34,11 @@ fragment ArticleEntity on ArticleEntity {
   ...ArticleCardEntity
   attributes {
     content
+    gallery {
+      data {
+        ...UploadImageEntity
+      }
+    }
   }
 }
 
@@ -57,6 +62,24 @@ query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
   articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
     data {
       ...ArticleEntity
+    }
+  }
+}
+
+query SearchArticles($search: String!, $page: Int!, $pageSize: Int!, $locale: I18NLocaleCode!) {
+  articles(
+    filters: { title: { containsi: $search } }
+    sort: "addedAt:desc"
+    pagination: { page: $page, pageSize: $pageSize }
+    locale: $locale
+  ) {
+    meta {
+      pagination {
+        total
+      }
+    }
+    data {
+      ...ArticleCardEntity
     }
   }
 }

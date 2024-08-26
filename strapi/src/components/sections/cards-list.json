@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_cards_lists",
+  "info": {
+    "displayName": "Odkazy",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.cards-list-item"
+    }
+  }
+}

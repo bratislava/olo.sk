@@ -1,13 +1,22 @@
 {
   "collectionName": "components_sections_ordered_cards",
   "info": {
-    "displayName": "Ordered Cards",
+    "displayName": "Karty na žltom pozadí",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string",
+      "required": false
+    },
+    "text": {
+      "type": "text"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": ["numbers", "icons"],
+      "default": "numbers",
       "required": true
     },
     "cards": {

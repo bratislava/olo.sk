@@ -1,8 +1,15 @@
-import * as React from 'react'
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { usePathname } from 'next/navigation'
+import { useTranslation } from 'next-i18next'
+import React, { useEffect, useMemo } from 'react'
 
+import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
-import Typography from '@/src/components/common/Typography/Typography'
+import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
+import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
+import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
 
 type NavMenuProps = {
@@ -10,29 +17,52 @@ type NavMenuProps = {
 }
 
 const NavMenu = ({ className }: NavMenuProps) => {
+  const { menu } = useGeneralContext()
+  const pathname = usePathname()
+  const { menuValue, setMenuValue } = useNavMenuContext()
+  const { t } = useTranslation()
+
+  const menus = useMemo(() => getParsedMenus(menu), [menu])
+
+  useEffect(() => {
+    setMenuValue('')
+  }, [pathname, setMenuValue])
+
   return (
-    <SectionContainer
-      className={cn('border-b border-border-default bg-background-primary py-5', className)}
+    <NavigationMenu.Root
+      value={menuValue}
+      onValueChange={setMenuValue}
+      aria-label={t('navBar.aria.navBarAriaLabel')}
+      className={cn('border-b border-border-default bg-background-primary', className)}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex w-full items-center justify-between">
-          <div className="flex gap-8">
-            {['Odpad', 'Služby', 'Aktuality', 'KOLO', 'ZEVO', 'O nás'].map((item) => {
-              return (
-                <div className="flex items-center justify-center gap-0.5" key={item}>
-                  <Typography variant="p-default-bold">{item}</Typography>
-                  <Icon name="chevron-dole-maly" className="mb-1 size-6" />
-                </div>
-              )
-            })}
+      <SectionContainer>
+        <NavigationMenu.List className="flex items-center justify-between first:-ml-4">
+          <div className="flex">
+            {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
           </div>
-          {/* TODO: Temporary solution - should be implemented as a Button */}
-          <div className="opacity-25">
-            <Icon name="lupa" className="size-6" />
-          </div>
-        </div>
-      </div>
-    </SectionContainer>
+          <Button
+            href="/" // TODO: Provide valid path
+            asLink
+            icon={
+              <Icon
+                name="lupa"
+                className="size-6 border border-dashed border-action-background-default"
+              />
+            }
+            hasLinkIcon={false}
+            aria-label={t('navBar.aria.searchButton')}
+            variant="icon-wrapped"
+            className="-mr-4 px-4 py-5"
+          />
+        </NavigationMenu.List>
+      </SectionContainer>
+
+      <NavigationMenu.Viewport
+        // Together with onCLick in NavMenuContent, it closes the menu on click outside of container area
+        onClick={() => setMenuValue('')}
+        className="absolute z-[29] h-screen w-full"
+      />
+    </NavigationMenu.Root>
   )
 }
 

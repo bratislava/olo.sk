@@ -5,13 +5,16 @@ import Button from '@/src/components/common/Button/Button'
 import CardBase, { CardBaseProps } from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
+import { serviceCategoryMap } from '@/src/components/sections/headers/ServicePageHeader'
+import { ServiceCategoryEntityFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
+import { isDefined } from '@/src/utils/isDefined'
 
 type ServiceCardProps = {
   title: string
   linkHref: string
   className?: string
-  serviceCategories: Array<'public' | 'firms' | 'institutions'>
+  serviceCategories: ServiceCategoryEntityFragment[]
 } & Omit<CardBaseProps, 'variant'>
 
 /**
@@ -33,8 +36,8 @@ const ServiceCard = ({
       hasWhiteSectionBackground={hasWhiteSectionBackground}
       className={cn('p-4 lg:p-6', className)}
     >
-      <div className="flex flex-col gap-8 lg:gap-12">
-        <div className="flex flex-col items-start justify-start gap-3 lg:gap-4">
+      <div className="flex h-full flex-col gap-8 lg:gap-12">
+        <div className="flex h-full flex-col items-start justify-start gap-3 lg:gap-4">
           <Typography
             variant="h6"
             className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
@@ -42,9 +45,19 @@ const ServiceCard = ({
             {title}
           </Typography>
           <div className="flex flex-wrap items-start justify-start gap-2">
-            {serviceCategories.map((category) => (
-              <Badge variant={category} />
-            ))}
+            {serviceCategories
+              .map((category) => {
+                if (!category.attributes) return null
+
+                return (
+                  <Badge
+                    label={category.attributes?.title}
+                    variant={serviceCategoryMap[category.attributes.categoryColor]}
+                  />
+                )
+              })
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+              .filter(isDefined)}
           </div>
         </div>
         <div className="flex items-center gap-6">

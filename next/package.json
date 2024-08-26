@@ -17,7 +17,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "parse-translations": "i18next",
-    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E"
+    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E",
+    "update-react-aria": "yarn add @internationalized/date@latest react-aria@latest react-aria-components@latest react-stately@latest tailwindcss-react-aria-components -E"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^5.0.2",
@@ -28,14 +29,17 @@
     "@tanstack/react-query": "^5.40.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "focus-trap-react": "^10.2.3",
     "framer-motion": "^11.1.7",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "graphql-tag": "^2.12.6",
     "i18next": "23.11.2",
     "init": "^0.1.2",
+    "meilisearch": "0.30.0",
     "next": "14.1.4",
     "next-i18next": "15.3.0",
+    "next-query-params": "^5.0.0",
     "pretty-bytes": "^6.1.1",
     "react": "^18",
     "react-aria": "^3.32.1",
@@ -44,6 +48,7 @@
     "react-i18next": "14.1.1",
     "react-markdown": "^9.0.1",
     "react-resize-detector": "^10.0.1",
+    "react-stately": "^3.32.2",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "remark-unwrap-images": "^4.0.0",
@@ -52,6 +57,7 @@
     "tailwind-merge": "^2.2.2",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss-react-aria-components": "^1.1.1",
+    "use-query-params": "^2.2.1",
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {

@@ -140,6 +140,8 @@ const config: Config = {
         kitchen: 'rgb(var(--token-waste-kitchen))',
         organic: 'rgb(var(--token-waste-organic))',
         mixed: 'rgb(var(--token-waste-mixed))',
+        cemetery: 'rgb(var(--token-waste-cemetery))',
+        christmasTrees: 'rgb(var(--token-waste-christmasTrees))',
       },
     },
     extend: {
@@ -157,10 +159,15 @@ const config: Config = {
       },
       spacing: {
         4.5: '1.125rem', // 18px
+        5.5: '1.375rem', // 22px
+        13: '3.25rem', // 52px
         18: '4.5rem', // 72px
       },
       zIndex: {
         1: '1',
+      },
+      aspectRatio: {
+        heroSliderMedia: '612/322',
       },
     },
   },

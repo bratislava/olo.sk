@@ -13,6 +13,7 @@ import cn from '@/src/utils/cn'
 export const oloIconNameMap = {
   // size 24 px
   'career-calendar': 'CareerCalendarIcon',
+  chat: 'ChatIcon',
   directions: 'DirectionsIcon',
   'live-help': 'LiveHelpIcon',
   'social-media-facebook-footer': 'FacebookFooterIcon',
@@ -26,10 +27,14 @@ export const oloIconNameMap = {
   'social-media-linkedin': 'LinkedInIcon',
 } satisfies Record<string, keyof typeof OloIcons>
 
+export type OloIconName = keyof typeof oloIconNameMap
+
+export const isOloIcon = (iconName: string): iconName is OloIconName => iconName in oloIconNameMap
+
 type OloIconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
 export type OloIconProps = {
-  name: keyof typeof oloIconNameMap
+  name: OloIconName
   className?: string
 }
 

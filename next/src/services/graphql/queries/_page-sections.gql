@@ -5,9 +5,12 @@ fragment RichtextSection on ComponentSectionsRichtext {
 
 fragment OrderedCardsSection on ComponentSectionsOrderedCards {
   title
+  text
+  variantOrderedCards: variant
   cards {
     title
     text
+    iconName
   }
 }
 
@@ -54,7 +57,10 @@ fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlappe
       ...UploadImageEntity
     }
   }
-  link {
+  primaryButton {
+    ...Link
+  }
+  secondaryButton {
     ...Link
   }
 }
@@ -76,13 +82,14 @@ fragment WorkshopsSection on ComponentSectionsWorkshops {
   showAll
   workshops {
     data {
-      ...WorkshopEntity
+      ...WorkshopSlugEntity
     }
   }
 }
 
 fragment ColumnsListSection on ComponentSectionsColumnsList {
   title
+  text
   backgroundColorColumnList: backgroundColor
   leftColumn {
     icon {
@@ -90,7 +97,7 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
         ...UploadImageEntity
       }
     }
-    text
+    content
   }
   rightColumn {
     icon {
@@ -98,7 +105,7 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
         ...UploadImageEntity
       }
     }
-    text
+    content
   }
 }
 
@@ -106,6 +113,191 @@ fragment TableSection on ComponentSectionsTable {
   title
   text
   anchorId
+}
+
+fragment FaqSection on ComponentSectionsFaq {
+  title
+  text
+  backgroundColorFaq: backgroundColor
+  showMoreLink {
+    ...Link
+  }
+  faqs {
+    data {
+      ...FaqEntity
+    }
+  }
+}
+
+fragment FilesSection on ComponentSectionsFiles {
+  title
+  text
+  files {
+    ...FileItem
+  }
+}
+
+fragment DocumentsSection on ComponentSectionsDocuments {
+  title
+  text
+  showAll
+  documents {
+    data {
+      ...DocumentEntity
+    }
+  }
+}
+
+fragment BannerSection on ComponentSectionsBanner {
+  titleRequired: title
+  text
+  variant
+  image {
+    data {
+      ...UploadImageEntity
+    }
+  }
+  primaryButtonLink {
+    ...Link
+  }
+  secondaryButtonLink {
+    ...Link
+  }
+}
+
+fragment DividerSection on ComponentSectionsDivider {
+  backgroundColorDivider: backgroundColor
+}
+
+fragment CardsListSection on ComponentSectionsCardsList {
+  title
+  text
+  cardsCardsList: cards {
+    title
+    link {
+      ...Link
+    }
+  }
+}
+
+fragment FaqCategoriesSection on ComponentSectionsFaqCategories {
+  title
+  text
+  showAll
+  faqCategories {
+    data {
+      ...FaqCategorySlugEntity
+    }
+  }
+}
+
+fragment ServicesSection on ComponentSectionsServices {
+  title
+  text
+}
+
+fragment WasteSortingCardsSection on ComponentSectionsWasteSortingCards {
+  title
+  text
+  cardsWasteSortingCards: cards {
+    title
+    variant
+    link {
+      ...Link
+    }
+  }
+  banner {
+    ...BannerSection
+  }
+}
+
+fragment SortingGuide on ComponentItemsSortingGuide {
+  titleGoesHere
+  titleDoesntGoHere
+  goesHereItems {
+    label
+  }
+  doesntGoHereItems {
+    label
+  }
+}
+
+fragment SortingGuideSection on ComponentSectionsSortingGuide {
+  title
+  text
+  sortingGuide {
+    ...SortingGuide
+  }
+  banner {
+    ...BannerSection
+  }
+}
+
+fragment SortingGuideAccordionsSection on ComponentSectionsSortingGuideAccordions {
+  title
+  text
+  sortingGuideAccordions {
+    title
+    wasteType
+    sortingGuide {
+      ...SortingGuide
+    }
+  }
+  banner {
+    ...BannerSection
+  }
+}
+
+fragment ArticlesSection on ComponentSectionsArticles {
+  title
+  text
+}
+
+fragment CardSliderSection on ComponentSectionsCardSlider {
+  title
+  text
+  backgroundColorCardSlider: backgroundColor
+  cardsCardSlider: cards {
+    title
+    text
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    link {
+      ...Link
+    }
+  }
+}
+
+fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
+  title
+  text
+  bannerTitle
+  bannerLink {
+    ...Link
+  }
+}
+
+fragment ContactsSection on ComponentSectionsContacts {
+  title
+  text
+  contacts {
+    data {
+      ...ContactEntity
+    }
+  }
+}
+
+fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
+  title
+  text
+  openingTimes {
+    data {
+      ...OpeningTimeEntity
+    }
+  }
 }
 
 fragment PageSections on PageSectionsDynamicZone {
@@ -145,5 +337,65 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsTable {
     ...TableSection
+  }
+
+  ... on ComponentSectionsFaq {
+    ...FaqSection
+  }
+
+  ... on ComponentSectionsDocuments {
+    ...DocumentsSection
+  }
+
+  #  ... on ComponentSectionsFiles {
+  #    ...FilesSection
+  #  }
+
+  ... on ComponentSectionsBanner {
+    ...BannerSection
+  }
+
+  ... on ComponentSectionsDivider {
+    ...DividerSection
+  }
+
+  ... on ComponentSectionsCardsList {
+    ...CardsListSection
+  }
+
+  ... on ComponentSectionsFaqCategories {
+    ...FaqCategoriesSection
+  }
+
+  ... on ComponentSectionsServices {
+    ...ServicesSection
+  }
+
+  ... on ComponentSectionsWasteSortingCards {
+    ...WasteSortingCardsSection
+  }
+
+  ... on ComponentSectionsSortingGuide {
+    ...SortingGuideSection
+  }
+
+  ... on ComponentSectionsSortingGuideAccordions {
+    ...SortingGuideAccordionsSection
+  }
+
+  ... on ComponentSectionsArticles {
+    ...ArticlesSection
+  }
+
+  ... on ComponentSectionsCardSlider {
+    ...CardSliderSection
+  }
+
+  ... on ComponentSectionsContacts {
+    ...ContactsSection
+  }
+
+  ... on ComponentSectionsOpeningTimes {
+    ...OpeningTimesSection
   }
 }

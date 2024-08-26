@@ -53,10 +53,8 @@
     "header": {
       "type": "dynamiczone",
       "components": [
-        "header-sections.basic",
         "header-sections.featured-news",
         "header-sections.gallery",
-        "header-sections.icon",
         "header-sections.image",
         "header-sections.side-image",
         "header-sections.pickup-day"
@@ -71,15 +69,29 @@
     "sections": {
       "type": "dynamiczone",
       "components": [
+        "sections.richtext",
+        "sections.articles",
+        "sections.banner",
         "sections.branches",
+        "sections.cards-list",
+        "sections.card-slider",
         "sections.columns",
         "sections.columns-list",
+        "sections.divider",
+        "sections.faq",
+        "sections.faq-categories",
         "sections.image-and-text",
         "sections.image-and-text-overlapped",
+        "sections.services",
+        "sections.waste-sorting-cards",
+        "sections.workshops",
+        "sections.documents",
         "sections.ordered-cards",
-        "sections.richtext",
         "sections.table",
-        "sections.workshops"
+        "sections.sorting-guide",
+        "sections.sorting-guide-accordions",
+        "sections.contacts",
+        "sections.opening-times"
       ],
       "pluginOptions": {
         "i18n": {

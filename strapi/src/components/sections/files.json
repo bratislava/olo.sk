@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_files",
+  "info": {
+    "displayName": "Súbory",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "text": {
+      "type": "text"
+    },
+    "files": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.file-item",
+      "required": true,
+      "min": 1
+    }
+  }
+}

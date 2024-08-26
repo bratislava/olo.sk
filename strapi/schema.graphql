@@ -8,6 +8,7 @@ type Article {
   content: String
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
+  gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
   locale: String
   localizations(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   perex: String
@@ -107,6 +108,7 @@ input ArticleInput {
   articleCategory: ID
   content: String
   coverMedia: ID
+  gallery: [ID]
   perex: String
   publishedAt: DateTime
   slug: String
@@ -197,26 +199,6 @@ type BranchRelationResponseCollection {
   data: [BranchEntity!]!
 }
 
-type ComponentHeaderSectionsBasic {
-  id: ID!
-  text: String
-  title: String!
-}
-
-input ComponentHeaderSectionsBasicFiltersInput {
-  and: [ComponentHeaderSectionsBasicFiltersInput]
-  not: ComponentHeaderSectionsBasicFiltersInput
-  or: [ComponentHeaderSectionsBasicFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
-}
-
-input ComponentHeaderSectionsBasicInput {
-  id: ID
-  text: String
-  title: String
-}
-
 type ComponentHeaderSectionsBranchMap {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -239,8 +221,6 @@ type ComponentHeaderSectionsFeaturedNews {
   firstArticle: ArticleEntityResponse
   id: ID!
   secondArticle: ArticleEntityResponse
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsFeaturedNewsFiltersInput {
@@ -250,8 +230,6 @@ input ComponentHeaderSectionsFeaturedNewsFiltersInput {
   not: ComponentHeaderSectionsFeaturedNewsFiltersInput
   or: [ComponentHeaderSectionsFeaturedNewsFiltersInput]
   secondArticle: ArticleFiltersInput
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsFeaturedNewsInput {
@@ -259,81 +237,62 @@ input ComponentHeaderSectionsFeaturedNewsInput {
   firstArticle: ID
   id: ID
   secondArticle: ID
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsGallery {
   id: ID!
   medias(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsGalleryFiltersInput {
   and: [ComponentHeaderSectionsGalleryFiltersInput]
   not: ComponentHeaderSectionsGalleryFiltersInput
   or: [ComponentHeaderSectionsGalleryFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsGalleryInput {
   id: ID
   medias: [ID]
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsIcon {
-  icon: UploadFileEntityResponse!
+  iconName: String!
   id: ID!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsIconFiltersInput {
   and: [ComponentHeaderSectionsIconFiltersInput]
+  iconName: StringFilterInput
   not: ComponentHeaderSectionsIconFiltersInput
   or: [ComponentHeaderSectionsIconFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsIconInput {
-  icon: ID
+  iconName: String
   id: ID
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsImage {
   id: ID!
   media: UploadFileEntityResponse!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsImageFiltersInput {
   and: [ComponentHeaderSectionsImageFiltersInput]
   not: ComponentHeaderSectionsImageFiltersInput
   or: [ComponentHeaderSectionsImageFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsImageInput {
   id: ID
   media: ID
-  text: String
-  title: String
 }
 
 type ComponentHeaderSectionsPickupDay {
   anchors(filters: ComponentItemsAnchorFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsAnchor]
   carouselTitle: String!
   id: ID!
-  title: String!
+  showMoreLink: ComponentItemsLink
 }
 
 input ComponentHeaderSectionsPickupDayFiltersInput {
@@ -342,36 +301,30 @@ input ComponentHeaderSectionsPickupDayFiltersInput {
   carouselTitle: StringFilterInput
   not: ComponentHeaderSectionsPickupDayFiltersInput
   or: [ComponentHeaderSectionsPickupDayFiltersInput]
-  title: StringFilterInput
+  showMoreLink: ComponentItemsLinkFiltersInput
 }
 
 input ComponentHeaderSectionsPickupDayInput {
   anchors: [ComponentItemsAnchorInput]
   carouselTitle: String
   id: ID
-  title: String
+  showMoreLink: ComponentItemsLinkInput
 }
 
 type ComponentHeaderSectionsSideImage {
   id: ID!
   media: UploadFileEntityResponse!
-  text: String
-  title: String!
 }
 
 input ComponentHeaderSectionsSideImageFiltersInput {
   and: [ComponentHeaderSectionsSideImageFiltersInput]
   not: ComponentHeaderSectionsSideImageFiltersInput
   or: [ComponentHeaderSectionsSideImageFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
 }
 
 input ComponentHeaderSectionsSideImageInput {
   id: ID
   media: ID
-  text: String
-  title: String
 }
 
 type ComponentItemsAnchor {
@@ -392,6 +345,51 @@ input ComponentItemsAnchorInput {
   id: ID
   label: String
   targetId: String
+}
+
+type ComponentItemsCardSliderCard {
+  id: ID!
+  image: UploadFileEntityResponse!
+  link: ComponentItemsLink
+  text: String
+  title: String!
+}
+
+input ComponentItemsCardSliderCardFiltersInput {
+  and: [ComponentItemsCardSliderCardFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsCardSliderCardFiltersInput
+  or: [ComponentItemsCardSliderCardFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsCardSliderCardInput {
+  id: ID
+  image: ID
+  link: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
+type ComponentItemsCardsListItem {
+  id: ID!
+  link: ComponentItemsLink!
+  title: String!
+}
+
+input ComponentItemsCardsListItemFiltersInput {
+  and: [ComponentItemsCardsListItemFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsCardsListItemFiltersInput
+  or: [ComponentItemsCardsListItemFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentItemsCardsListItemInput {
+  id: ID
+  link: ComponentItemsLinkInput
+  title: String
 }
 
 type ComponentItemsColumnsItem {
@@ -417,22 +415,22 @@ input ComponentItemsColumnsItemInput {
 }
 
 type ComponentItemsColumnsListItem {
+  content: String!
   icon: UploadFileEntityResponse
   id: ID!
-  text: String!
 }
 
 input ComponentItemsColumnsListItemFiltersInput {
   and: [ComponentItemsColumnsListItemFiltersInput]
+  content: StringFilterInput
   not: ComponentItemsColumnsListItemFiltersInput
   or: [ComponentItemsColumnsListItemFiltersInput]
-  text: StringFilterInput
 }
 
 input ComponentItemsColumnsListItemInput {
+  content: String
   icon: ID
   id: ID
-  text: String
 }
 
 type ComponentItemsFileItem {
@@ -575,6 +573,23 @@ input ComponentItemsLinkInput {
   workshop: ID
 }
 
+type ComponentItemsMenuHeader {
+  contactsLink: ComponentItemsLink
+  id: ID!
+}
+
+input ComponentItemsMenuHeaderFiltersInput {
+  and: [ComponentItemsMenuHeaderFiltersInput]
+  contactsLink: ComponentItemsLinkFiltersInput
+  not: ComponentItemsMenuHeaderFiltersInput
+  or: [ComponentItemsMenuHeaderFiltersInput]
+}
+
+input ComponentItemsMenuHeaderInput {
+  contactsLink: ComponentItemsLinkInput
+  id: ID
+}
+
 type ComponentItemsOpeningHoursItem {
   id: ID!
   label: String!
@@ -596,6 +611,7 @@ input ComponentItemsOpeningHoursItemInput {
 }
 
 type ComponentItemsOrderedCardsItem {
+  iconName: String
   id: ID!
   text: String!
   title: String!
@@ -603,6 +619,7 @@ type ComponentItemsOrderedCardsItem {
 
 input ComponentItemsOrderedCardsItemFiltersInput {
   and: [ComponentItemsOrderedCardsItemFiltersInput]
+  iconName: StringFilterInput
   not: ComponentItemsOrderedCardsItemFiltersInput
   or: [ComponentItemsOrderedCardsItemFiltersInput]
   text: StringFilterInput
@@ -610,6 +627,7 @@ input ComponentItemsOrderedCardsItemFiltersInput {
 }
 
 input ComponentItemsOrderedCardsItemInput {
+  iconName: String
   id: ID
   text: String
   title: String
@@ -641,6 +659,114 @@ input ComponentItemsSlideInput {
   media: ID
   text: String
   title: String
+}
+
+type ComponentItemsSortingGuide {
+  doesntGoHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
+  goesHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
+  id: ID!
+  titleDoesntGoHere: String
+  titleGoesHere: String
+}
+
+type ComponentItemsSortingGuideAccordionItem {
+  id: ID!
+  sortingGuide: ComponentItemsSortingGuide
+  title: String!
+  wasteType: ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE!
+}
+
+input ComponentItemsSortingGuideAccordionItemFiltersInput {
+  and: [ComponentItemsSortingGuideAccordionItemFiltersInput]
+  not: ComponentItemsSortingGuideAccordionItemFiltersInput
+  or: [ComponentItemsSortingGuideAccordionItemFiltersInput]
+  sortingGuide: ComponentItemsSortingGuideFiltersInput
+  title: StringFilterInput
+  wasteType: StringFilterInput
+}
+
+input ComponentItemsSortingGuideAccordionItemInput {
+  id: ID
+  sortingGuide: ComponentItemsSortingGuideInput
+  title: String
+  wasteType: ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE
+}
+
+input ComponentItemsSortingGuideFiltersInput {
+  and: [ComponentItemsSortingGuideFiltersInput]
+  doesntGoHereItems: ComponentItemsSortingGuideItemFiltersInput
+  goesHereItems: ComponentItemsSortingGuideItemFiltersInput
+  not: ComponentItemsSortingGuideFiltersInput
+  or: [ComponentItemsSortingGuideFiltersInput]
+  titleDoesntGoHere: StringFilterInput
+  titleGoesHere: StringFilterInput
+}
+
+input ComponentItemsSortingGuideInput {
+  doesntGoHereItems: [ComponentItemsSortingGuideItemInput]
+  goesHereItems: [ComponentItemsSortingGuideItemInput]
+  id: ID
+  titleDoesntGoHere: String
+  titleGoesHere: String
+}
+
+type ComponentItemsSortingGuideItem {
+  id: ID!
+  label: String!
+}
+
+input ComponentItemsSortingGuideItemFiltersInput {
+  and: [ComponentItemsSortingGuideItemFiltersInput]
+  label: StringFilterInput
+  not: ComponentItemsSortingGuideItemFiltersInput
+  or: [ComponentItemsSortingGuideItemFiltersInput]
+}
+
+input ComponentItemsSortingGuideItemInput {
+  id: ID
+  label: String
+}
+
+type ComponentItemsWasteSortingCardsItem {
+  id: ID!
+  link: ComponentItemsLink!
+  title: String!
+  variant: ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT!
+}
+
+input ComponentItemsWasteSortingCardsItemFiltersInput {
+  and: [ComponentItemsWasteSortingCardsItemFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsWasteSortingCardsItemFiltersInput
+  or: [ComponentItemsWasteSortingCardsItemFiltersInput]
+  title: StringFilterInput
+  variant: StringFilterInput
+}
+
+input ComponentItemsWasteSortingCardsItemInput {
+  id: ID
+  link: ComponentItemsLinkInput
+  title: String
+  variant: ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT
+}
+
+type ComponentItemsWorkshopDate {
+  datetime: DateTime!
+  id: ID!
+}
+
+input ComponentItemsWorkshopDateFiltersInput {
+  and: [ComponentItemsWorkshopDateFiltersInput]
+  datetime: DateTimeFilterInput
+  internalName: StringFilterInput
+  not: ComponentItemsWorkshopDateFiltersInput
+  or: [ComponentItemsWorkshopDateFiltersInput]
+}
+
+input ComponentItemsWorkshopDateInput {
+  datetime: DateTime
+  id: ID
+  internalName: String
 }
 
 type ComponentMenuMenuItem {
@@ -697,7 +823,7 @@ input ComponentMenuMenuLinkInput {
 
 type ComponentMenuMenuSection {
   colSpan: Int!
-  hasDivider: Boolean!
+  hasDividers: Boolean!
   id: ID!
   label: String!
   links(filters: ComponentMenuMenuLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuLink]
@@ -708,7 +834,7 @@ type ComponentMenuMenuSection {
 input ComponentMenuMenuSectionFiltersInput {
   and: [ComponentMenuMenuSectionFiltersInput]
   colSpan: IntFilterInput
-  hasDivider: BooleanFilterInput
+  hasDividers: BooleanFilterInput
   label: StringFilterInput
   links: ComponentMenuMenuLinkFiltersInput
   multicolumnBehaviour: StringFilterInput
@@ -719,12 +845,26 @@ input ComponentMenuMenuSectionFiltersInput {
 
 input ComponentMenuMenuSectionInput {
   colSpan: Int
-  hasDivider: Boolean
+  hasDividers: Boolean
   id: ID
   label: String
   links: [ComponentMenuMenuLinkInput]
   multicolumnBehaviour: ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR
   specialSectionType: ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE
+}
+
+type ComponentSectionsArticles {
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsArticlesFiltersInput {
+  and: [ComponentSectionsArticlesFiltersInput]
+  not: ComponentSectionsArticlesFiltersInput
+  or: [ComponentSectionsArticlesFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
 }
 
 type ComponentSectionsArticlesHomepageSection {
@@ -753,12 +893,49 @@ input ComponentSectionsArticlesHomepageSectionInput {
   title: String
 }
 
+input ComponentSectionsArticlesInput {
+  id: ID
+  text: String
+  title: String
+}
+
+type ComponentSectionsBanner {
+  id: ID!
+  image: UploadFileEntityResponse!
+  primaryButtonLink: ComponentItemsLink!
+  secondaryButtonLink: ComponentItemsLink
+  text: String
+  title: String!
+  variant: ENUM_COMPONENTSECTIONSBANNER_VARIANT!
+}
+
+input ComponentSectionsBannerFiltersInput {
+  and: [ComponentSectionsBannerFiltersInput]
+  not: ComponentSectionsBannerFiltersInput
+  or: [ComponentSectionsBannerFiltersInput]
+  primaryButtonLink: ComponentItemsLinkFiltersInput
+  secondaryButtonLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+  variant: StringFilterInput
+}
+
+input ComponentSectionsBannerInput {
+  id: ID
+  image: ID
+  primaryButtonLink: ComponentItemsLinkInput
+  secondaryButtonLink: ComponentItemsLinkInput
+  text: String
+  title: String
+  variant: ENUM_COMPONENTSECTIONSBANNER_VARIANT
+}
+
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
   showAll: Boolean!
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsBranchesFiltersInput {
@@ -779,12 +956,61 @@ input ComponentSectionsBranchesInput {
   title: String
 }
 
+type ComponentSectionsCardSlider {
+  backgroundColor: ENUM_COMPONENTSECTIONSCARDSLIDER_BACKGROUNDCOLOR!
+  cards(filters: ComponentItemsCardSliderCardFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardSliderCard]!
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsCardSliderFiltersInput {
+  and: [ComponentSectionsCardSliderFiltersInput]
+  backgroundColor: StringFilterInput
+  cards: ComponentItemsCardSliderCardFiltersInput
+  not: ComponentSectionsCardSliderFiltersInput
+  or: [ComponentSectionsCardSliderFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsCardSliderInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSCARDSLIDER_BACKGROUNDCOLOR
+  cards: [ComponentItemsCardSliderCardInput]
+  id: ID
+  text: String
+  title: String
+}
+
+type ComponentSectionsCardsList {
+  cards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsCardsListFiltersInput {
+  and: [ComponentSectionsCardsListFiltersInput]
+  cards: ComponentItemsCardsListItemFiltersInput
+  not: ComponentSectionsCardsListFiltersInput
+  or: [ComponentSectionsCardsListFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsCardsListInput {
+  cards: [ComponentItemsCardsListItemInput]
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsColumns {
   backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR!
   id: ID!
   items(filters: ComponentItemsColumnsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsItem]!
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsColumnsFiltersInput {
@@ -810,7 +1036,8 @@ type ComponentSectionsColumnsList {
   id: ID!
   leftColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
   rightColumn(filters: ComponentItemsColumnsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsColumnsListItem]
-  title: String!
+  text: String
+  title: String
 }
 
 input ComponentSectionsColumnsListFiltersInput {
@@ -820,6 +1047,7 @@ input ComponentSectionsColumnsListFiltersInput {
   not: ComponentSectionsColumnsListFiltersInput
   or: [ComponentSectionsColumnsListFiltersInput]
   rightColumn: ComponentItemsColumnsListItemFiltersInput
+  text: StringFilterInput
   title: StringFilterInput
 }
 
@@ -828,6 +1056,177 @@ input ComponentSectionsColumnsListInput {
   id: ID
   leftColumn: [ComponentItemsColumnsListItemInput]
   rightColumn: [ComponentItemsColumnsListItemInput]
+  text: String
+  title: String
+}
+
+type ComponentSectionsContacts {
+  contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactRelationResponseCollection
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsContactsFiltersInput {
+  and: [ComponentSectionsContactsFiltersInput]
+  contacts: ContactFiltersInput
+  not: ComponentSectionsContactsFiltersInput
+  or: [ComponentSectionsContactsFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsContactsInput {
+  contacts: [ID]
+  id: ID
+  text: String
+  title: String
+}
+
+type ComponentSectionsDivider {
+  backgroundColor: ENUM_COMPONENTSECTIONSDIVIDER_BACKGROUNDCOLOR!
+  id: ID!
+}
+
+input ComponentSectionsDividerFiltersInput {
+  and: [ComponentSectionsDividerFiltersInput]
+  backgroundColor: StringFilterInput
+  not: ComponentSectionsDividerFiltersInput
+  or: [ComponentSectionsDividerFiltersInput]
+}
+
+input ComponentSectionsDividerInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSDIVIDER_BACKGROUNDCOLOR
+  id: ID
+}
+
+type ComponentSectionsDocuments {
+  documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
+  id: ID!
+  showAll: Boolean!
+  text: String
+  title: String
+}
+
+input ComponentSectionsDocumentsFiltersInput {
+  and: [ComponentSectionsDocumentsFiltersInput]
+  documents: DocumentFiltersInput
+  not: ComponentSectionsDocumentsFiltersInput
+  or: [ComponentSectionsDocumentsFiltersInput]
+  showAll: BooleanFilterInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsDocumentsInput {
+  documents: [ID]
+  id: ID
+  showAll: Boolean
+  text: String
+  title: String
+}
+
+type ComponentSectionsFaq {
+  backgroundColor: ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR!
+  faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
+  id: ID!
+  showMoreLink: ComponentItemsLink
+  text: String
+  title: String
+}
+
+type ComponentSectionsFaqCategories {
+  faqCategories(filters: FaqCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqCategoryRelationResponseCollection
+  id: ID!
+  showAll: Boolean!
+  text: String
+  title: String
+}
+
+input ComponentSectionsFaqCategoriesFiltersInput {
+  and: [ComponentSectionsFaqCategoriesFiltersInput]
+  faqCategories: FaqCategoryFiltersInput
+  not: ComponentSectionsFaqCategoriesFiltersInput
+  or: [ComponentSectionsFaqCategoriesFiltersInput]
+  showAll: BooleanFilterInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsFaqCategoriesInput {
+  faqCategories: [ID]
+  id: ID
+  showAll: Boolean
+  text: String
+  title: String
+}
+
+input ComponentSectionsFaqFiltersInput {
+  and: [ComponentSectionsFaqFiltersInput]
+  backgroundColor: StringFilterInput
+  faqs: FaqFiltersInput
+  not: ComponentSectionsFaqFiltersInput
+  or: [ComponentSectionsFaqFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsFaqInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR
+  faqs: [ID]
+  id: ID
+  showMoreLink: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
+type ComponentSectionsFiles {
+  files(filters: ComponentItemsFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFileItem]!
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsFilesFiltersInput {
+  and: [ComponentSectionsFilesFiltersInput]
+  files: ComponentItemsFileItemFiltersInput
+  not: ComponentSectionsFilesFiltersInput
+  or: [ComponentSectionsFilesFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsFilesInput {
+  files: [ComponentItemsFileItemInput]
+  id: ID
+  text: String
+  title: String
+}
+
+type ComponentSectionsFormCtaBanner {
+  bannerLink: ComponentItemsLink!
+  bannerTitle: String!
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsFormCtaBannerFiltersInput {
+  and: [ComponentSectionsFormCtaBannerFiltersInput]
+  bannerLink: ComponentItemsLinkFiltersInput
+  bannerTitle: StringFilterInput
+  not: ComponentSectionsFormCtaBannerFiltersInput
+  or: [ComponentSectionsFormCtaBannerFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsFormCtaBannerInput {
+  bannerLink: ComponentItemsLinkInput
+  bannerTitle: String
+  id: ID
+  text: String
   title: String
 }
 
@@ -862,7 +1261,7 @@ type ComponentSectionsImageAndText {
   primaryButton: ComponentItemsLink
   secondaryButton: ComponentItemsLink
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsImageAndTextFiltersInput {
@@ -893,18 +1292,20 @@ type ComponentSectionsImageAndTextOverlapped {
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
-  link: ComponentItemsLink
+  primaryButton: ComponentItemsLink
+  secondaryButton: ComponentItemsLink
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsImageAndTextOverlappedFiltersInput {
   and: [ComponentSectionsImageAndTextOverlappedFiltersInput]
   backgroundColor: StringFilterInput
   imagePosition: StringFilterInput
-  link: ComponentItemsLinkFiltersInput
   not: ComponentSectionsImageAndTextOverlappedFiltersInput
   or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
+  primaryButton: ComponentItemsLinkFiltersInput
+  secondaryButton: ComponentItemsLinkFiltersInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -914,7 +1315,8 @@ input ComponentSectionsImageAndTextOverlappedInput {
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
-  link: ComponentItemsLinkInput
+  primaryButton: ComponentItemsLinkInput
+  secondaryButton: ComponentItemsLinkInput
   text: String
   title: String
 }
@@ -923,7 +1325,7 @@ type ComponentSectionsKoloHomepageSection {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   branchesTitle: String
   id: ID!
-  mainCards(filters: ComponentItemsLinkFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLink]
+  mainCards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
   showMoreLink: ComponentItemsLink
   text: String
   title: String
@@ -933,7 +1335,7 @@ input ComponentSectionsKoloHomepageSectionFiltersInput {
   and: [ComponentSectionsKoloHomepageSectionFiltersInput]
   branches: BranchFiltersInput
   branchesTitle: StringFilterInput
-  mainCards: ComponentItemsLinkFiltersInput
+  mainCards: ComponentItemsCardsListItemFiltersInput
   not: ComponentSectionsKoloHomepageSectionFiltersInput
   or: [ComponentSectionsKoloHomepageSectionFiltersInput]
   showMoreLink: ComponentItemsLinkFiltersInput
@@ -945,8 +1347,31 @@ input ComponentSectionsKoloHomepageSectionInput {
   branches: [ID]
   branchesTitle: String
   id: ID
-  mainCards: [ComponentItemsLinkInput]
+  mainCards: [ComponentItemsCardsListItemInput]
   showMoreLink: ComponentItemsLinkInput
+  text: String
+  title: String
+}
+
+type ComponentSectionsOpeningTimes {
+  id: ID!
+  openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeRelationResponseCollection
+  text: String
+  title: String
+}
+
+input ComponentSectionsOpeningTimesFiltersInput {
+  and: [ComponentSectionsOpeningTimesFiltersInput]
+  not: ComponentSectionsOpeningTimesFiltersInput
+  openingTimes: OpeningTimeFiltersInput
+  or: [ComponentSectionsOpeningTimesFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsOpeningTimesInput {
+  id: ID
+  openingTimes: [ID]
   text: String
   title: String
 }
@@ -954,7 +1379,9 @@ input ComponentSectionsKoloHomepageSectionInput {
 type ComponentSectionsOrderedCards {
   cards(filters: ComponentItemsOrderedCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOrderedCardsItem]!
   id: ID!
-  title: String!
+  text: String
+  title: String
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT!
 }
 
 input ComponentSectionsOrderedCardsFiltersInput {
@@ -962,13 +1389,17 @@ input ComponentSectionsOrderedCardsFiltersInput {
   cards: ComponentItemsOrderedCardsItemFiltersInput
   not: ComponentSectionsOrderedCardsFiltersInput
   or: [ComponentSectionsOrderedCardsFiltersInput]
+  text: StringFilterInput
   title: StringFilterInput
+  variant: StringFilterInput
 }
 
 input ComponentSectionsOrderedCardsInput {
   cards: [ComponentItemsOrderedCardsItemInput]
   id: ID
+  text: String
   title: String
+  variant: ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT
 }
 
 type ComponentSectionsRichtext {
@@ -989,6 +1420,20 @@ input ComponentSectionsRichtextInput {
   backgroundColor: ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR
   content: String
   id: ID
+}
+
+type ComponentSectionsServices {
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsServicesFiltersInput {
+  and: [ComponentSectionsServicesFiltersInput]
+  not: ComponentSectionsServicesFiltersInput
+  or: [ComponentSectionsServicesFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
 }
 
 type ComponentSectionsServicesHomepageSection {
@@ -1017,11 +1462,69 @@ input ComponentSectionsServicesHomepageSectionInput {
   title: String
 }
 
+input ComponentSectionsServicesInput {
+  id: ID
+  text: String
+  title: String
+}
+
+type ComponentSectionsSortingGuide {
+  banner: ComponentSectionsBanner
+  id: ID!
+  sortingGuide: ComponentItemsSortingGuide
+  text: String
+  title: String
+}
+
+type ComponentSectionsSortingGuideAccordions {
+  banner: ComponentSectionsBanner
+  id: ID!
+  sortingGuideAccordions(filters: ComponentItemsSortingGuideAccordionItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideAccordionItem]
+  text: String
+  title: String
+}
+
+input ComponentSectionsSortingGuideAccordionsFiltersInput {
+  and: [ComponentSectionsSortingGuideAccordionsFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
+  not: ComponentSectionsSortingGuideAccordionsFiltersInput
+  or: [ComponentSectionsSortingGuideAccordionsFiltersInput]
+  sortingGuideAccordions: ComponentItemsSortingGuideAccordionItemFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsSortingGuideAccordionsInput {
+  banner: ComponentSectionsBannerInput
+  id: ID
+  sortingGuideAccordions: [ComponentItemsSortingGuideAccordionItemInput]
+  text: String
+  title: String
+}
+
+input ComponentSectionsSortingGuideFiltersInput {
+  and: [ComponentSectionsSortingGuideFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
+  not: ComponentSectionsSortingGuideFiltersInput
+  or: [ComponentSectionsSortingGuideFiltersInput]
+  sortingGuide: ComponentItemsSortingGuideFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsSortingGuideInput {
+  banner: ComponentSectionsBannerInput
+  id: ID
+  sortingGuide: ComponentItemsSortingGuideInput
+  text: String
+  title: String
+}
+
 type ComponentSectionsTable {
   anchorId: String
   id: ID!
   text: String
-  title: String!
+  title: String
 }
 
 input ComponentSectionsTableFiltersInput {
@@ -1040,11 +1543,37 @@ input ComponentSectionsTableInput {
   title: String
 }
 
+type ComponentSectionsWasteSortingCards {
+  banner: ComponentSectionsBanner
+  cards(filters: ComponentItemsWasteSortingCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWasteSortingCardsItem]
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsWasteSortingCardsFiltersInput {
+  and: [ComponentSectionsWasteSortingCardsFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
+  cards: ComponentItemsWasteSortingCardsItemFiltersInput
+  not: ComponentSectionsWasteSortingCardsFiltersInput
+  or: [ComponentSectionsWasteSortingCardsFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsWasteSortingCardsInput {
+  banner: ComponentSectionsBannerInput
+  cards: [ComponentItemsWasteSortingCardsItemInput]
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsWorkshops {
   id: ID!
   showAll: Boolean!
   text: String
-  title: String!
+  title: String
   workshops(filters: WorkshopFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): WorkshopRelationResponseCollection
 }
 
@@ -1069,7 +1598,12 @@ input ComponentSectionsWorkshopsInput {
 type Contact {
   createdAt: DateTime
   label: String!
+  primaryEmail: String
+  primaryPhone: String
   publishedAt: DateTime
+  secondaryEmail: String
+  secondaryPhone: String
+  text: String
   updatedAt: DateTime
 }
 
@@ -1094,13 +1628,23 @@ input ContactFiltersInput {
   label: StringFilterInput
   not: ContactFiltersInput
   or: [ContactFiltersInput]
+  primaryEmail: StringFilterInput
+  primaryPhone: StringFilterInput
   publishedAt: DateTimeFilterInput
+  secondaryEmail: StringFilterInput
+  secondaryPhone: StringFilterInput
+  text: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input ContactInput {
   label: String
+  primaryEmail: String
+  primaryPhone: String
   publishedAt: DateTime
+  secondaryEmail: String
+  secondaryPhone: String
+  text: String
 }
 
 type ContactRelationResponseCollection {
@@ -1169,17 +1713,21 @@ input DateTimeFilterInput {
 
 type Document {
   createdAt: DateTime
+  description: String
   documentCategory: DocumentCategoryEntityResponse
-  files(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection!
+  files(filters: ComponentItemsFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFileItem]!
+  identificationNumber: String
+  priceWithoutTax: String
   publishedAt: DateTime
   slug: String!
+  supplier: String
   title: String!
   updatedAt: DateTime
 }
 
 type DocumentCategory {
   createdAt: DateTime
-  dokuments(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
+  documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
   locale: String
   localizations(filters: DocumentCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentCategoryRelationResponseCollection
   publishedAt: DateTime
@@ -1205,7 +1753,7 @@ type DocumentCategoryEntityResponseCollection {
 input DocumentCategoryFiltersInput {
   and: [DocumentCategoryFiltersInput]
   createdAt: DateTimeFilterInput
-  dokuments: DocumentFiltersInput
+  documents: DocumentFiltersInput
   id: IDFilterInput
   locale: StringFilterInput
   localizations: DocumentCategoryFiltersInput
@@ -1218,7 +1766,7 @@ input DocumentCategoryFiltersInput {
 }
 
 input DocumentCategoryInput {
-  dokuments: [ID]
+  documents: [ID]
   publishedAt: DateTime
   slug: String
   title: String
@@ -1245,26 +1793,61 @@ type DocumentEntityResponseCollection {
 input DocumentFiltersInput {
   and: [DocumentFiltersInput]
   createdAt: DateTimeFilterInput
+  description: StringFilterInput
   documentCategory: DocumentCategoryFiltersInput
+  files: ComponentItemsFileItemFiltersInput
   id: IDFilterInput
+  identificationNumber: StringFilterInput
   not: DocumentFiltersInput
   or: [DocumentFiltersInput]
+  priceWithoutTax: StringFilterInput
   publishedAt: DateTimeFilterInput
   slug: StringFilterInput
+  supplier: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
 
 input DocumentInput {
+  description: String
   documentCategory: ID
-  files: [ID]
+  files: [ComponentItemsFileItemInput]
+  identificationNumber: String
+  priceWithoutTax: String
   publishedAt: DateTime
   slug: String
+  supplier: String
   title: String
 }
 
 type DocumentRelationResponseCollection {
   data: [DocumentEntity!]!
+}
+
+enum ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE {
+  cemetery
+  christmasTrees
+  civicAmenitySite
+  cookingOilsAndFats
+  glass
+  kitchen
+  mixed
+  organic
+  paper
+  plastic
+}
+
+enum ENUM_COMPONENTITEMSWASTESORTINGCARDSITEM_VARIANT {
+  cemetery
+  christmasTrees
+  civicAmenitySite
+  cookingOilsAndFats
+  glass
+  kitchen
+  mixed
+  organic
+  paper
+  plastic
 }
 
 enum ENUM_COMPONENTMENUMENUSECTION_MULTICOLUMNBEHAVIOUR {
@@ -1276,6 +1859,17 @@ enum ENUM_COMPONENTMENUMENUSECTION_SPECIALSECTIONTYPE {
   latest_articles
 }
 
+enum ENUM_COMPONENTSECTIONSBANNER_VARIANT {
+  background_black
+  background_grey
+}
+
+enum ENUM_COMPONENTSECTIONSCARDSLIDER_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
   primary
   secondary
@@ -1283,6 +1877,18 @@ enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
 }
 
 enum ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
+enum ENUM_COMPONENTSECTIONSDIVIDER_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
+enum ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR {
   primary
   secondary
   tertiary
@@ -1312,10 +1918,22 @@ enum ENUM_COMPONENTSECTIONSIMAGEANDTEXT_IMAGEPOSITION {
   right
 }
 
+enum ENUM_COMPONENTSECTIONSORDEREDCARDS_VARIANT {
+  icons
+  numbers
+}
+
 enum ENUM_COMPONENTSECTIONSRICHTEXT_BACKGROUNDCOLOR {
   primary
   secondary
   tertiary
+}
+
+enum ENUM_SERVICECATEGORY_CATEGORYCOLOR {
+  blue
+  green
+  none
+  red
 }
 
 type Error {
@@ -1335,6 +1953,7 @@ type Faq {
 }
 
 type FaqCategory {
+  banner: ComponentSectionsBanner
   createdAt: DateTime
   faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
   locale: String
@@ -1361,6 +1980,7 @@ type FaqCategoryEntityResponseCollection {
 
 input FaqCategoryFiltersInput {
   and: [FaqCategoryFiltersInput]
+  banner: ComponentSectionsBannerFiltersInput
   createdAt: DateTimeFilterInput
   faqs: FaqFiltersInput
   id: IDFilterInput
@@ -1375,6 +1995,7 @@ input FaqCategoryFiltersInput {
 }
 
 input FaqCategoryInput {
+  banner: ComponentSectionsBannerInput
   faqs: [ID]
   publishedAt: DateTime
   slug: String
@@ -1509,7 +2130,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBasic | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticlesHomepageSection | ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServicesHomepageSection | ComponentSectionsTable | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -1719,6 +2340,7 @@ type Menu {
   createdAt: DateTime
   locale: String
   localizations: MenuRelationResponseCollection
+  menuHeader: ComponentItemsMenuHeader
   menuItems(filters: ComponentMenuMenuItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentMenuMenuItem]
   updatedAt: DateTime
 }
@@ -1742,6 +2364,7 @@ input MenuFiltersInput {
   createdAt: DateTimeFilterInput
   locale: StringFilterInput
   localizations: MenuFiltersInput
+  menuHeader: ComponentItemsMenuHeaderFiltersInput
   menuItems: ComponentMenuMenuItemFiltersInput
   not: MenuFiltersInput
   or: [MenuFiltersInput]
@@ -1749,6 +2372,7 @@ input MenuFiltersInput {
 }
 
 input MenuInput {
+  menuHeader: ComponentItemsMenuHeaderInput
   menuItems: [ComponentMenuMenuItemInput]
 }
 
@@ -2011,7 +2635,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsBasic | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 
@@ -2030,7 +2654,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsBranches | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsTable | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 
@@ -2105,9 +2729,11 @@ type ResponseCollectionMeta {
 
 type Service {
   createdAt: DateTime
+  image: UploadFileEntityResponse
   locale: String
   localizations(filters: ServiceFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceRelationResponseCollection
   publishedAt: DateTime
+  sections: [ServiceSectionsDynamicZone]
   serviceCategories(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
   slug: String!
   title: String!
@@ -2115,6 +2741,7 @@ type Service {
 }
 
 type ServiceCategory {
+  categoryColor: ENUM_SERVICECATEGORY_CATEGORYCOLOR!
   createdAt: DateTime
   locale: String
   localizations(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
@@ -2141,6 +2768,7 @@ type ServiceCategoryEntityResponseCollection {
 
 input ServiceCategoryFiltersInput {
   and: [ServiceCategoryFiltersInput]
+  categoryColor: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -2155,6 +2783,7 @@ input ServiceCategoryFiltersInput {
 }
 
 input ServiceCategoryInput {
+  categoryColor: ENUM_SERVICECATEGORY_CATEGORYCOLOR
   publishedAt: DateTime
   services: [ID]
   slug: String
@@ -2195,7 +2824,9 @@ input ServiceFiltersInput {
 }
 
 input ServiceInput {
+  image: ID
   publishedAt: DateTime
+  sections: [ServiceSectionsDynamicZoneInput!]
   serviceCategories: [ID]
   slug: String
   title: String
@@ -2204,6 +2835,10 @@ input ServiceInput {
 type ServiceRelationResponseCollection {
   data: [ServiceEntity!]!
 }
+
+union ServiceSectionsDynamicZone = ComponentSectionsCardsList | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFormCtaBanner | ComponentSectionsRichtext | Error
+
+scalar ServiceSectionsDynamicZoneInput
 
 input StringFilterInput {
   and: [String]
@@ -2650,6 +3285,7 @@ type UsersPermissionsUserRelationResponseCollection {
 
 type Workshop {
   createdAt: DateTime
+  dates(filters: ComponentItemsWorkshopDateFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWorkshopDate]
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZone]
   slug: String!
@@ -2674,6 +3310,7 @@ type WorkshopEntityResponseCollection {
 input WorkshopFiltersInput {
   and: [WorkshopFiltersInput]
   createdAt: DateTimeFilterInput
+  dates: ComponentItemsWorkshopDateFiltersInput
   id: IDFilterInput
   not: WorkshopFiltersInput
   or: [WorkshopFiltersInput]
@@ -2684,6 +3321,7 @@ input WorkshopFiltersInput {
 }
 
 input WorkshopInput {
+  dates: [ComponentItemsWorkshopDateInput]
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZoneInput!]
   slug: String
@@ -2694,6 +3332,6 @@ type WorkshopRelationResponseCollection {
   data: [WorkshopEntity!]!
 }
 
-union WorkshopSectionsDynamicZone = ComponentSectionsRichtext | Error
+union WorkshopSectionsDynamicZone = ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsRichtext | Error
 
 scalar WorkshopSectionsDynamicZoneInput

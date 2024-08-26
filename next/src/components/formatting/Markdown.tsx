@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/heading-has-content */
+import Image from 'next/image'
+import { PropsWithChildren, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkUnwrapImages from 'remark-unwrap-images'
@@ -6,6 +8,7 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
+import { useHorizontalScrollFade } from '@/src/utils/useHorizontalScrollFade'
 
 import styles from './Markdown.module.scss'
 
@@ -14,8 +17,31 @@ export type MarkdownProps = {
   className?: string
 }
 
+// based on Marianum: https://github.com/bratislava/marianum.sk/blob/master/next/components/atoms/RichText.tsx
+const RichTextTable = ({
+  children,
+  colored,
+  ...props
+}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+PropsWithChildren<Record<any, any>>) => {
+  const tableWrapperRef = useRef<HTMLDivElement>(null)
+  const { scrollFadeClassNames } = useHorizontalScrollFade({ ref: tableWrapperRef })
+
+  return (
+    <div className="relative">
+      <div className={cn('overflow-x-auto', scrollFadeClassNames)} ref={tableWrapperRef}>
+        <table {...props} className="m-table border-separate border-spacing-0">
+          {children}
+        </table>
+      </div>
+    </div>
+  )
+}
+
 /**
  * See documentation: https://github.com/remarkjs/react-markdown#appendix-b-components
+ *
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=5036-17786&m=dev
  *
  * @param className
  * @param content
@@ -92,26 +118,38 @@ const Markdown = ({ content, className }: MarkdownProps) => {
         img: ({ width, height, alt, src, sizes }) => {
           // Based on City Gallery:
           // https://github.com/bratislava/gmb.sk/blob/master/next/components/atoms/CityGalleryMarkdown.tsx
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const [altText, caption] = alt?.includes('||') ? alt?.split('||') || ['', ''] : [alt, alt]
+
+          if (!src) return null
 
           // TODO this still produces a hydration error, because the remark-unwrap-images only works when image is the only child of the paragraph
           return (
-            <figure className="flex max-w-full flex-col items-center gap-2 py-4">
+            <figure className=" flex flex-col items-center gap-4 ">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt={altText} width={width} height={height} sizes={sizes} />
-              {alt && (
-                <figcaption
-                  aria-hidden={caption === alt}
-                  className="text-center text-size-p-small text-border-hover"
-                >
-                  {caption}
-                </figcaption>
-              )}
+              {/* <img src={src} alt={altText} width={width} height={height} sizes={sizes} /> */}
+              <div
+                style={{ aspectRatio: width && height ? +width / +height : 1 }}
+                className="relative w-full overflow-hidden rounded-2xl"
+              >
+                <Image src={src} alt={altText ?? ''} fill sizes={sizes} />
+              </div>
+              {
+                // TODO implement caption in wysiwig editor, then enable here
+                //   alt && (
+                //     <figcaption
+                //       aria-hidden={caption === alt}
+                //       className="text-center text-size-p-small text-size-p-small"
+                //     >
+                //       {caption}
+                //     </figcaption>
+                //   )
+              }
             </figure>
           )
         },
         blockquote: ({ node, ...props }) => (
-          <blockquote className="my-4 border-l-4 border-border-default py-2 pl-8" {...props} />
+          <blockquote className="border-l-4 border-action-background-default pl-8" {...props} />
         ),
         ol: ({ children, ...props }) => (
           <ol className="marker:text-primary list-decimal pl-8" {...props}>
@@ -125,22 +163,41 @@ const Markdown = ({ content, className }: MarkdownProps) => {
         ),
         // Remark-gfm components: del, input, table, tbody, td, th, thead, and tr
         // FIXME tables need revisit - align, spacing, etc.
-        table: ({ children }) => (
-          <div className="overflow-x-auto">
-            <table className="w-full table-auto">{children}</table>
-          </div>
+        table: ({ children, node, ...props }) => (
+          <RichTextTable {...props}>{children}</RichTextTable>
+        ),
+        thead: ({ children, ...props }) => (
+          <thead
+            {...props}
+            // ensures rounded-ness for top corners of the table
+            className="[&>*>*:first-child]:rounded-tl-lg [&>*>*:last-child]:rounded-tr-lg"
+          >
+            {children}
+          </thead>
+        ),
+        tbody: ({ children, ...props }) => (
+          <tbody className="rounded-b-lg" {...props}>
+            {children}
+          </tbody>
         ),
         tr: ({ children }) => (
-          <tr className="mb-4 table w-full md:mb-0 md:table-row">{children}</tr>
+          <tr
+            className={cn(
+              'h-14',
+              // ensures rounded-ness for bottom corners of the table
+              '[&:not(:first-child):last-child>*:first-child]:rounded-bl-lg [&:not(:first-child):last-child>*:last-child]:rounded-br-lg',
+              // ensures correct non-overlapping cell borders
+              '[&:not(:first-child):last-child>*]:border-b [&>*:last-child]:border-r [&>*]:border-l [&>*]:border-t [&>*]:border-border-default',
+            )}
+          >
+            {children}
+          </tr>
         ),
-        tbody: ({ children }) => <tbody>{children}</tbody>,
-        thead: () => <thead />,
-        td: ({ children }) => (
-          <td className="text-large-respo table-row md:table-cell">
-            <div className="mb-1 flex items-center pr-4 text-left md:mb-0 md:py-1">{children}</div>
-          </td>
-        ),
+        td: ({ children }) => <td className="px-6">{children}</td>,
         // th: ...
+        th: ({ children }) => (
+          <th className="bg-background-secondary px-6 text-left font-bold">{children}</th>
+        ),
         hr: () => <hr className="my-8 border-t border-border-default" />,
       }}
     >

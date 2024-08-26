@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_items_workshop_dates",
+  "info": {
+    "displayName": "Workshop date",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": false,
+      "private": true
+    },
+    "datetime": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}

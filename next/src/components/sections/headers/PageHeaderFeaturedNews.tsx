@@ -7,6 +7,8 @@ import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 type Props = {
+  title: string
+  perex?: string | null | undefined
   header: FeaturedNewsHeaderSectionFragment
 }
 
@@ -14,8 +16,8 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1189-12938&m=dev
  */
 
-const PageHeaderFeaturedNews = ({ header }: Props) => {
-  const { title, text, articlesTitle, firstArticle, secondArticle } = header
+const PageHeaderFeaturedNews = ({ title, perex, header }: Props) => {
+  const { articlesTitle, firstArticle, secondArticle } = header
   const { getFullPath } = useGetFullPath()
 
   const filteredArticles =
@@ -26,7 +28,7 @@ const PageHeaderFeaturedNews = ({ header }: Props) => {
     <SectionContainer background="secondary">
       <HeaderTitleText
         title={title}
-        text={text}
+        text={perex}
         className="border-action-background-default max-lg:pb-2 lg:border-b"
       />
       <div className="flex flex-col gap-6 py-6 lg:py-12">

@@ -2,13 +2,17 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
+import { useMemo } from 'react'
 
+import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
+import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import PageLayoutPlaceholder from '@/src/components/placeholder/PageLayoutPlaceholder'
-import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
+import DocumentPageContent from '@/src/components/page-contents/document/DocumentPageContent'
+import DocumentPageHeader from '@/src/components/sections/headers/DocumentPageHeader'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { DocumentEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
+import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 
 type PageProps = {
   general: GeneralQuery
@@ -57,11 +61,21 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
       general,
       ...translations,
     },
-    revalidate: 10,
+    revalidate: 1, // TODO change to 10
   }
 }
 
 const Page = ({ entity, general }: PageProps) => {
+  // TODO consider extracting this to a hook for all detail pages
+  const documentsParentPage = general.navigation?.data?.attributes?.documentsParentPage?.data
+  const breadcrumbs = useMemo(
+    () => [
+      ...getPageBreadcrumbs(documentsParentPage),
+      { title: entity.attributes?.title ?? '', path: null },
+    ],
+    [documentsParentPage, entity.attributes?.title],
+  )
+
   if (!entity.attributes) {
     return null
   }
@@ -75,12 +89,13 @@ const Page = ({ entity, general }: PageProps) => {
         <title>{title}</title>
       </Head>
 
-      <PageLayoutPlaceholder>
-        {/* TODO separate outer div(s) to Article Section with narrow layout */}
+      <PageLayout>
         <SectionContainer background="secondary">
-          <HeaderTitleText title={title} />
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
         </SectionContainer>
-      </PageLayoutPlaceholder>
+        <DocumentPageHeader document={entity} />
+        <DocumentPageContent document={entity} />
+      </PageLayout>
     </GeneralContextProvider>
   )
 }

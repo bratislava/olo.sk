@@ -21,14 +21,14 @@ const NavMenuSectionLink = ({ link, divider }: NavMenuSectionLinkProps) => {
   const { t } = useTranslation()
   const { children, href, target } = getLinkProps(link)
   const mostRecentWorkshopDate =
-    formatMostRecentWorkshopDate(link?.workshop?.data?.attributes?.dates) ?? ''
+    formatMostRecentWorkshopDate(link?.workshop?.data?.attributes?.dates) ?? null
 
   return isDefined(link.workshop?.data) ? (
     <>
       {divider}
       <li key={link.id}>
         <MenuItemWorkshopCard
-          title={children ?? ''}
+          title={children}
           subText={
             mostRecentWorkshopDate
               ? t('navBar.workshopCard.messageMostRecentDate', { mostRecentWorkshopDate })
@@ -43,7 +43,7 @@ const NavMenuSectionLink = ({ link, divider }: NavMenuSectionLinkProps) => {
       {divider}
       <li key={link.id}>
         <MenuItemBranchCard
-          title={children ?? ''}
+          title={children}
           subText={link?.branch?.data?.attributes?.address ?? ''}
           linkHref={href}
         />

@@ -1,12 +1,8 @@
-type WorkshopDates =
-  | Array<{
-      __typename?: 'ComponentItemsWorkshopDate'
-      datetime: any
-    } | null>
-  | null
-  | undefined // TODO: Suggestion would be appreciated
+import { WorkshopDateItemFragment } from '@/src/services/graphql/api'
 
-export const formatMostRecentWorkshopDate = (dates: WorkshopDates) => {
+export const formatMostRecentWorkshopDate = (
+  dates: (WorkshopDateItemFragment | null)[] | null | undefined,
+) => {
   if (!dates?.length) return ''
 
   const nextWorkshop = dates

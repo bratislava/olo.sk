@@ -27,7 +27,7 @@ fragment MenuSection on ComponentMenuMenuSection {
   links {
     ...MenuLink
   }
-  hasDivider
+  hasDividers
   specialSectionType
 }
 

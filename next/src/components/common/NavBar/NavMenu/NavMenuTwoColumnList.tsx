@@ -1,14 +1,9 @@
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
-import { NavMenuSectionProps } from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
+import { NavMenuColumnListProps } from '@/src/components/common/NavBar/NavMenu/NavMenuSingleColumnList'
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-type NavMenuTwoColumnListProps = {
-  links: NavMenuSectionProps['section']['links']
-  className?: string
-}
-
-const NavMenuTwoColumnList = ({ links, className }: NavMenuTwoColumnListProps) => {
+const NavMenuTwoColumnList = ({ links, className }: NavMenuColumnListProps) => {
   const { getLinkProps } = useGetLinkProps()
   const middleItemIndex = Math.floor(links.length / 2)
 

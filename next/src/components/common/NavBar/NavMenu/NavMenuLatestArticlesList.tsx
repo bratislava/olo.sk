@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 
 import MenuItemArticleCard from '@/src/components/common/Card/MenuItemArticleCard'
-import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { client } from '@/src/services/graphql'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
@@ -11,6 +10,8 @@ import { useGetFullPath } from '@/src/utils/useGetFullPath'
 type NavMenuLatestArticlesListProps = {
   className?: string
 }
+
+// TODO: #353 ensures that dividers are handled in a consistent fashion
 
 const NavMenuLatestArticlesList = ({ className }: NavMenuLatestArticlesListProps) => {
   const { i18n } = useTranslation()
@@ -22,34 +23,36 @@ const NavMenuLatestArticlesList = ({ className }: NavMenuLatestArticlesListProps
     queryKey: ['latestArticles', { limit: 3, locale }],
   })
 
-  const filteredArticles =
-    articlesData?.articles?.data.filter((article) => isDefined(article?.attributes)) ?? []
+  const filteredArticles = articlesData?.articles?.data.filter(isDefined) ?? []
+
+  if (filteredArticles.length === 0) return null
 
   return (
-    <ul className={cn('flex flex-col gap-4', className)}>
-      {filteredArticles.length > 0 &&
-        filteredArticles
-          .map((article, index) => {
-            if (!article.attributes) return null
-            const { title, coverMedia, articleCategory } = article.attributes
+    <ul className={cn('flex flex-col', className)}>
+      {filteredArticles
+        .map((article, index) => {
+          if (!article.attributes) return null
+          const { title, coverMedia, articleCategory } = article.attributes
 
-            return (
-              <>
-                {index > 0 ? <NavBarDivider variant="horizontal" /> : null}
-                {/* eslint-disable-next-line react/no-array-index-key */}
-                <li key={index}>
-                  <MenuItemArticleCard
-                    title={title}
-                    linkHref={getFullPath(article) ?? '#'}
-                    imgSrc={coverMedia?.data?.attributes?.url}
-                    tagText={articleCategory?.data?.attributes?.title ?? ''}
-                  />
-                </li>
-              </>
-            )
-          })
-          // eslint-disable-next-line unicorn/no-array-callback-reference
-          .filter(isDefined)}
+          return (
+            <li key={title}>
+              <MenuItemArticleCard
+                title={title}
+                linkHref={getFullPath(article) ?? '#'}
+                // Do we want to provide a default image here?
+                imgSrc={coverMedia?.data?.attributes?.url}
+                tagText={articleCategory?.data?.attributes?.title ?? ''}
+                className={cn('pb-4', {
+                  'border-b border-border-default': index !== filteredArticles.length - 1,
+                  'pt-4': index !== 0,
+                  'pb-0': index === filteredArticles.length - 1,
+                })}
+              />
+            </li>
+          )
+        })
+        // eslint-disable-next-line unicorn/no-array-callback-reference
+        .filter(isDefined)}
     </ul>
   )
 }

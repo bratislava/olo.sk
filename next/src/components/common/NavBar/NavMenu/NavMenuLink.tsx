@@ -7,12 +7,10 @@ import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMen
 import cn from '@/src/utils/cn'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
 
-type NavigationMenuLinkProps = NavigationMenu.NavigationMenuLinkProps
-
 type NavMenuLinkProps = {
   className?: string
-} & NavigationMenuLinkProps &
-  Omit<LinkProps, 'children'> // To be able to spread link props as such: <NavMenuLink {...linkProps} />
+} & NavigationMenu.NavigationMenuLinkProps &
+  Omit<LinkProps, 'children'> // To be able to spread link props
 
 /**
  * Based on: // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
@@ -28,7 +26,7 @@ const NavMenuLink = ({
   const { setMobileMenuOpen } = useNavMenuContext()
 
   return (
-    <li className={cn('flex', className)}>
+    <li className={cn('flex w-full', className)}>
       <NavigationMenu.Link
         asChild={asChild}
         onClick={() => setMobileMenuOpen(false)}

@@ -91,7 +91,7 @@ const Carousel = ({
                   'shrink-0 transform transition-all duration-200 lg:scroll-mx-2',
                   cn({
                     // 1rem represents 1 gap-4, if gap is changed, also change card width
-                    'w-[calc(100%-1rem)] snap-center ': visibleCount === 1,
+                    'w-[calc(100%-1rem)] snap-center': visibleCount === 1,
                     'snap-start': visibleCount > 1,
                     'w-[calc((100%-2rem)/2)]': visibleCount === 2,
                     'w-[calc((100%-4rem)/3)]': visibleCount === 3,
@@ -120,7 +120,7 @@ const Carousel = ({
                 className={cn(
                   // figma says size-18, but then the button extends beyond page margin - therefore size-16
                   'absolute bottom-0 top-0 my-auto size-16 transform rounded-full bg-white',
-                  'left-0 -translate-x-1/2 ',
+                  'left-0 -translate-x-1/2',
                   { hidden: isLeftControlHidden },
                 )}
                 icon={<Icon name="sipka-dolava" />}
@@ -132,7 +132,7 @@ const Carousel = ({
                 onPress={handleGoToNext}
                 className={cn(
                   'absolute bottom-0 top-0 my-auto size-16 transform rounded-full bg-white',
-                  'right-0 translate-x-1/2 ',
+                  'right-0 translate-x-1/2',
                   { hidden: isRightControlHidden },
                 )}
                 icon={<Icon name="sipka-doprava" />}

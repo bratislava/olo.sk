@@ -23,6 +23,7 @@ const NavMenuLatestArticlesList = ({ className }: NavMenuLatestArticlesListProps
     queryKey: ['latestArticles', { limit: 3, locale }],
   })
 
+  // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredArticles = articlesData?.articles?.data.filter(isDefined) ?? []
 
   if (filteredArticles.length === 0) return null

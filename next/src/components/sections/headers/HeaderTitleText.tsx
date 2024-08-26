@@ -17,7 +17,7 @@ const HeaderTitleText = ({ title, text, className, hasVerticalPadding = true }: 
     // 50rem = 800px
     <div
       className={cn(
-        'flex flex-col items-start gap-4 lg:max-w-[50rem] lg:gap-6 ',
+        'flex flex-col items-start gap-4 lg:max-w-[50rem] lg:gap-6',
         { 'py-6 lg:py-12': hasVerticalPadding },
         className,
       )}

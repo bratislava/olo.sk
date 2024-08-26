@@ -125,7 +125,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
 
           // TODO this still produces a hydration error, because the remark-unwrap-images only works when image is the only child of the paragraph
           return (
-            <figure className=" flex flex-col items-center gap-4 ">
+            <figure className="flex flex-col items-center gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               {/* <img src={src} alt={altText} width={width} height={height} sizes={sizes} /> */}
               <div

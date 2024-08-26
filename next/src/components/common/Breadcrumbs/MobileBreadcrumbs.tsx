@@ -23,7 +23,7 @@ const MobileBreadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => {
 
   return (
     <AnimateHeight isVisible className="relative">
-      <div className="flex items-center gap-2 py-3 ">
+      <div className="flex items-center gap-2 py-3">
         <Button
           onPress={goBack}
           variant="black-link"

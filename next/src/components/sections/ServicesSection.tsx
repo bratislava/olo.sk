@@ -109,7 +109,7 @@ const ServicesSection = ({ section }: Props) => {
         <div className="flex flex-col gap-6">
           <SectionHeader title={title} text={text} />
 
-          <ul className=" grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {servicesToRender
               .map((service, index) => {
                 if (!service.attributes) return null

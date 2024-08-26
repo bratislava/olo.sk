@@ -1,3 +1,4 @@
+/* eslint-disable i18next/no-literal-string */
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import OloIcon from '@/src/components/common/Icon/OloIcon'

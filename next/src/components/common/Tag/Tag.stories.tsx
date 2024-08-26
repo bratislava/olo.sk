@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars,i18next/no-literal-string */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import TagComponent from './Tag'

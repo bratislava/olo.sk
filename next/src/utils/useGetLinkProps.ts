@@ -22,7 +22,6 @@ export const useGetLinkProps = () => {
   const getLinkProps = (link: LinkFragment | MenuLinkFragment | null | undefined) => {
     let href = '#'
     let label = link?.label ?? ''
-    let subText = ''
     let target: '_blank' | undefined
 
     if (!link) {
@@ -38,12 +37,9 @@ export const useGetLinkProps = () => {
       href = getFullPath(link.article.data) ?? '#'
     } else if (link.branch?.data?.attributes) {
       label = link.label ?? link.branch.data.attributes.title
-      subText =
-        'address' in link.branch.data.attributes ? link.branch.data.attributes.address ?? '' : ''
       href = getFullPath(link.branch.data) ?? '#'
     } else if (link.workshop?.data?.attributes) {
       label = link.label ?? link.workshop.data.attributes.title
-      // TODO
       href = getFullPath(link.workshop.data) ?? '#'
     } else if ('document' in link && link.document?.data?.attributes) {
       label = link.label ?? link.document.data.attributes.title
@@ -58,7 +54,7 @@ export const useGetLinkProps = () => {
     //   ? { id: link.plausibleId }
     //   : undefined
 
-    return { children: label, subText, href, target }
+    return { children: label, href, target }
   }
 
   return { getLinkProps }

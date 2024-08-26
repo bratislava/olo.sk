@@ -17,7 +17,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "parse-translations": "i18next",
-    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E",
+    "update-i18next": "yarn add next-i18next@latest react-i18next@latest i18next@latest -E && yarn add eslint-plugin-i18next@latest -D -E",
     "update-react-aria": "yarn add @internationalized/date@latest react-aria@latest react-aria-components@latest react-stately@latest tailwindcss-react-aria-components -E",
     "update-next": "yarn add next@latest react@latest react-dom@latest sharp@latest -E && yarn add @types/react@latest @types/react-dom@latest eslint-config-next@latest typescript@latest -D -E"
   },
@@ -30,6 +30,7 @@
     "@tanstack/react-query": "^5.40.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "eslint-plugin-i18next": "6.0.9",
     "focus-trap-react": "^10.2.3",
     "framer-motion": "^11.1.7",
     "graphql": "^16.8.1",

@@ -1,0 +1,13 @@
+diff --git a/node_modules/@strapi/admin/dist/_chunks/index-NCt4-R5U.mjs b/node_modules/@strapi/admin/dist/_chunks/index-NCt4-R5U.mjs
+index d6bc292..2722253 100644
+--- a/node_modules/@strapi/admin/dist/_chunks/index-NCt4-R5U.mjs
++++ b/node_modules/@strapi/admin/dist/_chunks/index-NCt4-R5U.mjs
+@@ -13522,7 +13522,7 @@ const DynamicComponent = ({
+   dynamicComponentsByCategory = {},
+   onAddComponent
+ }) => {
+-  const [isOpen, setIsOpen] = React.useState(true);
++  const [isOpen, setIsOpen] = React.useState(false);
+   const { formatMessage } = useIntl();
+   const { getComponentLayout } = useContentTypeLayout();
+   const { modifiedData } = useCMEditViewDataManager();

@@ -24,7 +24,7 @@ const MenuItemWorkshopCard = ({
   className,
 }: MenuItemWorkshopCardProps) => {
   return (
-    <NavMenuLink href={linkHref} asCardLink className={className}>
+    <NavMenuLink href={linkHref} className={cn(className)}>
       <CardBase>
         <div className="flex items-start gap-4">
           <div className="rounded-[20px] bg-background-secondary p-4">

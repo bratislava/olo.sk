@@ -26,7 +26,7 @@ const MenuItemBranchCard = ({
   const { t } = useTranslation()
 
   return (
-    <NavMenuLink href={linkHref} asCardLink className={cn(className)}>
+    <NavMenuLink href={linkHref} className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-2">
           <Typography

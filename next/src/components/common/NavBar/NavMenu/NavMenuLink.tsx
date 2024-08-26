@@ -7,10 +7,12 @@ import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMen
 import cn from '@/src/utils/cn'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
 
+type NavigationMenuLinkProps = NavigationMenu.NavigationMenuLinkProps
+
 type NavMenuLinkProps = {
-  asCardLink?: boolean
   className?: string
-} & Omit<LinkProps, 'children'> // To be able to spread link props as such: <NavMenuLink {...linkProps} />
+} & NavigationMenuLinkProps &
+  Omit<LinkProps, 'children'> // To be able to spread link props as such: <NavMenuLink {...linkProps} />
 
 /**
  * Based on: // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
@@ -19,7 +21,7 @@ type NavMenuLinkProps = {
 const NavMenuLink = ({
   href,
   target,
-  asCardLink,
+  asChild,
   children,
   className,
 }: PropsWithChildren<NavMenuLinkProps>) => {
@@ -28,13 +30,13 @@ const NavMenuLink = ({
   return (
     <li className={cn('flex', className)}>
       <NavigationMenu.Link
-        {...(asCardLink && { href })} // If it's a card link, include the href prop
+        asChild={asChild}
         onClick={() => setMobileMenuOpen(false)}
+        href={href}
+        target={target}
         className="w-full"
       >
-        {asCardLink ? (
-          children // MenuItemCard component
-        ) : (
+        {asChild ? (
           <Button
             variant="unstyled"
             asLink
@@ -46,6 +48,8 @@ const NavMenuLink = ({
           >
             {children}
           </Button>
+        ) : (
+          children // Renders either workshop or branch card
         )}
       </NavigationMenu.Link>
     </li>

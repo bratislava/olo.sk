@@ -1,7 +1,8 @@
-import cx from 'classnames'
 import { RefObject, useState } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 import { useEventListener } from 'usehooks-ts'
+
+import cn from '@/src/utils/cn'
 
 // copied from Marianum: https://github.com/bratislava/marianum.sk/blob/master/next/utils/useHorizontalScrollFade.ts
 export const useHorizontalScrollFade = ({
@@ -38,7 +39,7 @@ export const useHorizontalScrollFade = ({
   useEventListener('scroll', handleScrollOrResize, ref)
 
   return {
-    scrollFadeClassNames: cx(classNameLeft, classNameRight, {
+    scrollFadeClassNames: cn(classNameLeft, classNameRight, {
       [classNameRightOpaque]: !isScrolledRight,
       [classNameLeftOpaque]: !isScrolledLeft,
     }),

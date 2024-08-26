@@ -18,7 +18,7 @@ const MobileFooter = () => {
 
   return (
     <SectionContainer className="bg-content-primary">
-      <div className="flex flex-col divide-y divide-border-dark ">
+      <div className="flex flex-col divide-y divide-border-dark">
         <div className="flex flex-col py-6">
           <FooterContacts {...{ text, facebookUrl, instagramUrl }} />
         </div>

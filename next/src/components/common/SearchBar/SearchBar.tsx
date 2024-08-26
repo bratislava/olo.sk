@@ -64,7 +64,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
             className="pointer-events-none absolute left-4 top-[calc(50%_-_0.75rem)]"
           />
           {isLoading ? (
-            <Spinner size="sm" className="absolute right-[3.75rem] top-[calc(50%_-_0.75rem)]" />
+            <Spinner size="small" className="absolute right-[3.75rem] top-[calc(50%_-_0.75rem)]" />
           ) : null}
           {input ? (
             <Button

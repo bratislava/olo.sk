@@ -115,7 +115,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
             </Link>
           )
         },
-        img: ({ width, height, alt, src, sizes }) => {
+        img: ({ alt, src }) => {
           // Based on City Gallery:
           // https://github.com/bratislava/gmb.sk/blob/master/next/components/atoms/CityGalleryMarkdown.tsx
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -126,14 +126,14 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           // TODO this still produces a hydration error, because the remark-unwrap-images only works when image is the only child of the paragraph
           return (
             <figure className="flex flex-col items-center gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              {/* <img src={src} alt={altText} width={width} height={height} sizes={sizes} /> */}
-              <div
-                style={{ aspectRatio: width && height ? +width / +height : 1 }}
-                className="relative w-full overflow-hidden rounded-2xl"
-              >
-                <Image src={src} alt={altText ?? ''} fill sizes={sizes} />
-              </div>
+              <Image
+                src={src}
+                width="0"
+                height="0"
+                sizes="100vw"
+                alt={altText ?? ''}
+                className="h-auto w-full overflow-hidden rounded-2xl"
+              />
               {
                 // TODO implement caption in wysiwig editor, then enable here
                 //   alt && (

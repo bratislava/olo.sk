@@ -300,6 +300,23 @@ fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
   }
 }
 
+fragment BoardMembersSection on ComponentSectionsBoardMembers {
+  title
+  text
+  boardMembers {
+    name
+    position
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+    links {
+      ...Link
+    }
+  }
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -397,5 +414,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsOpeningTimes {
     ...OpeningTimesSection
+  }
+
+  ... on ComponentSectionsBoardMembers {
+    ...BoardMembersSection
   }
 }

@@ -24,6 +24,7 @@ import TableSection from '@/src/components/sections/TableSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
+import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
 
 type Section = PageSectionsFragment | ServiceSectionsFragment
 
@@ -105,6 +106,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsOpeningTimes':
       return <OpeningTimesSection section={section} />
+
+    case 'ComponentSectionsBoardMembers':
+      return <BoardMembersSection section={section} />
 
     default:
       return null

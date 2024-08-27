@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 import React, { ReactNode } from 'react'
 
@@ -95,7 +94,7 @@ const Pagination = ({ currentPage, totalCount, onPageChange = () => {} }: Pagina
               <li
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
-                className={cx({
+                className={cn({
                   'text-sm flex w-10 items-center justify-center lg:w-12':
                     type === 'start-ellipsis' || type === 'end-ellipsis',
                   'lg:mr-2': type === 'previous',

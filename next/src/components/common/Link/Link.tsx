@@ -1,8 +1,8 @@
-import cx from 'classnames'
 import NextLink from 'next/link'
 // import { usePlausible } from 'next-plausible'
 import { ComponentProps, forwardRef } from 'react'
-import { twMerge } from 'tailwind-merge'
+
+import cn from '@/src/utils/cn'
 
 // Component copied from bratislava.sk repository with disabled plausible (for now)
 
@@ -25,15 +25,16 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   ) => {
     // const plausible = usePlausible()
 
-    const styles = twMerge(
-      cx('underline-offset-2', {
+    const styles = cn(
+      'underline-offset-2',
+      {
         'underline lg:no-underline lg:hover:underline': variant === 'underlineOnHover',
         // TODO solve hover color, currently we use opacity, so text can have any color, but it can cause some design or accessibility issues
         'underline hover:opacity-80': variant === 'underlined',
 
         // https://github.com/tailwindlabs/tailwindcss/issues/1041#issuecomment-957425345
         'after:absolute after:inset-0': stretched,
-      }),
+      },
       className,
     )
 

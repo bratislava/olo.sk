@@ -1,5 +1,3 @@
-import cx from 'classnames'
-
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -27,7 +25,7 @@ const Tag = ({ variant, text, className }: TagProps) => {
     <div className={cn('rounded-4 bg-success text-white', className)}>
       <Typography
         variant="p-small-bold"
-        className_onlyWhenNecessary={cx('uppercase tracking-[0.07rem]', {
+        className_onlyWhenNecessary={cn('uppercase tracking-[0.07rem]', {
           'px-2 py-0.5': variant === 'small',
           'px-2 py-0.5 lg:px-3 lg:py-1.5': variant === 'large',
         })}

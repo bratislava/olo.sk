@@ -4,7 +4,7 @@ import React from 'react'
 
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 
-import MapComponent from './Map'
+import BranchLocationCardComponent from './BranchLocationCard'
 
 type Props = {
   rowsContent: {
@@ -14,7 +14,7 @@ type Props = {
 }
 
 const meta: Meta<Props> = {
-  title: 'Components/Box/Map',
+  title: 'Components/Cards/BranchLocationCard',
   parameters: { controls: { exclude: ['rowsContent'] } },
   args: {
     rowsContent: [
@@ -37,14 +37,14 @@ const meta: Meta<Props> = {
 export default meta
 type Story = StoryObj<Props>
 
-export const Map: Story = {
+export const BranchLocationCard: Story = {
   render: (args) => (
     <div className="mx-auto flex max-w-72 flex-col items-start lg:max-w-[50rem]">
-      <MapComponent>
+      <BranchLocationCardComponent>
         {...args.rowsContent.map((row) => (
           <BasicRowCard value={row.value} variant="icon-value" iconName={row.iconName} />
         ))}
-      </MapComponent>
+      </BranchLocationCardComponent>
     </div>
   ),
 }

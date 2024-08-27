@@ -1,6 +1,6 @@
 import { Fragment, ReactNode } from 'react'
 
-import MapPlaceholder from '@/src/components/common/MapPlaceholder'
+import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import cn from '@/src/utils/cn'
 
@@ -13,7 +13,7 @@ type MapProps = {
  *   Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-10975&m=dev
  */
 
-const Map = ({ children, className }: MapProps) => {
+const BranchLocationCard = ({ children, className }: MapProps) => {
   if (children.length === 0) return null
 
   return (
@@ -23,10 +23,13 @@ const Map = ({ children, className }: MapProps) => {
         className,
       )}
     >
-      <MapPlaceholder />
+      <div className="relative h-[12.25rem] w-[20.25rem]">
+        {/* 0.438rem = 7px */}
+        <ImagePlaceholder className="rounded-t-[0.438rem] lg:rounded-bl-[0.438rem] lg:rounded-tl-[0.438rem] lg:rounded-tr-none" />
+      </div>
 
       <div className="flex flex-col px-4 lg:px-6 lg:py-3">
-        {children.map((child: ReactNode, index) => {
+        {children.map((child, index) => {
           return (
             // eslint-disable-next-line react/no-array-index-key
             <Fragment key={index}>
@@ -40,4 +43,4 @@ const Map = ({ children, className }: MapProps) => {
   )
 }
 
-export default Map
+export default BranchLocationCard

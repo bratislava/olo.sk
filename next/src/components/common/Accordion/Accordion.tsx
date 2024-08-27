@@ -32,7 +32,7 @@ const Accordion = ({
   return (
     <AnimateHeight
       isVisible
-      className="relative ring-offset-2 focus-within:z-[1] focus-within:[&:has(:focus-visible)]:ring"
+      className="relative ring-offset-2 focus-within:z-1 focus-within:[&:has(:focus-visible)]:ring"
     >
       <div>
         <details className={cn('group flex w-full flex-col', className)}>
@@ -57,7 +57,7 @@ const Accordion = ({
             <div aria-hidden>
               <Icon
                 name="chevron-dole"
-                className="size-6 transform fill-content-secondary transition-transform group-open:rotate-180"
+                className="size-6 fill-content-secondary transition-transform group-open:rotate-180"
               />
             </div>
           </summary>

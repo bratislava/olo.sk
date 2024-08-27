@@ -30,7 +30,7 @@ const AnchorPill = ({ text, targetId }: AnchorPillProps) => {
       variant="unstyled"
       onPress={handleAnchorPress}
       endIcon={<Icon name="sipka-dole" />}
-      className="text-bold flex items-center gap-2 rounded-full bg-background-primary py-3.5 pl-4 pr-3"
+      className="flex items-center gap-2 rounded-full bg-background-primary py-3.5 pl-4 pr-3 font-bold"
     >
       {text}
     </Button>

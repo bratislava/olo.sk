@@ -2,6 +2,7 @@ import React from 'react'
 
 import ArticlesSection from '@/src/components/sections/ArticlesSection'
 import BannerSection from '@/src/components/sections/BannerSection'
+import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
 import CardSliderSection from '@/src/components/sections/CardSliderSection'
 import CardsListSection from '@/src/components/sections/CardsListSection'
@@ -24,7 +25,6 @@ import TableSection from '@/src/components/sections/TableSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
-import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
 
 type Section = PageSectionsFragment | ServiceSectionsFragment
 

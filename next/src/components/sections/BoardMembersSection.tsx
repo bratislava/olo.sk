@@ -1,12 +1,12 @@
 import React from 'react'
 
+import BoardMemberRowGroup from '@/src/components/common/BoardMemberRowGroup/BoardMemberRowGroup'
 import { BoardMemberRowCardProps } from '@/src/components/common/Card/BoardMemberRowCard'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { BoardMembersSectionFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
-import BoardMemberRowGroup from '@/src/components/common/BoardMemberRowGroup/BoardMemberRowGroup'
 
 type Props = {
   section: BoardMembersSectionFragment | null | undefined

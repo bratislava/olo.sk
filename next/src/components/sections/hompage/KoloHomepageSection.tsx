@@ -45,7 +45,7 @@ const KoloHomepageSection = ({ section }: Props) => {
 
             return (
               // eslint-disable-next-line react/no-array-index-key
-              <li key={index} className="h-full w-full">
+              <li key={index} className="size-full">
                 <HalfBanner title={card.title ?? ''} buttonLinkHref={href} buttonText={label} />
               </li>
             )

@@ -35,11 +35,11 @@ const SearchResultRowCard = ({
     <CardBase variant="unstyled" className={className}>
       <div className="flex items-center gap-4 p-4">
         {/* 2.25rem = 36px, 3.5rem = 56px */}
-        <div className="flex size-[3.5rem] shrink-0 items-center justify-center">
+        <div className="flex size-14 shrink-0 items-center justify-center">
           {imgSrc ? (
             <CardImage imgSrc={imgSrc} className="aspect-square size-full rounded-lg" />
           ) : iconName ? (
-            <Icon name={iconName} className="size-[2.25rem]" />
+            <Icon name={iconName} className="size-9" />
           ) : null}
         </div>
         <div className="flex grow flex-col gap-2">

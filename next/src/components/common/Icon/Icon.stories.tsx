@@ -25,7 +25,7 @@ export const Icon: Story = {
       <div className="flex flex-wrap gap-2">
         {Object.keys(iconNameMap).map((name) => {
           return (
-            <div className="flex w-[8rem] items-center gap-2 bg-white p-2 shadow-sm">
+            <div className="flex w-32 items-center gap-2 bg-white p-2 shadow-sm">
               <IconComponent key={name} name={name as IconName} />{' '}
               <p className="text-[0.6rem]">{name}</p>
             </div>

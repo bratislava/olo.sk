@@ -37,7 +37,7 @@ const BasicCard = ({
       title={title}
     >
       <CardImage imgSrc={imgSrc} className="aspect-[384/204] rounded-t-lg" />
-      <div className="flex h-full flex-col justify-between gap-5 px-4 py-4 lg:px-5">
+      <div className="flex h-full flex-col justify-between gap-5 p-4 lg:px-5">
         <div className="flex flex-col gap-3">
           <Typography
             variant="h5"

@@ -698,7 +698,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true
         }
       }>
-    coverMedia: Attribute.Media<'images'> &
+    coverMedia: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false
@@ -717,7 +717,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::article-category.article-category'
     >
     tags: Attribute.Relation<'api::article.article', 'manyToMany', 'api::tag.tag'>
-    gallery: Attribute.Media<'images', true> &
+    gallery: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
@@ -1453,7 +1453,7 @@ export interface ApiServiceService extends Schema.CollectionType {
       'manyToMany',
       'api::service-category.service-category'
     >
-    image: Attribute.Media<'images'> &
+    image: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true

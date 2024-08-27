@@ -41,7 +41,7 @@ const ServicePageContent = ({ service }: Props) => {
           </div>
         ) : null}
         {/* TODO replace with proper Sidebar */}
-        <div className="order-1 shrink grow max-md:w-full md:max-w-[20rem] lg:order-2">
+        <div className="order-1 shrink grow max-md:w-full md:max-w-80 lg:order-2">
           <ServiceSideBarPlaceholder />
         </div>
       </div>

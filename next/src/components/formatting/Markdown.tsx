@@ -30,7 +30,7 @@ PropsWithChildren<Record<any, any>>) => {
   return (
     <div className="relative">
       <div className={cn('overflow-x-auto', scrollFadeClassNames)} ref={tableWrapperRef}>
-        <table {...props} className="m-table border-separate border-spacing-0">
+        <table {...props} className="border-separate border-spacing-0">
           {children}
         </table>
       </div>
@@ -83,7 +83,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           </Typography>
         ),
         h6: ({ node, children, ...props }) => (
-          <Typography variant="h6" className="text-h5" {...props}>
+          <Typography variant="h5" as="h6" {...props}>
             {children}
           </Typography>
         ),
@@ -152,12 +152,12 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           <blockquote className="border-l-4 border-action-background-default pl-8" {...props} />
         ),
         ol: ({ children, ...props }) => (
-          <ol className="marker:text-primary list-decimal pl-8" {...props}>
+          <ol className="list-decimal pl-8 marker:text-content-secondary" {...props}>
             {children}
           </ol>
         ),
         ul: ({ children, ...props }) => (
-          <ul className="marker:text-primary list-disc pl-8" {...props}>
+          <ul className="list-disc pl-8 marker:text-content-secondary" {...props}>
             {children}
           </ul>
         ),

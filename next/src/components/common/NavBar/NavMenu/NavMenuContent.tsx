@@ -58,7 +58,11 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
             }
 
             return (
-              <NavMenuContentCell key={cell.id} colSpan={cell.colSpan} hasDivider={cell.hasDivider}>
+              <NavMenuContentCell
+                key={cell.id}
+                colSpan={cell.colSpan}
+                hasDivider={cell.hasDividers}
+              >
                 <NavMenuSection section={cell} />
               </NavMenuContentCell>
             )

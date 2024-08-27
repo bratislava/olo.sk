@@ -1,4 +1,4 @@
-/* eslint-disable pii/no-email */
+/* eslint-disable pii/no-email,i18next/no-literal-string */
 import type { Meta, StoryObj } from '@storybook/react'
 
 import ContactRowCardComponent from './ContactRowCard'

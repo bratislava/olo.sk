@@ -67,8 +67,8 @@ const PageHeaderGallery = ({ title, perex, header }: Props) => {
                       className={cn('relative overflow-hidden lg:rounded-lg', {
                         // keep the aspect-ratio of whole gallery consistent
                         'aspect-[1216/440]': imageCount === 1,
-                        'aspect-[596/440] ': imageCount === 2,
-                        'aspect-[808/440] ': imageCount > 2 && index === 0,
+                        'aspect-[596/440]': imageCount === 2,
+                        'aspect-[808/440]': imageCount > 2 && index === 0,
                         // first image is larger when displaying 3 images
                         'col-[1/3] row-[1/3]': imageCount > 2 && index === 0,
                         'col-[3/4] row-[1/2]': imageCount > 2 && index === 1,

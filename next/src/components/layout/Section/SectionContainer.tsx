@@ -1,6 +1,7 @@
-import cx from 'classnames'
 import React, { HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
+
+import cn from '@/src/utils/cn'
 
 export type SectionContainerProps = {
   background?: 'primary' | 'secondary' | 'tertiary'
@@ -15,12 +16,13 @@ const SectionContainer = ({
   ...rest
 }: SectionContainerProps) => (
   <div
-    className={twMerge(
-      cx('relative', {
+    className={cn(
+      'relative',
+      {
         'bg-background-primary': background === 'primary',
         'bg-background-secondary': background === 'secondary',
         'bg-background-tertiary': background === 'tertiary',
-      }),
+      },
       className,
     )}
     {...rest}

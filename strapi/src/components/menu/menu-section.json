@@ -29,7 +29,7 @@
         "split equally"
       ]
     },
-    "hasDivider": {
+    "hasDividers": {
       "type": "boolean",
       "default": false,
       "required": true

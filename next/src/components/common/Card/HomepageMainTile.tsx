@@ -1,10 +1,10 @@
-import cx from 'classnames'
 import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
+import cn from '@/src/utils/cn'
 
 type HomepageMainTileProps = {
   title: string
@@ -52,10 +52,10 @@ const HomepageMainTile = ({
             asLink
             hasLinkIcon={false}
             // 1.5rem  = 24px
-            icon={<Icon name="sipka-doprava" className="size-[1.5rem]" />}
+            icon={<Icon name="sipka-doprava" className="size-6" />}
             aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
             // 2.5rem = 40px
-            className={cx('flex size-[2.5rem] items-center justify-center rounded-lg', {
+            className={cn('flex size-[2.5rem] items-center justify-center rounded-lg', {
               'bg-background-secondary': !hasWhiteBackground,
               'bg-background-primary': hasWhiteBackground,
             })}

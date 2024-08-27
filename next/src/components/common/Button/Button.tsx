@@ -1,13 +1,12 @@
-import cx from 'classnames'
 import NextLink from 'next/link'
 import { ComponentProps, forwardRef, ReactNode, RefObject } from 'react'
 import { AriaButtonProps } from 'react-aria'
 import { Button as RACButton, ButtonProps as RACButtonProps } from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
 
 import Icon from '@/src/components/common/Icon/Icon'
 import Link, { LinkPlausibleProps } from '@/src/components/common/Link/Link'
 import Spinner from '@/src/components/common/Spinner/Spinner'
+import cn from '@/src/utils/cn'
 
 /**
  *  Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=4-385&mode=design&t=IDCmW43zimnlwiDU-4
@@ -109,7 +108,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
      *   - text should be styled by Typography component, now we use "text-size-button-default font-bold" directly
      *   - border should render inside button, not outside
      */
-    const styles = twMerge(
+    const styles = cn(
       /*
        *  We use isFocusVisible to show focus ring only on keyboard navigation
        *  It's recommended to remove default outline and use custom styling as ring:
@@ -118,109 +117,107 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
       'outline-none ring-offset-2 focus-visible:ring',
       variant === 'unstyled'
         ? className ?? ''
-        : twMerge(
+        : cn(
             'inline-flex h-auto items-center justify-center gap-2 text-size-button-default font-bold transition',
-            cx(
-              // we change rounded corners for link focus ring
-              isLinkVariant ? 'rounded-sm max-lg:gap-1' : 'rounded-lg',
 
-              {
-                // NOTE: there are some style overrides for link variants below in "twMerge"
+            // we change rounded corners for link focus ring
+            isLinkVariant ? 'rounded-sm max-lg:gap-1' : 'rounded-lg',
 
-                'font-normal underline underline-offset-2': isLinkVariant,
+            {
+              // NOTE: there are some style overrides for link variants below in "twMerge"
 
-                // disabled or loading
-                'opacity-50': isLoadingOrDisabled,
+              'font-normal underline underline-offset-2': isLinkVariant,
 
-                // https://github.com/tailwindlabs/tailwindcss/issues/1041#issuecomment-957425345
-                'after:absolute after:inset-0': 'stretched' in rest && rest.stretched,
+              // disabled or loading
+              'opacity-50': isLoadingOrDisabled,
 
-                // width or fullwidth
-                'w-full': fullWidth,
-                'w-full md:w-fit': fullWidthMobile,
-                'w-fit': !fullWidth && !fullWidthMobile,
+              // https://github.com/tailwindlabs/tailwindcss/issues/1041#issuecomment-957425345
+              'after:absolute after:inset-0': 'stretched' in rest && rest.stretched,
 
-                // border width
-                border: isSolidOrOutlineVariant,
+              // width or fullwidth
+              'w-full': fullWidth,
+              'w-full md:w-fit': fullWidthMobile,
+              'w-fit': !fullWidth && !fullWidthMobile,
 
-                // padding - link variants
-                'p-0': isLinkVariant,
+              // border width
+              border: isSolidOrOutlineVariant,
 
-                // padding - icon-wrapped variant
-                'p-2 outline-offset-0': isIconButton && isIconWrappedVariant,
-                '-m-2': isIconButton && variant === 'icon-wrapped-negative-margin',
+              // padding - link variants
+              'p-0': isLinkVariant,
 
-                // padding - filled and outlined variants
-                'px-4 py-2 lg:py-3':
-                  size === 'responsive' && !isIconButton && isSolidOrOutlineVariant,
-                'px-4 py-2': size === 'small' && !isIconButton && isSolidOrOutlineVariant,
-                'px-4 py-3': size === 'large' && !isIconButton && isSolidOrOutlineVariant,
+              // padding - icon-wrapped variant
+              'p-2 outline-offset-0': isIconButton && isIconWrappedVariant,
+              '-m-2': isIconButton && variant === 'icon-wrapped-negative-margin',
 
-                // padding - filled and outlined variants with "icon"
-                'p-2.5 lg:p-3': size === 'responsive' && isIconButton && isSolidOrOutlineVariant,
-                'p-2.5': size === 'small' && isIconButton && isSolidOrOutlineVariant,
-                'p-3': size === 'large' && isIconButton && isSolidOrOutlineVariant,
+              // padding - filled and outlined variants
+              'px-4 py-2 lg:py-3':
+                size === 'responsive' && !isIconButton && isSolidOrOutlineVariant,
+              'px-4 py-2': size === 'small' && !isIconButton && isSolidOrOutlineVariant,
+              'px-4 py-3': size === 'large' && !isIconButton && isSolidOrOutlineVariant,
 
-                // padding - plain variants
-                'px-2 py-1 lg:px-3 lg:py-2':
-                  size === 'responsive' && !isIconButton && isPlainVariant,
-                'px-2 py-1': size === 'small' && !isIconButton && isPlainVariant,
-                'px-3 py-2': size === 'large' && !isIconButton && isPlainVariant,
+              // padding - filled and outlined variants with "icon"
+              'p-2.5 lg:p-3': size === 'responsive' && isIconButton && isSolidOrOutlineVariant,
+              'p-2.5': size === 'small' && isIconButton && isSolidOrOutlineVariant,
+              'p-3': size === 'large' && isIconButton && isSolidOrOutlineVariant,
 
-                // padding - plain variants with "icon"
-                'p-1.5 lg:p-2': size === 'responsive' && isIconButton && isPlainVariant,
-                'p-1.5': size === 'small' && isIconButton && isPlainVariant,
-                'p-2': size === 'large' && isIconButton && isPlainVariant,
+              // padding - plain variants
+              'px-2 py-1 lg:px-3 lg:py-2': size === 'responsive' && !isIconButton && isPlainVariant,
+              'px-2 py-1': size === 'small' && !isIconButton && isPlainVariant,
+              'px-3 py-2': size === 'large' && !isIconButton && isPlainVariant,
 
-                // colors: idle & focus (background, border, text)
+              // padding - plain variants with "icon"
+              'p-1.5 lg:p-2': size === 'responsive' && isIconButton && isPlainVariant,
+              'p-1.5': size === 'small' && isIconButton && isPlainVariant,
+              'p-2': size === 'large' && isIconButton && isPlainVariant,
 
-                'border-action-background-default bg-action-background-default text-content-secondary pressed:border-action-background-pressed pressed:bg-action-background-pressed':
-                  variant === 'category-solid',
-                'border-action-border-default bg-transparent text-content-secondary pressed:border-action-border-pressed':
-                  variant === 'category-outline',
-                'text-content-secondary pressed:bg-action-softBackground-pressed':
-                  variant === 'category-plain',
+              // colors: idle & focus (background, border, text)
 
-                'border-action-content-default bg-action-content-default text-content-primaryInverted pressed:border-action-content-pressed pressed:bg-action-content-pressed':
-                  variant === 'black-solid',
-                'border-border-default bg-transparent text-action-content-default pressed:border-action-content-pressed pressed:text-border-dark':
-                  variant === 'black-outline',
-                'text-action-content-default pressed:bg-border-hover': variant === 'black-plain',
+              'border-action-background-default bg-action-background-default text-content-secondary pressed:border-action-background-pressed pressed:bg-action-background-pressed':
+                variant === 'category-solid',
+              'border-action-border-default bg-transparent text-content-secondary pressed:border-action-border-pressed':
+                variant === 'category-outline',
+              'text-content-secondary pressed:bg-action-softBackground-pressed':
+                variant === 'category-plain',
 
-                'text-action-content-default pressed:text-action-content-pressed':
-                  variant === 'black-link',
+              'border-action-content-default bg-action-content-default text-content-primaryInverted pressed:border-action-content-pressed pressed:bg-action-content-pressed':
+                variant === 'black-solid',
+              'border-border-default bg-transparent text-action-content-default pressed:border-action-content-pressed pressed:text-border-dark':
+                variant === 'black-outline',
+              'text-action-content-default pressed:bg-border-hover': variant === 'black-plain',
 
-                // 'border-border-default text-action-content-default pressed:border-border-hover pressed:text-action-content-pressed bg-white':
-                // 'border-negative-700 bg-negative-700 pressed:border-negative-800 pressed:bg-negative-800 text-content-primaryInverted':
-                //   variant === 'negative-solid',
-                // 'text-negative-700 pressed:bg-negative-200 pressed:text-negative-800':
-                //   variant === 'negative-plain',
+              'text-action-content-default pressed:text-action-content-pressed':
+                variant === 'black-link',
 
-                // colors:hover (background, border, text)
+              // 'border-border-default text-action-content-default pressed:border-border-hover pressed:text-action-content-pressed bg-white':
+              // 'border-negative-700 bg-negative-700 pressed:border-negative-800 pressed:bg-negative-800 text-content-primaryInverted':
+              //   variant === 'negative-solid',
+              // 'text-negative-700 pressed:bg-negative-200 pressed:text-negative-800':
+              //   variant === 'negative-plain',
 
-                'hover:border-action-background-hover hover:bg-action-background-hover':
-                  variant === 'category-solid',
-                'hover:border-action-border-hover': variant === 'category-outline',
-                'hover:bg-action-softBackground-hover': variant === 'category-plain',
+              // colors:hover (background, border, text)
 
-                'hover:border-action-content-hover hover:bg-action-content-hover':
-                  variant === 'black-solid',
-                'hover:border-action-content-hover hover:text-action-content-hover':
-                  variant === 'black-outline',
-                'hover:bg-border-default hover:text-action-content-default':
-                  variant === 'black-plain',
+              'hover:border-action-background-hover hover:bg-action-background-hover':
+                variant === 'category-solid',
+              'hover:border-action-border-hover': variant === 'category-outline',
+              'hover:bg-action-softBackground-hover': variant === 'category-plain',
 
-                'hover:text-action-content-hover': variant === 'black-link',
+              'hover:border-action-content-hover hover:bg-action-content-hover':
+                variant === 'black-solid',
+              'hover:border-action-content-hover hover:text-action-content-hover':
+                variant === 'black-outline',
+              'hover:bg-border-default hover:text-action-content-default':
+                variant === 'black-plain',
 
-                // 'hover:border-negative-600 hover:bg-negative-600': variant === 'negative-solid',
-                // 'hover:bg-negative-100 hover:text-negative-600': variant === 'negative-plain',
+              'hover:text-action-content-hover': variant === 'black-link',
 
-                // svg icons
-                '[&>svg]:h-5 [&>svg]:w-5 [&>svg]:lg:h-6 [&>svg]:lg:w-6': size === 'responsive',
-                '[&>svg]:h-5 [&>svg]:w-5': size === 'small',
-                '[&>svg]:h-6 [&>svg]:w-6': size === 'large',
-              },
-            ),
+              // 'hover:border-negative-600 hover:bg-negative-600': variant === 'negative-solid',
+              // 'hover:bg-negative-100 hover:text-negative-600': variant === 'negative-plain',
+
+              // svg icons
+              '[&>svg]:h-5 [&>svg]:w-5 [&>svg]:lg:h-6 [&>svg]:lg:w-6': size === 'responsive',
+              '[&>svg]:h-5 [&>svg]:w-5': size === 'small',
+              '[&>svg]:h-6 [&>svg]:w-6': size === 'large',
+            },
             className,
           ),
     )
@@ -262,7 +259,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
         {isLoading ? (
           <>
             {loadingText}
-            <Spinner size="sm" />
+            <Spinner size="small" />
           </>
         ) : (
           icon ?? children

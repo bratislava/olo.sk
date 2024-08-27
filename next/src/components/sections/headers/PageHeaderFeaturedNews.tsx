@@ -33,7 +33,7 @@ const PageHeaderFeaturedNews = ({ title, perex, header }: Props) => {
       />
       <div className="flex flex-col gap-6 py-6 lg:py-12">
         <SectionHeader title={articlesTitle} />
-        <ul className=" grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+        <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
           {filteredArticles
             .map((article) => {
               if (!article?.attributes) return null

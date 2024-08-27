@@ -2,7 +2,8 @@ module.exports = {
   extends: [
     'auto',
     'plugin:@next/next/recommended',
-    // 'plugin:tailwindcss/recommended',
+    'plugin:i18next/recommended',
+    'plugin:tailwindcss/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:storybook/recommended',
   ],
@@ -39,6 +40,8 @@ module.exports = {
     'lodash/prefer-noop': 'off',
     'pii/no-phone-number': 'off',
     'xss/no-mixed-html': 'off',
+
+    'i18next/no-literal-string': ['error', { 'should-validate-template': true }],
 
     // TODO revisit
     'import/extensions': 'off',

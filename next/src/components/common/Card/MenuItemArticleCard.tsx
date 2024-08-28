@@ -29,7 +29,7 @@ const MenuItemArticleCard = ({
       <div className="flex flex-col items-start gap-4 lg:flex-row">
         {/* 6.25rem = 100px */}
         <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />
-        <div className="flex flex-col justify-center gap-3">
+        <div className="flex flex-col gap-3">
           <Tag variant="without-bg" text={tagText} />
           <Link variant="unstyled" href={linkHref} stretched>
             <Typography

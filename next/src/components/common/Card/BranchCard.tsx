@@ -35,7 +35,6 @@ const BranchCard = ({
       className={className}
     >
       <div className="flex flex-col items-start gap-6 p-4 lg:gap-4">
-        {/* 4 rem = 64px, 8 rem = 128px */}
         <CardImage imgSrc={imgSrc} className="aspect-square size-16 rounded-lg lg:size-32" />
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">

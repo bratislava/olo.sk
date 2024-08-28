@@ -83,7 +83,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           </Typography>
         ),
         h6: ({ node, children, ...props }) => (
-          <Typography variant="h5" as="h6" {...props}>
+          <Typography variant="h6" {...props}>
             {children}
           </Typography>
         ),

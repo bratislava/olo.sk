@@ -28,7 +28,8 @@ PropsWithChildren<Record<any, any>>) => {
   const { scrollFadeClassNames } = useHorizontalScrollFade({ ref: tableWrapperRef })
 
   return (
-    <div className="relative">
+    // TODO set table width to be exact to that of SectionContainer without hardcoding it
+    <div className="relative -mx-52 flex justify-center">
       <div className={cn('overflow-x-auto', scrollFadeClassNames)} ref={tableWrapperRef}>
         <table {...props} className="border-separate border-spacing-0">
           {children}

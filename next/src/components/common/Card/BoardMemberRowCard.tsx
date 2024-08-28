@@ -59,6 +59,7 @@ const BoardMemberRowCard = ({
             <Typography variant="p-default-black">{name}</Typography>
             <Typography variant="p-small">{position}</Typography>
           </div>
+          {/* Screen: Desktop */}
           {filteredLinks ? (
             <div className="max-lg:hidden">
               <div className="flex flex-col gap-2">{filteredLinks}</div>
@@ -66,6 +67,7 @@ const BoardMemberRowCard = ({
           ) : null}
         </div>
       </div>
+      {/* Screen: Mobile */}
       {filteredLinks ? (
         <div className="lg:hidden">
           <div className="flex flex-col gap-1">{filteredLinks}</div>

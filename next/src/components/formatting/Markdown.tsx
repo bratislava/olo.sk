@@ -30,7 +30,7 @@ PropsWithChildren<Record<any, any>>) => {
   return (
     <div className="relative">
       <div className={cn('overflow-x-auto', scrollFadeClassNames)} ref={tableWrapperRef}>
-        <table {...props} className="m-table border-separate border-spacing-0">
+        <table {...props} className="border-separate border-spacing-0">
           {children}
         </table>
       </div>
@@ -83,7 +83,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           </Typography>
         ),
         h6: ({ node, children, ...props }) => (
-          <Typography variant="h6" className="text-h5" {...props}>
+          <Typography variant="h5" as="h6" {...props}>
             {children}
           </Typography>
         ),
@@ -115,7 +115,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
             </Link>
           )
         },
-        img: ({ width, height, alt, src, sizes }) => {
+        img: ({ alt, src }) => {
           // Based on City Gallery:
           // https://github.com/bratislava/gmb.sk/blob/master/next/components/atoms/CityGalleryMarkdown.tsx
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -126,14 +126,14 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           // TODO this still produces a hydration error, because the remark-unwrap-images only works when image is the only child of the paragraph
           return (
             <figure className="flex flex-col items-center gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              {/* <img src={src} alt={altText} width={width} height={height} sizes={sizes} /> */}
-              <div
-                style={{ aspectRatio: width && height ? +width / +height : 1 }}
-                className="relative w-full overflow-hidden rounded-2xl"
-              >
-                <Image src={src} alt={altText ?? ''} fill sizes={sizes} />
-              </div>
+              <Image
+                src={src}
+                width="0"
+                height="0"
+                sizes="100vw"
+                alt={altText ?? ''}
+                className="h-auto w-full overflow-hidden rounded-2xl"
+              />
               {
                 // TODO implement caption in wysiwig editor, then enable here
                 //   alt && (
@@ -152,12 +152,12 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           <blockquote className="border-l-4 border-action-background-default pl-8" {...props} />
         ),
         ol: ({ children, ...props }) => (
-          <ol className="marker:text-primary list-decimal pl-8" {...props}>
+          <ol className="list-decimal pl-8 marker:text-content-secondary" {...props}>
             {children}
           </ol>
         ),
         ul: ({ children, ...props }) => (
-          <ul className="marker:text-primary list-disc pl-8" {...props}>
+          <ul className="list-disc pl-8 marker:text-content-secondary" {...props}>
             {children}
           </ul>
         ),

@@ -15,7 +15,7 @@ type WasteSortingColumn = {
   columnAlertMessage?: WasteSortingMessageProps | null | undefined
 }
 
-type WasteSortingGuideProps = {
+export type WasteSortingGuideProps = {
   leftColumn: WasteSortingColumn
   rightColumn: WasteSortingColumn
   bottomAlertMessage?: WasteSortingMessageProps | null | undefined

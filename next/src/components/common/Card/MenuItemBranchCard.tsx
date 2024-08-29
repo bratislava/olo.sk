@@ -26,7 +26,7 @@ const MenuItemBranchCard = ({
   const { t } = useTranslation()
 
   return (
-    <NavMenuLink href={linkHref} className={cn(className)}>
+    <NavMenuLink href={linkHref} isCard className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-2">
           <Typography
@@ -37,7 +37,7 @@ const MenuItemBranchCard = ({
           </Typography>
           <div className="flex flex-col gap-4">
             {address ? <Typography variant="p-default">{address}</Typography> : null}
-            <Button variant="black-link" href={linkHref} asLink stretched>
+            <Button variant="black-link" asLink stretched>
               {t('navBar.branchCard.showDetails')}
             </Button>
           </div>

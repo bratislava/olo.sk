@@ -57,7 +57,6 @@ const NavMenuSingleColumnList = ({ links, className }: NavMenuColumnListProps) =
         ) : (
           <NavMenuLink
             key={link.id}
-            asChild
             href={href}
             target={target}
             className={cn('pb-5', { 'pb-0': index === links.length - 1 })}

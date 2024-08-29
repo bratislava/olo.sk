@@ -25,7 +25,7 @@ const MenuItemArticleCard = ({
   className,
 }: MenuItemArticleCardProps) => {
   return (
-    <NavMenuLink href={linkHref} className={cn(className)}>
+    <NavMenuLink href={linkHref} isCard className={cn(className)}>
       <CardBase>
         <div className="flex flex-col items-start gap-4 lg:flex-row">
           {/* 6.25rem = 100px */}

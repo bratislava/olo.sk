@@ -11,7 +11,7 @@ type Props = {
 }
 
 /**
- * Figma (temporary link): https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=3370-21030&m=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=6518-27870&m=dev
  */
 
 const CardsListSection = ({ section }: Props) => {

@@ -23,6 +23,8 @@ type WasteSortingGuideProps = {
 }
 
 const WasteSortingMessage = ({ title, text }: WasteSortingMessageProps) => {
+  if (!title && !text) return null
+
   return (
     <div className="flex flex-col gap-1 rounded-lg bg-alert-background-warning px-5 py-4">
       {title ? <Typography variant="h6">{title}</Typography> : null}
@@ -86,9 +88,11 @@ const WasteSortingGuide = ({
           <WasteSortingMessage {...rightColumn.columnAlertMessage} />
         </div>
       </div>
-      <div className="p-4 lg:p-6">
-        <WasteSortingMessage {...bottomAlertMessage} />
-      </div>
+      {bottomAlertMessage ? (
+        <div className="p-4 lg:p-6">
+          <WasteSortingMessage {...bottomAlertMessage} />
+        </div>
+      ) : null}
     </div>
   )
 }

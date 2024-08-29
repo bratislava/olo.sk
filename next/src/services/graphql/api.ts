@@ -693,6 +693,9 @@ export type ComponentItemsSlideInput = {
 
 export type ComponentItemsSortingGuide = {
   __typename?: 'ComponentItemsSortingGuide'
+  alertMessageBottom?: Maybe<ComponentItemsSortingGuideAlertMessage>
+  alertMessageDoesntGoHere?: Maybe<ComponentItemsSortingGuideAlertMessage>
+  alertMessageGoesHere?: Maybe<ComponentItemsSortingGuideAlertMessage>
   doesntGoHereItems?: Maybe<Array<Maybe<ComponentItemsSortingGuideItem>>>
   goesHereItems?: Maybe<Array<Maybe<ComponentItemsSortingGuideItem>>>
   id: Scalars['ID']['output']
@@ -729,7 +732,25 @@ export type ComponentItemsSortingGuideAccordionItemFiltersInput = {
   wasteType?: InputMaybe<StringFilterInput>
 }
 
+export type ComponentItemsSortingGuideAlertMessage = {
+  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsSortingGuideAlertMessageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>>>
+  not?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsSortingGuideFiltersInput = {
+  alertMessageBottom?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
+  alertMessageDoesntGoHere?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
+  alertMessageGoesHere?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
   and?: InputMaybe<Array<InputMaybe<ComponentItemsSortingGuideFiltersInput>>>
   doesntGoHereItems?: InputMaybe<ComponentItemsSortingGuideItemFiltersInput>
   goesHereItems?: InputMaybe<ComponentItemsSortingGuideItemFiltersInput>
@@ -1952,6 +1973,7 @@ export type GenericMorph =
   | ComponentItemsSlide
   | ComponentItemsSortingGuide
   | ComponentItemsSortingGuideAccordionItem
+  | ComponentItemsSortingGuideAlertMessage
   | ComponentItemsSortingGuideItem
   | ComponentItemsWasteSortingCardsItem
   | ComponentItemsWorkshopDate
@@ -8630,6 +8652,21 @@ export type SortingGuideFragment = {
     __typename?: 'ComponentItemsSortingGuideItem'
     label: string
   } | null> | null
+  alertMessageGoesHere?: {
+    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+    title?: string | null
+    text?: string | null
+  } | null
+  alertMessageDoesntGoHere?: {
+    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+    title?: string | null
+    text?: string | null
+  } | null
+  alertMessageBottom?: {
+    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+    title?: string | null
+    text?: string | null
+  } | null
 }
 
 export type SortingGuideSectionFragment = {
@@ -8648,6 +8685,21 @@ export type SortingGuideSectionFragment = {
       __typename?: 'ComponentItemsSortingGuideItem'
       label: string
     } | null> | null
+    alertMessageGoesHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageDoesntGoHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageBottom?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
   } | null
   banner?: {
     __typename?: 'ComponentSectionsBanner'
@@ -8911,6 +8963,21 @@ export type SortingGuideAccordionsSectionFragment = {
         __typename?: 'ComponentItemsSortingGuideItem'
         label: string
       } | null> | null
+      alertMessageGoesHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageDoesntGoHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageBottom?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
     } | null
   } | null> | null
   banner?: {
@@ -11333,6 +11400,21 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
       __typename?: 'ComponentItemsSortingGuideItem'
       label: string
     } | null> | null
+    alertMessageGoesHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageDoesntGoHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageBottom?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
   } | null
   banner?: {
     __typename?: 'ComponentSectionsBanner'
@@ -11596,6 +11678,21 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
         __typename?: 'ComponentItemsSortingGuideItem'
         label: string
       } | null> | null
+      alertMessageGoesHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageDoesntGoHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageBottom?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
     } | null
   } | null> | null
   banner?: {
@@ -20983,6 +21080,21 @@ export type PageEntityFragment = {
               __typename?: 'ComponentItemsSortingGuideItem'
               label: string
             } | null> | null
+            alertMessageGoesHere?: {
+              __typename?: 'ComponentItemsSortingGuideAlertMessage'
+              title?: string | null
+              text?: string | null
+            } | null
+            alertMessageDoesntGoHere?: {
+              __typename?: 'ComponentItemsSortingGuideAlertMessage'
+              title?: string | null
+              text?: string | null
+            } | null
+            alertMessageBottom?: {
+              __typename?: 'ComponentItemsSortingGuideAlertMessage'
+              title?: string | null
+              text?: string | null
+            } | null
           } | null
           banner?: {
             __typename?: 'ComponentSectionsBanner'
@@ -21245,6 +21357,21 @@ export type PageEntityFragment = {
                 __typename?: 'ComponentItemsSortingGuideItem'
                 label: string
               } | null> | null
+              alertMessageGoesHere?: {
+                __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                title?: string | null
+                text?: string | null
+              } | null
+              alertMessageDoesntGoHere?: {
+                __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                title?: string | null
+                text?: string | null
+              } | null
+              alertMessageBottom?: {
+                __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                title?: string | null
+                text?: string | null
+              } | null
             } | null
           } | null> | null
           banner?: {
@@ -23997,6 +24124,21 @@ export type PagesQuery = {
                   __typename?: 'ComponentItemsSortingGuideItem'
                   label: string
                 } | null> | null
+                alertMessageGoesHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageDoesntGoHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageBottom?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
               } | null
               banner?: {
                 __typename?: 'ComponentSectionsBanner'
@@ -24259,6 +24401,21 @@ export type PagesQuery = {
                     __typename?: 'ComponentItemsSortingGuideItem'
                     label: string
                   } | null> | null
+                  alertMessageGoesHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageDoesntGoHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageBottom?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
                 } | null
               } | null> | null
               banner?: {
@@ -27018,6 +27175,21 @@ export type PageBySlugQuery = {
                   __typename?: 'ComponentItemsSortingGuideItem'
                   label: string
                 } | null> | null
+                alertMessageGoesHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageDoesntGoHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageBottom?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
               } | null
               banner?: {
                 __typename?: 'ComponentSectionsBanner'
@@ -27280,6 +27452,21 @@ export type PageBySlugQuery = {
                     __typename?: 'ComponentItemsSortingGuideItem'
                     label: string
                   } | null> | null
+                  alertMessageGoesHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageDoesntGoHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageBottom?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
                 } | null
               } | null> | null
               banner?: {
@@ -33487,6 +33674,18 @@ export const SortingGuideFragmentDoc = gql`
     }
     doesntGoHereItems {
       label
+    }
+    alertMessageGoesHere {
+      title
+      text
+    }
+    alertMessageDoesntGoHere {
+      title
+      text
+    }
+    alertMessageBottom {
+      title
+      text
     }
   }
 `

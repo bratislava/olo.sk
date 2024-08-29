@@ -605,6 +605,9 @@ export interface ItemsSortingGuide extends Schema.Component {
     titleDoesntGoHere: Attribute.String & Attribute.DefaultTo<'Nepatr\u00ED sem'>
     goesHereItems: Attribute.Component<'items.sorting-guide-item', true>
     doesntGoHereItems: Attribute.Component<'items.sorting-guide-item', true>
+    alertMessageGoesHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageDoesntGoHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageBottom: Attribute.Component<'items.sorting-guide-alert-message'>
   }
 }
 
@@ -616,6 +619,18 @@ export interface ItemsSortingGuideItem extends Schema.Component {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+  }
+}
+
+export interface ItemsSortingGuideAlertMessage extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_alert_messages'
+  info: {
+    displayName: 'Sorting Guide Alert Message'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
   }
 }
 
@@ -979,6 +994,7 @@ declare module '@strapi/types' {
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide
       'items.sorting-guide-item': ItemsSortingGuideItem
+      'items.sorting-guide-alert-message': ItemsSortingGuideAlertMessage
       'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
       'items.slide': ItemsSlide
       'items.ordered-cards-item': ItemsOrderedCardsItem

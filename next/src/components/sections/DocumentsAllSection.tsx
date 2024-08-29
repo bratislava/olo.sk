@@ -95,7 +95,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
           <Typography variant="p-default">{t('common.loading')}</Typography>
         ) : (
           <div className="flex flex-col gap-6">
-            <ul className="divide-y divide-border-default rounded-lg border border-border-default focus-within:z-[1]">
+            <ul className="divide-y divide-border-default rounded-lg border border-border-default focus-within:z-1">
               {data.hits
                 .map((document) => {
                   if (!document.attributes) return null

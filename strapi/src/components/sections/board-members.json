@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_board_members",
+  "info": {
+    "displayName": "Správna rada",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "boardMembers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.board-members-item"
+    }
+  }
+}

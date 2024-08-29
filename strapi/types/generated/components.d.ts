@@ -443,6 +443,19 @@ export interface SectionsBranches extends Schema.Component {
   }
 }
 
+export interface SectionsBoardMembers extends Schema.Component {
+  collectionName: 'components_sections_board_members'
+  info: {
+    displayName: 'Spr\u00E1vna rada'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.String
+    boardMembers: Attribute.Component<'items.board-members-item', true>
+  }
+}
+
 export interface SectionsBanner extends Schema.Component {
   collectionName: 'components_sections_banners'
   info: {
@@ -809,6 +822,19 @@ export interface ItemsCardSliderCard extends Schema.Component {
   }
 }
 
+export interface ItemsBoardMembersItem extends Schema.Component {
+  collectionName: 'components_items_board_members_items'
+  info: {
+    displayName: 'Board Members item'
+  }
+  attributes: {
+    name: Attribute.String & Attribute.Required
+    position: Attribute.String & Attribute.Required
+    image: Attribute.Media<'images'>
+    links: Attribute.Component<'items.link', true>
+  }
+}
+
 export interface ItemsAnchor extends Schema.Component {
   collectionName: 'components_items_anchors'
   info: {
@@ -942,6 +968,7 @@ declare module '@strapi/types' {
       'sections.cards-list': SectionsCardsList
       'sections.card-slider': SectionsCardSlider
       'sections.branches': SectionsBranches
+      'sections.board-members': SectionsBoardMembers
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
@@ -967,6 +994,7 @@ declare module '@strapi/types' {
       'items.columns-item': ItemsColumnsItem
       'items.cards-list-item': ItemsCardsListItem
       'items.card-slider-card': ItemsCardSliderCard
+      'items.board-members-item': ItemsBoardMembersItem
       'items.anchor': ItemsAnchor
       'header-sections.side-image': HeaderSectionsSideImage
       'header-sections.pickup-day': HeaderSectionsPickupDay

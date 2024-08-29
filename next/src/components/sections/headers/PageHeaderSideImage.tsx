@@ -39,8 +39,8 @@ const PageHeaderSideImage = ({ title, perex, header, breadcrumbs }: Props) => {
         {/* This div serves as an empty space for the image to overlap correctly */}
         <div aria-hidden className="h-18" />
         {/* This div overlaps the grid in SectionContainer and and allows the image to fill the whole right side */}
-        <div className="absolute top-0 grid h-full w-full grid-cols-2 gap-12">
-          <div className="relative col-[2] h-full w-full overflow-hidden rounded-bl-2xl">
+        <div className="absolute top-0 grid size-full grid-cols-2 gap-12">
+          <div className="relative col-[2] size-full overflow-hidden rounded-bl-2xl">
             {imageUrl ? (
               <Image src={imageUrl} alt="" fill className="z-1 object-cover" />
             ) : (

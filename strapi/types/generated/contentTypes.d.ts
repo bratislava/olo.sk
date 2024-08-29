@@ -1400,6 +1400,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.sorting-guide-accordions',
         'sections.contacts',
         'sections.opening-times',
+        'sections.board-members',
       ]
     > &
       Attribute.SetPluginOptions<{

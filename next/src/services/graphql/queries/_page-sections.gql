@@ -294,8 +294,11 @@ fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
   title
   text
   openingTimes {
-    data {
-      ...OpeningTimeEntity
+    title
+    openingTime {
+      data {
+        ...OpeningTimeEntity
+      }
     }
   }
 }

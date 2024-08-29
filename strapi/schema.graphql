@@ -635,6 +635,26 @@ input ComponentItemsOpeningHoursItemInput {
   value: String
 }
 
+type ComponentItemsOpeningTimesItem {
+  id: ID!
+  openingTime: OpeningTimeEntityResponse
+  title: String
+}
+
+input ComponentItemsOpeningTimesItemFiltersInput {
+  and: [ComponentItemsOpeningTimesItemFiltersInput]
+  not: ComponentItemsOpeningTimesItemFiltersInput
+  openingTime: OpeningTimeFiltersInput
+  or: [ComponentItemsOpeningTimesItemFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentItemsOpeningTimesItemInput {
+  id: ID
+  openingTime: ID
+  title: String
+}
+
 type ComponentItemsOrderedCardsItem {
   iconName: String
   id: ID!
@@ -1403,7 +1423,7 @@ input ComponentSectionsKoloHomepageSectionInput {
 
 type ComponentSectionsOpeningTimes {
   id: ID!
-  openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeRelationResponseCollection
+  openingTimes(filters: ComponentItemsOpeningTimesItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOpeningTimesItem]!
   text: String
   title: String
 }
@@ -1411,7 +1431,7 @@ type ComponentSectionsOpeningTimes {
 input ComponentSectionsOpeningTimesFiltersInput {
   and: [ComponentSectionsOpeningTimesFiltersInput]
   not: ComponentSectionsOpeningTimesFiltersInput
-  openingTimes: OpeningTimeFiltersInput
+  openingTimes: ComponentItemsOpeningTimesItemFiltersInput
   or: [ComponentSectionsOpeningTimesFiltersInput]
   text: StringFilterInput
   title: StringFilterInput
@@ -1419,7 +1439,7 @@ input ComponentSectionsOpeningTimesFiltersInput {
 
 input ComponentSectionsOpeningTimesInput {
   id: ID
-  openingTimes: [ID]
+  openingTimes: [ComponentItemsOpeningTimesItemInput]
   text: String
   title: String
 }
@@ -2178,7 +2198,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection

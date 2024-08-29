@@ -27,7 +27,7 @@ export const FileRowGroup: Story = {
     ],
   },
   render: (args) => (
-    <div className="w-full max-w-[600px]">
+    <div className="w-full">
       <FileRowGroupComponent {...args} />
     </div>
   ),

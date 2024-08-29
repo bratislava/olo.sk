@@ -100,7 +100,7 @@ const Gallery = ({ images = [] }: GalleryProps) => {
                   onClick={() => openAtImageIndex(0)}
                   className="relative w-full cursor-pointer overflow-hidden rounded-lg pt-[100%] md:rounded-xl"
                 >
-                  <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-0.5 bg-background-secondary p-2 text-center">
+                  <div className="absolute top-0 flex size-full flex-col items-center justify-center gap-0.5 bg-background-secondary p-2 text-center">
                     <Typography variant="p-default-bold">+{moreImagesCount}</Typography>
                   </div>
                 </div>

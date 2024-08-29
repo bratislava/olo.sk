@@ -2,6 +2,7 @@ import React from 'react'
 
 import ArticlesSection from '@/src/components/sections/ArticlesSection'
 import BannerSection from '@/src/components/sections/BannerSection'
+import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
 import CardSliderSection from '@/src/components/sections/CardSliderSection'
 import CardsListSection from '@/src/components/sections/CardsListSection'
@@ -105,6 +106,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsOpeningTimes':
       return <OpeningTimesSection section={section} />
+
+    case 'ComponentSectionsBoardMembers':
+      return <BoardMembersSection section={section} />
 
     default:
       return null

@@ -414,6 +414,7 @@ export type ComponentItemsCardsListItem = {
   __typename?: 'ComponentItemsCardsListItem'
   id: Scalars['ID']['output']
   link: ComponentItemsLink
+  subtext?: Maybe<Scalars['String']['output']>
   title: Scalars['String']['output']
 }
 
@@ -422,12 +423,14 @@ export type ComponentItemsCardsListItemFiltersInput = {
   link?: InputMaybe<ComponentItemsLinkFiltersInput>
   not?: InputMaybe<ComponentItemsCardsListItemFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsCardsListItemFiltersInput>>>
+  subtext?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
 }
 
 export type ComponentItemsCardsListItemInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   link?: InputMaybe<ComponentItemsLinkInput>
+  subtext?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -1000,6 +1003,7 @@ export type ComponentSectionsCardsList = {
   __typename?: 'ComponentSectionsCardsList'
   cards?: Maybe<Array<Maybe<ComponentItemsCardsListItem>>>
   id: Scalars['ID']['output']
+  linkLabelOverride?: Maybe<Scalars['String']['output']>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
@@ -8122,9 +8126,11 @@ export type CardsListSectionFragment = {
   __typename?: 'ComponentSectionsCardsList'
   title?: string | null
   text?: string | null
+  linkLabelOverride?: string | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
+    subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
@@ -10129,9 +10135,11 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
   __typename: 'ComponentSectionsCardsList'
   title?: string | null
   text?: string | null
+  linkLabelOverride?: string | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
+    subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
@@ -19746,9 +19754,11 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsCardsList'
           title?: string | null
           text?: string | null
+          linkLabelOverride?: string | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
+            subtext?: string | null
             link: {
               __typename?: 'ComponentItemsLink'
               label?: string | null
@@ -22756,9 +22766,11 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -25777,9 +25789,11 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -27972,9 +27986,11 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
   __typename: 'ComponentSectionsCardsList'
   title?: string | null
   text?: string | null
+  linkLabelOverride?: string | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
+    subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
@@ -28694,9 +28710,11 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsCardsList'
           title?: string | null
           text?: string | null
+          linkLabelOverride?: string | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
+            subtext?: string | null
             link: {
               __typename?: 'ComponentItemsLink'
               label?: string | null
@@ -29457,9 +29475,11 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -30227,9 +30247,11 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -33432,8 +33454,10 @@ export const CardsListSectionFragmentDoc = gql`
   fragment CardsListSection on ComponentSectionsCardsList {
     title
     text
+    linkLabelOverride
     cardsCardsList: cards {
       title
+      subtext
       link {
         ...Link
       }

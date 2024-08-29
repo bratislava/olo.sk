@@ -409,6 +409,7 @@ export interface SectionsCardsList extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
+    linkLabelOverride: Attribute.Text
     cards: Attribute.Component<'items.cards-list-item', true>
   }
 }
@@ -805,6 +806,7 @@ export interface ItemsCardsListItem extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
+    subtext: Attribute.String
     link: Attribute.Component<'items.link'> & Attribute.Required
   }
 }

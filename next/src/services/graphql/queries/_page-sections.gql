@@ -172,8 +172,10 @@ fragment DividerSection on ComponentSectionsDivider {
 fragment CardsListSection on ComponentSectionsCardsList {
   title
   text
+  linkLabelOverride
   cardsCardsList: cards {
     title
+    subtext
     link {
       ...Link
     }

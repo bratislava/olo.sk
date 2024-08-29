@@ -15,7 +15,7 @@ type Props = {
  */
 
 const CardsListSection = ({ section }: Props) => {
-  const { title, text, cardsCardsList: cards } = section
+  const { title, text, linkLabelOverride, cardsCardsList: cards } = section
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredCards = cards?.filter(isDefined) ?? []
@@ -31,7 +31,12 @@ const CardsListSection = ({ section }: Props) => {
               return (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={index}>
-                  <ListingCard title={card.title} link={card.link} />
+                  <ListingCard
+                    title={card.title}
+                    subtext={card.subtext}
+                    link={{ ...card.link, label: linkLabelOverride ?? card.link?.label }}
+                    className="h-full"
+                  />
                 </li>
               )
             })

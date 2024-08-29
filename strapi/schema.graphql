@@ -2131,6 +2131,7 @@ type Footer {
   createdAt: DateTime
   facebookUrl: String
   instagramUrl: String
+  linkedinUrl: String
   locale: String
   localizations: FooterRelationResponseCollection
   text: String
@@ -2158,6 +2159,7 @@ input FooterFiltersInput {
   createdAt: DateTimeFilterInput
   facebookUrl: StringFilterInput
   instagramUrl: StringFilterInput
+  linkedinUrl: StringFilterInput
   locale: StringFilterInput
   localizations: FooterFiltersInput
   not: FooterFiltersInput
@@ -2171,6 +2173,7 @@ input FooterInput {
   columns: [ComponentItemsFooterColumnInput]
   facebookUrl: String
   instagramUrl: String
+  linkedinUrl: String
   text: String
 }
 

@@ -1114,6 +1114,12 @@ export interface ApiFooterFooter extends Schema.SingleType {
           localized: true
         }
       }>
+    linkedinUrl: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     columns: Attribute.Component<'items.footer-column', true> &
       Attribute.SetPluginOptions<{
         i18n: {

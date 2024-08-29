@@ -10,7 +10,12 @@ import { FooterFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragment) => {
+export const FooterContacts = ({
+  text,
+  facebookUrl,
+  instagramUrl,
+  linkedinUrl,
+}: FooterFragment) => {
   const { t } = useTranslation()
 
   return (
@@ -36,6 +41,16 @@ export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragme
             asLink
             hasLinkIcon={false}
             icon={<OloIcon name="social-media-instagram-footer" />}
+            aria-label={t('footer.aria.instagram')}
+          />
+        )}
+        {linkedinUrl && (
+          <Button
+            variant="icon-wrapped-negative-margin"
+            href={linkedinUrl}
+            asLink
+            hasLinkIcon={false}
+            icon={<OloIcon name="social-media-linkedin-footer" />}
             aria-label={t('footer.aria.instagram')}
           />
         )}

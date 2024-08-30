@@ -1881,6 +1881,7 @@ export type Footer = {
   createdAt?: Maybe<Scalars['DateTime']['output']>
   facebookUrl?: Maybe<Scalars['String']['output']>
   instagramUrl?: Maybe<Scalars['String']['output']>
+  linkedinUrl?: Maybe<Scalars['String']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<FooterRelationResponseCollection>
   text?: Maybe<Scalars['String']['output']>
@@ -1915,6 +1916,7 @@ export type FooterInput = {
   columns?: InputMaybe<Array<InputMaybe<ComponentItemsFooterColumnInput>>>
   facebookUrl?: InputMaybe<Scalars['String']['input']>
   instagramUrl?: InputMaybe<Scalars['String']['input']>
+  linkedinUrl?: InputMaybe<Scalars['String']['input']>
   text?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -5670,6 +5672,7 @@ export type GeneralQuery = {
         text?: string | null
         facebookUrl?: string | null
         instagramUrl?: string | null
+        linkedinUrl?: string | null
         columns?: Array<{
           __typename?: 'ComponentItemsFooterColumn'
           title: string
@@ -13553,6 +13556,7 @@ export type FooterFragment = {
   text?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
+  linkedinUrl?: string | null
   columns?: Array<{
     __typename?: 'ComponentItemsFooterColumn'
     title: string
@@ -13781,6 +13785,7 @@ export type FooterEntityFragment = {
     text?: string | null
     facebookUrl?: string | null
     instagramUrl?: string | null
+    linkedinUrl?: string | null
     columns?: Array<{
       __typename?: 'ComponentItemsFooterColumn'
       title: string
@@ -32742,6 +32747,7 @@ export const FooterFragmentDoc = gql`
     text
     facebookUrl
     instagramUrl
+    linkedinUrl
     columns {
       ...FooterColumnItem
     }

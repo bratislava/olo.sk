@@ -24,7 +24,7 @@ export const FooterContacts = ({
       <OloLogo fill="white" />
       <Markdown content={text} />
       <div className="flex gap-6 text-background-primary">
-        {facebookUrl && (
+        {facebookUrl ? (
           <Button
             variant="icon-wrapped-negative-margin"
             href={facebookUrl}
@@ -33,8 +33,9 @@ export const FooterContacts = ({
             icon={<OloIcon name="social-media-facebook-footer" />}
             aria-label={t('footer.aria.facebook')}
           />
-        )}
-        {instagramUrl && (
+        ) : null}
+
+        {instagramUrl ? (
           <Button
             variant="icon-wrapped-negative-margin"
             href={instagramUrl}
@@ -43,8 +44,8 @@ export const FooterContacts = ({
             icon={<OloIcon name="social-media-instagram-footer" />}
             aria-label={t('footer.aria.instagram')}
           />
-        )}
-        {linkedinUrl && (
+        ) : null}
+        {linkedinUrl ? (
           <Button
             variant="icon-wrapped-negative-margin"
             href={linkedinUrl}
@@ -53,7 +54,7 @@ export const FooterContacts = ({
             icon={<OloIcon name="social-media-linkedin-footer" />}
             aria-label={t('footer.aria.instagram')}
           />
-        )}
+        ) : null}
       </div>
     </div>
   )

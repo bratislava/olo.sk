@@ -1105,19 +1105,19 @@ export interface ApiFooterFooter extends Schema.SingleType {
     facebookUrl: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true
+          localized: false
         }
       }>
     instagramUrl: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true
+          localized: false
         }
       }>
     linkedinUrl: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true
+          localized: false
         }
       }>
     columns: Attribute.Component<'items.footer-column', true> &

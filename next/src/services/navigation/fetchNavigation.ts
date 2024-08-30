@@ -16,7 +16,7 @@ const fetchNonCached = async (host: string) => {
    * The request is handled on server, so we have to use http instead of https.
    * `pathname` contains leading "/"
    */
-  const fetchUrl = `http://${host}/api/sitemap`
+  const fetchUrl = `http://${host}/api/navigation`
 
   const response = await fetch(fetchUrl)
 

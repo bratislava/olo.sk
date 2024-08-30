@@ -5705,6 +5705,66 @@ export type GeneralQuery = {
       } | null
     } | null
   } | null
+  topLevelPages?: {
+    __typename?: 'PageEntityResponseCollection'
+    data: Array<{
+      __typename?: 'PageEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Page'
+        slug: string
+        title: string
+        childPages?: {
+          __typename?: 'PageRelationResponseCollection'
+          data: Array<{
+            __typename?: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              slug: string
+              title: string
+              childPages?: {
+                __typename?: 'PageRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'PageEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    childPages?: {
+                      __typename?: 'PageRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'PageEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          childPages?: {
+                            __typename?: 'PageRelationResponseCollection'
+                            data: Array<{
+                              __typename?: 'PageEntity'
+                              id?: string | null
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                              } | null
+                            }>
+                          } | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                }>
+              } | null
+            } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
   footer?: {
     __typename?: 'FooterEntityResponse'
     data?: {
@@ -18966,6 +19026,62 @@ export type PageParentPagesFragment = {
           } | null
         } | null
       } | null
+    } | null
+  } | null
+}
+
+export type ChildPageFragment = { __typename?: 'Page'; slug: string; title: string }
+
+export type PageChildPagesFragment = {
+  __typename?: 'PageEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Page'
+    slug: string
+    title: string
+    childPages?: {
+      __typename?: 'PageRelationResponseCollection'
+      data: Array<{
+        __typename?: 'PageEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Page'
+          slug: string
+          title: string
+          childPages?: {
+            __typename?: 'PageRelationResponseCollection'
+            data: Array<{
+              __typename?: 'PageEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                childPages?: {
+                  __typename?: 'PageRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      childPages?: {
+                        __typename?: 'PageRelationResponseCollection'
+                        data: Array<{
+                          __typename?: 'PageEntity'
+                          id?: string | null
+                          attributes?: { __typename?: 'Page'; slug: string; title: string } | null
+                        }>
+                      } | null
+                    } | null
+                  }>
+                } | null
+              } | null
+            }>
+          } | null
+        } | null
+      }>
     } | null
   } | null
 }
@@ -33320,6 +33436,53 @@ export const MenuEntityFragmentDoc = gql`
   }
   ${MenuFragmentDoc}
 `
+export const ChildPageFragmentDoc = gql`
+  fragment ChildPage on Page {
+    slug
+    title
+  }
+`
+export const PageChildPagesFragmentDoc = gql`
+  fragment PageChildPages on PageEntity {
+    id
+    attributes {
+      ...ChildPage
+      childPages {
+        data {
+          id
+          attributes {
+            ...ChildPage
+            childPages {
+              data {
+                id
+                attributes {
+                  ...ChildPage
+                  childPages {
+                    data {
+                      id
+                      attributes {
+                        ...ChildPage
+                        childPages {
+                          data {
+                            id
+                            attributes {
+                              ...ChildPage
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ChildPageFragmentDoc}
+`
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {
     media {
@@ -34199,6 +34362,11 @@ export const GeneralDocument = gql`
         ...NavigationEntity
       }
     }
+    topLevelPages: pages(filters: { parentPage: { id: { eq: null } } }, locale: $locale) {
+      data {
+        ...PageChildPages
+      }
+    }
     footer(locale: $locale) {
       data {
         ...FooterEntity
@@ -34211,6 +34379,7 @@ export const GeneralDocument = gql`
     }
   }
   ${NavigationEntityFragmentDoc}
+  ${PageChildPagesFragmentDoc}
   ${FooterEntityFragmentDoc}
   ${MenuEntityFragmentDoc}
 `

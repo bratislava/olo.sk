@@ -37,6 +37,50 @@ fragment PageParentPages on PageEntity {
   }
 }
 
+fragment ChildPage on Page {
+  slug
+  title
+}
+
+fragment PageChildPages on PageEntity {
+  id
+  attributes {
+    ...ChildPage
+    childPages {
+      data {
+        id
+        attributes {
+          ...ChildPage
+          childPages {
+            data {
+              id
+              attributes {
+                ...ChildPage
+                childPages {
+                  data {
+                    id
+                    attributes {
+                      ...ChildPage
+                      childPages {
+                        data {
+                          id
+                          attributes {
+                            ...ChildPage
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 fragment PageSlugEntity on PageEntity {
   ...PageParentPages
   __typename

@@ -87,20 +87,22 @@ const HeroHomepageSection = ({ section }: Props) => {
             ) : null}
           </div>
 
-          {mainTiles?.filter(isDefined).map((tile) => {
+          {mainTiles?.filter(isDefined).map((tile, index) => {
             const { children: label, href } = getLinkProps(tile.link)
 
-            return <HomepageMainTile title={label} linkHref={href} text={tile.text} />
+            // eslint-disable-next-line react/no-array-index-key
+            return <HomepageMainTile key={index} title={label} linkHref={href} text={tile.text} />
           })}
         </div>
 
         {/* TODO Carousel on mobile */}
         <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          {smallTiles?.filter(isDefined).map((tile) => {
+          {smallTiles?.filter(isDefined).map((tile, index) => {
             const { children: label, href } = getLinkProps(tile.link)
 
             return (
-              <li className="[&>*]:h-full">
+              // eslint-disable-next-line react/no-array-index-key
+              <li key={index} className="[&>*]:h-full">
                 <HomepageSmallTile iconName={tile?.icon ?? ''} title={label} linkHref={href} />
               </li>
             )

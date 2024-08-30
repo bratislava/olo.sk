@@ -53,18 +53,18 @@ const WasteSortingGuide = ({
             ) : null}
             <div className="flex flex-col gap-4">
               {leftColumn.columnItems.length > 0
-                ? leftColumn.columnItems.map((columnItem) => {
+                ? leftColumn.columnItems.map((columnItem, index) => {
                     return (
-                      <div className="flex gap-4">
-                        <Icon name="fajka-kruh" className="text-success" />
-                        <Typography variant="p-default">{columnItem}</Typography>
-                      </div>
-                    )
-                  })
-                : null}
-            </div>
-          </div>
-          <WasteSortingMessage {...leftColumn.columnAlertMessage} />
+                      // eslint-disable-next-line react/no-array-index-key
+                  <div key={index} className="flex gap-4">
+                    <Icon name="fajka-kruh" className="text-success" />
+                    <Typography variant="p-default">{columnItem}</Typography>
+                  </div>
+                )
+              })
+            : null}
+        </div>
+      </div><WasteSortingMessage {...leftColumn.columnAlertMessage} />
         </div>
 
         <div className="flex flex-col justify-between gap-5 p-4 lg:w-1/2 lg:px-8 lg:py-5">
@@ -74,16 +74,16 @@ const WasteSortingGuide = ({
             ) : null}
             <div className="flex flex-col gap-4">
               {rightColumn.columnItems.length > 0
-                ? rightColumn?.columnItems.map((columnItem) => {
+                ? rightColumn?.columnItems.map((columnItem, index) => {
                     return (
-                      <div className="flex gap-4">
-                        <Icon name="zrusit-kruh" className="text-error" />
-                        <Typography variant="p-default">{columnItem}</Typography>
-                      </div>
-                    )
-                  })
-                : null}
-            </div>
+                      // eslint-disable-next-line react/no-array-index-key
+                  <div key={index} className="flex gap-4">
+                    <Icon name="zrusit-kruh" className="text-error" />
+                    <Typography variant="p-default">{columnItem}</Typography>
+                  </div>
+                )
+              })
+            : null}</div>
           </div>
           <WasteSortingMessage {...rightColumn.columnAlertMessage} />
         </div>

@@ -12568,6 +12568,20 @@ export type ArticlesQuery = {
   } | null
 }
 
+export type ArticlesStaticPathsQueryVariables = Exact<{ [key: string]: never }>
+
+export type ArticlesStaticPathsQuery = {
+  __typename?: 'Query'
+  articles?: {
+    __typename?: 'ArticleEntityResponseCollection'
+    data: Array<{
+      __typename: 'ArticleEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+    }>
+  } | null
+}
+
 export type ArticleBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
   locale: Scalars['I18NLocaleCode']['input']
@@ -12675,67 +12689,6 @@ export type LatestArticlesQuery = {
             } | null
           }>
         } | null
-        coverMedia?: {
-          __typename?: 'UploadFileEntityResponse'
-          data?: {
-            __typename?: 'UploadFileEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'UploadFile'
-              url: string
-              width?: number | null
-              height?: number | null
-              caption?: string | null
-              alternativeText?: string | null
-              name: string
-            } | null
-          } | null
-        } | null
-        articleCategory?: {
-          __typename?: 'ArticleCategoryEntityResponse'
-          data?: {
-            __typename?: 'ArticleCategoryEntity'
-            id?: string | null
-            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
-          } | null
-        } | null
-        tags?: {
-          __typename?: 'TagRelationResponseCollection'
-          data: Array<{
-            __typename?: 'TagEntity'
-            id?: string | null
-            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
-          }>
-        } | null
-      } | null
-    }>
-  } | null
-}
-
-export type SearchArticlesQueryVariables = Exact<{
-  search: Scalars['String']['input']
-  page: Scalars['Int']['input']
-  pageSize: Scalars['Int']['input']
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type SearchArticlesQuery = {
-  __typename?: 'Query'
-  articles?: {
-    __typename?: 'ArticleEntityResponseCollection'
-    meta: {
-      __typename?: 'ResponseCollectionMeta'
-      pagination: { __typename?: 'Pagination'; total: number }
-    }
-    data: Array<{
-      __typename: 'ArticleEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Article'
-        perex?: string | null
-        addedAt: any
-        slug: string
-        title: string
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -12962,6 +12915,20 @@ export type DocumentsQuery = {
           }
         } | null>
       } | null
+    }>
+  } | null
+}
+
+export type DocumentsStaticPathsQueryVariables = Exact<{ [key: string]: never }>
+
+export type DocumentsStaticPathsQuery = {
+  __typename?: 'Query'
+  documents?: {
+    __typename?: 'DocumentEntityResponseCollection'
+    data: Array<{
+      __typename: 'DocumentEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Document'; slug: string; title: string } | null
     }>
   } | null
 }
@@ -30425,6 +30392,20 @@ export type ServicesQuery = {
   } | null
 }
 
+export type ServicesStaticPathsQueryVariables = Exact<{ [key: string]: never }>
+
+export type ServicesStaticPathsQuery = {
+  __typename?: 'Query'
+  services?: {
+    __typename?: 'ServiceEntityResponseCollection'
+    data: Array<{
+      __typename: 'ServiceEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+    }>
+  } | null
+}
+
 export type ServiceBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input']
   locale: Scalars['I18NLocaleCode']['input']
@@ -32204,6 +32185,25 @@ export type WorkshopsQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
+      } | null
+    }>
+  } | null
+}
+
+export type WorkshopsStaticPathsQueryVariables = Exact<{ [key: string]: never }>
+
+export type WorkshopsStaticPathsQuery = {
+  __typename?: 'Query'
+  workshops?: {
+    __typename?: 'WorkshopEntityResponseCollection'
+    data: Array<{
+      __typename: 'WorkshopEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Workshop'
+        title: string
+        slug: string
         dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
       } | null
     }>
@@ -34224,6 +34224,16 @@ export const ArticlesDocument = gql`
   }
   ${ArticleEntityFragmentDoc}
 `
+export const ArticlesStaticPathsDocument = gql`
+  query ArticlesStaticPaths {
+    articles(pagination: { limit: -1 }) {
+      data {
+        ...ArticleSlugEntity
+      }
+    }
+  }
+  ${ArticleSlugEntityFragmentDoc}
+`
 export const ArticleBySlugDocument = gql`
   query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
     articles(filters: { slug: { eq: $slug } }, locale: $locale) {
@@ -34243,26 +34253,6 @@ export const LatestArticlesDocument = gql`
     }
   }
   ${ArticleEntityFragmentDoc}
-`
-export const SearchArticlesDocument = gql`
-  query SearchArticles($search: String!, $page: Int!, $pageSize: Int!, $locale: I18NLocaleCode!) {
-    articles(
-      filters: { title: { containsi: $search } }
-      sort: "addedAt:desc"
-      pagination: { page: $page, pageSize: $pageSize }
-      locale: $locale
-    ) {
-      meta {
-        pagination {
-          total
-        }
-      }
-      data {
-        ...ArticleCardEntity
-      }
-    }
-  }
-  ${ArticleCardEntityFragmentDoc}
 `
 export const BranchesDocument = gql`
   query Branches($locale: I18NLocaleCode!) {
@@ -34293,6 +34283,16 @@ export const DocumentsDocument = gql`
     }
   }
   ${DocumentEntityFragmentDoc}
+`
+export const DocumentsStaticPathsDocument = gql`
+  query DocumentsStaticPaths {
+    documents(pagination: { limit: -1 }) {
+      data {
+        ...DocumentSlugEntity
+      }
+    }
+  }
+  ${DocumentSlugEntityFragmentDoc}
 `
 export const DocumentBySlugDocument = gql`
   query DocumentBySlug($slug: String!) {
@@ -34354,6 +34354,16 @@ export const ServicesDocument = gql`
   }
   ${ServiceEntityFragmentDoc}
 `
+export const ServicesStaticPathsDocument = gql`
+  query ServicesStaticPaths {
+    services(pagination: { limit: -1 }) {
+      data {
+        ...ServiceSlugEntity
+      }
+    }
+  }
+  ${ServiceSlugEntityFragmentDoc}
+`
 export const ServiceBySlugDocument = gql`
   query ServiceBySlug($slug: String!, $locale: I18NLocaleCode!) {
     services(filters: { slug: { eq: $slug } }, locale: $locale) {
@@ -34373,6 +34383,16 @@ export const WorkshopsDocument = gql`
     }
   }
   ${WorkshopEntityFragmentDoc}
+`
+export const WorkshopsStaticPathsDocument = gql`
+  query WorkshopsStaticPaths {
+    workshops(pagination: { limit: -1 }) {
+      data {
+        ...WorkshopSlugEntity
+      }
+    }
+  }
+  ${WorkshopSlugEntityFragmentDoc}
 `
 export const WorkshopBySlugDocument = gql`
   query WorkshopBySlug($slug: String!) {
@@ -34577,6 +34597,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables,
       )
     },
+    ArticlesStaticPaths(
+      variables?: ArticlesStaticPathsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticlesStaticPathsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticlesStaticPathsQuery>(ArticlesStaticPathsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ArticlesStaticPaths',
+        'query',
+        variables,
+      )
+    },
     ArticleBySlug(
       variables: ArticleBySlugQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
@@ -34603,21 +34638,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'LatestArticles',
-        'query',
-        variables,
-      )
-    },
-    SearchArticles(
-      variables: SearchArticlesQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<SearchArticlesQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<SearchArticlesQuery>(SearchArticlesDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'SearchArticles',
         'query',
         variables,
       )
@@ -34663,6 +34683,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'Documents',
+        'query',
+        variables,
+      )
+    },
+    DocumentsStaticPaths(
+      variables?: DocumentsStaticPathsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<DocumentsStaticPathsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<DocumentsStaticPathsQuery>(DocumentsStaticPathsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'DocumentsStaticPaths',
         'query',
         variables,
       )
@@ -34757,6 +34792,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables,
       )
     },
+    ServicesStaticPaths(
+      variables?: ServicesStaticPathsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ServicesStaticPathsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ServicesStaticPathsQuery>(ServicesStaticPathsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ServicesStaticPaths',
+        'query',
+        variables,
+      )
+    },
     ServiceBySlug(
       variables: ServiceBySlugQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
@@ -34783,6 +34833,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'Workshops',
+        'query',
+        variables,
+      )
+    },
+    WorkshopsStaticPaths(
+      variables?: WorkshopsStaticPathsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<WorkshopsStaticPathsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<WorkshopsStaticPathsQuery>(WorkshopsStaticPathsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'WorkshopsStaticPaths',
         'query',
         variables,
       )

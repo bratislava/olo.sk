@@ -27,9 +27,11 @@ const ServicesHomepageSection = ({ section }: Props) => {
 
         {/* TODO use Carousel on mobile https://github.com/bratislava/olo.sk/issues/275 */}
         <div className="grid gap-4 lg:grid-cols-3 lg:gap-8">
-          {tiles?.filter(isDefined).map((card) => {
+          {tiles?.filter(isDefined).map((card, index) => {
             return (
               <ServicesTile
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
                 title={card.title}
                 text={card.text}
                 linkProps={getLinkProps(card.link)}

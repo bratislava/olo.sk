@@ -58,6 +58,14 @@ query Services($locale: I18NLocaleCode!) {
   }
 }
 
+query ServicesStaticPaths {
+  services(pagination: { limit: -1 }) {
+    data {
+      ...ServiceSlugEntity
+    }
+  }
+}
+
 query ServiceBySlug($slug: String!, $locale: I18NLocaleCode!) {
   services(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {

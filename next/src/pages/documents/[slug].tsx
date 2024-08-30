@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
   // TODO update console log so it displays correct path
   // eslint-disable-next-line no-console
-  console.log(`Revalidating Document ${locale === 'en' ? '/en' : ''}/documents/${slug}`)
+  console.log(`Revalidating Document ${locale} ${slug}`)
 
   // TODO || !locale
   if (!slug || !locale) {

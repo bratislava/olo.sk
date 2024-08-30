@@ -24,24 +24,21 @@ type StaticParams = {
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
-  // TODO return all paths
+  const { articles: entities } = await client.ArticlesStaticPaths()
 
-  // TODO restrict query
-  // const { articles } = await client.Articles()
+  const paths = (entities?.data ?? [])
+    .filter((entity) => entity?.attributes?.slug)
+    .map((entity) => ({
+      params: {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion,@typescript-eslint/no-non-null-assertion
+        slug: entity.attributes!.slug!,
+      },
+    }))
 
-  // const paths = (articles?.data ?? [])
-  //   .filter((article) => article?.attributes?.slug)
-  //   .map((article) => ({
-  //     params: {
-  //       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion,@typescript-eslint/no-non-null-assertion
-  //       slug: article.attributes!.slug!,
-  //     },
-  //   }))
+  // eslint-disable-next-line no-console
+  console.log(`Articles: Generated static paths for ${paths.length} slugs.`)
 
-  // // eslint-disable-next-line no-console
-  // console.log(`GENERATED STATIC PATHS FOR ${paths.length} SLUGS - BLOGS`)
-
-  return { paths: [], fallback: 'blocking' }
+  return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
@@ -52,7 +49,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
   // TODO update console log so it displays correct path
   // eslint-disable-next-line no-console
-  console.log(`Revalidating article ${locale === 'en' ? '/en' : ''}/articles/${slug}`)
+  console.log(`Revalidating Article ${locale} ${slug}`)
 
   // TODO || !locale
   if (!slug || !locale) {

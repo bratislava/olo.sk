@@ -82,7 +82,6 @@ fragment PageChildPages on PageEntity {
 }
 
 fragment PageSlugEntity on PageEntity {
-  ...PageParentPages
   __typename
   id
   attributes {
@@ -116,6 +115,7 @@ query PageBySlug($slug: String!, $locale: I18NLocaleCode!) {
   pages(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {
       ...PageEntity
+      ...PageParentPages
     }
   }
 }

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { getNavigationMiddleware } from '@/src/services/navigation/getNavigationMiddleware'
 
 /* Docs: https://nextjs.org/docs/pages/building-your-application/routing/middleware#matcher */
 export const config = {
@@ -14,33 +14,6 @@ export const config = {
   ],
 }
 
-/**
- * This middleware rewrites path based on given path and data from Strapi "Sitemap" content type.
- * The logic of rewrites lives in api handler, to be able to use our graphql client.
- * (it's not possible to use graphql client in middleware, because it depends on node runtime and middleware uses edge runtime)
- *
- * @param request
- */
-// eslint-disable-next-line consistent-return
-export async function middleware(request: NextRequest) {
-  // TODO remove console logs when we will be sure it works as intended
-  /**
-   * The request is handled on server, so we have to use http instead of https.
-   * `pathname` contains leading "/"
-   */
-  const fetchUrl = `http://${request.nextUrl.host}/api/sitemap${request.nextUrl.pathname}`
-  console.log('Middleware: api fetchUrl', fetchUrl)
-
-  const response = await fetch(fetchUrl)
-  const { destination } = await response.json()
-  console.log('Middleware: destination', destination)
-
-  if (typeof destination === 'string' && destination.length > 0) {
-    const newUrl = new URL(destination, request.nextUrl.origin)
-    console.log('Middleware: newUrl', newUrl.toString())
-
-    return NextResponse.rewrite(newUrl)
-  }
-
-  // else do nothing
-}
+export const middleware = getNavigationMiddleware({
+  cacheTtl: 1000 * 60 * 60 * 24,
+})

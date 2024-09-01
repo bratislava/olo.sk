@@ -15,5 +15,5 @@ export const config = {
 }
 
 export const middleware = getNavigationMiddleware({
-  cacheTtl: 1000 * 60 * 60 * 24,
+  cacheTtl: 10_000,
 })

@@ -710,6 +710,9 @@ input ComponentItemsSlideInput {
 }
 
 type ComponentItemsSortingGuide {
+  alertMessageBottom: ComponentItemsSortingGuideAlertMessage
+  alertMessageDoesntGoHere: ComponentItemsSortingGuideAlertMessage
+  alertMessageGoesHere: ComponentItemsSortingGuideAlertMessage
   doesntGoHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
   goesHereItems(filters: ComponentItemsSortingGuideItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsSortingGuideItem]
   id: ID!
@@ -740,7 +743,30 @@ input ComponentItemsSortingGuideAccordionItemInput {
   wasteType: ENUM_COMPONENTITEMSSORTINGGUIDEACCORDIONITEM_WASTETYPE
 }
 
+type ComponentItemsSortingGuideAlertMessage {
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentItemsSortingGuideAlertMessageFiltersInput {
+  and: [ComponentItemsSortingGuideAlertMessageFiltersInput]
+  not: ComponentItemsSortingGuideAlertMessageFiltersInput
+  or: [ComponentItemsSortingGuideAlertMessageFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsSortingGuideAlertMessageInput {
+  id: ID
+  text: String
+  title: String
+}
+
 input ComponentItemsSortingGuideFiltersInput {
+  alertMessageBottom: ComponentItemsSortingGuideAlertMessageFiltersInput
+  alertMessageDoesntGoHere: ComponentItemsSortingGuideAlertMessageFiltersInput
+  alertMessageGoesHere: ComponentItemsSortingGuideAlertMessageFiltersInput
   and: [ComponentItemsSortingGuideFiltersInput]
   doesntGoHereItems: ComponentItemsSortingGuideItemFiltersInput
   goesHereItems: ComponentItemsSortingGuideItemFiltersInput
@@ -751,6 +777,9 @@ input ComponentItemsSortingGuideFiltersInput {
 }
 
 input ComponentItemsSortingGuideInput {
+  alertMessageBottom: ComponentItemsSortingGuideAlertMessageInput
+  alertMessageDoesntGoHere: ComponentItemsSortingGuideAlertMessageInput
+  alertMessageGoesHere: ComponentItemsSortingGuideAlertMessageInput
   doesntGoHereItems: [ComponentItemsSortingGuideItemInput]
   goesHereItems: [ComponentItemsSortingGuideItemInput]
   id: ID
@@ -2207,7 +2236,7 @@ type FooterRelationResponseCollection {
   data: [FooterEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection

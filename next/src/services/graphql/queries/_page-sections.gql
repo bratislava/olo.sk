@@ -222,6 +222,18 @@ fragment SortingGuide on ComponentItemsSortingGuide {
   doesntGoHereItems {
     label
   }
+  alertMessageGoesHere {
+    title
+    text
+  }
+  alertMessageDoesntGoHere {
+    title
+    text
+  }
+  alertMessageBottom {
+    title
+    text
+  }
 }
 
 fragment SortingGuideSection on ComponentSectionsSortingGuide {

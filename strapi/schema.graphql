@@ -400,6 +400,7 @@ input ComponentItemsCardSliderCardInput {
 type ComponentItemsCardsListItem {
   id: ID!
   link: ComponentItemsLink!
+  subtext: String
   title: String!
 }
 
@@ -408,12 +409,14 @@ input ComponentItemsCardsListItemFiltersInput {
   link: ComponentItemsLinkFiltersInput
   not: ComponentItemsCardsListItemFiltersInput
   or: [ComponentItemsCardsListItemFiltersInput]
+  subtext: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentItemsCardsListItemInput {
   id: ID
   link: ComponentItemsLinkInput
+  subtext: String
   title: String
 }
 
@@ -1053,6 +1056,7 @@ input ComponentSectionsCardSliderInput {
 type ComponentSectionsCardsList {
   cards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
   id: ID!
+  linkLabelOverride: String
   text: String
   title: String
 }
@@ -1060,6 +1064,7 @@ type ComponentSectionsCardsList {
 input ComponentSectionsCardsListFiltersInput {
   and: [ComponentSectionsCardsListFiltersInput]
   cards: ComponentItemsCardsListItemFiltersInput
+  linkLabelOverride: StringFilterInput
   not: ComponentSectionsCardsListFiltersInput
   or: [ComponentSectionsCardsListFiltersInput]
   text: StringFilterInput
@@ -1069,6 +1074,7 @@ input ComponentSectionsCardsListFiltersInput {
 input ComponentSectionsCardsListInput {
   cards: [ComponentItemsCardsListItemInput]
   id: ID
+  linkLabelOverride: String
   text: String
   title: String
 }

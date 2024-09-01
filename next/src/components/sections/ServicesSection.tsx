@@ -93,7 +93,8 @@ const ServicesSection = ({ section }: Props) => {
             {selectionOptions.map((option, index) => {
               return (
                 <Chip
-                  variant="large"
+                  variant="single-choice"
+                  size="large"
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   id={option.id}

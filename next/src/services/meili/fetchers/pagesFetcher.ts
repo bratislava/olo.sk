@@ -1,3 +1,5 @@
+import { PageSlugEntityFragment } from '@/src/services/graphql/api'
+
 import { meiliClient } from '../meiliClient'
 import { PageMeili, SearchIndexWrapped } from '../types'
 import { getMeilisearchPageOptions, unwrapFromSearchIndex } from '../utils'
@@ -34,17 +36,65 @@ export const meiliPagesFetcher = (filters: PagesFilters, locale: string) => {
       attributesToRetrieve: [
         // Only properties that are required to display listing are retrieved
         'page.title',
+        'page.id',
         'page.slug',
         'page.parentPage',
       ],
     })
     .then(unwrapFromSearchIndex('page'))
     .then((response) => {
-      const hits = response.hits.map((page) => {
+      const hits: PageSlugEntityFragment[] = response.hits.map((hit) => {
         return {
-          // used in useGetFullPath to distinguish between different types of entities
-          type: response.type,
-          ...page,
+          __typename: 'PageEntity',
+          id: hit.id,
+          attributes: {
+            __typename: 'Page',
+            slug: hit.slug,
+            title: hit.title,
+            updatedAt: hit.updatedAt,
+            // Similar to graphql fragment PageParentPages, we need to
+            // reach several parent levels in order to construct the path to the page
+            parentPage: hit.parentPage
+              ? {
+                  data: {
+                    attributes: {
+                      slug: hit.slug,
+                      title: hit.title,
+                      parentPage: hit.parentPage
+                        ? {
+                            data: {
+                              attributes: {
+                                slug: hit.slug,
+                                title: hit.title,
+                                parentPage: hit.parentPage
+                                  ? {
+                                      data: {
+                                        attributes: {
+                                          slug: hit.slug,
+                                          title: hit.title,
+                                          parentPage: hit.parentPage
+                                            ? {
+                                                data: {
+                                                  attributes: {
+                                                    slug: hit.slug,
+                                                    title: hit.title,
+                                                  },
+                                                },
+                                              }
+                                            : undefined,
+                                        },
+                                      },
+                                    }
+                                  : undefined,
+                              },
+                            },
+                          }
+                        : undefined,
+                    },
+                  },
+                }
+              : undefined,
+          },
         } as const
       })
 

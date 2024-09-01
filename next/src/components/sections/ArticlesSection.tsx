@@ -110,8 +110,8 @@ const ArticlesSection = ({ section }: Props) => {
         {data?.estimatedTotalHits ? (
           <>
             <SidebarDivider />
-            <div className="flex items-center justify-between gap-6">
-              <div>
+            <div className="flex flex-wrap items-center justify-center gap-6 md:justify-between">
+              <div className="max-md:hidden">
                 <Typography>
                   {t('common.showingResults', {
                     current: data.hits.length,

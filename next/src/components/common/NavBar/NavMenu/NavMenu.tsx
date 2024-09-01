@@ -41,14 +41,9 @@ const NavMenu = ({ className }: NavMenuProps) => {
             {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
           </div>
           <Button
-            href="/" // TODO: Provide valid path
+            href="/vyhladavanie"
             asLink
-            icon={
-              <Icon
-                name="lupa"
-                className="size-6 border border-dashed border-action-background-default"
-              />
-            }
+            icon={<Icon name="lupa" className="size-6" />}
             hasLinkIcon={false}
             aria-label={t('navBar.aria.searchButton')}
             variant="icon-wrapped"

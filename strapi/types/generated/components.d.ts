@@ -149,11 +149,14 @@ export interface SectionsOpeningTimes extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    openingTimes: Attribute.Relation<
-      'sections.opening-times',
-      'oneToMany',
-      'api::opening-time.opening-time'
-    >
+    openingTimes: Attribute.Component<'items.opening-times-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
   }
 }
 
@@ -767,6 +770,22 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
   }
 }
 
+export interface ItemsOpeningTimesItem extends Schema.Component {
+  collectionName: 'components_items_opening_times_items'
+  info: {
+    displayName: 'Opening Times item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    openingTime: Attribute.Relation<
+      'items.opening-times-item',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
 export interface ItemsOpeningHoursItem extends Schema.Component {
   collectionName: 'components_items_opening_hours_items'
   info: {
@@ -989,6 +1008,7 @@ declare module '@strapi/types' {
       'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
       'items.slide': ItemsSlide
       'items.ordered-cards-item': ItemsOrderedCardsItem
+      'items.opening-times-item': ItemsOpeningTimesItem
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
       'items.link': ItemsLink

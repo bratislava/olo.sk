@@ -645,6 +645,21 @@ export type ComponentItemsOpeningHoursItemInput = {
   value?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentItemsOpeningTimesItem = {
+  __typename?: 'ComponentItemsOpeningTimesItem'
+  id: Scalars['ID']['output']
+  openingTime?: Maybe<OpeningTimeEntityResponse>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsOpeningTimesItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>>>
+  not?: InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>
+  openingTime?: InputMaybe<OpeningTimeFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>>>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsOrderedCardsItem = {
   __typename?: 'ComponentItemsOrderedCardsItem'
   iconName?: Maybe<Scalars['String']['output']>
@@ -1234,13 +1249,13 @@ export type ComponentSectionsKoloHomepageSectionInput = {
 export type ComponentSectionsOpeningTimes = {
   __typename?: 'ComponentSectionsOpeningTimes'
   id: Scalars['ID']['output']
-  openingTimes?: Maybe<OpeningTimeRelationResponseCollection>
+  openingTimes: Array<Maybe<ComponentItemsOpeningTimesItem>>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentSectionsOpeningTimesOpeningTimesArgs = {
-  filters?: InputMaybe<OpeningTimeFiltersInput>
+  filters?: InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
@@ -1950,6 +1965,7 @@ export type GenericMorph =
   | ComponentItemsLink
   | ComponentItemsMenuHeader
   | ComponentItemsOpeningHoursItem
+  | ComponentItemsOpeningTimesItem
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
   | ComponentItemsSortingGuide
@@ -9440,22 +9456,26 @@ export type OpeningTimesSectionFragment = {
   __typename?: 'ComponentSectionsOpeningTimes'
   title?: string | null
   text?: string | null
-  openingTimes?: {
-    __typename?: 'OpeningTimeRelationResponseCollection'
-    data: Array<{
-      __typename?: 'OpeningTimeEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'OpeningTime'
-        internalName: string
-        openingHours?: Array<{
-          __typename?: 'ComponentItemsOpeningHoursItem'
-          label: string
-          value: string
-        } | null> | null
+  openingTimes: Array<{
+    __typename?: 'ComponentItemsOpeningTimesItem'
+    title?: string | null
+    openingTime?: {
+      __typename?: 'OpeningTimeEntityResponse'
+      data?: {
+        __typename?: 'OpeningTimeEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'OpeningTime'
+          internalName: string
+          openingHours?: Array<{
+            __typename?: 'ComponentItemsOpeningHoursItem'
+            label: string
+            value: string
+          } | null> | null
+        } | null
       } | null
-    }>
-  } | null
+    } | null
+  } | null>
 }
 
 export type BoardMembersSectionFragment = {
@@ -11277,22 +11297,26 @@ type PageSections_ComponentSectionsOpeningTimes_Fragment = {
   __typename: 'ComponentSectionsOpeningTimes'
   title?: string | null
   text?: string | null
-  openingTimes?: {
-    __typename?: 'OpeningTimeRelationResponseCollection'
-    data: Array<{
-      __typename?: 'OpeningTimeEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'OpeningTime'
-        internalName: string
-        openingHours?: Array<{
-          __typename?: 'ComponentItemsOpeningHoursItem'
-          label: string
-          value: string
-        } | null> | null
+  openingTimes: Array<{
+    __typename?: 'ComponentItemsOpeningTimesItem'
+    title?: string | null
+    openingTime?: {
+      __typename?: 'OpeningTimeEntityResponse'
+      data?: {
+        __typename?: 'OpeningTimeEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'OpeningTime'
+          internalName: string
+          openingHours?: Array<{
+            __typename?: 'ComponentItemsOpeningHoursItem'
+            label: string
+            value: string
+          } | null> | null
+        } | null
       } | null
-    }>
-  } | null
+    } | null
+  } | null>
 }
 
 type PageSections_ComponentSectionsOrderedCards_Fragment = {
@@ -20937,22 +20961,26 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsOpeningTimes'
           title?: string | null
           text?: string | null
-          openingTimes?: {
-            __typename?: 'OpeningTimeRelationResponseCollection'
-            data: Array<{
-              __typename?: 'OpeningTimeEntity'
-              id?: string | null
-              attributes?: {
-                __typename?: 'OpeningTime'
-                internalName: string
-                openingHours?: Array<{
-                  __typename?: 'ComponentItemsOpeningHoursItem'
-                  label: string
-                  value: string
-                } | null> | null
+          openingTimes: Array<{
+            __typename?: 'ComponentItemsOpeningTimesItem'
+            title?: string | null
+            openingTime?: {
+              __typename?: 'OpeningTimeEntityResponse'
+              data?: {
+                __typename?: 'OpeningTimeEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'OpeningTime'
+                  internalName: string
+                  openingHours?: Array<{
+                    __typename?: 'ComponentItemsOpeningHoursItem'
+                    label: string
+                    value: string
+                  } | null> | null
+                } | null
               } | null
-            }>
-          } | null
+            } | null
+          } | null>
         }
       | {
           __typename: 'ComponentSectionsOrderedCards'
@@ -23951,22 +23979,26 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsOpeningTimes'
               title?: string | null
               text?: string | null
-              openingTimes?: {
-                __typename?: 'OpeningTimeRelationResponseCollection'
-                data: Array<{
-                  __typename?: 'OpeningTimeEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'OpeningTime'
-                    internalName: string
-                    openingHours?: Array<{
-                      __typename?: 'ComponentItemsOpeningHoursItem'
-                      label: string
-                      value: string
-                    } | null> | null
+              openingTimes: Array<{
+                __typename?: 'ComponentItemsOpeningTimesItem'
+                title?: string | null
+                openingTime?: {
+                  __typename?: 'OpeningTimeEntityResponse'
+                  data?: {
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      internalName: string
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
                   } | null
-                }>
-              } | null
+                } | null
+              } | null>
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -26972,22 +27004,26 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsOpeningTimes'
               title?: string | null
               text?: string | null
-              openingTimes?: {
-                __typename?: 'OpeningTimeRelationResponseCollection'
-                data: Array<{
-                  __typename?: 'OpeningTimeEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'OpeningTime'
-                    internalName: string
-                    openingHours?: Array<{
-                      __typename?: 'ComponentItemsOpeningHoursItem'
-                      label: string
-                      value: string
-                    } | null> | null
+              openingTimes: Array<{
+                __typename?: 'ComponentItemsOpeningTimesItem'
+                title?: string | null
+                openingTime?: {
+                  __typename?: 'OpeningTimeEntityResponse'
+                  data?: {
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      internalName: string
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
                   } | null
-                }>
-              } | null
+                } | null
+              } | null>
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -33603,8 +33639,11 @@ export const OpeningTimesSectionFragmentDoc = gql`
     title
     text
     openingTimes {
-      data {
-        ...OpeningTimeEntity
+      title
+      openingTime {
+        data {
+          ...OpeningTimeEntity
+        }
       }
     }
   }

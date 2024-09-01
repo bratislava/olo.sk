@@ -1,16 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-import WasteSortingGuideComponent from '@/src/components/common/Accordion/WasteSortingGuide'
+import WasteSortingGuideComponent, {
+  WasteSortingGuideProps,
+} from '@/src/components/common/Accordion/WasteSortingGuide'
 
-const wasteSortingGuideData = {
+const wasteSortingGuideData: WasteSortingGuideProps = {
   leftColumn: {
     columnTitle: 'Patrí sem:',
     columnItems: ['Item 1', 'Item 2', 'Item 3'],
+    columnAlertMessage: { text: null, title: null },
   },
   rightColumn: {
     columnTitle: 'Nepatrí sem:',
     columnItems: ['Item 1', 'Item 2', 'Item 3'],
+    columnAlertMessage: { text: null, title: null },
+  },
+  bottomAlertMessage: {
+    title: 'Pozor!',
+    text: 'Oleje a tuky musia byť zbavené tuhých nečistôt a zvyškov jedál, preto je vhodné ich precediť cez sitko a uložené v uzatvorenej čistej plastovej fľaši. Olej nelejte priamo do zbernej nádoby.',
   },
 }
 
@@ -21,6 +29,7 @@ const meta: Meta<typeof WasteSortingGuideComponent> = {
   args: {
     leftColumn: wasteSortingGuideData.leftColumn,
     rightColumn: wasteSortingGuideData.rightColumn,
+    bottomAlertMessage: wasteSortingGuideData.bottomAlertMessage,
     className: 'rounded-lg border border-border-default bg-background-primary',
   },
   decorators: [

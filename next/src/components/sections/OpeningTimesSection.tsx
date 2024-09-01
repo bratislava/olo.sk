@@ -1,6 +1,7 @@
 import React from 'react'
 
 import OpeningHoursBox from '@/src/components/common/OpeningHoursBox'
+import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { OpeningTimesSectionFragment } from '@/src/services/graphql/api'
@@ -11,28 +12,34 @@ type Props = {
 }
 
 /**
- * Figma temporary link: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=507-9115&m=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=6518-27993&t=fe1ufmx8qCTTS0Aw-4
  */
 
 const OpeningTimesSection = ({ section }: Props) => {
   const { title, text, openingTimes } = section ?? {}
+
+  const filteredOpeningTimes = openingTimes?.filter(isDefined) ?? []
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
-        {openingTimes?.data
-          .map((openingTime) => {
-            if (!openingTime.attributes) return null
+        {filteredOpeningTimes.map((openingTimeGroup) => {
+          if (!openingTimeGroup.openingTime?.data?.attributes) return null
 
-            const filteredOpeningHours =
-              openingTime.attributes.openingHours?.filter(isDefined) ?? []
+          const filteredOpeningHours =
+            openingTimeGroup.openingTime.data.attributes.openingHours?.filter(isDefined) ?? []
 
-            return <OpeningHoursBox openingHours={filteredOpeningHours} />
-          })
-          // eslint-disable-next-line unicorn/no-array-callback-reference
-          .filter(isDefined)}
+          return (
+            <div className="flex flex-col gap-4">
+              {openingTimeGroup.title ? (
+                <Typography variant="h5">{openingTimeGroup.title}</Typography>
+              ) : null}
+              <OpeningHoursBox openingHours={filteredOpeningHours} />
+            </div>
+          )
+        })}
       </div>
     </SectionContainer>
   )

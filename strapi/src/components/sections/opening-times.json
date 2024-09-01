@@ -13,9 +13,11 @@
       "type": "text"
     },
     "openingTimes": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::opening-time.opening-time"
+      "type": "component",
+      "repeatable": true,
+      "component": "items.opening-times-item",
+      "required": true,
+      "min": 1
     }
   }
 }

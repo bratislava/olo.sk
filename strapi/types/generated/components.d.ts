@@ -1,5 +1,57 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
+export interface MenuMenuSection extends Schema.Component {
+  collectionName: 'components_menu_menu_sections'
+  info: {
+    displayName: 'menu section'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    links: Attribute.Component<'menu.menu-link', true>
+    colSpan: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0
+          max: 3
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>
+    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
+    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    specialSectionType: Attribute.Enumeration<['latest articles']>
+  }
+}
+
+export interface MenuMenuLink extends Schema.Component {
+  collectionName: 'components_menu_menu_link'
+  info: {
+    displayName: 'menu link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
+    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
+  }
+}
+
+export interface MenuMenuItem extends Schema.Component {
+  collectionName: 'components_menu_menu_items'
+  info: {
+    displayName: 'menu item'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    sections: Attribute.Component<'menu.menu-section', true>
+    seeAllLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
@@ -149,11 +201,14 @@ export interface SectionsOpeningTimes extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    openingTimes: Attribute.Relation<
-      'sections.opening-times',
-      'oneToMany',
-      'api::opening-time.opening-time'
-    >
+    openingTimes: Attribute.Component<'items.opening-times-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
   }
 }
 
@@ -409,6 +464,7 @@ export interface SectionsCardsList extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
+    linkLabelOverride: Attribute.Text
     cards: Attribute.Component<'items.cards-list-item', true>
   }
 }
@@ -502,58 +558,6 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
   }
 }
 
-export interface MenuMenuSection extends Schema.Component {
-  collectionName: 'components_menu_menu_sections'
-  info: {
-    displayName: 'menu section'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    links: Attribute.Component<'menu.menu-link', true>
-    colSpan: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0
-          max: 3
-        },
-        number
-      > &
-      Attribute.DefaultTo<1>
-    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
-    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    specialSectionType: Attribute.Enumeration<['latest articles']>
-  }
-}
-
-export interface MenuMenuLink extends Schema.Component {
-  collectionName: 'components_menu_menu_link'
-  info: {
-    displayName: 'menu link'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String
-    url: Attribute.String
-    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
-    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
-    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
-  }
-}
-
-export interface MenuMenuItem extends Schema.Component {
-  collectionName: 'components_menu_menu_items'
-  info: {
-    displayName: 'menu item'
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    sections: Attribute.Component<'menu.menu-section', true>
-    seeAllLink: Attribute.Component<'items.link'>
-  }
-}
-
 export interface ItemsWorkshopDate extends Schema.Component {
   collectionName: 'components_items_workshop_dates'
   info: {
@@ -605,6 +609,9 @@ export interface ItemsSortingGuide extends Schema.Component {
     titleDoesntGoHere: Attribute.String & Attribute.DefaultTo<'Nepatr\u00ED sem'>
     goesHereItems: Attribute.Component<'items.sorting-guide-item', true>
     doesntGoHereItems: Attribute.Component<'items.sorting-guide-item', true>
+    alertMessageGoesHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageDoesntGoHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageBottom: Attribute.Component<'items.sorting-guide-alert-message'>
   }
 }
 
@@ -616,6 +623,18 @@ export interface ItemsSortingGuideItem extends Schema.Component {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+  }
+}
+
+export interface ItemsSortingGuideAlertMessage extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_alert_messages'
+  info: {
+    displayName: 'Sorting Guide Alert Message'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
   }
 }
 
@@ -671,6 +690,22 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text & Attribute.Required
     iconName: Attribute.String
+  }
+}
+
+export interface ItemsOpeningTimesItem extends Schema.Component {
+  collectionName: 'components_items_opening_times_items'
+  info: {
+    displayName: 'Opening Times item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    openingTime: Attribute.Relation<
+      'items.opening-times-item',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
   }
 }
 
@@ -805,6 +840,7 @@ export interface ItemsCardsListItem extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
+    subtext: Attribute.String
     link: Attribute.Component<'items.link'> & Attribute.Required
   }
 }
@@ -942,6 +978,9 @@ export interface HeaderSectionsBranchMap extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'menu.menu-section': MenuMenuSection
+      'menu.menu-link': MenuMenuLink
+      'menu.menu-item': MenuMenuItem
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.table': SectionsTable
@@ -972,16 +1011,15 @@ declare module '@strapi/types' {
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
-      'menu.menu-section': MenuMenuSection
-      'menu.menu-link': MenuMenuLink
-      'menu.menu-item': MenuMenuItem
       'items.workshop-date': ItemsWorkshopDate
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide
       'items.sorting-guide-item': ItemsSortingGuideItem
+      'items.sorting-guide-alert-message': ItemsSortingGuideAlertMessage
       'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
       'items.slide': ItemsSlide
       'items.ordered-cards-item': ItemsOrderedCardsItem
+      'items.opening-times-item': ItemsOpeningTimesItem
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
       'items.link': ItemsLink

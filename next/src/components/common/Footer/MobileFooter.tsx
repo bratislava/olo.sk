@@ -14,13 +14,14 @@ const MobileFooter = () => {
   const { t } = useTranslation()
   const { footer } = useGeneralContext()
 
-  const { text, facebookUrl, instagramUrl, columns, bottomLinks } = footer?.data?.attributes ?? {}
+  const { text, facebookUrl, instagramUrl, linkedinUrl, columns, bottomLinks } =
+    footer?.data?.attributes ?? {}
 
   return (
     <SectionContainer className="bg-content-primary">
       <div className="flex flex-col divide-y divide-border-dark">
         <div className="flex flex-col py-6">
-          <FooterContacts {...{ text, facebookUrl, instagramUrl }} />
+          <FooterContacts {...{ text, facebookUrl, instagramUrl, linkedinUrl }} />
         </div>
 
         <div className="flex flex-col gap-6 py-6">

@@ -2,14 +2,15 @@ import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
+import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import { LinkFragment } from '@/src/services/graphql/api'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type ListingCardProps = {
   title: string
+  subtext?: string | null | undefined
   link: LinkFragment | null | undefined
-  ariaLabel?: string
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -20,8 +21,8 @@ type ListingCardProps = {
 
 const ListingCard = ({
   title,
+  subtext,
   link,
-  ariaLabel,
   hasWhiteBackground = true,
   className,
 }: ListingCardProps) => {
@@ -35,21 +36,29 @@ const ListingCard = ({
       className={className}
     >
       <div className="flex h-full flex-col justify-between gap-6 p-4" title={title}>
-        <Typography
-          variant="h6"
-          className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
-        >
-          {title}
-        </Typography>
+        <div className="flex flex-col gap-2">
+          <Typography
+            variant="h6"
+            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+          >
+            {title}
+          </Typography>
+          {subtext ? <Typography>{subtext}</Typography> : null}
+        </div>
         <Button
-          variant="icon-wrapped"
+          variant="unstyled"
           asLink
           stretched
-          aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
-          className="size-10 rounded-lg bg-background-secondary"
-          // this button should only shows the arrow link icon so we need to force no children
-          {...{ ...getLinkProps(link), children: null }}
-        />
+          hasLinkIcon={false}
+          aria-label={`${t('common.showMore')}: ${title}`}
+          className="flex w-full items-center justify-between"
+          {...getLinkProps(link)}
+        >
+          <Typography variant="button-default">{getLinkProps(link).children}</Typography>
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-background-secondary">
+            <Icon name={getLinkProps(link).href.startsWith('http') ? 'export' : 'sipka-doprava'} />
+          </div>
+        </Button>
       </div>
     </CardBase>
   )

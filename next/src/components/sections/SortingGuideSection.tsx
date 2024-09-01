@@ -24,7 +24,15 @@ const SortingGuideSection = ({ section }: Props) => {
 
   const { title, text, sortingGuide, banner } = section
 
-  const { titleGoesHere, titleDoesntGoHere, goesHereItems, doesntGoHereItems } = sortingGuide ?? {}
+  const {
+    titleGoesHere,
+    titleDoesntGoHere,
+    goesHereItems,
+    doesntGoHereItems,
+    alertMessageGoesHere,
+    alertMessageDoesntGoHere,
+    alertMessageBottom,
+  } = sortingGuide ?? {}
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const leftColumn = goesHereItems?.map((item) => item?.label).filter(isDefined) ?? []
@@ -39,8 +47,17 @@ const SortingGuideSection = ({ section }: Props) => {
         <div className="flex flex-col gap-6 lg:gap-8">
           <div className="rounded-xl border border-border-default">
             <WasteSortingGuide
-              leftColumn={{ columnTitle: titleGoesHere, columnItems: leftColumn }}
-              rightColumn={{ columnTitle: titleDoesntGoHere, columnItems: rightColumn }}
+              leftColumn={{
+                columnTitle: titleGoesHere,
+                columnItems: leftColumn,
+                columnAlertMessage: alertMessageGoesHere,
+              }}
+              rightColumn={{
+                columnTitle: titleDoesntGoHere,
+                columnItems: rightColumn,
+                columnAlertMessage: alertMessageDoesntGoHere,
+              }}
+              bottomAlertMessage={alertMessageBottom}
             />
           </div>
           {banner ? (

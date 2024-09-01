@@ -414,6 +414,7 @@ export type ComponentItemsCardsListItem = {
   __typename?: 'ComponentItemsCardsListItem'
   id: Scalars['ID']['output']
   link: ComponentItemsLink
+  subtext?: Maybe<Scalars['String']['output']>
   title: Scalars['String']['output']
 }
 
@@ -422,12 +423,14 @@ export type ComponentItemsCardsListItemFiltersInput = {
   link?: InputMaybe<ComponentItemsLinkFiltersInput>
   not?: InputMaybe<ComponentItemsCardsListItemFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsCardsListItemFiltersInput>>>
+  subtext?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
 }
 
 export type ComponentItemsCardsListItemInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   link?: InputMaybe<ComponentItemsLinkInput>
+  subtext?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -645,6 +648,21 @@ export type ComponentItemsOpeningHoursItemInput = {
   value?: InputMaybe<Scalars['String']['input']>
 }
 
+export type ComponentItemsOpeningTimesItem = {
+  __typename?: 'ComponentItemsOpeningTimesItem'
+  id: Scalars['ID']['output']
+  openingTime?: Maybe<OpeningTimeEntityResponse>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsOpeningTimesItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>>>
+  not?: InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>
+  openingTime?: InputMaybe<OpeningTimeFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>>>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsOrderedCardsItem = {
   __typename?: 'ComponentItemsOrderedCardsItem'
   iconName?: Maybe<Scalars['String']['output']>
@@ -693,6 +711,9 @@ export type ComponentItemsSlideInput = {
 
 export type ComponentItemsSortingGuide = {
   __typename?: 'ComponentItemsSortingGuide'
+  alertMessageBottom?: Maybe<ComponentItemsSortingGuideAlertMessage>
+  alertMessageDoesntGoHere?: Maybe<ComponentItemsSortingGuideAlertMessage>
+  alertMessageGoesHere?: Maybe<ComponentItemsSortingGuideAlertMessage>
   doesntGoHereItems?: Maybe<Array<Maybe<ComponentItemsSortingGuideItem>>>
   goesHereItems?: Maybe<Array<Maybe<ComponentItemsSortingGuideItem>>>
   id: Scalars['ID']['output']
@@ -729,7 +750,25 @@ export type ComponentItemsSortingGuideAccordionItemFiltersInput = {
   wasteType?: InputMaybe<StringFilterInput>
 }
 
+export type ComponentItemsSortingGuideAlertMessage = {
+  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsSortingGuideAlertMessageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>>>
+  not?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsSortingGuideFiltersInput = {
+  alertMessageBottom?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
+  alertMessageDoesntGoHere?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
+  alertMessageGoesHere?: InputMaybe<ComponentItemsSortingGuideAlertMessageFiltersInput>
   and?: InputMaybe<Array<InputMaybe<ComponentItemsSortingGuideFiltersInput>>>
   doesntGoHereItems?: InputMaybe<ComponentItemsSortingGuideItemFiltersInput>
   goesHereItems?: InputMaybe<ComponentItemsSortingGuideItemFiltersInput>
@@ -1000,6 +1039,7 @@ export type ComponentSectionsCardsList = {
   __typename?: 'ComponentSectionsCardsList'
   cards?: Maybe<Array<Maybe<ComponentItemsCardsListItem>>>
   id: Scalars['ID']['output']
+  linkLabelOverride?: Maybe<Scalars['String']['output']>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
@@ -1234,13 +1274,13 @@ export type ComponentSectionsKoloHomepageSectionInput = {
 export type ComponentSectionsOpeningTimes = {
   __typename?: 'ComponentSectionsOpeningTimes'
   id: Scalars['ID']['output']
-  openingTimes?: Maybe<OpeningTimeRelationResponseCollection>
+  openingTimes: Array<Maybe<ComponentItemsOpeningTimesItem>>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentSectionsOpeningTimesOpeningTimesArgs = {
-  filters?: InputMaybe<OpeningTimeFiltersInput>
+  filters?: InputMaybe<ComponentItemsOpeningTimesItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
@@ -1881,6 +1921,7 @@ export type Footer = {
   createdAt?: Maybe<Scalars['DateTime']['output']>
   facebookUrl?: Maybe<Scalars['String']['output']>
   instagramUrl?: Maybe<Scalars['String']['output']>
+  linkedinUrl?: Maybe<Scalars['String']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<FooterRelationResponseCollection>
   text?: Maybe<Scalars['String']['output']>
@@ -1915,6 +1956,7 @@ export type FooterInput = {
   columns?: InputMaybe<Array<InputMaybe<ComponentItemsFooterColumnInput>>>
   facebookUrl?: InputMaybe<Scalars['String']['input']>
   instagramUrl?: InputMaybe<Scalars['String']['input']>
+  linkedinUrl?: InputMaybe<Scalars['String']['input']>
   text?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -1948,10 +1990,12 @@ export type GenericMorph =
   | ComponentItemsLink
   | ComponentItemsMenuHeader
   | ComponentItemsOpeningHoursItem
+  | ComponentItemsOpeningTimesItem
   | ComponentItemsOrderedCardsItem
   | ComponentItemsSlide
   | ComponentItemsSortingGuide
   | ComponentItemsSortingGuideAccordionItem
+  | ComponentItemsSortingGuideAlertMessage
   | ComponentItemsSortingGuideItem
   | ComponentItemsWasteSortingCardsItem
   | ComponentItemsWorkshopDate
@@ -5670,6 +5714,7 @@ export type GeneralQuery = {
         text?: string | null
         facebookUrl?: string | null
         instagramUrl?: string | null
+        linkedinUrl?: string | null
         columns?: Array<{
           __typename?: 'ComponentItemsFooterColumn'
           title: string
@@ -8122,9 +8167,11 @@ export type CardsListSectionFragment = {
   __typename?: 'ComponentSectionsCardsList'
   title?: string | null
   text?: string | null
+  linkLabelOverride?: string | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
+    subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
@@ -8630,6 +8677,21 @@ export type SortingGuideFragment = {
     __typename?: 'ComponentItemsSortingGuideItem'
     label: string
   } | null> | null
+  alertMessageGoesHere?: {
+    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+    title?: string | null
+    text?: string | null
+  } | null
+  alertMessageDoesntGoHere?: {
+    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+    title?: string | null
+    text?: string | null
+  } | null
+  alertMessageBottom?: {
+    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+    title?: string | null
+    text?: string | null
+  } | null
 }
 
 export type SortingGuideSectionFragment = {
@@ -8648,6 +8710,21 @@ export type SortingGuideSectionFragment = {
       __typename?: 'ComponentItemsSortingGuideItem'
       label: string
     } | null> | null
+    alertMessageGoesHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageDoesntGoHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageBottom?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
   } | null
   banner?: {
     __typename?: 'ComponentSectionsBanner'
@@ -8911,6 +8988,21 @@ export type SortingGuideAccordionsSectionFragment = {
         __typename?: 'ComponentItemsSortingGuideItem'
         label: string
       } | null> | null
+      alertMessageGoesHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageDoesntGoHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageBottom?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
     } | null
   } | null> | null
   banner?: {
@@ -9437,22 +9529,26 @@ export type OpeningTimesSectionFragment = {
   __typename?: 'ComponentSectionsOpeningTimes'
   title?: string | null
   text?: string | null
-  openingTimes?: {
-    __typename?: 'OpeningTimeRelationResponseCollection'
-    data: Array<{
-      __typename?: 'OpeningTimeEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'OpeningTime'
-        internalName: string
-        openingHours?: Array<{
-          __typename?: 'ComponentItemsOpeningHoursItem'
-          label: string
-          value: string
-        } | null> | null
+  openingTimes: Array<{
+    __typename?: 'ComponentItemsOpeningTimesItem'
+    title?: string | null
+    openingTime?: {
+      __typename?: 'OpeningTimeEntityResponse'
+      data?: {
+        __typename?: 'OpeningTimeEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'OpeningTime'
+          internalName: string
+          openingHours?: Array<{
+            __typename?: 'ComponentItemsOpeningHoursItem'
+            label: string
+            value: string
+          } | null> | null
+        } | null
       } | null
-    }>
-  } | null
+    } | null
+  } | null>
 }
 
 export type BoardMembersSectionFragment = {
@@ -10129,9 +10225,11 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
   __typename: 'ComponentSectionsCardsList'
   title?: string | null
   text?: string | null
+  linkLabelOverride?: string | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
+    subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
@@ -11274,22 +11372,26 @@ type PageSections_ComponentSectionsOpeningTimes_Fragment = {
   __typename: 'ComponentSectionsOpeningTimes'
   title?: string | null
   text?: string | null
-  openingTimes?: {
-    __typename?: 'OpeningTimeRelationResponseCollection'
-    data: Array<{
-      __typename?: 'OpeningTimeEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'OpeningTime'
-        internalName: string
-        openingHours?: Array<{
-          __typename?: 'ComponentItemsOpeningHoursItem'
-          label: string
-          value: string
-        } | null> | null
+  openingTimes: Array<{
+    __typename?: 'ComponentItemsOpeningTimesItem'
+    title?: string | null
+    openingTime?: {
+      __typename?: 'OpeningTimeEntityResponse'
+      data?: {
+        __typename?: 'OpeningTimeEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'OpeningTime'
+          internalName: string
+          openingHours?: Array<{
+            __typename?: 'ComponentItemsOpeningHoursItem'
+            label: string
+            value: string
+          } | null> | null
+        } | null
       } | null
-    }>
-  } | null
+    } | null
+  } | null>
 }
 
 type PageSections_ComponentSectionsOrderedCards_Fragment = {
@@ -11333,6 +11435,21 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
       __typename?: 'ComponentItemsSortingGuideItem'
       label: string
     } | null> | null
+    alertMessageGoesHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageDoesntGoHere?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
+    alertMessageBottom?: {
+      __typename?: 'ComponentItemsSortingGuideAlertMessage'
+      title?: string | null
+      text?: string | null
+    } | null
   } | null
   banner?: {
     __typename?: 'ComponentSectionsBanner'
@@ -11596,6 +11713,21 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
         __typename?: 'ComponentItemsSortingGuideItem'
         label: string
       } | null> | null
+      alertMessageGoesHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageDoesntGoHere?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
+      alertMessageBottom?: {
+        __typename?: 'ComponentItemsSortingGuideAlertMessage'
+        title?: string | null
+        text?: string | null
+      } | null
     } | null
   } | null> | null
   banner?: {
@@ -13553,6 +13685,7 @@ export type FooterFragment = {
   text?: string | null
   facebookUrl?: string | null
   instagramUrl?: string | null
+  linkedinUrl?: string | null
   columns?: Array<{
     __typename?: 'ComponentItemsFooterColumn'
     title: string
@@ -13781,6 +13914,7 @@ export type FooterEntityFragment = {
     text?: string | null
     facebookUrl?: string | null
     instagramUrl?: string | null
+    linkedinUrl?: string | null
     columns?: Array<{
       __typename?: 'ComponentItemsFooterColumn'
       title: string
@@ -19746,9 +19880,11 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsCardsList'
           title?: string | null
           text?: string | null
+          linkLabelOverride?: string | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
+            subtext?: string | null
             link: {
               __typename?: 'ComponentItemsLink'
               label?: string | null
@@ -20932,22 +21068,26 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsOpeningTimes'
           title?: string | null
           text?: string | null
-          openingTimes?: {
-            __typename?: 'OpeningTimeRelationResponseCollection'
-            data: Array<{
-              __typename?: 'OpeningTimeEntity'
-              id?: string | null
-              attributes?: {
-                __typename?: 'OpeningTime'
-                internalName: string
-                openingHours?: Array<{
-                  __typename?: 'ComponentItemsOpeningHoursItem'
-                  label: string
-                  value: string
-                } | null> | null
+          openingTimes: Array<{
+            __typename?: 'ComponentItemsOpeningTimesItem'
+            title?: string | null
+            openingTime?: {
+              __typename?: 'OpeningTimeEntityResponse'
+              data?: {
+                __typename?: 'OpeningTimeEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'OpeningTime'
+                  internalName: string
+                  openingHours?: Array<{
+                    __typename?: 'ComponentItemsOpeningHoursItem'
+                    label: string
+                    value: string
+                  } | null> | null
+                } | null
               } | null
-            }>
-          } | null
+            } | null
+          } | null>
         }
       | {
           __typename: 'ComponentSectionsOrderedCards'
@@ -20983,6 +21123,21 @@ export type PageEntityFragment = {
               __typename?: 'ComponentItemsSortingGuideItem'
               label: string
             } | null> | null
+            alertMessageGoesHere?: {
+              __typename?: 'ComponentItemsSortingGuideAlertMessage'
+              title?: string | null
+              text?: string | null
+            } | null
+            alertMessageDoesntGoHere?: {
+              __typename?: 'ComponentItemsSortingGuideAlertMessage'
+              title?: string | null
+              text?: string | null
+            } | null
+            alertMessageBottom?: {
+              __typename?: 'ComponentItemsSortingGuideAlertMessage'
+              title?: string | null
+              text?: string | null
+            } | null
           } | null
           banner?: {
             __typename?: 'ComponentSectionsBanner'
@@ -21245,6 +21400,21 @@ export type PageEntityFragment = {
                 __typename?: 'ComponentItemsSortingGuideItem'
                 label: string
               } | null> | null
+              alertMessageGoesHere?: {
+                __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                title?: string | null
+                text?: string | null
+              } | null
+              alertMessageDoesntGoHere?: {
+                __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                title?: string | null
+                text?: string | null
+              } | null
+              alertMessageBottom?: {
+                __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                title?: string | null
+                text?: string | null
+              } | null
             } | null
           } | null> | null
           banner?: {
@@ -22756,9 +22926,11 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -23946,22 +24118,26 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsOpeningTimes'
               title?: string | null
               text?: string | null
-              openingTimes?: {
-                __typename?: 'OpeningTimeRelationResponseCollection'
-                data: Array<{
-                  __typename?: 'OpeningTimeEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'OpeningTime'
-                    internalName: string
-                    openingHours?: Array<{
-                      __typename?: 'ComponentItemsOpeningHoursItem'
-                      label: string
-                      value: string
-                    } | null> | null
+              openingTimes: Array<{
+                __typename?: 'ComponentItemsOpeningTimesItem'
+                title?: string | null
+                openingTime?: {
+                  __typename?: 'OpeningTimeEntityResponse'
+                  data?: {
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      internalName: string
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
                   } | null
-                }>
-              } | null
+                } | null
+              } | null>
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -23997,6 +24173,21 @@ export type PagesQuery = {
                   __typename?: 'ComponentItemsSortingGuideItem'
                   label: string
                 } | null> | null
+                alertMessageGoesHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageDoesntGoHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageBottom?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
               } | null
               banner?: {
                 __typename?: 'ComponentSectionsBanner'
@@ -24259,6 +24450,21 @@ export type PagesQuery = {
                     __typename?: 'ComponentItemsSortingGuideItem'
                     label: string
                   } | null> | null
+                  alertMessageGoesHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageDoesntGoHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageBottom?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
                 } | null
               } | null> | null
               banner?: {
@@ -25777,9 +25983,11 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -26967,22 +27175,26 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsOpeningTimes'
               title?: string | null
               text?: string | null
-              openingTimes?: {
-                __typename?: 'OpeningTimeRelationResponseCollection'
-                data: Array<{
-                  __typename?: 'OpeningTimeEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'OpeningTime'
-                    internalName: string
-                    openingHours?: Array<{
-                      __typename?: 'ComponentItemsOpeningHoursItem'
-                      label: string
-                      value: string
-                    } | null> | null
+              openingTimes: Array<{
+                __typename?: 'ComponentItemsOpeningTimesItem'
+                title?: string | null
+                openingTime?: {
+                  __typename?: 'OpeningTimeEntityResponse'
+                  data?: {
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      internalName: string
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
                   } | null
-                }>
-              } | null
+                } | null
+              } | null>
             }
           | {
               __typename: 'ComponentSectionsOrderedCards'
@@ -27018,6 +27230,21 @@ export type PageBySlugQuery = {
                   __typename?: 'ComponentItemsSortingGuideItem'
                   label: string
                 } | null> | null
+                alertMessageGoesHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageDoesntGoHere?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
+                alertMessageBottom?: {
+                  __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                  title?: string | null
+                  text?: string | null
+                } | null
               } | null
               banner?: {
                 __typename?: 'ComponentSectionsBanner'
@@ -27280,6 +27507,21 @@ export type PageBySlugQuery = {
                     __typename?: 'ComponentItemsSortingGuideItem'
                     label: string
                   } | null> | null
+                  alertMessageGoesHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageDoesntGoHere?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
+                  alertMessageBottom?: {
+                    __typename?: 'ComponentItemsSortingGuideAlertMessage'
+                    title?: string | null
+                    text?: string | null
+                  } | null
                 } | null
               } | null> | null
               banner?: {
@@ -27972,9 +28214,11 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
   __typename: 'ComponentSectionsCardsList'
   title?: string | null
   text?: string | null
+  linkLabelOverride?: string | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
+    subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
@@ -28694,9 +28938,11 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsCardsList'
           title?: string | null
           text?: string | null
+          linkLabelOverride?: string | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
+            subtext?: string | null
             link: {
               __typename?: 'ComponentItemsLink'
               label?: string | null
@@ -29457,9 +29703,11 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -30227,9 +30475,11 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsCardsList'
               title?: string | null
               text?: string | null
+              linkLabelOverride?: string | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
+                subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
                   label?: string | null
@@ -32742,6 +32992,7 @@ export const FooterFragmentDoc = gql`
     text
     facebookUrl
     instagramUrl
+    linkedinUrl
     columns {
       ...FooterColumnItem
     }
@@ -33432,8 +33683,10 @@ export const CardsListSectionFragmentDoc = gql`
   fragment CardsListSection on ComponentSectionsCardsList {
     title
     text
+    linkLabelOverride
     cardsCardsList: cards {
       title
+      subtext
       link {
         ...Link
       }
@@ -33487,6 +33740,18 @@ export const SortingGuideFragmentDoc = gql`
     }
     doesntGoHereItems {
       label
+    }
+    alertMessageGoesHere {
+      title
+      text
+    }
+    alertMessageDoesntGoHere {
+      title
+      text
+    }
+    alertMessageBottom {
+      title
+      text
     }
   }
 `
@@ -33597,8 +33862,11 @@ export const OpeningTimesSectionFragmentDoc = gql`
     title
     text
     openingTimes {
-      data {
-        ...OpeningTimeEntity
+      title
+      openingTime {
+        data {
+          ...OpeningTimeEntity
+        }
       }
     }
   }

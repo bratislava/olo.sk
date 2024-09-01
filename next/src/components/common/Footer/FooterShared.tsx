@@ -10,7 +10,12 @@ import { FooterFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragment) => {
+export const FooterContacts = ({
+  text,
+  facebookUrl,
+  instagramUrl,
+  linkedinUrl,
+}: FooterFragment) => {
   const { t } = useTranslation()
 
   return (
@@ -19,7 +24,7 @@ export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragme
       <OloLogo fill="white" />
       <Markdown content={text} />
       <div className="flex gap-6 text-background-primary">
-        {facebookUrl && (
+        {facebookUrl ? (
           <Button
             variant="icon-wrapped-negative-margin"
             href={facebookUrl}
@@ -28,8 +33,9 @@ export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragme
             icon={<OloIcon name="social-media-facebook-footer" />}
             aria-label={t('footer.aria.facebook')}
           />
-        )}
-        {instagramUrl && (
+        ) : null}
+
+        {instagramUrl ? (
           <Button
             variant="icon-wrapped-negative-margin"
             href={instagramUrl}
@@ -38,7 +44,17 @@ export const FooterContacts = ({ text, facebookUrl, instagramUrl }: FooterFragme
             icon={<OloIcon name="social-media-instagram-footer" />}
             aria-label={t('footer.aria.instagram')}
           />
-        )}
+        ) : null}
+        {linkedinUrl ? (
+          <Button
+            variant="icon-wrapped-negative-margin"
+            href={linkedinUrl}
+            asLink
+            hasLinkIcon={false}
+            icon={<OloIcon name="social-media-linkedin-footer" />}
+            aria-label={t('footer.aria.instagram')}
+          />
+        ) : null}
       </div>
     </div>
   )

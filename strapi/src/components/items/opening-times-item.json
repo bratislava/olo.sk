@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_items_opening_times_items",
+  "info": {
+    "displayName": "Opening Times item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "openingTime": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::opening-time.opening-time"
+    }
+  }
+}

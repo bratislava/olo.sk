@@ -12,6 +12,9 @@
     "text": {
       "type": "text"
     },
+    "linkLabelOverride": {
+      "type": "text"
+    },
     "cards": {
       "type": "component",
       "repeatable": true,

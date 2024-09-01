@@ -9,6 +9,9 @@
       "type": "string",
       "required": true
     },
+    "subtext": {
+      "type": "string"
+    },
     "link": {
       "type": "component",
       "repeatable": false,

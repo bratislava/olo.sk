@@ -15,7 +15,7 @@ type Props = {
 }
 
 /**
- * Figma (temporary link): https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=815-16507&m=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=6518-25310&m=dev
  */
 
 const FaqCategoriesSection = ({ section }: Props) => {

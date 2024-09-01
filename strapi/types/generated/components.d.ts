@@ -149,11 +149,14 @@ export interface SectionsOpeningTimes extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    openingTimes: Attribute.Relation<
-      'sections.opening-times',
-      'oneToMany',
-      'api::opening-time.opening-time'
-    >
+    openingTimes: Attribute.Component<'items.opening-times-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
   }
 }
 
@@ -409,6 +412,7 @@ export interface SectionsCardsList extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
+    linkLabelOverride: Attribute.Text
     cards: Attribute.Component<'items.cards-list-item', true>
   }
 }
@@ -554,6 +558,99 @@ export interface MenuMenuItem extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsSideImage extends Schema.Component {
+  collectionName: 'components_header_sections_side_images'
+  info: {
+    displayName: 'Obr\u00E1zok vpravo'
+    icon: 'picture'
+    description: ''
+  }
+  attributes: {
+    media: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsPickupDay extends Schema.Component {
+  collectionName: 'components_header_sections_pickup_days'
+  info: {
+    displayName: 'Odvozov\u00FD de\u0148'
+    description: ''
+  }
+  attributes: {
+    carouselTitle: Attribute.String & Attribute.Required
+    anchors: Attribute.Component<'items.anchor', true>
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface HeaderSectionsImage extends Schema.Component {
+  collectionName: 'components_header_sections_images'
+  info: {
+    displayName: 'Obr\u00E1zok na cel\u00FA \u0161\u00EDrku'
+    icon: 'picture'
+    description: ''
+  }
+  attributes: {
+    media: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsIcon extends Schema.Component {
+  collectionName: 'components_header_sections_icons'
+  info: {
+    displayName: 'Ikonka'
+    description: ''
+  }
+  attributes: {
+    iconName: Attribute.String & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsGallery extends Schema.Component {
+  collectionName: 'components_header_sections_galleries'
+  info: {
+    displayName: 'Gal\u00E9ria'
+    icon: 'landscape'
+    description: ''
+  }
+  attributes: {
+    medias: Attribute.Media<'images', true> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsFeaturedNews extends Schema.Component {
+  collectionName: 'components_header_sections_featured_news'
+  info: {
+    displayName: 'Aktuality (\u010Dl\u00E1nky)'
+    description: ''
+  }
+  attributes: {
+    articlesTitle: Attribute.String & Attribute.Required
+    firstArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+    secondArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+  }
+}
+
+export interface HeaderSectionsBranchMap extends Schema.Component {
+  collectionName: 'components_header_sections_branch_maps'
+  info: {
+    displayName: 'Mapa pobo\u010Diek'
+    icon: 'pinMap'
+    description: ''
+  }
+  attributes: {
+    branches: Attribute.Relation<'header-sections.branch-map', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
 export interface ItemsWorkshopDate extends Schema.Component {
   collectionName: 'components_items_workshop_dates'
   info: {
@@ -689,6 +786,22 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
   }
 }
 
+export interface ItemsOpeningTimesItem extends Schema.Component {
+  collectionName: 'components_items_opening_times_items'
+  info: {
+    displayName: 'Opening Times item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    openingTime: Attribute.Relation<
+      'items.opening-times-item',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
 export interface ItemsOpeningHoursItem extends Schema.Component {
   collectionName: 'components_items_opening_hours_items'
   info: {
@@ -820,6 +933,7 @@ export interface ItemsCardsListItem extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
+    subtext: Attribute.String
     link: Attribute.Component<'items.link'> & Attribute.Required
   }
 }
@@ -861,99 +975,6 @@ export interface ItemsAnchor extends Schema.Component {
   }
 }
 
-export interface HeaderSectionsSideImage extends Schema.Component {
-  collectionName: 'components_header_sections_side_images'
-  info: {
-    displayName: 'Obr\u00E1zok vpravo'
-    icon: 'picture'
-    description: ''
-  }
-  attributes: {
-    media: Attribute.Media<'images'> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsPickupDay extends Schema.Component {
-  collectionName: 'components_header_sections_pickup_days'
-  info: {
-    displayName: 'Odvozov\u00FD de\u0148'
-    description: ''
-  }
-  attributes: {
-    carouselTitle: Attribute.String & Attribute.Required
-    anchors: Attribute.Component<'items.anchor', true>
-    showMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface HeaderSectionsImage extends Schema.Component {
-  collectionName: 'components_header_sections_images'
-  info: {
-    displayName: 'Obr\u00E1zok na cel\u00FA \u0161\u00EDrku'
-    icon: 'picture'
-    description: ''
-  }
-  attributes: {
-    media: Attribute.Media<'images'> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsIcon extends Schema.Component {
-  collectionName: 'components_header_sections_icons'
-  info: {
-    displayName: 'Ikonka'
-    description: ''
-  }
-  attributes: {
-    iconName: Attribute.String & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsGallery extends Schema.Component {
-  collectionName: 'components_header_sections_galleries'
-  info: {
-    displayName: 'Gal\u00E9ria'
-    icon: 'landscape'
-    description: ''
-  }
-  attributes: {
-    medias: Attribute.Media<'images', true> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsFeaturedNews extends Schema.Component {
-  collectionName: 'components_header_sections_featured_news'
-  info: {
-    displayName: 'Aktuality (\u010Dl\u00E1nky)'
-    description: ''
-  }
-  attributes: {
-    articlesTitle: Attribute.String & Attribute.Required
-    firstArticle: Attribute.Relation<
-      'header-sections.featured-news',
-      'oneToOne',
-      'api::article.article'
-    >
-    secondArticle: Attribute.Relation<
-      'header-sections.featured-news',
-      'oneToOne',
-      'api::article.article'
-    >
-  }
-}
-
-export interface HeaderSectionsBranchMap extends Schema.Component {
-  collectionName: 'components_header_sections_branch_maps'
-  info: {
-    displayName: 'Mapa pobo\u010Diek'
-    icon: 'pinMap'
-    description: ''
-  }
-  attributes: {
-    branches: Attribute.Relation<'header-sections.branch-map', 'oneToMany', 'api::branch.branch'>
-  }
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -990,6 +1011,13 @@ declare module '@strapi/types' {
       'menu.menu-section': MenuMenuSection
       'menu.menu-link': MenuMenuLink
       'menu.menu-item': MenuMenuItem
+      'header-sections.side-image': HeaderSectionsSideImage
+      'header-sections.pickup-day': HeaderSectionsPickupDay
+      'header-sections.image': HeaderSectionsImage
+      'header-sections.icon': HeaderSectionsIcon
+      'header-sections.gallery': HeaderSectionsGallery
+      'header-sections.featured-news': HeaderSectionsFeaturedNews
+      'header-sections.branch-map': HeaderSectionsBranchMap
       'items.workshop-date': ItemsWorkshopDate
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide
@@ -998,6 +1026,7 @@ declare module '@strapi/types' {
       'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
       'items.slide': ItemsSlide
       'items.ordered-cards-item': ItemsOrderedCardsItem
+      'items.opening-times-item': ItemsOpeningTimesItem
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
       'items.link': ItemsLink
@@ -1012,13 +1041,6 @@ declare module '@strapi/types' {
       'items.card-slider-card': ItemsCardSliderCard
       'items.board-members-item': ItemsBoardMembersItem
       'items.anchor': ItemsAnchor
-      'header-sections.side-image': HeaderSectionsSideImage
-      'header-sections.pickup-day': HeaderSectionsPickupDay
-      'header-sections.image': HeaderSectionsImage
-      'header-sections.icon': HeaderSectionsIcon
-      'header-sections.gallery': HeaderSectionsGallery
-      'header-sections.featured-news': HeaderSectionsFeaturedNews
-      'header-sections.branch-map': HeaderSectionsBranchMap
     }
   }
 }

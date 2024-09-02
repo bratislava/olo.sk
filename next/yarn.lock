@@ -4903,6 +4903,11 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.1.tgz#0fabfcf2f2127ef73b119d98452bd317c4a17eb8"
   integrity sha512-X+2qazGS3jxLAIz5JDXDzglAF3KpijdhFxlf/V1+hEsOUc+HnWi81L/uv/EvGuV90WY+7mPGFCUDGfQC3Gj95Q==
 
+"@types/lodash@^4.17.7":
+  version "4.17.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.7.tgz#2f776bcb53adc9e13b2c0dfd493dfcbd7de43612"
+  integrity sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==
+
 "@types/mapbox__point-geometry@*":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@types/mapbox__point-geometry/-/mapbox__point-geometry-0.1.4.tgz#0ef017b75eedce02ff6243b4189210e2e6d5e56d"
@@ -6950,6 +6955,13 @@ create-ecdh@^4.0.0:
     bn.js "^4.1.0"
     elliptic "^6.5.3"
 
+create-eslint-index@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/create-eslint-index/-/create-eslint-index-1.0.0.tgz#d954372d86d5792fcd67e9f2b791b1ab162411bb"
+  integrity sha512-nXvJjnfDytOOaPOonX0h0a1ggMoqrhdekGeZkD6hkcWYvlCWhU719tKFVh8eU04CnMwu3uwe1JjwuUF2C3k2qg==
+  dependencies:
+    lodash.get "^4.3.0"
+
 create-hash@^1.1.0, create-hash@^1.1.2, create-hash@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/create-hash/-/create-hash-1.2.0.tgz#889078af11a63756bcfb59bd221996be3a9ef196"
@@ -7593,6 +7605,13 @@ endent@^2.0.1:
     fast-json-parse "^1.0.3"
     objectorarray "^1.0.5"
 
+enhance-visitors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/enhance-visitors/-/enhance-visitors-1.0.0.tgz#aa945d05da465672a1ebd38fee2ed3da8518e95a"
+  integrity sha512-+29eJLiUixTEDRaZ35Vu8jP3gPLNcQQkQkOQjLp2X+6cZGGPDD/uasbFzvLsJKnGZnvmyZ0srxudwOtskHeIDA==
+  dependencies:
+    lodash "^4.13.1"
+
 enhanced-resolve@^5.12.0, enhanced-resolve@^5.16.0, enhanced-resolve@^5.7.0:
   version "5.16.0"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.16.0.tgz#65ec88778083056cb32487faa9aef82ed0864787"
@@ -7858,6 +7877,14 @@ escodegen@^2.1.0:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-ast-utils@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-ast-utils/-/eslint-ast-utils-1.1.0.tgz#3d58ba557801cfb1c941d68131ee9f8c34bd1586"
+  integrity sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
+  dependencies:
+    lodash.get "^4.4.2"
+    lodash.zip "^4.2.0"
+
 eslint-config-adjunct@>=4.13.0, eslint-config-adjunct@^4.12.2:
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/eslint-config-adjunct/-/eslint-config-adjunct-4.13.0.tgz#d68949198f597cd47a518daa77005799a99ea57b"
@@ -8069,6 +8096,24 @@ eslint-plugin-jsx-a11y@^6.7.1:
     minimatch "^3.1.2"
     object.entries "^1.1.7"
     object.fromentries "^2.0.7"
+
+eslint-plugin-lodash-fp@^2.2.0-a1:
+  version "2.2.0-a1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-lodash-fp/-/eslint-plugin-lodash-fp-2.2.0-a1.tgz#12e9a144ad87a5de55c6923edb3277a0ecdf3c1e"
+  integrity sha512-RMWDslyCWr3p7zgvhoQueb99ABVlh+KeQixQ8C64GUmLgh7sdyGQFVHDOWZFGf6P0cy6a0pg6GdpZq6G1URdGw==
+  dependencies:
+    create-eslint-index "^1.0.0"
+    enhance-visitors "^1.0.0"
+    eslint-ast-utils "^1.0.0"
+    lodash "^4.11.1"
+    req-all "^1.0.0"
+
+eslint-plugin-lodash@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-lodash/-/eslint-plugin-lodash-8.0.0.tgz#d2b20ae354a260ba875d5cc6b633f8bcde37f750"
+  integrity sha512-7DA8485FolmWRzh+8t4S8Pzin2TTuWfb0ZW3j/2fYElgk82ZanFz8vDcvc4BBPceYdX1p/za+tkbO68maDBGGw==
+  dependencies:
+    lodash "^4.17.21"
 
 eslint-plugin-markdown@^3.0.1:
   version "3.0.1"
@@ -10590,6 +10635,11 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
+lodash.get@^4.3.0, lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
+
 lodash.last@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash.last/-/lodash.last-3.0.0.tgz#242f663112dd4c6e63728c60a3c909d1bdadbd4c"
@@ -10605,12 +10655,17 @@ lodash.sortby@^4.7.0:
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==
 
+lodash.zip@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.zip/-/lodash.zip-4.2.0.tgz#ec6662e4896408ed4ab6c542a3990b72cc080020"
+  integrity sha512-C7IOaBBK/0gMORRBd8OETNx3kmOkgIWIPvyDpZSCTwUrpYmgZwJkjZeOD8ww4xbOUOs4/attY+pciKvadNfFbg==
+
 lodash.zipobject@^4.0.0:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/lodash.zipobject/-/lodash.zipobject-4.1.3.tgz#b399f5aba8ff62a746f6979bf20b214f964dbef8"
   integrity sha512-A9SzX4hMKWS25MyalwcOnNoplyHbkNVsjidhTp8ru0Sj23wY9GWBKS8gAIGDSAqeWjIjvE4KBEl24XXAs+v4wQ==
 
-lodash@^4.17.15, lodash@^4.17.20, lodash@^4.17.21, lodash@~4.17.0:
+lodash@^4.11.1, lodash@^4.13.1, lodash@^4.17.15, lodash@^4.17.20, lodash@^4.17.21, lodash@~4.17.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -13173,6 +13228,11 @@ replace-ext@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-2.0.0.tgz#9471c213d22e1bcc26717cd6e50881d88f812b06"
   integrity sha512-UszKE5KVK6JvyD92nzMn9cDapSk6w/CaFZ96CnmDMUqH9oowfxF/ZjRITD25H4DnOQClLA4/j7jLGXXLVKxAug==
+
+req-all@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/req-all/-/req-all-1.0.0.tgz#d128569451c340b432409c656cf166260cd2628d"
+  integrity sha512-k8RAnaq+vrezRAZWQlI6sbwGIlII699fnPYamb8K0UVgQel3Wb6YgPfpGyair00vmArXNag1vr5PjwDQBE7DUA==
 
 require-directory@^2.1.1:
   version "2.1.1"

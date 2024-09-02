@@ -157,6 +157,7 @@ export interface SectionsOpeningTimes extends Schema.Component {
         },
         number
       >
+    branchLocation: Attribute.Relation<'sections.opening-times', 'oneToOne', 'api::branch.branch'>
   }
 }
 

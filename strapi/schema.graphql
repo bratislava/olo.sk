@@ -147,10 +147,18 @@ input BooleanFilterInput {
 
 type Branch {
   address: String
+  barrierFreeInfo: String
+  contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactRelationResponseCollection
   createdAt: DateTime
+  latitude: Float
   locale: String
   localizations(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
+  longitude: Float
+  mapIconName: String
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeRelationResponseCollection
+  page: PageEntityResponse
+  parkingInfo: String
+  publicTransportInfo: String
   publishedAt: DateTime
   slug: String!
   title: String!
@@ -174,13 +182,21 @@ type BranchEntityResponseCollection {
 input BranchFiltersInput {
   address: StringFilterInput
   and: [BranchFiltersInput]
+  barrierFreeInfo: StringFilterInput
+  contacts: ContactFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
+  latitude: FloatFilterInput
   locale: StringFilterInput
   localizations: BranchFiltersInput
+  longitude: FloatFilterInput
+  mapIconName: StringFilterInput
   not: BranchFiltersInput
   openingTimes: OpeningTimeFiltersInput
   or: [BranchFiltersInput]
+  page: PageFiltersInput
+  parkingInfo: StringFilterInput
+  publicTransportInfo: StringFilterInput
   publishedAt: DateTimeFilterInput
   slug: StringFilterInput
   title: StringFilterInput
@@ -189,7 +205,15 @@ input BranchFiltersInput {
 
 input BranchInput {
   address: String
+  barrierFreeInfo: String
+  contacts: [ID]
+  latitude: Float
+  longitude: Float
+  mapIconName: String
   openingTimes: [ID]
+  page: ID
+  parkingInfo: String
+  publicTransportInfo: String
   publishedAt: DateTime
   slug: String
   title: String
@@ -1457,6 +1481,7 @@ input ComponentSectionsKoloHomepageSectionInput {
 }
 
 type ComponentSectionsOpeningTimes {
+  branchLocation: BranchEntityResponse
   id: ID!
   openingTimes(filters: ComponentItemsOpeningTimesItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOpeningTimesItem]!
   text: String
@@ -1465,6 +1490,7 @@ type ComponentSectionsOpeningTimes {
 
 input ComponentSectionsOpeningTimesFiltersInput {
   and: [ComponentSectionsOpeningTimesFiltersInput]
+  branchLocation: BranchFiltersInput
   not: ComponentSectionsOpeningTimesFiltersInput
   openingTimes: ComponentItemsOpeningTimesItemFiltersInput
   or: [ComponentSectionsOpeningTimesFiltersInput]
@@ -1473,6 +1499,7 @@ input ComponentSectionsOpeningTimesFiltersInput {
 }
 
 input ComponentSectionsOpeningTimesInput {
+  branchLocation: ID
   id: ID
   openingTimes: [ComponentItemsOpeningTimesItemInput]
   text: String
@@ -1699,6 +1726,7 @@ input ComponentSectionsWorkshopsInput {
 }
 
 type Contact {
+  branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   createdAt: DateTime
   label: String!
   primaryEmail: String
@@ -1726,6 +1754,7 @@ type ContactEntityResponseCollection {
 
 input ContactFiltersInput {
   and: [ContactFiltersInput]
+  branches: BranchFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   label: StringFilterInput
@@ -1741,6 +1770,7 @@ input ContactFiltersInput {
 }
 
 input ContactInput {
+  branches: [ID]
   label: String
   primaryEmail: String
   primaryPhone: String
@@ -2697,6 +2727,7 @@ type OpeningTimeRelationResponseCollection {
 
 type Page {
   alias: String
+  branch: BranchEntityResponse
   childPages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageRelationResponseCollection
   createdAt: DateTime
   header: [PageHeaderDynamicZone]
@@ -2728,6 +2759,7 @@ type PageEntityResponseCollection {
 input PageFiltersInput {
   alias: StringFilterInput
   and: [PageFiltersInput]
+  branch: BranchFiltersInput
   childPages: PageFiltersInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
@@ -2749,6 +2781,7 @@ scalar PageHeaderDynamicZoneInput
 
 input PageInput {
   alias: String
+  branch: ID
   childPages: [ID]
   header: [PageHeaderDynamicZoneInput!]
   parentPage: ID

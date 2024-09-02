@@ -30,6 +30,12 @@
     },
     "secondaryPhone": {
       "type": "string"
+    },
+    "branches": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::branch.branch",
+      "mappedBy": "contacts"
     }
   }
 }

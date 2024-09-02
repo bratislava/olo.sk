@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_vacancies",
+  "info": {
+    "displayName": "Pracovné pozície (placeholder)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary", "tertiary"]
+    }
+  }
+}

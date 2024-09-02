@@ -56,15 +56,16 @@ const WasteSortingGuide = ({
                 ? leftColumn.columnItems.map((columnItem, index) => {
                     return (
                       // eslint-disable-next-line react/no-array-index-key
-                  <div key={index} className="flex gap-4">
-                    <Icon name="fajka-kruh" className="text-success" />
-                    <Typography variant="p-default">{columnItem}</Typography>
-                  </div>
-                )
-              })
-            : null}
-        </div>
-      </div><WasteSortingMessage {...leftColumn.columnAlertMessage} />
+                      <div key={index} className="flex gap-4">
+                        <Icon name="fajka-kruh" className="text-success" />
+                        <Typography variant="p-default">{columnItem}</Typography>
+                      </div>
+                    )
+                  })
+                : null}
+            </div>
+          </div>
+          <WasteSortingMessage {...leftColumn.columnAlertMessage} />
         </div>
 
         <div className="flex flex-col justify-between gap-5 p-4 lg:w-1/2 lg:px-8 lg:py-5">
@@ -77,13 +78,14 @@ const WasteSortingGuide = ({
                 ? rightColumn?.columnItems.map((columnItem, index) => {
                     return (
                       // eslint-disable-next-line react/no-array-index-key
-                  <div key={index} className="flex gap-4">
-                    <Icon name="zrusit-kruh" className="text-error" />
-                    <Typography variant="p-default">{columnItem}</Typography>
-                  </div>
-                )
-              })
-            : null}</div>
+                      <div key={index} className="flex gap-4">
+                        <Icon name="zrusit-kruh" className="text-error" />
+                        <Typography variant="p-default">{columnItem}</Typography>
+                      </div>
+                    )
+                  })
+                : null}
+            </div>
           </div>
           <WasteSortingMessage {...rightColumn.columnAlertMessage} />
         </div>

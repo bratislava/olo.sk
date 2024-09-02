@@ -1401,6 +1401,14 @@ export type ComponentSectionsTable = {
   title?: Maybe<Scalars['String']['output']>
 }
 
+export type ComponentSectionsVacancies = {
+  __typename?: 'ComponentSectionsVacancies'
+  backgroundColor?: Maybe<Enum_Componentsectionsvacancies_Backgroundcolor>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
 export type ComponentSectionsWasteSortingCards = {
   __typename?: 'ComponentSectionsWasteSortingCards'
   banner?: Maybe<ComponentSectionsBanner>
@@ -1776,6 +1784,12 @@ export enum Enum_Componentsectionsrichtext_Backgroundcolor {
   Tertiary = 'tertiary',
 }
 
+export enum Enum_Componentsectionsvacancies_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
 export enum Enum_Servicecategory_Categorycolor {
   Blue = 'blue',
   Green = 'green',
@@ -2072,6 +2086,7 @@ export type GenericMorph =
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
   | ComponentSectionsTable
+  | ComponentSectionsVacancies
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | Contact
@@ -3032,6 +3047,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
   | ComponentSectionsTable
+  | ComponentSectionsVacancies
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | Error
@@ -7791,6 +7807,13 @@ export type BoardMembersSectionFragment = {
   } | null> | null
 }
 
+export type VacanciesSectionFragment = {
+  __typename?: 'ComponentSectionsVacancies'
+  title?: string | null
+  text?: string | null
+  backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
+}
+
 type PageSections_ComponentSectionsArticles_Fragment = {
   __typename: 'ComponentSectionsArticles'
   title?: string | null
@@ -9377,6 +9400,13 @@ type PageSections_ComponentSectionsTable_Fragment = {
   anchorId?: string | null
 }
 
+type PageSections_ComponentSectionsVacancies_Fragment = {
+  __typename: 'ComponentSectionsVacancies'
+  title?: string | null
+  text?: string | null
+  backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
+}
+
 type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
   __typename: 'ComponentSectionsWasteSortingCards'
   title?: string | null
@@ -9638,6 +9668,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsSortingGuide_Fragment
   | PageSections_ComponentSectionsSortingGuideAccordions_Fragment
   | PageSections_ComponentSectionsTable_Fragment
+  | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteSortingCards_Fragment
   | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
@@ -16307,6 +16338,12 @@ export type PageEntityFragment = {
           anchorId?: string | null
         }
       | {
+          __typename: 'ComponentSectionsVacancies'
+          title?: string | null
+          text?: string | null
+          backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
+        }
+      | {
           __typename: 'ComponentSectionsWasteSortingCards'
           title?: string | null
           text?: string | null
@@ -18426,6 +18463,12 @@ export type PagesQuery = {
               title?: string | null
               text?: string | null
               anchorId?: string | null
+            }
+          | {
+              __typename: 'ComponentSectionsVacancies'
+              title?: string | null
+              text?: string | null
+              backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -20550,6 +20593,12 @@ export type PageBySlugQuery = {
               title?: string | null
               text?: string | null
               anchorId?: string | null
+            }
+          | {
+              __typename: 'ComponentSectionsVacancies'
+              title?: string | null
+              text?: string | null
+              backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -25316,6 +25365,13 @@ export const BoardMembersSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const VacanciesSectionFragmentDoc = gql`
+  fragment VacanciesSection on ComponentSectionsVacancies {
+    title
+    text
+    backgroundColorVacancies: backgroundColor
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -25391,6 +25447,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsBoardMembers {
       ...BoardMembersSection
     }
+    ... on ComponentSectionsVacancies {
+      ...VacanciesSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -25416,6 +25475,7 @@ export const PageSectionsFragmentDoc = gql`
   ${ContactsSectionFragmentDoc}
   ${OpeningTimesSectionFragmentDoc}
   ${BoardMembersSectionFragmentDoc}
+  ${VacanciesSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

@@ -18,6 +18,7 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
     'https://cdn-api.bratislava.sk/olo-strapi/upload/pin_e623819d9f.png',
   )
 
+  // eslint-disable @typescript-eslint/naming-convention
   const imageStyles = 'rounded-t-[0.438rem] lg:rounded-l-[0.438rem] lg:rounded-tr-none'
 
   const staticMapboxUrl = useMemo(() => {

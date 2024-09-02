@@ -131,9 +131,9 @@ const config: Config = {
           pressed: 'rgb(var(--token-action-border-pressed))',
         },
       },
-      alert: {
-        background: {
-          warning: 'rgb(var(--token-alert-background-warning))',
+      warning: {
+        softBackground: {
+          default: 'rgb(var(--token-warning-soft-background-default))',
         },
       },
       waste: {

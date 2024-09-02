@@ -26,7 +26,7 @@ const WasteSortingMessage = ({ title, text }: WasteSortingMessageProps) => {
   if (!title && !text) return null
 
   return (
-    <div className="flex flex-col gap-1 rounded-lg bg-alert-background-warning px-5 py-4">
+    <div className="flex flex-col gap-1 rounded-lg bg-warning-softBackground-default px-5 py-4">
       {title ? <Typography variant="h6">{title}</Typography> : null}
       {text ? <Typography variant="p-default">{text}</Typography> : null}
     </div>

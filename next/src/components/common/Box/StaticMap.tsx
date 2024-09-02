@@ -16,6 +16,12 @@ type StaticMapProps = {
  */
 
 const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
+  // TODO: Mapbox limitation for static map image: 1280x1280
+  // eslint-disable-next-line const-case/uppercase
+  const width = 800
+  // eslint-disable-next-line const-case/uppercase
+  const height = 600
+
   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
   const styleId = last(process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID?.split('/'))
   const markerUrl = encodeURIComponent(
@@ -25,15 +31,14 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const staticMapboxUrl = useMemo(() => {
     if (!latitude || !longitude || !accessToken) return null
 
-    // TODO: Remove fixed width and height of the map
     // TODO: Access `bratislava01` via NEXT_PUBLIC_MAPBOX_STYLE_ID
-    return `https://api.mapbox.com/styles/v1/inovaciebratislava/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/324x196@2x?logo=false&access_token=${accessToken}`
-  }, [latitude, longitude, accessToken, styleId, markerUrl])
+    return `https://api.mapbox.com/styles/v1/inovaciebratislava/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/${width}x${height}@2x?logo=false&access_token=${accessToken}`
+  }, [latitude, longitude, accessToken, styleId, markerUrl, width, height])
 
   return (
     <div
       className={cn(
-        'relative h-[14.45rem] w-[20.25rem] overflow-hidden rounded-t-[0.438rem] lg:rounded-l-[0.438rem] lg:rounded-tr-none',
+        'relative h-[14.45rem] w-full overflow-hidden rounded-t-[0.438rem] lg:w-[20.25rem] lg:rounded-l-[0.438rem] lg:rounded-tr-none',
         className,
       )}
     >

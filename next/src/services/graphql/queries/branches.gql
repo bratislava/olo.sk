@@ -10,7 +10,28 @@ fragment BranchSlugEntity on BranchEntity {
 fragment BranchEntity on BranchEntity {
   ...BranchSlugEntity
   attributes {
+    page {
+      data {
+        ...PageSlugEntity
+      }
+    }
+    openingTimes {
+      data {
+        ...OpeningTimeEntity
+      }
+    }
+    contacts {
+      data {
+        ...ContactEntity
+      }
+    }
+    latitude
+    longitude
     address
+    publicTransportInfo
+    parkingInfo
+    barrierFreeInfo
+    mapIconName
   }
 }
 

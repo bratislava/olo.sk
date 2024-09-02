@@ -107,6 +107,12 @@
           "localized": true
         }
       }
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::branch.branch",
+      "mappedBy": "page"
     }
   }
 }

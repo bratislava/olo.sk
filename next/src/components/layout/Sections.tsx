@@ -23,6 +23,7 @@ import ServicesSection from '@/src/components/sections/ServicesSection'
 import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
 import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import TableSection from '@/src/components/sections/TableSection'
+import VacanciesSection from '@/src/components/sections/VacanciesSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
@@ -113,6 +114,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsFormCtaBanner':
       return <FormCtaBannerSection section={section} />
+
+    case 'ComponentSectionsVacancies':
+      return <VacanciesSection section={section} />
 
     default:
       return null

@@ -14,7 +14,6 @@ type StaticMapProps = {
 const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
   const styleId = last(process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID?.split('/'))
-
   const markerUrl = encodeURIComponent(
     'https://cdn-api.bratislava.sk/olo-strapi/upload/pin_e623819d9f.png',
   )

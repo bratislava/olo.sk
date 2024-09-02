@@ -1,3 +1,4 @@
+import { DehydratedState, HydrationBoundary } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
@@ -17,10 +18,12 @@ import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
 import { parseTopLevelPages } from '@/src/services/navigation/parseTopLevelPages'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
+import { prefetchPageSections } from '@/src/utils/prefetchPageSections'
 
 type PageProps = {
   general: GeneralQuery
   entity: PageEntityFragment
+  dehydratedState: DehydratedState
 }
 
 type StaticParams = {
@@ -97,17 +100,20 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
+  const dehydratedState = await prefetchPageSections(entity, locale)
+
   return {
     props: {
       entity,
       general,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
   }
 }
 
-const Page = ({ entity: page, general }: PageProps) => {
+const Page = ({ entity: page, general, dehydratedState }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook
@@ -131,27 +137,34 @@ const Page = ({ entity: page, general }: PageProps) => {
   const [header] = page.attributes.header ?? []
 
   return (
-    <GeneralContextProvider general={general}>
-      {/* TODO common Head/Seo component */}
-      <Head>
-        <title>{title}</title>
-        {perex && <meta name="description" content={perex} />}
-      </Head>
+    <HydrationBoundary state={dehydratedState}>
+      <GeneralContextProvider general={general}>
+        {/* TODO common Head/Seo component */}
+        <Head>
+          <title>{title}</title>
+          {perex && <meta name="description" content={perex} />}
+        </Head>
 
-      <PageLayout>
-        {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
-        {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
-          <SectionContainer background="secondary">
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
-          </SectionContainer>
-        )}
-        <PageHeaderSections header={header} title={title} perex={perex} breadcrumbs={breadcrumbs} />
+        <PageLayout>
+          {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
+          {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
+            <SectionContainer background="secondary">
+              <Breadcrumbs breadcrumbs={breadcrumbs} />
+            </SectionContainer>
+          )}
+          <PageHeaderSections
+            header={header}
+            title={title}
+            perex={perex}
+            breadcrumbs={breadcrumbs}
+          />
 
-        <Sections sections={sections?.filter(isDefined) ?? []} />
+          <Sections sections={sections?.filter(isDefined) ?? []} />
 
-        <AliasSection alias={alias} />
-      </PageLayout>
-    </GeneralContextProvider>
+          <AliasSection alias={alias} />
+        </PageLayout>
+      </GeneralContextProvider>
+    </HydrationBoundary>
   )
 }
 

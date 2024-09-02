@@ -17,6 +17,8 @@ import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
+export const LATEST_ARTICLES_COUNT = 12
+
 type Props = Pick<PageHeaderBasicProps, 'title'> & {
   header: PickupDayHeaderSectionFragment
 }
@@ -37,9 +39,8 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
   const { data: articlesData } = useQuery({
-    // TODO decide the limit of articles displayed in carousel
-    queryFn: () => client.LatestArticles({ limit: 10, locale }),
-    queryKey: ['latestArticles', { limit: 10, locale }],
+    queryKey: ['LatestArticles', { limit: LATEST_ARTICLES_COUNT, locale }],
+    queryFn: () => client.LatestArticles({ limit: LATEST_ARTICLES_COUNT, locale }),
   })
 
   const filteredArticles =

@@ -32,7 +32,6 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const staticMapboxUrl = useMemo(() => {
     if (!latitude || !longitude || !accessToken) return null
 
-    // TODO: Access `bratislava01` via NEXT_PUBLIC_MAPBOX_STYLE_ID
     return `https://api.mapbox.com/styles/v1/${username}/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/${width}x${height}@2x?logo=false&access_token=${accessToken}`
   }, [latitude, longitude, accessToken, username, styleId, markerUrl, width, height])
 

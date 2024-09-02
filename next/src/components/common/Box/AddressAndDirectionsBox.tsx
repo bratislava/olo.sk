@@ -11,6 +11,10 @@ type AddressAndDirectionsBoxProps = {
   className?: string
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-10975&m=dev
+ */
+
 const AddressAndDirectionsBox = ({
   latitude,
   longitude,

@@ -39,6 +39,7 @@
     "graphql-tag": "^2.12.6",
     "i18next": "23.14.0",
     "init": "^0.1.2",
+    "mapbox-gl": "^3.6.0",
     "meilisearch": "0.30.0",
     "next": "14.2.6",
     "next-i18next": "15.3.1",

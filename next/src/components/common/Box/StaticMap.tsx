@@ -1,4 +1,3 @@
-import last from 'lodash/last'
 import Image from 'next/image'
 import { useMemo } from 'react'
 
@@ -23,7 +22,9 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const height = 600
 
   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
-  const styleId = last(process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID?.split('/'))
+  const username = process.env.NEXT_PUBLIC_MAPBOX_USERNAME
+  const styleId = process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID
+
   const markerUrl = encodeURIComponent(
     'https://cdn-api.bratislava.sk/olo-strapi/upload/pin_e623819d9f.png',
   )
@@ -32,8 +33,8 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
     if (!latitude || !longitude || !accessToken) return null
 
     // TODO: Access `bratislava01` via NEXT_PUBLIC_MAPBOX_STYLE_ID
-    return `https://api.mapbox.com/styles/v1/inovaciebratislava/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/${width}x${height}@2x?logo=false&access_token=${accessToken}`
-  }, [latitude, longitude, accessToken, styleId, markerUrl, width, height])
+    return `https://api.mapbox.com/styles/v1/${username}/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/${width}x${height}@2x?logo=false&access_token=${accessToken}`
+  }, [latitude, longitude, accessToken, username, styleId, markerUrl, width, height])
 
   return (
     <div

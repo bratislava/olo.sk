@@ -31,8 +31,24 @@ fragment ServiceSections on ServiceSectionsDynamicZone {
   }
 }
 
-fragment ServiceEntity on ServiceEntity {
+fragment ServiceCardEntity on ServiceEntity {
   ...ServiceSlugEntity
+  attributes {
+    serviceCategories {
+      data {
+        ...ServiceCategoryEntity
+      }
+    }
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+}
+
+fragment ServiceEntity on ServiceEntity {
+  ...ServiceCardEntity
   attributes {
     serviceCategories {
       data {
@@ -51,7 +67,7 @@ fragment ServiceEntity on ServiceEntity {
 }
 
 query Services($locale: I18NLocaleCode!) {
-  services(locale: $locale) {
+  services(locale: $locale, pagination: { limit: -1 }) {
     data {
       ...ServiceEntity
     }

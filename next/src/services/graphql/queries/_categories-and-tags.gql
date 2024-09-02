@@ -98,7 +98,7 @@ fragment FaqCategoryEntity on FaqCategoryEntity {
 }
 
 query FaqCategories($locale: I18NLocaleCode!) {
-  faqCategories(locale: $locale) {
+  faqCategories(locale: $locale, pagination: { limit: -1 }) {
     data {
       ...FaqCategoryEntity
     }
@@ -123,7 +123,7 @@ fragment ServiceCategoryEntity on ServiceCategoryEntity {
 }
 
 query ServiceCategories($locale: I18NLocaleCode!) {
-  serviceCategories(locale: $locale) {
+  serviceCategories(locale: $locale, pagination: { limit: -1 }) {
     data {
       ...ServiceCategoryEntity
     }

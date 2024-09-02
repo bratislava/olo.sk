@@ -21359,6 +21359,45 @@ export type ServiceSectionsFragment =
   | ServiceSections_ComponentSectionsRichtext_Fragment
   | ServiceSections_Error_Fragment
 
+export type ServiceCardEntityFragment = {
+  __typename: 'ServiceEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Service'
+    title: string
+    slug: string
+    serviceCategories?: {
+      __typename?: 'ServiceCategoryRelationResponseCollection'
+      data: Array<{
+        __typename?: 'ServiceCategoryEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'ServiceCategory'
+          title: string
+          slug: string
+          categoryColor: Enum_Servicecategory_Categorycolor
+        } | null
+      }>
+    } | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
 export type ServiceEntityFragment = {
   __typename: 'ServiceEntity'
   id?: string | null
@@ -25505,6 +25544,26 @@ export const ServiceCategoryEntityFragmentDoc = gql`
     }
   }
 `
+export const ServiceCardEntityFragmentDoc = gql`
+  fragment ServiceCardEntity on ServiceEntity {
+    ...ServiceSlugEntity
+    attributes {
+      serviceCategories {
+        data {
+          ...ServiceCategoryEntity
+        }
+      }
+      image {
+        data {
+          ...UploadImageEntity
+        }
+      }
+    }
+  }
+  ${ServiceSlugEntityFragmentDoc}
+  ${ServiceCategoryEntityFragmentDoc}
+  ${UploadImageEntityFragmentDoc}
+`
 export const FormCtaBannerSectionFragmentDoc = gql`
   fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
     title
@@ -25543,7 +25602,7 @@ export const ServiceSectionsFragmentDoc = gql`
 `
 export const ServiceEntityFragmentDoc = gql`
   fragment ServiceEntity on ServiceEntity {
-    ...ServiceSlugEntity
+    ...ServiceCardEntity
     attributes {
       serviceCategories {
         data {
@@ -25560,7 +25619,7 @@ export const ServiceEntityFragmentDoc = gql`
       }
     }
   }
-  ${ServiceSlugEntityFragmentDoc}
+  ${ServiceCardEntityFragmentDoc}
   ${ServiceCategoryEntityFragmentDoc}
   ${UploadImageEntityFragmentDoc}
   ${ServiceSectionsFragmentDoc}
@@ -25659,7 +25718,7 @@ export const FaqCategoryBySlugDocument = gql`
 `
 export const ServiceCategoriesDocument = gql`
   query ServiceCategories($locale: I18NLocaleCode!) {
-    serviceCategories(locale: $locale) {
+    serviceCategories(locale: $locale, pagination: { limit: -1 }) {
       data {
         ...ServiceCategoryEntity
       }
@@ -25849,7 +25908,7 @@ export const PageRedirectByAliasDocument = gql`
 `
 export const ServicesDocument = gql`
   query Services($locale: I18NLocaleCode!) {
-    services(locale: $locale) {
+    services(locale: $locale, pagination: { limit: -1 }) {
       data {
         ...ServiceEntity
       }

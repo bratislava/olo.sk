@@ -38,6 +38,14 @@
         }
       }
     },
+    "alias": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid"
+    },
     "parentPage": {
       "type": "relation",
       "relation": "manyToOne",

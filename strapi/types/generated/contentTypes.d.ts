@@ -1359,6 +1359,12 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true
         }
       }>
+    alias: Attribute.UID &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     parentPage: Attribute.Relation<'api::page.page', 'manyToOne', 'api::page.page'>
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
     header: Attribute.DynamicZone<

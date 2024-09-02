@@ -2875,6 +2875,7 @@ export type OpeningTimeRelationResponseCollection = {
 
 export type Page = {
   __typename?: 'Page'
+  alias?: Maybe<Scalars['String']['output']>
   childPages?: Maybe<PageRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   header?: Maybe<Array<Maybe<PageHeaderDynamicZone>>>
@@ -2921,6 +2922,7 @@ export type PageEntityResponseCollection = {
 }
 
 export type PageFiltersInput = {
+  alias?: InputMaybe<StringFilterInput>
   and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>
   childPages?: InputMaybe<PageFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
@@ -2946,6 +2948,7 @@ export type PageHeaderDynamicZone =
   | Error
 
 export type PageInput = {
+  alias?: InputMaybe<Scalars['String']['input']>
   childPages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   header?: InputMaybe<Array<Scalars['PageHeaderDynamicZoneInput']['input']>>
   parentPage?: InputMaybe<Scalars['ID']['input']>
@@ -13722,6 +13725,7 @@ export type PageEntityFragment = {
   attributes?: {
     __typename?: 'Page'
     perex?: string | null
+    alias?: string | null
     title: string
     slug: string
     header?: Array<
@@ -15776,6 +15780,7 @@ export type PagesQuery = {
       attributes?: {
         __typename?: 'Page'
         perex?: string | null
+        alias?: string | null
         title: string
         slug: string
         header?: Array<
@@ -17837,6 +17842,7 @@ export type PageBySlugQuery = {
       attributes?: {
         __typename?: 'Page'
         perex?: string | null
+        alias?: string | null
         title: string
         slug: string
         header?: Array<
@@ -19923,6 +19929,23 @@ export type PageBySlugQuery = {
           } | null
         } | null
       } | null
+    }>
+  } | null
+}
+
+export type PageRedirectByAliasQueryVariables = Exact<{
+  alias: Scalars['String']['input']
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type PageRedirectByAliasQuery = {
+  __typename?: 'Query'
+  pages?: {
+    __typename?: 'PageEntityResponseCollection'
+    data: Array<{
+      __typename: 'PageEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
     }>
   } | null
 }
@@ -24455,6 +24478,7 @@ export const PageEntityFragmentDoc = gql`
     ...PageSlugEntity
     attributes {
       perex
+      alias
       header {
         ...HeaderSections
       }
@@ -24808,6 +24832,16 @@ export const PageBySlugDocument = gql`
   }
   ${PageEntityFragmentDoc}
   ${PageParentPagesFragmentDoc}
+`
+export const PageRedirectByAliasDocument = gql`
+  query PageRedirectByAlias($alias: String!, $locale: I18NLocaleCode!) {
+    pages(filters: { alias: { eq: $alias } }, locale: $locale) {
+      data {
+        ...PageSlugEntity
+      }
+    }
+  }
+  ${PageSlugEntityFragmentDoc}
 `
 export const ServicesDocument = gql`
   query Services($locale: I18NLocaleCode!) {
@@ -25238,6 +25272,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'PageBySlug',
+        'query',
+        variables,
+      )
+    },
+    PageRedirectByAlias(
+      variables: PageRedirectByAliasQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<PageRedirectByAliasQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<PageRedirectByAliasQuery>(PageRedirectByAliasDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'PageRedirectByAlias',
         'query',
         variables,
       )

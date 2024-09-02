@@ -27,7 +27,7 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
 
     // TODO: Remove fixed width and height of the map
     // TODO: Access `bratislava01` via NEXT_PUBLIC_MAPBOX_STYLE_ID
-    return `https://api.mapbox.com/styles/v1/bratislava01/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/324x196@2x?logo=false&access_token=${accessToken}`
+    return `https://api.mapbox.com/styles/v1/inovaciebratislava/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/324x196@2x?logo=false&access_token=${accessToken}`
   }, [latitude, longitude, accessToken, styleId, markerUrl])
 
   return (

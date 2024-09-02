@@ -2696,6 +2696,7 @@ type OpeningTimeRelationResponseCollection {
 }
 
 type Page {
+  alias: String
   childPages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageRelationResponseCollection
   createdAt: DateTime
   header: [PageHeaderDynamicZone]
@@ -2725,6 +2726,7 @@ type PageEntityResponseCollection {
 }
 
 input PageFiltersInput {
+  alias: StringFilterInput
   and: [PageFiltersInput]
   childPages: PageFiltersInput
   createdAt: DateTimeFilterInput
@@ -2746,6 +2748,7 @@ union PageHeaderDynamicZone = ComponentHeaderSectionsFeaturedNews | ComponentHea
 scalar PageHeaderDynamicZoneInput
 
 input PageInput {
+  alias: String
   childPages: [ID]
   header: [PageHeaderDynamicZoneInput!]
   parentPage: ID

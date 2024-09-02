@@ -34,6 +34,11 @@ query General($locale: I18NLocaleCode!) {
       ...NavigationEntity
     }
   }
+  topLevelPages: pages(filters: { parentPage: { id: { eq: null } } }, locale: $locale) {
+    data {
+      ...PageChildPages
+    }
+  }
   footer(locale: $locale) {
     data {
       ...FooterEntity

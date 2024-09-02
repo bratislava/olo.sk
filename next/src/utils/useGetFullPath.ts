@@ -6,13 +6,12 @@ import {
   BranchSlugEntityFragment,
   DocumentSlugEntityFragment,
   FaqCategorySlugEntityFragment,
-  NavigationEntityFragment,
   PageSlugEntityFragment,
   ServiceSlugEntityFragment,
   WorkshopSlugEntityFragment,
 } from '@/src/services/graphql/api'
-import { MeiliEntity } from '@/src/services/meili/types'
-import { getMeiliPagePath, getPagePath } from '@/src/utils/getPagePath'
+import { ContentTypePathPrefixesMap } from '@/src/services/navigation/parseContentTypePathPrefixes'
+import { PagePathsMap } from '@/src/services/navigation/parseTopLevelPages'
 
 export type UnionSlugEntityType =
   | PageSlugEntityFragment
@@ -32,7 +31,8 @@ export type UnionSlugEntityType =
  */
 export const getFullPathFn = (
   entity: UnionSlugEntityType,
-  navigation: NavigationEntityFragment | null | undefined,
+  pagePathsMap: PagePathsMap,
+  contentTypePathPrefixesMap: ContentTypePathPrefixesMap,
   // eslint-disable-next-line sonarjs/cognitive-complexity
 ) => {
   const { slug } = entity?.attributes ?? {}
@@ -43,11 +43,11 @@ export const getFullPathFn = (
 
   // TODO Rewrite to cleaner code
   if (entity.__typename === 'PageEntity') {
-    return getPagePath(entity)
+    return pagePathsMap.get(slug)?.path ?? `#notFound`
   }
 
-  if (entity.__typename === 'ArticleEntity' && navigation?.attributes?.articlesParentPage?.data) {
-    return `${getPagePath(navigation.attributes.articlesParentPage.data)}/${entity.attributes.slug}`
+  if (entity.__typename === 'ArticleEntity' && contentTypePathPrefixesMap.article) {
+    return `${contentTypePathPrefixesMap.article}/${entity.attributes.slug}`
   }
 
   // TODO
@@ -55,62 +55,33 @@ export const getFullPathFn = (
     return '#'
   }
 
-  if (entity.__typename === 'DocumentEntity' && navigation?.attributes?.documentsParentPage?.data) {
-    return `${getPagePath(navigation.attributes.documentsParentPage.data)}/${entity.attributes.slug}`
+  if (entity.__typename === 'DocumentEntity' && contentTypePathPrefixesMap.document) {
+    return `${contentTypePathPrefixesMap.document}/${entity.attributes.slug}`
   }
 
-  if (
-    entity.__typename === 'FaqCategoryEntity' &&
-    navigation?.attributes?.faqCategoriesParentPage?.data
-  ) {
-    return `${getPagePath(navigation.attributes.faqCategoriesParentPage.data)}/${entity.attributes.slug}`
+  if (entity.__typename === 'FaqCategoryEntity' && contentTypePathPrefixesMap.faqCategory) {
+    return `${contentTypePathPrefixesMap.faqCategory}/${entity.attributes.slug}`
   }
 
-  if (entity.__typename === 'ServiceEntity' && navigation?.attributes?.servicesParentPage?.data) {
-    return `${getPagePath(navigation.attributes.servicesParentPage.data)}/${entity.attributes.slug}`
+  if (entity.__typename === 'ServiceEntity' && contentTypePathPrefixesMap.service) {
+    return `${contentTypePathPrefixesMap.service}/${entity.attributes.slug}`
   }
 
-  if (entity.__typename === 'WorkshopEntity' && navigation?.attributes?.workshopsParentPage?.data) {
-    return `${getPagePath(navigation.attributes.workshopsParentPage.data)}/${entity.attributes.slug}`
+  if (entity.__typename === 'WorkshopEntity' && contentTypePathPrefixesMap.workshop) {
+    return `${contentTypePathPrefixesMap.workshop}/${entity.attributes.slug}`
   }
-
-  return null
-}
-
-/**
- * Returns full path for Meili reponse
- */
-export const getFullMeiliPathFn = (
-  entity: MeiliEntity,
-  navigation: NavigationEntityFragment | null | undefined,
-) => {
-  if (entity.type === 'page') {
-    return getMeiliPagePath(entity)
-  }
-
-  if (entity.type === 'article' && navigation?.attributes?.articlesParentPage?.data) {
-    // return 'hiiii'
-
-    return `${getPagePath(navigation.attributes.articlesParentPage.data)}/${entity.slug}`
-  }
-
-  // TODO other types
 
   return null
 }
 
 export const useGetFullPath = () => {
-  const { navigation } = useGeneralContext()
+  const { pagePathsMap, contentTypePathPrefixesMap } = useGeneralContext()
 
   const getFullPath = useMemo(
-    () => (entity: UnionSlugEntityType | MeiliEntity) => {
-      if (entity && 'type' in entity) {
-        return getFullMeiliPathFn(entity, navigation?.data)
-      }
-
-      return getFullPathFn(entity, navigation?.data)
+    () => (entity: UnionSlugEntityType) => {
+      return getFullPathFn(entity, pagePathsMap, contentTypePathPrefixesMap)
     },
-    [navigation],
+    [pagePathsMap, contentTypePathPrefixesMap],
   )
 
   return { getFullPath }

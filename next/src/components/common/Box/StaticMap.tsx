@@ -11,15 +11,16 @@ type StaticMapProps = {
   className?: string
 }
 
+/*
+ * Component inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/molecules/Footer/FooterMapStatic.tsx
+ */
+
 const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
   const styleId = last(process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID?.split('/'))
   const markerUrl = encodeURIComponent(
     'https://cdn-api.bratislava.sk/olo-strapi/upload/pin_e623819d9f.png',
   )
-
-  // eslint-disable-next-line const-case/uppercase
-  const imageStyles = 'rounded-t-[0.438rem] lg:rounded-l-[0.438rem] lg:rounded-tr-none'
 
   const staticMapboxUrl = useMemo(() => {
     if (!latitude || !longitude || !accessToken) return null
@@ -30,17 +31,22 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   }, [latitude, longitude, accessToken, styleId, markerUrl])
 
   return (
-    <div className={cn('relative h-[14.45rem] w-[20.25rem]', className)}>
+    <div
+      className={cn(
+        'relative h-[14.45rem] w-[20.25rem] overflow-hidden rounded-t-[0.438rem] lg:rounded-l-[0.438rem] lg:rounded-tr-none',
+        className,
+      )}
+    >
       {staticMapboxUrl ? (
         <Image
           src={staticMapboxUrl}
           // Empty alt on purpose
           alt=""
           fill
-          className={cn('object-cover', imageStyles)}
+          className="object-cover"
         />
       ) : (
-        <ImagePlaceholder className={imageStyles} />
+        <ImagePlaceholder />
       )}
     </div>
   )

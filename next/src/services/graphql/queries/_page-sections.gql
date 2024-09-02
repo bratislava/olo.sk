@@ -315,6 +315,19 @@ fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
       }
     }
   }
+  branchLocation {
+    data {
+      attributes {
+        title
+        address
+        latitude
+        longitude
+        publicTransportInfo
+        parkingInfo
+        barrierFreeInfo
+      }
+    }
+  }
 }
 
 fragment BoardMembersSection on ComponentSectionsBoardMembers {

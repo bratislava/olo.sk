@@ -347,6 +347,12 @@ fragment BoardMembersSection on ComponentSectionsBoardMembers {
   }
 }
 
+fragment VacanciesSection on ComponentSectionsVacancies {
+  title
+  text
+  backgroundColorVacancies: backgroundColor
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -448,5 +454,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBoardMembers {
     ...BoardMembersSection
+  }
+
+  ... on ComponentSectionsVacancies {
+    ...VacanciesSection
   }
 }

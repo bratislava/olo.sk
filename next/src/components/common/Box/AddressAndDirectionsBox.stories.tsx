@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 
-import MapComponent from './Map'
+import AddressAndDirectionsBoxComponent from './AddressAndDirectionsBox'
 
 type Props = {
   rowsContent: {
@@ -14,7 +13,7 @@ type Props = {
 }
 
 const meta: Meta<Props> = {
-  title: 'Components/Box/Map',
+  title: 'Components/Box/AddressAndDirectionsBox',
   parameters: { controls: { exclude: ['rowsContent'] } },
   args: {
     rowsContent: [
@@ -23,7 +22,8 @@ const meta: Meta<Props> = {
         iconName: 'place',
       },
       {
-        value: 'zastávka Avion IKEA (linky číslo 61, 69, 96 a 163)',
+        value:
+          'zastávka Avion IKEA (linky číslo 61, 69, 96 a 163)\nzastávka Avion Shopping Park (linky číslo 63 a 65)',
         iconName: 'directions-bus',
       },
       {
@@ -37,14 +37,14 @@ const meta: Meta<Props> = {
 export default meta
 type Story = StoryObj<Props>
 
-export const Map: Story = {
+export const AddressAndDirectionsBox: Story = {
   render: (args) => (
     <div className="mx-auto flex max-w-72 flex-col items-start lg:max-w-[50rem]">
-      <MapComponent>
+      <AddressAndDirectionsBoxComponent>
         {...args.rowsContent.map((row) => (
           <BasicRowCard value={row.value} variant="icon-value" iconName={row.iconName} />
         ))}
-      </MapComponent>
+      </AddressAndDirectionsBoxComponent>
     </div>
   ),
 }

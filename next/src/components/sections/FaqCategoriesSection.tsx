@@ -28,8 +28,8 @@ const FaqCategoriesSection = ({ section }: Props) => {
 
   // TODO consider optimalizing so that we don't fetch this much when showAll is false
   const { data: allFaqCategories } = useQuery({
+    queryKey: ['FaqCategories', locale],
     queryFn: () => client.FaqCategories({ locale }),
-    queryKey: ['faqCategories', locale],
   })
 
   const faqCategoriesToRender =

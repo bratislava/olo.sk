@@ -46,7 +46,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   colSpan={1}
-                  hasDivider
+                  hasVerticalDivider
                 >
                   <div className="flex grow flex-col gap-y-12">
                     {cell.map((section) => (
@@ -61,7 +61,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
               <NavMenuContentCell
                 key={cell.id}
                 colSpan={cell.colSpan}
-                hasDivider={cell.hasDividers}
+                hasVerticalDivider={index !== navMenuCells.length - 1}
               >
                 <NavMenuSection section={cell} />
               </NavMenuContentCell>

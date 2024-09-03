@@ -5,14 +5,14 @@ import cn from '@/src/utils/cn'
 
 type NavMenuContentCellProps = {
   colSpan: number
-  hasDivider?: boolean
+  hasVerticalDivider?: boolean
   className?: string
 }
 
 const NavMenuContentCell = ({
   children,
   colSpan,
-  hasDivider,
+  hasVerticalDivider,
   className,
 }: PropsWithChildren<NavMenuContentCellProps>) => {
   return (
@@ -28,7 +28,7 @@ const NavMenuContentCell = ({
     >
       {children}
       {/* TODO: Dividers should not be a part of list elements */}
-      {hasDivider ? <NavBarDivider variant="vertical" className="px-8" /> : null}
+      {hasVerticalDivider ? <NavBarDivider variant="vertical" className="px-8" /> : null}
     </li>
   )
 }

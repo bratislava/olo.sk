@@ -131,7 +131,7 @@ const config: Config = {
       },
       success: {
         background: {
-          default: 'rgb(var(--token-success-content-default))',
+          default: 'rgb(var(--token-success-background-default))',
         },
         content: {
           default: 'rgb(var(--token-success-content-default))',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 
@@ -7,7 +7,7 @@ import DirectionsBoxComponent from './DirectionsBox'
 
 type Props = {
   rowsContent: {
-    value: string
+    value: ReactNode
     iconName: 'place' | 'directions-bus' | 'local-parking'
   }[]
 }

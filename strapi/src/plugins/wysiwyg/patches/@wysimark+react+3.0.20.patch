@@ -1,17 +1,8 @@
 diff --git a/node_modules/@wysimark/react/.dist/browser/index.esm.js b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-index 46d1f77..8d441c1 100644
+index 46d1f77..f9a4452 100644
 --- a/node_modules/@wysimark/react/.dist/browser/index.esm.js
 +++ b/node_modules/@wysimark/react/.dist/browser/index.esm.js
-@@ -138,6 +138,8 @@ function getMarksFromSegment(segment) {
-     return getMarksFromText(segment);
-   } else if (segment.type === "anchor") {
-     return getCommonAnchorMarks(segment.children);
-+  } else if (segment.type === "image-inline") {
-+    return getCommonAnchorMarks(segment.children);
-   } else {
-     throw new Error(`Unhandled type ${segment.type}`);
-   }
-@@ -6314,7 +6316,16 @@ function deleteFragmentWithProtectedTypes(editor, protectedTypes) {
+@@ -6314,7 +6314,16 @@ function deleteFragmentWithProtectedTypes(editor, protectedTypes) {
    );
    Editor44.withoutNormalizing(editor, () => {
      for (const range of reversedRanges) {
@@ -29,7 +20,7 @@ index 46d1f77..8d441c1 100644
      }
      Transforms30.collapse(editor, { edge: "start" });
    });
-@@ -6385,7 +6396,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
+@@ -6385,7 +6394,11 @@ function insertColumn(editor, { offset = 0, at = editor.selection } = {}) {
    Editor45.withoutNormalizing(editor, () => {
      const { columns } = tableElement;
      const nextColumns = [...columns];
@@ -42,7 +33,7 @@ index 46d1f77..8d441c1 100644
      Transforms31.setNodes(editor, { columns: nextColumns }, { at: tablePath });
      tableElement.children.forEach((rowElement, i) => {
        Transforms31.insertNodes(editor, createCell(nextCellIndex), {
-@@ -6866,6 +6881,20 @@ var $RemoveMenuButton = styled30($MenuButton)`
+@@ -6866,6 +6879,20 @@ var $RemoveMenuButton = styled30($MenuButton)`
      color: firebrick;
    }
  `;
@@ -63,7 +54,7 @@ index 46d1f77..8d441c1 100644
  
  // src/table-plugin/render-element/styles/index.ts
  var $Table = styled31("table")`
-@@ -6986,6 +7015,25 @@ var MinusIcon = (props) => /* @__PURE__ */ jsx48(
+@@ -6986,6 +7013,25 @@ var MinusIcon = (props) => /* @__PURE__ */ jsx48(
      )
    }
  );
@@ -89,7 +80,7 @@ index 46d1f77..8d441c1 100644
  var BarsIcon = () => /* @__PURE__ */ jsx48(TablerIcon, { children: /* @__PURE__ */ jsx48("path", { d: "M4 6h16M4 12h16M4 18h16" }) });
  var AlignLeft = () => /* @__PURE__ */ jsx48(TablerIcon, { children: /* @__PURE__ */ jsx48("path", { d: "M4 6h16M4 12h10M4 18h14" }) });
  var AlignCenter = () => /* @__PURE__ */ jsx48(TablerIcon, { children: /* @__PURE__ */ jsx48("path", { d: "M4 6h16M8 12h8M6 18h12" }) });
-@@ -7031,7 +7079,7 @@ function ColumnMenu({ cellElement }) {
+@@ -7031,7 +7077,7 @@ function ColumnMenu({ cellElement }) {
          action: () => {
            editor.tablePlugin.setTableColumnAlign({ align: "right" });
          }
@@ -98,7 +89,7 @@ index 46d1f77..8d441c1 100644
      ];
      menu.open(() => /* @__PURE__ */ jsx49(Menu, { dest, items, close: menu.close }));
    }, []);
-@@ -7188,11 +7236,13 @@ function TableCell({
+@@ -7188,11 +7234,13 @@ function TableCell({
    attributes,
    children
  }) {
@@ -112,7 +103,7 @@ index 46d1f77..8d441c1 100644
    return /* @__PURE__ */ jsxs24(
      $TableCell,
      {
-@@ -7204,7 +7254,18 @@ function TableCell({
+@@ -7204,7 +7252,18 @@ function TableCell({
          children,
          showTableMenu ? /* @__PURE__ */ jsx52(TableMenu, {}) : null,
          showRowMenu ? /* @__PURE__ */ jsx52(RowMenu, { cellElement: element }) : null,
@@ -132,7 +123,7 @@ index 46d1f77..8d441c1 100644
        ]
      }
    );
-@@ -7563,12 +7624,12 @@ var Emoji = () => /* @__PURE__ */ jsxs27(TablerIcon, { children: [
+@@ -7563,12 +7622,12 @@ var Emoji = () => /* @__PURE__ */ jsxs27(TablerIcon, { children: [
  
  // src/toolbar-plugin/items/block-items.tsx
  var blockItems = [
@@ -151,7 +142,7 @@ index 46d1f77..8d441c1 100644
    {
      icon: H2,
      title: "Heading 2",
-@@ -7800,26 +7861,26 @@ var dialogItems = [
+@@ -7800,26 +7859,26 @@ var dialogItems = [
      more: true,
      Component: TableDialog
    },
@@ -198,7 +189,7 @@ index 46d1f77..8d441c1 100644
  ];
  var expandedDialogItems = dialogItems;
  var compactDialogItems = [
-@@ -7883,13 +7944,13 @@ var listItems = [
+@@ -7883,13 +7942,13 @@ var listItems = [
      title: "Numbered List",
      hotkey: "super+7",
      action: (editor) => editor.list.convertOrderedList(false)
@@ -218,7 +209,7 @@ index 46d1f77..8d441c1 100644
  ];
  
  // src/toolbar-plugin/items/quote-items.tsx
-@@ -7921,13 +7982,13 @@ var dropdownItems = [
+@@ -7921,13 +7980,13 @@ var dropdownItems = [
      title: "Block Quote",
      more: true,
      children: quoteItems
@@ -238,7 +229,7 @@ index 46d1f77..8d441c1 100644
  ];
  
  // src/toolbar-plugin/components/dialog/anchor-dialog.tsx
-@@ -8048,13 +8109,13 @@ var secondaryMarkItems = [
+@@ -8048,13 +8107,13 @@ var secondaryMarkItems = [
      action: (editor) => editor.marksPlugin.toggleStrike()
    },
    "divider",
@@ -259,7 +250,7 @@ index 46d1f77..8d441c1 100644
    {
      icon: RemoveStyles,
      title: "Remove Styles",
-@@ -8594,6 +8655,35 @@ var PasteMarkdownPlugin = createPlugin(
+@@ -8594,6 +8653,35 @@ var PasteMarkdownPlugin = createPlugin(
        editableProps: {
          onPaste(e) {
            const { types } = e.clipboardData;

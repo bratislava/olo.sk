@@ -317,6 +317,10 @@ fragment BoardMembersSection on ComponentSectionsBoardMembers {
   }
 }
 
+fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
+  title
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -418,5 +422,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBoardMembers {
     ...BoardMembersSection
+  }
+
+  ... on ComponentSectionsGlobalSearch {
+    ...GlobalSearchSection
   }
 }

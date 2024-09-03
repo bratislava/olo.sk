@@ -1140,6 +1140,12 @@ export type ComponentSectionsFormCtaBanner = {
   title?: Maybe<Scalars['String']['output']>
 }
 
+export type ComponentSectionsGlobalSearch = {
+  __typename?: 'ComponentSectionsGlobalSearch'
+  id: Scalars['ID']['output']
+  title?: Maybe<Scalars['String']['output']>
+}
+
 export type ComponentSectionsHeroHomepageSection = {
   __typename?: 'ComponentSectionsHeroHomepageSection'
   id: Scalars['ID']['output']
@@ -1974,6 +1980,7 @@ export type GenericMorph =
   | ComponentSectionsFaqCategories
   | ComponentSectionsFiles
   | ComponentSectionsFormCtaBanner
+  | ComponentSectionsGlobalSearch
   | ComponentSectionsHeroHomepageSection
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
@@ -2931,6 +2938,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsDocuments
   | ComponentSectionsFaq
   | ComponentSectionsFaqCategories
+  | ComponentSectionsGlobalSearch
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOpeningTimes
@@ -9591,6 +9599,11 @@ export type BoardMembersSectionFragment = {
   } | null> | null
 }
 
+export type GlobalSearchSectionFragment = {
+  __typename?: 'ComponentSectionsGlobalSearch'
+  title?: string | null
+}
+
 type PageSections_ComponentSectionsArticles_Fragment = {
   __typename: 'ComponentSectionsArticles'
   title?: string | null
@@ -10796,6 +10809,11 @@ type PageSections_ComponentSectionsFaqCategories_Fragment = {
       attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
     }>
   } | null
+}
+
+type PageSections_ComponentSectionsGlobalSearch_Fragment = {
+  __typename: 'ComponentSectionsGlobalSearch'
+  title?: string | null
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -12243,6 +12261,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsDocuments_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsFaqCategories_Fragment
+  | PageSections_ComponentSectionsGlobalSearch_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOpeningTimes_Fragment
@@ -18919,6 +18938,57 @@ export type PageSlugEntityFragment = {
   } | null
 }
 
+export type PageCardEntityFragment = {
+  __typename: 'PageEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Page'
+    updatedAt?: any | null
+    title: string
+    slug: string
+    parentPage?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename?: 'PageEntity'
+        attributes?: {
+          __typename?: 'Page'
+          slug: string
+          title: string
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                parentPage?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename?: 'PageEntity'
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      parentPage?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename?: 'PageEntity'
+                          attributes?: { __typename?: 'Page'; slug: string; title: string } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
 export type PageEntityFragment = {
   __typename: 'PageEntity'
   id?: string | null
@@ -20446,6 +20516,7 @@ export type PageEntityFragment = {
             }>
           } | null
         }
+      | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
       | {
           __typename: 'ComponentSectionsImageAndText'
           title?: string | null
@@ -23460,6 +23531,7 @@ export type PagesQuery = {
                 }>
               } | null
             }
+          | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
           | {
               __typename: 'ComponentSectionsImageAndText'
               title?: string | null
@@ -26481,6 +26553,7 @@ export type PageBySlugQuery = {
                 }>
               } | null
             }
+          | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
           | {
               __typename: 'ComponentSectionsImageAndText'
               title?: string | null
@@ -33069,6 +33142,15 @@ export const MenuEntityFragmentDoc = gql`
   }
   ${MenuFragmentDoc}
 `
+export const PageCardEntityFragmentDoc = gql`
+  fragment PageCardEntity on PageEntity {
+    ...PageSlugEntity
+    attributes {
+      updatedAt
+    }
+  }
+  ${PageSlugEntityFragmentDoc}
+`
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {
     media {
@@ -33624,6 +33706,11 @@ export const BoardMembersSectionFragmentDoc = gql`
   ${UploadImageEntityFragmentDoc}
   ${LinkFragmentDoc}
 `
+export const GlobalSearchSectionFragmentDoc = gql`
+  fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
+    title
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -33699,6 +33786,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsBoardMembers {
       ...BoardMembersSection
     }
+    ... on ComponentSectionsGlobalSearch {
+      ...GlobalSearchSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -33724,6 +33814,7 @@ export const PageSectionsFragmentDoc = gql`
   ${ContactsSectionFragmentDoc}
   ${OpeningTimesSectionFragmentDoc}
   ${BoardMembersSectionFragmentDoc}
+  ${GlobalSearchSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {

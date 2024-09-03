@@ -92,7 +92,8 @@
         "sections.sorting-guide-accordions",
         "sections.contacts",
         "sections.opening-times",
-        "sections.board-members"
+        "sections.board-members",
+        "sections.global-search"
       ],
       "pluginOptions": {
         "i18n": {

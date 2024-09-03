@@ -2,11 +2,11 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import { ReactNode } from 'react'
 
-import { SearchOption } from '@/src/components/page-contents/search/GlobalSearchSectionContent'
+import { SearchOption } from '@/src/components/sections/GlobalSearchSection'
 import {
   ArticleCardEntityFragment,
   DocumentSearchEntityFragment,
-  PageSlugEntityFragment,
+  PageCardEntityFragment,
 } from '@/src/services/graphql/api'
 import {
   ArticlesFilters,
@@ -23,6 +23,7 @@ import {
   PagesFilters,
 } from '@/src/services/meili/fetchers/pagesFetcher'
 import { formatDate } from '@/src/utils/formatDate'
+import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 export type SearchFilters = PagesFilters | ArticlesFilters
@@ -55,13 +56,12 @@ export const useQueryBySearchOption = ({
     placeholderData: keepPreviousData,
     select: (data) => {
       const formattedData: SearchResult[] =
-        data?.hits.map((page: PageSlugEntityFragment): SearchResult => {
+        data?.hits.map((page: PageCardEntityFragment): SearchResult => {
           return {
             title: page.attributes?.title,
             uniqueId: page.attributes?.slug,
             linkHref: getFullPath(page),
-            // TODO metadata
-            metadata: [],
+            metadata: [formatDate(page.attributes?.updatedAt)],
           }
         }) ?? []
 
@@ -80,8 +80,12 @@ export const useQueryBySearchOption = ({
             title: article.attributes?.title,
             uniqueId: article.attributes?.slug,
             linkHref: getFullPath(article),
-            metadata: [formatDate(article.attributes?.addedAt)],
             coverImageSrc: article.attributes?.coverMedia?.data?.attributes?.url,
+            metadata: [
+              article.attributes?.articleCategory?.data?.attributes?.title,
+              formatDate(article.attributes?.addedAt),
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+            ].filter(isDefined),
           }
         }) ?? []
 
@@ -100,8 +104,11 @@ export const useQueryBySearchOption = ({
             title: document.attributes?.title,
             uniqueId: document.attributes?.slug,
             linkHref: getFullPath(document),
-            // TODO metadata
-            metadata: [formatDate(document.attributes?.publishedAt)],
+            metadata: [
+              document.attributes?.documentCategory?.data?.attributes?.title,
+              formatDate(document.attributes?.publishedAt),
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+            ].filter(isDefined),
           }
         }) ?? []
 

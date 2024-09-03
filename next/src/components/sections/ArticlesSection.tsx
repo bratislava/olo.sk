@@ -110,15 +110,13 @@ const ArticlesSection = ({ section }: Props) => {
         {data?.estimatedTotalHits ? (
           <>
             <SidebarDivider />
-            <div className="flex flex-wrap items-center justify-center gap-6 md:justify-between">
-              <div className="max-md:hidden">
-                <Typography>
-                  {t('common.showingResults', {
-                    current: data.hits.length,
-                    total: data.estimatedTotalHits,
-                  })}
-                </Typography>
-              </div>
+            <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
+              <Typography>
+                {t('common.showingResults', {
+                  current: data.hits.length,
+                  total: data.estimatedTotalHits,
+                })}
+              </Typography>
               <PaginationWithInput
                 currentPage={filters.page}
                 totalCount={Math.ceil(data.estimatedTotalHits / filters.pageSize)}

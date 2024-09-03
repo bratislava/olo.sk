@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_global_searches",
+  "info": {
+    "displayName": "Vyhľadávanie",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

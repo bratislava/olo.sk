@@ -47,6 +47,13 @@ fragment PageSlugEntity on PageEntity {
   }
 }
 
+fragment PageCardEntity on PageEntity {
+  ...PageSlugEntity
+  attributes {
+    updatedAt
+  }
+}
+
 fragment PageEntity on PageEntity {
   ...PageSlugEntity
   attributes {

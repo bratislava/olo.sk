@@ -6,6 +6,9 @@ import { useDebounceValue } from 'usehooks-ts'
 import Chip from '@/src/components/common/Chip/Chip'
 import SearchBar from '@/src/components/common/SearchBar/SearchBar'
 import SearchResults from '@/src/components/common/SearchResults/SearchResults'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import SectionHeader from '@/src/components/layout/Section/SectionHeader'
+import { GlobalSearchSectionFragment } from '@/src/services/graphql/api'
 import { articlesDefaultFilters } from '@/src/services/meili/fetchers/articlesFetcher'
 import { SearchFilters } from '@/src/utils/useQueryBySearchOption'
 import { useRoutePreservedState } from '@/src/utils/useRoutePreservedState'
@@ -16,12 +19,16 @@ export type SearchOption = {
   displayNamePlural: string
 }
 
+type Props = {
+  section: GlobalSearchSectionFragment
+}
+
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1521-16524&m=dev
  * Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/sections/SearchSection/GlobalSearchSectionContent.tsx
  */
 
-const GlobalSearchSectionContent = () => {
+const GlobalSearchSectionContent = ({ section }: Props) => {
   // Initial variables --------------------------------------------------------------------------------
   const { t } = useTranslation()
 
@@ -29,24 +36,24 @@ const GlobalSearchSectionContent = () => {
 
   const defaultSearchOption: SearchOption = {
     id: 'allResults',
-    displayNamePlural: t('globalSearch.allResults'),
+    displayNamePlural: t('globalSearch.searchOption.allResults'),
   }
 
   const searchOptions: SearchOption[] = [
     {
       id: 'pages',
-      displayName: t('globalSearch.page'),
-      displayNamePlural: t('globalSearch.pages'),
+      displayName: t('globalSearch.searchOption.page'),
+      displayNamePlural: t('globalSearch.searchOption.pages'),
     },
     {
       id: 'articles',
-      displayName: t('globalSearch.article'),
-      displayNamePlural: t('globalSearch.articles'),
+      displayName: t('globalSearch.searchOption.article'),
+      displayNamePlural: t('globalSearch.searchOption.articles'),
     },
     {
       id: 'documents',
-      displayName: t('globalSearch.document'),
-      displayNamePlural: t('globalSearch.documents'),
+      displayName: t('globalSearch.searchOption.document'),
+      displayNamePlural: t('globalSearch.searchOption.documents'),
     },
   ]
 
@@ -133,84 +140,87 @@ const GlobalSearchSectionContent = () => {
   }, [filters.page, filters.pageSize])
 
   return (
-    <div className="flex flex-col gap-6 lg:gap-12">
+    <SectionContainer className="py-6 lg:py-12">
       <div className="flex flex-col gap-6 lg:gap-8">
-        <div className="flex flex-col gap-3">
-          {/* SEARCH BAR --------------------------------------------------------------- */}
-          <SearchBar
-            ref={searchRef}
-            input={input}
-            setInput={setInput}
-            setSearchQuery={(value) =>
-              setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
-            }
-            // isLoading={isFetching}
-          />
+        <SectionHeader title={section?.title} />
+        <div className="flex flex-col gap-6 lg:gap-8">
+          <div className="flex flex-col gap-3">
+            {/* SEARCH BAR --------------------------------------------------------------- */}
+            <SearchBar
+              ref={searchRef}
+              input={input}
+              setInput={setInput}
+              setSearchQuery={(value) =>
+                setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
+              }
+              // isLoading={isFetching}
+            />
 
-          {/* SELECTION & totalCound --------------------------------------------------- */}
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <TagGroup
-              aria-label={t('globalSearch.searchOptions')}
-              selectionMode="single"
-              defaultSelectedKeys={defaultSelection}
-              selectedKeys={selection}
-              onSelectionChange={handleSelection}
-            >
-              <TagList className="max-md:negative-x-spacing -m-1.5 flex gap-x-2 overflow-auto p-1.5 scrollbar-hide max-md:flex-nowrap">
-                {[defaultSearchOption, ...searchOptions].map((option) => {
-                  return (
-                    <Chip
-                      variant="single-choice"
-                      size="large"
-                      key={option.id}
-                      id={option.id}
-                      // data-cy={`${option.title}-tab`}
-                    >
-                      {option.displayNamePlural}
-                    </Chip>
-                  )
-                })}
-              </TagList>
-            </TagGroup>
-            {/* TODO total results count message */}
-            {/* <Typography>{getTotalResultsCountMessage()}</Typography> */}
+            {/* SELECTION & totalCound --------------------------------------------------- */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <TagGroup
+                aria-label={t('globalSearch.searchOptions')}
+                selectionMode="single"
+                defaultSelectedKeys={defaultSelection}
+                selectedKeys={selection}
+                onSelectionChange={handleSelection}
+              >
+                <TagList className="max-md:negative-x-spacing -m-1.5 flex gap-x-4 overflow-auto p-1.5 scrollbar-hide max-md:flex-nowrap">
+                  {[defaultSearchOption, ...searchOptions].map((option) => {
+                    return (
+                      <Chip
+                        variant="single-choice"
+                        size="large"
+                        key={option.id}
+                        id={option.id}
+                        // data-cy={`${option.title}-tab`}
+                      >
+                        {option.displayNamePlural}
+                      </Chip>
+                    )
+                  })}
+                </TagList>
+              </TagGroup>
+              {/* TODO total results count message */}
+              {/* <Typography>{getTotalResultsCountMessage()}</Typography> */}
+            </div>
           </div>
-        </div>
-        {/* TODO ERROR DISPLAY ------------------------------------------------------------ */}
-        {/* {isError ? (
+          {/* TODO ERROR DISPLAY ------------------------------------------------------------ */}
+          {/* {isError ? (
           <Typography variant="p-default">{error?.message}</Typography>
         ) : isPending ? (
           <Typography variant="p-default">{t('common.loading')}</Typography>
         ) : null} */}
-        {/* RESULTS DISPLAY ---------------------------------------------------------- */}
-        {selectedKey === 'allResults' ? (
-          <div className="flex flex-col gap-8">
-            {searchOptions.map((option) => {
-              return (
-                <SearchResults
-                  variant="allResults"
-                  searchOption={option}
-                  filters={searchFilters}
-                  onSetResultsCount={setResultsCountById}
-                  onShowMore={setSelection}
-                  key={`allResults-${option.id}`}
-                />
-              )
-            })}
-          </div>
-        ) : (
-          <SearchResults
-            variant="specificResults"
-            searchOption={getSearchOptionByKeyValue(selectedKey)}
-            filters={searchFilters}
-            onSetResultsCount={setResultsCountById}
-            onShowMore={setSelection}
-            onPageChange={setCurrentPage}
-            key={`specificResults-${selectedKey}`}
-          />
-        )}
+          {/* RESULTS DISPLAY ---------------------------------------------------------- */}
+          {selectedKey === 'allResults' ? (
+            <div className="flex flex-col gap-8">
+              {searchOptions.map((option) => {
+                return (
+                  <SearchResults
+                    variant="allResults"
+                    searchOption={option}
+                    filters={searchFilters}
+                    onSetResultsCount={setResultsCountById}
+                    onShowMore={setSelection}
+                    key={`allResults-${option.id}`}
+                  />
+                )
+              })}
+            </div>
+          ) : (
+            <SearchResults
+              variant="specificResults"
+              searchOption={getSearchOptionByKeyValue(selectedKey)}
+              filters={searchFilters}
+              onSetResultsCount={setResultsCountById}
+              onShowMore={setSelection}
+              onPageChange={setCurrentPage}
+              key={`specificResults-${selectedKey}`}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </SectionContainer>
   )
 }
 export default GlobalSearchSectionContent

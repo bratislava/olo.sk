@@ -1,11 +1,13 @@
 import { useTranslation } from 'next-i18next'
+import { Fragment } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
 import Icon, { IconName } from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
-import { SearchOption } from '@/src/components/page-contents/search/GlobalSearchSectionContent'
+import { SearchOption } from '@/src/components/sections/GlobalSearchSection'
+import { isDefined } from '@/src/utils/isDefined'
 
 type SearchResultRowCardProps = {
   title: string
@@ -41,6 +43,8 @@ const SearchResultRowCard = ({
 
   const iconName = iconNameBySearchOption[type]
 
+  const filteredMetadata = metadata?.filter(isDefined).filter((item: string) => item !== '')
+
   return (
     <CardBase variant="unstyled" className={className}>
       <div className="flex items-center gap-4 p-4">
@@ -59,14 +63,18 @@ const SearchResultRowCard = ({
           >
             {title}
           </Typography>
-          {metadata?.length ? (
-            <div className="flex items-center gap-3">
-              {[metadata].map((metadataItem, index) => (
-                <>
-                  {index > 0 ? <div className="size-1 rounded-full bg-content-secondary" /> : null}
-                  <Typography variant="p-small">{metadataItem}</Typography>
-                </>
-              ))}
+          {filteredMetadata?.length ? (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              {filteredMetadata.map((item, index) => {
+                return (
+                  <Fragment key={item}>
+                    {index > 0 && (
+                      <div className="size-1 rounded-full bg-content-secondary" aria-hidden />
+                    )}
+                    <Typography variant="p-small">{item}</Typography>
+                  </Fragment>
+                )
+              })}
             </div>
           ) : null}
         </div>

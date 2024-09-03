@@ -8,7 +8,7 @@ import Icon from '@/src/components/common/Icon/Icon'
 import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
 import Spinner from '@/src/components/common/Spinner/Spinner'
 import Typography from '@/src/components/common/Typography/Typography'
-import { SearchOption } from '@/src/components/page-contents/search/GlobalSearchSectionContent'
+import { SearchOption } from '@/src/components/sections/GlobalSearchSection'
 import { isDefined } from '@/src/utils/isDefined'
 import { SearchFilters, useQueryBySearchOption } from '@/src/utils/useQueryBySearchOption'
 

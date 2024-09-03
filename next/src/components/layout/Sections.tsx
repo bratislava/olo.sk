@@ -13,6 +13,7 @@ import DividerSection from '@/src/components/sections/DividerSection'
 import DocumentsSection from '@/src/components/sections/DocumentsSection'
 import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection'
 import FaqSection from '@/src/components/sections/FaqSection'
+import GlobalSearchSection from '@/src/components/sections/GlobalSearchSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OpeningTimesSection from '@/src/components/sections/OpeningTimesSection'
@@ -109,6 +110,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsBoardMembers':
       return <BoardMembersSection section={section} />
+
+    case 'ComponentSectionsGlobalSearch':
+      return <GlobalSearchSection section={section} />
 
     default:
       return null

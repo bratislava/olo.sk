@@ -1,4 +1,4 @@
-import { PageSlugEntityFragment } from '@/src/services/graphql/api'
+import { PageCardEntityFragment } from '@/src/services/graphql/api'
 
 import { meiliClient } from '../meiliClient'
 import { PageMeili, SearchIndexWrapped } from '../types'
@@ -38,12 +38,12 @@ export const meiliPagesFetcher = (filters: PagesFilters, locale: string) => {
         'page.title',
         'page.id',
         'page.slug',
-        'page.parentPage',
+        'page.updatedAt',
       ],
     })
     .then(unwrapFromSearchIndex('page'))
     .then((response) => {
-      const hits: PageSlugEntityFragment[] = response.hits.map((hit) => {
+      const hits: PageCardEntityFragment[] = response.hits.map((hit) => {
         return {
           __typename: 'PageEntity',
           id: hit.id,
@@ -52,48 +52,6 @@ export const meiliPagesFetcher = (filters: PagesFilters, locale: string) => {
             slug: hit.slug,
             title: hit.title,
             updatedAt: hit.updatedAt,
-            // Similar to graphql fragment PageParentPages, we need to
-            // reach several parent levels in order to construct the path to the page
-            parentPage: hit.parentPage
-              ? {
-                  data: {
-                    attributes: {
-                      slug: hit.slug,
-                      title: hit.title,
-                      parentPage: hit.parentPage
-                        ? {
-                            data: {
-                              attributes: {
-                                slug: hit.slug,
-                                title: hit.title,
-                                parentPage: hit.parentPage
-                                  ? {
-                                      data: {
-                                        attributes: {
-                                          slug: hit.slug,
-                                          title: hit.title,
-                                          parentPage: hit.parentPage
-                                            ? {
-                                                data: {
-                                                  attributes: {
-                                                    slug: hit.slug,
-                                                    title: hit.title,
-                                                  },
-                                                },
-                                              }
-                                            : undefined,
-                                        },
-                                      },
-                                    }
-                                  : undefined,
-                              },
-                            },
-                          }
-                        : undefined,
-                    },
-                  },
-                }
-              : undefined,
           },
         } as const
       })

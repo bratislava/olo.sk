@@ -27,7 +27,6 @@ const NavMenuContentCell = ({
       )}
     >
       {children}
-      {/* TODO: Dividers should not be a part of list elements */}
       {hasVerticalDivider ? <NavBarDivider variant="vertical" className="px-8" /> : null}
     </li>
   )

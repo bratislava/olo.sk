@@ -11,6 +11,7 @@ import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuProps = {
   className?: string
@@ -21,8 +22,10 @@ const NavMenu = ({ className }: NavMenuProps) => {
   const pathname = usePathname()
   const { menuValue, setMenuValue } = useNavMenuContext()
   const { t } = useTranslation()
-
+  const { getLinkProps } = useGetLinkProps()
   const menus = useMemo(() => getParsedMenus(menu), [menu])
+
+  const { searchLink } = menu?.data?.attributes?.menuHeader ?? {}
 
   useEffect(() => {
     setMenuValue('')
@@ -41,7 +44,7 @@ const NavMenu = ({ className }: NavMenuProps) => {
             {menus?.map((menuItem) => <NavMenuItem key={menuItem.id} menuItem={menuItem} />)}
           </div>
           <Button
-            href="/vyhladavanie"
+            href={getLinkProps(searchLink).href}
             asLink
             icon={<Icon name="lupa" className="size-6" />}
             hasLinkIcon={false}

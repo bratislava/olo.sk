@@ -601,6 +601,7 @@ input ComponentItemsLinkInput {
 type ComponentItemsMenuHeader {
   contactsLink: ComponentItemsLink
   id: ID!
+  searchLink: ComponentItemsLink
 }
 
 input ComponentItemsMenuHeaderFiltersInput {
@@ -608,11 +609,13 @@ input ComponentItemsMenuHeaderFiltersInput {
   contactsLink: ComponentItemsLinkFiltersInput
   not: ComponentItemsMenuHeaderFiltersInput
   or: [ComponentItemsMenuHeaderFiltersInput]
+  searchLink: ComponentItemsLinkFiltersInput
 }
 
 input ComponentItemsMenuHeaderInput {
   contactsLink: ComponentItemsLinkInput
   id: ID
+  searchLink: ComponentItemsLinkInput
 }
 
 type ComponentItemsOpeningHoursItem {

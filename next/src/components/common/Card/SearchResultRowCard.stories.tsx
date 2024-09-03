@@ -27,9 +27,8 @@ export const SearchResultRowCardRows: Story = {
   render: (args) => (
     <div className="flex flex-col">
       <SearchResultRowCardComponent {...args} imgSrc={templateImage.src} />
-      <SearchResultRowCardComponent {...args} iconName="fotoaparat" />
-      <SearchResultRowCardComponent {...args} iconName="kniha" />
-      <SearchResultRowCardComponent {...args} iconName="pdf" />
+      <SearchResultRowCardComponent {...args} type="documents" />
+      <SearchResultRowCardComponent {...args} type="pages" />
     </div>
   ),
 }

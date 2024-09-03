@@ -1,3 +1,5 @@
+import { PageCardEntityFragment } from '@/src/services/graphql/api'
+
 import { meiliClient } from '../meiliClient'
 import { PageMeili, SearchIndexWrapped } from '../types'
 import { getMeilisearchPageOptions, unwrapFromSearchIndex } from '../utils'
@@ -34,17 +36,23 @@ export const meiliPagesFetcher = (filters: PagesFilters, locale: string) => {
       attributesToRetrieve: [
         // Only properties that are required to display listing are retrieved
         'page.title',
+        'page.id',
         'page.slug',
-        'page.parentPage',
+        'page.updatedAt',
       ],
     })
     .then(unwrapFromSearchIndex('page'))
     .then((response) => {
-      const hits = response.hits.map((page) => {
+      const hits: PageCardEntityFragment[] = response.hits.map((hit) => {
         return {
-          // used in useGetFullPath to distinguish between different types of entities
-          type: response.type,
-          ...page,
+          __typename: 'PageEntity',
+          id: hit.id,
+          attributes: {
+            __typename: 'Page',
+            slug: hit.slug,
+            title: hit.title,
+            updatedAt: hit.updatedAt,
+          },
         } as const
       })
 

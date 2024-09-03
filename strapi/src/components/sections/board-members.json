@@ -10,7 +10,7 @@
       "type": "string"
     },
     "text": {
-      "type": "string"
+      "type": "text"
     },
     "boardMembers": {
       "type": "component",

@@ -315,6 +315,19 @@ fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
       }
     }
   }
+  branchLocation {
+    data {
+      attributes {
+        title
+        address
+        latitude
+        longitude
+        publicTransportInfo
+        parkingInfo
+        barrierFreeInfo
+      }
+    }
+  }
 }
 
 fragment BoardMembersSection on ComponentSectionsBoardMembers {
@@ -332,6 +345,12 @@ fragment BoardMembersSection on ComponentSectionsBoardMembers {
       ...Link
     }
   }
+}
+
+fragment VacanciesSection on ComponentSectionsVacancies {
+  title
+  text
+  backgroundColorVacancies: backgroundColor
 }
 
 fragment PageSections on PageSectionsDynamicZone {
@@ -435,5 +454,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBoardMembers {
     ...BoardMembersSection
+  }
+
+  ... on ComponentSectionsVacancies {
+    ...VacanciesSection
   }
 }

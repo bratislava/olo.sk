@@ -1,3 +1,4 @@
+import { DehydratedState, HydrationBoundary } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
@@ -10,16 +11,19 @@ import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
+import AliasSection from '@/src/components/sections/AliasSection'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
+import { parseTopLevelPages } from '@/src/services/navigation/parseTopLevelPages'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
-import { getPagePath } from '@/src/utils/getPagePath'
 import { isDefined } from '@/src/utils/isDefined'
+import { prefetchPageSections } from '@/src/utils/prefetchPageSections'
 
 type PageProps = {
   general: GeneralQuery
   entity: PageEntityFragment
+  dehydratedState: DehydratedState
 }
 
 type StaticParams = {
@@ -27,22 +31,18 @@ type StaticParams = {
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
-  // const { blogPosts } = await client.BlogPostsStaticPaths()
+  const { topLevelPages } = await client.General({ locale: 'sk' }) // TODO locale
 
-  // const paths = (blogPosts?.data ?? [])
-  //   .filter((blogPost) => blogPost?.attributes?.slug && blogPost?.attributes?.locale)
-  //   .map((blogPost) => ({
-  //     params: {
-  //       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion,@typescript-eslint/no-non-null-assertion
-  //       slug: blogPost.attributes!.slug!,
-  //     },
-  //     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion,@typescript-eslint/no-non-null-assertion
-  //     locale: blogPost.attributes!.locale!,
-  //   }))
+  const { pagePathsMap } = parseTopLevelPages(topLevelPages?.data ?? [])
+
+  // eslint-disable-next-line unicorn/prefer-spread
+  const valuesArray = Array.from(pagePathsMap.values()) as [{ label: string; path: string }]
+  const paths = valuesArray.map(({ path }) => path)
 
   // eslint-disable-next-line no-console
-  // console.log(`GENERATED STATIC PATHS FOR ${paths.length} SLUGS - BLOGS`)
-  return { paths: [], fallback: 'blocking' }
+  console.log(`Pages: Generated static paths for ${paths.length} pages.`)
+
+  return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
@@ -61,11 +61,32 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ pages: entities }, general, translations] = await Promise.all([
+  const [{ pages: entities }, { pages: aliasEntities }, general, translations] = await Promise.all([
     client.PageBySlug({ slug, locale }),
+    client.PageRedirectByAlias({ alias: slug, locale }),
     client.General({ locale }),
     serverSideTranslations(locale),
   ])
+
+  const { pagePathsMap } = parseTopLevelPages(
+    // eslint-disable-next-line unicorn/no-array-callback-reference
+    general.topLevelPages?.data.filter(isDefined) ?? [],
+  )
+
+  const aliasPageSlug = aliasEntities?.data[0]?.attributes?.slug
+  if (aliasPageSlug) {
+    const aliasRedirectPath = pagePathsMap.get(aliasPageSlug)?.path
+    if (!aliasRedirectPath) {
+      return { notFound: true }
+    }
+
+    return {
+      redirect: {
+        destination: aliasRedirectPath,
+        permanent: false,
+      },
+    }
+  }
 
   const entity = entities?.data[0]
   if (!entity) {
@@ -73,22 +94,26 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 
   /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
-  const pagePath = getPagePath(entity)
-  if (pagePath !== pathJoined) {
+  const pagePath = pagePathsMap.get(slug)?.path
+
+  if (!pagePath || pagePath !== pathJoined) {
     return { notFound: true }
   }
+
+  const dehydratedState = await prefetchPageSections(entity, locale)
 
   return {
     props: {
       entity,
       general,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
   }
 }
 
-const Page = ({ entity: page, general }: PageProps) => {
+const Page = ({ entity: page, general, dehydratedState }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook
@@ -108,29 +133,38 @@ const Page = ({ entity: page, general }: PageProps) => {
     return null
   }
 
-  const { title, perex, sections } = page.attributes
+  const { title, perex, sections, alias } = page.attributes
   const [header] = page.attributes.header ?? []
 
   return (
-    <GeneralContextProvider general={general}>
-      {/* TODO common Head/Seo component */}
-      <Head>
-        <title>{title}</title>
-        {perex && <meta name="description" content={perex} />}
-      </Head>
+    <HydrationBoundary state={dehydratedState}>
+      <GeneralContextProvider general={general}>
+        {/* TODO common Head/Seo component */}
+        <Head>
+          <title>{title}</title>
+          {perex && <meta name="description" content={perex} />}
+        </Head>
 
-      <PageLayout>
-        {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
-        {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
-          <SectionContainer background="secondary">
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
-          </SectionContainer>
-        )}
-        <PageHeaderSections header={header} title={title} perex={perex} breadcrumbs={breadcrumbs} />
+        <PageLayout>
+          {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
+          {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
+            <SectionContainer background="secondary">
+              <Breadcrumbs breadcrumbs={breadcrumbs} />
+            </SectionContainer>
+          )}
+          <PageHeaderSections
+            header={header}
+            title={title}
+            perex={perex}
+            breadcrumbs={breadcrumbs}
+          />
 
-        <Sections sections={sections?.filter(isDefined) ?? []} />
-      </PageLayout>
-    </GeneralContextProvider>
+          <Sections sections={sections?.filter(isDefined) ?? []} />
+
+          <AliasSection alias={alias} />
+        </PageLayout>
+      </GeneralContextProvider>
+    </HydrationBoundary>
   )
 }
 

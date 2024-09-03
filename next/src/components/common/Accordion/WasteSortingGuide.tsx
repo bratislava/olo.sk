@@ -53,9 +53,10 @@ const WasteSortingGuide = ({
             ) : null}
             <div className="flex flex-col gap-4">
               {leftColumn.columnItems.length > 0
-                ? leftColumn.columnItems.map((columnItem) => {
+                ? leftColumn.columnItems.map((columnItem, index) => {
                     return (
-                      <div className="flex gap-4">
+                      // eslint-disable-next-line react/no-array-index-key
+                      <div key={index} className="flex gap-4">
                         <Icon name="fajka-kruh" className="text-success" />
                         <Typography variant="p-default">{columnItem}</Typography>
                       </div>
@@ -74,9 +75,10 @@ const WasteSortingGuide = ({
             ) : null}
             <div className="flex flex-col gap-4">
               {rightColumn.columnItems.length > 0
-                ? rightColumn?.columnItems.map((columnItem) => {
+                ? rightColumn?.columnItems.map((columnItem, index) => {
                     return (
-                      <div className="flex gap-4">
+                      // eslint-disable-next-line react/no-array-index-key
+                      <div key={index} className="flex gap-4">
                         <Icon name="zrusit-kruh" className="text-error" />
                         <Typography variant="p-default">{columnItem}</Typography>
                       </div>

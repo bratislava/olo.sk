@@ -51,6 +51,14 @@ query Documents {
   }
 }
 
+query DocumentsStaticPaths {
+  documents(pagination: { limit: -1 }) {
+    data {
+      ...DocumentSlugEntity
+    }
+  }
+}
+
 query DocumentBySlug($slug: String!) {
   documents(filters: { slug: { eq: $slug } }) {
     data {

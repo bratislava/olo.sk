@@ -47,7 +47,7 @@ const Wysiwyg = ({
 
     assets.map((asset) => {
       if (asset.mime.includes('image')) {
-        const imgTag = `![${asset.alt}](${asset.url})`
+        const imgTag = `\n\n![${asset.alt}](${asset.url})`
         // const imgTag = `<p><img src="${asset.url}" alt="${asset.alt}"></img></p>`
 
         newValue = `${newValue}${imgTag}`

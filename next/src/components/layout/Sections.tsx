@@ -13,6 +13,7 @@ import DividerSection from '@/src/components/sections/DividerSection'
 import DocumentsSection from '@/src/components/sections/DocumentsSection'
 import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection'
 import FaqSection from '@/src/components/sections/FaqSection'
+import FormCtaBannerSection from '@/src/components/sections/FormCtaBannerSection'
 import GlobalSearchSection from '@/src/components/sections/GlobalSearchSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
@@ -23,6 +24,7 @@ import ServicesSection from '@/src/components/sections/ServicesSection'
 import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
 import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import TableSection from '@/src/components/sections/TableSection'
+import VacanciesSection from '@/src/components/sections/VacanciesSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
@@ -110,6 +112,12 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsBoardMembers':
       return <BoardMembersSection section={section} />
+
+    case 'ComponentSectionsFormCtaBanner':
+      return <FormCtaBannerSection section={section} />
+
+    case 'ComponentSectionsVacancies':
+      return <VacanciesSection section={section} />
 
     case 'ComponentSectionsGlobalSearch':
       return <GlobalSearchSection section={section} />

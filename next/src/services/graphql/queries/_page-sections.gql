@@ -172,8 +172,10 @@ fragment DividerSection on ComponentSectionsDivider {
 fragment CardsListSection on ComponentSectionsCardsList {
   title
   text
+  linkLabelOverride
   cardsCardsList: cards {
     title
+    subtext
     link {
       ...Link
     }
@@ -219,6 +221,18 @@ fragment SortingGuide on ComponentItemsSortingGuide {
   }
   doesntGoHereItems {
     label
+  }
+  alertMessageGoesHere {
+    title
+    text
+  }
+  alertMessageDoesntGoHere {
+    title
+    text
+  }
+  alertMessageBottom {
+    title
+    text
   }
 }
 
@@ -294,8 +308,24 @@ fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
   title
   text
   openingTimes {
+    title
+    openingTime {
+      data {
+        ...OpeningTimeEntity
+      }
+    }
+  }
+  branchLocation {
     data {
-      ...OpeningTimeEntity
+      attributes {
+        title
+        address
+        latitude
+        longitude
+        publicTransportInfo
+        parkingInfo
+        barrierFreeInfo
+      }
     }
   }
 }
@@ -315,6 +345,12 @@ fragment BoardMembersSection on ComponentSectionsBoardMembers {
       ...Link
     }
   }
+}
+
+fragment VacanciesSection on ComponentSectionsVacancies {
+  title
+  text
+  backgroundColorVacancies: backgroundColor
 }
 
 fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
@@ -422,6 +458,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBoardMembers {
     ...BoardMembersSection
+  }
+
+  ... on ComponentSectionsVacancies {
+    ...VacanciesSection
   }
 
   ... on ComponentSectionsGlobalSearch {

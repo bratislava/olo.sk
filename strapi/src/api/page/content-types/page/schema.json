@@ -38,6 +38,14 @@
         }
       }
     },
+    "alias": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid"
+    },
     "parentPage": {
       "type": "relation",
       "relation": "manyToOne",
@@ -93,6 +101,7 @@
         "sections.contacts",
         "sections.opening-times",
         "sections.board-members",
+        "sections.vacancies",
         "sections.global-search"
       ],
       "pluginOptions": {
@@ -100,6 +109,12 @@
           "localized": true
         }
       }
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::branch.branch",
+      "mappedBy": "page"
     }
   }
 }

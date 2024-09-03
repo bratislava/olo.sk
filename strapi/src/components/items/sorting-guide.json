@@ -23,6 +23,18 @@
       "type": "component",
       "repeatable": true,
       "component": "items.sorting-guide-item"
+    },
+    "alertMessageGoesHere": {
+      "type": "component",
+      "component": "items.sorting-guide-alert-message"
+    },
+    "alertMessageDoesntGoHere": {
+      "type": "component",
+      "component": "items.sorting-guide-alert-message"
+    },
+    "alertMessageBottom": {
+      "type": "component",
+      "component": "items.sorting-guide-alert-message"
     }
   }
 }

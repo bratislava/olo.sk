@@ -1,19 +1,19 @@
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
-import { NavMenuSectionProps } from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
+import { NavMenuColumnListProps } from '@/src/components/common/NavBar/NavMenu/NavMenuSingleColumnList'
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-const NavMenuTwoColumnSection = ({ section, className }: NavMenuSectionProps) => {
+const NavMenuTwoColumnList = ({ links, className }: NavMenuColumnListProps) => {
   const { getLinkProps } = useGetLinkProps()
-  const middleItemIndex = Math.floor(section.links.length / 2)
+  const middleItemIndex = Math.floor(links.length / 2)
 
   return (
     <ul className={cn('w-full columns-2 gap-8', className)}>
-      {section.links.map((link, index) => {
+      {links.map((link, index) => {
         const linkProps = getLinkProps(link)
 
         return (
-          <li
+          <div
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             className={cn('pb-5', {
@@ -22,11 +22,11 @@ const NavMenuTwoColumnSection = ({ section, className }: NavMenuSectionProps) =>
             })}
           >
             <NavMenuLink {...linkProps} />
-          </li>
+          </div>
         )
       })}
     </ul>
   )
 }
 
-export default NavMenuTwoColumnSection
+export default NavMenuTwoColumnList

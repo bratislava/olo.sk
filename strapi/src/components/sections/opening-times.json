@@ -13,9 +13,16 @@
       "type": "text"
     },
     "openingTimes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.opening-times-item",
+      "required": true,
+      "min": 1
+    },
+    "branchLocation": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::opening-time.opening-time"
+      "relation": "oneToOne",
+      "target": "api::branch.branch"
     }
   }
 }

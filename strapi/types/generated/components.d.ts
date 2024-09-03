@@ -28,10 +28,22 @@ export interface SectionsWasteSortingCards extends Schema.Component {
   }
 }
 
+export interface SectionsVacancies extends Schema.Component {
+  collectionName: 'components_sections_vacancies'
+  info: {
+    displayName: 'Pracovn\u00E9 poz\u00EDcie (placeholder)'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
+  }
+}
+
 export interface SectionsTable extends Schema.Component {
   collectionName: 'components_sections_tables'
   info: {
-    displayName: 'Tabu\u013Eka (placeholder)'
+    displayName: 'Odvozov\u00E9 dni (placeholder)'
     description: ''
   }
   attributes: {
@@ -149,11 +161,15 @@ export interface SectionsOpeningTimes extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    openingTimes: Attribute.Relation<
-      'sections.opening-times',
-      'oneToMany',
-      'api::opening-time.opening-time'
-    >
+    openingTimes: Attribute.Component<'items.opening-times-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1
+        },
+        number
+      >
+    branchLocation: Attribute.Relation<'sections.opening-times', 'oneToOne', 'api::branch.branch'>
   }
 }
 
@@ -420,6 +436,7 @@ export interface SectionsCardsList extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
+    linkLabelOverride: Attribute.Text
     cards: Attribute.Component<'items.cards-list-item', true>
   }
 }
@@ -462,7 +479,7 @@ export interface SectionsBoardMembers extends Schema.Component {
   }
   attributes: {
     title: Attribute.String
-    text: Attribute.String
+    text: Attribute.Text
     boardMembers: Attribute.Component<'items.board-members-item', true>
   }
 }
@@ -616,6 +633,9 @@ export interface ItemsSortingGuide extends Schema.Component {
     titleDoesntGoHere: Attribute.String & Attribute.DefaultTo<'Nepatr\u00ED sem'>
     goesHereItems: Attribute.Component<'items.sorting-guide-item', true>
     doesntGoHereItems: Attribute.Component<'items.sorting-guide-item', true>
+    alertMessageGoesHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageDoesntGoHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageBottom: Attribute.Component<'items.sorting-guide-alert-message'>
   }
 }
 
@@ -627,6 +647,18 @@ export interface ItemsSortingGuideItem extends Schema.Component {
   }
   attributes: {
     label: Attribute.String & Attribute.Required
+  }
+}
+
+export interface ItemsSortingGuideAlertMessage extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_alert_messages'
+  info: {
+    displayName: 'Sorting Guide Alert Message'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
   }
 }
 
@@ -682,6 +714,22 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text & Attribute.Required
     iconName: Attribute.String
+  }
+}
+
+export interface ItemsOpeningTimesItem extends Schema.Component {
+  collectionName: 'components_items_opening_times_items'
+  info: {
+    displayName: 'Opening Times item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    openingTime: Attribute.Relation<
+      'items.opening-times-item',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
   }
 }
 
@@ -817,6 +865,7 @@ export interface ItemsCardsListItem extends Schema.Component {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
+    subtext: Attribute.String
     link: Attribute.Component<'items.link'> & Attribute.Required
   }
 }
@@ -956,6 +1005,7 @@ declare module '@strapi/types' {
     export interface Components {
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
+      'sections.vacancies': SectionsVacancies
       'sections.table': SectionsTable
       'sections.sorting-guide': SectionsSortingGuide
       'sections.sorting-guide-accordions': SectionsSortingGuideAccordions
@@ -992,9 +1042,11 @@ declare module '@strapi/types' {
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide
       'items.sorting-guide-item': ItemsSortingGuideItem
+      'items.sorting-guide-alert-message': ItemsSortingGuideAlertMessage
       'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
       'items.slide': ItemsSlide
       'items.ordered-cards-item': ItemsOrderedCardsItem
+      'items.opening-times-item': ItemsOpeningTimesItem
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
       'items.link': ItemsLink

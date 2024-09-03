@@ -16,6 +16,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn-api.bratislava.sk',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.mapbox.com',
+      },
     ],
   },
   rewrites: async () => {

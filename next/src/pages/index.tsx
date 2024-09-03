@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
 import PageLayout from '@/src/components/layout/PageLayout'
-import HomePageContentPlaceholder from '@/src/components/placeholder/HomePageContentPlaceholder'
 import ArticlesHomepageSection from '@/src/components/sections/hompage/ArticlesHomepageSection'
 import HeroHomepageSection from '@/src/components/sections/hompage/HeroHomepageSection'
 import KoloHomepageSection from '@/src/components/sections/hompage/KoloHomepageSection'
@@ -64,7 +63,7 @@ const Homepage = ({ homepage, general }: PageProps) => {
         <ArticlesHomepageSection section={homepage.attributes?.articlesSection} />
         <KoloHomepageSection section={homepage.attributes?.koloSection} />
         <ServicesHomepageSection section={homepage.attributes?.servicesSection} />
-        <HomePageContentPlaceholder />
+        {/* <HomePageContentPlaceholder /> */}
       </PageLayout>
     </GeneralContextProvider>
 

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_items_sorting_guide_alert_messages",
+  "info": {
+    "displayName": "Sorting Guide Alert Message",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

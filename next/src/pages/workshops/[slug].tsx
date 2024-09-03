@@ -25,9 +25,21 @@ type StaticParams = {
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
-  // TODO return all paths
+  const { workshops: entities } = await client.WorkshopsStaticPaths()
 
-  return { paths: [], fallback: 'blocking' }
+  const paths = (entities?.data ?? [])
+    .filter((entity) => entity?.attributes?.slug)
+    .map((entity) => ({
+      params: {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion,@typescript-eslint/no-non-null-assertion
+        slug: entity.attributes!.slug!,
+      },
+    }))
+
+  // eslint-disable-next-line no-console
+  console.log(`Workshops: Generated static paths for ${paths.length} slugs.`)
+
+  return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
@@ -38,7 +50,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
   // TODO update console log so it displays correct path
   // eslint-disable-next-line no-console
-  console.log(`Revalidating Workshop ${locale === 'en' ? '/en' : ''}/documents/${slug}`)
+  console.log(`Revalidating Workshop ${locale} ${slug}`)
 
   // TODO || !locale
   if (!slug || !locale) {

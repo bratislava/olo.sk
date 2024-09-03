@@ -30,13 +30,13 @@ const ServicesSection = ({ section }: Props) => {
   const { title, text } = section
 
   const { data: servicesData } = useQuery({
+    queryKey: ['Services', locale],
     queryFn: () => client.Services({ locale }),
-    queryKey: ['service', locale],
   })
 
   const { data: serviceCategoriesData } = useQuery({
+    queryKey: ['ServiceCategories', locale],
     queryFn: () => client.ServiceCategories({ locale }),
-    queryKey: ['serviceCategories', locale],
   })
 
   type SelectionOption = { id: string; title: string }

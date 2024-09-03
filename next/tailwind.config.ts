@@ -131,6 +131,11 @@ const config: Config = {
           pressed: 'rgb(var(--token-action-border-pressed))',
         },
       },
+      alert: {
+        background: {
+          warning: 'rgb(var(--token-alert-background-warning))',
+        },
+      },
       waste: {
         paper: 'rgb(var(--token-waste-paper))',
         plastic: 'rgb(var(--token-waste-plastic))',

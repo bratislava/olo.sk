@@ -15,7 +15,7 @@ type Props = {
 }
 
 /**
- * Figma (temporary link): https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=815-16507&m=dev
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=6518-25310&m=dev
  */
 
 const FaqCategoriesSection = ({ section }: Props) => {
@@ -28,8 +28,8 @@ const FaqCategoriesSection = ({ section }: Props) => {
 
   // TODO consider optimalizing so that we don't fetch this much when showAll is false
   const { data: allFaqCategories } = useQuery({
+    queryKey: ['FaqCategories', locale],
     queryFn: () => client.FaqCategories({ locale }),
-    queryKey: ['faqCategories', locale],
   })
 
   const faqCategoriesToRender =

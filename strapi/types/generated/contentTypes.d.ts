@@ -824,12 +824,6 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
-    address: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false
-        }
-      }>
     slug: Attribute.UID<'api::branch.branch', 'title'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -837,11 +831,55 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
+    page: Attribute.Relation<'api::branch.branch', 'oneToOne', 'api::page.page'>
     openingTimes: Attribute.Relation<
       'api::branch.branch',
       'manyToMany',
       'api::opening-time.opening-time'
     >
+    contacts: Attribute.Relation<'api::branch.branch', 'manyToMany', 'api::contact.contact'>
+    latitude: Attribute.Float &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
+    longitude: Attribute.Float &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
+    address: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    publicTransportInfo: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    parkingInfo: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    barrierFreeInfo: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    mapIconName: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -872,6 +910,7 @@ export interface ApiContactContact extends Schema.CollectionType {
     secondaryEmail: Attribute.Email
     primaryPhone: Attribute.String
     secondaryPhone: Attribute.String
+    branches: Attribute.Relation<'api::contact.contact', 'manyToMany', 'api::branch.branch'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1105,13 +1144,19 @@ export interface ApiFooterFooter extends Schema.SingleType {
     facebookUrl: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true
+          localized: false
         }
       }>
     instagramUrl: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true
+          localized: false
+        }
+      }>
+    linkedinUrl: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
         }
       }>
     columns: Attribute.Component<'items.footer-column', true> &
@@ -1353,6 +1398,12 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true
         }
       }>
+    alias: Attribute.UID &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     parentPage: Attribute.Relation<'api::page.page', 'manyToOne', 'api::page.page'>
     childPages: Attribute.Relation<'api::page.page', 'oneToMany', 'api::page.page'>
     header: Attribute.DynamicZone<
@@ -1401,6 +1452,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.contacts',
         'sections.opening-times',
         'sections.board-members',
+        'sections.vacancies',
         'sections.global-search',
       ]
     > &
@@ -1409,6 +1461,7 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true
         }
       }>
+    branch: Attribute.Relation<'api::page.page', 'oneToOne', 'api::branch.branch'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

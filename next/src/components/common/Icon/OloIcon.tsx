@@ -18,6 +18,7 @@ export const oloIconNameMap = {
   'live-help': 'LiveHelpIcon',
   'social-media-facebook-footer': 'FacebookFooterIcon',
   'social-media-instagram-footer': 'InstagramFooterIcon',
+  'social-media-linkedin-footer': 'LinkedInFooterIcon',
   place: 'PlaceIcon',
   'directions-bus': 'BusIcon',
   'local-parking': 'ParkingIcon',

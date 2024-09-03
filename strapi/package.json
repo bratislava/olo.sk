@@ -13,7 +13,8 @@
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
     "postinstall": "patch-package && yarn --cwd ./src/plugins/wysiwyg/ install",
     "start": "strapi start",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "ts:generate-types": "strapi ts:generate-types"
   },
   "dependencies": {
     "@strapi/plugin-color-picker": "4.25.8",

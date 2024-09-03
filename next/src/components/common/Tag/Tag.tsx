@@ -16,13 +16,13 @@ const Tag = ({ variant, text, className }: TagProps) => {
     <div className={className}>
       <Typography
         variant="p-small-black"
-        className_onlyWhenNecessary="uppercase tracking-wide text-success"
+        className_onlyWhenNecessary="uppercase tracking-wide text-success-content-default"
       >
         {text}
       </Typography>
     </div>
   ) : (
-    <div className={cn('rounded-4 bg-success text-white', className)}>
+    <div className={cn('bg-success rounded-4 text-white', className)}>
       <Typography
         variant="p-small-bold"
         className_onlyWhenNecessary={cn('uppercase tracking-[0.07rem]', {

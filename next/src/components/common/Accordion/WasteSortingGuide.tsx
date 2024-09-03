@@ -57,7 +57,7 @@ const WasteSortingGuide = ({
                     return (
                       // eslint-disable-next-line react/no-array-index-key
                       <div key={index} className="flex gap-4">
-                        <Icon name="fajka-kruh" className="text-success" />
+                        <Icon name="fajka-kruh" className="text-success-content-default" />
                         <Typography variant="p-default">{columnItem}</Typography>
                       </div>
                     )
@@ -79,7 +79,7 @@ const WasteSortingGuide = ({
                     return (
                       // eslint-disable-next-line react/no-array-index-key
                       <div key={index} className="flex gap-4">
-                        <Icon name="zrusit-kruh" className="text-error" />
+                        <Icon name="zrusit-kruh" className="text-error-content-default" />
                         <Typography variant="p-default">{columnItem}</Typography>
                       </div>
                     )

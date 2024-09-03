@@ -117,7 +117,9 @@
   --token-action-border-hover: var(--color-brand-600);
   --token-action-border-pressed: var(--color-brand-800);
   
+  --token-success-content-default: var(--color-success-700);
   --token-warning-soft-background-default: var(--color-warning-100);
+  --token-error-content-default: var(--color-negative-700);
 
   --token-waste-paper: var(--color-waste-blue);
   --token-waste-plastic: var(--color-waste-yellow);

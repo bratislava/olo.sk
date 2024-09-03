@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 
-import DirectionsBoxComponent from './DirectionsBox'
+import AddressAndDirectionsBoxComponent from './AddressAndDirectionsBox'
 
 type Props = {
   rowsContent: {
@@ -13,7 +13,7 @@ type Props = {
 }
 
 const meta: Meta<Props> = {
-  title: 'Components/Box/DirectionsBox',
+  title: 'Components/Box/AddressAndDirectionsBox',
   parameters: { controls: { exclude: ['rowsContent'] } },
   args: {
     rowsContent: [
@@ -37,14 +37,14 @@ const meta: Meta<Props> = {
 export default meta
 type Story = StoryObj<Props>
 
-export const DirectionsBox: Story = {
+export const AddressAndDirectionsBox: Story = {
   render: (args) => (
     <div className="mx-auto flex max-w-72 flex-col items-start lg:max-w-[50rem]">
-      <DirectionsBoxComponent>
+      <AddressAndDirectionsBoxComponent>
         {...args.rowsContent.map((row) => (
           <BasicRowCard value={row.value} variant="icon-value" iconName={row.iconName} />
         ))}
-      </DirectionsBoxComponent>
+      </AddressAndDirectionsBoxComponent>
     </div>
   ),
 }

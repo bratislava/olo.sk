@@ -5,8 +5,10 @@ import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import NavBarLogo from '@/src/components/common/NavBar/NavBarLogo'
 import Typography from '@/src/components/common/Typography/Typography'
+import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
 import { useCurrentWeekParity } from '@/src/utils/useCurrentWeekParity'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavBarHeaderProps = {
   className?: string
@@ -14,7 +16,11 @@ type NavBarHeaderProps = {
 
 const NavBarHeader = ({ className }: NavBarHeaderProps) => {
   const { currentWeekMessage } = useCurrentWeekParity()
+  const { getLinkProps } = useGetLinkProps()
+  const { menu } = useGeneralContext()
   const { t } = useTranslation()
+
+  const { contactsLink } = menu?.data?.attributes?.menuHeader ?? {}
 
   return (
     <div className={cn('bg-action-background-default py-3', className)}>
@@ -26,7 +32,7 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
         </div>
 
         <Button
-          href="kontakty"
+          href={getLinkProps(contactsLink).href}
           asLink
           hasLinkIcon={false}
           aria-label={t('navBar.contactsButton')}

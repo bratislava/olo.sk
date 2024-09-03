@@ -101,7 +101,8 @@
         "sections.contacts",
         "sections.opening-times",
         "sections.board-members",
-        "sections.vacancies"
+        "sections.vacancies",
+        "sections.global-search"
       ],
       "pluginOptions": {
         "i18n": {

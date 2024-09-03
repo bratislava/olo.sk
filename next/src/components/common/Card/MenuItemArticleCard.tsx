@@ -1,6 +1,6 @@
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
-import Link from '@/src/components/common/Link/Link'
+import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Tag from '@/src/components/common/Tag/Tag'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -20,28 +20,28 @@ type MenuItemArticleCardProps = {
 const MenuItemArticleCard = ({
   title,
   linkHref,
-  imgSrc,
   tagText,
+  imgSrc,
   className,
 }: MenuItemArticleCardProps) => {
   return (
-    <CardBase className={cn('rounded-lg', className)}>
-      <div className="flex flex-col items-start gap-4 lg:flex-row">
-        {/* 6.25rem = 100px */}
-        <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />
-        <div className="flex flex-col gap-3">
-          <Tag variant="without-bg" text={tagText} />
-          <Link variant="unstyled" href={linkHref} stretched>
+    <NavMenuLink href={linkHref} isCard className={cn(className)}>
+      <CardBase>
+        <div className="flex flex-col items-start gap-4 lg:flex-row">
+          {/* 6.25rem = 100px */}
+          <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />
+          <div className="flex flex-col justify-center gap-3">
+            <Tag variant="without-bg" text={tagText} />
             <Typography
               variant="h6"
               className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
             >
               {title}
             </Typography>
-          </Link>
+          </div>
         </div>
-      </div>
-    </CardBase>
+      </CardBase>
+    </NavMenuLink>
   )
 }
 

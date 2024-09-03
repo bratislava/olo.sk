@@ -4,7 +4,7 @@ import StaticMap from '@/src/components/common/Box/StaticMap'
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import cn from '@/src/utils/cn'
 
-type AddressAndDirectionsBoxProps = {
+type DirectionsBoxProps = {
   latitude?: string | null
   longitude?: string | null
   children: ReactNode[]
@@ -15,12 +15,7 @@ type AddressAndDirectionsBoxProps = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-10975&m=dev
  */
 
-const AddressAndDirectionsBox = ({
-  latitude,
-  longitude,
-  children,
-  className,
-}: AddressAndDirectionsBoxProps) => {
+const DirectionsBox = ({ latitude, longitude, children, className }: DirectionsBoxProps) => {
   if (children.length === 0) return null
 
   // TODO: Formatting of the text that comes as children - some words are bold
@@ -46,4 +41,4 @@ const AddressAndDirectionsBox = ({
   )
 }
 
-export default AddressAndDirectionsBox
+export default DirectionsBox

@@ -1,19 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React, { ReactNode } from 'react'
+import React from 'react'
 
+import DirectionsBoxComponent from '@/src/components/common/Box/DirectionsBox'
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
-
-import AddressAndDirectionsBoxComponent from './AddressAndDirectionsBox'
 
 type Props = {
   rowsContent: {
-    value: ReactNode
+    value: string
     iconName: 'place' | 'directions-bus' | 'local-parking'
   }[]
 }
 
 const meta: Meta<Props> = {
-  title: 'Components/Box/AddressAndDirectionsBox',
+  title: 'Components/Box/DirectionsBox',
   parameters: { controls: { exclude: ['rowsContent'] } },
   args: {
     rowsContent: [
@@ -37,14 +36,14 @@ const meta: Meta<Props> = {
 export default meta
 type Story = StoryObj<Props>
 
-export const AddressAndDirectionsBox: Story = {
+export const DirectionsBox: Story = {
   render: (args) => (
     <div className="mx-auto flex max-w-72 flex-col items-start lg:max-w-[50rem]">
-      <AddressAndDirectionsBoxComponent>
+      <DirectionsBoxComponent>
         {...args.rowsContent.map((row) => (
           <BasicRowCard value={row.value} variant="icon-value" iconName={row.iconName} />
         ))}
-      </AddressAndDirectionsBoxComponent>
+      </DirectionsBoxComponent>
     </div>
   ),
 }

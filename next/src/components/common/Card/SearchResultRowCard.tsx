@@ -43,7 +43,7 @@ const SearchResultRowCard = ({
 
   const iconName = iconNameBySearchOption[type]
 
-  const filteredMetadata = metadata?.filter(isDefined).filter((item: string) => item !== '')
+  const filteredMetadata = metadata?.filter(isDefined)
 
   return (
     <CardBase variant="unstyled" className={className}>

@@ -22,7 +22,7 @@ const Tag = ({ variant, text, className }: TagProps) => {
       </Typography>
     </div>
   ) : (
-    <div className={cn('bg-success rounded-4 text-white', className)}>
+    <div className={cn('bg-success-background-default rounded-4 text-white', className)}>
       <Typography
         variant="p-small-bold"
         className_onlyWhenNecessary={cn('uppercase tracking-[0.07rem]', {

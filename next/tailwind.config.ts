@@ -130,6 +130,9 @@ const config: Config = {
         },
       },
       success: {
+        background: {
+          default: 'rgb(var(--token-success-content-default))',
+        },
         content: {
           default: 'rgb(var(--token-success-content-default))',
         },

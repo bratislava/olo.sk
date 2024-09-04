@@ -106,7 +106,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
                         key={document.id}
                         title={document.attributes.title}
                         linkHref={getFullPath(document) ?? '#'}
-                        iconName="dokument"
+                        type="documents"
                         className="focus-within:rounded-lg"
                         metadata={[
                           t('documentsAllSection.metadata.publishDate', {

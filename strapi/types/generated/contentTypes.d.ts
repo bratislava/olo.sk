@@ -1453,6 +1453,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.opening-times',
         'sections.board-members',
         'sections.vacancies',
+        'sections.global-search',
       ]
     > &
       Attribute.SetPluginOptions<{

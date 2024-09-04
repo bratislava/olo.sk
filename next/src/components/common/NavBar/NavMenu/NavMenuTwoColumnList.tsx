@@ -3,12 +3,18 @@ import { NavMenuColumnListProps } from '@/src/components/common/NavBar/NavMenu/N
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
-const NavMenuTwoColumnList = ({ links, className }: NavMenuColumnListProps) => {
+const NavMenuTwoColumnList = ({ links, hasDividers, className }: NavMenuColumnListProps) => {
   const { getLinkProps } = useGetLinkProps()
   const middleIndex = Math.floor(links.length / 2)
 
   return (
-    <ul className={cn('w-full columns-2 gap-8', className)}>
+    <ul
+      className={cn(
+        'w-full columns-2 gap-8',
+        { 'divide-y divide-border-default': hasDividers },
+        className,
+      )}
+    >
       {links.map((link, index) => {
         const linkProps = getLinkProps(link)
 

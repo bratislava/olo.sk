@@ -1,7 +1,6 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { useMemo } from 'react'
 
-import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import NavMenuContentCell from '@/src/components/common/NavBar/NavMenu/NavMenuContentCell'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
@@ -17,12 +16,12 @@ type NavMenuContentProps = {
   className?: string
 }
 
+// TODO: Try using the gap property
+
 export type SectionType = ReturnType<typeof getParsedMenus>[number]['sections'][number]
 
 const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContentProps) => {
   const navMenuCells = useMemo(() => getNavMenuCells(sections), [sections])
-
-  // TODO: Implement similar behaviour as in other components, using isLast
 
   return (
     <NavigationMenu.Content
@@ -40,13 +39,13 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         <ul
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
           onClick={(event) => event.stopPropagation()}
-          className="grid w-full grid-cols-3 py-8"
+          className="grid w-full grid-cols-3 divide-x divide-border-default py-8"
         >
           {navMenuCells.map((cell, index) => {
-            const verticalDivider =
-              index === navMenuCells.length - 1 ? null : (
-                <NavBarDivider variant="vertical" className="px-8" />
-              )
+            const commonClasses = {
+              'pr-0': index === navMenuCells.length - 1,
+              'pl-0': index === 0,
+            }
 
             if (Array.isArray(cell)) {
               return (
@@ -54,13 +53,11 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   colSpan={1}
-                  verticalDivider={verticalDivider}
+                  className={cn('grow flex-col gap-y-12 px-8', commonClasses)}
                 >
-                  <div className="flex grow flex-col gap-y-12">
-                    {cell.map((section) => (
-                      <NavMenuSection section={section} />
-                    ))}
-                  </div>
+                  {cell.map((section) => (
+                    <NavMenuSection section={section} />
+                  ))}
                 </NavMenuContentCell>
               )
             }
@@ -69,7 +66,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
               <NavMenuContentCell
                 key={cell.id}
                 colSpan={cell.colSpan}
-                verticalDivider={verticalDivider}
+                className={cn('px-8', commonClasses)}
               >
                 <NavMenuSection section={cell} />
               </NavMenuContentCell>

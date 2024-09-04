@@ -14,11 +14,13 @@ export const useLatestArticles = (limit: number) => {
     queryKey: ['latestArticles', { limit, locale }],
   })
 
-  // eslint-disable-next-line unicorn/no-array-callback-reference
-  const filteredArticles = articlesData?.articles?.data.filter(isDefined) ?? []
-  const latestArticles = useMemo(() => filteredArticles, [articlesData])
+  const filteredArticles = useMemo(
+    // eslint-disable-next-line unicorn/no-array-callback-reference
+    () => articlesData?.articles?.data.filter(isDefined) ?? [],
+    [articlesData],
+  )
 
   return {
-    latestArticles: latestArticles.length === 0 ? null : latestArticles,
+    latestArticles: filteredArticles.length === 0 ? null : filteredArticles,
   }
 }

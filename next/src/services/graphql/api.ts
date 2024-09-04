@@ -651,11 +651,13 @@ export type ComponentItemsMenuHeader = {
   __typename?: 'ComponentItemsMenuHeader'
   contactsLink?: Maybe<ComponentItemsLink>
   id: Scalars['ID']['output']
+  searchLink?: Maybe<ComponentItemsLink>
 }
 
 export type ComponentItemsMenuHeaderInput = {
   contactsLink?: InputMaybe<ComponentItemsLinkInput>
   id?: InputMaybe<Scalars['ID']['input']>
+  searchLink?: InputMaybe<ComponentItemsLinkInput>
 }
 
 export type ComponentItemsOpeningHoursItem = {
@@ -1208,6 +1210,12 @@ export type ComponentSectionsFormCtaBanner = {
   bannerTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsGlobalSearch = {
+  __typename?: 'ComponentSectionsGlobalSearch'
+  id: Scalars['ID']['output']
   title?: Maybe<Scalars['String']['output']>
 }
 
@@ -2074,6 +2082,7 @@ export type GenericMorph =
   | ComponentSectionsFaqCategories
   | ComponentSectionsFiles
   | ComponentSectionsFormCtaBanner
+  | ComponentSectionsGlobalSearch
   | ComponentSectionsHeroHomepageSection
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
@@ -3038,6 +3047,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsDocuments
   | ComponentSectionsFaq
   | ComponentSectionsFaqCategories
+  | ComponentSectionsGlobalSearch
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOpeningTimes
@@ -5326,6 +5336,67 @@ export type GeneralQuery = {
           __typename?: 'ComponentItemsMenuHeader'
           id: string
           contactsLink?: {
+            __typename?: 'ComponentItemsLink'
+            label?: string | null
+            url?: string | null
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+              } | null
+            } | null
+            article?: {
+              __typename?: 'ArticleEntityResponse'
+              data?: {
+                __typename: 'ArticleEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              } | null
+            } | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename: 'BranchEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+              } | null
+            } | null
+            document?: {
+              __typename?: 'DocumentEntityResponse'
+              data?: {
+                __typename: 'DocumentEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+              } | null
+            } | null
+            service?: {
+              __typename?: 'ServiceEntityResponse'
+              data?: {
+                __typename: 'ServiceEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+              } | null
+            } | null
+            workshop?: {
+              __typename?: 'WorkshopEntityResponse'
+              data?: {
+                __typename: 'WorkshopEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Workshop'
+                  title: string
+                  slug: string
+                  dates?: Array<{
+                    __typename?: 'ComponentItemsWorkshopDate'
+                    datetime: any
+                  } | null> | null
+                } | null
+              } | null
+            } | null
+          } | null
+          searchLink?: {
             __typename?: 'ComponentItemsLink'
             label?: string | null
             url?: string | null
@@ -7814,6 +7885,11 @@ export type VacanciesSectionFragment = {
   backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
 }
 
+export type GlobalSearchSectionFragment = {
+  __typename?: 'ComponentSectionsGlobalSearch'
+  title?: string | null
+}
+
 type PageSections_ComponentSectionsArticles_Fragment = {
   __typename: 'ComponentSectionsArticles'
   title?: string | null
@@ -8683,6 +8759,11 @@ type PageSections_ComponentSectionsFaqCategories_Fragment = {
       attributes?: { __typename?: 'FaqCategory'; slug: string; title: string } | null
     }>
   } | null
+}
+
+type PageSections_ComponentSectionsGlobalSearch_Fragment = {
+  __typename: 'ComponentSectionsGlobalSearch'
+  title?: string | null
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -9659,6 +9740,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsDocuments_Fragment
   | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsFaqCategories_Fragment
+  | PageSections_ComponentSectionsGlobalSearch_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOpeningTimes_Fragment
@@ -13867,6 +13949,64 @@ export type MenuHeaderFragment = {
       } | null
     } | null
   } | null
+  searchLink?: {
+    __typename?: 'ComponentItemsLink'
+    label?: string | null
+    url?: string | null
+    page?: {
+      __typename?: 'PageEntityResponse'
+      data?: {
+        __typename: 'PageEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+      } | null
+    } | null
+    article?: {
+      __typename?: 'ArticleEntityResponse'
+      data?: {
+        __typename: 'ArticleEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      } | null
+    } | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+      } | null
+    } | null
+    document?: {
+      __typename?: 'DocumentEntityResponse'
+      data?: {
+        __typename: 'DocumentEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+      } | null
+    } | null
+    workshop?: {
+      __typename?: 'WorkshopEntityResponse'
+      data?: {
+        __typename: 'WorkshopEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Workshop'
+          title: string
+          slug: string
+          dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
+        } | null
+      } | null
+    } | null
+  } | null
 }
 
 export type MenuFragment = {
@@ -14039,6 +14179,67 @@ export type MenuFragment = {
     __typename?: 'ComponentItemsMenuHeader'
     id: string
     contactsLink?: {
+      __typename?: 'ComponentItemsLink'
+      label?: string | null
+      url?: string | null
+      page?: {
+        __typename?: 'PageEntityResponse'
+        data?: {
+          __typename: 'PageEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        } | null
+      } | null
+      article?: {
+        __typename?: 'ArticleEntityResponse'
+        data?: {
+          __typename: 'ArticleEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        } | null
+      } | null
+      branch?: {
+        __typename?: 'BranchEntityResponse'
+        data?: {
+          __typename: 'BranchEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+        } | null
+      } | null
+      document?: {
+        __typename?: 'DocumentEntityResponse'
+        data?: {
+          __typename: 'DocumentEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename: 'WorkshopEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              datetime: any
+            } | null> | null
+          } | null
+        } | null
+      } | null
+    } | null
+    searchLink?: {
       __typename?: 'ComponentItemsLink'
       label?: string | null
       url?: string | null
@@ -14334,6 +14535,67 @@ export type MenuEntityFragment = {
           } | null
         } | null
       } | null
+      searchLink?: {
+        __typename?: 'ComponentItemsLink'
+        label?: string | null
+        url?: string | null
+        page?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+          } | null
+        } | null
+        article?: {
+          __typename?: 'ArticleEntityResponse'
+          data?: {
+            __typename: 'ArticleEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          } | null
+        } | null
+        branch?: {
+          __typename?: 'BranchEntityResponse'
+          data?: {
+            __typename: 'BranchEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Branch'; title: string; slug: string } | null
+          } | null
+        } | null
+        document?: {
+          __typename?: 'DocumentEntityResponse'
+          data?: {
+            __typename: 'DocumentEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+          } | null
+        } | null
+        service?: {
+          __typename?: 'ServiceEntityResponse'
+          data?: {
+            __typename: 'ServiceEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+          } | null
+        } | null
+        workshop?: {
+          __typename?: 'WorkshopEntityResponse'
+          data?: {
+            __typename: 'WorkshopEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Workshop'
+              title: string
+              slug: string
+              dates?: Array<{
+                __typename?: 'ComponentItemsWorkshopDate'
+                datetime: any
+              } | null> | null
+            } | null
+          } | null
+        } | null
+      } | null
     } | null
   } | null
 }
@@ -14469,6 +14731,12 @@ export type PageSlugEntityFragment = {
   __typename: 'PageEntity'
   id?: string | null
   attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+}
+
+export type PageCardEntityFragment = {
+  __typename: 'PageEntity'
+  id?: string | null
+  attributes?: { __typename?: 'Page'; updatedAt?: any | null; title: string; slug: string } | null
 }
 
 export type PageEntityFragment = {
@@ -15623,6 +15891,7 @@ export type PageEntityFragment = {
             }>
           } | null
         }
+      | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
       | {
           __typename: 'ComponentSectionsImageAndText'
           title?: string | null
@@ -17750,6 +18019,7 @@ export type PagesQuery = {
                 }>
               } | null
             }
+          | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
           | {
               __typename: 'ComponentSectionsImageAndText'
               title?: string | null
@@ -19880,6 +20150,7 @@ export type PageBySlugQuery = {
                 }>
               } | null
             }
+          | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
           | {
               __typename: 'ComponentSectionsImageAndText'
               title?: string | null
@@ -24738,6 +25009,9 @@ export const MenuHeaderFragmentDoc = gql`
     contactsLink {
       ...Link
     }
+    searchLink {
+      ...Link
+    }
   }
   ${LinkFragmentDoc}
 `
@@ -24849,6 +25123,15 @@ export const PageChildPagesFragmentDoc = gql`
     }
   }
   ${ChildPageFragmentDoc}
+`
+export const PageCardEntityFragmentDoc = gql`
+  fragment PageCardEntity on PageEntity {
+    ...PageSlugEntity
+    attributes {
+      updatedAt
+    }
+  }
+  ${PageSlugEntityFragmentDoc}
 `
 export const ImageHeaderSectionFragmentDoc = gql`
   fragment ImageHeaderSection on ComponentHeaderSectionsImage {
@@ -25411,6 +25694,11 @@ export const VacanciesSectionFragmentDoc = gql`
     backgroundColorVacancies: backgroundColor
   }
 `
+export const GlobalSearchSectionFragmentDoc = gql`
+  fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
+    title
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -25489,6 +25777,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsVacancies {
       ...VacanciesSection
     }
+    ... on ComponentSectionsGlobalSearch {
+      ...GlobalSearchSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -25515,6 +25806,7 @@ export const PageSectionsFragmentDoc = gql`
   ${OpeningTimesSectionFragmentDoc}
   ${BoardMembersSectionFragmentDoc}
   ${VacanciesSectionFragmentDoc}
+  ${GlobalSearchSectionFragmentDoc}
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
@@ -25698,7 +25990,7 @@ export const DocumentCategoryBySlugDocument = gql`
 `
 export const FaqCategoriesDocument = gql`
   query FaqCategories($locale: I18NLocaleCode!) {
-    faqCategories(locale: $locale) {
+    faqCategories(locale: $locale, pagination: { limit: -1 }) {
       data {
         ...FaqCategoryEntity
       }

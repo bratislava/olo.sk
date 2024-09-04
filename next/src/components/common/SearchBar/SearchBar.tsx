@@ -4,7 +4,6 @@ import { Input, Label, SearchField } from 'react-aria-components'
 
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
-// import Input from '@/src/components/common/Input/Input'
 import Spinner from '@/src/components/common/Spinner/Spinner'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'

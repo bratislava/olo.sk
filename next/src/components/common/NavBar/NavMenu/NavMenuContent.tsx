@@ -1,6 +1,7 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { useMemo } from 'react'
 
+import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import NavMenuContentCell from '@/src/components/common/NavBar/NavMenu/NavMenuContentCell'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
@@ -21,6 +22,8 @@ export type SectionType = ReturnType<typeof getParsedMenus>[number]['sections'][
 const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContentProps) => {
   const navMenuCells = useMemo(() => getNavMenuCells(sections), [sections])
 
+  // TODO: Implement similar behaviour as in other components, using isLast
+
   return (
     <NavigationMenu.Content
       // To disable "onHover" behaviour, needs to be set also in NavMenuTrigger
@@ -40,13 +43,18 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
           className="grid w-full grid-cols-3 py-8"
         >
           {navMenuCells.map((cell, index) => {
+            const verticalDivider =
+              index === navMenuCells.length - 1 ? null : (
+                <NavBarDivider variant="vertical" className="px-8" />
+              )
+
             if (Array.isArray(cell)) {
               return (
                 <NavMenuContentCell
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   colSpan={1}
-                  hasVerticalDivider
+                  verticalDivider={verticalDivider}
                 >
                   <div className="flex grow flex-col gap-y-12">
                     {cell.map((section) => (
@@ -61,7 +69,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
               <NavMenuContentCell
                 key={cell.id}
                 colSpan={cell.colSpan}
-                hasVerticalDivider={index !== navMenuCells.length - 1}
+                verticalDivider={verticalDivider}
               >
                 <NavMenuSection section={cell} />
               </NavMenuContentCell>

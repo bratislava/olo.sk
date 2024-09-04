@@ -1,18 +1,17 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
-import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import cn from '@/src/utils/cn'
 
 type NavMenuContentCellProps = {
   colSpan: number
-  hasVerticalDivider?: boolean
+  verticalDivider?: ReactNode
   className?: string
 }
 
 const NavMenuContentCell = ({
   children,
   colSpan,
-  hasVerticalDivider,
+  verticalDivider,
   className,
 }: PropsWithChildren<NavMenuContentCellProps>) => {
   return (
@@ -27,7 +26,7 @@ const NavMenuContentCell = ({
       )}
     >
       {children}
-      {hasVerticalDivider ? <NavBarDivider variant="vertical" className="px-8" /> : null}
+      {verticalDivider || null}
     </li>
   )
 }

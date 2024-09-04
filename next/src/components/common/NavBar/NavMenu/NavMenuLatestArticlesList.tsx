@@ -5,7 +5,7 @@ import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 type NavMenuLatestArticlesListProps = {
-  links: ArticleEntityFragment[] | null // TODO: Check the null case
+  links: ArticleEntityFragment[] | null
   hasDividers?: boolean
   className?: string
 }

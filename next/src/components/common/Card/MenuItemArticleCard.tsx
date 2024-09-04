@@ -26,7 +26,7 @@ const MenuItemArticleCard = ({
 }: MenuItemArticleCardProps) => {
   return (
     <NavMenuLink href={linkHref} isCard className={cn(className)}>
-      <CardBase>
+      <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-4 lg:flex-row">
           {/* 6.25rem = 100px */}
           <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />

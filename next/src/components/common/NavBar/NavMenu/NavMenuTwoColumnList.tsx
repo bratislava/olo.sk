@@ -18,11 +18,9 @@ const NavMenuTwoColumnList = ({ links, hasDividers, className }: NavMenuColumnLi
       {links.map((link, index) => {
         const linkProps = getLinkProps(link)
 
-        // TODO: Refactor this code, or remove the divider altogether
         return (
           <div
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
+            key={link.id}
             className={cn({
               'border-r border-border-default pr-8': index <= middleIndex,
             })}

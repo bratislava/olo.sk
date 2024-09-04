@@ -16,8 +16,6 @@ type NavMenuContentProps = {
   className?: string
 }
 
-// TODO: Try using the gap property
-
 export type SectionType = ReturnType<typeof getParsedMenus>[number]['sections'][number]
 
 const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContentProps) => {
@@ -39,24 +37,20 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         <ul
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
           onClick={(event) => event.stopPropagation()}
-          className="grid w-full grid-cols-3 divide-x divide-border-default py-8"
+          className="grid w-full grid-cols-3 gap-8 divide-x divide-border-default border-b border-border-default py-8"
         >
           {navMenuCells.map((cell, index) => {
-            const commonClasses = {
-              'pr-0': index === navMenuCells.length - 1,
-              'pl-0': index === 0,
-            }
-
+            const hasLeftPadding = { 'pl-8': index !== 0 }
             if (Array.isArray(cell)) {
               return (
                 <NavMenuContentCell
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   colSpan={1}
-                  className={cn('grow flex-col gap-y-12 px-8', commonClasses)}
+                  className={cn('grow flex-col gap-y-12', hasLeftPadding)}
                 >
                   {cell.map((section) => (
-                    <NavMenuSection section={section} />
+                    <NavMenuSection key={section.id} section={section} />
                   ))}
                 </NavMenuContentCell>
               )
@@ -66,7 +60,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
               <NavMenuContentCell
                 key={cell.id}
                 colSpan={cell.colSpan}
-                className={cn('px-8', commonClasses)}
+                className={cn(hasLeftPadding)}
               >
                 <NavMenuSection section={cell} />
               </NavMenuContentCell>
@@ -77,11 +71,11 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         {seeAllLinkProps?.children ? (
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-          <div onClick={(event) => event.stopPropagation()}>
-            <NavMenuLink
-              {...seeAllLinkProps}
-              className="flex w-full items-start justify-start border-t border-border-default py-6"
-            />
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="flex w-full items-start justify-start py-6"
+          >
+            <NavMenuLink {...seeAllLinkProps} />
           </div>
         ) : null}
       </SectionContainer>

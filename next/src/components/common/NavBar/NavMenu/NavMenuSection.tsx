@@ -1,4 +1,3 @@
-import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import NavMenuLatestArticlesList from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
 import NavMenuSingleColumnList from '@/src/components/common/NavBar/NavMenu/NavMenuSingleColumnList'
@@ -16,16 +15,11 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { label, specialSectionType, links, multicolumnBehaviour, colSpan, hasDividers } = section
   const { latestArticles } = useLatestArticles(3)
 
-  const NavMenuSectionHeader = () => (
-    <div>
-      <Typography variant="h6">{label}</Typography>
-      <NavBarDivider variant="horizontal" className="pt-4" />
-    </div>
-  )
-
   return (
     <div className={cn('flex w-full flex-col gap-6', className)}>
-      <NavMenuSectionHeader />
+      <Typography variant="h6" className_onlyWhenNecessary="pb-4 border-b border-border-default">
+        {label}
+      </Typography>
       {specialSectionType === 'latest_articles' ? (
         <NavMenuLatestArticlesList links={latestArticles} hasDividers={hasDividers} />
       ) : multicolumnBehaviour === 'split_equally' && colSpan > 1 ? (

@@ -1,8 +1,11 @@
 import Image from 'next/image'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useWindowSize } from 'usehooks-ts'
 
 import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
 import cn from '@/src/utils/cn'
+import { getTailwindBreakpointValue } from '@/src/utils/getTailwindBreakpointValue'
+import screens from '@/tailwind.config.screens'
 
 type StaticMapProps = {
   latitude: string | null | undefined
@@ -15,11 +18,20 @@ type StaticMapProps = {
  */
 
 const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
-  // TODO: Mapbox limitation for static map image: 1280x1280
-  // eslint-disable-next-line const-case/uppercase
-  const width = 800
-  // eslint-disable-next-line const-case/uppercase
-  const height = 600
+  const { width } = useWindowSize()
+  const desktopMapDimensions = { width: 265, height: 190 } // Based on the design, with slight adjustments for the Mapbox logo to be visible
+  const mobileMapDimensions = { width: 648, height: 440 }
+  const [mapDimensions, setMapDimensions] = useState(desktopMapDimensions)
+
+  /**
+   * Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/utils/useTailwindBreakpoint.ts
+   */
+  useEffect(() => {
+    setMapDimensions(
+      width <= getTailwindBreakpointValue(screens.lg) ? mobileMapDimensions : desktopMapDimensions,
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [width])
 
   const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
   const username = process.env.NEXT_PUBLIC_MAPBOX_USERNAME
@@ -32,8 +44,8 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const staticMapboxUrl = useMemo(() => {
     if (!latitude || !longitude || !accessToken) return null
 
-    return `https://api.mapbox.com/styles/v1/${username}/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14.5/${width}x${height}@2x?logo=false&access_token=${accessToken}`
-  }, [latitude, longitude, accessToken, username, styleId, markerUrl, width, height])
+    return `https://api.mapbox.com/styles/v1/${username}/${styleId}/static/url-${markerUrl}(${longitude},${latitude})/${longitude},${latitude},14/${mapDimensions.width}x${mapDimensions.height}@2x?logo=false&access_token=${accessToken}`
+  }, [latitude, longitude, accessToken, username, styleId, markerUrl, mapDimensions])
 
   return (
     <div

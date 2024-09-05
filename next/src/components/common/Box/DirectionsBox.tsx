@@ -18,8 +18,6 @@ type DirectionsBoxProps = {
 const DirectionsBox = ({ latitude, longitude, children, className }: DirectionsBoxProps) => {
   if (children.length === 0) return null
 
-  // TODO: Formatting of the text that comes as children - some words are bold
-
   return (
     <div
       className={cn(

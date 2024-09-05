@@ -5,6 +5,8 @@ import DirectionsBoxComponent from '@/src/components/common/Box/DirectionsBox'
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 
 type Props = {
+  latitude?: string | null
+  longitude?: string | null
   rowsContent: {
     value: string
     iconName: 'place' | 'directions-bus' | 'local-parking'
@@ -15,6 +17,8 @@ const meta: Meta<Props> = {
   title: 'Components/Box/DirectionsBox',
   parameters: { controls: { exclude: ['rowsContent'] } },
   args: {
+    latitude: '48.171140',
+    longitude: '17.17921',
     rowsContent: [
       {
         value: 'Ivanská cesta 22, 821 04 Bratislava',
@@ -39,7 +43,7 @@ type Story = StoryObj<Props>
 export const DirectionsBox: Story = {
   render: (args) => (
     <div className="mx-auto flex max-w-72 flex-col items-start lg:max-w-[50rem]">
-      <DirectionsBoxComponent>
+      <DirectionsBoxComponent latitude={args.latitude} longitude={args.longitude}>
         {...args.rowsContent.map((row) => (
           <BasicRowCard value={row.value} variant="icon-value" iconName={row.iconName} />
         ))}

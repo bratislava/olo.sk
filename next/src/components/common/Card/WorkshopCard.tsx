@@ -31,12 +31,13 @@ const WorkshopCard = ({
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
+      title={title}
     >
-      <div className="flex flex-col items-start gap-6 p-4 lg:p-6">
+      <div className="flex h-full flex-col items-start gap-6 p-4 lg:p-6">
         <div className="rounded-2xl bg-background-secondary p-4">
           <OloIcon name={iconName} className="size-6" />
         </div>
-        <div className="flex flex-col items-start gap-4 self-stretch lg:gap-10">
+        <div className="flex h-full flex-col items-start justify-between gap-4 self-stretch lg:gap-10">
           <Typography
             variant="h4"
             className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"

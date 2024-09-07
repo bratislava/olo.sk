@@ -5,7 +5,7 @@ import { parseContentTypePathPrefixes } from '@/src/services/navigation/parseCon
 import { parseTopLevelPages } from '@/src/services/navigation/parseTopLevelPages'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
-  const { navigation, topLevelPages } = await client.General({ locale: 'sk' }) // TODO locale
+  const { navigation, topLevelPages } = await client.Navigation({ locale: 'sk' }) // TODO locale
 
   const { pagePathsMap } = parseTopLevelPages(topLevelPages?.data ?? [])
   const { contentTypePathPrefixesMap } = parseContentTypePathPrefixes(navigation, pagePathsMap)

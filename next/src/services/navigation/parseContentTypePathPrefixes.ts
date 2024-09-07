@@ -1,4 +1,4 @@
-import { GeneralQuery } from '@/src/services/graphql/api'
+import { NavigationQuery } from '@/src/services/graphql/api'
 import { PagePathsMap } from '@/src/services/navigation/parseTopLevelPages'
 
 export type ContentTypePathPrefixesMap = ReturnType<
@@ -6,7 +6,7 @@ export type ContentTypePathPrefixesMap = ReturnType<
 >['contentTypePathPrefixesMap']
 
 export const parseContentTypePathPrefixes = (
-  navigation: GeneralQuery['navigation'],
+  navigation: NavigationQuery['navigation'],
   pagePathsMap: PagePathsMap,
 ) => {
   const {

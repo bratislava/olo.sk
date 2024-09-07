@@ -4908,11 +4908,11 @@ export type NavigationEntityFragment = {
   } | null
 }
 
-export type GeneralQueryVariables = Exact<{
+export type NavigationQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input']
 }>
 
-export type GeneralQuery = {
+export type NavigationQuery = {
   __typename?: 'Query'
   navigation?: {
     __typename?: 'NavigationEntityResponse'
@@ -5023,6 +5023,14 @@ export type GeneralQuery = {
       } | null
     }>
   } | null
+}
+
+export type GeneralQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type GeneralQuery = {
+  __typename?: 'Query'
   footer?: {
     __typename?: 'FooterEntityResponse'
     data?: {
@@ -26028,8 +26036,8 @@ export const ServiceCategoryBySlugDocument = gql`
   }
   ${ServiceCategoryEntityFragmentDoc}
 `
-export const GeneralDocument = gql`
-  query General($locale: I18NLocaleCode!) {
+export const NavigationDocument = gql`
+  query Navigation($locale: I18NLocaleCode!) {
     navigation(locale: $locale) {
       data {
         ...NavigationEntity
@@ -26040,6 +26048,12 @@ export const GeneralDocument = gql`
         ...PageChildPages
       }
     }
+  }
+  ${NavigationEntityFragmentDoc}
+  ${PageChildPagesFragmentDoc}
+`
+export const GeneralDocument = gql`
+  query General($locale: I18NLocaleCode!) {
     footer(locale: $locale) {
       data {
         ...FooterEntity
@@ -26051,8 +26065,6 @@ export const GeneralDocument = gql`
       }
     }
   }
-  ${NavigationEntityFragmentDoc}
-  ${PageChildPagesFragmentDoc}
   ${FooterEntityFragmentDoc}
   ${MenuEntityFragmentDoc}
 `
@@ -26417,6 +26429,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'ServiceCategoryBySlug',
+        'query',
+        variables,
+      )
+    },
+    Navigation(
+      variables: NavigationQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<NavigationQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<NavigationQuery>(NavigationDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'Navigation',
         'query',
         variables,
       )

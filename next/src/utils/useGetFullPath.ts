@@ -43,7 +43,7 @@ export const getFullPathFn = (
 
   // TODO Rewrite to cleaner code
   if (entity.__typename === 'PageEntity') {
-    return pagePathsMap.get(slug)?.path ?? `#notFound`
+    return pagePathsMap[slug]?.path ?? `#notFound`
   }
 
   if (entity.__typename === 'ArticleEntity' && contentTypePathPrefixesMap.article) {

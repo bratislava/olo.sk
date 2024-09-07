@@ -128,7 +128,14 @@ const Page = ({ entity: page, general, navigation, dehydratedState }: PageProps)
     }
   }, [scrollId])
 
-  const breadcrumbs = useMemo(() => getPageBreadcrumbs(page), [page])
+  const breadcrumbs = useMemo(
+    () =>
+      getPageBreadcrumbs(
+        navigation.pagePathsMap[page.attributes?.slug ?? '']?.path ?? '',
+        navigation.pagePathsMap,
+      ),
+    [navigation.pagePathsMap, page],
+  )
 
   if (!page.attributes) {
     return null

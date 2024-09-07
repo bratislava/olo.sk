@@ -10,7 +10,10 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   const { pagePathsMap } = parseTopLevelPages(topLevelPages?.data ?? [])
   const { contentTypePathPrefixesMap } = parseContentTypePathPrefixes(navigation, pagePathsMap)
 
-  return res.json({ contentTypePathPrefixesMap })
+  return res.json({
+    contentTypePathPrefixesMap,
+    pagePathsMap,
+  })
 }
 
 export default handler

@@ -23,22 +23,23 @@ export const parseContentTypePathPrefixes = (
   const servicesParentPageSlug = servicesParentPage?.data?.attributes?.slug
   const workshopsParentPageSlug = workshopsParentPage?.data?.attributes?.slug
 
+  // Using null to make the object serializable
   const contentTypePathPrefixesMap = {
     article: articlesParentPageSlug
-      ? pagePathsMap.get(articlesParentPageSlug)?.path
-      : articlesParentPageSlug,
+      ? pagePathsMap[articlesParentPageSlug]?.path
+      : articlesParentPageSlug ?? null,
     document: documentsParentPageSlug
-      ? pagePathsMap.get(documentsParentPageSlug)?.path
-      : documentsParentPageSlug,
+      ? pagePathsMap[documentsParentPageSlug]?.path
+      : documentsParentPageSlug ?? null,
     faqCategory: faqCategoriesParentPageSlug
-      ? pagePathsMap.get(faqCategoriesParentPageSlug)?.path
-      : faqCategoriesParentPageSlug,
+      ? pagePathsMap[faqCategoriesParentPageSlug]?.path
+      : faqCategoriesParentPageSlug ?? null,
     service: servicesParentPageSlug
-      ? pagePathsMap.get(servicesParentPageSlug)?.path
-      : servicesParentPageSlug,
+      ? pagePathsMap[servicesParentPageSlug]?.path
+      : servicesParentPageSlug ?? null,
     workshop: workshopsParentPageSlug
-      ? pagePathsMap.get(workshopsParentPageSlug)?.path
-      : workshopsParentPageSlug,
+      ? pagePathsMap[workshopsParentPageSlug]?.path
+      : workshopsParentPageSlug ?? null,
   }
 
   return { contentTypePathPrefixesMap }

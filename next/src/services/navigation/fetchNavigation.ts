@@ -1,5 +1,6 @@
 import { ContentTypePathPrefixesMap } from '@/src/services/navigation/parseContentTypePathPrefixes'
-import { NavigationConfig } from '@/src/services/navigation/typesNavigation'
+import { PagePathsMap } from '@/src/services/navigation/parseTopLevelPages'
+import { NavigationConfig, NavigationObject } from '@/src/services/navigation/typesNavigation'
 
 // Inspired by City Library - Navikronos custom plugin
 // https://github.com/bratislava/mestskakniznica.sk/blob/dfef31c799e1a903af4fa30aa1be5c3f27ae5418/next/navikronos/internal/fetch.ts
@@ -8,6 +9,7 @@ let cache: {
   timestamp: number
   value: {
     contentTypePathPrefixesMap: ContentTypePathPrefixesMap
+    pagePathsMap: PagePathsMap
   }
 } | null = null
 
@@ -33,9 +35,11 @@ export const fetchNavigation = async <Config extends NavigationConfig>(config: C
   }
 
   // TODO types - make it type safe, now it's any
-  const { contentTypePathPrefixesMap } = await fetchNonCached(config)
+  const navigation = (await fetchNonCached(config)) as NavigationObject
 
-  const value = { contentTypePathPrefixesMap }
+  const { contentTypePathPrefixesMap, pagePathsMap } = navigation
+
+  const value = { contentTypePathPrefixesMap, pagePathsMap }
   cache = { timestamp: Date.now(), value }
 
   return value

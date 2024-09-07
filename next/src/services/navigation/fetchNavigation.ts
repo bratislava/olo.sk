@@ -11,12 +11,12 @@ let cache: {
   }
 } | null = null
 
-const fetchNonCached = async (host: string) => {
+const fetchNonCached = async <Config extends NavigationConfig>(config: Config) => {
   /**
    * The request is handled on server, so we have to use http instead of https.
    * `pathname` contains leading "/"
    */
-  const fetchUrl = `http://${host}/api/navigation`
+  const fetchUrl = `http://${config.host}/api/navigation`
 
   const response = await fetch(fetchUrl)
 
@@ -27,16 +27,13 @@ const fetchNonCached = async (host: string) => {
   return response.json()
 }
 
-export const fetchNavigation = async <Config extends NavigationConfig>(
-  config: Config,
-  host: string,
-) => {
+export const fetchNavigation = async <Config extends NavigationConfig>(config: Config) => {
   if (cache?.timestamp && cache.timestamp + config.cacheTtl > Date.now()) {
     return cache.value
   }
 
-  // TODO types
-  const { contentTypePathPrefixesMap } = await fetchNonCached(host)
+  // TODO types - make it type safe, now it's any
+  const { contentTypePathPrefixesMap } = await fetchNonCached(config)
 
   const value = { contentTypePathPrefixesMap }
   cache = { timestamp: Date.now(), value }

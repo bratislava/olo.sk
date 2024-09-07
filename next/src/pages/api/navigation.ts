@@ -1,19 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { client } from '@/src/services/graphql'
-import { parseContentTypePathPrefixes } from '@/src/services/navigation/parseContentTypePathPrefixes'
-import { parseTopLevelPages } from '@/src/services/navigation/parseTopLevelPages'
+import { fetchNonCachedNavigation } from '@/src/services/navigation/fetchNonCachedNavigation'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
-  const { navigation, topLevelPages } = await client.Navigation({ locale: 'sk' }) // TODO locale
+  const navigation = await fetchNonCachedNavigation()
 
-  const { pagePathsMap } = parseTopLevelPages(topLevelPages?.data ?? [])
-  const { contentTypePathPrefixesMap } = parseContentTypePathPrefixes(navigation, pagePathsMap)
-
-  return res.json({
-    contentTypePathPrefixesMap,
-    pagePathsMap,
-  })
+  return res.json(navigation)
 }
 
 export default handler

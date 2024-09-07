@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { fetchNavigationFromApi } from '@/src/services/navigation/fetchNavigation'
 import { NavigationConfig } from '@/src/services/navigation/typesNavigation'
 
 // Inspired by City Library - Navikronos custom plugin
 // https://github.com/bratislava/mestskakniznica.sk/blob/dfef31c799e1a903af4fa30aa1be5c3f27ae5418/next/navikronos/getNavikronosMiddleware.ts
 
 /**
- * This middleware rewrites path based on given path and data from Strapi "Sitemap" content type.
- * The logic of rewrites lives in api handler, to be able to use our graphql client.
- * (it's not possible to use graphql client in middleware, because it depends on node runtime and middleware uses edge runtime)
+ * This middleware rewrites path based on given path and data from Strapi "Navigation" content type.
  *
  * @param config
  */
@@ -17,7 +15,7 @@ import { NavigationConfig } from '@/src/services/navigation/typesNavigation'
 export const getNavigationMiddleware = (config: NavigationConfig) => {
   // eslint-disable-next-line consistent-return,sonarjs/cognitive-complexity
   return async (request: NextRequest) => {
-    const { contentTypePathPrefixesMap } = await fetchNavigation(config)
+    const { contentTypePathPrefixesMap } = await fetchNavigationFromApi(config)
 
     const pathnameString = request.nextUrl.pathname
     const pathname = pathnameString.split('/')

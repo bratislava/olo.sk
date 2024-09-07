@@ -14628,57 +14628,6 @@ export type OpeningTimeEntityFragment = {
   } | null
 }
 
-export type ParentPageFragment = { __typename?: 'Page'; slug: string; title: string }
-
-export type PageParentPagesFragment = {
-  __typename?: 'PageEntity'
-  attributes?: {
-    __typename?: 'Page'
-    slug: string
-    title: string
-    parentPage?: {
-      __typename?: 'PageEntityResponse'
-      data?: {
-        __typename?: 'PageEntity'
-        attributes?: {
-          __typename?: 'Page'
-          slug: string
-          title: string
-          parentPage?: {
-            __typename?: 'PageEntityResponse'
-            data?: {
-              __typename?: 'PageEntity'
-              attributes?: {
-                __typename?: 'Page'
-                slug: string
-                title: string
-                parentPage?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename?: 'PageEntity'
-                    attributes?: {
-                      __typename?: 'Page'
-                      slug: string
-                      title: string
-                      parentPage?: {
-                        __typename?: 'PageEntityResponse'
-                        data?: {
-                          __typename?: 'PageEntity'
-                          attributes?: { __typename?: 'Page'; slug: string; title: string } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-            } | null
-          } | null
-        } | null
-      } | null
-    } | null
-  } | null
-}
-
 export type ChildPageFragment = { __typename?: 'Page'; slug: string; title: string }
 
 export type PageChildPagesFragment = {
@@ -14754,6 +14703,7 @@ export type PageEntityFragment = {
     __typename?: 'Page'
     perex?: string | null
     alias?: string | null
+    updatedAt?: any | null
     title: string
     slug: string
     header?: Array<
@@ -16878,6 +16828,7 @@ export type PagesQuery = {
         __typename?: 'Page'
         perex?: string | null
         alias?: string | null
+        updatedAt?: any | null
         title: string
         slug: string
         header?: Array<
@@ -19009,6 +18960,7 @@ export type PageBySlugQuery = {
         __typename?: 'Page'
         perex?: string | null
         alias?: string | null
+        updatedAt?: any | null
         title: string
         slug: string
         header?: Array<
@@ -21119,50 +21071,6 @@ export type PageBySlugQuery = {
           | { __typename: 'Error' }
           | null
         > | null
-        parentPage?: {
-          __typename?: 'PageEntityResponse'
-          data?: {
-            __typename?: 'PageEntity'
-            attributes?: {
-              __typename?: 'Page'
-              slug: string
-              title: string
-              parentPage?: {
-                __typename?: 'PageEntityResponse'
-                data?: {
-                  __typename?: 'PageEntity'
-                  attributes?: {
-                    __typename?: 'Page'
-                    slug: string
-                    title: string
-                    parentPage?: {
-                      __typename?: 'PageEntityResponse'
-                      data?: {
-                        __typename?: 'PageEntity'
-                        attributes?: {
-                          __typename?: 'Page'
-                          slug: string
-                          title: string
-                          parentPage?: {
-                            __typename?: 'PageEntityResponse'
-                            data?: {
-                              __typename?: 'PageEntity'
-                              attributes?: {
-                                __typename?: 'Page'
-                                slug: string
-                                title: string
-                              } | null
-                            } | null
-                          } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-            } | null
-          } | null
-        } | null
       } | null
     }>
   } | null
@@ -25043,48 +24951,6 @@ export const MenuEntityFragmentDoc = gql`
   }
   ${MenuFragmentDoc}
 `
-export const ParentPageFragmentDoc = gql`
-  fragment ParentPage on Page {
-    slug
-    title
-  }
-`
-export const PageParentPagesFragmentDoc = gql`
-  fragment PageParentPages on PageEntity {
-    attributes {
-      ...ParentPage
-      parentPage {
-        data {
-          attributes {
-            ...ParentPage
-            parentPage {
-              data {
-                attributes {
-                  ...ParentPage
-                  parentPage {
-                    data {
-                      attributes {
-                        ...ParentPage
-                        parentPage {
-                          data {
-                            attributes {
-                              ...ParentPage
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${ParentPageFragmentDoc}
-`
 export const ChildPageFragmentDoc = gql`
   fragment ChildPage on Page {
     slug
@@ -25818,7 +25684,7 @@ export const PageSectionsFragmentDoc = gql`
 `
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
-    ...PageSlugEntity
+    ...PageCardEntity
     attributes {
       perex
       alias
@@ -25830,7 +25696,7 @@ export const PageEntityFragmentDoc = gql`
       }
     }
   }
-  ${PageSlugEntityFragmentDoc}
+  ${PageCardEntityFragmentDoc}
   ${HeaderSectionsFragmentDoc}
   ${PageSectionsFragmentDoc}
 `
@@ -26193,12 +26059,10 @@ export const PageBySlugDocument = gql`
     pages(filters: { slug: { eq: $slug } }, locale: $locale) {
       data {
         ...PageEntity
-        ...PageParentPages
       }
     }
   }
   ${PageEntityFragmentDoc}
-  ${PageParentPagesFragmentDoc}
 `
 export const PageRedirectByAliasDocument = gql`
   query PageRedirectByAlias($alias: String!, $locale: I18NLocaleCode!) {

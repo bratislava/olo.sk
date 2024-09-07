@@ -12,10 +12,14 @@ import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHead
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { ArticleEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { isDefined } from '@/src/utils/isDefined'
 
 type PageProps = {
   general: GeneralQuery
+  navigation: NavigationObject
   entity: ArticleEntityFragment
 }
 
@@ -56,9 +60,10 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ articles: entities }, general, translations] = await Promise.all([
+  const [{ articles: entities }, general, navigation, translations] = await Promise.all([
     client.ArticleBySlug({ slug, locale }),
     client.General({ locale }),
+    fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
 
@@ -71,13 +76,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     props: {
       entity,
       general,
+      navigation,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
   }
 }
 
-const Page = ({ entity, general }: PageProps) => {
+const Page = ({ entity, general, navigation }: PageProps) => {
   const { t } = useTranslation()
 
   if (!entity.attributes) {
@@ -90,7 +96,7 @@ const Page = ({ entity, general }: PageProps) => {
   const filteredGalleryImages = gallery?.data.filter(isDefined) ?? []
 
   return (
-    <GeneralContextProvider general={general}>
+    <GeneralContextProvider general={general} navigation={navigation}>
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>

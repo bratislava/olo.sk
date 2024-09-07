@@ -12,10 +12,14 @@ import ServicePageHeader from '@/src/components/sections/headers/ServicePageHead
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, ServiceEntityFragment } from '@/src/services/graphql/api'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 
 type PageProps = {
   general: GeneralQuery
+  navigation: NavigationObject
   entity: ServiceEntityFragment
 }
 
@@ -56,9 +60,10 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ services: entities }, general, translations] = await Promise.all([
+  const [{ services: entities }, general, navigation, translations] = await Promise.all([
     client.ServiceBySlug({ slug, locale }),
     client.General({ locale }),
+    fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
 
@@ -71,13 +76,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     props: {
       entity,
       general,
+      navigation,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
   }
 }
 
-const Page = ({ entity, general }: PageProps) => {
+const Page = ({ entity, general, navigation }: PageProps) => {
   // TODO consider extracting this to a hook for all detail pages
   const servicesParentPage = general.navigation?.data?.attributes?.servicesParentPage?.data
   const breadcrumbs = useMemo(
@@ -87,6 +93,7 @@ const Page = ({ entity, general }: PageProps) => {
     ],
     [servicesParentPage, entity.attributes?.title],
   )
+
   if (!entity.attributes) {
     return null
   }
@@ -94,7 +101,7 @@ const Page = ({ entity, general }: PageProps) => {
   const { title, serviceCategories } = entity.attributes
 
   return (
-    <GeneralContextProvider general={general}>
+    <GeneralContextProvider general={general} navigation={navigation}>
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>

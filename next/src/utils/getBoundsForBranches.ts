@@ -6,7 +6,9 @@ import { isDefined } from '@/src/utils/isDefined'
  * Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/sections/MapSection.tsx
  */
 export const getBoundsForBranches = (branches: (BranchEntityFragment | null | undefined)[]) => {
+  // eslint-disable-next-line unicorn/no-array-callback-reference
   const latitudes = branches.map((branch) => branch?.attributes?.latitude).filter(isDefined) ?? []
+  // eslint-disable-next-line unicorn/no-array-callback-reference
   const longitudes = branches.map((branch) => branch?.attributes?.longitude).filter(isDefined) ?? []
 
   return [

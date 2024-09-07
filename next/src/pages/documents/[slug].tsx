@@ -73,13 +73,13 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
 const Page = ({ entity, general, navigation }: PageProps) => {
   // TODO consider extracting this to a hook for all detail pages
-  const documentsParentPage = general.navigation?.data?.attributes?.documentsParentPage?.data
+  const parentPagePath = navigation.contentTypePathPrefixesMap.document ?? ''
   const breadcrumbs = useMemo(
     () => [
-      ...getPageBreadcrumbs(documentsParentPage),
+      ...getPageBreadcrumbs(parentPagePath, navigation.pagePathsMap),
       { title: entity.attributes?.title ?? '', path: null },
     ],
-    [documentsParentPage, entity.attributes?.title],
+    [entity.attributes?.title, navigation.pagePathsMap, parentPagePath],
   )
 
   if (!entity.attributes) {

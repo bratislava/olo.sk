@@ -25,6 +25,7 @@ export type MixedResults =
 export type MeiliEntity = ({ type: 'page' } & PageMeili) | ({ type: 'article' } & ArticleMeili)
 
 export type PageMeili = Omit<Page, '__typename' | 'childPages'> & {
+  id?: string
   parentPage?: { title: string; slug: string; parentPage?: PageMeili }
 }
 

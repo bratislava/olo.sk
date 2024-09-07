@@ -269,6 +269,17 @@ export interface SectionsHeroHomepageSection extends Schema.Component {
   }
 }
 
+export interface SectionsGlobalSearch extends Schema.Component {
+  collectionName: 'components_sections_global_searches'
+  info: {
+    displayName: 'Vyh\u013Ead\u00E1vanie'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+  }
+}
+
 export interface SectionsFormCtaBanner extends Schema.Component {
   collectionName: 'components_sections_form_cta_banners'
   info: {
@@ -741,6 +752,7 @@ export interface ItemsMenuHeader extends Schema.Component {
   }
   attributes: {
     contactsLink: Attribute.Component<'items.link'>
+    searchLink: Attribute.Component<'items.link'>
   }
 }
 
@@ -1006,6 +1018,7 @@ declare module '@strapi/types' {
       'sections.image-and-text': SectionsImageAndText
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
       'sections.hero-homepage-section': SectionsHeroHomepageSection
+      'sections.global-search': SectionsGlobalSearch
       'sections.form-cta-banner': SectionsFormCtaBanner
       'sections.files': SectionsFiles
       'sections.faq': SectionsFaq

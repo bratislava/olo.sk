@@ -353,6 +353,10 @@ fragment VacanciesSection on ComponentSectionsVacancies {
   backgroundColorVacancies: backgroundColor
 }
 
+fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
+  title
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -458,5 +462,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsVacancies {
     ...VacanciesSection
+  }
+
+  ... on ComponentSectionsGlobalSearch {
+    ...GlobalSearchSection
   }
 }

@@ -47,6 +47,9 @@ fragment MenuHeader on ComponentItemsMenuHeader {
   contactsLink {
     ...Link
   }
+  searchLink {
+    ...Link
+  }
 }
 
 fragment Menu on Menu {

@@ -15,13 +15,16 @@ import AliasSection from '@/src/components/sections/AliasSection'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
-import { parseTopLevelPages } from '@/src/services/navigation/parseTopLevelPages'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
 import { prefetchPageSections } from '@/src/utils/prefetchPageSections'
 
 type PageProps = {
   general: GeneralQuery
+  navigation: NavigationObject
   entity: PageEntityFragment
   dehydratedState: DehydratedState
 }
@@ -31,13 +34,13 @@ type StaticParams = {
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
-  const { topLevelPages } = await client.General({ locale: 'sk' }) // TODO locale
-
-  const { pagePathsMap } = parseTopLevelPages(topLevelPages?.data ?? [])
+  const { pagePathsMap } = await fetchNavigation(navigationConfig) // TODO host
 
   // eslint-disable-next-line unicorn/prefer-spread
-  const valuesArray = Array.from(pagePathsMap.values()) as [{ label: string; path: string }]
-  const paths = valuesArray.map(({ path }) => path)
+  const paths = Array.from(Object.values(pagePathsMap))
+    // eslint-disable-next-line unicorn/no-array-callback-reference
+    .filter(isDefined)
+    .map(({ path }) => path)
 
   // eslint-disable-next-line no-console
   console.log(`Pages: Generated static paths for ${paths.length} pages.`)
@@ -61,21 +64,18 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ pages: entities }, { pages: aliasEntities }, general, translations] = await Promise.all([
-    client.PageBySlug({ slug, locale }),
-    client.PageRedirectByAlias({ alias: slug, locale }),
-    client.General({ locale }),
-    serverSideTranslations(locale),
-  ])
-
-  const { pagePathsMap } = parseTopLevelPages(
-    // eslint-disable-next-line unicorn/no-array-callback-reference
-    general.topLevelPages?.data.filter(isDefined) ?? [],
-  )
+  const [{ pages: entities }, { pages: aliasEntities }, general, navigation, translations] =
+    await Promise.all([
+      client.PageBySlug({ slug, locale }),
+      client.PageRedirectByAlias({ alias: slug, locale }),
+      client.General({ locale }),
+      fetchNavigation(navigationConfig),
+      serverSideTranslations(locale),
+    ])
 
   const aliasPageSlug = aliasEntities?.data[0]?.attributes?.slug
   if (aliasPageSlug) {
-    const aliasRedirectPath = pagePathsMap.get(aliasPageSlug)?.path
+    const aliasRedirectPath = navigation.pagePathsMap[aliasPageSlug]?.path
     if (!aliasRedirectPath) {
       return { notFound: true }
     }
@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 
   /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
-  const pagePath = pagePathsMap.get(slug)?.path
+  const pagePath = navigation.pagePathsMap[slug]?.path
 
   if (!pagePath || pagePath !== pathJoined) {
     return { notFound: true }
@@ -106,6 +106,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     props: {
       entity,
       general,
+      navigation,
       dehydratedState,
       ...translations,
     },
@@ -113,7 +114,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 }
 
-const Page = ({ entity: page, general, dehydratedState }: PageProps) => {
+const Page = ({ entity: page, general, navigation, dehydratedState }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook
@@ -138,7 +139,7 @@ const Page = ({ entity: page, general, dehydratedState }: PageProps) => {
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <GeneralContextProvider general={general}>
+      <GeneralContextProvider general={general} navigation={navigation}>
         {/* TODO common Head/Seo component */}
         <Head>
           <title>{title}</title>

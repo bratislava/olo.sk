@@ -12,10 +12,14 @@ import DocumentPageHeader from '@/src/components/sections/headers/DocumentPageHe
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { DocumentEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 
 type PageProps = {
   general: GeneralQuery
+  navigation: NavigationObject
   entity: DocumentEntityFragment
 }
 
@@ -44,9 +48,10 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ documents: entities }, general, translations] = await Promise.all([
+  const [{ documents: entities }, general, navigation, translations] = await Promise.all([
     client.DocumentBySlug({ slug }),
     client.General({ locale }),
+    fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
 
@@ -59,13 +64,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     props: {
       entity,
       general,
+      navigation,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
   }
 }
 
-const Page = ({ entity, general }: PageProps) => {
+const Page = ({ entity, general, navigation }: PageProps) => {
   // TODO consider extracting this to a hook for all detail pages
   const documentsParentPage = general.navigation?.data?.attributes?.documentsParentPage?.data
   const breadcrumbs = useMemo(
@@ -83,7 +89,7 @@ const Page = ({ entity, general }: PageProps) => {
   const { title } = entity.attributes
 
   return (
-    <GeneralContextProvider general={general}>
+    <GeneralContextProvider general={general} navigation={navigation}>
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>

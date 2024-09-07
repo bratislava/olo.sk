@@ -10,6 +10,7 @@ type BranchCardProps = {
   linkHref: string
   address: string
   imgSrc?: string
+  variant?: 'unstyled' | 'background-white' | 'background-yellow' // TODO: New prop was added, since the card displayed in BranchesMapSection needs to be unstyled, which cannot be achieved via passing in the className prop
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -23,6 +24,7 @@ const BranchCard = ({
   address,
   linkHref,
   imgSrc,
+  variant,
   hasWhiteBackground = true,
   className,
 }: BranchCardProps) => {
@@ -30,7 +32,7 @@ const BranchCard = ({
 
   return (
     <CardBase
-      variant="background-white"
+      variant={variant}
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
     >

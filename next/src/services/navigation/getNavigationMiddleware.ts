@@ -17,7 +17,7 @@ import { NavigationConfig } from '@/src/services/navigation/typesNavigation'
 export const getNavigationMiddleware = (config: NavigationConfig) => {
   // eslint-disable-next-line consistent-return,sonarjs/cognitive-complexity
   return async (request: NextRequest) => {
-    const { contentTypePathPrefixesMap } = await fetchNavigation(config, request.nextUrl.host)
+    const { contentTypePathPrefixesMap } = await fetchNavigation(config)
 
     const pathnameString = request.nextUrl.pathname
     const pathname = pathnameString.split('/')

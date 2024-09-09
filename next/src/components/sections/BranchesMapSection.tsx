@@ -5,10 +5,10 @@ import { Map, MapRef, Marker } from 'react-map-gl'
 
 import BranchCard from '@/src/components/common/Card/BranchCard'
 import OloMarker from '@/src/components/common/Icon/OloMarker'
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { KoloHomepageSectionFragment } from '@/src/services/graphql/api'
+import cn from '@/src/utils/cn'
 import { getBoundsForBranches } from '@/src/utils/getBoundsForBranches'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
@@ -23,6 +23,8 @@ type Props = {
 const BranchesMapSection = ({ section }: Props) => {
   const { getFullPath } = useGetFullPath() // TODO: Implementation for branches needs to be written
 
+  // TODO: For cards, iterate via the mainCards array returned from Strapi, not branches
+
   const { title: sectionTitle, text, branches } = section ?? {}
   const mapRef = useRef<MapRef | null>(null)
   // TODO: Correct env usage -> environment
@@ -36,36 +38,30 @@ const BranchesMapSection = ({ section }: Props) => {
   return (
     <SectionContainer
       background="secondary"
-      classNameInner="px-0 pb-8" // TODO: pb-8 is there only for development, it will be deleted later
+      classNameInner="px-0 pb-8 flex flex-col lg:gap-12 lg:pt-12" // TODO: pb-8 is there only for development, it will be deleted later
       className="items-center justify-center"
     >
-      <SectionHeader
-        title={sectionTitle}
-        text={text}
-        className="p-4 lg:py-12"
-        // TODO: Revisit the styling of the section - paddings etc.
-      />
+      <SectionHeader title={sectionTitle} text={text} className="px-4 py-6 lg:p-0" />
 
       <div className="flex flex-col items-center justify-center bg-background-primary lg:overflow-hidden lg:rounded-lg">
-        <ul className="flex w-full flex-col justify-center gap-4 p-4 lg:flex-row lg:gap-8 lg:p-8">
+        <ul className="flex w-full flex-col justify-center divide-x divide-border-default lg:flex-row">
           {filteredBranches
-            .map((branch, index) => {
+            .map((branch) => {
               if (!branch.attributes) return null
-              const { title, address } = branch.attributes
+              const { title, slug, address } = branch.attributes
 
               return (
                 <Fragment key={branch.id}>
-                  {index > 0 ? (
-                    <SidebarDivider className="lg:w-0 lg:border-b-0 lg:border-l" />
-                  ) : null}
                   <li className="grow lg:w-0">
                     <BranchCard
                       title={title}
                       linkHref={getFullPath(branch) ?? '#'} // TODO remove the fallback value
-                      // TODO: The cards should display "Zobraziť detaily" not “Čítať viac”  in the link
                       address={address ?? ''} // TODO remove the fallback value
                       variant="unstyled"
-                      className="size-full"
+                      className={cn('size-full p-4 lg:p-8', {
+                        // TODO: Revisit padding - <ul> should take py-4 lg:py-8
+                        'bg-action-softBackground-pressed': hoveredBranchSlug === slug,
+                      })}
                     />
                   </li>
                 </Fragment>

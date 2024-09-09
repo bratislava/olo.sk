@@ -31,8 +31,7 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
     setMapDimensions(
       width <= getTailwindBreakpointValue(screens.lg) ? mobileMapDimensions : desktopMapDimensions,
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width]) // No need to include desktopMapDimensions and mobileMapDimensions since they are constants
+  }, [width, mobileMapDimensions, desktopMapDimensions])
 
   const accessToken = environment.mapboxAccessToken
   const username = environment.mapboxUsername

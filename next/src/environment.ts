@@ -22,4 +22,5 @@ export const environment = {
   ),
   mapboxUsername: assertEnv('NEXT_PUBLIC_MAPBOX_USERNAME', process.env.NEXT_PUBLIC_MAPBOX_USERNAME),
   mapboxStyleId: assertEnv('NEXT_PUBLIC_MAPBOX_STYLE_ID', process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID),
+  nextHost: assertEnv('NEXT_PUBLIC_NEXT_HOST', process.env.NEXT_PUBLIC_NEXT_HOST),
 }

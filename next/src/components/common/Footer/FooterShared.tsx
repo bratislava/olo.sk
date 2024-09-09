@@ -63,15 +63,20 @@ export const FooterContacts = ({
 export const FooterBottomLinks = ({ bottomLinks }: FooterFragment) => {
   const { getLinkProps } = useGetLinkProps()
 
-  return bottomLinks?.filter(isDefined).map((bottomLink, index) => {
-    return (
-      <Link
-        variant="underlined"
-        // eslint-disable-next-line react/no-array-index-key
-        key={index}
-        {...getLinkProps(bottomLink)}
-        className="text-border-default"
-      />
-    )
-  })
+  return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {bottomLinks?.filter(isDefined).map((bottomLink, index) => {
+        return (
+          <Link
+            variant="underlined"
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            {...getLinkProps(bottomLink)}
+            className="text-border-default"
+          />
+        )
+      })}
+    </>
+  )
 }

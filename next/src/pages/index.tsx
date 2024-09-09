@@ -1,3 +1,4 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -11,10 +12,15 @@ import ServicesHomepageSection from '@/src/components/sections/hompage/ServicesH
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   homepage: HomepageEntityFragment
   general: GeneralQuery
+  navigation: NavigationObject
 }
 
 export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
@@ -25,9 +31,10 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
     return { notFound: true }
   }
 
-  const [{ homepage }, general, translations] = await Promise.all([
+  const [{ homepage }, general, navigation, translations] = await Promise.all([
     client.Homepage({ locale }),
     client.General({ locale }),
+    fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
 
@@ -36,10 +43,19 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
     return { notFound: true }
   }
 
+  // Prefetch data
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(generalQuery(locale))
+
+  const dehydratedState = dehydrate(queryClient)
+
   return {
     props: {
       homepage: page,
       general,
+      navigation,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
@@ -47,7 +63,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Homepage = ({ homepage, general }: PageProps) => {
+const Homepage = ({ homepage, general, navigation }: PageProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation()
   // const title = useTitle()
@@ -57,38 +73,14 @@ const Homepage = ({ homepage, general }: PageProps) => {
    * https://github.com/bratislava/bratislava.sk/blob/master/next/pages/index.tsx
    */
   return (
-    <GeneralContextProvider general={general}>
+    <GeneralContextProvider general={general} navigation={navigation}>
       <PageLayout>
         <HeroHomepageSection section={homepage.attributes?.heroSection} />
         <ArticlesHomepageSection section={homepage.attributes?.articlesSection} />
         <KoloHomepageSection section={homepage.attributes?.koloSection} />
         <ServicesHomepageSection section={homepage.attributes?.servicesSection} />
-        {/* <HomePageContentPlaceholder /> */}
       </PageLayout>
     </GeneralContextProvider>
-
-    // TODO replace placeholder with proper component based on homepage props. Example below (needs to be a proper component, however):
-
-    //   <Section>
-    //   {homepage.attributes?.slides?.map((slide, index) => (
-    //     <div
-    //       // eslint-disable-next-line react/no-array-index-key
-    //       key={index}
-    //       className="rounded-lg p-6"
-    //       style={{ backgroundColor: slide?.backgroundColor ?? '' }}
-    //     >
-    //       <Typography variant="h1" as="p">
-    //         {slide?.title}
-    //       </Typography>
-    //       <Typography>{slide?.text}</Typography>
-    //       <Typography>{slide?.backgroundColor}</Typography>
-
-    //       {slide?.media.data?.attributes ? (
-    //         <Image src={slide.media.data.attributes.url} alt="" />
-    //       ) : null}
-    //     </div>
-    //   ))}
-    // </Section>
   )
 }
 

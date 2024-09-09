@@ -399,14 +399,12 @@ input ComponentItemsBoardMembersItemInput {
 type ComponentItemsCardSliderCard {
   id: ID!
   image: UploadFileEntityResponse!
-  link: ComponentItemsLink
   text: String
   title: String!
 }
 
 input ComponentItemsCardSliderCardFiltersInput {
   and: [ComponentItemsCardSliderCardFiltersInput]
-  link: ComponentItemsLinkFiltersInput
   not: ComponentItemsCardSliderCardFiltersInput
   or: [ComponentItemsCardSliderCardFiltersInput]
   text: StringFilterInput
@@ -416,7 +414,6 @@ input ComponentItemsCardSliderCardFiltersInput {
 input ComponentItemsCardSliderCardInput {
   id: ID
   image: ID
-  link: ComponentItemsLinkInput
   text: String
   title: String
 }

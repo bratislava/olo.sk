@@ -36,18 +36,19 @@ const CardSliderSection = ({ section }: Props) => {
             desktop={3}
             shiftVariant="byPage"
             controlsVariant="bottom"
-            items={filteredCards.map((card) => {
+            hasVerticalPadding={false}
+            items={filteredCards.map((card, index) => {
               return (
                 <BasicCard
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
                   title={card.title}
                   subtext={card.text}
-                  link={card.link}
                   imgSrc={card.image?.data?.attributes?.url}
-                  // TODO get backgound color from a provider
+                  // TODO get background color from a provider
                   hasWhiteBackground={
                     backgroundColor === Enum_Componentsectionscardslider_Backgroundcolor.Primary
                   }
-                  className="h-full"
                 />
               )
             })}

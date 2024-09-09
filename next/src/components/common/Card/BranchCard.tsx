@@ -33,10 +33,11 @@ const BranchCard = ({
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
+      title={title}
     >
-      <div className="flex flex-col items-start gap-6 p-4 lg:gap-4">
+      <div className="flex h-full flex-col items-start gap-6 p-4 lg:gap-4">
         <CardImage imgSrc={imgSrc} className="aspect-square size-16 rounded-lg lg:size-32" />
-        <div className="flex flex-col gap-6">
+        <div className="flex h-full flex-col justify-between gap-6">
           <div className="flex flex-col gap-2">
             <Typography
               variant="h4"

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import React, { Fragment, useMemo, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { Map, MapRef, Marker } from 'react-map-gl'
 
-import { MapMarkerKoloSvg } from '@/src/assets/pictograms'
 import BranchCard from '@/src/components/common/Card/BranchCard'
+import OloMarker from '@/src/components/common/Icon/OloMarker'
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
@@ -25,12 +25,13 @@ const BranchesMapSection = ({ section }: Props) => {
 
   const { title: sectionTitle, text, branches } = section ?? {}
   const mapRef = useRef<MapRef | null>(null)
+  // TODO: Correct env usage -> environment
   const mapStyle = `mapbox://styles/${process.env.NEXT_PUBLIC_MAPBOX_USERNAME}/${process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID}`
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
-  const filteredBranches = useMemo(() => branches?.data.filter(isDefined) ?? [], [branches])
+  const filteredBranches = branches?.data.filter(isDefined) ?? []
   const [hoveredBranchSlug, setHoveredBranchSlug] = useState<string | null>(null)
-  const initialBounds = useMemo(() => getBoundsForBranches(filteredBranches), [filteredBranches])
+  const initialBounds = getBoundsForBranches(filteredBranches)
 
   return (
     <SectionContainer
@@ -91,7 +92,7 @@ const BranchesMapSection = ({ section }: Props) => {
             cooperativeGestures
           >
             {filteredBranches.map((branch) => {
-              const { latitude, longitude, slug } = branch.attributes ?? {}
+              const { title, slug, latitude, longitude } = branch.attributes ?? {}
               if (!latitude || !longitude) return null
 
               return (
@@ -107,7 +108,10 @@ const BranchesMapSection = ({ section }: Props) => {
                       onMouseEnter={() => setHoveredBranchSlug(slug ?? null)}
                       onMouseLeave={() => setHoveredBranchSlug(null)}
                     >
-                      <MapMarkerKoloSvg className="text-action-background-default hover:text-action-background-hover" />
+                      <OloMarker
+                        hasKoloStyle={!!title?.includes('KOLO')}
+                        className="text-action-background-default hover:text-action-background-hover"
+                      />
                     </Link>
                   </motion.button>
                 </Marker>

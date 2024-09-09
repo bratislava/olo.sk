@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
-import CardBase from '@/src/components/common/Card/CardBase'
+import CardBase, { CardBaseProps } from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
 import Typography from '@/src/components/common/Typography/Typography'
 
@@ -10,10 +10,9 @@ type BranchCardProps = {
   linkHref: string
   address: string
   imgSrc?: string
-  variant?: 'unstyled' | 'background-white' | 'background-yellow' // TODO: New prop was added, since the card displayed in BranchesMapSection needs to be unstyled, which cannot be achieved via passing in the className prop
   hasWhiteBackground?: boolean
   className?: string
-}
+} & Pick<CardBaseProps, 'variant'>
 
 /**
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1205-14699&mode=dev

@@ -16,6 +16,7 @@ import { GeneralQuery, ServiceEntityFragment } from '@/src/services/graphql/api'
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { NOT_FOUND } from '@/src/utils/conts'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { generalQuery } from '@/src/utils/queryOptions'
 
@@ -57,9 +58,8 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   // eslint-disable-next-line no-console
   console.log(`Revalidating Service ${locale} ${slug}`)
 
-  // TODO || !locale
   if (!slug || !locale) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
   const [{ services: entities }, general, navigation, translations] = await Promise.all([
@@ -71,7 +71,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
   const entity = entities?.data[0]
   if (!entity) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
   // Prefetch data

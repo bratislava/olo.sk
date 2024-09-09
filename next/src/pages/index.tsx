@@ -15,6 +15,7 @@ import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { NOT_FOUND } from '@/src/utils/conts'
 import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
@@ -28,7 +29,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
   console.log(`Revalidating homepage ${locale}.`)
 
   if (!locale) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
   const [{ homepage }, general, navigation, translations] = await Promise.all([
@@ -40,7 +41,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
 
   const page = homepage?.data
   if (!page) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
   // Prefetch data

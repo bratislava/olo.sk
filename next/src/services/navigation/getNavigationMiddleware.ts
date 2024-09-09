@@ -70,5 +70,7 @@ export const getNavigationMiddleware = (config: NavigationConfig) => {
 
       return NextResponse.rewrite(newUrl)
     }
+
+    return NextResponse.next()
   }
 }

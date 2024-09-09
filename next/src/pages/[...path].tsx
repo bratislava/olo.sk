@@ -18,6 +18,7 @@ import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { NOT_FOUND } from '@/src/utils/conts'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
 import { prefetchPageSections } from '@/src/utils/prefetchPageSections'
@@ -61,7 +62,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   console.log(`Revalidating page ${locale === 'en' ? '/en' : ''}${pathJoined}`)
 
   if (!path || !slug || !locale) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
   const [{ pages: entities }, { pages: aliasEntities }, general, navigation, translations] =
@@ -73,13 +74,18 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
       serverSideTranslations(locale),
     ])
 
+  // Check if the page with this alias exists (get its slug)
   const aliasPageSlug = aliasEntities?.data[0]?.attributes?.slug
   if (aliasPageSlug) {
+    // Get the full path for the page by its slug
     const aliasRedirectPath = navigation.pagePathsMap[aliasPageSlug]?.path
+    // Double check if the path is not undefined
+    // This should never happen. If it does, something is wrong, because pagePathsMap should contain all pages.
     if (!aliasRedirectPath) {
-      return { notFound: true }
+      return NOT_FOUND
     }
 
+    // Redirect to the new path
     return {
       redirect: {
         destination: aliasRedirectPath,
@@ -90,14 +96,14 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
 
   const entity = entities?.data[0]
   if (!entity) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
   /** Ensure to be able to open the page only on its own full path. Otherwise, whatever path that ends with the slug would work. */
   const pagePath = navigation.pagePathsMap[slug]?.path
 
   if (!pagePath || pagePath !== pathJoined) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
   // Prefetch data

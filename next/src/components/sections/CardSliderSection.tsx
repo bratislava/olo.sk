@@ -29,7 +29,7 @@ const CardSliderSection = ({ section }: Props) => {
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColor} className="py-6 lg:py-18">
-      <ul className="flex flex-col gap-6 lg:gap-12">
+      <div className="flex flex-col gap-6 lg:gap-12">
         <SectionHeader title={title} text={text} />
         {filteredCards.length > 0 ? (
           <ResponsiveCarousel
@@ -39,23 +39,22 @@ const CardSliderSection = ({ section }: Props) => {
             hasVerticalPadding={false}
             items={filteredCards.map((card, index) => {
               return (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={index} className="h-full [&>*]:h-full">
-                  <BasicCard
-                    title={card.title}
-                    subtext={card.text}
-                    imgSrc={card.image?.data?.attributes?.url}
-                    // TODO get backgound color from a provider
-                    hasWhiteBackground={
-                      backgroundColor === Enum_Componentsectionscardslider_Backgroundcolor.Primary
-                    }
-                  />
-                </li>
+                <BasicCard
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  title={card.title}
+                  subtext={card.text}
+                  imgSrc={card.image?.data?.attributes?.url}
+                  // TODO get background color from a provider
+                  hasWhiteBackground={
+                    backgroundColor === Enum_Componentsectionscardslider_Backgroundcolor.Primary
+                  }
+                />
               )
             })}
           />
         ) : null}
-      </ul>
+      </div>
     </SectionContainer>
   )
 }

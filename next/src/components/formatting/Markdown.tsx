@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { PropsWithChildren, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import supersub from 'remark-supersub'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
 import Link from '@/src/components/common/Link/Link'
@@ -61,7 +62,15 @@ PropsWithChildren<Record<any, any>>) => {
 const Markdown = ({ content, className }: MarkdownProps) => {
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkUnwrapImages, remarkGfm]}
+      remarkPlugins={[
+        remarkUnwrapImages,
+        [
+          remarkGfm,
+          // https://stackoverflow.com/a/78076200
+          { singleTilde: false },
+        ],
+        supersub,
+      ]}
       className={cn(styles.markdown, className)}
       components={{
         // Standard components: a, blockquote, br, code, em, h1, h2, h3, h4, h5, h6, hr, img, li, ol, p, pre, strong, and ul
@@ -168,7 +177,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           </ul>
         ),
         // Remark-gfm components: del, input, table, tbody, td, th, thead, and tr
-        // FIXME tables need revisit - align, spacing, etc.
+        // TODO tables need revisit - align, spacing, etc.
         table: ({ children, node, ...props }) => (
           <RichTextTable {...props}>{children}</RichTextTable>
         ),
@@ -200,7 +209,6 @@ const Markdown = ({ content, className }: MarkdownProps) => {
           </tr>
         ),
         td: ({ children }) => <td className="px-6">{children}</td>,
-        // th: ...
         th: ({ children }) => (
           <th className="bg-background-secondary px-6 text-left font-bold">{children}</th>
         ),

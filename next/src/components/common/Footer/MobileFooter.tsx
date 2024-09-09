@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import React from 'react'
 
@@ -5,17 +6,19 @@ import { FooterBottomLinks, FooterContacts } from '@/src/components/common/Foote
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import { isDefined } from '@/src/utils/isDefined'
+import { generalQuery } from '@/src/utils/queryOptions'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 const MobileFooter = () => {
   const { getLinkProps } = useGetLinkProps()
-  const { t } = useTranslation()
-  const { footer } = useGeneralContext()
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
+
+  const { data } = useQuery(generalQuery(locale))
 
   const { text, facebookUrl, instagramUrl, linkedinUrl, columns, bottomLinks } =
-    footer?.data?.attributes ?? {}
+    data?.footer?.data?.attributes ?? {}
 
   return (
     <SectionContainer className="bg-content-primary">

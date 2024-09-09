@@ -1,3 +1,4 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -14,6 +15,7 @@ import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   homepage: HomepageEntityFragment
@@ -41,11 +43,19 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
     return { notFound: true }
   }
 
+  // Prefetch data
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(generalQuery(locale))
+
+  const dehydratedState = dehydrate(queryClient)
+
   return {
     props: {
       homepage: page,
       general,
       navigation,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10

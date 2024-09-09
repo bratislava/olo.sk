@@ -1,3 +1,4 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -17,6 +18,7 @@ import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
+import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   general: GeneralQuery
@@ -61,11 +63,19 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
+  // Prefetch data
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(generalQuery(locale))
+
+  const dehydratedState = dehydrate(queryClient)
+
   return {
     props: {
       entity,
       general,
       navigation,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10

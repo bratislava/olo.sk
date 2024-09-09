@@ -1,4 +1,4 @@
-import { DehydratedState, HydrationBoundary } from '@tanstack/react-query'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
@@ -21,12 +21,12 @@ import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
 import { prefetchPageSections } from '@/src/utils/prefetchPageSections'
+import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   general: GeneralQuery
   navigation: NavigationObject
   entity: PageEntityFragment
-  dehydratedState: DehydratedState
 }
 
 type StaticParams = {
@@ -100,7 +100,13 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const dehydratedState = await prefetchPageSections(entity, locale)
+  // Prefetch data
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(generalQuery(locale))
+  await prefetchPageSections(queryClient, entity, locale)
+
+  const dehydratedState = dehydrate(queryClient)
 
   return {
     props: {
@@ -114,7 +120,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 }
 
-const Page = ({ entity: page, general, navigation, dehydratedState }: PageProps) => {
+const Page = ({ entity: page, general, navigation }: PageProps) => {
   const searchParams = useSearchParams()
 
   // TODO consider extracting url-based scrolling on load to a separate hook
@@ -145,34 +151,27 @@ const Page = ({ entity: page, general, navigation, dehydratedState }: PageProps)
   const [header] = page.attributes.header ?? []
 
   return (
-    <HydrationBoundary state={dehydratedState}>
-      <GeneralContextProvider general={general} navigation={navigation}>
-        {/* TODO common Head/Seo component */}
-        <Head>
-          <title>{title}</title>
-          {perex && <meta name="description" content={perex} />}
-        </Head>
+    <GeneralContextProvider general={general} navigation={navigation}>
+      {/* TODO common Head/Seo component */}
+      <Head>
+        <title>{title}</title>
+        {perex && <meta name="description" content={perex} />}
+      </Head>
 
-        <PageLayout>
-          {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
-          {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
-            <SectionContainer background="secondary">
-              <Breadcrumbs breadcrumbs={breadcrumbs} />
-            </SectionContainer>
-          )}
-          <PageHeaderSections
-            header={header}
-            title={title}
-            perex={perex}
-            breadcrumbs={breadcrumbs}
-          />
+      <PageLayout>
+        {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
+        {header?.__typename !== 'ComponentHeaderSectionsSideImage' && (
+          <SectionContainer background="secondary">
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+          </SectionContainer>
+        )}
+        <PageHeaderSections header={header} title={title} perex={perex} breadcrumbs={breadcrumbs} />
 
-          <Sections sections={sections?.filter(isDefined) ?? []} />
+        <Sections sections={sections?.filter(isDefined) ?? []} />
 
-          <AliasSection alias={alias} />
-        </PageLayout>
-      </GeneralContextProvider>
-    </HydrationBoundary>
+        <AliasSection alias={alias} />
+      </PageLayout>
+    </GeneralContextProvider>
   )
 }
 

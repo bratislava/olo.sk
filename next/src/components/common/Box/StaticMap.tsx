@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useWindowSize } from 'usehooks-ts'
 
 import ImagePlaceholder from '@/src/components/common/ImagePlaceholder'
+import { environment } from '@/src/environment'
 import cn from '@/src/utils/cn'
 import { getTailwindBreakpointValue } from '@/src/utils/getTailwindBreakpointValue'
 import screens from '@/tailwind.config.screens'
@@ -19,6 +20,7 @@ type StaticMapProps = {
 
 const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const { width } = useWindowSize()
+  // TODO: Edit breakpoints based on the changes in dimensions
   const desktopMapDimensions = { width: 265, height: 190 } // Based on the design, with slight adjustments for the Mapbox logo to be visible
   const mobileMapDimensions = { width: 648, height: 440 }
   const [mapDimensions, setMapDimensions] = useState(desktopMapDimensions)
@@ -31,11 +33,11 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
       width <= getTailwindBreakpointValue(screens.lg) ? mobileMapDimensions : desktopMapDimensions,
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width])
+  }, [width]) // No need to include desktopMapDimensions and mobileMapDimensions since they are constants
 
-  const accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
-  const username = process.env.NEXT_PUBLIC_MAPBOX_USERNAME
-  const styleId = process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID
+  const accessToken = environment.mapboxAccessToken
+  const username = environment.mapboxUsername
+  const styleId = environment.mapboxStyleId
 
   const markerUrl = encodeURIComponent(
     'https://cdn-api.bratislava.sk/olo-strapi/upload/pin_e623819d9f.png',
@@ -48,12 +50,7 @@ const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   }, [latitude, longitude, accessToken, username, styleId, markerUrl, mapDimensions])
 
   return (
-    <div
-      className={cn(
-        'relative h-[14.45rem] w-full overflow-hidden rounded-t-[0.438rem] lg:w-[20.25rem] lg:rounded-l-[0.438rem] lg:rounded-tr-none',
-        className,
-      )}
-    >
+    <div className={cn('relative h-[12.25rem] w-full lg:h-full lg:w-[20.25rem]', className)}>
       {staticMapboxUrl ? (
         <Image
           src={staticMapboxUrl}

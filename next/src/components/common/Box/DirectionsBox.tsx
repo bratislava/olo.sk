@@ -1,7 +1,6 @@
-import { Fragment, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import StaticMap from '@/src/components/common/Box/StaticMap'
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import cn from '@/src/utils/cn'
 
 type DirectionsBoxProps = {
@@ -21,19 +20,13 @@ const DirectionsBox = ({ latitude, longitude, children, className }: DirectionsB
   return (
     <div
       className={cn(
-        'flex flex-col rounded-lg border border-border-default bg-background-primary lg:flex-row',
+        'flex w-[18rem] flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary lg:h-[13.75rem] lg:w-full lg:flex-row',
         className,
       )}
     >
       <StaticMap latitude={latitude} longitude={longitude} />
-      <div className="flex flex-col px-4 lg:px-6 lg:py-3">
-        {children.map((child, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Fragment key={index}>
-            {index > 0 && <SidebarDivider />}
-            {child}
-          </Fragment>
-        ))}
+      <div className="flex flex-col justify-center divide-y divide-border-default px-4 lg:px-6 lg:py-3">
+        {children}
       </div>
     </div>
   )

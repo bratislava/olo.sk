@@ -65,7 +65,7 @@ const config: StorybookConfig = {
         },
       },
     )
-    
+
     return config
   },
   // https://storybook.js.org/docs/configure/environment-variables#using-storybook-configuration

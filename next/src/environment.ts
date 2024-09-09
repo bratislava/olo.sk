@@ -16,4 +16,10 @@ export const environment = {
   nodeEnv: assertEnv('NODE_ENV', process.env.NODE_ENV),
   deployment: assertEnv('NEXT_PUBLIC_DEPLOYMENT', process.env.NEXT_PUBLIC_DEPLOYMENT),
   strapiUrl: assertEnv('NEXT_PUBLIC_STRAPI_URL', process.env.NEXT_PUBLIC_STRAPI_URL),
+  mapboxAccessToken: assertEnv(
+    'NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN',
+    process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
+  ),
+  mapboxUsername: assertEnv('NEXT_PUBLIC_MAPBOX_USERNAME', process.env.NEXT_PUBLIC_MAPBOX_USERNAME),
+  mapboxStyleId: assertEnv('NEXT_PUBLIC_MAPBOX_STYLE_ID', process.env.NEXT_PUBLIC_MAPBOX_STYLE_ID),
 }

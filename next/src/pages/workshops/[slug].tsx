@@ -1,3 +1,4 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -12,11 +13,17 @@ import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, WorkshopEntityFragment } from '@/src/services/graphql/api'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { NOT_FOUND } from '@/src/utils/conts'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
+import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   general: GeneralQuery
+  navigation: NavigationObject
   entity: WorkshopEntityFragment
 }
 
@@ -52,41 +59,52 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   // eslint-disable-next-line no-console
   console.log(`Revalidating Workshop ${locale} ${slug}`)
 
-  // TODO || !locale
   if (!slug || !locale) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
-  const [{ workshops: entities }, general, translations] = await Promise.all([
+  const [{ workshops: entities }, general, navigation, translations] = await Promise.all([
     client.WorkshopBySlug({ slug }),
     client.General({ locale }),
+    fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
 
   const entity = entities?.data[0]
   if (!entity) {
-    return { notFound: true }
+    return NOT_FOUND
   }
+
+  // Prefetch data
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(generalQuery(locale))
+
+  const dehydratedState = dehydrate(queryClient)
 
   return {
     props: {
       entity,
       general,
+      navigation,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
   }
 }
 
-const Page = ({ entity, general }: PageProps) => {
+const Page = ({ entity, general, navigation }: PageProps) => {
   // TODO consider extracting this to a hook for all detail pages
-  const workshopsParentPage = general.navigation?.data?.attributes?.workshopsParentPage?.data
+  const parentPagePath = navigation.contentTypePathPrefixesMap.workshop ?? ''
   const breadcrumbs = useMemo(
-    () => [
-      ...getPageBreadcrumbs(workshopsParentPage),
-      { title: entity.attributes?.title ?? '', path: null },
-    ],
-    [workshopsParentPage, entity.attributes?.title],
+    () =>
+      [
+        ...getPageBreadcrumbs(parentPagePath, navigation.pagePathsMap),
+        { title: entity.attributes?.title ?? '', path: null },
+        // eslint-disable-next-line unicorn/no-array-callback-reference
+      ].filter(isDefined),
+    [entity.attributes?.title, navigation.pagePathsMap, parentPagePath],
   )
 
   if (!entity.attributes) {
@@ -96,7 +114,7 @@ const Page = ({ entity, general }: PageProps) => {
   const { title, sections } = entity.attributes
 
   return (
-    <GeneralContextProvider general={general}>
+    <GeneralContextProvider general={general} navigation={navigation}>
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>

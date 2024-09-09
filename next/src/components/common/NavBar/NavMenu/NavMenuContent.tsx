@@ -37,32 +37,27 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         <ul
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
           onClick={(event) => event.stopPropagation()}
-          className="grid w-full grid-cols-3 py-8"
+          className="grid w-full grid-cols-3 gap-8 divide-x divide-border-default border-b border-border-default py-8"
         >
           {navMenuCells.map((cell, index) => {
+            const leftPadding = { 'pl-8': index !== 0 }
             if (Array.isArray(cell)) {
               return (
                 <NavMenuContentCell
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   colSpan={1}
-                  hasDivider
+                  className={cn('grow flex-col gap-y-12', leftPadding)}
                 >
-                  <div className="flex grow flex-col gap-y-12">
-                    {cell.map((section) => (
-                      <NavMenuSection section={section} />
-                    ))}
-                  </div>
+                  {cell.map((section) => (
+                    <NavMenuSection key={section.id} section={section} />
+                  ))}
                 </NavMenuContentCell>
               )
             }
 
             return (
-              <NavMenuContentCell
-                key={cell.id}
-                colSpan={cell.colSpan}
-                hasDivider={cell.hasDividers}
-              >
+              <NavMenuContentCell key={cell.id} colSpan={cell.colSpan} className={cn(leftPadding)}>
                 <NavMenuSection section={cell} />
               </NavMenuContentCell>
             )
@@ -72,11 +67,11 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         {seeAllLinkProps?.children ? (
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
-          <div onClick={(event) => event.stopPropagation()}>
-            <NavMenuLink
-              {...seeAllLinkProps}
-              className="flex w-full items-start justify-start border-t border-border-default py-6"
-            />
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="flex w-full items-start justify-start py-6"
+          >
+            <NavMenuLink {...seeAllLinkProps} />
           </div>
         ) : null}
       </SectionContainer>

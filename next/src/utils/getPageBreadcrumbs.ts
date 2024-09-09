@@ -1,4 +1,4 @@
-import { PageParentPagesFragment } from '@/src/services/graphql/api'
+import { PagePathsMap } from '@/src/services/navigation/parseTopLevelPages'
 
 export type Breadcrumb = {
   title: string
@@ -7,33 +7,14 @@ export type Breadcrumb = {
 
 // Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/utils/pageUtils_Deprecated.ts#L93
 
-export const getPageBreadcrumbs = (
-  page: PageParentPagesFragment | null | undefined,
-): Breadcrumb[] => {
-  const current = page
-  if (!current) {
-    return []
-  }
-
-  const pages = [current]
-
-  let parentPage = current?.attributes?.parentPage
-  while (parentPage?.data?.attributes) {
-    pages.push(parentPage.data)
-    parentPage = parentPage.data.attributes.parentPage
-  }
-
+export const getPageBreadcrumbs = (path: string, pagePathsMap: PagePathsMap): Breadcrumb[] => {
   const breadcrumbs: Breadcrumb[] = []
 
-  pages.reverse().forEach((pageInner) => {
-    const previousBreadcrumb = breadcrumbs.at(-1)
+  const pathSegments = path.split('/') ?? []
 
-    breadcrumbs.push({
-      title: pageInner.attributes?.title ?? '',
-      path: pageInner.attributes?.slug
-        ? `${previousBreadcrumb ? previousBreadcrumb.path : ''}/${pageInner.attributes.slug}`
-        : null,
-    })
+  pathSegments.forEach((segment) => {
+    const crumb = pagePathsMap[segment]
+    if (crumb) breadcrumbs.push(crumb)
   })
 
   return breadcrumbs

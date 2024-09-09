@@ -16,4 +16,5 @@ export const environment = {
   nodeEnv: assertEnv('NODE_ENV', process.env.NODE_ENV),
   deployment: assertEnv('NEXT_PUBLIC_DEPLOYMENT', process.env.NEXT_PUBLIC_DEPLOYMENT),
   strapiUrl: assertEnv('NEXT_PUBLIC_STRAPI_URL', process.env.NEXT_PUBLIC_STRAPI_URL),
+  nextHost: assertEnv('NEXT_PUBLIC_NEXT_HOST', process.env.NEXT_PUBLIC_NEXT_HOST),
 }

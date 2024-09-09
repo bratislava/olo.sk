@@ -1,7 +1,7 @@
 import { PageChildPagesFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 
-const pagePathsMap = new Map<string, { label: string; path: string }>()
+const pagePathsMap: { [key: string]: { title: string; path: string } | undefined } = {}
 
 export type PagePathsMap = typeof pagePathsMap
 
@@ -14,7 +14,7 @@ export const parseTopLevelPages = (pages: PageChildPagesFragment[], parentPath: 
     const title = page.attributes?.title
 
     if (slug && title) {
-      pagePathsMap.set(slug, { label: title, path: `${parentPath}/${slug}` })
+      pagePathsMap[slug] = { title, path: `${parentPath}/${slug}` }
     }
     // eslint-disable-next-line unicorn/no-array-callback-reference
     const childPages = page.attributes?.childPages?.data.filter(isDefined)

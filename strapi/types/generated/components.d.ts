@@ -874,12 +874,12 @@ export interface ItemsCardSliderCard extends Schema.Component {
   collectionName: 'components_items_card_slider_cards'
   info: {
     displayName: 'Card Slider card'
+    description: ''
   }
   attributes: {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text
     image: Attribute.Media<'images'> & Attribute.Required
-    link: Attribute.Component<'items.link'>
   }
 }
 

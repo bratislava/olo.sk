@@ -1,12 +1,14 @@
-import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { QueryClient } from '@tanstack/react-query'
 
 import { LATEST_ARTICLES_COUNT } from '@/src/components/sections/headers/PageHeaderPickupDay'
 import { client } from '@/src/services/graphql'
 import { PageEntityFragment } from '@/src/services/graphql/api'
 
-export const prefetchPageSections = async (page: PageEntityFragment, locale: string) => {
-  const queryClient = new QueryClient()
-
+export const prefetchPageSections = async (
+  queryClient: QueryClient,
+  page: PageEntityFragment,
+  locale: string,
+) => {
   const headerSectionTypes = page?.attributes?.header?.map((section) => section?.__typename) ?? []
 
   const sectionTypes = page?.attributes?.sections?.map((section) => section?.__typename) ?? []
@@ -36,6 +38,4 @@ export const prefetchPageSections = async (page: PageEntityFragment, locale: str
       queryFn: () => client.FaqCategories({ locale }),
     })
   }
-
-  return dehydrate(queryClient)
 }

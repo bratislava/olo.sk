@@ -48,7 +48,7 @@ const BranchesSection = ({ section }: Props) => {
 
               return (
                 // eslint-disable-next-line react/no-array-index-key
-                <li key={index}>
+                <li key={index} className="h-full [&>*]:h-full">
                   <BranchCard
                     title={branch.attributes.title}
                     address={branch.attributes.address ?? ''}

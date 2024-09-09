@@ -1,21 +1,31 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
+import { useMemo } from 'react'
 
+import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import Gallery from '@/src/components/common/Gallery/Gallery'
 import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import Markdown from '@/src/components/formatting/Markdown'
 import PageLayout from '@/src/components/layout/PageLayout'
+import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { ArticleEntityFragment, GeneralQuery } from '@/src/services/graphql/api'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
+import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   general: GeneralQuery
+  navigation: NavigationObject
   entity: ArticleEntityFragment
 }
 
@@ -56,9 +66,10 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
-  const [{ articles: entities }, general, translations] = await Promise.all([
+  const [{ articles: entities }, general, navigation, translations] = await Promise.all([
     client.ArticleBySlug({ slug, locale }),
     client.General({ locale }),
+    fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
 
@@ -67,18 +78,37 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return { notFound: true }
   }
 
+  // Prefetch data
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(generalQuery(locale))
+
+  const dehydratedState = dehydrate(queryClient)
+
   return {
     props: {
       entity,
       general,
+      navigation,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
   }
 }
 
-const Page = ({ entity, general }: PageProps) => {
+const Page = ({ entity, general, navigation }: PageProps) => {
   const { t } = useTranslation()
+
+  // TODO consider extracting this to a hook for all detail pages
+  const parentPagePath = navigation.contentTypePathPrefixesMap.article ?? ''
+  const breadcrumbs = useMemo(
+    () => [
+      ...getPageBreadcrumbs(parentPagePath, navigation.pagePathsMap),
+      { title: entity.attributes?.title ?? '', path: null },
+    ],
+    [entity.attributes?.title, navigation.pagePathsMap, parentPagePath],
+  )
 
   if (!entity.attributes) {
     return null
@@ -90,7 +120,7 @@ const Page = ({ entity, general }: PageProps) => {
   const filteredGalleryImages = gallery?.data.filter(isDefined) ?? []
 
   return (
-    <GeneralContextProvider general={general}>
+    <GeneralContextProvider general={general} navigation={navigation}>
       {/* TODO common Head/Seo component */}
       <Head>
         <title>{title}</title>
@@ -98,6 +128,10 @@ const Page = ({ entity, general }: PageProps) => {
       </Head>
 
       <PageLayout>
+        <SectionContainer background="secondary">
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+        </SectionContainer>
+
         <ArticlePageHeader article={entity} />
 
         {/* TODO separate outer div(s) to Article Section with narrow layout */}

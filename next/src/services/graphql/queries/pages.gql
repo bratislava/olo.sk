@@ -1,42 +1,3 @@
-fragment ParentPage on Page {
-  slug
-  title
-}
-
-fragment PageParentPages on PageEntity {
-  attributes {
-    ...ParentPage
-    parentPage {
-      data {
-        attributes {
-          ...ParentPage
-          parentPage {
-            data {
-              attributes {
-                ...ParentPage
-                parentPage {
-                  data {
-                    attributes {
-                      ...ParentPage
-                      parentPage {
-                        data {
-                          attributes {
-                            ...ParentPage
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 fragment ChildPage on Page {
   slug
   title
@@ -98,7 +59,7 @@ fragment PageCardEntity on PageEntity {
 }
 
 fragment PageEntity on PageEntity {
-  ...PageSlugEntity
+  ...PageCardEntity
   attributes {
     perex
     alias
@@ -123,7 +84,6 @@ query PageBySlug($slug: String!, $locale: I18NLocaleCode!) {
   pages(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {
       ...PageEntity
-      ...PageParentPages
     }
   }
 }

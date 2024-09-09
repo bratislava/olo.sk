@@ -20,9 +20,8 @@ type StaticMapProps = {
 
 const StaticMap = ({ latitude, longitude, className }: StaticMapProps) => {
   const { width } = useWindowSize()
-  // TODO: Edit breakpoints based on the changes in dimensions
-  const desktopMapDimensions = { width: 265, height: 190 } // Based on the design, with slight adjustments for the Mapbox logo to be visible
-  const mobileMapDimensions = { width: 648, height: 440 }
+  const desktopMapDimensions = { width: 250, height: 170 } // Based on the design, with slight adjustments for the Mapbox logo to be visible
+  const mobileMapDimensions = { width: 230, height: 160 }
   const [mapDimensions, setMapDimensions] = useState(desktopMapDimensions)
 
   /**

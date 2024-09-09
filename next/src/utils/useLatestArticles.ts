@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
-import { useMemo } from 'react'
 
 import { client } from '@/src/services/graphql'
 import { isDefined } from '@/src/utils/isDefined'
@@ -11,14 +10,11 @@ export const useLatestArticles = (limit: number) => {
 
   const { data: articlesData } = useQuery({
     queryFn: () => client.LatestArticles({ limit, locale }),
-    queryKey: ['latestArticles', { limit, locale }],
+    queryKey: ['LatestArticles', { limit, locale }],
   })
 
-  const filteredArticles = useMemo(
-    // eslint-disable-next-line unicorn/no-array-callback-reference
-    () => articlesData?.articles?.data.filter(isDefined) ?? [],
-    [articlesData],
-  )
+  // eslint-disable-next-line unicorn/no-array-callback-reference
+  const filteredArticles = articlesData?.articles?.data.filter(isDefined) ?? []
 
   return {
     latestArticles: filteredArticles.length === 0 ? null : filteredArticles,

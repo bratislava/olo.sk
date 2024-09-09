@@ -40,14 +40,14 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
           className="grid w-full grid-cols-3 gap-8 divide-x divide-border-default border-b border-border-default py-8"
         >
           {navMenuCells.map((cell, index) => {
-            const hasLeftPadding = { 'pl-8': index !== 0 }
+            const leftPadding = { 'pl-8': index !== 0 }
             if (Array.isArray(cell)) {
               return (
                 <NavMenuContentCell
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   colSpan={1}
-                  className={cn('grow flex-col gap-y-12', hasLeftPadding)}
+                  className={cn('grow flex-col gap-y-12', leftPadding)}
                 >
                   {cell.map((section) => (
                     <NavMenuSection key={section.id} section={section} />
@@ -57,11 +57,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
             }
 
             return (
-              <NavMenuContentCell
-                key={cell.id}
-                colSpan={cell.colSpan}
-                className={cn(hasLeftPadding)}
-              >
+              <NavMenuContentCell key={cell.id} colSpan={cell.colSpan} className={cn(leftPadding)}>
                 <NavMenuSection section={cell} />
               </NavMenuContentCell>
             )

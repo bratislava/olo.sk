@@ -25,7 +25,7 @@ const MenuItemWorkshopCard = ({
 }: MenuItemWorkshopCardProps) => {
   return (
     <NavMenuLink href={linkHref} isCard className={cn(className)}>
-      <CardBase>
+      <CardBase variant="unstyled">
         <div className="flex items-start gap-4">
           <div className="rounded-[20px] bg-background-secondary p-4">
             <OloIcon name={iconName} className="size-6" />

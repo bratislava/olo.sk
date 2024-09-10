@@ -3,7 +3,11 @@ fragment BranchSlugEntity on BranchEntity {
   id
   attributes {
     title
-    slug
+    page {
+      data {
+        ...PageSlugEntity
+      }
+    }
   }
 }
 

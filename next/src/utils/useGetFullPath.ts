@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import { useMemo } from 'react'
 
 import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
@@ -35,10 +36,20 @@ export const getFullPathFn = (
   contentTypePathPrefixesMap: ContentTypePathPrefixesMap,
   // eslint-disable-next-line sonarjs/cognitive-complexity
 ) => {
+  // Handle Branches first, because they have different logic
+  if (entity && entity.__typename === 'BranchEntity') {
+    if (!entity.attributes?.page?.data?.attributes?.slug) {
+      return '#notProvided'
+    }
+
+    return pagePathsMap[entity.attributes.page.data.attributes.slug]?.path ?? `#notFound`
+  }
+
+  // Handle other content types
   const { slug } = entity?.attributes ?? {}
 
   if (!slug || !entity || !entity.attributes) {
-    return null
+    return '#notProvided'
   }
 
   // TODO Rewrite to cleaner code
@@ -48,11 +59,6 @@ export const getFullPathFn = (
 
   if (entity.__typename === 'ArticleEntity' && contentTypePathPrefixesMap.article) {
     return `${contentTypePathPrefixesMap.article}/${entity.attributes.slug}`
-  }
-
-  // TODO
-  if (entity.__typename === 'BranchEntity') {
-    return '#'
   }
 
   if (entity.__typename === 'DocumentEntity' && contentTypePathPrefixesMap.document) {
@@ -71,7 +77,7 @@ export const getFullPathFn = (
     return `${contentTypePathPrefixesMap.workshop}/${entity.attributes.slug}`
   }
 
-  return null
+  return '#notProvided'
 }
 
 export const useGetFullPath = () => {

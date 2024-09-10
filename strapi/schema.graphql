@@ -160,7 +160,6 @@ type Branch {
   parkingInfo: String
   publicTransportInfo: String
   publishedAt: DateTime
-  slug: String!
   title: String!
   updatedAt: DateTime
 }
@@ -198,7 +197,6 @@ input BranchFiltersInput {
   parkingInfo: StringFilterInput
   publicTransportInfo: StringFilterInput
   publishedAt: DateTimeFilterInput
-  slug: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
@@ -215,7 +213,6 @@ input BranchInput {
   parkingInfo: String
   publicTransportInfo: String
   publishedAt: DateTime
-  slug: String
   title: String
 }
 

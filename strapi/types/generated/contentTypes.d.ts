@@ -824,13 +824,6 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
-    slug: Attribute.UID<'api::branch.branch', 'title'> &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true
-        }
-      }>
     page: Attribute.Relation<'api::branch.branch', 'oneToOne', 'api::page.page'>
     openingTimes: Attribute.Relation<
       'api::branch.branch',

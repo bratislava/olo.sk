@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import NavBarDivider from '@/src/components/common/NavBar/NavBarDivider'
-
 import MenuItemBranchCardComponent from './MenuItemBranchCard'
 
 const meta: Meta<typeof MenuItemBranchCardComponent> = {
@@ -37,14 +35,10 @@ const branchCardRowsData = [
 
 export const MenuItemBranchCardRows: Story = {
   render: () => (
-    <div className="mx-auto my-8 flex max-w-[50vw] flex-col bg-background-primary px-8 py-6">
-      {branchCardRowsData.map((branchCard, index) => (
-        <>
-          {index > 0 && <NavBarDivider variant="horizontal" className="py-6" />}
-          {/* eslint-disable-next-line react/no-array-index-key */}
-          <MenuItemBranchCardComponent key={index} {...branchCard} />
-        </>
+    <ul className="mx-auto my-8 flex max-w-[50vw] flex-col divide-y divide-border-default bg-background-primary px-8">
+      {branchCardRowsData.map((branchCard) => (
+        <MenuItemBranchCardComponent key={branchCard.title} {...branchCard} className="py-5" />
       ))}
-    </div>
+    </ul>
   ),
 }

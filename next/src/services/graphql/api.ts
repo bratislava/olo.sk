@@ -895,6 +895,7 @@ export type ComponentMenuMenuLink = {
   id: Scalars['ID']['output']
   label?: Maybe<Scalars['String']['output']>
   page?: Maybe<PageEntityResponse>
+  service?: Maybe<ServiceEntityResponse>
   url?: Maybe<Scalars['String']['output']>
   workshop?: Maybe<WorkshopEntityResponse>
 }
@@ -906,6 +907,7 @@ export type ComponentMenuMenuLinkFiltersInput = {
   not?: InputMaybe<ComponentMenuMenuLinkFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentMenuMenuLinkFiltersInput>>>
   page?: InputMaybe<PageFiltersInput>
+  service?: InputMaybe<ServiceFiltersInput>
   url?: InputMaybe<StringFilterInput>
   workshop?: InputMaybe<WorkshopFiltersInput>
 }
@@ -915,6 +917,7 @@ export type ComponentMenuMenuLinkInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   label?: InputMaybe<Scalars['String']['input']>
   page?: InputMaybe<Scalars['ID']['input']>
+  service?: InputMaybe<Scalars['ID']['input']>
   url?: InputMaybe<Scalars['String']['input']>
   workshop?: InputMaybe<Scalars['ID']['input']>
 }
@@ -5256,6 +5259,14 @@ export type GeneralQuery = {
                       }>
                     } | null
                   } | null
+                } | null
+              } | null
+              service?: {
+                __typename?: 'ServiceEntityResponse'
+                data?: {
+                  __typename: 'ServiceEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Service'; title: string; slug: string } | null
                 } | null
               } | null
               workshop?: {
@@ -13499,6 +13510,14 @@ export type MenuLinkFragment = {
       } | null
     } | null
   } | null
+  service?: {
+    __typename?: 'ServiceEntityResponse'
+    data?: {
+      __typename: 'ServiceEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+    } | null
+  } | null
   workshop?: {
     __typename?: 'WorkshopEntityResponse'
     data?: {
@@ -13592,6 +13611,14 @@ export type MenuSectionFragment = {
             }>
           } | null
         } | null
+      } | null
+    } | null
+    service?: {
+      __typename?: 'ServiceEntityResponse'
+      data?: {
+        __typename: 'ServiceEntity'
+        id?: string | null
+        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
       } | null
     } | null
     workshop?: {
@@ -13692,6 +13719,14 @@ export type MenuItemFragment = {
               }>
             } | null
           } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
         } | null
       } | null
       workshop?: {
@@ -13977,6 +14012,14 @@ export type MenuFragment = {
                 }>
               } | null
             } | null
+          } | null
+        } | null
+        service?: {
+          __typename?: 'ServiceEntityResponse'
+          data?: {
+            __typename: 'ServiceEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Service'; title: string; slug: string } | null
           } | null
         } | null
         workshop?: {
@@ -14273,6 +14316,14 @@ export type MenuEntityFragment = {
                   }>
                 } | null
               } | null
+            } | null
+          } | null
+          service?: {
+            __typename?: 'ServiceEntityResponse'
+            data?: {
+              __typename: 'ServiceEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Service'; title: string; slug: string } | null
             } | null
           } | null
           workshop?: {
@@ -24574,6 +24625,11 @@ export const MenuLinkFragmentDoc = gql`
         ...BranchEntity
       }
     }
+    service {
+      data {
+        ...ServiceSlugEntity
+      }
+    }
     workshop {
       data {
         ...WorkshopSlugEntity
@@ -24582,6 +24638,7 @@ export const MenuLinkFragmentDoc = gql`
   }
   ${PageSlugEntityFragmentDoc}
   ${BranchEntityFragmentDoc}
+  ${ServiceSlugEntityFragmentDoc}
   ${WorkshopSlugEntityFragmentDoc}
 `
 export const MenuSectionFragmentDoc = gql`

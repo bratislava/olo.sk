@@ -898,6 +898,7 @@ type ComponentMenuMenuLink {
   id: ID!
   label: String
   page: PageEntityResponse
+  service: ServiceEntityResponse
   url: String
   workshop: WorkshopEntityResponse
 }
@@ -909,6 +910,7 @@ input ComponentMenuMenuLinkFiltersInput {
   not: ComponentMenuMenuLinkFiltersInput
   or: [ComponentMenuMenuLinkFiltersInput]
   page: PageFiltersInput
+  service: ServiceFiltersInput
   url: StringFilterInput
   workshop: WorkshopFiltersInput
 }
@@ -918,6 +920,7 @@ input ComponentMenuMenuLinkInput {
   id: ID
   label: String
   page: ID
+  service: ID
   url: String
   workshop: ID
 }

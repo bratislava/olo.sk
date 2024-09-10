@@ -33,6 +33,7 @@ const BranchMap = ({ latitude, longitude, mapMarker, className }: BranchMapProps
               offset: [0, 10],
             },
           }}
+          reuseMaps
           interactive={false}
           zoom={14}
           mapboxAccessToken={accessToken}
@@ -48,4 +49,4 @@ const BranchMap = ({ latitude, longitude, mapMarker, className }: BranchMapProps
   )
 }
 
-export default React.memo(BranchMap)
+export default React.memo(BranchMap) // Optimize re-rendering

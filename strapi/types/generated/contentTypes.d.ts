@@ -1413,6 +1413,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'header-sections.image',
         'header-sections.side-image',
         'header-sections.pickup-day',
+        'sections.branches-map',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1454,6 +1455,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.board-members',
         'sections.vacancies',
         'sections.global-search',
+        'sections.branches-map',
       ]
     > &
       Attribute.SetPluginOptions<{

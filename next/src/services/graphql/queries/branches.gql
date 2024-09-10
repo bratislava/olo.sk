@@ -3,7 +3,11 @@ fragment BranchSlugEntity on BranchEntity {
   id
   attributes {
     title
-    slug
+    page {
+      data {
+        ...PageSlugEntity
+      }
+    }
   }
 }
 
@@ -37,14 +41,6 @@ fragment BranchEntity on BranchEntity {
 
 query Branches($locale: I18NLocaleCode!) {
   branches(locale: $locale) {
-    data {
-      ...BranchEntity
-    }
-  }
-}
-
-query BranchBySlug($slug: String!, $locale: I18NLocaleCode!) {
-  branches(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {
       ...BranchEntity
     }

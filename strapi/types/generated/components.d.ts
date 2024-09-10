@@ -566,6 +566,7 @@ export interface MenuMenuLink extends Schema.Component {
     url: Attribute.String
     page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
     branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
   }
 }

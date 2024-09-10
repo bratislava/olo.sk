@@ -232,7 +232,6 @@ export type Branch = {
   parkingInfo?: Maybe<Scalars['String']['output']>
   publicTransportInfo?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
-  slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
@@ -293,7 +292,6 @@ export type BranchFiltersInput = {
   parkingInfo?: InputMaybe<StringFilterInput>
   publicTransportInfo?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
-  slug?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
@@ -310,7 +308,6 @@ export type BranchInput = {
   parkingInfo?: InputMaybe<Scalars['String']['input']>
   publicTransportInfo?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
-  slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -10624,73 +10621,6 @@ export type BranchesQueryVariables = Exact<{
 }>
 
 export type BranchesQuery = {
-  __typename?: 'Query'
-  branches?: {
-    __typename?: 'BranchEntityResponseCollection'
-    data: Array<{
-      __typename: 'BranchEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Branch'
-        latitude?: number | null
-        longitude?: number | null
-        address?: string | null
-        publicTransportInfo?: string | null
-        parkingInfo?: string | null
-        barrierFreeInfo?: string | null
-        mapIconName?: string | null
-        title: string
-        page?: {
-          __typename?: 'PageEntityResponse'
-          data?: {
-            __typename: 'PageEntity'
-            id?: string | null
-            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-          } | null
-        } | null
-        openingTimes?: {
-          __typename?: 'OpeningTimeRelationResponseCollection'
-          data: Array<{
-            __typename?: 'OpeningTimeEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'OpeningTime'
-              internalName: string
-              openingHours?: Array<{
-                __typename?: 'ComponentItemsOpeningHoursItem'
-                label: string
-                value: string
-              } | null> | null
-            } | null
-          }>
-        } | null
-        contacts?: {
-          __typename?: 'ContactRelationResponseCollection'
-          data: Array<{
-            __typename?: 'ContactEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'Contact'
-              label: string
-              text?: string | null
-              primaryEmail?: string | null
-              secondaryEmail?: string | null
-              primaryPhone?: string | null
-              secondaryPhone?: string | null
-            } | null
-          }>
-        } | null
-      } | null
-    }>
-  } | null
-}
-
-export type BranchBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input']
-  locale: Scalars['I18NLocaleCode']['input']
-}>
-
-export type BranchBySlugQuery = {
   __typename?: 'Query'
   branches?: {
     __typename?: 'BranchEntityResponseCollection'
@@ -27753,16 +27683,6 @@ export const BranchesDocument = gql`
   }
   ${BranchEntityFragmentDoc}
 `
-export const BranchBySlugDocument = gql`
-  query BranchBySlug($slug: String!, $locale: I18NLocaleCode!) {
-    branches(filters: { slug: { eq: $slug } }, locale: $locale) {
-      data {
-        ...BranchEntity
-      }
-    }
-  }
-  ${BranchEntityFragmentDoc}
-`
 export const DocumentsDocument = gql`
   query Documents {
     documents {
@@ -28167,21 +28087,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'Branches',
-        'query',
-        variables,
-      )
-    },
-    BranchBySlug(
-      variables: BranchBySlugQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<BranchBySlugQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<BranchBySlugQuery>(BranchBySlugDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'BranchBySlug',
         'query',
         variables,
       )

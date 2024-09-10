@@ -46,11 +46,3 @@ query Branches($locale: I18NLocaleCode!) {
     }
   }
 }
-
-query BranchBySlug($slug: String!, $locale: I18NLocaleCode!) {
-  branches(filters: { slug: { eq: $slug } }, locale: $locale) {
-    data {
-      ...BranchEntity
-    }
-  }
-}

@@ -37,12 +37,12 @@ export const getFullPathFn = (
   // eslint-disable-next-line sonarjs/cognitive-complexity
 ) => {
   // Handle Branches first, because they have different logic
-  if (entity && entity.__typename === 'BranchEntity') {
+  if (entity?.__typename === 'BranchEntity') {
     if (!entity.attributes?.page?.data?.attributes?.slug) {
       return '#notProvided'
     }
 
-    return pagePathsMap[entity.attributes.page.data.attributes.slug]?.path ?? `#notFound`
+    return pagePathsMap[entity.attributes.page.data.attributes.slug]?.path ?? '#notFound'
   }
 
   // Handle other content types
@@ -54,7 +54,7 @@ export const getFullPathFn = (
 
   // TODO Rewrite to cleaner code
   if (entity.__typename === 'PageEntity') {
-    return pagePathsMap[slug]?.path ?? `#notFound`
+    return pagePathsMap[slug]?.path ?? '#notFound'
   }
 
   if (entity.__typename === 'ArticleEntity' && contentTypePathPrefixesMap.article) {

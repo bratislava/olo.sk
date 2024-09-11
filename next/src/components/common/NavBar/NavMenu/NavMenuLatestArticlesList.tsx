@@ -1,21 +1,29 @@
+import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'next-i18next'
+
 import MenuItemArticleCard from '@/src/components/common/Card/MenuItemArticleCard'
-import { ArticleEntityFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
+import { latestArticlesQuery } from '@/src/utils/queryOptions'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
+export const LATEST_ARTICLES_COUNT = 3
+
 type NavMenuLatestArticlesListProps = {
-  links: ArticleEntityFragment[] | null
   hasDividers?: boolean
   className?: string
 }
 
-const NavMenuLatestArticlesList = ({
-  links,
-  hasDividers,
-  className,
-}: NavMenuLatestArticlesListProps) => {
+const NavMenuLatestArticlesList = ({ hasDividers, className }: NavMenuLatestArticlesListProps) => {
+  const { i18n } = useTranslation()
+  const locale = i18n.language
+
   const { getFullPath } = useGetFullPath()
+
+  const { data: articlesData } = useQuery(latestArticlesQuery(LATEST_ARTICLES_COUNT, locale))
+
+  // eslint-disable-next-line unicorn/no-array-callback-reference
+  const filteredArticles = articlesData?.articles?.data.filter(isDefined) ?? []
 
   return (
     <ul
@@ -25,7 +33,7 @@ const NavMenuLatestArticlesList = ({
         className,
       )}
     >
-      {links
+      {filteredArticles
         ?.map((article, index) => {
           if (!article.attributes) return null
           const { title, coverMedia, articleCategory } = article.attributes

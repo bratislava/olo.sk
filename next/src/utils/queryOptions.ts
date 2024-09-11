@@ -7,3 +7,9 @@ export const generalQuery = (locale: string) =>
     queryKey: ['General', locale],
     queryFn: () => client.General({ locale }),
   })
+
+export const latestArticlesQuery = (limit: number, locale: string) =>
+  queryOptions({
+    queryFn: () => client.LatestArticles({ limit, locale }),
+    queryKey: ['LatestArticles', { limit, locale }],
+  })

@@ -51,7 +51,7 @@ const BranchCard = ({
             </Typography>
           </div>
           <Button variant="black-link" href={linkHref} asLink stretched>
-            {t('common.readMore')}
+            {t('common.showMore')}
           </Button>
         </div>
       </div>

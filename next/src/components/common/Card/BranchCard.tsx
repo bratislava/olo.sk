@@ -4,6 +4,7 @@ import Button from '@/src/components/common/Button/Button'
 import CardBase, { CardBaseProps } from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
 import Typography from '@/src/components/common/Typography/Typography'
+import cn from '@/src/utils/cn'
 
 type BranchCardProps = {
   title: string
@@ -12,6 +13,7 @@ type BranchCardProps = {
   imgSrc?: string
   hasWhiteBackground?: boolean
   className?: string
+  innerClassName?: string
 } & Pick<CardBaseProps, 'variant'>
 
 /**
@@ -26,6 +28,7 @@ const BranchCard = ({
   variant,
   hasWhiteBackground = true,
   className,
+  innerClassName,
 }: BranchCardProps) => {
   const { t } = useTranslation()
 
@@ -42,7 +45,10 @@ const BranchCard = ({
           <div className="flex flex-col gap-2">
             <Typography
               variant="h4"
-              className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+              className_onlyWhenNecessary={cn(
+                'line-clamp-3 group-hover/CardBase:underline',
+                innerClassName,
+              )}
             >
               {title}
             </Typography>

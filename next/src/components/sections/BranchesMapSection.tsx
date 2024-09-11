@@ -10,6 +10,7 @@ import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { environment } from '@/src/environment'
 import { BranchesMapSectionFragment } from '@/src/services/graphql/api'
+import cn from '@/src/utils/cn'
 import { getBoundsForBranches } from '@/src/utils/getBoundsForBranches'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
@@ -38,7 +39,7 @@ const BranchesMapSection = ({ section }: Props) => {
   return (
     <SectionContainer
       background="secondary"
-      classNameInner="px-0 pb-8 flex flex-col lg:gap-12 lg:pt-12" // TODO: pb-8 is there only for development, it will be deleted later
+      classNameInner="px-0 flex flex-col lg:gap-12 lg:pt-12"
       className="items-center justify-center"
     >
       <SectionHeader title={sectionTitle} text={text} className="px-4 py-6 lg:p-0" />
@@ -48,7 +49,7 @@ const BranchesMapSection = ({ section }: Props) => {
           {filteredBranches
             .map((branch, index) => {
               if (!branch.attributes) return null
-              const { title, address } = branch.attributes
+              const { title, address, slug } = branch.attributes
 
               return (
                 <Fragment key={branch.id}>
@@ -62,7 +63,9 @@ const BranchesMapSection = ({ section }: Props) => {
                       address={address ?? ''} // TODO remove the fallback value
                       variant="unstyled"
                       className="size-full"
-                      // TODO: hoveredBranchSlug === slug: Apply stying for the hovered branch card
+                      innerClassName={cn({
+                        underline: hoveredBranchSlug === slug, // Underline card title when hovering over its map marker
+                      })}
                     />
                   </li>
                 </Fragment>

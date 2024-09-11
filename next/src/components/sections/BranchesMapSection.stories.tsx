@@ -19,7 +19,7 @@ const getKoloBranchesDummyData = (): BranchEntityFragment[] => {
       __typename: 'BranchEntity',
       attributes: {
         title: 'KOLO Jurigovo námestie',
-        slug: '#',
+        slug: 'kolo-jurigovo-namestie',
         latitude: 48.15,
         longitude: 17.06,
         address: 'Jurigovo námestie, 841 04 Karlova Ves',
@@ -30,7 +30,7 @@ const getKoloBranchesDummyData = (): BranchEntityFragment[] => {
       __typename: 'BranchEntity',
       attributes: {
         title: 'KOLO Pestovateľská',
-        slug: '#',
+        slug: 'kolo-pestovatelska',
         latitude: 48.17,
         longitude: 17.18,
         address: 'Pestovateľská 13, 821 04 Bratislava',
@@ -41,7 +41,7 @@ const getKoloBranchesDummyData = (): BranchEntityFragment[] => {
       __typename: 'BranchEntity',
       attributes: {
         title: 'KOLO Vlčie hrdlo',
-        slug: '#',
+        slug: 'kolo-vlcie-hrdlo',
         latitude: 48.12,
         longitude: 17.17,
         address: 'Vlčie hrdlo 72, 821 07 Bratislava',
@@ -60,7 +60,7 @@ const getDefaultBranchesDummyData = (): BranchEntityFragment[] => {
       __typename: 'BranchEntity',
       attributes: {
         title,
-        slug: '#',
+        slug: 'zberny-dvor-ivanska-cesta',
         latitude: 48.16,
         longitude: 17.17,
         address: 'Stará Ivanská cesta 2, 821 04 Bratislava',
@@ -71,7 +71,7 @@ const getDefaultBranchesDummyData = (): BranchEntityFragment[] => {
       __typename: 'BranchEntity',
       attributes: {
         title,
-        slug: '#',
+        slug: 'zberny-dvor-pri-sajbach',
         latitude: 48.2,
         longitude: 17.16,
         address: 'Pri Šajbách 1, 831 06 Bratislava',
@@ -82,7 +82,7 @@ const getDefaultBranchesDummyData = (): BranchEntityFragment[] => {
       __typename: 'BranchEntity',
       attributes: {
         title,
-        slug: '#',
+        slug: 'zberny-dvor-lieskovska-cesta',
         latitude: 48.11,
         longitude: 17.2,
         address: 'Lieskovská cesta, areál A-Z STAV s.r.o.',

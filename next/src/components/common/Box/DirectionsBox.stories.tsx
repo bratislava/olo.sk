@@ -1,3 +1,5 @@
+import 'mapbox-gl/dist/mapbox-gl.css'
+
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
@@ -18,8 +20,8 @@ const meta: Meta<Props> = {
   title: 'Components/Box/DirectionsBox',
   parameters: { controls: { exclude: ['rowsContent'] } },
   args: {
-    latitude: null,
-    longitude: null,
+    latitude: '48.171140',
+    longitude: '17.17921',
     rowsContent: [
       {
         value: 'Ivanská cesta 22, 821 04 Bratislava',

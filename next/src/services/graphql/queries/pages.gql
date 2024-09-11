@@ -80,6 +80,14 @@ query Pages($locale: I18NLocaleCode!) {
   }
 }
 
+query PageById($id: ID!, $locale: I18NLocaleCode!) {
+  page(id: $id, locale: $locale) {
+    data {
+      ...PageSlugEntity
+    }
+  }
+}
+
 query PageBySlug($slug: String!, $locale: I18NLocaleCode!) {
   pages(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {

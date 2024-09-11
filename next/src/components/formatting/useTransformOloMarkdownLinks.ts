@@ -1,18 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
+import replaceAsync from 'string-replace-async'
 
 import { MarkdownProps } from '@/src/components/formatting/Markdown'
 import { client } from '@/src/services/graphql'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
-
-type StrapiEntityType =
-  | 'article'
-  | 'page'
-  | 'faqCategory'
-  | 'document'
-  | 'branch'
-  | 'workshop'
-  | 'service'
 
 export const useTransformOloMarkdownLinks = () => {
   const { getFullPath } = useGetFullPath()
@@ -20,83 +11,54 @@ export const useTransformOloMarkdownLinks = () => {
   const { i18n } = useTranslation()
   const locale = i18n.language
 
-  const { data: articlesData } = useQuery({
-    queryFn: () => client.Articles(),
-    queryKey: ['articles'],
-  })
+  const transformLink = async (entityType: string, entityId: string) => {
+    const type = entityType.replace('\\', '')
 
-  const { data: pagesData } = useQuery({
-    queryFn: () => client.Pages({ locale }),
-    queryKey: ['pages', locale],
-  })
+    if (type === 'page') {
+      const { page } = await client.PageById({ id: entityId, locale })
 
-  const { data: workshopsData } = useQuery({
-    queryFn: () => client.Workshops(),
-    queryKey: ['workshops'],
-  })
-
-  const { data: faqCategoriesData } = useQuery({
-    queryFn: () => client.FaqCategories({ locale: 'sk' }),
-    queryKey: ['faqcategories'],
-  })
-
-  const { data: documentsData } = useQuery({
-    queryFn: () => client.Documents(),
-    queryKey: ['documents'],
-  })
-
-  const { data: servicesData } = useQuery({
-    queryFn: () => client.Services({ locale: 'sk' }),
-    queryKey: ['services'],
-  })
-
-  const getEntityPathById = (entities: any, id: string) => {
-    if (!entities) return null
-    const foundEntity = entities.find((entity: any) => {
-      if (!entity.id) return null
-
-      return entity.id === id
-    })
-
-    return getFullPath(foundEntity)
-  }
-
-  const transformLink = (entityType: StrapiEntityType, entityId: string) => {
-    // for some reason the entityType arrives here ending with '\'
-    switch (entityType.replace('\\', '')) {
-      case 'page':
-        return getEntityPathById(pagesData?.pages?.data, entityId)
-
-      case 'article':
-        return getEntityPathById(articlesData?.articles?.data, entityId)
-
-      case 'workshop':
-        return getEntityPathById(workshopsData?.workshops?.data, entityId)
-
-      case 'faqCategory':
-        return getEntityPathById(faqCategoriesData?.faqCategories?.data, entityId)
-
-      case 'document':
-        return getEntityPathById(documentsData?.documents?.data, entityId)
-
-      case 'service':
-        return getEntityPathById(servicesData?.services?.data, entityId)
-
-      default:
-        return null
+      return page?.data ? getFullPath(page.data) : null
     }
+
+    if (type === 'article') {
+      const { article } = await client.ArticleById({ id: entityId, locale })
+
+      return article?.data ? getFullPath(article.data) : null
+    }
+
+    if (type === 'document') {
+      const { document } = await client.DocumentById({ id: entityId })
+
+      return document?.data ? getFullPath(document.data) : null
+    }
+
+    if (type === 'service') {
+      const { service } = await client.ServiceById({ id: entityId, locale })
+
+      return service?.data ? getFullPath(service.data) : null
+    }
+
+    if (type === 'workshop') {
+      const { workshop } = await client.WorkshopById({ id: entityId })
+
+      return workshop?.data ? getFullPath(workshop.data) : null
+    }
+
+    return null
   }
 
-  const transformOloMarkdownLinks = (content: MarkdownProps['content']) => {
+  const transformOloMarkdownLinks = async (content: MarkdownProps['content']) => {
     if (!content) return null
 
-    // this regex matches the [something](~something) pattern
-    const OLO_LINK_REGEX = /\\\[(.*?)\\]\\\((\\~.*?)\\\)/g
+    // this regex matches the [something](~/something/number) pattern
+    const OLO_LINK_REGEX = /\[(.*?)]\((~\/.*?\/\d+?)\)/g
 
-    return content.replaceAll(OLO_LINK_REGEX, (_, title, rawLink) => {
-      const [, type, id] = rawLink.split('/')
+    return replaceAsync(content, OLO_LINK_REGEX, async (match, title, rawLink) => {
+      // e.g. ~/page/123 -> ['~', 'page', '123']
+      const [, entityType, entityId] = rawLink.split('/')
+      const transformedLink = await transformLink(entityType, entityId)
 
-      return `[${title}](${transformLink(type, id) ?? '#'})`
+      return `[${title}](${transformedLink ?? '#'})`
     })
   }
 

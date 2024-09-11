@@ -12,6 +12,11 @@ fragment MenuLink on ComponentMenuMenuLink {
       ...BranchEntity
     }
   }
+  service {
+    data {
+      ...ServiceSlugEntity
+    }
+  }
   workshop {
     data {
       ...WorkshopSlugEntity

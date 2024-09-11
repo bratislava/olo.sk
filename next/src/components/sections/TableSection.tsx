@@ -30,8 +30,9 @@ const TableSection = ({ section }: Props) => {
               <table className="divide-y divide-border-default">
                 <thead className="bg-background-secondary">
                   <tr className="divide-x divide-border-default">
-                    {['Column 1', 'Column 2', 'Column 3'].map((column) => (
-                      <th scope="col" className="px-6 py-4 text-left">
+                    {['Column 1', 'Column 2', 'Column 3'].map((column, colIndex) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <th key={colIndex} scope="col" className="px-6 py-4 text-left">
                         <Typography variant="p-default-bold">{column}</Typography>
                       </th>
                     ))}
@@ -40,12 +41,16 @@ const TableSection = ({ section }: Props) => {
                 <tbody className="divide-y divide-border-default">
                   {
                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    Array.from({ length: 4 }).map((row) => (
-                      <tr className="divide-x divide-border-default">
+                    Array.from({ length: 4 }).map((row, rowIndex) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <tr key={rowIndex} className="divide-x divide-border-default">
                         {
                           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                          Array.from({ length: 3 }).map((cell) => (
-                            <td className="whitespace-nowrap px-6 py-4">...</td>
+                          Array.from({ length: 3 }).map((cell, colIndex) => (
+                            // eslint-disable-next-line react/no-array-index-key
+                            <td key={colIndex} className="whitespace-nowrap px-6 py-4">
+                              ...
+                            </td>
                           ))
                         }
                       </tr>

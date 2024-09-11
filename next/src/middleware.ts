@@ -1,4 +1,5 @@
 import { getNavigationMiddleware } from '@/src/services/navigation/getNavigationMiddleware'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 
 /* Docs: https://nextjs.org/docs/pages/building-your-application/routing/middleware#matcher */
 export const config = {
@@ -14,6 +15,4 @@ export const config = {
   ],
 }
 
-export const middleware = getNavigationMiddleware({
-  cacheTtl: 10_000,
-})
+export const middleware = getNavigationMiddleware(navigationConfig)

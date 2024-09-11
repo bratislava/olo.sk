@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import '../styles/table.scss'
 
+import { HydrationBoundary } from '@tanstack/react-query'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
@@ -32,18 +33,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       {/*   // trackLocalhost */}
       {/* > */}
       <BAQueryClientProvider>
-        <QueryParamProvider adapter={NextAdapter}>
-          {/*       <BAI18nProvider> */}
-          <OverlayProvider>
-            <NavMenuContextProvider>
-              {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
-              <div id="root">
-                <Component {...pageProps} />
-              </div>
-            </NavMenuContextProvider>
-          </OverlayProvider>
-          {/* </BAI18nProvider> */}
-        </QueryParamProvider>
+        <HydrationBoundary state={pageProps.dehydratedState}>
+          <QueryParamProvider adapter={NextAdapter}>
+            {/*       <BAI18nProvider> */}
+            <OverlayProvider>
+              <NavMenuContextProvider>
+                {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
+                <div id="root">
+                  <Component {...pageProps} />
+                </div>
+              </NavMenuContextProvider>
+            </OverlayProvider>
+            {/* </BAI18nProvider> */}
+          </QueryParamProvider>
+        </HydrationBoundary>
       </BAQueryClientProvider>
       {/* </PlausibleProvider> */}
       {/* </NextIntlClientProvider> */}

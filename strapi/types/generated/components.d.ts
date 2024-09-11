@@ -566,6 +566,7 @@ export interface MenuMenuLink extends Schema.Component {
     url: Attribute.String
     page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
     branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
   }
 }
@@ -874,12 +875,12 @@ export interface ItemsCardSliderCard extends Schema.Component {
   collectionName: 'components_items_card_slider_cards'
   info: {
     displayName: 'Card Slider card'
+    description: ''
   }
   attributes: {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text
     image: Attribute.Media<'images'> & Attribute.Required
-    link: Attribute.Component<'items.link'>
   }
 }
 

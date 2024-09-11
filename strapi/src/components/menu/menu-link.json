@@ -22,6 +22,11 @@
       "relation": "oneToOne",
       "target": "api::branch.branch"
     },
+    "service": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::service.service"
+    },
     "workshop": {
       "type": "relation",
       "relation": "oneToOne",

@@ -28,7 +28,7 @@ fragment NavigationEntity on NavigationEntity {
   }
 }
 
-query General($locale: I18NLocaleCode!) {
+query Navigation($locale: I18NLocaleCode!) {
   navigation(locale: $locale) {
     data {
       ...NavigationEntity
@@ -39,6 +39,9 @@ query General($locale: I18NLocaleCode!) {
       ...PageChildPages
     }
   }
+}
+
+query General($locale: I18NLocaleCode!) {
   footer(locale: $locale) {
     data {
       ...FooterEntity

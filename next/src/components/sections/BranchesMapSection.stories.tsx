@@ -52,11 +52,14 @@ const getKoloBranchesDummyData = (): BranchEntityFragment[] => {
 }
 
 const getDefaultBranchesDummyData = (): BranchEntityFragment[] => {
+  // eslint-disable-next-line const-case/uppercase
+  const title = 'Zberný dvor'
+
   return [
     {
       __typename: 'BranchEntity',
       attributes: {
-        title: 'Zberný dvor',
+        title,
         slug: '#',
         latitude: 48.16,
         longitude: 17.17,
@@ -67,7 +70,7 @@ const getDefaultBranchesDummyData = (): BranchEntityFragment[] => {
     {
       __typename: 'BranchEntity',
       attributes: {
-        title: 'Zberný dvor',
+        title,
         slug: '#',
         latitude: 48.2,
         longitude: 17.16,
@@ -78,7 +81,7 @@ const getDefaultBranchesDummyData = (): BranchEntityFragment[] => {
     {
       __typename: 'BranchEntity',
       attributes: {
-        title: 'Zberný dvor',
+        title,
         slug: '#',
         latitude: 48.11,
         longitude: 17.2,

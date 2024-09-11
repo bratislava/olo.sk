@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
+import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
 import PageLayout from '@/src/components/layout/PageLayout'
 import ArticlesHomepageSection from '@/src/components/sections/hompage/ArticlesHomepageSection'
 import HeroHomepageSection from '@/src/components/sections/hompage/HeroHomepageSection'
@@ -16,7 +17,7 @@ import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { NOT_FOUND } from '@/src/utils/conts'
-import { generalQuery } from '@/src/utils/queryOptions'
+import { generalQuery, latestArticlesQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   homepage: HomepageEntityFragment
@@ -48,6 +49,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery(generalQuery(locale))
+  await queryClient.prefetchQuery(latestArticlesQuery(LATEST_ARTICLES_COUNT, locale))
 
   const dehydratedState = dehydrate(queryClient)
 

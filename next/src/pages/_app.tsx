@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../styles/table.scss'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 import { HydrationBoundary } from '@tanstack/react-query'
 import { AppProps } from 'next/app'

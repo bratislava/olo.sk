@@ -4,7 +4,6 @@ import NavMenuSingleColumnList from '@/src/components/common/NavBar/NavMenu/NavM
 import NavMenuTwoColumnList from '@/src/components/common/NavBar/NavMenu/NavMenuTwoColumnList'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
-import { useLatestArticles } from '@/src/utils/useLatestArticles'
 
 export type NavMenuSectionProps = {
   section: ReturnType<typeof getParsedMenus>[number]['sections'][number]
@@ -13,7 +12,6 @@ export type NavMenuSectionProps = {
 
 const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
   const { label, specialSectionType, links, multicolumnBehaviour, colSpan, hasDividers } = section
-  const { latestArticles } = useLatestArticles(3)
 
   return (
     <div className={cn('flex w-full flex-col gap-6', className)}>
@@ -21,7 +19,7 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
         {label}
       </Typography>
       {specialSectionType === 'latest_articles' ? (
-        <NavMenuLatestArticlesList links={latestArticles} hasDividers={hasDividers} />
+        <NavMenuLatestArticlesList hasDividers={hasDividers} />
       ) : multicolumnBehaviour === 'split_equally' && colSpan > 1 ? (
         <NavMenuTwoColumnList links={links} hasDividers={hasDividers} />
       ) : (

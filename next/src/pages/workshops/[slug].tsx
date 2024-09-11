@@ -6,6 +6,7 @@ import * as React from 'react'
 import { useMemo } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
+import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
@@ -19,7 +20,7 @@ import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { NOT_FOUND } from '@/src/utils/conts'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
-import { generalQuery } from '@/src/utils/queryOptions'
+import { generalQuery, latestArticlesQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   general: GeneralQuery
@@ -79,6 +80,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery(generalQuery(locale))
+  await queryClient.prefetchQuery(latestArticlesQuery(LATEST_ARTICLES_COUNT, locale))
 
   const dehydratedState = dehydrate(queryClient)
 

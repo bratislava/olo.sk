@@ -13,6 +13,7 @@ import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
 import Markdown from '@/src/components/formatting/Markdown'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import AliasInfoMessage from '@/src/components/sections/AliasInfoMessage'
 import ArticlePageHeader from '@/src/components/sections/headers/ArticlePageHeader'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
@@ -116,7 +117,7 @@ const Page = ({ entity, general, navigation }: PageProps) => {
     return null
   }
 
-  const { title, perex, content, gallery } = entity.attributes
+  const { title, perex, content, gallery, alias } = entity.attributes
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredGalleryImages = gallery?.data.filter(isDefined) ?? []
@@ -143,10 +144,13 @@ const Page = ({ entity, general, navigation }: PageProps) => {
               <Markdown content={content} />
               {filteredGalleryImages.length > 0 ? <Gallery images={filteredGalleryImages} /> : null}
             </div>
-            <ShareBlock
-              text={t('articlePage.shareblock.text')}
-              buttonText={t('articlePage.shareblock.buttonText')}
-            />
+            <div className="flex-col gap-8">
+              <ShareBlock
+                text={t('articlePage.shareblock.text')}
+                buttonText={t('articlePage.shareblock.buttonText')}
+              />
+              {alias ? <AliasInfoMessage alias={alias} variant="article" /> : null}
+            </div>
           </div>
         </div>
       </PageLayout>

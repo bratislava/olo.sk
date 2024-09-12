@@ -2,21 +2,18 @@ import BranchMap from '@/src/components/common/Box/BranchMap'
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 import OloMarker from '@/src/components/common/Icon/OloMarker'
 import { BranchEntityFragment } from '@/src/services/graphql/api'
-import cn from '@/src/utils/cn'
 
 type DirectionsBox1Props = {
   branch: BranchEntityFragment
-  className?: string
 }
 
-// TODO: Create a story for this component
 // TODO: Check whether the map centers correctly, sometimes we see the ocean
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-10975&m=dev
  */
 
-const DirectionsBox1 = ({ branch, className }: DirectionsBox1Props) => {
+const DirectionsBox1 = ({ branch }: DirectionsBox1Props) => {
   const {
     latitude,
     longitude,
@@ -31,16 +28,11 @@ const DirectionsBox1 = ({ branch, className }: DirectionsBox1Props) => {
     { iconName: 'place', value: address },
     { iconName: 'directions-bus', value: publicTransportInfo },
     { iconName: 'local-parking', value: parkingInfo },
-    { iconName: 'accessibility', value: barrierFreeInfo },
+    { iconName: 'accessible', value: barrierFreeInfo },
   ] as const
 
   return (
-    <div
-      className={cn(
-        'flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary lg:flex-row',
-        className,
-      )}
-    >
+    <div className="flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary lg:flex-row">
       <BranchMap
         latitude={latitude}
         longitude={longitude}

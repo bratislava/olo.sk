@@ -65,7 +65,8 @@
         "header-sections.gallery",
         "header-sections.image",
         "header-sections.side-image",
-        "header-sections.pickup-day"
+        "header-sections.pickup-day",
+        "sections.branches-map"
       ],
       "max": 1,
       "pluginOptions": {
@@ -102,7 +103,8 @@
         "sections.opening-times",
         "sections.board-members",
         "sections.vacancies",
-        "sections.global-search"
+        "sections.global-search",
+        "sections.branches-map"
       ],
       "pluginOptions": {
         "i18n": {

@@ -22,15 +22,6 @@ fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
   }
 }
 
-fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
-  branches(pagination: { limit: -1 }) {
-    data {
-      id
-      # TODO fragment
-    }
-  }
-}
-
 fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
   articlesTitle
   firstArticle {
@@ -84,5 +75,9 @@ fragment HeaderSections on PageHeaderDynamicZone {
 
   ... on ComponentHeaderSectionsPickupDay {
     ...PickupDayHeaderSection
+  }
+
+  ... on ComponentSectionsBranchesMap {
+    ...BranchesMapSection
   }
 }

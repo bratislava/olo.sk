@@ -6,9 +6,8 @@ import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 
 type Response = { revalidated: boolean } | { message: string } | string
 type RequestPayload =
-  | { model: string; entry: { slug: string; locale: string } }
-  | { model: 'page'; entry: { slug: string; locale: string; alias?: string } }
-  | { model: 'branch'; entry: { page?: { slug: string }; locale: string } }
+  | { model: string; entry: { slug: string; alias?: string | null | undefined } }
+  | { model: 'branch'; entry: { page?: { slug: string } | null | undefined } }
 
 /**
  * Revalidates the path based on the payload data from Strapi webhook.
@@ -23,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  /* According to docs, middleware rewrites are not applied during revalidation, so we have to provide real Next paths */
+  // According to docs, middleware rewrites are not applied during revalidation, so we have to provide real Next paths
   try {
     const payload = req.body as RequestPayload
 
@@ -56,11 +55,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
 
     if (payload?.model === 'page') {
       pathToRevalidate = pagePathsMap[payload?.entry?.slug ?? '']?.path ?? ''
-
-      if ('alias' in payload.entry && payload.entry.alias) {
-        console.log('api/revalidate:', `page alias /${payload.entry.alias}`)
-        await res.revalidate(`/${payload.entry.alias}`)
-      }
     }
 
     if (pathToRevalidate) {
@@ -68,7 +62,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
       await res.revalidate(pathToRevalidate)
     }
 
-    /* Always revalidate homepage */
+    // Pages and Articles can have aliases
+    if ('alias' in payload.entry && payload.entry.alias) {
+      pathToRevalidate = `/${payload.entry.alias}`
+      console.log('api/revalidate:', `${payload.model} alias ${pathToRevalidate}`)
+      await res.revalidate(pathToRevalidate)
+    }
+
+    // Always revalidate homepage
     // eslint-disable-next-line const-case/uppercase
     const homepage = '/'
     console.log('api/revalidate:', homepage)

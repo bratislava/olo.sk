@@ -2730,7 +2730,6 @@ type NavigationRelationResponseCollection {
 type OpeningTime {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   createdAt: DateTime
-  internalName: String!
   openingHours(filters: ComponentItemsOpeningHoursItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOpeningHoursItem]
   updatedAt: DateTime
 }

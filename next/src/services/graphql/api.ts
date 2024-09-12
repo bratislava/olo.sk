@@ -2879,7 +2879,6 @@ export type OpeningTime = {
   __typename?: 'OpeningTime'
   branches?: Maybe<BranchRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
-  internalName: Scalars['String']['output']
   openingHours?: Maybe<Array<Maybe<ComponentItemsOpeningHoursItem>>>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
@@ -5328,7 +5327,6 @@ export type GeneralQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'OpeningTime'
-                          internalName: string
                           openingHours?: Array<{
                             __typename?: 'ComponentItemsOpeningHoursItem'
                             label: string
@@ -6509,7 +6507,6 @@ export type BranchesSectionFragment = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -8065,7 +8062,6 @@ export type OpeningTimesSectionFragment = {
         id?: string | null
         attributes?: {
           __typename?: 'OpeningTime'
-          internalName: string
           openingHours?: Array<{
             __typename?: 'ComponentItemsOpeningHoursItem'
             label: string
@@ -8505,7 +8501,6 @@ type PageSections_ComponentSectionsBranches_Fragment = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -9433,7 +9428,6 @@ type PageSections_ComponentSectionsOpeningTimes_Fragment = {
         id?: string | null
         attributes?: {
           __typename?: 'OpeningTime'
-          internalName: string
           openingHours?: Array<{
             __typename?: 'ComponentItemsOpeningHoursItem'
             label: string
@@ -10588,7 +10582,6 @@ export type BranchEntityFragment = {
         id?: string | null
         attributes?: {
           __typename?: 'OpeningTime'
-          internalName: string
           openingHours?: Array<{
             __typename?: 'ComponentItemsOpeningHoursItem'
             label: string
@@ -10652,7 +10645,6 @@ export type BranchesQuery = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -12558,7 +12550,6 @@ export type KoloHomepageSectionFragment = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -13314,7 +13305,6 @@ export type HomepageEntityFragment = {
                 id?: string | null
                 attributes?: {
                   __typename?: 'OpeningTime'
-                  internalName: string
                   openingHours?: Array<{
                     __typename?: 'ComponentItemsOpeningHoursItem'
                     label: string
@@ -14089,7 +14079,6 @@ export type HomepageQuery = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'OpeningTime'
-                      internalName: string
                       openingHours?: Array<{
                         __typename?: 'ComponentItemsOpeningHoursItem'
                         label: string
@@ -14392,7 +14381,6 @@ export type MenuLinkFragment = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -14494,7 +14482,6 @@ export type MenuSectionFragment = {
               id?: string | null
               attributes?: {
                 __typename?: 'OpeningTime'
-                internalName: string
                 openingHours?: Array<{
                   __typename?: 'ComponentItemsOpeningHoursItem'
                   label: string
@@ -14601,7 +14588,6 @@ export type MenuItemFragment = {
                 id?: string | null
                 attributes?: {
                   __typename?: 'OpeningTime'
-                  internalName: string
                   openingHours?: Array<{
                     __typename?: 'ComponentItemsOpeningHoursItem'
                     label: string
@@ -14926,7 +14912,6 @@ export type MenuFragment = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'OpeningTime'
-                    internalName: string
                     openingHours?: Array<{
                       __typename?: 'ComponentItemsOpeningHoursItem'
                       label: string
@@ -15262,7 +15247,6 @@ export type MenuEntityFragment = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'OpeningTime'
-                      internalName: string
                       openingHours?: Array<{
                         __typename?: 'ComponentItemsOpeningHoursItem'
                         label: string
@@ -15551,7 +15535,6 @@ export type OpeningTimeEntityFragment = {
   id?: string | null
   attributes?: {
     __typename?: 'OpeningTime'
-    internalName: string
     openingHours?: Array<{
       __typename?: 'ComponentItemsOpeningHoursItem'
       label: string
@@ -16185,7 +16168,6 @@ export type PageEntityFragment = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'OpeningTime'
-                      internalName: string
                       openingHours?: Array<{
                         __typename?: 'ComponentItemsOpeningHoursItem'
                         label: string
@@ -17156,7 +17138,6 @@ export type PageEntityFragment = {
                 id?: string | null
                 attributes?: {
                   __typename?: 'OpeningTime'
-                  internalName: string
                   openingHours?: Array<{
                     __typename?: 'ComponentItemsOpeningHoursItem'
                     label: string
@@ -18457,7 +18438,6 @@ export type PagesQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'OpeningTime'
-                          internalName: string
                           openingHours?: Array<{
                             __typename?: 'ComponentItemsOpeningHoursItem'
                             label: string
@@ -19432,7 +19412,6 @@ export type PagesQuery = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'OpeningTime'
-                      internalName: string
                       openingHours?: Array<{
                         __typename?: 'ComponentItemsOpeningHoursItem'
                         label: string
@@ -20736,7 +20715,6 @@ export type PageBySlugQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'OpeningTime'
-                          internalName: string
                           openingHours?: Array<{
                             __typename?: 'ComponentItemsOpeningHoursItem'
                             label: string
@@ -21711,7 +21689,6 @@ export type PageBySlugQuery = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'OpeningTime'
-                      internalName: string
                       openingHours?: Array<{
                         __typename?: 'ComponentItemsOpeningHoursItem'
                         label: string
@@ -26441,7 +26418,6 @@ export const OpeningTimeEntityFragmentDoc = gql`
   fragment OpeningTimeEntity on OpeningTimeEntity {
     id
     attributes {
-      internalName
       openingHours {
         ...OpeningHoursItem
       }

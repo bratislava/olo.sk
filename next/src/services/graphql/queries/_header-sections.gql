@@ -50,14 +50,6 @@ fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
   }
 }
 
-fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
-  branches {
-    data {
-      ...BranchEntity
-    }
-  }
-}
-
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
 
@@ -77,11 +69,15 @@ fragment HeaderSections on PageHeaderDynamicZone {
     ...GalleryHeaderSection
   }
 
+  #  ... on ComponentHeaderSectionsIcon {
+  #    ...IconHeaderSection
+  #  }
+
   ... on ComponentHeaderSectionsPickupDay {
     ...PickupDayHeaderSection
   }
 
-  ... on ComponentHeaderSectionsBranchMap {
-    ...BranchMapHeaderSection
+  ... on ComponentSectionsBranchesMap {
+    ...BranchesMapSection
   }
 }

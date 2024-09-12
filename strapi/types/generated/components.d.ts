@@ -466,7 +466,21 @@ export interface SectionsBranches extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
+export interface SectionsBranchesMap extends Schema.Component {
+  collectionName: 'components_sections_branches_maps'
+  info: {
+    displayName: 'Mapa pobo\u010Diek'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    branches: Attribute.Relation<'sections.branches-map', 'oneToMany', 'api::branch.branch'>
   }
 }
 
@@ -1031,6 +1045,7 @@ declare module '@strapi/types' {
       'sections.cards-list': SectionsCardsList
       'sections.card-slider': SectionsCardSlider
       'sections.branches': SectionsBranches
+      'sections.branches-map': SectionsBranchesMap
       'sections.board-members': SectionsBoardMembers
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles

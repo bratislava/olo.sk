@@ -1042,11 +1042,27 @@ export type ComponentSectionsBranches = {
   __typename?: 'ComponentSectionsBranches'
   branches?: Maybe<BranchRelationResponseCollection>
   id: Scalars['ID']['output']
+  showAll: Scalars['Boolean']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentSectionsBranchesBranchesArgs = {
+  filters?: InputMaybe<BranchFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSectionsBranchesMap = {
+  __typename?: 'ComponentSectionsBranchesMap'
+  branches?: Maybe<BranchRelationResponseCollection>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsBranchesMapBranchesArgs = {
   filters?: InputMaybe<BranchFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
@@ -2071,6 +2087,7 @@ export type GenericMorph =
   | ComponentSectionsBanner
   | ComponentSectionsBoardMembers
   | ComponentSectionsBranches
+  | ComponentSectionsBranchesMap
   | ComponentSectionsCardSlider
   | ComponentSectionsCardsList
   | ComponentSectionsColumns
@@ -3008,12 +3025,12 @@ export type PageFiltersInput = {
 }
 
 export type PageHeaderDynamicZone =
-  | ComponentHeaderSectionsBranchMap
   | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
   | ComponentHeaderSectionsPickupDay
   | ComponentHeaderSectionsSideImage
+  | ComponentSectionsBranchesMap
   | Error
 
 export type PageInput = {
@@ -3039,6 +3056,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsBanner
   | ComponentSectionsBoardMembers
   | ComponentSectionsBranches
+  | ComponentSectionsBranchesMap
   | ComponentSectionsCardSlider
   | ComponentSectionsCardsList
   | ComponentSectionsColumns
@@ -5852,130 +5870,6 @@ export type PickupDayHeaderSectionFragment = {
   } | null
 }
 
-export type BranchMapHeaderSectionFragment = {
-  __typename?: 'ComponentHeaderSectionsBranchMap'
-  branches?: {
-    __typename?: 'BranchRelationResponseCollection'
-    data: Array<{
-      __typename: 'BranchEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Branch'
-        latitude?: number | null
-        longitude?: number | null
-        address?: string | null
-        publicTransportInfo?: string | null
-        parkingInfo?: string | null
-        barrierFreeInfo?: string | null
-        mapIconName?: string | null
-        title: string
-        page?: {
-          __typename?: 'PageEntityResponse'
-          data?: {
-            __typename: 'PageEntity'
-            id?: string | null
-            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-          } | null
-        } | null
-        openingTimes?: {
-          __typename?: 'OpeningTimeRelationResponseCollection'
-          data: Array<{
-            __typename?: 'OpeningTimeEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'OpeningTime'
-              internalName: string
-              openingHours?: Array<{
-                __typename?: 'ComponentItemsOpeningHoursItem'
-                label: string
-                value: string
-              } | null> | null
-            } | null
-          }>
-        } | null
-        contacts?: {
-          __typename?: 'ContactRelationResponseCollection'
-          data: Array<{
-            __typename?: 'ContactEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'Contact'
-              label: string
-              text?: string | null
-              primaryEmail?: string | null
-              secondaryEmail?: string | null
-              primaryPhone?: string | null
-              secondaryPhone?: string | null
-            } | null
-          }>
-        } | null
-      } | null
-    }>
-  } | null
-}
-
-type HeaderSections_ComponentHeaderSectionsBranchMap_Fragment = {
-  __typename: 'ComponentHeaderSectionsBranchMap'
-  branches?: {
-    __typename?: 'BranchRelationResponseCollection'
-    data: Array<{
-      __typename: 'BranchEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Branch'
-        latitude?: number | null
-        longitude?: number | null
-        address?: string | null
-        publicTransportInfo?: string | null
-        parkingInfo?: string | null
-        barrierFreeInfo?: string | null
-        mapIconName?: string | null
-        title: string
-        page?: {
-          __typename?: 'PageEntityResponse'
-          data?: {
-            __typename: 'PageEntity'
-            id?: string | null
-            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-          } | null
-        } | null
-        openingTimes?: {
-          __typename?: 'OpeningTimeRelationResponseCollection'
-          data: Array<{
-            __typename?: 'OpeningTimeEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'OpeningTime'
-              internalName: string
-              openingHours?: Array<{
-                __typename?: 'ComponentItemsOpeningHoursItem'
-                label: string
-                value: string
-              } | null> | null
-            } | null
-          }>
-        } | null
-        contacts?: {
-          __typename?: 'ContactRelationResponseCollection'
-          data: Array<{
-            __typename?: 'ContactEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'Contact'
-              label: string
-              text?: string | null
-              primaryEmail?: string | null
-              secondaryEmail?: string | null
-              primaryPhone?: string | null
-              secondaryPhone?: string | null
-            } | null
-          }>
-        } | null
-      } | null
-    }>
-  } | null
-}
-
 type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
   __typename: 'ComponentHeaderSectionsFeaturedNews'
   articlesTitle: string
@@ -6212,15 +6106,79 @@ type HeaderSections_ComponentHeaderSectionsSideImage_Fragment = {
   }
 }
 
+type HeaderSections_ComponentSectionsBranchesMap_Fragment = {
+  __typename: 'ComponentSectionsBranchesMap'
+  title?: string | null
+  text?: string | null
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        latitude?: number | null
+        longitude?: number | null
+        address?: string | null
+        publicTransportInfo?: string | null
+        parkingInfo?: string | null
+        barrierFreeInfo?: string | null
+        mapIconName?: string | null
+        title: string
+        page?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+          } | null
+        } | null
+        openingTimes?: {
+          __typename?: 'OpeningTimeRelationResponseCollection'
+          data: Array<{
+            __typename?: 'OpeningTimeEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'OpeningTime'
+              internalName: string
+              openingHours?: Array<{
+                __typename?: 'ComponentItemsOpeningHoursItem'
+                label: string
+                value: string
+              } | null> | null
+            } | null
+          }>
+        } | null
+        contacts?: {
+          __typename?: 'ContactRelationResponseCollection'
+          data: Array<{
+            __typename?: 'ContactEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Contact'
+              label: string
+              text?: string | null
+              primaryEmail?: string | null
+              secondaryEmail?: string | null
+              primaryPhone?: string | null
+              secondaryPhone?: string | null
+            } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
+}
+
 type HeaderSections_Error_Fragment = { __typename: 'Error' }
 
 export type HeaderSectionsFragment =
-  | HeaderSections_ComponentHeaderSectionsBranchMap_Fragment
   | HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment
   | HeaderSections_ComponentHeaderSectionsGallery_Fragment
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
   | HeaderSections_ComponentHeaderSectionsPickupDay_Fragment
   | HeaderSections_ComponentHeaderSectionsSideImage_Fragment
+  | HeaderSections_ComponentSectionsBranchesMap_Fragment
   | HeaderSections_Error_Fragment
 
 export type RichtextSectionFragment = {
@@ -6596,6 +6554,71 @@ export type ImageAndTextOverlappedSectionFragment = {
 
 export type BranchesSectionFragment = {
   __typename?: 'ComponentSectionsBranches'
+  title?: string | null
+  text?: string | null
+  showAll: boolean
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        latitude?: number | null
+        longitude?: number | null
+        address?: string | null
+        publicTransportInfo?: string | null
+        parkingInfo?: string | null
+        barrierFreeInfo?: string | null
+        mapIconName?: string | null
+        title: string
+        page?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+          } | null
+        } | null
+        openingTimes?: {
+          __typename?: 'OpeningTimeRelationResponseCollection'
+          data: Array<{
+            __typename?: 'OpeningTimeEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'OpeningTime'
+              internalName: string
+              openingHours?: Array<{
+                __typename?: 'ComponentItemsOpeningHoursItem'
+                label: string
+                value: string
+              } | null> | null
+            } | null
+          }>
+        } | null
+        contacts?: {
+          __typename?: 'ContactRelationResponseCollection'
+          data: Array<{
+            __typename?: 'ContactEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Contact'
+              label: string
+              text?: string | null
+              primaryEmail?: string | null
+              secondaryEmail?: string | null
+              primaryPhone?: string | null
+              secondaryPhone?: string | null
+            } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
+}
+
+export type BranchesMapSectionFragment = {
+  __typename?: 'ComponentSectionsBranchesMap'
   title?: string | null
   text?: string | null
   branches?: {
@@ -8593,6 +8616,71 @@ type PageSections_ComponentSectionsBranches_Fragment = {
   __typename: 'ComponentSectionsBranches'
   title?: string | null
   text?: string | null
+  showAll: boolean
+  branches?: {
+    __typename?: 'BranchRelationResponseCollection'
+    data: Array<{
+      __typename: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        latitude?: number | null
+        longitude?: number | null
+        address?: string | null
+        publicTransportInfo?: string | null
+        parkingInfo?: string | null
+        barrierFreeInfo?: string | null
+        mapIconName?: string | null
+        title: string
+        page?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+          } | null
+        } | null
+        openingTimes?: {
+          __typename?: 'OpeningTimeRelationResponseCollection'
+          data: Array<{
+            __typename?: 'OpeningTimeEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'OpeningTime'
+              internalName: string
+              openingHours?: Array<{
+                __typename?: 'ComponentItemsOpeningHoursItem'
+                label: string
+                value: string
+              } | null> | null
+            } | null
+          }>
+        } | null
+        contacts?: {
+          __typename?: 'ContactRelationResponseCollection'
+          data: Array<{
+            __typename?: 'ContactEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Contact'
+              label: string
+              text?: string | null
+              primaryEmail?: string | null
+              secondaryEmail?: string | null
+              primaryPhone?: string | null
+              secondaryPhone?: string | null
+            } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
+}
+
+type PageSections_ComponentSectionsBranchesMap_Fragment = {
+  __typename: 'ComponentSectionsBranchesMap'
+  title?: string | null
+  text?: string | null
   branches?: {
     __typename?: 'BranchRelationResponseCollection'
     data: Array<{
@@ -10299,6 +10387,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsBanner_Fragment
   | PageSections_ComponentSectionsBoardMembers_Fragment
   | PageSections_ComponentSectionsBranches_Fragment
+  | PageSections_ComponentSectionsBranchesMap_Fragment
   | PageSections_ComponentSectionsCardSlider_Fragment
   | PageSections_ComponentSectionsCardsList_Fragment
   | PageSections_ComponentSectionsColumns_Fragment
@@ -15765,67 +15854,6 @@ export type PageEntityFragment = {
     slug: string
     header?: Array<
       | {
-          __typename: 'ComponentHeaderSectionsBranchMap'
-          branches?: {
-            __typename?: 'BranchRelationResponseCollection'
-            data: Array<{
-              __typename: 'BranchEntity'
-              id?: string | null
-              attributes?: {
-                __typename?: 'Branch'
-                latitude?: number | null
-                longitude?: number | null
-                address?: string | null
-                publicTransportInfo?: string | null
-                parkingInfo?: string | null
-                barrierFreeInfo?: string | null
-                mapIconName?: string | null
-                title: string
-                page?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename: 'PageEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                  } | null
-                } | null
-                openingTimes?: {
-                  __typename?: 'OpeningTimeRelationResponseCollection'
-                  data: Array<{
-                    __typename?: 'OpeningTimeEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'OpeningTime'
-                      internalName: string
-                      openingHours?: Array<{
-                        __typename?: 'ComponentItemsOpeningHoursItem'
-                        label: string
-                        value: string
-                      } | null> | null
-                    } | null
-                  }>
-                } | null
-                contacts?: {
-                  __typename?: 'ContactRelationResponseCollection'
-                  data: Array<{
-                    __typename?: 'ContactEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'Contact'
-                      label: string
-                      text?: string | null
-                      primaryEmail?: string | null
-                      secondaryEmail?: string | null
-                      primaryPhone?: string | null
-                      secondaryPhone?: string | null
-                    } | null
-                  }>
-                } | null
-              } | null
-            }>
-          } | null
-        }
-      | {
           __typename: 'ComponentHeaderSectionsFeaturedNews'
           articlesTitle: string
           firstArticle?: {
@@ -16066,6 +16094,69 @@ export type PageEntityFragment = {
               } | null
             } | null
           }
+        }
+      | {
+          __typename: 'ComponentSectionsBranchesMap'
+          title?: string | null
+          text?: string | null
+          branches?: {
+            __typename?: 'BranchRelationResponseCollection'
+            data: Array<{
+              __typename: 'BranchEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Branch'
+                latitude?: number | null
+                longitude?: number | null
+                address?: string | null
+                publicTransportInfo?: string | null
+                parkingInfo?: string | null
+                barrierFreeInfo?: string | null
+                mapIconName?: string | null
+                title: string
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                  } | null
+                } | null
+                openingTimes?: {
+                  __typename?: 'OpeningTimeRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      internalName: string
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
+                  }>
+                } | null
+                contacts?: {
+                  __typename?: 'ContactRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'ContactEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Contact'
+                      label: string
+                      text?: string | null
+                      primaryEmail?: string | null
+                      secondaryEmail?: string | null
+                      primaryPhone?: string | null
+                      secondaryPhone?: string | null
+                    } | null
+                  }>
+                } | null
+              } | null
+            }>
+          } | null
         }
       | { __typename: 'Error' }
       | null
@@ -16338,6 +16429,70 @@ export type PageEntityFragment = {
         }
       | {
           __typename: 'ComponentSectionsBranches'
+          title?: string | null
+          text?: string | null
+          showAll: boolean
+          branches?: {
+            __typename?: 'BranchRelationResponseCollection'
+            data: Array<{
+              __typename: 'BranchEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Branch'
+                latitude?: number | null
+                longitude?: number | null
+                address?: string | null
+                publicTransportInfo?: string | null
+                parkingInfo?: string | null
+                barrierFreeInfo?: string | null
+                mapIconName?: string | null
+                title: string
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                  } | null
+                } | null
+                openingTimes?: {
+                  __typename?: 'OpeningTimeRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      internalName: string
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
+                  }>
+                } | null
+                contacts?: {
+                  __typename?: 'ContactRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'ContactEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Contact'
+                      label: string
+                      text?: string | null
+                      primaryEmail?: string | null
+                      secondaryEmail?: string | null
+                      primaryPhone?: string | null
+                      secondaryPhone?: string | null
+                    } | null
+                  }>
+                } | null
+              } | null
+            }>
+          } | null
+        }
+      | {
+          __typename: 'ComponentSectionsBranchesMap'
           title?: string | null
           text?: string | null
           branches?: {
@@ -18097,67 +18252,6 @@ export type PagesQuery = {
         slug: string
         header?: Array<
           | {
-              __typename: 'ComponentHeaderSectionsBranchMap'
-              branches?: {
-                __typename?: 'BranchRelationResponseCollection'
-                data: Array<{
-                  __typename: 'BranchEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'Branch'
-                    latitude?: number | null
-                    longitude?: number | null
-                    address?: string | null
-                    publicTransportInfo?: string | null
-                    parkingInfo?: string | null
-                    barrierFreeInfo?: string | null
-                    mapIconName?: string | null
-                    title: string
-                    page?: {
-                      __typename?: 'PageEntityResponse'
-                      data?: {
-                        __typename: 'PageEntity'
-                        id?: string | null
-                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                      } | null
-                    } | null
-                    openingTimes?: {
-                      __typename?: 'OpeningTimeRelationResponseCollection'
-                      data: Array<{
-                        __typename?: 'OpeningTimeEntity'
-                        id?: string | null
-                        attributes?: {
-                          __typename?: 'OpeningTime'
-                          internalName: string
-                          openingHours?: Array<{
-                            __typename?: 'ComponentItemsOpeningHoursItem'
-                            label: string
-                            value: string
-                          } | null> | null
-                        } | null
-                      }>
-                    } | null
-                    contacts?: {
-                      __typename?: 'ContactRelationResponseCollection'
-                      data: Array<{
-                        __typename?: 'ContactEntity'
-                        id?: string | null
-                        attributes?: {
-                          __typename?: 'Contact'
-                          label: string
-                          text?: string | null
-                          primaryEmail?: string | null
-                          secondaryEmail?: string | null
-                          primaryPhone?: string | null
-                          secondaryPhone?: string | null
-                        } | null
-                      }>
-                    } | null
-                  } | null
-                }>
-              } | null
-            }
-          | {
               __typename: 'ComponentHeaderSectionsFeaturedNews'
               articlesTitle: string
               firstArticle?: {
@@ -18398,6 +18492,69 @@ export type PagesQuery = {
                   } | null
                 } | null
               }
+            }
+          | {
+              __typename: 'ComponentSectionsBranchesMap'
+              title?: string | null
+              text?: string | null
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    latitude?: number | null
+                    longitude?: number | null
+                    address?: string | null
+                    publicTransportInfo?: string | null
+                    parkingInfo?: string | null
+                    barrierFreeInfo?: string | null
+                    mapIconName?: string | null
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                    openingTimes?: {
+                      __typename?: 'OpeningTimeRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'OpeningTimeEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'OpeningTime'
+                          internalName: string
+                          openingHours?: Array<{
+                            __typename?: 'ComponentItemsOpeningHoursItem'
+                            label: string
+                            value: string
+                          } | null> | null
+                        } | null
+                      }>
+                    } | null
+                    contacts?: {
+                      __typename?: 'ContactRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'ContactEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Contact'
+                          label: string
+                          text?: string | null
+                          primaryEmail?: string | null
+                          secondaryEmail?: string | null
+                          primaryPhone?: string | null
+                          secondaryPhone?: string | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                }>
+              } | null
             }
           | { __typename: 'Error' }
           | null
@@ -18670,6 +18827,70 @@ export type PagesQuery = {
             }
           | {
               __typename: 'ComponentSectionsBranches'
+              title?: string | null
+              text?: string | null
+              showAll: boolean
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    latitude?: number | null
+                    longitude?: number | null
+                    address?: string | null
+                    publicTransportInfo?: string | null
+                    parkingInfo?: string | null
+                    barrierFreeInfo?: string | null
+                    mapIconName?: string | null
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                    openingTimes?: {
+                      __typename?: 'OpeningTimeRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'OpeningTimeEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'OpeningTime'
+                          internalName: string
+                          openingHours?: Array<{
+                            __typename?: 'ComponentItemsOpeningHoursItem'
+                            label: string
+                            value: string
+                          } | null> | null
+                        } | null
+                      }>
+                    } | null
+                    contacts?: {
+                      __typename?: 'ContactRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'ContactEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Contact'
+                          label: string
+                          text?: string | null
+                          primaryEmail?: string | null
+                          secondaryEmail?: string | null
+                          primaryPhone?: string | null
+                          secondaryPhone?: string | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsBranchesMap'
               title?: string | null
               text?: string | null
               branches?: {
@@ -20436,67 +20657,6 @@ export type PageBySlugQuery = {
         slug: string
         header?: Array<
           | {
-              __typename: 'ComponentHeaderSectionsBranchMap'
-              branches?: {
-                __typename?: 'BranchRelationResponseCollection'
-                data: Array<{
-                  __typename: 'BranchEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'Branch'
-                    latitude?: number | null
-                    longitude?: number | null
-                    address?: string | null
-                    publicTransportInfo?: string | null
-                    parkingInfo?: string | null
-                    barrierFreeInfo?: string | null
-                    mapIconName?: string | null
-                    title: string
-                    page?: {
-                      __typename?: 'PageEntityResponse'
-                      data?: {
-                        __typename: 'PageEntity'
-                        id?: string | null
-                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                      } | null
-                    } | null
-                    openingTimes?: {
-                      __typename?: 'OpeningTimeRelationResponseCollection'
-                      data: Array<{
-                        __typename?: 'OpeningTimeEntity'
-                        id?: string | null
-                        attributes?: {
-                          __typename?: 'OpeningTime'
-                          internalName: string
-                          openingHours?: Array<{
-                            __typename?: 'ComponentItemsOpeningHoursItem'
-                            label: string
-                            value: string
-                          } | null> | null
-                        } | null
-                      }>
-                    } | null
-                    contacts?: {
-                      __typename?: 'ContactRelationResponseCollection'
-                      data: Array<{
-                        __typename?: 'ContactEntity'
-                        id?: string | null
-                        attributes?: {
-                          __typename?: 'Contact'
-                          label: string
-                          text?: string | null
-                          primaryEmail?: string | null
-                          secondaryEmail?: string | null
-                          primaryPhone?: string | null
-                          secondaryPhone?: string | null
-                        } | null
-                      }>
-                    } | null
-                  } | null
-                }>
-              } | null
-            }
-          | {
               __typename: 'ComponentHeaderSectionsFeaturedNews'
               articlesTitle: string
               firstArticle?: {
@@ -20737,6 +20897,69 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               }
+            }
+          | {
+              __typename: 'ComponentSectionsBranchesMap'
+              title?: string | null
+              text?: string | null
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    latitude?: number | null
+                    longitude?: number | null
+                    address?: string | null
+                    publicTransportInfo?: string | null
+                    parkingInfo?: string | null
+                    barrierFreeInfo?: string | null
+                    mapIconName?: string | null
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                    openingTimes?: {
+                      __typename?: 'OpeningTimeRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'OpeningTimeEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'OpeningTime'
+                          internalName: string
+                          openingHours?: Array<{
+                            __typename?: 'ComponentItemsOpeningHoursItem'
+                            label: string
+                            value: string
+                          } | null> | null
+                        } | null
+                      }>
+                    } | null
+                    contacts?: {
+                      __typename?: 'ContactRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'ContactEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Contact'
+                          label: string
+                          text?: string | null
+                          primaryEmail?: string | null
+                          secondaryEmail?: string | null
+                          primaryPhone?: string | null
+                          secondaryPhone?: string | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                }>
+              } | null
             }
           | { __typename: 'Error' }
           | null
@@ -21009,6 +21232,70 @@ export type PageBySlugQuery = {
             }
           | {
               __typename: 'ComponentSectionsBranches'
+              title?: string | null
+              text?: string | null
+              showAll: boolean
+              branches?: {
+                __typename?: 'BranchRelationResponseCollection'
+                data: Array<{
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    latitude?: number | null
+                    longitude?: number | null
+                    address?: string | null
+                    publicTransportInfo?: string | null
+                    parkingInfo?: string | null
+                    barrierFreeInfo?: string | null
+                    mapIconName?: string | null
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                    openingTimes?: {
+                      __typename?: 'OpeningTimeRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'OpeningTimeEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'OpeningTime'
+                          internalName: string
+                          openingHours?: Array<{
+                            __typename?: 'ComponentItemsOpeningHoursItem'
+                            label: string
+                            value: string
+                          } | null> | null
+                        } | null
+                      }>
+                    } | null
+                    contacts?: {
+                      __typename?: 'ContactRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'ContactEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Contact'
+                          label: string
+                          text?: string | null
+                          primaryEmail?: string | null
+                          secondaryEmail?: string | null
+                          primaryPhone?: string | null
+                          secondaryPhone?: string | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentSectionsBranchesMap'
               title?: string | null
               text?: string | null
               branches?: {
@@ -27080,8 +27367,10 @@ export const PickupDayHeaderSectionFragmentDoc = gql`
   ${AnchorFragmentDoc}
   ${LinkFragmentDoc}
 `
-export const BranchMapHeaderSectionFragmentDoc = gql`
-  fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
+export const BranchesMapSectionFragmentDoc = gql`
+  fragment BranchesMapSection on ComponentSectionsBranchesMap {
+    title
+    text
     branches {
       data {
         ...BranchEntity
@@ -27108,8 +27397,8 @@ export const HeaderSectionsFragmentDoc = gql`
     ... on ComponentHeaderSectionsPickupDay {
       ...PickupDayHeaderSection
     }
-    ... on ComponentHeaderSectionsBranchMap {
-      ...BranchMapHeaderSection
+    ... on ComponentSectionsBranchesMap {
+      ...BranchesMapSection
     }
   }
   ${ImageHeaderSectionFragmentDoc}
@@ -27117,7 +27406,7 @@ export const HeaderSectionsFragmentDoc = gql`
   ${FeaturedNewsHeaderSectionFragmentDoc}
   ${GalleryHeaderSectionFragmentDoc}
   ${PickupDayHeaderSectionFragmentDoc}
-  ${BranchMapHeaderSectionFragmentDoc}
+  ${BranchesMapSectionFragmentDoc}
 `
 export const RichtextSectionFragmentDoc = gql`
   fragment RichtextSection on ComponentSectionsRichtext {
@@ -27200,6 +27489,7 @@ export const BranchesSectionFragmentDoc = gql`
   fragment BranchesSection on ComponentSectionsBranches {
     title
     text
+    showAll
     branches {
       data {
         ...BranchEntity
@@ -27611,6 +27901,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsBranches {
       ...BranchesSection
     }
+    ... on ComponentSectionsBranchesMap {
+      ...BranchesMapSection
+    }
     ... on ComponentSectionsWorkshops {
       ...WorkshopsSection
     }
@@ -27678,6 +27971,7 @@ export const PageSectionsFragmentDoc = gql`
   ${ColumnsSectionFragmentDoc}
   ${ImageAndTextOverlappedSectionFragmentDoc}
   ${BranchesSectionFragmentDoc}
+  ${BranchesMapSectionFragmentDoc}
   ${WorkshopsSectionFragmentDoc}
   ${ColumnsListSectionFragmentDoc}
   ${TableSectionFragmentDoc}

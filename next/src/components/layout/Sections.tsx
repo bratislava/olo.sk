@@ -3,6 +3,7 @@ import React from 'react'
 import ArticlesSection from '@/src/components/sections/ArticlesSection'
 import BannerSection from '@/src/components/sections/BannerSection'
 import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
+import BranchesMapSection from '@/src/components/sections/BranchesMapSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
 import CardSliderSection from '@/src/components/sections/CardSliderSection'
 import CardsListSection from '@/src/components/sections/CardsListSection'
@@ -55,6 +56,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsBranches':
       return <BranchesSection section={section} />
+
+    case 'ComponentSectionsBranchesMap':
+      return <BranchesMapSection section={section} />
 
     case 'ComponentSectionsWorkshops':
       return <WorkshopsSection section={section} />

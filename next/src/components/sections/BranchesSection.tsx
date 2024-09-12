@@ -1,4 +1,3 @@
-import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import BranchCard from '@/src/components/common/Card/BranchCard'
@@ -17,13 +16,11 @@ type Props = {
  */
 
 const BranchesSection = ({ section }: Props) => {
-  const { i18n } = useTranslation()
-  const locale = i18n.language
-
   const { title, text, branches } = section
 
   const { getFullPath } = useGetFullPath()
 
+  // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredBranches = branches?.data.filter(isDefined) ?? []
 
   return (

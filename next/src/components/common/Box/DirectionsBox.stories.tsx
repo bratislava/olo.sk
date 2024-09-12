@@ -3,25 +3,24 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
+import { BranchMapProps } from '@/src/components/common/Box/BranchMap'
 import DirectionsBoxComponent from '@/src/components/common/Box/DirectionsBox'
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 
 type Props = {
-  latitude?: string | null
-  longitude?: string | null
-  mapIconName?: string | null
+  mapIconName?: string | null | undefined
   rowsContent: {
     value: string
     iconName: 'place' | 'directions-bus' | 'local-parking'
   }[]
-}
+} & Pick<BranchMapProps, 'latitude' | 'longitude'>
 
 const meta: Meta<Props> = {
   title: 'Components/Box/DirectionsBox',
   parameters: { controls: { exclude: ['rowsContent'] } },
   args: {
-    latitude: '48.171140',
-    longitude: '17.17921',
+    latitude: 48.171_14,
+    longitude: 17.179_21,
     rowsContent: [
       {
         value: 'Ivanská cesta 22, 821 04 Bratislava',

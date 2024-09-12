@@ -1,5 +1,6 @@
 import React from 'react'
 
+import DirectionsBoxByBranch from '@/src/components/common/Box/DirectionsBoxByBranch'
 import OpeningHoursBox from '@/src/components/common/OpeningHoursBox'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
@@ -16,7 +17,7 @@ type Props = {
  */
 
 const OpeningTimesSection = ({ section }: Props) => {
-  const { title, text, openingTimes } = section ?? {}
+  const { title, text, openingTimes, branchLocation } = section ?? {}
 
   const filteredOpeningTimes = openingTimes?.filter(isDefined) ?? []
 
@@ -25,6 +26,7 @@ const OpeningTimesSection = ({ section }: Props) => {
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
+
         {filteredOpeningTimes.map((openingTimeGroup) => {
           if (!openingTimeGroup.openingTime?.data?.attributes) return null
 
@@ -40,6 +42,10 @@ const OpeningTimesSection = ({ section }: Props) => {
             </div>
           )
         })}
+
+        {branchLocation?.data?.attributes ? (
+          <DirectionsBoxByBranch branch={branchLocation.data} />
+        ) : null}
       </div>
     </SectionContainer>
   )

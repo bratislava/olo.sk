@@ -1,16 +1,14 @@
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
 import { MapMarkerDefaultSvg, MapMarkerKoloSvg } from '@/src/assets/markers'
-import BranchMap from '@/src/components/common/Box/BranchMap'
+import BranchMap, { BranchMapProps } from '@/src/components/common/Box/BranchMap'
 import cn from '@/src/utils/cn'
 
 type DirectionsBoxProps = {
-  latitude?: string | null
-  longitude?: string | null
   mapIconName?: string | null
-  children: ReactNode[]
   className?: string
-}
+} & Pick<BranchMapProps, 'longitude' | 'latitude'> &
+  PropsWithChildren
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-10975&m=dev
@@ -23,8 +21,6 @@ const DirectionsBox = ({
   children,
   className,
 }: DirectionsBoxProps) => {
-  if (children.length === 0) return null
-
   // eslint-disable-next-line const-case/uppercase
   const markerClasses = 'size-[60px] text-action-background-default'
   const marker =

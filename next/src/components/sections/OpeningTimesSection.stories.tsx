@@ -6,6 +6,8 @@ import OpeningTimesSectionComponent from './OpeningTimesSection'
 
 type Props = OpeningTimesSectionFragment
 
+const commonOpeningTime = '10:00 – 17:00'
+
 const meta: Meta<Props> = {
   title: 'Sections/Opening Times',
   args: {
@@ -19,11 +21,10 @@ const meta: Meta<Props> = {
             attributes: {
               openingHours: [
                 { label: 'Pondelok', value: 'Zatvorené' },
-                // eslint-disable-next-line sonarjs/no-duplicate-string
-                { label: 'Utorok', value: '10:00 – 17:00' },
-                { label: 'Streda', value: '10:00 – 17:00' },
-                { label: 'Štvrtok', value: '10:00 – 17:00' },
-                { label: 'Piatok', value: '10:00 – 17:00' },
+                { label: 'Utorok', value: commonOpeningTime },
+                { label: 'Streda', value: commonOpeningTime },
+                { label: 'Štvrtok', value: commonOpeningTime },
+                { label: 'Piatok', value: commonOpeningTime },
                 { label: 'Sobota – Nedeľa', value: '10:00 – 18:00' },
               ],
             },
@@ -31,7 +32,23 @@ const meta: Meta<Props> = {
         },
       },
     ],
+    branchLocation: {
+      data: {
+        __typename: 'BranchEntity',
+        attributes: {
+          title: 'KOLO Jurigovo námestie',
+          latitude: 48.15,
+          longitude: 17.06,
+          mapIconName: 'kolo',
+          address: 'Jurigovo námestie, 841 04 Karlova Ves',
+          parkingInfo: 'v areáli OC Korzo',
+          publicTransportInfo: 'zastávka Jurigovo nám. (linka číslo 139)',
+          barrierFreeInfo: 'bezbariérový vstup',
+        },
+      },
+    },
   },
+  parameters: { controls: { exclude: ['openingTimes', 'branchLocation'] } },
 }
 
 type Story = StoryObj<Props>

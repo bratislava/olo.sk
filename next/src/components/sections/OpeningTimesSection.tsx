@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import React from 'react'
 
-import DirectionsBox1 from '@/src/components/common/Box/DirectionsBox1'
+import DirectionsBox from '@/src/components/common/Box/DirectionsBox'
 import OpeningHoursBox from '@/src/components/common/OpeningHoursBox'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
@@ -43,8 +43,10 @@ const OpeningTimesSection = ({ section }: Props) => {
             </div>
           )
         })}
-        <Typography variant="h5">{t('branchPageContent.directionsTitle')}</Typography>
-        {branchLocation?.data?.attributes ? <DirectionsBox1 branch={branchLocation.data} /> : null}
+        <div className="flex flex-col gap-4">
+          <Typography variant="h5">{t('branchPageContent.directionsTitle')}</Typography>
+          {branchLocation?.data?.attributes ? <DirectionsBox branch={branchLocation.data} /> : null}
+        </div>
       </div>
     </SectionContainer>
   )

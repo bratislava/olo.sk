@@ -66,30 +66,44 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return NOT_FOUND
   }
 
-  const [{ pages: entities }, { pages: aliasEntities }, general, navigation, translations] =
-    await Promise.all([
-      client.PageBySlug({ slug, locale }),
-      client.PageRedirectByAlias({ alias: slug, locale }),
-      client.General({ locale }),
-      fetchNavigation(navigationConfig),
-      serverSideTranslations(locale),
-    ])
+  const [
+    { pages: entities },
+    { pages: aliasPages, articles: aliasArticles },
+    general,
+    navigation,
+    translations,
+  ] = await Promise.all([
+    client.PageBySlug({ slug, locale }),
+    client.PageRedirectByAlias({ alias: slug, locale }),
+    client.General({ locale }),
+    fetchNavigation(navigationConfig),
+    serverSideTranslations(locale),
+  ])
 
-  // Check if the page with this alias exists (get its slug)
-  const aliasPageSlug = aliasEntities?.data[0]?.attributes?.slug
+  let redirectPath = ''
+
+  // Check if an Article with this alias exists
+  const aliasArticleSlug = aliasArticles?.data[0]?.attributes?.slug
+  if (aliasArticleSlug) {
+    // Get the full path for the article
+    redirectPath = navigation.contentTypePathPrefixesMap.article
+      ? `${navigation.contentTypePathPrefixesMap.article}/${aliasArticleSlug}`
+      : ''
+  }
+
+  // Check if a Page with this alias exists
+  const aliasPageSlug = aliasPages?.data[0]?.attributes?.slug
   if (aliasPageSlug) {
     // Get the full path for the page by its slug
-    const aliasRedirectPath = navigation.pagePathsMap[aliasPageSlug]?.path
-    // Double check if the path is not undefined
-    // This should never happen. If it does, something is wrong, because pagePathsMap should contain all pages.
-    if (!aliasRedirectPath) {
-      return NOT_FOUND
-    }
+    redirectPath = navigation.pagePathsMap[aliasPageSlug]?.path ?? ''
+  }
 
-    // Redirect to the new path
+  // Note that alias in pages and articles are unique only within their own content type
+  // If there are both a page and an article with the same alias, the page will override the `redirectPath` as it's checked as last
+  if (redirectPath) {
     return {
       redirect: {
-        destination: aliasRedirectPath,
+        destination: redirectPath,
         permanent: false,
       },
     }

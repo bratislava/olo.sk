@@ -698,6 +698,12 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true
         }
       }>
+    alias: Attribute.UID &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     coverMedia: Attribute.Media<'images'> &
       Attribute.SetPluginOptions<{
         i18n: {

@@ -6125,7 +6125,6 @@ type HeaderSections_ComponentSectionsBranchesMap_Fragment = {
         barrierFreeInfo?: string | null
         mapIconName?: string | null
         title: string
-        slug: string
         page?: {
           __typename?: 'PageEntityResponse'
           data?: {
@@ -6637,7 +6636,6 @@ export type BranchesMapSectionFragment = {
         barrierFreeInfo?: string | null
         mapIconName?: string | null
         title: string
-        slug: string
         page?: {
           __typename?: 'PageEntityResponse'
           data?: {
@@ -8698,7 +8696,6 @@ type PageSections_ComponentSectionsBranchesMap_Fragment = {
         barrierFreeInfo?: string | null
         mapIconName?: string | null
         title: string
-        slug: string
         page?: {
           __typename?: 'PageEntityResponse'
           data?: {
@@ -16117,7 +16114,6 @@ export type PageEntityFragment = {
                 barrierFreeInfo?: string | null
                 mapIconName?: string | null
                 title: string
-                slug: string
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
@@ -16514,7 +16510,6 @@ export type PageEntityFragment = {
                 barrierFreeInfo?: string | null
                 mapIconName?: string | null
                 title: string
-                slug: string
                 page?: {
                   __typename?: 'PageEntityResponse'
                   data?: {
@@ -18517,7 +18512,6 @@ export type PagesQuery = {
                     barrierFreeInfo?: string | null
                     mapIconName?: string | null
                     title: string
-                    slug: string
                     page?: {
                       __typename?: 'PageEntityResponse'
                       data?: {
@@ -18914,7 +18908,6 @@ export type PagesQuery = {
                     barrierFreeInfo?: string | null
                     mapIconName?: string | null
                     title: string
-                    slug: string
                     page?: {
                       __typename?: 'PageEntityResponse'
                       data?: {
@@ -20924,7 +20917,6 @@ export type PageBySlugQuery = {
                     barrierFreeInfo?: string | null
                     mapIconName?: string | null
                     title: string
-                    slug: string
                     page?: {
                       __typename?: 'PageEntityResponse'
                       data?: {
@@ -21321,7 +21313,6 @@ export type PageBySlugQuery = {
                     barrierFreeInfo?: string | null
                     mapIconName?: string | null
                     title: string
-                    slug: string
                     page?: {
                       __typename?: 'PageEntityResponse'
                       data?: {

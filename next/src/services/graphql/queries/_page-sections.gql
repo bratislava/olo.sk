@@ -76,6 +76,16 @@ fragment BranchesSection on ComponentSectionsBranches {
   }
 }
 
+fragment BranchesMapSection on ComponentSectionsBranchesMap {
+  title
+  text
+  branches {
+    data {
+      ...BranchEntity
+    }
+  }
+}
+
 fragment WorkshopsSection on ComponentSectionsWorkshops {
   title
   text
@@ -379,6 +389,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBranches {
     ...BranchesSection
+  }
+
+  ... on ComponentSectionsBranchesMap {
+    ...BranchesMapSection
   }
 
   ... on ComponentSectionsWorkshops {

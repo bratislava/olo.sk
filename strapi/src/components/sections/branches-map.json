@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_branches_maps",
+  "info": {
+    "displayName": "Mapa pobočiek",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "branches": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::branch.branch"
+    }
+  }
+}

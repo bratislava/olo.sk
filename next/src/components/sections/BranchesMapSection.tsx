@@ -23,7 +23,7 @@ type Props = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1183-12850&t=D7txO1bXf5wrvIOv-1
  */
 const BranchesMapSection = ({ section }: Props) => {
-  const { getFullPath } = useGetFullPath() // TODO: Implementation for branches needs to be written
+  const { getFullPath } = useGetFullPath()
 
   const { title: sectionTitle, text, branches } = section ?? {}
   const mapRef = useRef<MapRef | null>(null)
@@ -33,7 +33,7 @@ const BranchesMapSection = ({ section }: Props) => {
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredBranches = branches?.data.filter(isDefined) ?? []
-  const [hoveredBranchSlug, setHoveredBranchSlug] = useState<string | null>(null)
+  const [hoveredBranchId, setHoveredBranchId] = useState<string | null>(null)
   const initialBounds = getBoundsForBranches(filteredBranches)
 
   return (
@@ -49,7 +49,7 @@ const BranchesMapSection = ({ section }: Props) => {
           {filteredBranches
             .map((branch, index) => {
               if (!branch.attributes) return null
-              const { title, address, slug } = branch.attributes
+              const { title, address } = branch.attributes
 
               return (
                 <Fragment key={branch.id}>
@@ -64,7 +64,7 @@ const BranchesMapSection = ({ section }: Props) => {
                       variant="unstyled"
                       className="size-full"
                       innerClassName={cn({
-                        underline: hoveredBranchSlug === slug, // Underline card title when hovering over its map marker
+                        underline: hoveredBranchId === branch.id, // Underline card title when hovering over its map marker
                       })}
                     />
                   </li>
@@ -92,7 +92,7 @@ const BranchesMapSection = ({ section }: Props) => {
             cooperativeGestures
           >
             {filteredBranches.map((branch) => {
-              const { slug, latitude, longitude, mapIconName } = branch.attributes ?? {}
+              const { latitude, longitude, mapIconName } = branch.attributes ?? {}
               if (!latitude || !longitude) return null
 
               return (
@@ -100,13 +100,13 @@ const BranchesMapSection = ({ section }: Props) => {
                   <motion.button
                     style={{ originY: 1 }}
                     initial={{ scale: 0 }}
-                    animate={{ scale: hoveredBranchSlug === slug ? 1 : 0.75 }}
+                    animate={{ scale: hoveredBranchId === branch.id ? 1 : 0.75 }}
                     whileTap={{ scale: 0.8 }}
                   >
                     <Link
                       href={getFullPath(branch) ?? ''}
-                      onMouseEnter={() => setHoveredBranchSlug(slug ?? null)}
-                      onMouseLeave={() => setHoveredBranchSlug(null)}
+                      onMouseEnter={() => setHoveredBranchId(branch.id ?? null)}
+                      onMouseLeave={() => setHoveredBranchId(null)}
                     >
                       {mapIconName === 'kolo' ? (
                         <MapMarkerKoloSvg className={markerClasses} />

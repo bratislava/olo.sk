@@ -4,6 +4,7 @@
 
 type Article {
   addedAt: DateTime!
+  alias: String
   articleCategory: ArticleCategoryEntityResponse
   content: String
   coverMedia: UploadFileEntityResponse
@@ -86,6 +87,7 @@ type ArticleEntityResponseCollection {
 
 input ArticleFiltersInput {
   addedAt: DateTimeFilterInput
+  alias: StringFilterInput
   and: [ArticleFiltersInput]
   articleCategory: ArticleCategoryFiltersInput
   content: StringFilterInput
@@ -105,6 +107,7 @@ input ArticleFiltersInput {
 
 input ArticleInput {
   addedAt: DateTime
+  alias: String
   articleCategory: ID
   content: String
   coverMedia: ID

@@ -32,6 +32,7 @@ export type Scalars = {
 export type Article = {
   __typename?: 'Article'
   addedAt: Scalars['DateTime']['output']
+  alias?: Maybe<Scalars['String']['output']>
   articleCategory?: Maybe<ArticleCategoryEntityResponse>
   content?: Maybe<Scalars['String']['output']>
   coverMedia?: Maybe<UploadFileEntityResponse>
@@ -156,6 +157,7 @@ export type ArticleEntityResponseCollection = {
 
 export type ArticleFiltersInput = {
   addedAt?: InputMaybe<DateTimeFilterInput>
+  alias?: InputMaybe<StringFilterInput>
   and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
   articleCategory?: InputMaybe<ArticleCategoryFiltersInput>
   content?: InputMaybe<StringFilterInput>
@@ -175,6 +177,7 @@ export type ArticleFiltersInput = {
 
 export type ArticleInput = {
   addedAt?: InputMaybe<Scalars['DateTime']['input']>
+  alias?: InputMaybe<Scalars['String']['input']>
   articleCategory?: InputMaybe<Scalars['ID']['input']>
   content?: InputMaybe<Scalars['String']['input']>
   coverMedia?: InputMaybe<Scalars['ID']['input']>
@@ -10254,6 +10257,7 @@ export type ArticleEntityFragment = {
   id?: string | null
   attributes?: {
     __typename?: 'Article'
+    alias?: string | null
     content?: string | null
     perex?: string | null
     addedAt: any
@@ -10321,6 +10325,7 @@ export type ArticlesQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
+        alias?: string | null
         content?: string | null
         perex?: string | null
         addedAt: any
@@ -10407,6 +10412,7 @@ export type ArticleBySlugQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
+        alias?: string | null
         content?: string | null
         perex?: string | null
         addedAt: any
@@ -10479,6 +10485,7 @@ export type LatestArticlesQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
+        alias?: string | null
         content?: string | null
         perex?: string | null
         addedAt: any
@@ -12312,6 +12319,7 @@ export type ArticlesHomepageSectionFragment = {
       id?: string | null
       attributes?: {
         __typename?: 'Article'
+        alias?: string | null
         content?: string | null
         perex?: string | null
         addedAt: any
@@ -13065,6 +13073,7 @@ export type HomepageEntityFragment = {
           id?: string | null
           attributes?: {
             __typename?: 'Article'
+            alias?: string | null
             content?: string | null
             perex?: string | null
             addedAt: any
@@ -13835,6 +13844,7 @@ export type HomepageQuery = {
               id?: string | null
               attributes?: {
                 __typename?: 'Article'
+                alias?: string | null
                 content?: string | null
                 perex?: string | null
                 addedAt: any
@@ -22441,6 +22451,14 @@ export type PageRedirectByAliasQuery = {
       attributes?: { __typename?: 'Page'; title: string; slug: string } | null
     }>
   } | null
+  articles?: {
+    __typename?: 'ArticleEntityResponseCollection'
+    data: Array<{
+      __typename: 'ArticleEntity'
+      id?: string | null
+      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+    }>
+  } | null
 }
 
 export type ServiceSlugEntityFragment = {
@@ -26372,6 +26390,7 @@ export const ArticleEntityFragmentDoc = gql`
   fragment ArticleEntity on ArticleEntity {
     ...ArticleCardEntity
     attributes {
+      alias
       content
       gallery {
         data {
@@ -27736,8 +27755,14 @@ export const PageRedirectByAliasDocument = gql`
         ...PageSlugEntity
       }
     }
+    articles(filters: { alias: { eq: $alias } }, locale: $locale) {
+      data {
+        ...ArticleSlugEntity
+      }
+    }
   }
   ${PageSlugEntityFragmentDoc}
+  ${ArticleSlugEntityFragmentDoc}
 `
 export const ServicesDocument = gql`
   query Services($locale: I18NLocaleCode!) {

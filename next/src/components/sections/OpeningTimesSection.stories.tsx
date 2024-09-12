@@ -6,6 +6,7 @@ import OpeningTimesSectionComponent from './OpeningTimesSection'
 
 type Props = OpeningTimesSectionFragment
 
+// eslint-disable-next-line const-case/uppercase
 const commonOpeningTime = '10:00 – 17:00'
 
 const meta: Meta<Props> = {

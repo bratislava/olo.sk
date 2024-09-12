@@ -9,11 +9,12 @@ import cn from '@/src/utils/cn'
 type BranchCardProps = {
   title: string
   linkHref: string
-  address: string
+  address?: string | null | undefined
   imgSrc?: string
   hasWhiteBackground?: boolean
   className?: string
   innerClassName?: string
+  typographyClassName?: string
 } & Pick<CardBaseProps, 'variant'>
 
 /**
@@ -29,6 +30,7 @@ const BranchCard = ({
   hasWhiteBackground = true,
   className,
   innerClassName,
+  typographyClassName,
 }: BranchCardProps) => {
   const { t } = useTranslation()
 
@@ -39,7 +41,15 @@ const BranchCard = ({
       className={className}
       title={title}
     >
-      <div className="flex h-full flex-col items-start gap-6 p-4 lg:gap-4">
+      <div
+        className={cn(
+          'flex h-full flex-col items-start gap-6 lg:gap-4',
+          {
+            'p-4': variant !== 'unstyled',
+          },
+          innerClassName,
+        )}
+      >
         <CardImage imgSrc={imgSrc} className="aspect-square size-16 rounded-lg lg:size-32" />
         <div className="flex h-full flex-col justify-between gap-6">
           <div className="flex flex-col gap-2">
@@ -47,14 +57,16 @@ const BranchCard = ({
               variant="h4"
               className_onlyWhenNecessary={cn(
                 'line-clamp-3 group-hover/CardBase:underline',
-                innerClassName,
+                typographyClassName,
               )}
             >
               {title}
             </Typography>
-            <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">
-              {address}
-            </Typography>
+            {address ? (
+              <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">
+                {address}
+              </Typography>
+            ) : null}
           </div>
           <Button variant="black-link" href={linkHref} asLink stretched>
             {t('common.showMore')}

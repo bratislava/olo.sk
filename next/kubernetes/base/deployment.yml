@@ -35,6 +35,8 @@ spec:
                 name: faro-api-key
             - secretRef:
                 name: minio-secret-standalone
+            - secretRef:
+                name: ${BUILD_REPOSITORY_NAME}-revalidate-secret
           readinessProbe:
             httpGet:
               path: /api/healthcheck

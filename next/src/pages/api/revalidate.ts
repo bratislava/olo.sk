@@ -7,6 +7,7 @@ import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 type Response = { revalidated: boolean } | { message: string } | string
 type RequestPayload =
   | { model: string; entry: { slug: string; locale: string } }
+  | { model: 'page'; entry: { slug: string; locale: string; alias?: string } }
   | { model: 'branch'; entry: { page?: { slug: string }; locale: string } }
 
 /**
@@ -55,6 +56,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
 
     if (payload?.model === 'page') {
       pathToRevalidate = pagePathsMap[payload?.entry?.slug ?? '']?.path ?? ''
+
+      if ('alias' in payload.entry && payload.entry.alias) {
+        console.log('api/revalidate:', `page alias /${payload.entry.alias}`)
+        await res.revalidate(`/${payload.entry.alias}`)
+      }
     }
 
     if (pathToRevalidate) {

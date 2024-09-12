@@ -33,6 +33,7 @@ fragment ArticleCardEntity on ArticleEntity {
 fragment ArticleEntity on ArticleEntity {
   ...ArticleCardEntity
   attributes {
+    alias
     content
     gallery {
       data {

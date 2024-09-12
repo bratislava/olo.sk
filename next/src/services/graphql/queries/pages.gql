@@ -94,4 +94,9 @@ query PageRedirectByAlias($alias: String!, $locale: I18NLocaleCode!) {
       ...PageSlugEntity
     }
   }
+  articles(filters: { alias: { eq: $alias } }, locale: $locale) {
+    data {
+      ...ArticleSlugEntity
+    }
+  }
 }

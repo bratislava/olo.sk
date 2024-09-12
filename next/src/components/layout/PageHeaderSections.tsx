@@ -1,6 +1,7 @@
 import React from 'react'
 
 import PageHeaderBasic from '@/src/components/sections/headers/PageHeaderBasic'
+import PageHeaderBranchMap from '@/src/components/sections/headers/PageHeaderBranchMap'
 import PageHeaderFeaturedNews from '@/src/components/sections/headers/PageHeaderFeaturedNews'
 import PageHeaderGallery from '@/src/components/sections/headers/PageHeaderGallery'
 import PageHeaderImage from '@/src/components/sections/headers/PageHeaderImage'
@@ -37,12 +38,12 @@ const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
     case 'ComponentHeaderSectionsGallery':
       return <PageHeaderGallery header={header} title={title} perex={perex} />
 
-    // case 'ComponentHeaderSectionsIcon':
-    //   return <PageHeaderIcon header={header} title={title} perex={perex} />
-
     // eslint-disable-next-line no-secrets/no-secrets
     case 'ComponentHeaderSectionsPickupDay':
       return <PageHeaderPickupDay header={header} title={title} />
+
+    case 'ComponentHeaderSectionsBranchMap':
+      return <PageHeaderBranchMap header={header} title={title} perex={perex} />
 
     default:
       return <PageHeaderBasic title={title} perex={perex} />

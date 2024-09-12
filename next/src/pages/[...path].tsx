@@ -12,7 +12,7 @@ import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
-import AliasSection from '@/src/components/sections/AliasSection'
+import AliasInfoMessage from '@/src/components/sections/AliasInfoMessage'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
@@ -191,7 +191,11 @@ const Page = ({ entity: page, general, navigation }: PageProps) => {
 
         <Sections sections={sections?.filter(isDefined) ?? []} />
 
-        <AliasSection alias={alias} />
+        {alias ? (
+          <SectionContainer>
+            <AliasInfoMessage alias={alias} />
+          </SectionContainer>
+        ) : null}
       </PageLayout>
     </GeneralContextProvider>
   )

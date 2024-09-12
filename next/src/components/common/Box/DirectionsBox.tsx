@@ -1,54 +1,62 @@
-import { ReactNode } from 'react'
-
-import { MapMarkerDefaultSvg, MapMarkerKoloSvg } from '@/src/assets/markers'
 import BranchMap from '@/src/components/common/Box/BranchMap'
-import cn from '@/src/utils/cn'
+import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
+import OloMarker from '@/src/components/common/Icon/OloMarker'
+import { BranchEntityFragment } from '@/src/services/graphql/api'
 
 type DirectionsBoxProps = {
-  latitude?: string | null
-  longitude?: string | null
-  mapIconName?: string | null
-  children: ReactNode[]
-  className?: string
+  branch: BranchEntityFragment
 }
+
+// TODO: Check whether the map centers correctly, sometimes we see the ocean
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-10975&m=dev
  */
 
-const DirectionsBox = ({
-  latitude,
-  longitude,
-  mapIconName,
-  children,
-  className,
-}: DirectionsBoxProps) => {
-  if (children.length === 0) return null
+const DirectionsBox = ({ branch }: DirectionsBoxProps) => {
+  const {
+    latitude,
+    longitude,
+    mapIconName,
+    address,
+    parkingInfo,
+    publicTransportInfo,
+    barrierFreeInfo,
+  } = branch?.attributes ?? {}
 
-  // eslint-disable-next-line const-case/uppercase
-  const markerClasses = 'size-[60px] text-action-background-default'
-  const marker =
-    mapIconName === 'kolo' ? (
-      <MapMarkerKoloSvg className={markerClasses} />
-    ) : (
-      <MapMarkerDefaultSvg className={markerClasses} />
-    )
+  const directionsBoxRows = [
+    { iconName: 'place', value: address },
+    { iconName: 'directions-bus', value: publicTransportInfo },
+    { iconName: 'local-parking', value: parkingInfo },
+    { iconName: 'accessible', value: barrierFreeInfo },
+  ] as const
 
   return (
-    <div
-      className={cn(
-        'flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary lg:flex-row',
-        className,
-      )}
-    >
+    <div className="flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary lg:flex-row">
       <BranchMap
         latitude={latitude}
         longitude={longitude}
-        mapMarker={marker}
+        mapMarker={
+          <OloMarker
+            mapIconName={mapIconName}
+            className="size-[3.75rem] text-action-background-default" // 3.75rem = 60px
+          />
+        }
         className="w-full lg:w-1/3"
       />
       <div className="flex flex-col justify-center divide-y divide-border-default px-4 lg:w-2/3 lg:px-6 lg:py-3">
-        {children}
+        {directionsBoxRows
+          .filter((row) => row.value)
+          .map((row) => {
+            return (
+              <BasicRowCard
+                key={row.iconName}
+                variant="icon-value"
+                value={row.value!}
+                iconName={row.iconName}
+              />
+            )
+          })}
       </div>
     </div>
   )

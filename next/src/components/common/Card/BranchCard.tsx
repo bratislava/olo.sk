@@ -1,9 +1,10 @@
 import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
-import CardBase from '@/src/components/common/Card/CardBase'
+import CardBase, { CardBaseProps } from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
 import Typography from '@/src/components/common/Typography/Typography'
+import cn from '@/src/utils/cn'
 
 type BranchCardProps = {
   title: string
@@ -12,7 +13,8 @@ type BranchCardProps = {
   imgSrc?: string
   hasWhiteBackground?: boolean
   className?: string
-}
+  innerClassName?: string
+} & Pick<CardBaseProps, 'variant'>
 
 /**
  * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?type=design&node-id=1205-14699&mode=dev
@@ -23,14 +25,16 @@ const BranchCard = ({
   address,
   linkHref,
   imgSrc,
+  variant,
   hasWhiteBackground = true,
   className,
+  innerClassName,
 }: BranchCardProps) => {
   const { t } = useTranslation()
 
   return (
     <CardBase
-      variant="background-white"
+      variant={variant}
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
       title={title}
@@ -41,7 +45,10 @@ const BranchCard = ({
           <div className="flex flex-col gap-2">
             <Typography
               variant="h4"
-              className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+              className_onlyWhenNecessary={cn(
+                'line-clamp-3 group-hover/CardBase:underline',
+                innerClassName,
+              )}
             >
               {title}
             </Typography>
@@ -50,7 +57,7 @@ const BranchCard = ({
             </Typography>
           </div>
           <Button variant="black-link" href={linkHref} asLink stretched>
-            {t('common.readMore')}
+            {t('common.showMore')}
           </Button>
         </div>
       </div>

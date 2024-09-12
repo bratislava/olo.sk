@@ -1,3 +1,4 @@
+export { default as AccessibilityIcon } from './accessibility.svg'
 export { default as CareerCalendarIcon } from './career-calendar.svg'
 export { default as ChatIcon } from './chat.svg'
 export { default as DirectionsIcon } from './directions.svg'

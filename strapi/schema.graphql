@@ -685,8 +685,8 @@ input ComponentItemsOpeningTimesItemInput {
 type ComponentItemsOrderedCardsItem {
   iconName: String
   id: ID!
-  text: String!
-  title: String!
+  text: String
+  title: String
 }
 
 input ComponentItemsOrderedCardsItemFiltersInput {

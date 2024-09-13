@@ -710,8 +710,8 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text & Attribute.Required
+    title: Attribute.String
+    text: Attribute.RichText
     iconName: Attribute.String
   }
 }

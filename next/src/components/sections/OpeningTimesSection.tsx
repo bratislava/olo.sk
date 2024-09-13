@@ -25,14 +25,15 @@ const OpeningTimesSection = ({ section }: Props) => {
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
-        {filteredOpeningTimes.map((openingTimeGroup) => {
+        {filteredOpeningTimes.map((openingTimeGroup, index) => {
           if (!openingTimeGroup.openingTime?.data?.attributes) return null
 
           const filteredOpeningHours =
             openingTimeGroup.openingTime.data.attributes.openingHours?.filter(isDefined) ?? []
 
           return (
-            <div className="flex flex-col gap-4">
+            // eslint-disable-next-line react/no-array-index-key
+            <div key={index} className="flex flex-col gap-4">
               {openingTimeGroup.title ? (
                 <Typography variant="h5">{openingTimeGroup.title}</Typography>
               ) : null}

@@ -64,6 +64,8 @@ const PageHeaderGallery = ({ title, perex, header }: Props) => {
 
                   return (
                     <li
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={index}
                       className={cn('relative overflow-hidden lg:rounded-lg', {
                         // keep the aspect-ratio of whole gallery consistent
                         'aspect-[1216/440]': imageCount === 1,

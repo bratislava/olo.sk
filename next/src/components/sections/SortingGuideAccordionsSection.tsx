@@ -37,7 +37,7 @@ const SortingGuideAccordionSection = ({ section }: Props) => {
           <div className="divide-y divide-border-default rounded-xl border border-border-default">
             {sortingGuideAccordions
               ?.filter(isDefined)
-              .map(({ title: accordionTitle, wasteType, sortingGuide }) => {
+              .map(({ title: accordionTitle, wasteType, sortingGuide }, index) => {
                 const { titleGoesHere, titleDoesntGoHere, goesHereItems, doesntGoHereItems } =
                   sortingGuide ?? {}
                 // eslint-disable-next-line unicorn/no-array-callback-reference
@@ -48,6 +48,8 @@ const SortingGuideAccordionSection = ({ section }: Props) => {
 
                 return (
                   <Accordion
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
                     title={accordionTitle}
                     icon={<WasteIcon variant={wasteType} />}
                     hasBottomBorder={false}

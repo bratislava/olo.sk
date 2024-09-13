@@ -82,20 +82,6 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     serverSideTranslations(locale),
   ])
 
-  // const { pages: entities } = await client.PageBySlug({ slug, locale })
-  // console.timeLog('Page', 'after entities')
-  // const { pages: aliasPages, articles: aliasArticles } = await client.PageRedirectByAlias({
-  //   alias: slug,
-  //   locale,
-  // })
-  // console.timeLog('Page', 'after aliases')
-  // // const general = await client.General({ locale })
-  // // console.timeLog('Page', 'after general')
-  // const navigation = await fetchNavigation(navigationConfig)
-  // console.timeLog('Page', 'after navigation')
-  // const translations = await serverSideTranslations(locale)
-  // console.timeLog('Page', 'after translations')
-  //
   console.timeLog('Page', 'after promises')
 
   let redirectPath = ''
@@ -147,13 +133,10 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   await queryClient.prefetchQuery(generalQuery(locale))
   console.timeLog('Page', 'after generalQuery')
   await queryClient.prefetchQuery(latestArticlesQuery(LATEST_ARTICLES_COUNT, locale))
-  console.timeLog('Page', 'after latestArticlesQuery')
   await prefetchPageSections(queryClient, entity, locale)
   console.timeLog('Page', 'after prefetchPageSections')
 
   const dehydratedState = dehydrate(queryClient)
-
-  console.timeEnd('Page')
 
   return {
     props: {

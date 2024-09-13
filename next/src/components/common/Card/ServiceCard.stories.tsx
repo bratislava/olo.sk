@@ -80,9 +80,11 @@ export const ServiceCard: Story = {
 export const ServiceCardRows: Story = {
   render: (args) => (
     <div className="flex grid-rows-1 gap-2 lg:gap-8">
-      {Array.from({ length: 3 }).map(() => {
+      {Array.from({ length: 3 }).map((_, index) => {
         return (
           <ServiceCardComponent
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             title={args.title}
             linkHref="#"
             serviceCategories={args.serviceCategories.map((category) => {

@@ -25,7 +25,11 @@ const meta: Meta<typeof CardBaseComponent> = {
 export default meta
 type Story = StoryObj<typeof CardBaseComponent>
 
-const CardContent = ({ className = '' }) => {
+type Props = {
+  className: string
+}
+
+const CardContent = ({ className }: Props) => {
   return (
     <>
       <CardImage className="aspect-[384/204]" />
@@ -57,13 +61,14 @@ export const CardBase: Story = {
     return (
       <div className="flex flex-row flex-wrap gap-6">
         {variants.map((variant) => (
-          <div className="flex flex-col items-start gap-1">
+          <div key={variant} className="flex flex-col items-start gap-1">
             <p className="text-[0.7rem]">{`CardBase variant: ${variant}`}</p>
             <div className="flex flex-row border border-border-default [&>*]:w-[240px]">
               {
                 // eslint-disable-next-line sonarjs/no-duplicate-string
                 ['primary', 'secondary', 'transparent'].map((backgroundColor) => (
                   <div
+                    key={backgroundColor}
                     className={cn('px-8 py-4', {
                       'bg-background-primary': backgroundColor === 'primary',
                       'bg-background-secondary': backgroundColor === 'secondary',

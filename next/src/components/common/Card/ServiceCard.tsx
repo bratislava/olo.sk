@@ -46,11 +46,13 @@ const ServiceCard = ({
           </Typography>
           <div className="flex flex-wrap items-start justify-start gap-2">
             {serviceCategories
-              .map((category) => {
+              .map((category, index) => {
                 if (!category.attributes) return null
 
                 return (
                   <Badge
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
                     label={category.attributes?.title}
                     variant={serviceCategoryMap[category.attributes.categoryColor]}
                   />

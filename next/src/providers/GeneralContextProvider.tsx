@@ -16,7 +16,7 @@ const GeneralContext = createContext<GeneralContextType | null>(null)
 // contentTypePathPrefixesMap is used to get path of Content Type's parent page, e.g. path prefix for Articles or Documents etc.
 type GeneralContextProviderProps = {
   children: ReactNode
-  general: GeneralQuery
+  general: GeneralQuery | null | undefined
   navigation: NavigationObject
 }
 

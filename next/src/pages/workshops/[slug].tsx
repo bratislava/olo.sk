@@ -23,7 +23,7 @@ import { isDefined } from '@/src/utils/isDefined'
 import { generalQuery, latestArticlesQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
-  general: GeneralQuery
+  general?: GeneralQuery
   navigation: NavigationObject
   entity: WorkshopEntityFragment
 }
@@ -64,9 +64,9 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return NOT_FOUND
   }
 
-  const [{ workshops: entities }, general, navigation, translations] = await Promise.all([
+  const [{ workshops: entities }, /* general, */ navigation, translations] = await Promise.all([
     client.WorkshopBySlug({ slug }),
-    client.General({ locale }),
+    // client.General({ locale }),
     fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   return {
     props: {
       entity,
-      general,
+      // general,
       navigation,
       dehydratedState,
       ...translations,

@@ -26,7 +26,7 @@ import { prefetchPageSections } from '@/src/utils/prefetchPageSections'
 import { generalQuery, latestArticlesQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
-  general: GeneralQuery
+  general?: GeneralQuery
   navigation: NavigationObject
   entity: PageEntityFragment
 }
@@ -45,7 +45,7 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
     .map(({ path }) => path)
 
   // eslint-disable-next-line no-console
-  console.log(`Pages: Generated static paths for ${paths.length} pages.`)
+  // console.log(`Pages: Generated static paths for ${paths.length} pages.`)
 
   return { paths, fallback: 'blocking' }
 }
@@ -66,19 +66,37 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return NOT_FOUND
   }
 
+  console.time('Page')
+
   const [
     { pages: entities },
     { pages: aliasPages, articles: aliasArticles },
-    general,
+    // general,
     navigation,
     translations,
   ] = await Promise.all([
     client.PageBySlug({ slug, locale }),
     client.PageRedirectByAlias({ alias: slug, locale }),
-    client.General({ locale }),
+    // client.General({ locale }),
     fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
+
+  // const { pages: entities } = await client.PageBySlug({ slug, locale })
+  // console.timeLog('Page', 'after entities')
+  // const { pages: aliasPages, articles: aliasArticles } = await client.PageRedirectByAlias({
+  //   alias: slug,
+  //   locale,
+  // })
+  // console.timeLog('Page', 'after aliases')
+  // // const general = await client.General({ locale })
+  // // console.timeLog('Page', 'after general')
+  // const navigation = await fetchNavigation(navigationConfig)
+  // console.timeLog('Page', 'after navigation')
+  // const translations = await serverSideTranslations(locale)
+  // console.timeLog('Page', 'after translations')
+  //
+  console.timeLog('Page', 'after promises')
 
   let redirectPath = ''
 
@@ -121,19 +139,26 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return NOT_FOUND
   }
 
+  console.timeLog('Page', 'before prefetch')
+
   // Prefetch data
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery(generalQuery(locale))
+  console.timeLog('Page', 'after generalQuery')
   await queryClient.prefetchQuery(latestArticlesQuery(LATEST_ARTICLES_COUNT, locale))
+  console.timeLog('Page', 'after latestArticlesQuery')
   await prefetchPageSections(queryClient, entity, locale)
+  console.timeLog('Page', 'after prefetchPageSections')
 
   const dehydratedState = dehydrate(queryClient)
+
+  console.timeEnd('Page')
 
   return {
     props: {
       entity,
-      general,
+      // general,
       navigation,
       dehydratedState,
       ...translations,

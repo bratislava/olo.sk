@@ -62,9 +62,9 @@ const OrderedCardsSection = ({ section }: Props) => {
                   </div>
                   <div className="flex flex-col gap-2">
                     <Typography variant="h5" as="h3">
-                      {cardTitle ?? ''}
+                      {cardTitle}
                     </Typography>
-                    <Typography>{cardText ?? ''}</Typography>
+                    <Typography>{cardText}</Typography>
                   </div>
                 </li>
               )

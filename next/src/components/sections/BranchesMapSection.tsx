@@ -3,8 +3,8 @@ import Link from 'next/link'
 import React, { Fragment, useRef, useState } from 'react'
 import { Map, MapRef, Marker } from 'react-map-gl'
 
-import { MapMarkerDefaultSvg, MapMarkerKoloSvg } from '@/src/assets/markers'
 import BranchCard from '@/src/components/common/Card/BranchCard'
+import OloMarker from '@/src/components/common/Icon/OloMarker'
 import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
@@ -28,8 +28,6 @@ const BranchesMapSection = ({ section }: Props) => {
   const { title: sectionTitle, text, branches } = section ?? {}
   const mapRef = useRef<MapRef | null>(null)
   const mapStyle = `mapbox://styles/${environment.mapboxUsername}/${environment.mapboxStyleId}`
-  // eslint-disable-next-line const-case/uppercase
-  const markerClasses = 'text-action-background-default hover:text-action-background-hover'
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredBranches = branches?.data.filter(isDefined) ?? []
@@ -108,11 +106,10 @@ const BranchesMapSection = ({ section }: Props) => {
                       onMouseEnter={() => setHoveredBranchId(branch.id ?? null)}
                       onMouseLeave={() => setHoveredBranchId(null)}
                     >
-                      {mapIconName === 'kolo' ? (
-                        <MapMarkerKoloSvg className={markerClasses} />
-                      ) : (
-                        <MapMarkerDefaultSvg className={markerClasses} />
-                      )}
+                      <OloMarker
+                        mapIconName={mapIconName}
+                        className="text-action-background-default hover:text-action-background-hover"
+                      />
                     </Link>
                   </motion.button>
                 </Marker>

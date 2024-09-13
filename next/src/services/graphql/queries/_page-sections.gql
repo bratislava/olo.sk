@@ -57,10 +57,7 @@ fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlappe
       ...UploadImageEntity
     }
   }
-  primaryButton {
-    ...Link
-  }
-  secondaryButton {
+  readMoreLink {
     ...Link
   }
 }

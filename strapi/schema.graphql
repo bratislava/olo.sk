@@ -1436,8 +1436,7 @@ type ComponentSectionsImageAndTextOverlapped {
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
-  primaryButton: ComponentItemsLink
-  secondaryButton: ComponentItemsLink
+  readMoreLink: ComponentItemsLink
   text: String
   title: String
 }
@@ -1448,8 +1447,7 @@ input ComponentSectionsImageAndTextOverlappedFiltersInput {
   imagePosition: StringFilterInput
   not: ComponentSectionsImageAndTextOverlappedFiltersInput
   or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
-  primaryButton: ComponentItemsLinkFiltersInput
-  secondaryButton: ComponentItemsLinkFiltersInput
+  readMoreLink: ComponentItemsLinkFiltersInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -1459,8 +1457,7 @@ input ComponentSectionsImageAndTextOverlappedInput {
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
-  primaryButton: ComponentItemsLinkInput
-  secondaryButton: ComponentItemsLinkInput
+  readMoreLink: ComponentItemsLinkInput
   text: String
   title: String
 }

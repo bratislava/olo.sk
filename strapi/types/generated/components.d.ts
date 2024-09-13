@@ -235,8 +235,7 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     image: Attribute.Media<'images'> & Attribute.Required
-    primaryButton: Attribute.Component<'items.link'>
-    secondaryButton: Attribute.Component<'items.link'>
+    readMoreLink: Attribute.Component<'items.link'>
   }
 }
 

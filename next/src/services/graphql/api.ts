@@ -1270,8 +1270,7 @@ export type ComponentSectionsImageAndTextOverlapped = {
   id: Scalars['ID']['output']
   image: UploadFileEntityResponse
   imagePosition: Enum_Componentsectionsimageandtextoverlapped_Imageposition
-  primaryButton?: Maybe<ComponentItemsLink>
-  secondaryButton?: Maybe<ComponentItemsLink>
+  readMoreLink?: Maybe<ComponentItemsLink>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
@@ -6454,76 +6453,7 @@ export type ImageAndTextOverlappedSectionFragment = {
       } | null
     } | null
   }
-  primaryButton?: {
-    __typename?: 'ComponentItemsLink'
-    label?: string | null
-    url?: string | null
-    page?: {
-      __typename?: 'PageEntityResponse'
-      data?: {
-        __typename: 'PageEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-      } | null
-    } | null
-    article?: {
-      __typename?: 'ArticleEntityResponse'
-      data?: {
-        __typename: 'ArticleEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
-      } | null
-    } | null
-    branch?: {
-      __typename?: 'BranchEntityResponse'
-      data?: {
-        __typename: 'BranchEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Branch'
-          title: string
-          page?: {
-            __typename?: 'PageEntityResponse'
-            data?: {
-              __typename: 'PageEntity'
-              id?: string | null
-              attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-            } | null
-          } | null
-        } | null
-      } | null
-    } | null
-    document?: {
-      __typename?: 'DocumentEntityResponse'
-      data?: {
-        __typename: 'DocumentEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
-      } | null
-    } | null
-    service?: {
-      __typename?: 'ServiceEntityResponse'
-      data?: {
-        __typename: 'ServiceEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
-      } | null
-    } | null
-    workshop?: {
-      __typename?: 'WorkshopEntityResponse'
-      data?: {
-        __typename: 'WorkshopEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Workshop'
-          title: string
-          slug: string
-          dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
-        } | null
-      } | null
-    } | null
-  } | null
-  secondaryButton?: {
+  readMoreLink?: {
     __typename?: 'ComponentItemsLink'
     label?: string | null
     url?: string | null
@@ -9397,76 +9327,7 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
       } | null
     } | null
   }
-  primaryButton?: {
-    __typename?: 'ComponentItemsLink'
-    label?: string | null
-    url?: string | null
-    page?: {
-      __typename?: 'PageEntityResponse'
-      data?: {
-        __typename: 'PageEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-      } | null
-    } | null
-    article?: {
-      __typename?: 'ArticleEntityResponse'
-      data?: {
-        __typename: 'ArticleEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
-      } | null
-    } | null
-    branch?: {
-      __typename?: 'BranchEntityResponse'
-      data?: {
-        __typename: 'BranchEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Branch'
-          title: string
-          page?: {
-            __typename?: 'PageEntityResponse'
-            data?: {
-              __typename: 'PageEntity'
-              id?: string | null
-              attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-            } | null
-          } | null
-        } | null
-      } | null
-    } | null
-    document?: {
-      __typename?: 'DocumentEntityResponse'
-      data?: {
-        __typename: 'DocumentEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Document'; slug: string; title: string } | null
-      } | null
-    } | null
-    service?: {
-      __typename?: 'ServiceEntityResponse'
-      data?: {
-        __typename: 'ServiceEntity'
-        id?: string | null
-        attributes?: { __typename?: 'Service'; title: string; slug: string } | null
-      } | null
-    } | null
-    workshop?: {
-      __typename?: 'WorkshopEntityResponse'
-      data?: {
-        __typename: 'WorkshopEntity'
-        id?: string | null
-        attributes?: {
-          __typename?: 'Workshop'
-          title: string
-          slug: string
-          dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
-        } | null
-      } | null
-    } | null
-  } | null
-  secondaryButton?: {
+  readMoreLink?: {
     __typename?: 'ComponentItemsLink'
     label?: string | null
     url?: string | null
@@ -17182,79 +17043,7 @@ export type PageEntityFragment = {
               } | null
             } | null
           }
-          primaryButton?: {
-            __typename?: 'ComponentItemsLink'
-            label?: string | null
-            url?: string | null
-            page?: {
-              __typename?: 'PageEntityResponse'
-              data?: {
-                __typename: 'PageEntity'
-                id?: string | null
-                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-              } | null
-            } | null
-            article?: {
-              __typename?: 'ArticleEntityResponse'
-              data?: {
-                __typename: 'ArticleEntity'
-                id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
-              } | null
-            } | null
-            branch?: {
-              __typename?: 'BranchEntityResponse'
-              data?: {
-                __typename: 'BranchEntity'
-                id?: string | null
-                attributes?: {
-                  __typename?: 'Branch'
-                  title: string
-                  page?: {
-                    __typename?: 'PageEntityResponse'
-                    data?: {
-                      __typename: 'PageEntity'
-                      id?: string | null
-                      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-            } | null
-            document?: {
-              __typename?: 'DocumentEntityResponse'
-              data?: {
-                __typename: 'DocumentEntity'
-                id?: string | null
-                attributes?: { __typename?: 'Document'; slug: string; title: string } | null
-              } | null
-            } | null
-            service?: {
-              __typename?: 'ServiceEntityResponse'
-              data?: {
-                __typename: 'ServiceEntity'
-                id?: string | null
-                attributes?: { __typename?: 'Service'; title: string; slug: string } | null
-              } | null
-            } | null
-            workshop?: {
-              __typename?: 'WorkshopEntityResponse'
-              data?: {
-                __typename: 'WorkshopEntity'
-                id?: string | null
-                attributes?: {
-                  __typename?: 'Workshop'
-                  title: string
-                  slug: string
-                  dates?: Array<{
-                    __typename?: 'ComponentItemsWorkshopDate'
-                    datetime: any
-                  } | null> | null
-                } | null
-              } | null
-            } | null
-          } | null
-          secondaryButton?: {
+          readMoreLink?: {
             __typename?: 'ComponentItemsLink'
             label?: string | null
             url?: string | null
@@ -19518,79 +19307,7 @@ export type PagesQuery = {
                   } | null
                 } | null
               }
-              primaryButton?: {
-                __typename?: 'ComponentItemsLink'
-                label?: string | null
-                url?: string | null
-                page?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename: 'PageEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                  } | null
-                } | null
-                article?: {
-                  __typename?: 'ArticleEntityResponse'
-                  data?: {
-                    __typename: 'ArticleEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
-                  } | null
-                } | null
-                branch?: {
-                  __typename?: 'BranchEntityResponse'
-                  data?: {
-                    __typename: 'BranchEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'Branch'
-                      title: string
-                      page?: {
-                        __typename?: 'PageEntityResponse'
-                        data?: {
-                          __typename: 'PageEntity'
-                          id?: string | null
-                          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-                document?: {
-                  __typename?: 'DocumentEntityResponse'
-                  data?: {
-                    __typename: 'DocumentEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
-                  } | null
-                } | null
-                service?: {
-                  __typename?: 'ServiceEntityResponse'
-                  data?: {
-                    __typename: 'ServiceEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
-                  } | null
-                } | null
-                workshop?: {
-                  __typename?: 'WorkshopEntityResponse'
-                  data?: {
-                    __typename: 'WorkshopEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'Workshop'
-                      title: string
-                      slug: string
-                      dates?: Array<{
-                        __typename?: 'ComponentItemsWorkshopDate'
-                        datetime: any
-                      } | null> | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-              secondaryButton?: {
+              readMoreLink?: {
                 __typename?: 'ComponentItemsLink'
                 label?: string | null
                 url?: string | null
@@ -21857,79 +21574,7 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               }
-              primaryButton?: {
-                __typename?: 'ComponentItemsLink'
-                label?: string | null
-                url?: string | null
-                page?: {
-                  __typename?: 'PageEntityResponse'
-                  data?: {
-                    __typename: 'PageEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                  } | null
-                } | null
-                article?: {
-                  __typename?: 'ArticleEntityResponse'
-                  data?: {
-                    __typename: 'ArticleEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
-                  } | null
-                } | null
-                branch?: {
-                  __typename?: 'BranchEntityResponse'
-                  data?: {
-                    __typename: 'BranchEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'Branch'
-                      title: string
-                      page?: {
-                        __typename?: 'PageEntityResponse'
-                        data?: {
-                          __typename: 'PageEntity'
-                          id?: string | null
-                          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
-                        } | null
-                      } | null
-                    } | null
-                  } | null
-                } | null
-                document?: {
-                  __typename?: 'DocumentEntityResponse'
-                  data?: {
-                    __typename: 'DocumentEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Document'; slug: string; title: string } | null
-                  } | null
-                } | null
-                service?: {
-                  __typename?: 'ServiceEntityResponse'
-                  data?: {
-                    __typename: 'ServiceEntity'
-                    id?: string | null
-                    attributes?: { __typename?: 'Service'; title: string; slug: string } | null
-                  } | null
-                } | null
-                workshop?: {
-                  __typename?: 'WorkshopEntityResponse'
-                  data?: {
-                    __typename: 'WorkshopEntity'
-                    id?: string | null
-                    attributes?: {
-                      __typename?: 'Workshop'
-                      title: string
-                      slug: string
-                      dates?: Array<{
-                        __typename?: 'ComponentItemsWorkshopDate'
-                        datetime: any
-                      } | null> | null
-                    } | null
-                  } | null
-                } | null
-              } | null
-              secondaryButton?: {
+              readMoreLink?: {
                 __typename?: 'ComponentItemsLink'
                 label?: string | null
                 url?: string | null
@@ -27186,10 +26831,7 @@ export const ImageAndTextOverlappedSectionFragmentDoc = gql`
         ...UploadImageEntity
       }
     }
-    primaryButton {
-      ...Link
-    }
-    secondaryButton {
+    readMoreLink {
       ...Link
     }
   }

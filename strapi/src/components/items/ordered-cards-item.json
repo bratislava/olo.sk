@@ -8,11 +8,10 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "text": {
-      "type": "text",
-      "required": true
+      "type": "richtext"
     },
     "iconName": {
       "type": "string"

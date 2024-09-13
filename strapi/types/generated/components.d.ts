@@ -1,5 +1,58 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
+export interface MenuMenuSection extends Schema.Component {
+  collectionName: 'components_menu_menu_sections'
+  info: {
+    displayName: 'menu section'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    links: Attribute.Component<'menu.menu-link', true>
+    colSpan: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0
+          max: 3
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>
+    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
+    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    specialSectionType: Attribute.Enumeration<['latest articles']>
+  }
+}
+
+export interface MenuMenuLink extends Schema.Component {
+  collectionName: 'components_menu_menu_link'
+  info: {
+    displayName: 'menu link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
+    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
+    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
+  }
+}
+
+export interface MenuMenuItem extends Schema.Component {
+  collectionName: 'components_menu_menu_items'
+  info: {
+    displayName: 'menu item'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    sections: Attribute.Component<'menu.menu-section', true>
+    seeAllLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
@@ -529,59 +582,6 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
   }
 }
 
-export interface MenuMenuSection extends Schema.Component {
-  collectionName: 'components_menu_menu_sections'
-  info: {
-    displayName: 'menu section'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    links: Attribute.Component<'menu.menu-link', true>
-    colSpan: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0
-          max: 3
-        },
-        number
-      > &
-      Attribute.DefaultTo<1>
-    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
-    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    specialSectionType: Attribute.Enumeration<['latest articles']>
-  }
-}
-
-export interface MenuMenuLink extends Schema.Component {
-  collectionName: 'components_menu_menu_link'
-  info: {
-    displayName: 'menu link'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String
-    url: Attribute.String
-    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
-    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
-    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
-    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
-  }
-}
-
-export interface MenuMenuItem extends Schema.Component {
-  collectionName: 'components_menu_menu_items'
-  info: {
-    displayName: 'menu item'
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    sections: Attribute.Component<'menu.menu-section', true>
-    seeAllLink: Attribute.Component<'items.link'>
-  }
-}
-
 export interface ItemsWorkshopDate extends Schema.Component {
   collectionName: 'components_items_workshop_dates'
   info: {
@@ -711,8 +711,8 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text & Attribute.Required
+    title: Attribute.String
+    text: Attribute.RichText
     iconName: Attribute.String
   }
 }
@@ -1003,6 +1003,9 @@ export interface HeaderSectionsBranchMap extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'menu.menu-section': MenuMenuSection
+      'menu.menu-link': MenuMenuLink
+      'menu.menu-item': MenuMenuItem
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.vacancies': SectionsVacancies
@@ -1035,9 +1038,6 @@ declare module '@strapi/types' {
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
-      'menu.menu-section': MenuMenuSection
-      'menu.menu-link': MenuMenuLink
-      'menu.menu-item': MenuMenuItem
       'items.workshop-date': ItemsWorkshopDate
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide

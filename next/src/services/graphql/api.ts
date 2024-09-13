@@ -698,8 +698,8 @@ export type ComponentItemsOrderedCardsItem = {
   __typename?: 'ComponentItemsOrderedCardsItem'
   iconName?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
-  text: Scalars['String']['output']
-  title: Scalars['String']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentItemsOrderedCardsItemFiltersInput = {
@@ -6236,8 +6236,8 @@ export type OrderedCardsSectionFragment = {
   variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
   cards: Array<{
     __typename?: 'ComponentItemsOrderedCardsItem'
-    title: string
-    text: string
+    title?: string | null
+    text?: string | null
     iconName?: string | null
   } | null>
 }
@@ -9586,8 +9586,8 @@ type PageSections_ComponentSectionsOrderedCards_Fragment = {
   variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
   cards: Array<{
     __typename?: 'ComponentItemsOrderedCardsItem'
-    title: string
-    text: string
+    title?: string | null
+    text?: string | null
     iconName?: string | null
   } | null>
 }
@@ -17375,8 +17375,8 @@ export type PageEntityFragment = {
           variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
           cards: Array<{
             __typename?: 'ComponentItemsOrderedCardsItem'
-            title: string
-            text: string
+            title?: string | null
+            text?: string | null
             iconName?: string | null
           } | null>
         }
@@ -19711,8 +19711,8 @@ export type PagesQuery = {
               variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
               cards: Array<{
                 __typename?: 'ComponentItemsOrderedCardsItem'
-                title: string
-                text: string
+                title?: string | null
+                text?: string | null
                 iconName?: string | null
               } | null>
             }
@@ -22050,8 +22050,8 @@ export type PageBySlugQuery = {
               variantOrderedCards: Enum_Componentsectionsorderedcards_Variant
               cards: Array<{
                 __typename?: 'ComponentItemsOrderedCardsItem'
-                title: string
-                text: string
+                title?: string | null
+                text?: string | null
                 iconName?: string | null
               } | null>
             }

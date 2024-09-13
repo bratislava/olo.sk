@@ -27,9 +27,11 @@ const ColumnsSection = ({ section }: Props) => {
         <ul className="flex w-full flex-wrap items-stretch justify-center gap-4 gap-y-6 lg:gap-8 lg:gap-y-14">
           {
             // eslint-disable-next-line unicorn/no-array-callback-reference
-            items.filter(isDefined).map((item) => {
+            items.filter(isDefined).map((item, index) => {
               return (
                 <li
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
                   className={cn(
                     'flex grow justify-center',
                     // control number of items per row based on their count so it looks good

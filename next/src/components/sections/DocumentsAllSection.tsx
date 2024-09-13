@@ -101,9 +101,8 @@ const DocumentsAllSection = ({ section, className }: Props) => {
                   if (!document.attributes) return null
 
                   return (
-                    <li>
+                    <li key={document.id}>
                       <SearchResultRowCard
-                        key={document.id}
                         title={document.attributes.title}
                         linkHref={getFullPath(document) ?? '#'}
                         type="documents"

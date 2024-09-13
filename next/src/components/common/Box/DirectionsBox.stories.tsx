@@ -51,8 +51,14 @@ export const DirectionsBox: Story = {
         longitude={args.longitude}
         mapIconName={args.mapIconName}
       >
-        {...args.rowsContent.map((row) => (
-          <BasicRowCard value={row.value} variant="icon-value" iconName={row.iconName} />
+        {...args.rowsContent.map((row, index) => (
+          <BasicRowCard
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            value={row.value}
+            variant="icon-value"
+            iconName={row.iconName}
+          />
         ))}
       </DirectionsBoxComponent>
     </div>

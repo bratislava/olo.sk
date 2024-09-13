@@ -65,11 +65,12 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
             )}
           >
             {filteredAnchors
-              ?.map((anchor) => {
+              ?.map((anchor, index) => {
                 if (!anchor) return null
 
                 return (
-                  <li className="shrink-0">
+                  // eslint-disable-next-line react/no-array-index-key
+                  <li key={index} className="shrink-0">
                     <AnchorPill text={anchor.label} targetId={anchor.targetId} />
                   </li>
                 )

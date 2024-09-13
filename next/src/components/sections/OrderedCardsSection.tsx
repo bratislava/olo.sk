@@ -12,6 +12,8 @@ import {
 import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 
+import Markdown from '../formatting/Markdown'
+
 type Props = {
   section: OrderedCardsSectionFragment
 }
@@ -61,10 +63,13 @@ const OrderedCardsSection = ({ section }: Props) => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Typography variant="h5" as="h3">
-                      {cardTitle}
-                    </Typography>
-                    <Typography>{cardText}</Typography>
+                    {cardTitle ? (
+                      <Typography variant="h5" as="h3">
+                        {cardTitle}
+                      </Typography>
+                    ) : null}
+
+                    {cardText ? <Markdown content={cardText} /> : null}
                   </div>
                 </li>
               )

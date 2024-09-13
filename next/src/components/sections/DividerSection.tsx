@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
+import Divider from '@/src/components/common/Sidebar/Divider'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { DividerSectionFragment } from '@/src/services/graphql/api'
 
@@ -17,7 +17,7 @@ const DividerSection = ({ section }: Props) => {
 
   return (
     <SectionContainer background={backgroundColor ?? 'primary'} className="w-full">
-      <SidebarDivider />
+      <Divider />
     </SectionContainer>
   )
 }

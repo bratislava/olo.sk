@@ -6138,7 +6138,6 @@ type HeaderSections_ComponentSectionsBranchesMap_Fragment = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -6648,7 +6647,6 @@ export type BranchesMapSectionFragment = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -8747,7 +8745,6 @@ type PageSections_ComponentSectionsBranchesMap_Fragment = {
             id?: string | null
             attributes?: {
               __typename?: 'OpeningTime'
-              internalName: string
               openingHours?: Array<{
                 __typename?: 'ComponentItemsOpeningHoursItem'
                 label: string
@@ -16194,7 +16191,6 @@ export type PageEntityFragment = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'OpeningTime'
-                      internalName: string
                       openingHours?: Array<{
                         __typename?: 'ComponentItemsOpeningHoursItem'
                         label: string
@@ -16589,7 +16585,6 @@ export type PageEntityFragment = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'OpeningTime'
-                      internalName: string
                       openingHours?: Array<{
                         __typename?: 'ComponentItemsOpeningHoursItem'
                         label: string
@@ -18631,7 +18626,6 @@ export type PagesQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'OpeningTime'
-                          internalName: string
                           openingHours?: Array<{
                             __typename?: 'ComponentItemsOpeningHoursItem'
                             label: string
@@ -19026,7 +19020,6 @@ export type PagesQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'OpeningTime'
-                          internalName: string
                           openingHours?: Array<{
                             __typename?: 'ComponentItemsOpeningHoursItem'
                             label: string
@@ -21075,7 +21068,6 @@ export type PageBySlugQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'OpeningTime'
-                          internalName: string
                           openingHours?: Array<{
                             __typename?: 'ComponentItemsOpeningHoursItem'
                             label: string
@@ -21470,7 +21462,6 @@ export type PageBySlugQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'OpeningTime'
-                          internalName: string
                           openingHours?: Array<{
                             __typename?: 'ComponentItemsOpeningHoursItem'
                             label: string

@@ -1,3 +1,5 @@
+import 'mapbox-gl/dist/mapbox-gl.css'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { OpeningTimesSectionFragment } from '@/src/services/graphql/api'

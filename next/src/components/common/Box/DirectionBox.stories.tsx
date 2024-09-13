@@ -1,3 +1,5 @@
+import 'mapbox-gl/dist/mapbox-gl.css'
+
 import { Meta, StoryObj } from '@storybook/react'
 
 import DirectionsBoxComponent from '@/src/components/common/Box/DirectionsBox'

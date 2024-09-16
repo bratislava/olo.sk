@@ -2,7 +2,7 @@ import React from 'react'
 
 import HalfBanner from '@/src/components/common/Banner/HalfBanner'
 import BranchCard from '@/src/components/common/Card/BranchCard'
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
+import Divider from '@/src/components/common/Sidebar/Divider'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
@@ -52,7 +52,7 @@ const KoloHomepageSection = ({ section }: Props) => {
           })}
         </ul>
 
-        <SidebarDivider />
+        <Divider />
 
         <div className="flex flex-col gap-4">
           {branchesTitle ? <Typography variant="h3">{branchesTitle}</Typography> : null}

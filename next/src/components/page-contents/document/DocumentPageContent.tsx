@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next'
 
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
+import Divider from '@/src/components/common/Sidebar/Divider'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
@@ -69,7 +69,7 @@ const DocumentPageContent = ({ document }: Props) => {
           </div>
           {description ? (
             <>
-              <SidebarDivider />
+              <Divider />
               <div className="flex flex-col gap-4">
                 <SectionHeader title={t('documentPageContent.descriptionTitle')} />
                 <Typography>{description}</Typography>

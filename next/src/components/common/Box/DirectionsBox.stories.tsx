@@ -1,5 +1,6 @@
 import 'mapbox-gl/dist/mapbox-gl.css'
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Meta, StoryObj } from '@storybook/react'
 
 import DirectionsBoxComponent from '@/src/components/common/Box/DirectionsBox'

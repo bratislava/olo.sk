@@ -33,11 +33,12 @@ const ColumnsListSection = ({ section }: Props) => {
         <div className="grid gap-3 lg:grid-cols-2 lg:gap-8">
           {[leftColumn, rightColumn]
             .filter((column) => column?.length)
-            .map((column) => {
+            .map((column, columnIndex) => {
               return (
-                <div className="flex flex-col gap-3 lg:gap-4">
+                // eslint-disable-next-line react/no-array-index-key
+                <div key={columnIndex} className="flex flex-col gap-3 lg:gap-4">
                   {column
-                    ?.map((columnItem) => {
+                    ?.map((columnItem, columnItemIndex) => {
                       if (!columnItem) {
                         return null
                       }
@@ -45,7 +46,8 @@ const ColumnsListSection = ({ section }: Props) => {
                       const iconSrc = columnItem.icon?.data?.attributes?.url
 
                       return (
-                        <div className="flex gap-4">
+                        // eslint-disable-next-line react/no-array-index-key
+                        <div key={columnItemIndex} className="flex gap-4">
                           {iconSrc ? (
                             <div className="relative size-6 shrink-0">
                               <Image src={iconSrc} alt="" fill className="object-contain" />

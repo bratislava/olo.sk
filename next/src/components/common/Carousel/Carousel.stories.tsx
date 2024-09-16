@@ -44,7 +44,7 @@ export default meta
 type Story = StoryObj<typeof CarouselComponent>
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
-  <ArticleCard title={`Card ${index}`} tagText="category" linkHref="#" />
+  <ArticleCard key={index} title={`Card ${index}`} tagText="category" linkHref="#" />
 ))
 
 export const Carousel: Story = {

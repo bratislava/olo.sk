@@ -57,26 +57,12 @@ fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlappe
       ...UploadImageEntity
     }
   }
-  primaryButton {
-    ...Link
-  }
-  secondaryButton {
+  readMoreLink {
     ...Link
   }
 }
 
 fragment BranchesSection on ComponentSectionsBranches {
-  title
-  text
-  showAll
-  branches {
-    data {
-      ...BranchEntity
-    }
-  }
-}
-
-fragment BranchesMapSection on ComponentSectionsBranchesMap {
   title
   text
   branches {
@@ -381,10 +367,6 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsBranches {
     ...BranchesSection
-  }
-
-  ... on ComponentSectionsBranchesMap {
-    ...BranchesMapSection
   }
 
   ... on ComponentSectionsWorkshops {

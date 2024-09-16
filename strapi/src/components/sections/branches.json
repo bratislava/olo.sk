@@ -13,11 +13,6 @@
     "text": {
       "type": "text"
     },
-    "showAll": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
     "branches": {
       "type": "relation",
       "relation": "oneToMany",

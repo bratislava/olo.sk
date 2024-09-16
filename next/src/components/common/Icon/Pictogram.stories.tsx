@@ -22,9 +22,13 @@ export const Pictogram: Story = {
   render: () => {
     return (
       <div className="flex flex-wrap gap-2">
-        {Object.keys(pictogramNameMap).map((name) => {
+        {Object.keys(pictogramNameMap).map((name, index) => {
           return (
-            <div className="flex w-40 flex-col items-center gap-4 bg-white p-2 shadow-sm">
+            <div
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              className="flex w-40 flex-col items-center gap-4 bg-white p-2 shadow-sm"
+            >
               <PictogramComponent key={name} name={name as keyof typeof pictogramNameMap} />
               <p className="text-[0.8rem]">{name}</p>
             </div>

@@ -42,12 +42,7 @@
         "images"
       ]
     },
-    "primaryButton": {
-      "type": "component",
-      "repeatable": false,
-      "component": "items.link"
-    },
-    "secondaryButton": {
+    "readMoreLink": {
       "type": "component",
       "repeatable": false,
       "component": "items.link"

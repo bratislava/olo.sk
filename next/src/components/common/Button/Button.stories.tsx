@@ -46,8 +46,9 @@ export const AllButtons: Story = {
 
     return (
       <div className="flex flex-col flex-nowrap divide-y divide-[rgb(200,200,200)]">
-        {variantsToRender.map((variantGroup) => (
-          <div className="grid grid-cols-3 items-center gap-2 py-4">
+        {variantsToRender.map((variantGroup, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={index} className="grid grid-cols-3 items-center gap-2 py-4">
             {variantGroup.map((variant) => (
               <ButtonComponent
                 key={variant}

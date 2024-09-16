@@ -23,7 +23,7 @@ const ContactsSection = ({ section }: Props) => {
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
         {contacts?.data
-          .map((contact) => {
+          .map((contact, index) => {
             if (!contact.attributes) return null
 
             const {
@@ -43,7 +43,10 @@ const ContactsSection = ({ section }: Props) => {
               // eslint-disable-next-line unicorn/no-array-callback-reference
             ].filter(isDefined)
 
-            return <ContactBox title={label} text={contactText} contacts={contactsList} />
+            return (
+              // eslint-disable-next-line react/no-array-index-key
+              <ContactBox key={index} title={label} text={contactText} contacts={contactsList} />
+            )
           })
           // eslint-disable-next-line unicorn/no-array-callback-reference
           .filter(isDefined)}

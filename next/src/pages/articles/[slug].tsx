@@ -10,6 +10,7 @@ import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import Gallery from '@/src/components/common/Gallery/Gallery'
 import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
 import ShareBlock from '@/src/components/common/ShareBlock/ShareBlock'
+import Typography from '@/src/components/common/Typography/Typography'
 import Markdown from '@/src/components/formatting/Markdown'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
@@ -27,7 +28,7 @@ import { isDefined } from '@/src/utils/isDefined'
 import { generalQuery, latestArticlesQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
-  general: GeneralQuery
+  general?: GeneralQuery
   navigation: NavigationObject
   entity: ArticleEntityFragment
 }
@@ -68,9 +69,9 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return NOT_FOUND
   }
 
-  const [{ articles: entities }, general, navigation, translations] = await Promise.all([
+  const [{ articles: entities }, /* general, */ navigation, translations] = await Promise.all([
     client.ArticleBySlug({ slug, locale }),
-    client.General({ locale }),
+    // client.General({ locale }),
     fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
@@ -91,7 +92,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   return {
     props: {
       entity,
-      general,
+      // general,
       navigation,
       dehydratedState,
       ...translations,
@@ -141,6 +142,7 @@ const Page = ({ entity, general, navigation }: PageProps) => {
         <div className="mx-auto max-lg:px-4 lg:max-w-[50rem] lg:px-0">
           <div className="flex flex-col gap-6 py-6 lg:gap-12 lg:py-12">
             <div className="flex flex-col gap-6 lg:gap-8">
+              {perex ? <Typography variant="p-large-bold">{perex}</Typography> : null}
               <Markdown content={content} />
               {filteredGalleryImages.length > 0 ? <Gallery images={filteredGalleryImages} /> : null}
             </div>

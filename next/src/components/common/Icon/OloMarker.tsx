@@ -1,18 +1,15 @@
-import React from 'react'
-
 import { MapMarkerDefaultSvg, MapMarkerKoloSvg } from '@/src/assets/markers'
-import cn from '@/src/utils/cn'
 
 type OloMarkerProps = {
-  hasKoloStyle: boolean
+  mapIconName: string | null | undefined
   className?: string
 }
 
-const OloMarker = ({ hasKoloStyle, className }: OloMarkerProps) => {
-  return hasKoloStyle ? (
-    <MapMarkerKoloSvg className={cn(className)} />
+const OloMarker = ({ mapIconName, className }: OloMarkerProps) => {
+  return mapIconName === 'kolo' ? (
+    <MapMarkerKoloSvg className={className} />
   ) : (
-    <MapMarkerDefaultSvg className={cn(className)} />
+    <MapMarkerDefaultSvg className={className} />
   )
 }
 

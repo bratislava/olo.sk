@@ -46,6 +46,9 @@ const branchesData: BranchEntityFragment[] = [
 
 const meta: Meta<Props> = {
   title: 'Page Headers/Mapa pobočiek',
+  parameters: {
+    controls: { exclude: ['header'] },
+  },
   args: {
     header: {
       branches: { data: branchesData },

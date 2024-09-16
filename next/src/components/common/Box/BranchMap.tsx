@@ -6,9 +6,9 @@ import { environment } from '@/src/environment'
 import cn from '@/src/utils/cn'
 
 type BranchMapProps = {
-  latitude?: string | null
-  longitude?: string | null
-  mapMarker?: ReactNode
+  latitude: number | null | undefined
+  longitude: number | null | undefined
+  mapMarker: ReactNode
   className?: string
 }
 
@@ -19,7 +19,8 @@ const BranchMap = ({ latitude, longitude, mapMarker, className }: BranchMapProps
   const showPlaceholder = !latitude || !longitude || !accessToken
 
   return (
-    <div className={cn('h-[12.25rem] lg:h-[13.75rem]', { relative: showPlaceholder }, className)}>
+    // 12.25rem = 196px
+    <div className={cn('relative min-h-[12.25rem] max-lg:h-[12.25rem]', className)}>
       {showPlaceholder ? (
         <ImagePlaceholder />
       ) : (
@@ -27,7 +28,7 @@ const BranchMap = ({ latitude, longitude, mapMarker, className }: BranchMapProps
           ref={mapRef}
           style={{ width: '100%', height: '100%' }}
           initialViewState={{
-            bounds: [Number(longitude), Number(latitude), Number(longitude), Number(latitude)],
+            bounds: [longitude, latitude, longitude, latitude],
             fitBoundsOptions: {
               padding: 100,
               offset: [0, 10],
@@ -40,7 +41,7 @@ const BranchMap = ({ latitude, longitude, mapMarker, className }: BranchMapProps
           mapStyle={mapStyle}
           attributionControl={false}
         >
-          <Marker longitude={Number(longitude)} latitude={Number(latitude)} anchor="bottom">
+          <Marker longitude={longitude} latitude={latitude} anchor="bottom">
             {mapMarker}
           </Marker>
         </Map>

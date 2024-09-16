@@ -1350,7 +1350,7 @@ export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
     draftAndPublish: false
   }
   attributes: {
-    internalName: Attribute.String & Attribute.Required
+    internalName: Attribute.String & Attribute.Private
     branches: Attribute.Relation<
       'api::opening-time.opening-time',
       'manyToMany',

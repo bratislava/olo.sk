@@ -1,5 +1,7 @@
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
+import DirectionsBox from '@/src/components/common/Box/DirectionsBox'
 import OpeningHoursBox from '@/src/components/common/OpeningHoursBox'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
@@ -16,7 +18,8 @@ type Props = {
  */
 
 const OpeningTimesSection = ({ section }: Props) => {
-  const { title, text, openingTimes } = section ?? {}
+  const { t } = useTranslation()
+  const { title, text, openingTimes, branchLocation } = section ?? {}
 
   const filteredOpeningTimes = openingTimes?.filter(isDefined) ?? []
 
@@ -41,6 +44,12 @@ const OpeningTimesSection = ({ section }: Props) => {
             </div>
           )
         })}
+        {branchLocation?.data?.attributes ? (
+          <div className="flex flex-col gap-4">
+            <Typography variant="h5">{t('branchPageContent.directionsTitle')}</Typography>
+            <DirectionsBox branch={branchLocation.data} />
+          </div>
+        ) : null}
       </div>
     </SectionContainer>
   )

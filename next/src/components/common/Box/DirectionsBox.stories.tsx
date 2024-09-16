@@ -1,66 +1,43 @@
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Meta, StoryObj } from '@storybook/react'
 
 import DirectionsBoxComponent from '@/src/components/common/Box/DirectionsBox'
-import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
+import { BranchEntityFragment } from '@/src/services/graphql/api'
 
 type Props = {
-  latitude?: string | null
-  longitude?: string | null
-  mapIconName?: string | null
-  rowsContent: {
-    value: string
-    iconName: 'place' | 'directions-bus' | 'local-parking'
-  }[]
+  branch: BranchEntityFragment
 }
 
 const meta: Meta<Props> = {
   title: 'Components/Box/DirectionsBox',
-  parameters: { controls: { exclude: ['rowsContent'] } },
+  parameters: { controls: { exclude: ['branch'] } },
   args: {
-    latitude: '48.171140',
-    longitude: '17.17921',
-    rowsContent: [
-      {
-        value: 'Ivanská cesta 22, 821 04 Bratislava',
-        iconName: 'place',
+    branch: {
+      __typename: 'BranchEntity',
+      attributes: {
+        title: 'KOLO Jurigovo námestie',
+        latitude: 48.15,
+        longitude: 17.06,
+        mapIconName: 'kolo',
+        address: 'Jurigovo námestie, 841 04 Karlova Ves',
+        parkingInfo: 'v areáli OC Korzo',
+        publicTransportInfo: 'zastávka Jurigovo nám. (linka číslo 139)',
+        barrierFreeInfo: 'bezbariérový vstup',
       },
-      {
-        value:
-          'zastávka Avion IKEA (linky číslo 61, 69, 96 a 163)\nzastávka Avion Shopping Park (linky číslo 63 a 65)',
-        iconName: 'directions-bus',
-      },
-      {
-        value: 'v areáli OC Korzo',
-        iconName: 'local-parking',
-      },
-    ],
+    },
   },
 }
 
 export default meta
+
 type Story = StoryObj<Props>
 
 export const DirectionsBox: Story = {
   render: (args) => (
     <div className="h-full max-w-72 lg:max-w-[50rem]">
-      <DirectionsBoxComponent
-        latitude={args.latitude}
-        longitude={args.longitude}
-        mapIconName={args.mapIconName}
-      >
-        {...args.rowsContent.map((row, index) => (
-          <BasicRowCard
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            value={row.value}
-            variant="icon-value"
-            iconName={row.iconName}
-          />
-        ))}
-      </DirectionsBoxComponent>
+      <DirectionsBoxComponent branch={args.branch} />
     </div>
   ),
 }

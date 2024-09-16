@@ -12,6 +12,7 @@ import cn from '@/src/utils/cn'
 
 export const oloIconNameMap = {
   // size 24 px
+  accessible: 'AccessibleIcon',
   'career-calendar': 'CareerCalendarIcon',
   chat: 'ChatIcon',
   directions: 'DirectionsIcon',

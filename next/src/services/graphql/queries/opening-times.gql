@@ -3,11 +3,9 @@ fragment OpeningHoursItem on ComponentItemsOpeningHoursItem {
   value
 }
 
-
 fragment OpeningTimeEntity on OpeningTimeEntity {
   id
   attributes {
-    internalName
     openingHours {
       ...OpeningHoursItem
     }

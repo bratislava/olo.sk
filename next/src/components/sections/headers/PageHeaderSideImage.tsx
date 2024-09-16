@@ -31,7 +31,7 @@ const PageHeaderSideImage = ({ title, perex, header, breadcrumbs }: PageHeaderSi
         <SectionContainer background="secondary">
           <div className="grid grid-cols-2 gap-12">
             {/* Using a high z-index ensures users can click the breadcrumbs */}
-            <div className="z-50">
+            <div className="z-10">
               <Breadcrumbs breadcrumbs={breadcrumbs} />
               <HeaderTitleText title={title} text={perex} className="col-[1] grow lg:py-24" />
             </div>

@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import Accordion, { AccordionProps } from '@/src/components/common/Accordion/Accordion'
 import cn from '@/src/utils/cn'
 
-import SidebarDivider from '../Sidebar/SidebarDivider'
+import Divider from '../Sidebar/Divider'
 
 export type AccordionGroupProps = {
   accordionData: AccordionProps[]
@@ -27,7 +27,7 @@ const AccordionGroup = ({ accordionData, className }: AccordionGroupProps) => {
             return (
               // eslint-disable-next-line react/no-array-index-key
               <Fragment key={index}>
-                {index > 0 && <SidebarDivider />}
+                {index > 0 && <Divider />}
                 <Accordion innerClassName="border-none" {...accordion} />
               </Fragment>
             )

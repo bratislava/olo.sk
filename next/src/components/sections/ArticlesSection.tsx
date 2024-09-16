@@ -6,7 +6,7 @@ import { useDebounceValue } from 'usehooks-ts'
 import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
 import SearchBar from '@/src/components/common/SearchBar/SearchBar'
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
+import Divider from '@/src/components/common/Sidebar/Divider'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
@@ -109,7 +109,7 @@ const ArticlesSection = ({ section }: Props) => {
         </div>
         {data?.estimatedTotalHits ? (
           <>
-            <SidebarDivider />
+            <Divider />
             <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
               <Typography>
                 {t('common.showingResults', {

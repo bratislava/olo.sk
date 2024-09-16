@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
+import Divider from '@/src/components/common/Sidebar/Divider'
 import cn from '@/src/utils/cn'
 
 export type SidebarContactsProps = {
@@ -30,7 +30,7 @@ const SidebarContacts = ({
         return (
           // eslint-disable-next-line react/no-array-index-key
           <div className="px-3 lg:px-5" key={index}>
-            {index > 0 && <SidebarDivider />}
+            {index > 0 && <Divider />}
             {child}
           </div>
         )

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase, { CardBaseProps } from '@/src/components/common/Card/CardBase'
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
+import Divider from '@/src/components/common/Sidebar/Divider'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
@@ -38,7 +38,7 @@ const ServiceCard = ({ title, text, linkProps, className, ...rest }: Props) => {
           {text ? <Typography>{text}</Typography> : null}
         </div>
 
-        <SidebarDivider />
+        <Divider />
 
         {linkProps ? (
           <Button

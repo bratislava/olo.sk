@@ -5,7 +5,7 @@ import { Map, MapRef, Marker } from 'react-map-gl'
 
 import { MapMarkerDefaultSvg, MapMarkerKoloSvg } from '@/src/assets/markers'
 import BranchCard from '@/src/components/common/Card/BranchCard'
-import SidebarDivider from '@/src/components/common/Sidebar/SidebarDivider'
+import Divider from '@/src/components/common/Sidebar/Divider'
 import { environment } from '@/src/environment'
 import { BranchEntityFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
@@ -38,7 +38,7 @@ const BranchesMap = ({ branches }: Props) => {
 
             return (
               <Fragment key={branch.id}>
-                {index > 0 ? <SidebarDivider className="lg:w-0 lg:border-b-0 lg:border-l" /> : null}
+                {index > 0 ? <Divider className="lg:w-0 lg:border-b-0 lg:border-l" /> : null}
                 <li className="grow lg:w-0">
                   <BranchCard
                     title={title}

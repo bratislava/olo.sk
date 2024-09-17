@@ -23,7 +23,7 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
-  const [[slideIndex, transitionDirection], setSlideIndex] = useState([0, 0]) // TODO: research tuple state
+  const [[slideIndex, transitionDirection], setSlideIndex] = useState([0, 0])
 
   const { title, text, link, media } = slides[slideIndex]
   const { url, alternativeText } = media?.data?.attributes ?? {}
@@ -39,7 +39,7 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
   }
 
   // Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/molecules/Slider.tsx
-  const transitionVariants: { [name: string]: Variant } = {
+  const transitionVariants: Record<string, Variant> = {
     initial: (direction: number) => {
       return {
         x: direction === 0 ? 100 : -100,

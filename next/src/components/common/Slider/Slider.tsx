@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, Variant } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
@@ -6,7 +6,6 @@ import React, { useState } from 'react'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import { SlideItemFragment } from '@/src/services/graphql/api'
-import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 import Button from '../Button/Button'
@@ -24,44 +23,40 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
-  const slideRight = {
-    initial: -90,
-    exit: 90,
-  }
+  const [[slideIndex, transitionDirection], setSlideIndex] = useState([0, 0]) // TODO: research tuple state
 
-  const slideLeft = {
-    initial: 90,
-    exit: -90,
-  }
-
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
-  const [slidingDirection, setSlidingDirection] = useState(slideRight)
-
-  const { title, text, link, media } = slides[currentSlideIndex]
+  const { title, text, link, media } = slides[slideIndex]
   const { url, alternativeText } = media?.data?.attributes ?? {}
 
-  // TODO: Refactor, using marianum.sk as an example
-  const handleGoToNextSlide = () => {
-    setSlidingDirection(
-      (prevDirection) =>
-        prevDirection.initial === slideRight.initial ? prevDirection : slideRight,
-      // TODO: Immediate switch to the other direction breaks the code
-      // First set direction, then move onto the next slide
-    )
-    setCurrentSlideIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1))
+  const handleGoToNext = () => {
+    const upcomingSlide = slideIndex === slides.length - 1 ? 0 : slideIndex + 1
+    setSlideIndex([upcomingSlide, 0])
   }
 
-  const handleGoToPreviousSlide = () => {
-    setSlidingDirection((prevTransition) =>
-      prevTransition.initial === slideLeft.initial ? prevTransition : slideLeft,
-    )
-    setCurrentSlideIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1))
+  const handleGoToPrevious = () => {
+    const upcomingSlide = slideIndex === 0 ? slides.length - 1 : slideIndex - 1
+    setSlideIndex([upcomingSlide, 1])
   }
 
-  const controlsClassNames = cn(
-    'rounded-full bg-background-primary p-2',
-    `hover:text-[${backgroundColor}]`,
-  )
+  // Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/molecules/Slider.tsx
+  const transitionVariants: { [name: string]: Variant } = {
+    initial: (direction: number) => {
+      return {
+        x: direction === 0 ? 100 : -100,
+        opacity: 0,
+      }
+    },
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => {
+      return {
+        x: direction === 0 ? -100 : 100,
+        opacity: 0,
+      }
+    },
+  }
 
   return (
     <div
@@ -70,12 +65,14 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
       className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2 lg:h-[26.125rem]"
       style={{ background: backgroundColor }}
     >
-      <AnimatePresence initial={false} mode="wait">
+      <AnimatePresence initial={false} custom={transitionDirection} mode="wait">
         <motion.div
           key={title}
-          initial={{ x: slidingDirection.initial, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: slidingDirection.exit, opacity: 0 }}
+          custom={transitionDirection}
+          variants={transitionVariants}
+          initial="initial"
+          animate="center"
+          exit="exit"
           transition={{
             x: { type: 'spring', stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 },
@@ -121,8 +118,8 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
             variant="unstyled"
             icon={<Icon name="sipka-dolava" />}
             aria-label={t('carousel.aria.previous')}
-            onPress={handleGoToPreviousSlide}
-            className={controlsClassNames}
+            onPress={handleGoToPrevious}
+            className="rounded-full bg-background-primary p-2"
           />
         </li>
         <li>
@@ -130,8 +127,8 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
             variant="unstyled"
             icon={<Icon name="sipka-doprava" />}
             aria-label={t('carousel.aria.next')}
-            onPress={handleGoToNextSlide}
-            className={controlsClassNames}
+            onPress={handleGoToNext}
+            className="rounded-full bg-background-primary p-2"
           />
         </li>
       </ul>

@@ -1,3 +1,4 @@
+export { default as SliderPlaceholderKarate } from './olo-placeholder-karate.png'
 export { default as OloMapPlaceholder } from './olo-placeholder-map.jpg'
 export { default as OloTruckImage } from './olo-truck.jpg'
 export { default as AbstractBackgroundImage } from './placeholder-abstract-background.png'

@@ -3,12 +3,12 @@ import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
 
+import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import { SlideItemFragment } from '@/src/services/graphql/api'
+import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
-
-import Button from '../Button/Button'
 
 type SliderProps = {
   slides: SlideItemFragment[]
@@ -16,10 +16,11 @@ type SliderProps = {
 }
 
 /**
- * Figma: https://www.figma.com/file/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1058%3A10056
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=2096-19845&t=G8gUCwznUtpSprDI-1
+ * Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/molecules/Slider.tsx
  */
 
-const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
+const Slider = ({ slides, backgroundColor = 'bg-action-background-default' }: SliderProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
@@ -38,7 +39,6 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
     setSlideIndex([upcomingSlide, 1])
   }
 
-  // Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/molecules/Slider.tsx
   const transitionVariants: Record<string, Variant> = {
     initial: (direction: number) => {
       return {
@@ -62,8 +62,10 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
     <div
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
-      className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2 lg:h-[26.125rem]"
-      style={{ background: backgroundColor }}
+      className={cn(
+        'relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2 lg:h-[26.125rem]',
+        backgroundColor,
+      )}
     >
       <AnimatePresence initial={false} custom={transitionDirection} mode="wait">
         <motion.div
@@ -86,21 +88,14 @@ const Slider = ({ slides, backgroundColor = '#FEFEFE' }: SliderProps) => {
             </div>
           ) : null}
           <div className="h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
-            <div className="flex h-full flex-col justify-between gap-4">
-              <div className="flex flex-col gap-4 lg:gap-6">
-                <div className="flex flex-col gap-2 lg:gap-3">
-                  <Typography variant="h3">{title}</Typography>
-                  {text ? <Typography variant="p-default">{text}</Typography> : null}
-                </div>
-                {link ? (
-                  <Button
-                    variant="black-solid"
-                    asLink
-                    hasLinkIcon={false}
-                    {...getLinkProps(link)}
-                  />
-                ) : null}
+            <div className="flex flex-col gap-4 lg:gap-6">
+              <div className="flex flex-col gap-2 lg:gap-3">
+                <Typography variant="h3">{title}</Typography>
+                {text ? <Typography variant="p-default">{text}</Typography> : null}
               </div>
+              {link ? (
+                <Button variant="black-solid" asLink hasLinkIcon={false} {...getLinkProps(link)} />
+              ) : null}
             </div>
           </div>
         </motion.div>

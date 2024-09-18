@@ -26,7 +26,7 @@ const WasteSortingMessage = ({ title, text }: WasteSortingMessageProps) => {
   if (!title && !text) return null
 
   return (
-    <div className="flex flex-col gap-1 rounded-lg bg-alert-background-warning px-5 py-4">
+    <div className="flex flex-col gap-1 rounded-lg bg-warning-softBackground-default px-5 py-4">
       {title ? <Typography variant="h6">{title}</Typography> : null}
       {text ? <Typography variant="p-default">{text}</Typography> : null}
     </div>
@@ -57,7 +57,7 @@ const WasteSortingGuide = ({
                     return (
                       // eslint-disable-next-line react/no-array-index-key
                       <div key={index} className="flex gap-4">
-                        <Icon name="fajka-kruh" className="text-success" />
+                        <Icon name="fajka-kruh" className="text-success-content-default" />
                         <Typography variant="p-default">{columnItem}</Typography>
                       </div>
                     )
@@ -79,7 +79,7 @@ const WasteSortingGuide = ({
                     return (
                       // eslint-disable-next-line react/no-array-index-key
                       <div key={index} className="flex gap-4">
-                        <Icon name="zrusit-kruh" className="text-error" />
+                        <Icon name="zrusit-kruh" className="text-error-content-default" />
                         <Typography variant="p-default">{columnItem}</Typography>
                       </div>
                     )

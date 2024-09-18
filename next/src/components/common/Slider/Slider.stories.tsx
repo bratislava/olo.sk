@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import imagePlaceholderKarate from '@/src/assets/images/olo-placeholder-karate.png'
-import imagePlaceholderTruck from '@/src/assets/images/olo-truck.jpg'
+import SliderPlaceholderKarate from '@/src/assets/images/olo-placeholder-karate.png'
+import OloTruckImage from '@/src/assets/images/olo-truck.jpg'
 
 import SliderComponent from './Slider'
 
@@ -16,7 +16,7 @@ const createDummySlides = () => {
         data: {
           attributes: {
             name: '', // TODO: Do we wish to fetch this field onto frontend? It's now a required field
-            url: index % 2 === 0 ? imagePlaceholderTruck.src : imagePlaceholderKarate.src,
+            url: index % 2 === 0 ? OloTruckImage.src : SliderPlaceholderKarate.src,
             alternativeText: '',
           },
         },

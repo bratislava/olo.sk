@@ -2,7 +2,6 @@ import Image from 'next/image'
 
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
-import ServiceSideBarPlaceholder from '@/src/components/page-contents/service/ServiceSidebarPlaceholder'
 import { ServiceEntityFragment } from '@/src/services/graphql/api'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { isDefined } from '@/src/utils/isDefined'
@@ -46,7 +45,6 @@ const ServicePageContent = ({ service }: Props) => {
         ) : null}
         {/* TODO replace with proper Sidebar */}
         <div className="order-1 shrink grow max-md:w-full md:max-w-80 lg:order-2">
-          <ServiceSideBarPlaceholder />
           <ServiceHeadingsList rootId={ROOT_ID} />
         </div>
       </div>

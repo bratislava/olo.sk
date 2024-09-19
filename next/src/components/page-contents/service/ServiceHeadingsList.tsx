@@ -1,5 +1,5 @@
+import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import Typography from '@/src/components/common/Typography/Typography'
 
@@ -51,9 +51,13 @@ const ServiceHeadingsList = ({ rootId }: Props) => {
                 </Typography>
               </div>
             ) : (
-              <Typography key={heading.text} variant="p-default">
-                {heading.text}
-              </Typography>
+              <div className="flex flex-col px-4 first:pt-4 last:pb-4">
+                <div className="flex border-l border-border-default pl-4">
+                  <Typography key={heading.text} variant="p-default">
+                    {heading.text}
+                  </Typography>
+                </div>
+              </div>
             )
           })}
       </div>

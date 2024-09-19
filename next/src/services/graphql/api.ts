@@ -332,6 +332,15 @@ export type ComponentHeaderSectionsBranchMapBranchesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentHeaderSectionsCareers = {
+  __typename?: 'ComponentHeaderSectionsCareers'
+  id: Scalars['ID']['output']
+  imageWithText?: Maybe<ComponentItemsImageAndTextOverlappedItem>
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+  videoUrl: Scalars['String']['output']
+}
+
 export type ComponentHeaderSectionsFeaturedNews = {
   __typename?: 'ComponentHeaderSectionsFeaturedNews'
   articlesTitle: Scalars['String']['output']
@@ -604,6 +613,13 @@ export type ComponentItemsHomepageServiceTileInput = {
   link?: InputMaybe<ComponentItemsLinkInput>
   text?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ComponentItemsImageAndTextOverlappedItem = {
+  __typename?: 'ComponentItemsImageAndTextOverlappedItem'
+  id: Scalars['ID']['output']
+  image?: Maybe<UploadFileEntityResponse>
+  text?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentItemsLink = {
@@ -2033,6 +2049,7 @@ export type GenericMorph =
   | ArticleCategory
   | Branch
   | ComponentHeaderSectionsBranchMap
+  | ComponentHeaderSectionsCareers
   | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsIcon
@@ -2050,6 +2067,7 @@ export type GenericMorph =
   | ComponentItemsHeroMainTile
   | ComponentItemsHeroSmallTile
   | ComponentItemsHomepageServiceTile
+  | ComponentItemsImageAndTextOverlappedItem
   | ComponentItemsLink
   | ComponentItemsMenuHeader
   | ComponentItemsOpeningHoursItem
@@ -4937,6 +4955,19 @@ export type FileItemFragment = {
   }
 }
 
+export type ImageAndTextOverlappedItemFragment = {
+  __typename?: 'ComponentItemsImageAndTextOverlappedItem'
+  text?: string | null
+  image?: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: { __typename?: 'UploadFile'; url: string } | null
+    } | null
+  } | null
+}
+
 export type NavigationEntityFragment = {
   __typename?: 'NavigationEntity'
   attributes?: {
@@ -5666,6 +5697,25 @@ export type GalleryHeaderSectionFragment = {
       } | null
     }>
   }
+}
+
+export type CareersHeaderSectionFragment = {
+  __typename?: 'ComponentHeaderSectionsCareers'
+  title?: string | null
+  text?: string | null
+  videoUrl: string
+  imageWithText?: {
+    __typename?: 'ComponentItemsImageAndTextOverlappedItem'
+    text?: string | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: { __typename?: 'UploadFile'; url: string } | null
+      } | null
+    } | null
+  } | null
 }
 
 export type FeaturedNewsHeaderSectionFragment = {
@@ -26162,14 +26212,6 @@ export type WorkshopBySlugQuery = {
   } | null
 }
 
-export const UploadImageSrcEntityFragmentDoc = gql`
-  fragment UploadImageSrcEntity on UploadFileEntity {
-    id
-    attributes {
-      url
-    }
-  }
-`
 export const PageSlugEntityFragmentDoc = gql`
   fragment PageSlugEntity on PageEntity {
     __typename
@@ -26211,6 +26253,36 @@ export const NavigationEntityFragmentDoc = gql`
     }
   }
   ${PageSlugEntityFragmentDoc}
+`
+export const UploadImageSrcEntityFragmentDoc = gql`
+  fragment UploadImageSrcEntity on UploadFileEntity {
+    id
+    attributes {
+      url
+    }
+  }
+`
+export const ImageAndTextOverlappedItemFragmentDoc = gql`
+  fragment ImageAndTextOverlappedItem on ComponentItemsImageAndTextOverlappedItem {
+    image {
+      data {
+        ...UploadImageSrcEntity
+      }
+    }
+    text
+  }
+  ${UploadImageSrcEntityFragmentDoc}
+`
+export const CareersHeaderSectionFragmentDoc = gql`
+  fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
+    title
+    text
+    videoUrl
+    imageWithText {
+      ...ImageAndTextOverlappedItem
+    }
+  }
+  ${ImageAndTextOverlappedItemFragmentDoc}
 `
 export const IconHeaderSectionFragmentDoc = gql`
   fragment IconHeaderSection on ComponentHeaderSectionsIcon {

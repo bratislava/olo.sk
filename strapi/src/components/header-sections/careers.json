@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_header_sections_careers",
+  "info": {
+    "displayName": "Kariéra",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "videoUrl": {
+      "type": "string",
+      "required": true
+    },
+    "imageWithText": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.image-and-text-overlapped-item"
+    }
+  }
+}

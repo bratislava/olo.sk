@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_items_image_and_text_overlapped_items",
+  "info": {
+    "displayName": "Image and text overlapped item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

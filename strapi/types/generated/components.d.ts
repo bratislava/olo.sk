@@ -774,6 +774,18 @@ export interface ItemsLink extends Schema.Component {
   }
 }
 
+export interface ItemsImageAndTextOverlappedItem extends Schema.Component {
+  collectionName: 'components_items_image_and_text_overlapped_items'
+  info: {
+    displayName: 'Image and text overlapped item'
+    description: ''
+  }
+  attributes: {
+    image: Attribute.Media<'images'>
+    text: Attribute.String
+  }
+}
+
 export interface ItemsHomepageServiceTile extends Schema.Component {
   collectionName: 'components_items_homepage_service_tiles'
   info: {
@@ -987,6 +999,20 @@ export interface HeaderSectionsFeaturedNews extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsCareers extends Schema.Component {
+  collectionName: 'components_header_sections_careers'
+  info: {
+    displayName: 'Kari\u00E9ra'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    videoUrl: Attribute.String & Attribute.Required
+    imageWithText: Attribute.Component<'items.image-and-text-overlapped-item'>
+  }
+}
+
 export interface HeaderSectionsBranchMap extends Schema.Component {
   collectionName: 'components_header_sections_branch_maps'
   info: {
@@ -1049,6 +1075,7 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
       'items.link': ItemsLink
+      'items.image-and-text-overlapped-item': ItemsImageAndTextOverlappedItem
       'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.hero-small-tile': ItemsHeroSmallTile
       'items.hero-main-tile': ItemsHeroMainTile
@@ -1066,6 +1093,7 @@ declare module '@strapi/types' {
       'header-sections.icon': HeaderSectionsIcon
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.featured-news': HeaderSectionsFeaturedNews
+      'header-sections.careers': HeaderSectionsCareers
       'header-sections.branch-map': HeaderSectionsBranchMap
     }
   }

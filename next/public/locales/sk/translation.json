@@ -57,6 +57,7 @@
   "navBar.branchCard.showDetails": "Zobraziť detaily",
   "navBar.contactsButton": "Kontakty",
   "navBar.workshopCard.messageMostRecentDate": "Najbližší termín: {{mostRecentWorkshopDate}}",
+  "pageHeaderCareers.aria.videoTitle": "Videopríbeh o pracovných príležitostiach a firemných hodnotách spoločnosti OLO",
   "pageHeaderGallery.buttonText": "Všetky fotky",
   "pageHeaderPickupDay.allNews": "Všetky novinky",
   "pageHeaderPickupDay.messageEvenWeek": "Tento týždeň je párny ({{weekNumber}}. týždeň)",

@@ -7,6 +7,10 @@ import { ServiceEntityFragment } from '@/src/services/graphql/api'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { isDefined } from '@/src/utils/isDefined'
 
+import ServiceHeadingsList from './ServiceHeadingsList'
+
+const ROOT_ID = 'section-container'
+
 type Props = {
   service: ServiceEntityFragment
 }
@@ -22,7 +26,7 @@ const ServicePageContent = ({ service }: Props) => {
     <SectionContainer className="py-6 lg:py-12">
       <div className="flex flex-col items-start gap-4 md:flex-row lg:gap-8">
         {hasContent ? (
-          <div className="order-2 flex w-full shrink flex-col md:order-1 md:w-[50rem]">
+          <div id={ROOT_ID} className="order-2 flex w-full shrink flex-col md:order-1 md:w-[50rem]">
             {/* TODO fix y-paddings so we don't change it from here */}
             <div className="flex flex-col gap-12 [&>*]:py-0 [&>*]:lg:py-0 [&>div>*]:px-0 [&>div>*]:lg:px-0">
               {image?.data?.attributes?.url ? (
@@ -43,6 +47,7 @@ const ServicePageContent = ({ service }: Props) => {
         {/* TODO replace with proper Sidebar */}
         <div className="order-1 shrink grow max-md:w-full md:max-w-80 lg:order-2">
           <ServiceSideBarPlaceholder />
+          <ServiceHeadingsList rootId={ROOT_ID} />
         </div>
       </div>
     </SectionContainer>

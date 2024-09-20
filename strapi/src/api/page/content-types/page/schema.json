@@ -65,7 +65,8 @@
         "header-sections.gallery",
         "header-sections.image",
         "header-sections.side-image",
-        "header-sections.pickup-day"
+        "header-sections.pickup-day",
+        "header-sections.branch-map"
       ],
       "max": 1,
       "pluginOptions": {

@@ -41,7 +41,7 @@ const PageHeaderFeaturedNews = ({ title, perex, header }: Props) => {
               const { title: articleTitle, articleCategory, coverMedia } = article.attributes
 
               return (
-                <li>
+                <li key={article.id}>
                   <ArticleCard
                     title={articleTitle}
                     tagText={articleCategory?.data?.attributes?.title}

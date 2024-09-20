@@ -1,7 +1,8 @@
 {
   "collectionName": "components_items_card_slider_cards",
   "info": {
-    "displayName": "Card Slider card"
+    "displayName": "Card Slider card",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,15 +14,12 @@
       "type": "text"
     },
     "image": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
-      "required": true
-    },
-    "link": {
-      "type": "component",
-      "repeatable": false,
-      "component": "items.link"
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

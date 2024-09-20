@@ -4,6 +4,7 @@
 
 type Article {
   addedAt: DateTime!
+  alias: String
   articleCategory: ArticleCategoryEntityResponse
   content: String
   coverMedia: UploadFileEntityResponse
@@ -86,6 +87,7 @@ type ArticleEntityResponseCollection {
 
 input ArticleFiltersInput {
   addedAt: DateTimeFilterInput
+  alias: StringFilterInput
   and: [ArticleFiltersInput]
   articleCategory: ArticleCategoryFiltersInput
   content: StringFilterInput
@@ -105,6 +107,7 @@ input ArticleFiltersInput {
 
 input ArticleInput {
   addedAt: DateTime
+  alias: String
   articleCategory: ID
   content: String
   coverMedia: ID
@@ -160,7 +163,6 @@ type Branch {
   parkingInfo: String
   publicTransportInfo: String
   publishedAt: DateTime
-  slug: String!
   title: String!
   updatedAt: DateTime
 }
@@ -198,7 +200,6 @@ input BranchFiltersInput {
   parkingInfo: StringFilterInput
   publicTransportInfo: StringFilterInput
   publishedAt: DateTimeFilterInput
-  slug: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
@@ -215,7 +216,6 @@ input BranchInput {
   parkingInfo: String
   publicTransportInfo: String
   publishedAt: DateTime
-  slug: String
   title: String
 }
 
@@ -399,14 +399,12 @@ input ComponentItemsBoardMembersItemInput {
 type ComponentItemsCardSliderCard {
   id: ID!
   image: UploadFileEntityResponse!
-  link: ComponentItemsLink
   text: String
   title: String!
 }
 
 input ComponentItemsCardSliderCardFiltersInput {
   and: [ComponentItemsCardSliderCardFiltersInput]
-  link: ComponentItemsLinkFiltersInput
   not: ComponentItemsCardSliderCardFiltersInput
   or: [ComponentItemsCardSliderCardFiltersInput]
   text: StringFilterInput
@@ -416,7 +414,6 @@ input ComponentItemsCardSliderCardFiltersInput {
 input ComponentItemsCardSliderCardInput {
   id: ID
   image: ID
-  link: ComponentItemsLinkInput
   text: String
   title: String
 }
@@ -688,8 +685,8 @@ input ComponentItemsOpeningTimesItemInput {
 type ComponentItemsOrderedCardsItem {
   iconName: String
   id: ID!
-  text: String!
-  title: String!
+  text: String
+  title: String
 }
 
 input ComponentItemsOrderedCardsItemFiltersInput {
@@ -901,6 +898,7 @@ type ComponentMenuMenuLink {
   id: ID!
   label: String
   page: PageEntityResponse
+  service: ServiceEntityResponse
   url: String
   workshop: WorkshopEntityResponse
 }
@@ -912,6 +910,7 @@ input ComponentMenuMenuLinkFiltersInput {
   not: ComponentMenuMenuLinkFiltersInput
   or: [ComponentMenuMenuLinkFiltersInput]
   page: PageFiltersInput
+  service: ServiceFiltersInput
   url: StringFilterInput
   workshop: WorkshopFiltersInput
 }
@@ -921,6 +920,7 @@ input ComponentMenuMenuLinkInput {
   id: ID
   label: String
   page: ID
+  service: ID
   url: String
   workshop: ID
 }
@@ -1060,7 +1060,6 @@ input ComponentSectionsBoardMembersInput {
 type ComponentSectionsBranches {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
-  showAll: Boolean!
   text: String
   title: String
 }
@@ -1070,7 +1069,6 @@ input ComponentSectionsBranchesFiltersInput {
   branches: BranchFiltersInput
   not: ComponentSectionsBranchesFiltersInput
   or: [ComponentSectionsBranchesFiltersInput]
-  showAll: BooleanFilterInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -1078,7 +1076,6 @@ input ComponentSectionsBranchesFiltersInput {
 input ComponentSectionsBranchesInput {
   branches: [ID]
   id: ID
-  showAll: Boolean
   text: String
   title: String
 }
@@ -1439,8 +1436,7 @@ type ComponentSectionsImageAndTextOverlapped {
   id: ID!
   image: UploadFileEntityResponse!
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION!
-  primaryButton: ComponentItemsLink
-  secondaryButton: ComponentItemsLink
+  readMoreLink: ComponentItemsLink
   text: String
   title: String
 }
@@ -1451,8 +1447,7 @@ input ComponentSectionsImageAndTextOverlappedFiltersInput {
   imagePosition: StringFilterInput
   not: ComponentSectionsImageAndTextOverlappedFiltersInput
   or: [ComponentSectionsImageAndTextOverlappedFiltersInput]
-  primaryButton: ComponentItemsLinkFiltersInput
-  secondaryButton: ComponentItemsLinkFiltersInput
+  readMoreLink: ComponentItemsLinkFiltersInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -1462,8 +1457,7 @@ input ComponentSectionsImageAndTextOverlappedInput {
   id: ID
   image: ID
   imagePosition: ENUM_COMPONENTSECTIONSIMAGEANDTEXTOVERLAPPED_IMAGEPOSITION
-  primaryButton: ComponentItemsLinkInput
-  secondaryButton: ComponentItemsLinkInput
+  readMoreLink: ComponentItemsLinkInput
   text: String
   title: String
 }
@@ -2733,7 +2727,6 @@ type NavigationRelationResponseCollection {
 type OpeningTime {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   createdAt: DateTime
-  internalName: String!
   openingHours(filters: ComponentItemsOpeningHoursItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsOpeningHoursItem]
   updatedAt: DateTime
 }
@@ -2824,7 +2817,7 @@ input PageFiltersInput {
   updatedAt: DateTimeFilterInput
 }
 
-union PageHeaderDynamicZone = ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
+union PageHeaderDynamicZone = ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | Error
 
 scalar PageHeaderDynamicZoneInput
 

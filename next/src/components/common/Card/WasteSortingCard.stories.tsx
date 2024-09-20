@@ -37,6 +37,7 @@ export const WasteSortingCardsAll: Story = {
       {Object.keys(wasteTypesMap).map((wasteType) => {
         return (
           <WasteSortingCardComponent
+            key={wasteType}
             {...{ ...args, wasteType: wasteType as keyof typeof wasteTypesMap }}
           />
         )

@@ -7,7 +7,6 @@ import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
 import { serviceCategoryMap } from '@/src/components/sections/headers/ServicePageHeader'
 import { ServiceCategoryEntityFragment } from '@/src/services/graphql/api'
-import cn from '@/src/utils/cn'
 import { isDefined } from '@/src/utils/isDefined'
 
 type ServiceCardProps = {
@@ -34,9 +33,10 @@ const ServiceCard = ({
     <CardBase
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteSectionBackground}
-      className={cn('p-4 lg:p-6', className)}
+      className={className}
+      title={title}
     >
-      <div className="flex h-full flex-col gap-8 lg:gap-12">
+      <div className="flex h-full flex-col gap-8 p-4 lg:gap-12 lg:p-6">
         <div className="flex h-full flex-col items-start justify-start gap-3 lg:gap-4">
           <Typography
             variant="h6"
@@ -46,11 +46,13 @@ const ServiceCard = ({
           </Typography>
           <div className="flex flex-wrap items-start justify-start gap-2">
             {serviceCategories
-              .map((category) => {
+              .map((category, index) => {
                 if (!category.attributes) return null
 
                 return (
                   <Badge
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
                     label={category.attributes?.title}
                     variant={serviceCategoryMap[category.attributes.categoryColor]}
                   />

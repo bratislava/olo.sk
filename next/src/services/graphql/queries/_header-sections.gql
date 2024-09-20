@@ -22,15 +22,6 @@ fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
   }
 }
 
-fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
-  branches(pagination: { limit: -1 }) {
-    data {
-      id
-      # TODO fragment
-    }
-  }
-}
-
 fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
   articlesTitle
   firstArticle {
@@ -59,6 +50,14 @@ fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
   }
 }
 
+fragment BranchMapHeaderSection on ComponentHeaderSectionsBranchMap {
+  branches {
+    data {
+      ...BranchEntity
+    }
+  }
+}
+
 fragment HeaderSections on PageHeaderDynamicZone {
   __typename
 
@@ -78,11 +77,11 @@ fragment HeaderSections on PageHeaderDynamicZone {
     ...GalleryHeaderSection
   }
 
-  #  ... on ComponentHeaderSectionsIcon {
-  #    ...IconHeaderSection
-  #  }
-
   ... on ComponentHeaderSectionsPickupDay {
     ...PickupDayHeaderSection
+  }
+
+  ... on ComponentHeaderSectionsBranchMap {
+    ...BranchMapHeaderSection
   }
 }

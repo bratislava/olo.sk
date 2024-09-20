@@ -1,6 +1,7 @@
 module.exports = {
   extends: [
     'auto',
+    'plugin:react/recommended',
     'plugin:@next/next/recommended',
     'plugin:i18next/recommended',
     'plugin:tailwindcss/recommended',
@@ -45,6 +46,7 @@ module.exports = {
 
     // TODO revisit
     'import/extensions': 'off',
+    'react/display-name': 'off',
 
     /* Formatting rules */
     'prettier/prettier': ['error', { endOfLine: 'auto' }], // TODO revisit, prettier should not be run by eslint

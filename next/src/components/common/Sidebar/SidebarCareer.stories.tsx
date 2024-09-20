@@ -48,8 +48,9 @@ export const SidebarCareer: Story = {
     return (
       <div className="mx-auto max-w-[288px] lg:max-w-[384px]">
         <SidebarCareerComponent>
-          {...args.rowsContent.map((row) => (
-            <div>
+          {...args.rowsContent.map((row, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <div key={index}>
               <BasicRowCard
                 variant="label-value-vertical"
                 label={row.label}

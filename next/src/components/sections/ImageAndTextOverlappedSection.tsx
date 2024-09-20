@@ -29,8 +29,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
     imagePositionImageAndTextOverlapped: imagePosition,
     backgroundColorImageAndTextOverlapped: backgroundColor,
     image,
-    primaryButton,
-    secondaryButton,
+    readMoreLink,
   } = section
 
   const { getLinkProps } = useGetLinkProps()
@@ -45,26 +44,11 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
     imagePosition === Enum_Imageposition.Right || imagePosition === Enum_Imageposition.RightShifted
 
   const TextContent = (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       <SectionHeader title={title} text={text} />
-      <div className="flex gap-4 empty:hidden">
-        {primaryButton ? (
-          <Button
-            variant="category-solid"
-            asLink
-            hasLinkIcon={false}
-            {...getLinkProps(primaryButton)}
-          />
-        ) : null}
-        {secondaryButton ? (
-          <Button
-            variant="category-outline"
-            asLink
-            hasLinkIcon={false}
-            {...getLinkProps(secondaryButton)}
-          />
-        ) : null}
-      </div>
+      {readMoreLink ? (
+        <Button variant="black-link" asLink hasLinkIcon {...getLinkProps(readMoreLink)} />
+      ) : null}
     </div>
   )
 

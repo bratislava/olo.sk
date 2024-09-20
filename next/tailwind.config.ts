@@ -77,8 +77,6 @@ const config: Config = {
       transparent: 'transparent',
       current: 'currentColor',
       white: 'rgb(var(--color-grey-0))',
-      success: 'rgb(var(--color-success-700))',
-      error: 'rgb(var(--color-negative-700))',
       background: {
         primary: 'rgb(var(--token-background-primary))',
         secondary: 'rgb(var(--token-background-secondary))',
@@ -131,9 +129,22 @@ const config: Config = {
           pressed: 'rgb(var(--token-action-border-pressed))',
         },
       },
-      alert: {
+      success: {
         background: {
-          warning: 'rgb(var(--token-alert-background-warning))',
+          default: 'rgb(var(--token-success-background-default))',
+        },
+        content: {
+          default: 'rgb(var(--token-success-content-default))',
+        },
+      },
+      warning: {
+        softBackground: {
+          default: 'rgb(var(--token-warning-soft-background-default))',
+        },
+      },
+      error: {
+        content: {
+          default: 'rgb(var(--token-error-content-default))',
         },
       },
       waste: {

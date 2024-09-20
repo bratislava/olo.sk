@@ -34,8 +34,9 @@ const ListingCard = ({
       variant="background-white"
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
+      title={title}
     >
-      <div className="flex h-full flex-col justify-between gap-6 p-4" title={title}>
+      <div className="flex h-full flex-col justify-between gap-6 p-4">
         <div className="flex flex-col gap-2">
           <Typography
             variant="h6"

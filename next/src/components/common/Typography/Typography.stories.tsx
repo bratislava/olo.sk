@@ -45,7 +45,7 @@ export const Typography: Story = {
       <div className="mx-auto flex max-w-[100ch] flex-col gap-4">
         {variantOptions.map((variant) => {
           return (
-            <div>
+            <div key={variant}>
               <p className="text-[8pt] opacity-50">{variant}</p>
               <TypographyComponent variant={variant}>
                 {args.children ||

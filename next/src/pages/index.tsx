@@ -1,20 +1,28 @@
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 
+import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
 import PageLayout from '@/src/components/layout/PageLayout'
-import ArticlesHomepageSection from '@/src/components/sections/hompage/ArticlesHomepageSection'
-import HeroHomepageSection from '@/src/components/sections/hompage/HeroHomepageSection'
-import KoloHomepageSection from '@/src/components/sections/hompage/KoloHomepageSection'
-import ServicesHomepageSection from '@/src/components/sections/hompage/ServicesHomepageSection'
+import ArticlesHomepageSection from '@/src/components/sections/homepage/ArticlesHomepageSection'
+import HeroHomepageSection from '@/src/components/sections/homepage/HeroHomepageSection'
+import KoloHomepageSection from '@/src/components/sections/homepage/KoloHomepageSection'
+import ServicesHomepageSection from '@/src/components/sections/homepage/ServicesHomepageSection'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery, HomepageEntityFragment } from '@/src/services/graphql/api'
+import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
+import { navigationConfig } from '@/src/services/navigation/navigationConfig'
+import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import { NOT_FOUND } from '@/src/utils/conts'
+import { generalQuery, latestArticlesQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
   homepage: HomepageEntityFragment
   general: GeneralQuery
+  navigation: NavigationObject
 }
 
 export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
@@ -22,24 +30,35 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
   console.log(`Revalidating homepage ${locale}.`)
 
   if (!locale) {
-    return { notFound: true }
+    return NOT_FOUND
   }
 
-  const [{ homepage }, general, translations] = await Promise.all([
+  const [{ homepage }, general, navigation, translations] = await Promise.all([
     client.Homepage({ locale }),
     client.General({ locale }),
+    fetchNavigation(navigationConfig),
     serverSideTranslations(locale),
   ])
 
   const page = homepage?.data
   if (!page) {
-    return { notFound: true }
+    return NOT_FOUND
   }
+
+  // Prefetch data
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(generalQuery(locale))
+  await queryClient.prefetchQuery(latestArticlesQuery(LATEST_ARTICLES_COUNT, locale))
+
+  const dehydratedState = dehydrate(queryClient)
 
   return {
     props: {
       homepage: page,
       general,
+      navigation,
+      dehydratedState,
       ...translations,
     },
     revalidate: 1, // TODO change to 10
@@ -47,7 +66,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Homepage = ({ homepage, general }: PageProps) => {
+const Homepage = ({ homepage, general, navigation }: PageProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation()
   // const title = useTitle()
@@ -57,38 +76,14 @@ const Homepage = ({ homepage, general }: PageProps) => {
    * https://github.com/bratislava/bratislava.sk/blob/master/next/pages/index.tsx
    */
   return (
-    <GeneralContextProvider general={general}>
+    <GeneralContextProvider general={general} navigation={navigation}>
       <PageLayout>
         <HeroHomepageSection section={homepage.attributes?.heroSection} />
         <ArticlesHomepageSection section={homepage.attributes?.articlesSection} />
         <KoloHomepageSection section={homepage.attributes?.koloSection} />
         <ServicesHomepageSection section={homepage.attributes?.servicesSection} />
-        {/* <HomePageContentPlaceholder /> */}
       </PageLayout>
     </GeneralContextProvider>
-
-    // TODO replace placeholder with proper component based on homepage props. Example below (needs to be a proper component, however):
-
-    //   <Section>
-    //   {homepage.attributes?.slides?.map((slide, index) => (
-    //     <div
-    //       // eslint-disable-next-line react/no-array-index-key
-    //       key={index}
-    //       className="rounded-lg p-6"
-    //       style={{ backgroundColor: slide?.backgroundColor ?? '' }}
-    //     >
-    //       <Typography variant="h1" as="p">
-    //         {slide?.title}
-    //       </Typography>
-    //       <Typography>{slide?.text}</Typography>
-    //       <Typography>{slide?.backgroundColor}</Typography>
-
-    //       {slide?.media.data?.attributes ? (
-    //         <Image src={slide.media.data.attributes.url} alt="" />
-    //       ) : null}
-    //     </div>
-    //   ))}
-    // </Section>
   )
 }
 

@@ -235,8 +235,7 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     image: Attribute.Media<'images'> & Attribute.Required
-    primaryButton: Attribute.Component<'items.link'>
-    secondaryButton: Attribute.Component<'items.link'>
+    readMoreLink: Attribute.Component<'items.link'>
   }
 }
 
@@ -466,7 +465,6 @@ export interface SectionsBranches extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
   }
 }
@@ -566,6 +564,7 @@ export interface MenuMenuLink extends Schema.Component {
     url: Attribute.String
     page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
     branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
   }
 }
@@ -711,8 +710,8 @@ export interface ItemsOrderedCardsItem extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text & Attribute.Required
+    title: Attribute.String
+    text: Attribute.RichText
     iconName: Attribute.String
   }
 }
@@ -874,12 +873,12 @@ export interface ItemsCardSliderCard extends Schema.Component {
   collectionName: 'components_items_card_slider_cards'
   info: {
     displayName: 'Card Slider card'
+    description: ''
   }
   attributes: {
     title: Attribute.String & Attribute.Required
     text: Attribute.Text
     image: Attribute.Media<'images'> & Attribute.Required
-    link: Attribute.Component<'items.link'>
   }
 }
 

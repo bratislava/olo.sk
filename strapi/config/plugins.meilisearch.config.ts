@@ -71,33 +71,6 @@ const meilisearchConfig = {
     indexName: 'search_index',
     entriesQuery: {
       locale: 'all',
-      populate: {
-        // Similar to graphql fragment PageParentPages, we need to
-        // reach several parent levels in order to construct the path to the page
-        parentPage: {
-          fields: ['title', 'slug'],
-          populate: {
-            parentPage: {
-              fields: ['title', 'slug'],
-              populate: {
-                parentPage: {
-                  fields: ['title', 'slug'],
-                  populate: {
-                    parentPage: {
-                      fields: ['title', 'slug'],
-                      populate: {
-                        parentPage: {
-                          fields: ['title', 'slug'],
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
     },
     settings: searchIndexSettings,
     transformEntry: ({ entry }) => wrapSearchIndexEntry('page', entry),

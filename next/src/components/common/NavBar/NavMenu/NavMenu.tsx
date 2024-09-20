@@ -1,4 +1,5 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { useQuery } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useMemo } from 'react'
@@ -9,8 +10,8 @@ import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsed
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuItem from '@/src/components/common/NavBar/NavMenu/NavMenuItem'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
-import { useGeneralContext } from '@/src/providers/GeneralContextProvider'
 import cn from '@/src/utils/cn'
+import { generalQuery } from '@/src/utils/queryOptions'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuProps = {
@@ -18,14 +19,18 @@ type NavMenuProps = {
 }
 
 const NavMenu = ({ className }: NavMenuProps) => {
-  const { menu } = useGeneralContext()
   const pathname = usePathname()
   const { menuValue, setMenuValue } = useNavMenuContext()
-  const { t } = useTranslation()
-  const { getLinkProps } = useGetLinkProps()
-  const menus = useMemo(() => getParsedMenus(menu), [menu])
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
 
-  const { searchLink } = menu?.data?.attributes?.menuHeader ?? {}
+  const { getLinkProps } = useGetLinkProps()
+
+  const { data } = useQuery(generalQuery(locale))
+
+  const menus = useMemo(() => getParsedMenus(data?.menu), [data?.menu])
+
+  const { searchLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
 
   useEffect(() => {
     setMenuValue('')

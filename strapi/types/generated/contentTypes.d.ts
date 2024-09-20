@@ -698,6 +698,12 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           localized: true
         }
       }>
+    alias: Attribute.UID &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     coverMedia: Attribute.Media<'images'> &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -818,13 +824,6 @@ export interface ApiBranchBranch extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true
-        }
-      }>
-    slug: Attribute.UID<'api::branch.branch', 'title'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1351,7 +1350,7 @@ export interface ApiOpeningTimeOpeningTime extends Schema.CollectionType {
     draftAndPublish: false
   }
   attributes: {
-    internalName: Attribute.String & Attribute.Required
+    internalName: Attribute.String & Attribute.Private
     branches: Attribute.Relation<
       'api::opening-time.opening-time',
       'manyToMany',
@@ -1413,6 +1412,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'header-sections.image',
         'header-sections.side-image',
         'header-sections.pickup-day',
+        'header-sections.branch-map',
       ]
     > &
       Attribute.SetPluginOptions<{

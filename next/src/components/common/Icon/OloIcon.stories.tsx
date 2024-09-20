@@ -23,9 +23,10 @@ export const OloIcon: Story = {
   render: () => {
     return (
       <div className="flex flex-wrap gap-2">
-        {Object.keys(oloIconNameMap).map((name) => {
+        {Object.keys(oloIconNameMap).map((name, index) => {
           return (
-            <div className="flex w-32 items-center gap-2 bg-white p-2 shadow-sm">
+            // eslint-disable-next-line react/no-array-index-key
+            <div key={index} className="flex w-32 items-center gap-2 bg-white p-2 shadow-sm">
               <OloIconComponent key={name} name={name as OloIconName} />
               <p className="text-[0.6rem]">{name}</p>
             </div>

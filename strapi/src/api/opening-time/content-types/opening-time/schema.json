@@ -14,7 +14,8 @@
   "attributes": {
     "internalName": {
       "type": "string",
-      "required": true
+      "required": false,
+      "private": true
     },
     "branches": {
       "type": "relation",

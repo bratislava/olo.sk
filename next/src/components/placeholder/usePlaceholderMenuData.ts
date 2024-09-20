@@ -33,13 +33,6 @@ export const usePlaceholderMenuData = () => {
               attributes: {
                 title: 'Stanovište zberných nádob',
                 slug: 'stanoviste-zbernych-nadob',
-                parentPage: {
-                  data: {
-                    attributes: {
-                      slug: 'odpad',
-                    },
-                  },
-                },
               },
             },
           },
@@ -60,13 +53,6 @@ export const usePlaceholderMenuData = () => {
               attributes: {
                 title: 'Ako triediť odpad?',
                 slug: 'ako-triedit-odpad',
-                parentPage: {
-                  data: {
-                    attributes: {
-                      slug: 'odpad',
-                    },
-                  },
-                },
               },
             },
           },
@@ -126,13 +112,6 @@ export const usePlaceholderMenuData = () => {
               attributes: {
                 title: 'Zistite si váš odvozový deň',
                 slug: 'zistite-si-vas-odvozovy-den',
-                parentPage: {
-                  data: {
-                    attributes: {
-                      slug: 'odpad',
-                    },
-                  },
-                },
               },
             },
           },
@@ -153,13 +132,6 @@ export const usePlaceholderMenuData = () => {
               attributes: {
                 title: 'Neodviezli mi odpad',
                 slug: 'neodviezli-mi-odpad',
-                parentPage: {
-                  data: {
-                    attributes: {
-                      slug: 'odpad',
-                    },
-                  },
-                },
               },
             },
           },
@@ -219,13 +191,6 @@ export const usePlaceholderMenuData = () => {
               attributes: {
                 title: 'Zistite si váš odvozový deň',
                 slug: 'zistite-si-vas-odvozovy-den',
-                parentPage: {
-                  data: {
-                    attributes: {
-                      slug: 'odpad',
-                    },
-                  },
-                },
               },
             },
           },
@@ -246,13 +211,6 @@ export const usePlaceholderMenuData = () => {
               attributes: {
                 title: 'Neodviezli mi odpad',
                 slug: 'neodviezli-mi-odpad',
-                parentPage: {
-                  data: {
-                    attributes: {
-                      slug: 'odpad',
-                    },
-                  },
-                },
               },
             },
           },

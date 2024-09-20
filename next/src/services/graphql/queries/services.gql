@@ -47,6 +47,14 @@ fragment ServiceCardEntity on ServiceEntity {
   }
 }
 
+fragment ServiceSearchEntity on ServiceEntity {
+  ...ServiceCardEntity
+  attributes {
+    publishedAt
+    updatedAt
+  }
+}
+
 fragment ServiceEntity on ServiceEntity {
   ...ServiceCardEntity
   attributes {

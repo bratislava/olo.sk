@@ -46,6 +46,8 @@
   "globalSearch.searchOption.documents": "Dokumenty",
   "globalSearch.searchOption.page": "Stránka",
   "globalSearch.searchOption.pages": "Stránky",
+  "globalSearch.searchOption.service": "Služba",
+  "globalSearch.searchOption.services": "Služby",
   "globalSearch.searchOptions": "Možnosti vyhľadávania",
   "globalSearch.showAll": "Zobraziť všetky",
   "imageLightBox.aria.imageLightBoxDescription": "Galéria obrázkov. Stlačte šípku vľavo pre zobrazenie predchádzajúceho obrázku. Stlačte šípku vpravo pre zobrazenie nasledujúceho obrázku. Zatvorte stlačením klávesu Escape.",

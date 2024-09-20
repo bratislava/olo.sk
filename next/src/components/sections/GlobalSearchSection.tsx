@@ -14,7 +14,7 @@ import { SearchFilters } from '@/src/utils/useQueryBySearchOption'
 import { useRoutePreservedState } from '@/src/utils/useRoutePreservedState'
 
 export type SearchOption = {
-  id: 'allResults' | 'pages' | 'articles' | 'documents'
+  id: 'allResults' | 'pages' | 'articles' | 'services' | 'documents'
   displayName?: string
   displayNamePlural: string
 }
@@ -49,6 +49,11 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
       id: 'articles',
       displayName: t('globalSearch.searchOption.article'),
       displayNamePlural: t('globalSearch.searchOption.articles'),
+    },
+    {
+      id: 'services',
+      displayName: t('globalSearch.searchOption.service'),
+      displayNamePlural: t('globalSearch.searchOption.services'),
     },
     {
       id: 'documents',
@@ -133,6 +138,7 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
 
   // Scroll into view ---------------------------------------------------------------------------------------
 
+  // TODO check
   const searchRef = useRef<null | HTMLInputElement>(null)
 
   useEffect(() => {
@@ -165,7 +171,7 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
                 selectedKeys={selection}
                 onSelectionChange={handleSelection}
               >
-                <TagList className="max-md:negative-x-spacing -m-1.5 flex gap-x-4 overflow-auto p-1.5 scrollbar-hide max-md:flex-nowrap">
+                <TagList className="max-md:negative-x-spacing -m-1.5 flex gap-x-3 overflow-auto p-1.5 scrollbar-hide max-md:flex-nowrap lg:gap-x-4">
                   {[defaultSearchOption, ...searchOptions].map((option) => {
                     return (
                       <Chip

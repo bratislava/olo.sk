@@ -23148,6 +23148,47 @@ export type ServiceCardEntityFragment = {
   } | null
 }
 
+export type ServiceSearchEntityFragment = {
+  __typename: 'ServiceEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'Service'
+    publishedAt?: any | null
+    updatedAt?: any | null
+    title: string
+    slug: string
+    serviceCategories?: {
+      __typename?: 'ServiceCategoryRelationResponseCollection'
+      data: Array<{
+        __typename?: 'ServiceCategoryEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'ServiceCategory'
+          title: string
+          slug: string
+          categoryColor: Enum_Servicecategory_Categorycolor
+        } | null
+      }>
+    } | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
 export type ServiceEntityFragment = {
   __typename: 'ServiceEntity'
   id?: string | null
@@ -27557,6 +27598,16 @@ export const ServiceCardEntityFragmentDoc = gql`
   ${ServiceSlugEntityFragmentDoc}
   ${ServiceCategoryEntityFragmentDoc}
   ${UploadImageEntityFragmentDoc}
+`
+export const ServiceSearchEntityFragmentDoc = gql`
+  fragment ServiceSearchEntity on ServiceEntity {
+    ...ServiceCardEntity
+    attributes {
+      publishedAt
+      updatedAt
+    }
+  }
+  ${ServiceCardEntityFragmentDoc}
 `
 export const FormCtaBannerSectionFragmentDoc = gql`
   fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {

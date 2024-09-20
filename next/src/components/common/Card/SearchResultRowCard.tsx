@@ -39,6 +39,7 @@ const SearchResultRowCard = ({
     pages: 'lupa',
     articles: undefined,
     documents: 'dokument',
+    services: undefined,
   }
 
   const iconName = iconNameBySearchOption[type]
@@ -48,7 +49,6 @@ const SearchResultRowCard = ({
   return (
     <CardBase variant="unstyled" className={className}>
       <div className="flex items-center gap-4 p-4">
-        {/* 2.25rem = 36px, 3.5rem = 56px */}
         <div className="relative flex size-14 shrink-0 items-center justify-center">
           {iconName ? (
             <Icon name={iconName} className="size-9" />
@@ -86,7 +86,6 @@ const SearchResultRowCard = ({
           aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
           stretched
           icon={<Icon name="chevron-doprava" />}
-          className=""
         />
       </div>
     </CardBase>

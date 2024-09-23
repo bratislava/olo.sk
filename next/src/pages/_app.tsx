@@ -11,8 +11,8 @@ import { OverlayProvider } from 'react-aria'
 import { QueryParamProvider } from 'use-query-params'
 
 import { NavMenuContextProvider } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
-import BAI18nProvider from '@/src/providers/BAI18nProvider'
 import BAQueryClientProvider from '@/src/providers/BAQueryClientProvider'
+// import BAI18nProvider from '@/src/providers/BAI18nProvider'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -37,16 +37,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <BAQueryClientProvider>
         <HydrationBoundary state={pageProps.dehydratedState}>
           <QueryParamProvider adapter={NextAdapter}>
-            <BAI18nProvider>
-              <OverlayProvider>
-                <NavMenuContextProvider>
-                  {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
-                  <div id="root">
-                    <Component {...pageProps} />
-                  </div>
-                </NavMenuContextProvider>
-              </OverlayProvider>
-            </BAI18nProvider>
+            {/* <BAI18nProvider> */}
+            <OverlayProvider>
+              <NavMenuContextProvider>
+                {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
+                <div id="root">
+                  <Component {...pageProps} />
+                </div>
+              </NavMenuContextProvider>
+            </OverlayProvider>
+            {/* </BAI18nProvider> */}
           </QueryParamProvider>
         </HydrationBoundary>
       </BAQueryClientProvider>

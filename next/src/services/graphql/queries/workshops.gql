@@ -39,6 +39,14 @@ query WorkshopsStaticPaths {
   }
 }
 
+query WorkshopById($id: ID!) {
+  workshop(id: $id) {
+    data {
+      ...WorkshopEntity
+    }
+  }
+}
+
 query WorkshopBySlug($slug: String!) {
   workshops(filters: { slug: { eq: $slug } }) {
     data {

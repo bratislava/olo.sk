@@ -59,6 +59,14 @@ query DocumentsStaticPaths {
   }
 }
 
+query DocumentById($id: ID!) {
+  document(id: $id) {
+    data {
+      ...DocumentSlugEntity
+    }
+  }
+}
+
 query DocumentBySlug($slug: String!) {
   documents(filters: { slug: { eq: $slug } }) {
     data {

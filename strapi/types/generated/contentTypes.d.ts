@@ -1187,6 +1187,29 @@ export interface ApiFooterFooter extends Schema.SingleType {
   }
 }
 
+export interface ApiFormForm extends Schema.CollectionType {
+  collectionName: 'forms'
+  info: {
+    singularName: 'form'
+    pluralName: 'forms'
+    displayName: 'form'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    formSlug: Attribute.UID & Attribute.Required
+    parentService: Attribute.Relation<'api::form.form', 'oneToOne', 'api::service.service'>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::form.form', 'oneToOne', 'admin::user'> & Attribute.Private
+    updatedBy: Attribute.Relation<'api::form.form', 'oneToOne', 'admin::user'> & Attribute.Private
+  }
+}
+
 export interface ApiHomepageHomepage extends Schema.SingleType {
   collectionName: 'homepages'
   info: {
@@ -1702,6 +1725,7 @@ declare module '@strapi/types' {
       'api::faq.faq': ApiFaqFaq
       'api::faq-category.faq-category': ApiFaqCategoryFaqCategory
       'api::footer.footer': ApiFooterFooter
+      'api::form.form': ApiFormForm
       'api::homepage.homepage': ApiHomepageHomepage
       'api::menu.menu': ApiMenuMenu
       'api::navigation.navigation': ApiNavigationNavigation

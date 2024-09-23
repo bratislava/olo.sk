@@ -1,0 +1,21 @@
+fragment FormEntity on FormEntity {
+  id
+  attributes {
+    title
+    text
+    formSlug
+    parentService {
+      data {
+        ...ServiceSlugEntity
+      }
+    }
+  }
+}
+
+query FormBySlug($locale: I18NLocaleCode!) {
+  faqs(locale: $locale) {
+    data {
+      ...FaqEntity
+    }
+  }
+}

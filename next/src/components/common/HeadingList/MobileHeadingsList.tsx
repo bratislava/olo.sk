@@ -1,6 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 
+import Accordion from '@/src/components/common/Accordion/Accordion'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type Props = {
@@ -12,7 +13,7 @@ type HeadingLevels = 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 type HeadingProps = {
   id: string
   text: string
-  level: HeadingLevels
+  level: number
 }
 
 /**
@@ -20,7 +21,7 @@ type HeadingProps = {
  *
  */
 
-const ServiceHeadingsList = ({ rootId }: Props) => {
+const MobileHeadingsList = ({ rootId }: Props) => {
   const [headings, setHeadings] = useState<HeadingProps[]>([])
   const { t } = useTranslation()
 
@@ -31,38 +32,40 @@ const ServiceHeadingsList = ({ rootId }: Props) => {
     const headingsElements = Array.from(headingsNodeList).map((element) => ({
       id: element.id,
       text: element.textContent ?? '""',
-      level: String(element.tagName).toLowerCase() as HeadingLevels,
+      level: Number(String(element.tagName).slice(1).toLowerCase() as HeadingLevels),
     })) // mapping from a list of nodes to array
+
     setHeadings(headingsElements)
   }, [rootId])
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary">
-      <div className="flex flex-col overflow-hidden border-b border-border-default p-6">
-        <Typography variant="h5">{t('serviceSection.headingsList')}</Typography>
-      </div>
-      <div className="flex flex-col px-6 py-2">
-        {headings &&
-          headings.map((heading) => {
-            return heading.level === 'h2' ? (
-              <div className="py-4">
-                <Typography key={heading.text} variant="p-default">
-                  {heading.text}
-                </Typography>
-              </div>
-            ) : (
-              <div className="flex flex-col px-4 first:pt-4 last:pb-4">
-                <div className="flex border-l border-border-default pl-4">
+    <div className="border-b border-border-default">
+      <Accordion title={t('serviceSection.headingsList')} hasHeaderBorder sectionPadding>
+        <div className="flex flex-col">
+          {headings &&
+            headings.map((heading) => {
+              return heading.level === 2 ? (
+                <div className="py-3">
                   <Typography key={heading.text} variant="p-default">
                     {heading.text}
                   </Typography>
                 </div>
-              </div>
-            )
-          })}
-      </div>
+              ) : (
+                <div className="flex flex-col px-4 first:pt-4 last:pb-4">
+                  <div
+                    className={`${heading.level === 3 ? 'pl-4' : 'pl-8'} flex flex-col border-l border-border-default pb-2`}
+                  >
+                    <Typography key={heading.text} variant="p-default">
+                      {heading.text}
+                    </Typography>
+                  </div>
+                </div>
+              )
+            })}
+        </div>
+      </Accordion>
     </div>
   )
 }
 
-export default ServiceHeadingsList
+export default MobileHeadingsList

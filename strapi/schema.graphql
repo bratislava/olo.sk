@@ -613,20 +613,20 @@ input ComponentItemsHomepageServiceTileInput {
 type ComponentItemsImageAndTextOverlappedItem {
   id: ID!
   image: UploadFileEntityResponse
-  text: String
+  title: String
 }
 
 input ComponentItemsImageAndTextOverlappedItemFiltersInput {
   and: [ComponentItemsImageAndTextOverlappedItemFiltersInput]
   not: ComponentItemsImageAndTextOverlappedItemFiltersInput
   or: [ComponentItemsImageAndTextOverlappedItemFiltersInput]
-  text: StringFilterInput
+  title: StringFilterInput
 }
 
 input ComponentItemsImageAndTextOverlappedItemInput {
   id: ID
   image: ID
-  text: String
+  title: String
 }
 
 type ComponentItemsLink {

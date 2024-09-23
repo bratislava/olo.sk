@@ -782,7 +782,7 @@ export interface ItemsImageAndTextOverlappedItem extends Schema.Component {
   }
   attributes: {
     image: Attribute.Media<'images'>
-    text: Attribute.String
+    title: Attribute.String
   }
 }
 

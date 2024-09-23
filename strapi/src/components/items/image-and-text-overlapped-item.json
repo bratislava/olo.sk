@@ -10,9 +10,11 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
-    "text": {
+    "title": {
       "type": "string"
     }
   }

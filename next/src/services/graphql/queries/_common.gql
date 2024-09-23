@@ -84,5 +84,5 @@ fragment ImageAndTextOverlappedItem on ComponentItemsImageAndTextOverlappedItem 
       ...UploadImageSrcEntity
     }
   }
-  text
+  title
 }

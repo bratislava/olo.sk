@@ -619,7 +619,7 @@ export type ComponentItemsImageAndTextOverlappedItem = {
   __typename?: 'ComponentItemsImageAndTextOverlappedItem'
   id: Scalars['ID']['output']
   image?: Maybe<UploadFileEntityResponse>
-  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentItemsLink = {
@@ -4957,7 +4957,7 @@ export type FileItemFragment = {
 
 export type ImageAndTextOverlappedItemFragment = {
   __typename?: 'ComponentItemsImageAndTextOverlappedItem'
-  text?: string | null
+  title?: string | null
   image?: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -5706,7 +5706,7 @@ export type CareersHeaderSectionFragment = {
   videoUrl: string
   imageWithText?: {
     __typename?: 'ComponentItemsImageAndTextOverlappedItem'
-    text?: string | null
+    title?: string | null
     image?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -26269,7 +26269,7 @@ export const ImageAndTextOverlappedItemFragmentDoc = gql`
         ...UploadImageSrcEntity
       }
     }
-    text
+    title
   }
   ${UploadImageSrcEntityFragmentDoc}
 `

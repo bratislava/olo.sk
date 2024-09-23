@@ -289,7 +289,7 @@ export interface SectionsFormCtaBanner extends Schema.Component {
     title: Attribute.String
     text: Attribute.Text
     bannerTitle: Attribute.String & Attribute.Required
-    bannerLink: Attribute.Component<'items.link'> & Attribute.Required
+    bannerLink: Attribute.Component<'items.form-cta-banner-link'> & Attribute.Required
   }
 }
 
@@ -808,6 +808,20 @@ export interface ItemsHeroMainTile extends Schema.Component {
   }
 }
 
+export interface ItemsFormCtaBannerLink extends Schema.Component {
+  collectionName: 'components_items_form_cta_banner_links'
+  info: {
+    displayName: 'form cta banner link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    email: Attribute.Email
+    form: Attribute.Relation<'items.form-cta-banner-link', 'oneToOne', 'api::form.form'>
+  }
+}
+
 export interface ItemsFooterColumn extends Schema.Component {
   collectionName: 'components_items_footer_columns'
   info: {
@@ -1052,6 +1066,7 @@ declare module '@strapi/types' {
       'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.hero-small-tile': ItemsHeroSmallTile
       'items.hero-main-tile': ItemsHeroMainTile
+      'items.form-cta-banner-link': ItemsFormCtaBannerLink
       'items.footer-column': ItemsFooterColumn
       'items.file-item': ItemsFileItem
       'items.columns-list-item': ItemsColumnsListItem

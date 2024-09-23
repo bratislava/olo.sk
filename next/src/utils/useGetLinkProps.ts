@@ -27,9 +27,9 @@ export const ROUTES = {
 export const useGetLinkProps = () => {
   const { getFullPath } = useGetFullPath()
 
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   const getLinkProps = (
     link: LinkFragment | MenuLinkFragment | FormCtaBannerLinkFragment | null | undefined,
+    // eslint-disable-next-line sonarjs/cognitive-complexity
   ) => {
     let href = '#'
     let label = link?.label ?? ''

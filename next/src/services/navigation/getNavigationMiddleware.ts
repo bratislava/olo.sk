@@ -44,9 +44,9 @@ export const getNavigationMiddleware = (config: NavigationConfig) => {
       ? `${contentTypePathPrefixesMap.workshop}/`
       : null
 
-    // const pathnameString = `/${pathname.join('/')}`
-
     let destination: string | null = null
+
+    // Note that "forms" path does not need to be rewritten
 
     if (articlesPath && pathnameString.startsWith(articlesPath)) {
       destination = `/articles/${pathname.at(-1)}`

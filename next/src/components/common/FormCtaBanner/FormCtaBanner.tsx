@@ -1,11 +1,11 @@
 import Button from '@/src/components/common/Button/Button'
 import Typography from '@/src/components/common/Typography/Typography'
-import { LinkFragment } from '@/src/services/graphql/api'
+import { FormCtaBannerLinkFragment, LinkFragment } from '@/src/services/graphql/api'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type FormCtaBannerProps = {
   title: string
-  link: LinkFragment
+  link: LinkFragment | FormCtaBannerLinkFragment
   isFullWidthButton?: boolean
 }
 
@@ -18,7 +18,10 @@ const FormCtaBanner = ({ title, link, isFullWidthButton = false }: FormCtaBanner
 
   return (
     <div className="flex flex-col gap-4 overflow-hidden rounded-lg border border-border-default bg-background-primary p-4 lg:gap-6 lg:p-6">
-      <Typography variant="h5">{title}</Typography>
+      {/* TODO find solution how to render it as heading, but not showing in Table of Contents */}
+      <Typography variant="h5" as="p">
+        {title}
+      </Typography>
       <Button
         variant="category-solid"
         asLink

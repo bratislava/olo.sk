@@ -19,7 +19,7 @@
     "bannerLink": {
       "type": "component",
       "repeatable": false,
-      "component": "items.link",
+      "component": "items.form-cta-banner-link",
       "required": true
     }
   }

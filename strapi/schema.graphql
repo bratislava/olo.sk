@@ -2311,9 +2311,10 @@ type FooterRelationResponseCollection {
 
 type Form {
   createdAt: DateTime
-  formSlug: String!
+  formSlug: String
   parentService: ServiceEntityResponse
-  text: String
+  slug: String!
+  subtext: String
   title: String!
   updatedAt: DateTime
 }
@@ -2340,7 +2341,8 @@ input FormFiltersInput {
   not: FormFiltersInput
   or: [FormFiltersInput]
   parentService: ServiceFiltersInput
-  text: StringFilterInput
+  slug: StringFilterInput
+  subtext: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
@@ -2348,7 +2350,8 @@ input FormFiltersInput {
 input FormInput {
   formSlug: String
   parentService: ID
-  text: String
+  slug: String
+  subtext: String
   title: String
 }
 

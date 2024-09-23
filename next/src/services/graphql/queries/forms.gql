@@ -1,8 +1,15 @@
-fragment FormEntity on FormEntity {
+fragment FormSlugEntity on FormEntity {
   id
   attributes {
     title
-    text
+    slug
+  }
+}
+
+fragment FormEntity on FormEntity {
+  ...FormSlugEntity
+  attributes {
+    subtext
     formSlug
     parentService {
       data {
@@ -12,10 +19,18 @@ fragment FormEntity on FormEntity {
   }
 }
 
-query FormBySlug($locale: I18NLocaleCode!) {
-  faqs(locale: $locale) {
+query FormsStaticPaths {
+  forms(pagination: { limit: -1 }) {
     data {
-      ...FaqEntity
+      ...FormSlugEntity
+    }
+  }
+}
+
+query FormBySlug($slug: String!) {
+  forms(filters: { slug: { eq: $slug } }) {
+    data {
+      ...FormEntity
     }
   }
 }

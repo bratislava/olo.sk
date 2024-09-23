@@ -1192,7 +1192,7 @@ export interface ApiFormForm extends Schema.CollectionType {
   info: {
     singularName: 'form'
     pluralName: 'forms'
-    displayName: 'form'
+    displayName: 'Formul\u00E1re'
     description: ''
   }
   options: {
@@ -1200,9 +1200,10 @@ export interface ApiFormForm extends Schema.CollectionType {
   }
   attributes: {
     title: Attribute.String & Attribute.Required
-    text: Attribute.Text
-    formSlug: Attribute.UID & Attribute.Required
+    slug: Attribute.UID<'api::form.form', 'title'> & Attribute.Required
+    subtext: Attribute.Text
     parentService: Attribute.Relation<'api::form.form', 'oneToOne', 'api::service.service'>
+    formSlug: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<'api::form.form', 'oneToOne', 'admin::user'> & Attribute.Private

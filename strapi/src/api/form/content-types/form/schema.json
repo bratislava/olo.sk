@@ -4,7 +4,7 @@
   "info": {
     "singularName": "form",
     "pluralName": "forms",
-    "displayName": "form",
+    "displayName": "Formuláre",
     "description": ""
   },
   "options": {
@@ -16,17 +16,21 @@
       "type": "string",
       "required": true
     },
-    "text": {
-      "type": "text"
-    },
-    "formSlug": {
+    "slug": {
       "type": "uid",
+      "targetField": "title",
       "required": true
+    },
+    "subtext": {
+      "type": "text"
     },
     "parentService": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::service.service"
+    },
+    "formSlug": {
+      "type": "string"
     }
   }
 }

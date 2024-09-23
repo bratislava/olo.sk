@@ -1,7 +1,7 @@
-import { HTMLAttributes } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { HTMLAttributes } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-import cn from '@/src/utils/cn';
+import cn from '@/src/utils/cn'
 
 export type SectionContainerProps = {
   background?: 'primary' | 'secondary' | 'tertiary'

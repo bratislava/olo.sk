@@ -15,6 +15,7 @@ import {
   meiliArticlesFetcher,
 } from '@/src/services/meili/fetchers/articlesFetcher'
 import {
+  DocumentsFilters,
   getMeiliDocumentsQueryKey,
   meiliDocumentsFetcher,
 } from '@/src/services/meili/fetchers/documentsFetcher'
@@ -26,12 +27,13 @@ import {
 import {
   getMeiliServicesQueryKey,
   meiliServicesFetcher,
+  ServicesFilters,
 } from '@/src/services/meili/fetchers/servicesFetcher'
 import { formatDate } from '@/src/utils/formatDate'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
-export type SearchFilters = PagesFilters | ArticlesFilters
+export type SearchFilters = ArticlesFilters | PagesFilters | ServicesFilters | DocumentsFilters
 
 export type SearchResult = {
   title: string | null | undefined

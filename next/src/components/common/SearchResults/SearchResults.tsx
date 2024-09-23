@@ -12,28 +12,34 @@ import { SearchOption } from '@/src/components/sections/GlobalSearchSection'
 import { isDefined } from '@/src/utils/isDefined'
 import { SearchFilters, useQueryBySearchOption } from '@/src/utils/useQueryBySearchOption'
 
-// TODO Taken from bratislava.sk
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1521-16524&m=dev
+ * Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/sections/SearchSection/SearchResults.tsx
+ */
 
 type SearchResultsProps = {
   filters: SearchFilters
   variant: 'allResults' | 'specificResults'
+  generalResultsCount?: number
   searchOption: SearchOption
+  resultsCountMessage?: string
   onSetResultsCount: (searchOptionId: SearchOption['id'], count: number) => void
   onShowMore?: Dispatch<SetStateAction<Selection>>
   onPageChange?: Dispatch<SetStateAction<number>>
-  onLoadingChange?: Dispatch<SetStateAction<boolean>>
+  // onLoadingChange?: Dispatch<SetStateAction<boolean>>
 }
 
 const SearchResults = ({
   filters,
   variant,
+  generalResultsCount,
   searchOption,
+  resultsCountMessage,
   onSetResultsCount,
   onShowMore,
   onPageChange,
   // TODO use onLoadingChange to signal loading state to parent component
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onLoadingChange,
+  // onLoadingChange,
   // eslint-disable-next-line sonarjs/cognitive-complexity
 }: SearchResultsProps) => {
   const { t } = useTranslation()
@@ -42,11 +48,6 @@ const SearchResults = ({
 
   const { data, isPending, isError, error } = searchQuery ?? {}
   const { searchResultsData, searchResultsCount } = data ?? { searchResultsCount: 0 }
-
-  const GENERAL_RESULTS_COUNT = 5
-  // eslint-disable-next-line const-case/uppercase
-  // const RESULTS_COUNT =
-  //   (searchResultsData?.length as number) < 5 ? searchResultsData?.length : GENERAL_RESULTS_COUNT // Logic based on TabPanelOfficialBoard.tsx
 
   useEffect(() => {
     onSetResultsCount(searchOption.id, searchResultsCount ?? 0)
@@ -70,7 +71,6 @@ const SearchResults = ({
       data-cy={`search-section-${searchOption?.displayNamePlural.replaceAll(' ', '-')}`}
     >
       <div className="flex flex-col gap-y-6">
-        {/* TODO maybe separate this header as a component */}
         {variant === 'allResults' && (
           <div className="flex flex-col flex-wrap items-baseline justify-between gap-y-2 lg:flex-row">
             <Typography variant="h4" as="h2">
@@ -95,7 +95,7 @@ const SearchResults = ({
         {searchResultsData?.length ? (
           <ul className="flex flex-col divide-y divide-border-default rounded-lg border border-border-default">
             {searchResultsData
-              .slice(0, variant === 'allResults' ? GENERAL_RESULTS_COUNT : undefined)
+              .slice(0, variant === 'allResults' ? generalResultsCount : undefined)
               .map((item) => {
                 return (
                   <li
@@ -113,7 +113,6 @@ const SearchResults = ({
                       metadata={item.metadata?.filter(isDefined) ?? []}
                       linkHref={item.linkHref ?? '#'}
                     />
-                    {/* <SearchResultRowCard data={{ ...item }} /> */}
                   </li>
                 )
               })}
@@ -123,7 +122,6 @@ const SearchResults = ({
             <Typography>{t('globalSearch.noResults')}</Typography>
           </div>
         ) : (
-          /* Contacts show only for non-empty search query */
           // TODO keep this also during the first loading
           // TODO IS PENDING, but handle contacts separately
           <Typography>{t('globalSearch.enterSearchQuery')}</Typography>
@@ -131,13 +129,7 @@ const SearchResults = ({
 
         {searchResultsData?.length && variant === 'specificResults' && onPageChange ? (
           <div className="flex items-center justify-between">
-            {/* TODO better message handling when less than pageSize results are shown */}
-            <Typography>
-              {t('common.showingResults', {
-                current: Math.min(searchResultsCount, filters.pageSize),
-                total: searchResultsCount,
-              })}
-            </Typography>
+            <Typography>{resultsCountMessage}</Typography>
             <PaginationWithInput
               currentPage={filters.page}
               totalCount={

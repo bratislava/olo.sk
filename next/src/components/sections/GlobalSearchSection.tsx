@@ -6,10 +6,10 @@ import { useDebounceValue } from 'usehooks-ts'
 import Chip from '@/src/components/common/Chip/Chip'
 import SearchBar from '@/src/components/common/SearchBar/SearchBar'
 import SearchResults from '@/src/components/common/SearchResults/SearchResults'
+import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { GlobalSearchSectionFragment } from '@/src/services/graphql/api'
-import { articlesDefaultFilters } from '@/src/services/meili/fetchers/articlesFetcher'
 import { SearchFilters } from '@/src/utils/useQueryBySearchOption'
 import { useRoutePreservedState } from '@/src/utils/useRoutePreservedState'
 
@@ -29,10 +29,9 @@ type Props = {
  */
 
 const GlobalSearchSectionContent = ({ section }: Props) => {
-  // Initial variables --------------------------------------------------------------------------------
   const { t } = useTranslation()
 
-  // SearchOptions --------------------------------------------------------------------------------
+  // SEARCH OPTIONS
 
   const defaultSearchOption: SearchOption = {
     id: 'allResults',
@@ -62,23 +61,41 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
     },
   ]
 
+  // SEARCH INPUT
+
   const getSearchOptionByKeyValue = (key: string) => {
     return searchOptions.find((option) => option.id === key) ?? defaultSearchOption
   }
 
-  // Search  --------------------------------------------------------------------------------------------------
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
 
-  const [filters, setFilters] = useRoutePreservedState(articlesDefaultFilters)
+  // PAGINATION AND FILTERS
+
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const PAGE_SIZE_ALLRESULTS = 5
+  const PAGE_SIZE_SPECIFIC = 12
+
+  const searchFilters: SearchFilters = {
+    search: debouncedInput,
+    page: currentPage,
+    pageSize: PAGE_SIZE_SPECIFIC,
+  }
+
+  const [filters, setFilters] = useRoutePreservedState(searchFilters)
+
+  const searchRef = useRef<null | HTMLInputElement>(null)
+
+  useEffect(() => {
+    searchRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [currentPage, filters.page, filters.pageSize])
 
   useEffect(() => {
     setFilters((previousState) => ({ ...previousState, search: debouncedInput, page: 1 }))
   }, [debouncedInput, setFilters])
 
-  const [currentPage, setCurrentPage] = useState(1)
-
-  // Selection ------------------------------------------------------------------------------------------------
+  // SELECTION
 
   const defaultSelection = new Set([defaultSearchOption.id])
 
@@ -107,23 +124,12 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
     } else {
       setSelection(defaultSelection)
     }
+    setCurrentPage(1)
   }
 
-  // Filters -----------------------------------------------------------------------------------------------
-  const searchFilters: SearchFilters = {
-    // search: searchValue,
-    search: debouncedInput,
-    page: currentPage,
-    pageSize: 12,
-    // tagIds need to be here for now, because BlogPost and InbaArticle fetchers filter by tagIds
-    // tagIds: [],
-    // publicationState: publicationState ?? undefined,
-  }
+  // RESULTS COUNT
 
-  // Results count ------------------------------------------------------------------------------------------
-
-  // TODO use resultsCount to display the number of results for each search option
-  const [, setResultsCount] = useState(
+  const [resultsCount, setResultsCount] = useState(
     Object.fromEntries(searchOptions.map((option): [string, number] => [option.id, 0])),
   )
 
@@ -136,14 +142,22 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
     })
   }
 
-  // Scroll into view ---------------------------------------------------------------------------------------
+  const allResultsCount = Object.values(resultsCount).reduce((a, b) => a + b, 0)
 
-  // TODO check
-  const searchRef = useRef<null | HTMLInputElement>(null)
-
-  useEffect(() => {
-    searchRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [filters.page, filters.pageSize])
+  const resultsCountMessage =
+    selectedKey === 'allResults'
+      ? t('globalSearch.searchResultsFound.all', {
+          count: allResultsCount,
+        })
+      : resultsCount[selectedKey] < filters.pageSize
+        ? t('globalSearch.searchResultsFound.specific.singlepage', {
+            count: resultsCount[selectedKey],
+          })
+        : t('globalSearch.searchResultsFound.specific', {
+            from: (currentPage - 1) * filters.pageSize + 1,
+            to: Math.min(resultsCount[selectedKey], currentPage * filters.pageSize),
+            all: resultsCount[selectedKey],
+          })
 
   return (
     <SectionContainer className="py-6 lg:py-12">
@@ -151,7 +165,6 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
         <SectionHeader title={section?.title} />
         <div className="flex flex-col gap-6 lg:gap-8">
           <div className="flex flex-col gap-3">
-            {/* SEARCH BAR --------------------------------------------------------------- */}
             <SearchBar
               ref={searchRef}
               input={input}
@@ -161,9 +174,7 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
               }
               // isLoading={isFetching}
             />
-
-            {/* SELECTION & totalCound --------------------------------------------------- */}
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6">
               <TagGroup
                 aria-label={t('globalSearch.searchOptions')}
                 selectionMode="single"
@@ -188,7 +199,9 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
                 </TagList>
               </TagGroup>
               {/* TODO total results count message */}
-              {/* <Typography>{getTotalResultsCountMessage()}</Typography> */}
+              <div className="lg:w-full">
+                <Typography>{resultsCountMessage}</Typography>
+              </div>
             </div>
           </div>
           {/* TODO ERROR DISPLAY ------------------------------------------------------------ */}
@@ -197,7 +210,6 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
         ) : isPending ? (
           <Typography variant="p-default">{t('common.loading')}</Typography>
         ) : null} */}
-          {/* RESULTS DISPLAY ---------------------------------------------------------- */}
           {selectedKey === 'allResults' ? (
             <div className="flex flex-col gap-8">
               {searchOptions.map((option) => {
@@ -205,7 +217,7 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
                   <SearchResults
                     variant="allResults"
                     searchOption={option}
-                    filters={searchFilters}
+                    filters={{ ...searchFilters, pageSize: PAGE_SIZE_ALLRESULTS }}
                     onSetResultsCount={setResultsCountById}
                     onShowMore={setSelection}
                     key={`allResults-${option.id}`}
@@ -222,6 +234,7 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
               onShowMore={setSelection}
               onPageChange={setCurrentPage}
               key={`specificResults-${selectedKey}`}
+              resultsCountMessage={resultsCountMessage}
             />
           )}
         </div>

@@ -1,18 +1,13 @@
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
 
+import useHeadings from '@/src/components/common/HeadingList/useHeadings'
+import { handleOnClick } from '@/src/components/common/HeadingList/utils'
 import Typography from '@/src/components/common/Typography/Typography'
+
+const HEADER_OFFSET = 130
 
 type Props = {
   rootId: string
-}
-
-type HeadingLevels = 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-
-type HeadingProps = {
-  id: string
-  text: string
-  level: number
 }
 
 /**
@@ -21,21 +16,9 @@ type HeadingProps = {
  */
 
 const DesktopHeadingsList = ({ rootId }: Props) => {
-  const [headings, setHeadings] = useState<HeadingProps[]>([])
   const { t } = useTranslation()
 
-  useEffect(() => {
-    const queryList = `#${rootId} h2, #${rootId} h3, #${rootId} h4, #${rootId} h5, #${rootId} h6`
-    const headingsNodeList = document.querySelectorAll(queryList)
-    // eslint-disable-next-line unicorn/prefer-spread
-    const headingsElements = Array.from(headingsNodeList).map((element) => ({
-      id: element.id,
-      text: element.textContent ?? '""',
-      level: Number(String(element.tagName).slice(1).toLowerCase() as HeadingLevels),
-    })) // mapping from a list of nodes to array
-
-    setHeadings(headingsElements)
-  }, [rootId])
+  const headings = useHeadings(rootId)
 
   return (
     <div className="flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary">
@@ -46,19 +29,27 @@ const DesktopHeadingsList = ({ rootId }: Props) => {
         {headings &&
           headings.map((heading) => {
             return heading.level === 2 ? (
-              <div className="py-4">
+              <div
+                className="py-4"
+                key={heading.id}
+                onClick={() => handleOnClick({ id: `#${heading.id}`, headerOffset: HEADER_OFFSET })}
+                aria-hidden="true"
+              >
                 <Typography key={heading.text} variant="p-default">
                   {heading.text}
                 </Typography>
               </div>
             ) : (
-              <div className="flex flex-col px-4 first:pt-4 last:pb-4">
+              <div key={heading.id} className="flex flex-col px-4 first:pt-4 last:pb-4">
                 <div
                   className={`${heading.level === 3 ? 'pl-4' : 'pl-8'} flex flex-col border-l border-border-default pb-3`}
+                  onClick={() =>
+                    handleOnClick({ id: `#${heading.id}`, headerOffset: HEADER_OFFSET })
+                  }
+                  aria-hidden="true"
+                  key={heading.id}
                 >
-                  <Typography key={heading.text} variant="p-default">
-                    {heading.text}
-                  </Typography>
+                  <Typography variant="p-default">{heading.text}</Typography>
                 </div>
               </div>
             )

@@ -1,7 +1,10 @@
+import slugify from '@sindresorhus/slugify'
 import { createElement, ElementType, forwardRef, ReactNode } from 'react'
 
 import { normalizeSkText } from '@/src/components/common/Typography/normalizeSkText'
 import cn from '@/src/utils/cn'
+
+const headingLevels = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
 
 export type TypographyProps = {
   children: ReactNode
@@ -80,17 +83,29 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
     )
 
     // TODO normalizeSkText should be applied on all text - also when used in BlockRenderer
-    const childrenNormalised = typeof children === 'string' ? normalizeSkText(children) : children
+    const childrenNormalized = typeof children === 'string' ? normalizeSkText(children) : children
 
-    return createElement(
-      as || variantElement,
-      {
-        ...rest,
-        ref: forwardedRef,
-        className: classes,
-      },
-      childrenNormalised,
-    )
+    const isHeading: boolean =
+      headingLevels.has(variantElement) || !!(as && headingLevels.has(as.toString()))
+
+    const commonElementOptions = {
+      ...rest,
+      ref: forwardedRef,
+      className: classes,
+    }
+
+    const generateId = children ? slugify(children.toString()) : ''
+
+    const elementOptions = isHeading
+      ? {
+          ...commonElementOptions,
+          id: generateId,
+        }
+      : {
+          ...commonElementOptions,
+        }
+
+    return createElement(as || variantElement, elementOptions, childrenNormalized)
   },
 )
 

@@ -15,7 +15,7 @@ const meta: Meta<typeof BannerComponent> = {
     button1Text: 'Button1',
     button2LinkHref: '#',
     button2Text: 'Button2',
-    imgSrc: ImageAssets.AbstractBackgroundImage.src,
+    imgSrc: ImageAssets.OloTruckImage.src,
   },
   argTypes: {
     imgSrc: {

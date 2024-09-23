@@ -59,10 +59,12 @@ export const AllSliders: Story = {
   render: (args) => (
     <div className="flex max-w-[49.875rem] flex-col items-start gap-4">
       <div className="w-full">
+        {/* eslint-disable-next-line i18next/no-literal-string */}
         <p className="mb-1 text-[.7rem]">default</p>
         <SliderComponent {...args} />
       </div>
       <div className="w-full">
+        {/* eslint-disable-next-line i18next/no-literal-string */}
         <p className="mb-1 text-[.7rem]">with inverted colors</p>
         <SliderComponent {...args} backgroundColor="#1F5F0F" />
       </div>

@@ -28,7 +28,7 @@ const HeroHomepageSection = ({ section }: Props) => {
     <SectionContainer background="primary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-4 lg:gap-12">
         <div className="flex flex-col gap-4 lg:grid lg:h-[450px] lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8 lg:gap-y-6">
-          {slides?.length ? <Slider slides={filteredSlides} /> : null}
+          {filteredSlides?.length ? <Slider slides={filteredSlides} /> : null}
 
           {mainTiles?.filter(isDefined).map((tile, index) => {
             const { children: label, href } = getLinkProps(tile.link)

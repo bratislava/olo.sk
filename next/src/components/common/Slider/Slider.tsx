@@ -59,9 +59,9 @@ const Slider = ({ slides, backgroundColor = '#F1B434' }: SliderProps) => {
     },
   }
 
-  const invertedTypographyClassNames = cn({
+  const invertedTypographyClassNames = {
     'text-content-primaryInverted': !readableColorIsBlack(backgroundColor), // Change the text color to white if contrast with the background is insufficient
-  })
+  }
 
   return (
     <div
@@ -92,18 +92,9 @@ const Slider = ({ slides, backgroundColor = '#F1B434' }: SliderProps) => {
           ) : null}
           <div className="h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
             <div className="flex flex-col gap-4 lg:gap-6">
-              <div className="flex flex-col gap-2 lg:gap-3">
-                <Typography variant="h3" className_onlyWhenNecessary={invertedTypographyClassNames}>
-                  {title}
-                </Typography>
-                {text ? (
-                  <Typography
-                    variant="p-default"
-                    className_onlyWhenNecessary={invertedTypographyClassNames}
-                  >
-                    {text}
-                  </Typography>
-                ) : null}
+              <div className={cn('flex flex-col gap-2 lg:gap-3', invertedTypographyClassNames)}>
+                <Typography variant="h3">{title}</Typography>
+                {text ? <Typography variant="p-default">{text}</Typography> : null}
               </div>
               {link ? (
                 <Button

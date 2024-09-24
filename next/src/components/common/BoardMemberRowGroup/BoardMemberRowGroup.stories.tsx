@@ -26,12 +26,16 @@ export const BoardMemberRowGroup: Story = {
       {
         name: 'Name',
         position: 'Position',
-        links: [{ label: 'Link 1', url: '#' }],
+        links: [
+          { label: 'Link 1', url: '#' },
+          { label: 'Link 2', url: '#' },
+        ],
         imgSrc: OloTruckImage.src,
       },
       {
         name: 'Name',
         position: 'Position',
+        links: null,
       },
       {
         name: 'Name',
@@ -39,6 +43,7 @@ export const BoardMemberRowGroup: Story = {
         links: [
           { label: 'Link 1', url: '#' },
           { label: 'Link 2', url: '#' },
+          { label: 'Link 3', url: '#' },
         ],
         imgSrc: ZevoIronHandImage.src,
       },

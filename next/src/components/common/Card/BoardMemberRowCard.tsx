@@ -45,11 +45,7 @@ const BoardMemberRowCard = ({
 
   return (
     <div
-      className={cn(
-        'flex flex-col py-4',
-        { 'gap-6': imgSrc || filteredLinks.length === 1 },
-        className,
-      )}
+      className={cn('flex flex-col py-4', { 'gap-4': imgSrc || filteredLinks?.length }, className)}
     >
       <div className="flex gap-4">
         {imgSrc ? (
@@ -59,8 +55,7 @@ const BoardMemberRowCard = ({
 
         <div
           className={cn('flex flex-col justify-between', {
-            'h-12 lg:h-[7.5rem]': filteredLinks.length > 1, // Set the container to match the image height when links are present
-            'gap-6': filteredLinks.length === 1,
+            'gap-6': filteredLinks?.length, // The design doesn't specify a gap for desktop, so gap-6 was chosen as suitable
           })}
         >
           <div className="flex flex-col items-start gap-1 self-stretch">

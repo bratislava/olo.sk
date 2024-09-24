@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
-import DesktopHeadingsList from '@/src/components/common/HeadingList/DesktopHeadingsList'
-import MobileHeadingsList from '@/src/components/common/HeadingList/MobileHeadingsList'
+import DesktopTableOfContents from '@/src/components/common/TableOfContents/DesktopTableOfContents'
+import MobileTableOfContents from '@/src/components/common/TableOfContents/MobileTableOfContents'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
 import { ServiceEntityFragment } from '@/src/services/graphql/api'
@@ -24,8 +24,8 @@ const ServicePageContent = ({ service }: Props) => {
   return (
     <>
       {/* Screen Mobile */}
-      <div className="md:hidden">
-        <MobileHeadingsList rootId={ROOT_ID} />
+      <div className="lg:hidden">
+        <MobileTableOfContents rootId={ROOT_ID} />
       </div>
       <SectionContainer className="py-6 md:px-0 lg:py-12">
         <div className="flex flex-col items-start gap-4 md:flex-row lg:gap-8">
@@ -53,8 +53,8 @@ const ServicePageContent = ({ service }: Props) => {
           ) : null}
           <div className="order-1 shrink grow max-md:w-full md:max-w-80 lg:order-2">
             {/* Screen Desktop */}
-            <div className="hidden md:block">
-              <DesktopHeadingsList rootId={ROOT_ID} />
+            <div className="hidden lg:block">
+              <DesktopTableOfContents rootId={ROOT_ID} />
             </div>
           </div>
         </div>

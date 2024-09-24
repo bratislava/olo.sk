@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Selection, TagGroup, TagList } from 'react-aria-components'
 import { useDebounceValue } from 'usehooks-ts'
 
@@ -133,14 +133,14 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
     Object.fromEntries(searchOptions.map((option): [string, number] => [option.id, 0])),
   )
 
-  const setResultsCountById = (optionId: SearchOption['id'], count: number) => {
+  const setResultsCountById = useCallback((optionId: SearchOption['id'], count: number) => {
     setResultsCount((prevResultsCount) => {
       return {
         ...prevResultsCount,
         [optionId]: count,
       }
     })
-  }
+  }, [])
 
   const allResultsCount = Object.values(resultsCount).reduce((a, b) => a + b, 0)
 

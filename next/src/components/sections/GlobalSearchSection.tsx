@@ -130,7 +130,9 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
   // RESULTS COUNT
 
   const [resultsCount, setResultsCount] = useState(
-    Object.fromEntries(searchOptions.map((option): [string, number] => [option.id, 0])),
+    Object.fromEntries(
+      searchOptions ? searchOptions.map((option): [string, number] => [option.id, 0]) : [],
+    ),
   )
 
   const setResultsCountById = useCallback((optionId: SearchOption['id'], count: number) => {
@@ -174,34 +176,32 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
               }
               // isLoading={isFetching}
             />
-            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6">
-              <TagGroup
-                aria-label={t('globalSearch.searchOptions')}
-                selectionMode="single"
-                defaultSelectedKeys={defaultSelection}
-                selectedKeys={selection}
-                onSelectionChange={handleSelection}
-              >
-                <TagList className="max-md:negative-x-spacing -m-1.5 flex gap-x-3 overflow-auto p-1.5 scrollbar-hide max-md:flex-nowrap lg:gap-x-4">
-                  {[defaultSearchOption, ...searchOptions].map((option) => {
-                    return (
-                      <Chip
-                        variant="single-choice"
-                        size="large"
-                        key={option.id}
-                        id={option.id}
-                        // data-cy={`${option.title}-tab`}
-                      >
-                        {option.displayNamePlural}
-                      </Chip>
-                    )
-                  })}
-                </TagList>
-              </TagGroup>
-              {/* TODO total results count message */}
-              <div className="lg:w-full">
-                <Typography>{resultsCountMessage}</Typography>
-              </div>
+            <TagGroup
+              aria-label={t('globalSearch.searchOptions')}
+              selectionMode="single"
+              defaultSelectedKeys={defaultSelection}
+              selectedKeys={selection}
+              onSelectionChange={handleSelection}
+              className="flex flex-wrap items-center justify-between gap-x-3 gap-y-6 overflow-x-auto scrollbar-hide"
+            >
+              <TagList className="max-md:negative-x-spacing flex gap-x-3 max-md:flex-nowrap lg:gap-x-4">
+                {[defaultSearchOption, ...searchOptions].map((option) => {
+                  return (
+                    <Chip
+                      variant="single-choice"
+                      size="large"
+                      key={option.id}
+                      id={option.id}
+                      // data-cy={`${option.title}-tab`}
+                    >
+                      {option.displayNamePlural}
+                    </Chip>
+                  )
+                })}
+              </TagList>
+            </TagGroup>
+            <div className="lg:w-full">
+              <Typography>{resultsCountMessage}</Typography>
             </div>
           </div>
           {/* TODO ERROR DISPLAY ------------------------------------------------------------ */}

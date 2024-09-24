@@ -29,7 +29,7 @@ const MobileHeadingsList = ({ rootId }: Props) => {
               return heading.level === 2 ? (
                 <div
                   key={heading.id}
-                  className="py-3"
+                  className="cursor-pointer py-3 hover:font-black"
                   onClick={() =>
                     handleOnClick({ id: `#${heading.id}`, headerOffset: HEADER_OFFSET })
                   }
@@ -40,7 +40,10 @@ const MobileHeadingsList = ({ rootId }: Props) => {
                   </Typography>
                 </div>
               ) : (
-                <div className="flex flex-col px-4 first:pt-4 last:pb-4" key={heading.id}>
+                <div
+                  className="flex cursor-pointer flex-col px-4 first:pt-4 last:pb-4 hover:font-black"
+                  key={heading.id}
+                >
                   <div
                     className={`${heading.level === 3 ? 'pl-4' : 'pl-8'} flex flex-col border-l border-border-default pb-2`}
                     onClick={() =>

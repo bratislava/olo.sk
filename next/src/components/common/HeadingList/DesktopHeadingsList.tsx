@@ -30,19 +30,17 @@ const DesktopHeadingsList = ({ rootId }: Props) => {
           headings.map((heading) => {
             return heading.level === 2 ? (
               <div
-                className="py-4"
+                className="cursor-pointer py-4 hover:font-black"
                 key={heading.id}
                 onClick={() => handleOnClick({ id: `#${heading.id}`, headerOffset: HEADER_OFFSET })}
                 aria-hidden="true"
               >
-                <Typography key={heading.text} variant="p-default">
-                  {heading.text}
-                </Typography>
+                <Typography variant="p-default">{heading.text}</Typography>
               </div>
             ) : (
               <div key={heading.id} className="flex flex-col px-4 first:pt-4 last:pb-4">
                 <div
-                  className={`${heading.level === 3 ? 'pl-4' : 'pl-8'} flex flex-col border-l border-border-default pb-3`}
+                  className={`${heading.level === 3 ? 'pl-4' : 'pl-8'} flex cursor-pointer flex-col border-l border-border-default pb-3 hover:font-black`}
                   onClick={() =>
                     handleOnClick({ id: `#${heading.id}`, headerOffset: HEADER_OFFSET })
                   }

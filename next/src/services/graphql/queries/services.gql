@@ -90,6 +90,14 @@ query ServicesStaticPaths {
   }
 }
 
+query ServiceById($id: ID!, $locale: I18NLocaleCode!) {
+  service(id: $id, locale: $locale) {
+    data {
+      ...ServiceSlugEntity
+    }
+  }
+}
+
 query ServiceBySlug($slug: String!, $locale: I18NLocaleCode!) {
   services(filters: { slug: { eq: $slug } }, locale: $locale) {
     data {

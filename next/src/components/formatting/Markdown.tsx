@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 import Image from 'next/image'
-import { PropsWithChildren, useRef } from 'react'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import supersub from 'remark-supersub'
@@ -8,6 +8,7 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 
 import Link from '@/src/components/common/Link/Link'
 import Typography from '@/src/components/common/Typography/Typography'
+import { useTransformOloMarkdownLinks } from '@/src/components/formatting/useTransformOloMarkdownLinks'
 import cn from '@/src/utils/cn'
 import { useHorizontalScrollFade } from '@/src/utils/useHorizontalScrollFade'
 
@@ -58,8 +59,21 @@ PropsWithChildren<Record<any, any>>) => {
  */
 
 // TODO Apply correct styling when figma design is ready
-
 const Markdown = ({ content, className }: MarkdownProps) => {
+  const { transformOloMarkdownLinks } = useTransformOloMarkdownLinks()
+
+  const [contentState, setContentState] = useState<string>(content ?? '')
+
+  // TODO should be run before rendering
+  useEffect(() => {
+    const transformAsync = async () => {
+      const transformedContent = await transformOloMarkdownLinks(content)
+      setContentState(transformedContent ?? '')
+    }
+
+    transformAsync()
+  }, [content, transformOloMarkdownLinks])
+
   return (
     <ReactMarkdown
       remarkPlugins={[
@@ -215,7 +229,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
         hr: () => <hr className="my-8 border-t border-border-default" />,
       }}
     >
-      {content ?? ''}
+      {contentState}
     </ReactMarkdown>
   )
 }

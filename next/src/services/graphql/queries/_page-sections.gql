@@ -283,7 +283,7 @@ fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
   text
   bannerTitle
   bannerLink {
-    ...Link
+    ...FormCtaBannerLink
   }
 }
 

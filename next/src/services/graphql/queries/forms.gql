@@ -1,0 +1,36 @@
+fragment FormSlugEntity on FormEntity {
+  id
+  attributes {
+    title
+    slug
+  }
+}
+
+fragment FormEntity on FormEntity {
+  ...FormSlugEntity
+  attributes {
+    subtext
+    formSlug
+    parentService {
+      data {
+        ...ServiceSlugEntity
+      }
+    }
+  }
+}
+
+query FormsStaticPaths {
+  forms(pagination: { limit: -1 }) {
+    data {
+      ...FormSlugEntity
+    }
+  }
+}
+
+query FormBySlug($slug: String!) {
+  forms(filters: { slug: { eq: $slug } }) {
+    data {
+      ...FormEntity
+    }
+  }
+}

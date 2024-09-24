@@ -11,6 +11,8 @@ import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 
+// TODO remove this page
+
 type PageProps = {
   general: GeneralQuery
   navigation: NavigationObject
@@ -38,7 +40,7 @@ const Page = ({ general, navigation }: PageProps) => {
       <PageLayout>
         <IframeResizer
           license="GPLv3"
-          src="https://city-account-next.staging.bratislava.sk/mestske-sluzby/dev/olo-mimoriadny-odvoz-a-likvidacia-odpadu?externa-sluzba=true"
+          src="https://city-account-next.staging.bratislava.sk/mestske-sluzby/dev/olo-mimoriadny-odvoz-a-zhodnotenie-odpadu?externa-sluzba=true"
           style={{ width: '100%', height: '100vh' }}
         />
       </PageLayout>

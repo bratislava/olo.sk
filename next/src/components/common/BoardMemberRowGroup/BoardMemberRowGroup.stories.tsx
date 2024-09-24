@@ -6,7 +6,7 @@ import BoardMemberRowGroupComponent from './BoardMemberRowGroup'
 
 const meta: Meta<typeof BoardMemberRowGroupComponent> = {
   component: BoardMemberRowGroupComponent,
-  title: 'Components/BoardMemberRowGroup',
+  title: 'Components/Board Member Row Group',
   tags: ['autodocs'],
   decorators: [
     (Story) => (

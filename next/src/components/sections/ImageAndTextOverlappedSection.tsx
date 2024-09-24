@@ -30,7 +30,7 @@ const ImageAndTextOverlappedSection = ({ section }: Props) => {
         text={text}
         imagePosition={imagePosition}
         backgroundColor={backgroundColor}
-        image={image}
+        image={image?.data}
         readMoreLink={readMoreLink}
       />
     </SectionContainer>

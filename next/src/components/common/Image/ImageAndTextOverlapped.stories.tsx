@@ -23,10 +23,8 @@ const meta: Meta<Props> = {
     imagePosition: Enum_Imageposition.Left,
     backgroundColor: Enum_Backgroundcolor.Secondary,
     image: {
-      data: {
-        attributes: {
-          url: OloTruckImage.src,
-        },
+      attributes: {
+        url: OloTruckImage.src,
       },
     },
   },

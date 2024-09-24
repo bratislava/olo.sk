@@ -7,6 +7,8 @@ import {
   Enum_Componentsectionsimageandtextoverlapped_Backgroundcolor as Enum_Backgroundcolor,
   Enum_Componentsectionsimageandtextoverlapped_Imageposition as Enum_Imageposition,
   LinkFragment,
+  UploadImageEntityFragment,
+  UploadImageSrcEntityFragment,
 } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
@@ -19,7 +21,7 @@ export type ImageAndTextOverlappedProps = {
   text?: string | null
   imagePosition: Enum_Imageposition
   backgroundColor: Enum_Backgroundcolor
-  image?: any // TODO: Resolve the type for the image
+  image?: UploadImageSrcEntityFragment | UploadImageEntityFragment | null
   readMoreLink?: LinkFragment | null
 }
 
@@ -86,10 +88,11 @@ const ImageAndTextOverlapped = ({
     </div>
   )
 
-  const ImageContent = image?.data?.attributes?.url ? (
+  const ImageContent = image?.attributes?.url ? (
     <Image
-      src={image.data.attributes.url}
-      alt={image.data.attributes.alternativeText ?? ''}
+      src={image.attributes.url}
+      // @ts-ignore
+      alt={image.attributes?.alternativeText ?? ''}
       fill
       sizes={generateImageSizes({ md: '50vw', default: '100vw' })}
       className="object-cover"

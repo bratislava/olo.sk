@@ -36,7 +36,7 @@ const CareersPageHeader = ({ section }: CareersPageHeaderProps) => {
             title={title}
             imagePosition={Enum_Imageposition.Left}
             backgroundColor={Enum_Backgroundcolor.Secondary} // White background
-            image={image}
+            image={image?.data}
           />
 
           <Video url={videoUrl} ariaLabel={t('pageHeaderCareers.aria.videoTitle')} />

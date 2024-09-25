@@ -223,6 +223,65 @@ type BranchRelationResponseCollection {
   data: [BranchEntity!]!
 }
 
+type CollectionDay {
+  address: String
+  collectionDates: String
+  collectionType: String
+  createdAt: DateTime
+  evenWeek: String
+  note: String
+  oddWeek: String
+  registrationNumber: String
+  updatedAt: DateTime
+  validity: String
+}
+
+type CollectionDayEntity {
+  attributes: CollectionDay
+  id: ID
+}
+
+type CollectionDayEntityResponse {
+  data: CollectionDayEntity
+}
+
+type CollectionDayEntityResponseCollection {
+  data: [CollectionDayEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input CollectionDayFiltersInput {
+  address: StringFilterInput
+  and: [CollectionDayFiltersInput]
+  collectionDates: StringFilterInput
+  collectionType: StringFilterInput
+  createdAt: DateTimeFilterInput
+  evenWeek: StringFilterInput
+  id: IDFilterInput
+  not: CollectionDayFiltersInput
+  note: StringFilterInput
+  oddWeek: StringFilterInput
+  or: [CollectionDayFiltersInput]
+  registrationNumber: StringFilterInput
+  updatedAt: DateTimeFilterInput
+  validity: StringFilterInput
+}
+
+input CollectionDayInput {
+  address: String
+  collectionDates: String
+  collectionType: String
+  evenWeek: String
+  note: String
+  oddWeek: String
+  registrationNumber: String
+  validity: String
+}
+
+type CollectionDayRelationResponseCollection {
+  data: [CollectionDayEntity!]!
+}
+
 type ComponentHeaderSectionsBranchMap {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   id: ID!
@@ -2385,7 +2444,7 @@ type FormRelationResponseCollection {
   data: [FormEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | CollectionDay | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2644,6 +2703,7 @@ type Mutation {
   createArticleLocalization(data: ArticleInput, id: ID, locale: I18NLocaleCode): ArticleEntityResponse
   createBranch(data: BranchInput!, locale: I18NLocaleCode): BranchEntityResponse
   createBranchLocalization(data: BranchInput, id: ID, locale: I18NLocaleCode): BranchEntityResponse
+  createCollectionDay(data: CollectionDayInput!): CollectionDayEntityResponse
   createContact(data: ContactInput!): ContactEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
   createDocumentCategory(data: DocumentCategoryInput!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
@@ -2678,6 +2738,7 @@ type Mutation {
   deleteArticle(id: ID!, locale: I18NLocaleCode): ArticleEntityResponse
   deleteArticleCategory(id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   deleteBranch(id: ID!, locale: I18NLocaleCode): BranchEntityResponse
+  deleteCollectionDay(id: ID!): CollectionDayEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
   deleteDocumentCategory(id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
@@ -2722,6 +2783,7 @@ type Mutation {
   updateArticle(data: ArticleInput!, id: ID!, locale: I18NLocaleCode): ArticleEntityResponse
   updateArticleCategory(data: ArticleCategoryInput!, id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   updateBranch(data: BranchInput!, id: ID!, locale: I18NLocaleCode): BranchEntityResponse
+  updateCollectionDay(data: CollectionDayInput!, id: ID!): CollectionDayEntityResponse
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
   updateDocumentCategory(data: DocumentCategoryInput!, id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
@@ -2947,6 +3009,8 @@ type Query {
   articles(filters: ArticleFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleEntityResponseCollection
   branch(id: ID, locale: I18NLocaleCode): BranchEntityResponse
   branches(filters: BranchFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchEntityResponseCollection
+  collectionDay(id: ID): CollectionDayEntityResponse
+  collectionDays(filters: CollectionDayFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): CollectionDayEntityResponseCollection
   contact(id: ID): ContactEntityResponse
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
   document(id: ID): DocumentEntityResponse

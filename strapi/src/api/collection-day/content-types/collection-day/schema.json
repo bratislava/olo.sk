@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collection_days",
+  "info": {
+    "singularName": "collection-day",
+    "pluralName": "collection-days",
+    "displayName": "Odvozové dni"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "collectionType": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "registrationNumber": {
+      "type": "string"
+    },
+    "validity": {
+      "type": "string"
+    },
+    "evenWeek": {
+      "type": "string"
+    },
+    "oddWeek": {
+      "type": "string"
+    },
+    "collectionDates": {
+      "type": "text"
+    },
+    "note": {
+      "type": "text"
+    }
+  }
+}

@@ -891,6 +891,34 @@ export interface ApiBranchBranch extends Schema.CollectionType {
   }
 }
 
+export interface ApiCollectionDayCollectionDay extends Schema.CollectionType {
+  collectionName: 'collection_days'
+  info: {
+    singularName: 'collection-day'
+    pluralName: 'collection-days'
+    displayName: 'Odvozov\u00E9 dni'
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    collectionType: Attribute.String
+    address: Attribute.String
+    registrationNumber: Attribute.String
+    validity: Attribute.String
+    evenWeek: Attribute.String
+    oddWeek: Attribute.String
+    collectionDates: Attribute.Text
+    note: Attribute.Text
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::collection-day.collection-day', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::collection-day.collection-day', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
 export interface ApiContactContact extends Schema.CollectionType {
   collectionName: 'contacts'
   info: {
@@ -1720,6 +1748,7 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle
       'api::article-category.article-category': ApiArticleCategoryArticleCategory
       'api::branch.branch': ApiBranchBranch
+      'api::collection-day.collection-day': ApiCollectionDayCollectionDay
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
       'api::document-category.document-category': ApiDocumentCategoryDocumentCategory

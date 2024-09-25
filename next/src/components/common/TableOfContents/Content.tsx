@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import Typography from '@/src/components/common/Typography/Typography'
+import Button from '@/src/components/common/Button/Button'
+import cn from '@/src/utils/cn'
 
 type HeadingProps = {
   level: number
@@ -19,9 +20,9 @@ type Props = {
  */
 
 const Content = ({ headings, headerOffset }: Props) => {
-  const [activeId, setActiveId] = useState<string>()
+  const [activeHeadingId, setActiveHeadingId] = useState<string>()
 
-  const handleOnClick = (id: string) => {
+  const handleContentItemPress = (id: string) => {
     const href = `#${id}`
     const element = document.querySelector(href)
     if (!element) return
@@ -30,7 +31,7 @@ const Content = ({ headings, headerOffset }: Props) => {
     const windowOffset = window.scrollY
     const offsetPosition = elementPosition + windowOffset - headerOffset
 
-    setActiveId(id)
+    setActiveHeadingId(id)
     window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
   }
 
@@ -39,24 +40,31 @@ const Content = ({ headings, headerOffset }: Props) => {
       {headings &&
         headings.map((heading) => {
           return heading.level === 2 ? (
-            <div
-              className={`cursor-pointer py-3 hover:font-black ${heading.id === activeId ? 'font-black' : ''} lg:py-4`}
+            <Button
               key={heading.id}
-              onClick={() => handleOnClick(heading.id)}
-              aria-hidden="true"
+              variant="unstyled"
+              onPress={() => handleContentItemPress(heading.id)}
+              className={cn('py-3 text-left hover:font-black lg:py-4', {
+                'font-black': heading.id === activeHeadingId,
+              })}
             >
-              <Typography variant="p-default">{heading.text}</Typography>
-            </div>
+              {heading.text}
+            </Button>
           ) : (
             <div key={heading.id} className="flex flex-col px-4 first:pt-4 last:pb-4">
-              <div
-                className={`${heading.level === 3 ? 'pl-4' : 'pl-8'} flex cursor-pointer ${heading.id === activeId ? 'font-black' : ''} flex-col border-l border-border-default pb-2 hover:font-black lg:pb-3`}
-                onClick={() => handleOnClick(heading.id)}
-                aria-hidden="true"
+              <Button
                 key={heading.id}
+                variant="unstyled"
+                onPress={() => handleContentItemPress(heading.id)}
+                className={cn(
+                  'border-l border-border-default py-2 pl-4 text-left hover:font-black',
+                  {
+                    'font-black': heading.id === activeHeadingId,
+                  },
+                )}
               >
-                <Typography variant="p-default">{heading.text}</Typography>
-              </div>
+                {heading.text}
+              </Button>
             </div>
           )
         })}

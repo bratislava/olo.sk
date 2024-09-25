@@ -15,14 +15,14 @@ type Props = {
  *
  */
 
-const DesktopHeadingsList = ({ rootId }: Props) => {
+const DesktopTableOfContents = ({ rootId }: Props) => {
   const { t } = useTranslation()
 
   const headings = useHeadings(rootId)
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary">
-      <div className="flex flex-col overflow-hidden border-b border-border-default p-6">
+    <div className="flex flex-col divide-y divide-border-default overflow-hidden rounded-lg border border-border-default">
+      <div className="p-6">
         <Typography variant="h5">{t('serviceSection.headingsList')}</Typography>
       </div>
       <Content headings={headings} headerOffset={HEADER_OFFSET} />
@@ -30,4 +30,4 @@ const DesktopHeadingsList = ({ rootId }: Props) => {
   )
 }
 
-export default DesktopHeadingsList
+export default DesktopTableOfContents

@@ -83,10 +83,10 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
     )
 
     // TODO normalizeSkText should be applied on all text - also when used in BlockRenderer
-    const childrenNormalized = typeof children === 'string' ? normalizeSkText(children) : children
+    const childrenNormalised = typeof children === 'string' ? normalizeSkText(children) : children
 
-    const isHeading: boolean =
-      headingLevels.has(variantElement) || !!(as && headingLevels.has(as.toString()))
+    const isHeading =
+      headingLevels.has(variantElement) || !!(as && headingLevels.has(as.toString())) // needed to be able to add id's for headings to create TableOfContents component
 
     const commonElementOptions = {
       ...rest,
@@ -105,7 +105,7 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
           ...commonElementOptions,
         }
 
-    return createElement(as || variantElement, elementOptions, childrenNormalized)
+    return createElement(as || variantElement, elementOptions, childrenNormalised)
   },
 )
 

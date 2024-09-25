@@ -8,7 +8,7 @@ import { ServiceEntityFragment } from '@/src/services/graphql/api'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { isDefined } from '@/src/utils/isDefined'
 
-const ROOT_ID = 'section-container'
+const SERVICE_PAGE_ROOT = 'service-page-content'
 
 type Props = {
   service: ServiceEntityFragment
@@ -25,13 +25,13 @@ const ServicePageContent = ({ service }: Props) => {
     <>
       {/* Screen Mobile */}
       <div className="lg:hidden">
-        <MobileTableOfContents rootId={ROOT_ID} />
+        <MobileTableOfContents rootId={SERVICE_PAGE_ROOT} />
       </div>
       <SectionContainer className="py-6 md:px-0 lg:py-12">
         <div className="flex flex-col items-start gap-4 md:flex-row lg:gap-8">
-          {hasContent ? (
+          {hasContent && (
             <div
-              id={ROOT_ID}
+              id={SERVICE_PAGE_ROOT}
               className="order-2 flex w-full shrink flex-col md:order-1 md:w-[50rem]"
             >
               {/* TODO fix y-paddings so we don't change it from here */}
@@ -50,11 +50,11 @@ const ServicePageContent = ({ service }: Props) => {
                 <Sections sections={sections?.filter(isDefined) ?? []} />
               </div>
             </div>
-          ) : null}
+          )}
           <div className="order-1 shrink grow max-md:w-full md:max-w-80 lg:order-2">
             {/* Screen Desktop */}
             <div className="hidden lg:block">
-              <DesktopTableOfContents rootId={ROOT_ID} />
+              <DesktopTableOfContents rootId={SERVICE_PAGE_ROOT} />
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ type Props = {
  *
  */
 
-const MobileHeadingsList = ({ rootId }: Props) => {
+const MobileTableOfContents = ({ rootId }: Props) => {
   const { t } = useTranslation()
   const headings = useHeadings(rootId)
 
@@ -28,4 +28,4 @@ const MobileHeadingsList = ({ rootId }: Props) => {
   )
 }
 
-export default MobileHeadingsList
+export default MobileTableOfContents

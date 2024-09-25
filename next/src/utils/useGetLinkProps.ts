@@ -49,6 +49,9 @@ export const useGetLinkProps = () => {
     } else if ('branch' in link && link.branch?.data?.attributes) {
       label = link.label ?? link.branch.data.attributes.title
       href = getFullPath(link.branch.data) ?? '#'
+    } else if ('service' in link && link.service?.data?.attributes) {
+      label = link.label ?? link.service.data.attributes.title
+      href = getFullPath(link.service.data) ?? '#'
     } else if ('workshop' in link && link.workshop?.data?.attributes) {
       label = link.label ?? link.workshop.data.attributes.title
       href = getFullPath(link.workshop.data) ?? '#'

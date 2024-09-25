@@ -26,7 +26,7 @@ const BranchCard = ({
   address,
   linkHref,
   imgSrc,
-  variant,
+  variant = 'background-white',
   hasWhiteBackground = true,
   className,
   innerClassName,

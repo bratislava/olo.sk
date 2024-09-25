@@ -51,6 +51,8 @@
   "imageLightBox.aria.imageLightBoxDescription": "Galéria obrázkov. Stlačte šípku vľavo pre zobrazenie predchádzajúceho obrázku. Stlačte šípku vpravo pre zobrazenie nasledujúceho obrázku. Zatvorte stlačením klávesu Escape.",
   "imageLightBox.aria.nextImage": "Ďalší obrázok",
   "imageLightBox.aria.previousImage": "Predchádzajúci obrázok",
+  "mobileNavBar.aria.closeMenu": "Zavrieť menu",
+  "mobileNavBar.aria.openMenu": "Otvoriť menu",
   "navBar.aria.logoButton": "Domov",
   "navBar.aria.navBarAriaLabel": "Navigačné menu",
   "navBar.aria.searchButton": "Hľadať",

@@ -124,7 +124,7 @@ const meilisearchConfig = {
     indexName: 'search_index',
     entriesQuery: {
       locale: 'all',
-      populate: ['serviceCategory'],
+      populate: ['serviceCategories', 'image'],
     },
     settings: searchIndexSettings,
     transformEntry: ({ entry }) =>

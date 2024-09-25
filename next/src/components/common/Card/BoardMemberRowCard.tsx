@@ -10,7 +10,7 @@ export type BoardMemberRowCardProps = {
   name: string
   position: string
   imgSrc?: string | null
-  links?: LinkFragment[] | null
+  links?: LinkFragment[] | null | undefined
   className?: string
 }
 

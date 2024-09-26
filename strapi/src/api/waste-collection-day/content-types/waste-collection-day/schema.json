@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "waste_collection_days",
+  "info": {
+    "singularName": "waste-collection-day",
+    "pluralName": "waste-collection-days",
+    "displayName": "Odvozové dni",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "registrationNumber": {
+      "type": "string"
+    },
+    "validity": {
+      "type": "string"
+    },
+    "evenWeek": {
+      "type": "string"
+    },
+    "oddWeek": {
+      "type": "string"
+    },
+    "collectionDates": {
+      "type": "text"
+    },
+    "note": {
+      "type": "text"
+    },
+    "importId": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

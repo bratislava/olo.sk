@@ -8,6 +8,7 @@ import i18N from "@strapi/plugin-i18n/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import meilisearch from "strapi-plugin-meilisearch/strapi-admin";
 import wysiwyg from "../../src/plugins/wysiwyg/strapi-admin";
+import wasteCollectionDays from "../../src/plugins/waste-collection-days/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
 import customisations from "../../src/admin/app.tsx";
@@ -22,5 +23,6 @@ renderAdmin(document.getElementById("strapi"), {
     "users-permissions": usersPermissions,
     meilisearch: meilisearch,
     wysiwyg: wysiwyg,
+    "waste-collection-days": wasteCollectionDays,
   },
 });

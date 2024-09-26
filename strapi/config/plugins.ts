@@ -12,8 +12,8 @@ export default {
     enabled: true,
     resolve: './src/plugins/wysiwyg',
   },
-  'waste-collection-days': {
+  'waste-collection-days-import': {
     enabled: true,
-    resolve: './src/plugins/waste-collection-days',
+    resolve: './src/plugins/waste-collection-days-import',
   },
 }

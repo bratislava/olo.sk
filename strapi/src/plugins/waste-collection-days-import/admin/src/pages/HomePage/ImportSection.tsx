@@ -3,7 +3,7 @@ import { Alert, Box, Button, Link, Loader, Stack, Typography } from '@strapi/des
 import axiosInstance from '../../utils/axiosInstance'
 
 const updateUrls = {
-  'waste-collection-days': '/waste-collection-days/update-waste-collection-days',
+  'waste-collection-days': '/waste-collection-days-import/update-waste-collection-days',
 }
 
 const headerTexts = {

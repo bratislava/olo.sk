@@ -733,7 +733,7 @@ export type ComponentItemsOrderedCardsItemFiltersInput = {
 
 export type ComponentItemsSlide = {
   __typename?: 'ComponentItemsSlide'
-  backgroundColor?: Maybe<Scalars['String']['output']>
+  backgroundColor: Scalars['String']['output']
   id: Scalars['ID']['output']
   link?: Maybe<ComponentItemsLink>
   media: UploadFileEntityResponse
@@ -11918,7 +11918,7 @@ export type SlideItemFragment = {
   __typename?: 'ComponentItemsSlide'
   title: string
   text?: string | null
-  backgroundColor?: string | null
+  backgroundColor: string
   media: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -12309,7 +12309,7 @@ export type HeroHomepageSectionFragment = {
     __typename?: 'ComponentItemsSlide'
     title: string
     text?: string | null
-    backgroundColor?: string | null
+    backgroundColor: string
     media: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -13064,7 +13064,7 @@ export type HomepageEntityFragment = {
         __typename?: 'ComponentItemsSlide'
         title: string
         text?: string | null
-        backgroundColor?: string | null
+        backgroundColor: string
         media: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -13835,7 +13835,7 @@ export type HomepageQuery = {
             __typename?: 'ComponentItemsSlide'
             title: string
             text?: string | null
-            backgroundColor?: string | null
+            backgroundColor: string
             media: {
               __typename?: 'UploadFileEntityResponse'
               data?: {

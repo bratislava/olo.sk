@@ -697,7 +697,9 @@ export interface ItemsSlide extends Schema.Component {
   attributes: {
     title: Attribute.Text & Attribute.Required
     text: Attribute.Text
-    backgroundColor: Attribute.String & Attribute.CustomField<'plugin::color-picker.color'>
+    backgroundColor: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::color-picker.color'>
     media: Attribute.Media<'images'> & Attribute.Required
     link: Attribute.Component<'items.link'>
   }

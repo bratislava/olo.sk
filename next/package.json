@@ -31,6 +31,7 @@
     "@strapi/blocks-react-renderer": "^1.0.1",
     "@tanstack/react-query": "^5.40.1",
     "clsx": "2.1.1",
+    "color2k": "^2.0.3",
     "eslint-plugin-i18next": "6.0.9",
     "focus-trap-react": "^10.2.3",
     "framer-motion": "^11.1.7",

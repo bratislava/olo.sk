@@ -50,6 +50,12 @@ Strapi transpiled files are located in `./node_modules/@strapi/[package-name]/di
 We change the default state of Dynamic Zone accordions to closed (see original file [DynamicComponent.tsx](https://github.com/strapi/strapi/blob/11c0ef3bd0937cb32dd5da01e346090d8702dd0b/packages/core/admin/admin/src/content-manager/components/DynamicZone/DynamicComponent.tsx#L57)).
 Since the .js files do not have the same structure and names as the .tsx files, we found the proper file by searching for the string from the original file, e.g. `"const [isOpen, setIsOpen] = React.useState(true);"`
 and then run the command to create a patch file:
-```
+```bash
 yarn patch-package @strapi/admin
+```
+
+Meilisearch 
+
+```bash
+yarn patch-package strapi-plugin-meilisearch
 ```

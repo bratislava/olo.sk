@@ -103,7 +103,8 @@
         "sections.opening-times",
         "sections.board-members",
         "sections.vacancies",
-        "sections.global-search"
+        "sections.global-search",
+        "sections.waste-collection-days"
       ],
       "pluginOptions": {
         "i18n": {

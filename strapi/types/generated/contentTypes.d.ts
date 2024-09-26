@@ -1478,6 +1478,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.board-members',
         'sections.vacancies',
         'sections.global-search',
+        'sections.waste-collection-days',
       ]
     > &
       Attribute.SetPluginOptions<{

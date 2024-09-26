@@ -7,6 +7,7 @@ import {
   ArticleCardEntityFragment,
   DocumentSearchEntityFragment,
   PageCardEntityFragment,
+  ServiceSearchEntityFragment,
 } from '@/src/services/graphql/api'
 import {
   ArticlesFilters,
@@ -14,6 +15,7 @@ import {
   meiliArticlesFetcher,
 } from '@/src/services/meili/fetchers/articlesFetcher'
 import {
+  DocumentsFilters,
   getMeiliDocumentsQueryKey,
   meiliDocumentsFetcher,
 } from '@/src/services/meili/fetchers/documentsFetcher'
@@ -22,11 +24,16 @@ import {
   meiliPagesFetcher,
   PagesFilters,
 } from '@/src/services/meili/fetchers/pagesFetcher'
+import {
+  getMeiliServicesQueryKey,
+  meiliServicesFetcher,
+  ServicesFilters,
+} from '@/src/services/meili/fetchers/servicesFetcher'
 import { formatDate } from '@/src/utils/formatDate'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
-export type SearchFilters = PagesFilters | ArticlesFilters
+export type SearchFilters = ArticlesFilters | PagesFilters | ServicesFilters | DocumentsFilters
 
 export type SearchResult = {
   title: string | null | undefined
@@ -93,6 +100,36 @@ export const useQueryBySearchOption = ({
     },
   })
 
+  const servicesQuery = useQuery({
+    queryFn: () => meiliServicesFetcher(filters),
+    queryKey: getMeiliServicesQueryKey(filters),
+    placeholderData: keepPreviousData,
+    select: (data) => {
+      const formattedData: SearchResult[] =
+        data?.hits.map((service: ServiceSearchEntityFragment): SearchResult => {
+          const serviceCategories =
+            service.attributes?.serviceCategories?.data
+              ?.map((category) => category.attributes?.title)
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+              .filter(isDefined) ?? []
+
+          return {
+            title: service.attributes?.title,
+            uniqueId: service.attributes?.slug,
+            linkHref: getFullPath(service),
+            coverImageSrc: service.attributes?.image?.data?.attributes?.url,
+            metadata: [
+              ...serviceCategories,
+              formatDate(service.attributes?.publishedAt),
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+            ].filter(isDefined),
+          }
+        }) ?? []
+
+      return { searchResultsData: formattedData, searchResultsCount: data?.estimatedTotalHits ?? 0 }
+    },
+  })
+
   const documentsQuery = useQuery({
     queryFn: () => meiliDocumentsFetcher(filters),
     queryKey: getMeiliDocumentsQueryKey(filters),
@@ -125,6 +162,9 @@ export const useQueryBySearchOption = ({
 
     case 'documents':
       return documentsQuery
+
+    case 'services':
+      return servicesQuery
 
     default:
       return null

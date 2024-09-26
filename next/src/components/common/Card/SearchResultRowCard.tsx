@@ -4,7 +4,8 @@ import { Fragment } from 'react'
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
-import Icon, { IconName } from '@/src/components/common/Icon/Icon'
+import Icon from '@/src/components/common/Icon/Icon'
+import Pictogram, { PictogramName } from '@/src/components/common/Icon/Pictogram'
 import Typography from '@/src/components/common/Typography/Typography'
 import { SearchOption } from '@/src/components/sections/GlobalSearchSection'
 import { isDefined } from '@/src/utils/isDefined'
@@ -34,24 +35,24 @@ const SearchResultRowCard = ({
 }: SearchResultRowCardProps) => {
   const { t } = useTranslation()
 
-  const iconNameBySearchOption: Record<SearchOption['id'], IconName | undefined> = {
+  const pictogramNameBySearchOption: Record<SearchOption['id'], PictogramName | undefined> = {
     allResults: undefined,
-    pages: 'lupa',
+    pages: 'transparentne-mesto',
     articles: undefined,
-    documents: 'dokument',
+    documents: 'dokumenty',
+    services: undefined,
   }
 
-  const iconName = iconNameBySearchOption[type]
+  const pictogramName = pictogramNameBySearchOption[type]
 
   const filteredMetadata = metadata?.filter(isDefined)
 
   return (
     <CardBase variant="unstyled" className={className}>
       <div className="flex items-center gap-4 p-4">
-        {/* 2.25rem = 36px, 3.5rem = 56px */}
         <div className="relative flex size-14 shrink-0 items-center justify-center">
-          {iconName ? (
-            <Icon name={iconName} className="size-9" />
+          {pictogramName ? (
+            <Pictogram name={pictogramName} />
           ) : (
             <CardImage imgSrc={imgSrc} className="aspect-square size-full rounded-lg" />
           )}
@@ -86,7 +87,6 @@ const SearchResultRowCard = ({
           aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
           stretched
           icon={<Icon name="chevron-doprava" />}
-          className=""
         />
       </div>
     </CardBase>

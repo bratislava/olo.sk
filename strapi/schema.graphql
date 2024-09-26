@@ -706,7 +706,7 @@ input ComponentItemsOrderedCardsItemInput {
 }
 
 type ComponentItemsSlide {
-  backgroundColor: String
+  backgroundColor: String!
   id: ID!
   link: ComponentItemsLink
   media: UploadFileEntityResponse!

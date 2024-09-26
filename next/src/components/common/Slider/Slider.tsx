@@ -13,7 +13,6 @@ import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type SliderProps = {
   slides: SlideItemFragment[]
-  backgroundColor?: string
 }
 
 /**
@@ -21,13 +20,13 @@ type SliderProps = {
  * Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/molecules/Slider.tsx
  */
 
-const Slider = ({ slides, backgroundColor = '#F1B434' }: SliderProps) => {
+const Slider = ({ slides }: SliderProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
   const [[slideIndex, transitionDirection], setSlideIndex] = useState([0, 0])
 
-  const { title, text, link, media } = slides[slideIndex]
+  const { title, text, link, media, backgroundColor } = slides[slideIndex]
   const { url, alternativeText } = media?.data?.attributes ?? {}
 
   const handleGoToNext = () => {

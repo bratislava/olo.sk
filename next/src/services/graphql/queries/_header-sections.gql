@@ -26,8 +26,11 @@ fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
   title
   text
   videoUrl
-  imageWithText {
-    ...ImageAndTextOverlappedItem
+  imageTitle
+  image {
+    data {
+      ...UploadImageEntity
+    }
   }
 }
 

@@ -20,20 +20,19 @@ type CareersPageHeaderProps = {
 
 const CareersPageHeader = ({ section }: CareersPageHeaderProps) => {
   const { t } = useTranslation()
-  const { title: sectionTitle, text, videoUrl, imageWithText } = section ?? {}
-  const { title, image } = imageWithText ?? {}
+  const { title, text, videoUrl, imageTitle, image } = section ?? {}
 
   return (
     <SectionContainer background="secondary" classNameInner="py-6 lg:pb-[4.5rem] lg:pt-12">
       <div className="flex flex-col gap-6 lg:gap-12">
         <div className="flex flex-col gap-4 pb-6 lg:gap-6 lg:py-0">
-          <Typography variant="h1">{sectionTitle ?? ''}</Typography>
+          <Typography variant="h1">{title ?? ''}</Typography>
           <Typography variant="p-default">{text ?? ''}</Typography>
         </div>
 
         <div className="flex flex-col gap-6 lg:gap-18">
           <ImageAndTextOverlapped
-            title={title}
+            title={imageTitle}
             imagePosition={Enum_Imageposition.Left}
             backgroundColor={Enum_Backgroundcolor.Secondary} // White background
             image={image?.data}

@@ -774,18 +774,6 @@ export interface ItemsLink extends Schema.Component {
   }
 }
 
-export interface ItemsImageAndTextOverlappedItem extends Schema.Component {
-  collectionName: 'components_items_image_and_text_overlapped_items'
-  info: {
-    displayName: 'Image and text overlapped item'
-    description: ''
-  }
-  attributes: {
-    image: Attribute.Media<'images'>
-    title: Attribute.String
-  }
-}
-
 export interface ItemsHomepageServiceTile extends Schema.Component {
   collectionName: 'components_items_homepage_service_tiles'
   info: {
@@ -1009,7 +997,8 @@ export interface HeaderSectionsCareers extends Schema.Component {
     title: Attribute.String
     text: Attribute.Text
     videoUrl: Attribute.String & Attribute.Required
-    imageWithText: Attribute.Component<'items.image-and-text-overlapped-item'>
+    image: Attribute.Media<'images'>
+    imageTitle: Attribute.Text
   }
 }
 
@@ -1075,7 +1064,6 @@ declare module '@strapi/types' {
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
       'items.link': ItemsLink
-      'items.image-and-text-overlapped-item': ItemsImageAndTextOverlappedItem
       'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.hero-small-tile': ItemsHeroSmallTile
       'items.hero-main-tile': ItemsHeroMainTile

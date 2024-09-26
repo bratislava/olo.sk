@@ -16,10 +16,15 @@
       "type": "string",
       "required": true
     },
-    "imageWithText": {
-      "type": "component",
-      "repeatable": false,
-      "component": "items.image-and-text-overlapped-item"
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "imageTitle": {
+      "type": "text"
     }
   }
 }

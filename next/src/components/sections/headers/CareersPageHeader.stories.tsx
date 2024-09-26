@@ -13,16 +13,20 @@ const meta: Meta<Props> = {
     title: 'Kariéra v OLO',
     text: 'Dobre fungujúce mesto sa nezaobíde bez odvozu a zhodnocovania odpadu. OLO sa zasa nezaobíde bez spoľahlivých ľudí. Za vašu prácu vám ponúkame zázemie stabilnej a perspektívnej spoločnosti, ktorá si svojich zamestnancov a zamestnankyne váži a vie ich patrične oceniť. Viete, čo je dôkazom, že sme v OLO spokojní? Viac ako polovica zamestnancov je s nami vyše desať rokov!',
     videoUrl: 'https://www.youtube.com/embed/8QBjTTCj2JA',
-    imageWithText: {
-      title:
-        'Zhodnocovaním odpadu robíme radosť deťom, z ktorých sme vyrástli, aj ďalším generáciám.',
-      image: {
-        data: {
-          attributes: {
-            url: OloTruckImage.src,
-          },
+    imageTitle:
+      'Zhodnocovaním odpadu robíme radosť deťom, z ktorých sme vyrástli, aj ďalším generáciám.',
+    image: {
+      data: {
+        attributes: {
+          name: 'OLO truck',
+          url: OloTruckImage.src,
         },
       },
+    },
+  },
+  parameters: {
+    controls: {
+      exclude: ['image'],
     },
   },
 }

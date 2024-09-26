@@ -77,12 +77,3 @@ fragment FileItem on ComponentItemsFileItem {
     }
   }
 }
-
-fragment ImageAndTextOverlappedItem on ComponentItemsImageAndTextOverlappedItem {
-  image {
-    data {
-      ...UploadImageSrcEntity
-    }
-  }
-  title
-}

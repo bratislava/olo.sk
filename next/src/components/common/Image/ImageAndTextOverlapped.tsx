@@ -8,7 +8,6 @@ import {
   Enum_Componentsectionsimageandtextoverlapped_Imageposition as Enum_Imageposition,
   LinkFragment,
   UploadImageEntityFragment,
-  UploadImageSrcEntityFragment,
 } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { generateImageSizes } from '@/src/utils/generateImageSizes'
@@ -17,12 +16,12 @@ import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 import Button from '../Button/Button'
 
 export type ImageAndTextOverlappedProps = {
-  title?: string | null
-  text?: string | null
+  title?: string | null | undefined
+  text?: string | null | undefined
   imagePosition: Enum_Imageposition
   backgroundColor: Enum_Backgroundcolor
-  image?: UploadImageSrcEntityFragment | UploadImageEntityFragment | null
-  readMoreLink?: LinkFragment | null
+  image?: UploadImageEntityFragment | null | undefined
+  readMoreLink?: LinkFragment | null | undefined
 }
 
 /**

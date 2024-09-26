@@ -13,7 +13,6 @@ import ImageAndTextOverlappedComponent from './ImageAndTextOverlapped'
 type Props = ImageAndTextOverlappedProps
 
 const meta: Meta<Props> = {
-  // eslint-disable-next-line no-secrets/no-secrets
   title: 'Components/Image',
   component: ImageAndTextOverlappedComponent,
   tags: ['autodocs'],
@@ -24,6 +23,7 @@ const meta: Meta<Props> = {
     backgroundColor: Enum_Backgroundcolor.Secondary,
     image: {
       attributes: {
+        name: 'OLO truck',
         url: OloTruckImage.src,
       },
     },

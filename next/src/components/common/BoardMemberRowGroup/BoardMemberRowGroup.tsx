@@ -25,11 +25,7 @@ const BoardMemberRowGroup = ({ BoardMemberRowCardData, className }: BoardMemberR
             return (
               // eslint-disable-next-line react/no-array-index-key
               <li key={index}>
-                <BoardMemberRowCard
-                  {...card}
-                  // elevate z-index to show focus ring on top of other cards
-                  className="focus-within:z-1 focus-within:ring-offset-0"
-                />
+                <BoardMemberRowCard {...card} />
               </li>
             )
           })

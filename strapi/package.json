@@ -32,7 +32,8 @@
     "react-router-dom": "5.3.4",
     "strapi-plugin-meilisearch": "0.9.2",
     "strapi-provider-upload-ts-minio": "^3.1.0",
-    "styled-components": "5.3.3"
+    "styled-components": "5.3.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

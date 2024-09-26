@@ -10,7 +10,7 @@ type HeadingProps = {
 }
 
 type Props = {
-  headings: HeadingProps[]
+  headings: HeadingProps[] | null
   headerOffset: number
 }
 

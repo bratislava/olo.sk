@@ -25027,6 +25027,22 @@ export type ServiceBySlugQuery = {
   } | null
 }
 
+export type WasteCollectionDayEntityFragment = {
+  __typename?: 'WasteCollectionDayEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'WasteCollectionDay'
+    type?: string | null
+    address?: string | null
+    registrationNumber?: string | null
+    validity?: string | null
+    evenWeek?: string | null
+    oddWeek?: string | null
+    collectionDates?: string | null
+    note?: string | null
+  } | null
+}
+
 export type WorkshopDateItemFragment = { __typename?: 'ComponentItemsWorkshopDate'; datetime: any }
 
 export type WorkshopSlugEntityFragment = {
@@ -28168,6 +28184,21 @@ export const ServiceEntityFragmentDoc = gql`
   ${ServiceCategoryEntityFragmentDoc}
   ${UploadImageEntityFragmentDoc}
   ${ServiceSectionsFragmentDoc}
+`
+export const WasteCollectionDayEntityFragmentDoc = gql`
+  fragment WasteCollectionDayEntity on WasteCollectionDayEntity {
+    id
+    attributes {
+      type
+      address
+      registrationNumber
+      validity
+      evenWeek
+      oddWeek
+      collectionDates
+      note
+    }
+  }
 `
 export const WorkshopEntityFragmentDoc = gql`
   fragment WorkshopEntity on WorkshopEntity {

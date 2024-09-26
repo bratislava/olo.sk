@@ -31,6 +31,8 @@ const searchIndexSettings = {
     'page.title',
     'service.title',
     'workshop.title',
+    'waste-collection-day.address',
+    'waste-collection-day.registrationNumber',
   ],
   filterableAttributes: [
     // All
@@ -45,6 +47,8 @@ const searchIndexSettings = {
     'faq.faqCategory',
     // Service
     'service.serviceCategory',
+    // WasteCollectionDay
+    'waste-collection-day.type',
   ],
   sortableAttributes: [
     // Article
@@ -57,6 +61,8 @@ const searchIndexSettings = {
     'service.publishedAtTimestamp',
     // Workshop
     'workshop.publishedAtTimestamp',
+    // WasteCollectionDay
+    'waste-collection-day.address',
   ],
   pagination: {
     // https://docs.meilisearch.com/learn/advanced/known_limitations.html#maximum-number-of-results-per-search
@@ -148,6 +154,10 @@ const meilisearchConfig = {
         // use (number) filters.
         publishedAtTimestamp: entry.publishedAt ? new Date(entry.publishedAt).getTime() : undefined,
       }),
+  },
+  'waste-collection-day': {
+    settings: searchIndexSettings,
+    transformEntry: ({ entry }) => wrapSearchIndexEntry('waste-collection-day', entry),
   },
 }
 

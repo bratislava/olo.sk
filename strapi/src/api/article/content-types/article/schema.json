@@ -55,7 +55,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -84,9 +86,12 @@
       "inversedBy": "articles"
     },
     "gallery": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -100,6 +105,16 @@
         }
       },
       "type": "richtext"
+    },
+    "isCurrentChangeInOpeningHours": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }

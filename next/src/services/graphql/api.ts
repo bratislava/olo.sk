@@ -38,6 +38,7 @@ export type Article = {
   coverMedia?: Maybe<UploadFileEntityResponse>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   gallery?: Maybe<UploadFileRelationResponseCollection>
+  isCurrentChangeInOpeningHours?: Maybe<Scalars['Boolean']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<ArticleRelationResponseCollection>
   perex?: Maybe<Scalars['String']['output']>
@@ -163,6 +164,7 @@ export type ArticleFiltersInput = {
   content?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
+  isCurrentChangeInOpeningHours?: InputMaybe<BooleanFilterInput>
   locale?: InputMaybe<StringFilterInput>
   localizations?: InputMaybe<ArticleFiltersInput>
   not?: InputMaybe<ArticleFiltersInput>
@@ -182,6 +184,7 @@ export type ArticleInput = {
   content?: InputMaybe<Scalars['String']['input']>
   coverMedia?: InputMaybe<Scalars['ID']['input']>
   gallery?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  isCurrentChangeInOpeningHours?: InputMaybe<Scalars['Boolean']['input']>
   perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
@@ -4321,7 +4324,12 @@ export type FaqCategoryEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -4393,7 +4401,12 @@ export type FaqCategoryEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -4513,7 +4526,12 @@ export type FaqCategoriesQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -4585,7 +4603,12 @@ export type FaqCategoriesQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -4708,7 +4731,12 @@ export type FaqCategoryBySlugQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -4780,7 +4808,12 @@ export type FaqCategoryBySlugQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -4912,7 +4945,12 @@ export type LinkFragment = {
     data?: {
       __typename: 'ArticleEntity'
       id?: string | null
-      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      attributes?: {
+        __typename?: 'Article'
+        slug: string
+        title: string
+        isCurrentChangeInOpeningHours?: boolean | null
+      } | null
     } | null
   } | null
   branch?: {
@@ -5241,7 +5279,12 @@ export type GeneralQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -5314,7 +5357,12 @@ export type GeneralQuery = {
             data?: {
               __typename: 'ArticleEntity'
               id?: string | null
-              attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              attributes?: {
+                __typename?: 'Article'
+                slug: string
+                title: string
+                isCurrentChangeInOpeningHours?: boolean | null
+              } | null
             } | null
           } | null
           branch?: {
@@ -5503,7 +5551,12 @@ export type GeneralQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -5579,7 +5632,12 @@ export type GeneralQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -5651,7 +5709,12 @@ export type GeneralQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -5786,6 +5849,7 @@ export type FeaturedNewsHeaderSectionFragment = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -5832,6 +5896,7 @@ export type FeaturedNewsHeaderSectionFragment = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -5899,7 +5964,12 @@ export type PickupDayHeaderSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -6089,6 +6159,7 @@ type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -6135,6 +6206,7 @@ type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         coverMedia?: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -6237,7 +6309,12 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -6380,7 +6457,12 @@ export type ImageAndTextSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -6449,7 +6531,12 @@ export type ImageAndTextSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -6570,7 +6657,12 @@ export type ImageAndTextOverlappedSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -6783,7 +6875,12 @@ export type FaqSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -6899,7 +6996,12 @@ export type FaqSectionFragment = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -6971,7 +7073,12 @@ export type FaqSectionFragment = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -7151,7 +7258,12 @@ export type BannerSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -7220,7 +7332,12 @@ export type BannerSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -7305,7 +7422,12 @@ export type CardsListSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -7409,7 +7531,12 @@ export type WasteSortingCardsSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -7503,7 +7630,12 @@ export type WasteSortingCardsSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -7575,7 +7707,12 @@ export type WasteSortingCardsSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -7732,7 +7869,12 @@ export type SortingGuideSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -7804,7 +7946,12 @@ export type SortingGuideSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -7937,7 +8084,12 @@ export type SortingGuideAccordionsSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -8009,7 +8161,12 @@ export type SortingGuideAccordionsSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -8267,7 +8424,12 @@ export type BoardMembersSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -8381,7 +8543,12 @@ type PageSections_ComponentSectionsBanner_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -8450,7 +8617,12 @@ type PageSections_ComponentSectionsBanner_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -8545,7 +8717,12 @@ type PageSections_ComponentSectionsBoardMembers_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -8720,7 +8897,12 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -8954,7 +9136,12 @@ type PageSections_ComponentSectionsFaq_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -9070,7 +9257,12 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -9142,7 +9334,12 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -9265,7 +9462,12 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -9334,7 +9536,12 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -9427,7 +9634,12 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -9658,7 +9870,12 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -9730,7 +9947,12 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -9863,7 +10085,12 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -9935,7 +10162,12 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -10032,7 +10264,12 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -10126,7 +10363,12 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -10198,7 +10440,12 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -10310,7 +10557,12 @@ export type PageSectionsFragment =
 export type ArticleSlugEntityFragment = {
   __typename: 'ArticleEntity'
   id?: string | null
-  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+  attributes?: {
+    __typename?: 'Article'
+    slug: string
+    title: string
+    isCurrentChangeInOpeningHours?: boolean | null
+  } | null
 }
 
 export type ArticleCardEntityFragment = {
@@ -10322,6 +10574,7 @@ export type ArticleCardEntityFragment = {
     addedAt: any
     slug: string
     title: string
+    isCurrentChangeInOpeningHours?: boolean | null
     coverMedia?: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -10368,6 +10621,7 @@ export type ArticleEntityFragment = {
     addedAt: any
     slug: string
     title: string
+    isCurrentChangeInOpeningHours?: boolean | null
     gallery?: {
       __typename?: 'UploadFileRelationResponseCollection'
       data: Array<{
@@ -10436,6 +10690,7 @@ export type ArticlesQuery = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         gallery?: {
           __typename?: 'UploadFileRelationResponseCollection'
           data: Array<{
@@ -10498,7 +10753,12 @@ export type ArticlesStaticPathsQuery = {
     data: Array<{
       __typename: 'ArticleEntity'
       id?: string | null
-      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      attributes?: {
+        __typename?: 'Article'
+        slug: string
+        title: string
+        isCurrentChangeInOpeningHours?: boolean | null
+      } | null
     }>
   } | null
 }
@@ -10515,7 +10775,12 @@ export type ArticleByIdQuery = {
     data?: {
       __typename: 'ArticleEntity'
       id?: string | null
-      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      attributes?: {
+        __typename?: 'Article'
+        slug: string
+        title: string
+        isCurrentChangeInOpeningHours?: boolean | null
+      } | null
     } | null
   } | null
 }
@@ -10540,6 +10805,7 @@ export type ArticleBySlugQuery = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         gallery?: {
           __typename?: 'UploadFileRelationResponseCollection'
           data: Array<{
@@ -10613,6 +10879,7 @@ export type LatestArticlesQuery = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         gallery?: {
           __typename?: 'UploadFileRelationResponseCollection'
           data: Array<{
@@ -10661,6 +10928,27 @@ export type LatestArticlesQuery = {
             attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
           }>
         } | null
+      } | null
+    }>
+  } | null
+}
+
+export type OpeningHoursChangeArticlesQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode']['input']
+}>
+
+export type OpeningHoursChangeArticlesQuery = {
+  __typename?: 'Query'
+  articles?: {
+    __typename?: 'ArticleEntityResponseCollection'
+    data: Array<{
+      __typename: 'ArticleEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Article'
+        slug: string
+        title: string
+        isCurrentChangeInOpeningHours?: boolean | null
       } | null
     }>
   } | null
@@ -11081,7 +11369,12 @@ export type FaqEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -11153,7 +11446,12 @@ export type FaqEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -11285,7 +11583,12 @@ export type FaqsQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -11357,7 +11660,12 @@ export type FaqsQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -11441,7 +11749,12 @@ export type FooterColumnItemFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -11521,7 +11834,12 @@ export type FooterFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -11594,7 +11912,12 @@ export type FooterFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -11676,7 +11999,12 @@ export type FooterEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -11749,7 +12077,12 @@ export type FooterEntityFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -11915,7 +12248,12 @@ export type SlideItemFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -11989,7 +12327,12 @@ export type CardsListItemFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -12063,7 +12406,12 @@ export type HeroMainTileFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -12137,7 +12485,12 @@ export type HeroSmallTileFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -12212,7 +12565,12 @@ export type HomepageServiceTileFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -12306,7 +12664,12 @@ export type HeroHomepageSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -12382,7 +12745,12 @@ export type HeroHomepageSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -12458,7 +12826,12 @@ export type HeroHomepageSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -12533,6 +12906,7 @@ export type ArticlesHomepageSectionFragment = {
         addedAt: any
         slug: string
         title: string
+        isCurrentChangeInOpeningHours?: boolean | null
         gallery?: {
           __typename?: 'UploadFileRelationResponseCollection'
           data: Array<{
@@ -12601,7 +12975,12 @@ export type ArticlesHomepageSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -12680,7 +13059,12 @@ export type KoloHomepageSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -12810,7 +13194,12 @@ export type KoloHomepageSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -12889,7 +13278,12 @@ export type ServicesHomepageSectionFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -12962,7 +13356,12 @@ export type ServicesHomepageSectionFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -13061,7 +13460,12 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'ArticleEntity'
               id?: string | null
-              attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              attributes?: {
+                __typename?: 'Article'
+                slug: string
+                title: string
+                isCurrentChangeInOpeningHours?: boolean | null
+              } | null
             } | null
           } | null
           branch?: {
@@ -13137,7 +13541,12 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'ArticleEntity'
               id?: string | null
-              attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              attributes?: {
+                __typename?: 'Article'
+                slug: string
+                title: string
+                isCurrentChangeInOpeningHours?: boolean | null
+              } | null
             } | null
           } | null
           branch?: {
@@ -13213,7 +13622,12 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'ArticleEntity'
               id?: string | null
-              attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              attributes?: {
+                __typename?: 'Article'
+                slug: string
+                title: string
+                isCurrentChangeInOpeningHours?: boolean | null
+              } | null
             } | null
           } | null
           branch?: {
@@ -13287,6 +13701,7 @@ export type HomepageEntityFragment = {
             addedAt: any
             slug: string
             title: string
+            isCurrentChangeInOpeningHours?: boolean | null
             gallery?: {
               __typename?: 'UploadFileRelationResponseCollection'
               data: Array<{
@@ -13355,7 +13770,12 @@ export type HomepageEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -13436,7 +13856,12 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'ArticleEntity'
               id?: string | null
-              attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              attributes?: {
+                __typename?: 'Article'
+                slug: string
+                title: string
+                isCurrentChangeInOpeningHours?: boolean | null
+              } | null
             } | null
           } | null
           branch?: {
@@ -13566,7 +13991,12 @@ export type HomepageEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -13647,7 +14077,12 @@ export type HomepageEntityFragment = {
             data?: {
               __typename: 'ArticleEntity'
               id?: string | null
-              attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+              attributes?: {
+                __typename?: 'Article'
+                slug: string
+                title: string
+                isCurrentChangeInOpeningHours?: boolean | null
+              } | null
             } | null
           } | null
           branch?: {
@@ -13720,7 +14155,12 @@ export type HomepageEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -13832,7 +14272,12 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -13908,7 +14353,12 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -13984,7 +14434,12 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -14058,6 +14513,7 @@ export type HomepageQuery = {
                 addedAt: any
                 slug: string
                 title: string
+                isCurrentChangeInOpeningHours?: boolean | null
                 gallery?: {
                   __typename?: 'UploadFileRelationResponseCollection'
                   data: Array<{
@@ -14130,7 +14586,12 @@ export type HomepageQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -14211,7 +14672,12 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -14341,7 +14807,12 @@ export type HomepageQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -14422,7 +14893,12 @@ export type HomepageQuery = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -14495,7 +14971,12 @@ export type HomepageQuery = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -14876,7 +15357,12 @@ export type MenuItemFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -14950,7 +15436,12 @@ export type MenuHeaderFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -15019,7 +15510,12 @@ export type MenuHeaderFragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -15200,7 +15696,12 @@ export type MenuFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -15276,7 +15777,12 @@ export type MenuFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -15348,7 +15854,12 @@ export type MenuFragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -15535,7 +16046,12 @@ export type MenuEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -15611,7 +16127,12 @@ export type MenuEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -15683,7 +16204,12 @@ export type MenuEntityFragment = {
           data?: {
             __typename: 'ArticleEntity'
             id?: string | null
-            attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+            attributes?: {
+              __typename?: 'Article'
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+            } | null
           } | null
         } | null
         branch?: {
@@ -15914,6 +16440,7 @@ export type PageEntityFragment = {
                 addedAt: any
                 slug: string
                 title: string
+                isCurrentChangeInOpeningHours?: boolean | null
                 coverMedia?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -15964,6 +16491,7 @@ export type PageEntityFragment = {
                 addedAt: any
                 slug: string
                 title: string
+                isCurrentChangeInOpeningHours?: boolean | null
                 coverMedia?: {
                   __typename?: 'UploadFileEntityResponse'
                   data?: {
@@ -16067,7 +16595,12 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -16185,7 +16718,12 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -16257,7 +16795,12 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -16354,7 +16897,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -16526,7 +17074,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -16758,7 +17311,12 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -16885,6 +17443,7 @@ export type PageEntityFragment = {
                                 __typename?: 'Article'
                                 slug: string
                                 title: string
+                                isCurrentChangeInOpeningHours?: boolean | null
                               } | null
                             } | null
                           } | null
@@ -16977,6 +17536,7 @@ export type PageEntityFragment = {
                                 __typename?: 'Article'
                                 slug: string
                                 title: string
+                                isCurrentChangeInOpeningHours?: boolean | null
                               } | null
                             } | null
                           } | null
@@ -17106,7 +17666,12 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -17178,7 +17743,12 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -17273,7 +17843,12 @@ export type PageEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -17498,7 +18073,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -17570,7 +18150,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -17702,7 +18287,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -17774,7 +18364,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -17868,7 +18463,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -17962,7 +18562,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -18034,7 +18639,12 @@ export type PageEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -18212,6 +18822,7 @@ export type PagesQuery = {
                     addedAt: any
                     slug: string
                     title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -18262,6 +18873,7 @@ export type PagesQuery = {
                     addedAt: any
                     slug: string
                     title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -18365,7 +18977,12 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -18483,7 +19100,12 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -18555,7 +19177,12 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -18652,7 +19279,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -18824,7 +19456,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -19056,7 +19693,12 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -19187,6 +19829,7 @@ export type PagesQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -19279,6 +19922,7 @@ export type PagesQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -19408,7 +20052,12 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -19480,7 +20129,12 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -19575,7 +20229,12 @@ export type PagesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -19800,7 +20459,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -19872,7 +20536,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -20004,7 +20673,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -20076,7 +20750,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -20170,7 +20849,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -20264,7 +20948,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -20336,7 +21025,12 @@ export type PagesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -20534,6 +21228,7 @@ export type PageBySlugQuery = {
                     addedAt: any
                     slug: string
                     title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -20584,6 +21279,7 @@ export type PageBySlugQuery = {
                     addedAt: any
                     slug: string
                     title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
                     coverMedia?: {
                       __typename?: 'UploadFileEntityResponse'
                       data?: {
@@ -20687,7 +21383,12 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -20805,7 +21506,12 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -20877,7 +21583,12 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -20974,7 +21685,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -21146,7 +21862,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -21378,7 +22099,12 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -21509,6 +22235,7 @@ export type PageBySlugQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -21601,6 +22328,7 @@ export type PageBySlugQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -21730,7 +22458,12 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -21802,7 +22535,12 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -21897,7 +22635,12 @@ export type PageBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -22122,7 +22865,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -22194,7 +22942,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -22326,7 +23079,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -22398,7 +23156,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -22492,7 +23255,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -22586,7 +23354,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -22658,7 +23431,12 @@ export type PageBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -22765,7 +23543,12 @@ export type PageRedirectByAliasQuery = {
     data: Array<{
       __typename: 'ArticleEntity'
       id?: string | null
-      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+      attributes?: {
+        __typename?: 'Article'
+        slug: string
+        title: string
+        isCurrentChangeInOpeningHours?: boolean | null
+      } | null
     }>
   } | null
 }
@@ -22802,7 +23585,12 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
         data?: {
           __typename: 'ArticleEntity'
           id?: string | null
-          attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
         } | null
       } | null
       branch?: {
@@ -22934,7 +23722,12 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
       data?: {
         __typename: 'ArticleEntity'
         id?: string | null
-        attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+        attributes?: {
+          __typename?: 'Article'
+          slug: string
+          title: string
+          isCurrentChangeInOpeningHours?: boolean | null
+        } | null
       } | null
     } | null
     branch?: {
@@ -23050,7 +23843,12 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -23122,7 +23920,12 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -23366,7 +24169,12 @@ export type ServiceEntityFragment = {
                 data?: {
                   __typename: 'ArticleEntity'
                   id?: string | null
-                  attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
                 } | null
               } | null
               branch?: {
@@ -23500,7 +24308,12 @@ export type ServiceEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -23627,6 +24440,7 @@ export type ServiceEntityFragment = {
                                 __typename?: 'Article'
                                 slug: string
                                 title: string
+                                isCurrentChangeInOpeningHours?: boolean | null
                               } | null
                             } | null
                           } | null
@@ -23719,6 +24533,7 @@ export type ServiceEntityFragment = {
                                 __typename?: 'Article'
                                 slug: string
                                 title: string
+                                isCurrentChangeInOpeningHours?: boolean | null
                               } | null
                             } | null
                           } | null
@@ -23896,7 +24711,12 @@ export type ServicesQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -24030,7 +24850,12 @@ export type ServicesQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -24161,6 +24986,7 @@ export type ServicesQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -24253,6 +25079,7 @@ export type ServicesQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -24464,7 +25291,12 @@ export type ServiceBySlugQuery = {
                     data?: {
                       __typename: 'ArticleEntity'
                       id?: string | null
-                      attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
                     } | null
                   } | null
                   branch?: {
@@ -24598,7 +25430,12 @@ export type ServiceBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -24729,6 +25566,7 @@ export type ServiceBySlugQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -24821,6 +25659,7 @@ export type ServiceBySlugQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -25027,7 +25866,12 @@ export type WorkshopEntityFragment = {
               data?: {
                 __typename: 'ArticleEntity'
                 id?: string | null
-                attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                attributes?: {
+                  __typename?: 'Article'
+                  slug: string
+                  title: string
+                  isCurrentChangeInOpeningHours?: boolean | null
+                } | null
               } | null
             } | null
             branch?: {
@@ -25154,6 +25998,7 @@ export type WorkshopEntityFragment = {
                                 __typename?: 'Article'
                                 slug: string
                                 title: string
+                                isCurrentChangeInOpeningHours?: boolean | null
                               } | null
                             } | null
                           } | null
@@ -25246,6 +26091,7 @@ export type WorkshopEntityFragment = {
                                 __typename?: 'Article'
                                 slug: string
                                 title: string
+                                isCurrentChangeInOpeningHours?: boolean | null
                               } | null
                             } | null
                           } | null
@@ -25424,7 +26270,12 @@ export type WorkshopsQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -25555,6 +26406,7 @@ export type WorkshopsQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -25647,6 +26499,7 @@ export type WorkshopsQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -25848,7 +26701,12 @@ export type WorkshopByIdQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -25979,6 +26837,7 @@ export type WorkshopByIdQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -26071,6 +26930,7 @@ export type WorkshopByIdQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -26253,7 +27113,12 @@ export type WorkshopBySlugQuery = {
                   data?: {
                     __typename: 'ArticleEntity'
                     id?: string | null
-                    attributes?: { __typename?: 'Article'; slug: string; title: string } | null
+                    attributes?: {
+                      __typename?: 'Article'
+                      slug: string
+                      title: string
+                      isCurrentChangeInOpeningHours?: boolean | null
+                    } | null
                   } | null
                 } | null
                 branch?: {
@@ -26384,6 +27249,7 @@ export type WorkshopBySlugQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -26476,6 +27342,7 @@ export type WorkshopBySlugQuery = {
                                     __typename?: 'Article'
                                     slug: string
                                     title: string
+                                    isCurrentChangeInOpeningHours?: boolean | null
                                   } | null
                                 } | null
                               } | null
@@ -26688,6 +27555,7 @@ export const ArticleSlugEntityFragmentDoc = gql`
     attributes {
       slug
       title
+      isCurrentChangeInOpeningHours
     }
   }
 `
@@ -28263,6 +29131,21 @@ export const LatestArticlesDocument = gql`
   }
   ${ArticleEntityFragmentDoc}
 `
+export const OpeningHoursChangeArticlesDocument = gql`
+  query OpeningHoursChangeArticles($locale: I18NLocaleCode!) {
+    articles(
+      filters: { isCurrentChangeInOpeningHours: { eq: true } }
+      sort: "addedAt:desc"
+      pagination: { limit: -1 }
+      locale: $locale
+    ) {
+      data {
+        ...ArticleSlugEntity
+      }
+    }
+  }
+  ${ArticleSlugEntityFragmentDoc}
+`
 export const BranchesDocument = gql`
   query Branches($locale: I18NLocaleCode!) {
     branches(locale: $locale) {
@@ -28743,6 +29626,22 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'LatestArticles',
+        'query',
+        variables,
+      )
+    },
+    OpeningHoursChangeArticles(
+      variables: OpeningHoursChangeArticlesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<OpeningHoursChangeArticlesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<OpeningHoursChangeArticlesQuery>(
+            OpeningHoursChangeArticlesDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'OpeningHoursChangeArticles',
         'query',
         variables,
       )

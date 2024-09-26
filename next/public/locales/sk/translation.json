@@ -70,6 +70,8 @@
   "navBar.branchCard.showDetails": "Zobraziť detaily",
   "navBar.contactsButton": "Kontakty",
   "navBar.workshopCard.messageMostRecentDate": "Najbližší termín: {{mostRecentWorkshopDate}}",
+  "openingHoursChangeAlert.title": "Pozor, zmena otváracích hodín!",
+  "openingHoursChangeAlert.goToArticle": "Prejsť na článok",
   "pageHeaderGallery.buttonText": "Všetky fotky",
   "pageHeaderPickupDay.allNews": "Všetky novinky",
   "pageHeaderPickupDay.messageEvenWeek": "Tento týždeň je párny ({{weekNumber}}. týždeň)",

@@ -10,6 +10,7 @@ type Article {
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
   gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
+  isCurrentChangeInOpeningHours: Boolean
   locale: String
   localizations(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   perex: String
@@ -93,6 +94,7 @@ input ArticleFiltersInput {
   content: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
+  isCurrentChangeInOpeningHours: BooleanFilterInput
   locale: StringFilterInput
   localizations: ArticleFiltersInput
   not: ArticleFiltersInput
@@ -112,6 +114,7 @@ input ArticleInput {
   content: String
   coverMedia: ID
   gallery: [ID]
+  isCurrentChangeInOpeningHours: Boolean
   perex: String
   publishedAt: DateTime
   slug: String

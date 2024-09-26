@@ -16,7 +16,7 @@ COPY ./package.json ./yarn.lock ./
 # copy any installation files for Strapi plugins you want to build. For example:
 # COPY src/plugins/<package-name>/package.json src/plugins/<package-name>/yarn.lock ./src/plugins/<package-name>/
 COPY src/plugins/wysiwyg/package.json src/plugins/wysiwyg/yarn.lock src/plugins/wysiwyg/patches ./src/plugins/wysiwyg/
-COPY src/plugins/waste-collection-days-import/package.json src/plugins/waste-collection-days-import/yarn.lock src/plugins/waste-collection-days-import/patches ./src/plugins/waste-collection-days-import/
+COPY src/plugins/waste-collection-days-import/package.json src/plugins/waste-collection-days-import/yarn.lock ./src/plugins/waste-collection-days-import/
 # Or leave empty (do not add anyting) if you don't have any custom plugins (most likely ./plugins directory)
 
 FROM build-base AS install-prod

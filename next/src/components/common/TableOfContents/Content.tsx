@@ -44,8 +44,8 @@ const Content = ({ headings, headerOffset }: Props) => {
               key={heading.id}
               variant="unstyled"
               onPress={() => handleContentItemPress(heading.id)}
-              className={cn('py-3 text-left hover:font-black lg:py-4', {
-                'font-black': heading.id === activeHeadingId,
+              className={cn('py-3 text-left hover:underline lg:py-4', {
+                'font-bold': heading.id === activeHeadingId,
               })}
             >
               {heading.text}
@@ -57,9 +57,9 @@ const Content = ({ headings, headerOffset }: Props) => {
                 variant="unstyled"
                 onPress={() => handleContentItemPress(heading.id)}
                 className={cn(
-                  'border-l border-border-default py-2 pl-4 text-left hover:font-black',
+                  'border-l border-border-default py-2 pl-4 text-left hover:underline',
                   {
-                    'font-black': heading.id === activeHeadingId,
+                    'font-bold': heading.id === activeHeadingId,
                   },
                 )}
               >

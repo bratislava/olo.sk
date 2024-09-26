@@ -2,17 +2,17 @@
  *
  * HomePage
  *
+ * Inspired by Marianum: https://github.com/bratislava/marianum.sk/blob/72dc36cfb05d544680ef891d633af9cf59f5b9e5/strapi/src/plugins/ceremonies-debtor-list/admin/src/pages/HomePage.tsx
+ *
  */
 
 import React from 'react'
-import pluginId from '../../pluginId'
 import { Box, ContentLayout, HeaderLayout, Layout, Stack } from '@strapi/design-system'
-import ImportSection from './ImportSection'
+import ImportSection from '../../components/ImportSection'
 
 const HomePage = () => {
   return (
     <div>
-      <h1>{pluginId}&apos;s HomePage</h1>
       <Box background="neutral100">
         <Layout>
           <HeaderLayout title="Import Excel súborov"></HeaderLayout>

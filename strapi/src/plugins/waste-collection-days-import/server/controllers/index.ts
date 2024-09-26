@@ -22,7 +22,8 @@ export default {
         const importId = uuid()
         const parsedWasteCollectionDays = parseWasteCollectionDaysXlsx(file.path, importId)
 
-        // All the debtors are replaced when a new XLSX is uploaded.
+        // TODO: Discuss the behaviour of the import.
+        // All the entries are replaced when a new XLSX is uploaded.
         const deleteWasteCollectionDays = async () => {
           await strapi.db.query('api::waste-collection-day.waste-collection-day').deleteMany({})
           // `deleteMany` doesn't trigger Meilisearch hooks, so the old debtors stay in its database,

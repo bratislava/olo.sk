@@ -1,6 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { Alert, Box, Button, Link, Loader, Stack, Typography } from '@strapi/design-system'
-import axiosInstance from '../../utils/axiosInstance'
+import axiosInstance from '../utils/axiosInstance'
+
+/**
+ *
+ * Inspired by Marianum: https://github.com/bratislava/marianum.sk/blob/72dc36cfb05d544680ef891d633af9cf59f5b9e5/strapi/src/plugins/ceremonies-debtor-list/admin/src/pages/ImportSection.tsx
+ *
+ */
 
 const updateUrls = {
   'waste-collection-days': '/waste-collection-days-import/update-waste-collection-days',

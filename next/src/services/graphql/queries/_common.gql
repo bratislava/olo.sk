@@ -33,6 +33,17 @@ fragment Link on ComponentItemsLink {
   }
 }
 
+fragment FormCtaBannerLink on ComponentItemsFormCtaBannerLink {
+  label
+  url
+  email
+  form {
+    data {
+      ...FormSlugEntity
+    }
+  }
+}
+
 fragment Anchor on ComponentItemsAnchor {
   label
   targetId

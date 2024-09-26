@@ -2,20 +2,25 @@ import * as Pictograms from '@/src/assets/pictograms'
 import cn from '@/src/utils/cn'
 
 export const pictogramNameMap = {
+  // Bratislava DS
+  dokumenty: 'DocumentsPictogram',
+  'transparentne-mesto': 'TransparentCityPictogram',
   // waste-types
-  paper: 'WastePaperIcon',
-  plastic: 'WastePlasticIcon',
-  glass: 'WasteGlassIcon',
-  civicAmenitySite: 'WasteCivicAmenitySiteIcon',
-  cookingOilsAndFats: 'WasteOilsAndFatsIcon',
-  kitchenWaste: 'WasteKitchenIcon',
-  organic: 'WasteOrganicIcon',
-  mixed: 'WasteMixedIcon',
-  cemetery: 'WasteCemeteryIcon',
-  christmasTrees: 'WasteChristmasTreesIcon',
+  paper: 'WastePaperPictogram',
+  plastic: 'WastePlasticPictogram',
+  glass: 'WasteGlassPictogram',
+  civicAmenitySite: 'WasteCivicAmenitySitePictogram',
+  cookingOilsAndFats: 'WasteOilsAndFatsPictogram',
+  kitchenWaste: 'WasteKitchenPictogram',
+  organic: 'WasteOrganicPictogram',
+  mixed: 'WasteMixedPictogram',
+  cemetery: 'WasteCemeteryPictogram',
+  christmasTrees: 'WasteChristmasTreesPictogram',
   // other
-  pigCoinBank: 'PigCoinBankIcon',
+  pigCoinBank: 'PigCoinBankPictogram',
 } satisfies Record<string, keyof typeof Pictograms>
+
+export type PictogramName = keyof typeof pictogramNameMap
 
 type PictogramType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 

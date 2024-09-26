@@ -116,9 +116,11 @@
   --token-action-border-default: var(--color-brand-700);
   --token-action-border-hover: var(--color-brand-600);
   --token-action-border-pressed: var(--color-brand-800);
-
-  /* TODO align proper token name with figma */
-  --token-alert-background-warning: var(--color-warning-100);
+  
+  --token-success-content-default: var(--color-success-700);
+  --token-success-background-default: var(--color-success-700);
+  --token-warning-soft-background-default: var(--color-warning-100);
+  --token-error-content-default: var(--color-negative-700);
 
   --token-waste-paper: var(--color-waste-blue);
   --token-waste-plastic: var(--color-waste-yellow);

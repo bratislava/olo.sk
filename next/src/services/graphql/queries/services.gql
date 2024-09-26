@@ -47,6 +47,14 @@ fragment ServiceCardEntity on ServiceEntity {
   }
 }
 
+fragment ServiceSearchEntity on ServiceEntity {
+  ...ServiceCardEntity
+  attributes {
+    publishedAt
+    updatedAt
+  }
+}
+
 fragment ServiceEntity on ServiceEntity {
   ...ServiceCardEntity
   attributes {
@@ -76,6 +84,14 @@ query Services($locale: I18NLocaleCode!) {
 
 query ServicesStaticPaths {
   services(pagination: { limit: -1 }) {
+    data {
+      ...ServiceSlugEntity
+    }
+  }
+}
+
+query ServiceById($id: ID!, $locale: I18NLocaleCode!) {
+  service(id: $id, locale: $locale) {
     data {
       ...ServiceSlugEntity
     }

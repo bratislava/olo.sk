@@ -23,8 +23,6 @@ fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
 }
 
 fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
-  title
-  text
   videoUrl
   alternativeTextVideo
   imageQuote

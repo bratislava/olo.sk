@@ -9,7 +9,8 @@ const meta: Meta<Props> = {
   tags: ['autodocs'],
   args: {
     url: 'https://www.youtube.com/embed/8QBjTTCj2JA',
-    ariaLabel: 'Videopríbeh o pracovných príležitostiach a firemných hodnotách spoločnosti OLO',
+    alternativeText:
+      'Videopríbeh o pracovných príležitostiach a firemných hodnotách spoločnosti OLO',
   },
 }
 

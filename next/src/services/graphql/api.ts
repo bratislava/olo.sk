@@ -338,8 +338,6 @@ export type ComponentHeaderSectionsCareers = {
   id: Scalars['ID']['output']
   image?: Maybe<UploadFileEntityResponse>
   imageQuote?: Maybe<Scalars['String']['output']>
-  text?: Maybe<Scalars['String']['output']>
-  title?: Maybe<Scalars['String']['output']>
   videoUrl: Scalars['String']['output']
 }
 
@@ -5786,8 +5784,6 @@ export type GalleryHeaderSectionFragment = {
 
 export type CareersHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsCareers'
-  title?: string | null
-  text?: string | null
   videoUrl: string
   alternativeTextVideo?: string | null
   imageQuote?: string | null
@@ -26667,8 +26663,6 @@ export const UploadImageEntityFragmentDoc = gql`
 `
 export const CareersHeaderSectionFragmentDoc = gql`
   fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
-    title
-    text
     videoUrl
     alternativeTextVideo
     imageQuote

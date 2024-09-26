@@ -6,12 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "text": {
-      "type": "text"
-    },
     "image": {
       "type": "media",
       "multiple": false,

@@ -245,8 +245,6 @@ type ComponentHeaderSectionsCareers {
   id: ID!
   image: UploadFileEntityResponse
   imageQuote: String
-  text: String
-  title: String
   videoUrl: String!
 }
 
@@ -256,8 +254,6 @@ input ComponentHeaderSectionsCareersFiltersInput {
   imageQuote: StringFilterInput
   not: ComponentHeaderSectionsCareersFiltersInput
   or: [ComponentHeaderSectionsCareersFiltersInput]
-  text: StringFilterInput
-  title: StringFilterInput
   videoUrl: StringFilterInput
 }
 
@@ -266,8 +262,6 @@ input ComponentHeaderSectionsCareersInput {
   id: ID
   image: ID
   imageQuote: String
-  text: String
-  title: String
   videoUrl: String
 }
 

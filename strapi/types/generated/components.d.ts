@@ -1010,8 +1010,6 @@ export interface HeaderSectionsCareers extends Schema.Component {
     description: ''
   }
   attributes: {
-    title: Attribute.String
-    text: Attribute.Text
     image: Attribute.Media<'images'>
     imageQuote: Attribute.Text
     alternativeTextVideo: Attribute.Text

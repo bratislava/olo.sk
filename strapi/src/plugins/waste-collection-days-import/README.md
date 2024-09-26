@@ -20,4 +20,5 @@ See also:
 /strapi/config/plugins.ts
 /strapi/package.json         --> build and postinstall scripts
 /strapi/patches/strapi-plugin-meilisearch+0.9.2.patch
+/strapi/Dockerfile
 ```

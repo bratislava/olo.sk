@@ -2,8 +2,6 @@ import { Strapi } from '@strapi/strapi'
 import { parseWasteCollectionDaysXlsx } from '../helpers/parse-waste-collection-days-xlsx'
 import { v4 as uuid } from 'uuid'
 
-export const COLLECTION_DAY_API_NAME = 'api::collection-day.collection-day'
-
 export default {
   importXlsxController: ({ strapi }: { strapi: Strapi }) => ({
     async updateWasteCollectionDays(ctx) {
@@ -26,14 +24,14 @@ export default {
 
         // All the debtors are replaced when a new XLSX is uploaded.
         const deleteWasteCollectionDays = async () => {
-          await strapi.db.query(COLLECTION_DAY_API_NAME).deleteMany({})
+          await strapi.db.query('api::waste-collection-day.waste-collection-day').deleteMany({})
           // `deleteMany` doesn't trigger Meilisearch hooks, so the old debtors stay in its database,
           // also having Meilisearch on while adding debtors triggers the update content hook after
           // every query, therefore the best solution is to turn the Meilisearch off while adding new debtors
           // and turn it back on afterward.
           // See `strapi/patches/strapi-plugin-meilisearch+0.7.1.patch`.
           await meilisearch.emptyOrDeleteIndex({
-            contentType: COLLECTION_DAY_API_NAME,
+            contentType: 'api::waste-collection-day.waste-collection-day',
           })
         }
 
@@ -43,12 +41,12 @@ export default {
           for (const day of parsedWasteCollectionDays) {
             // Query Engine API doesn't support relations in bulk options, so Entity Service API is used.
             // https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/bulk-operations.html
-            await strapi.entityService.create(COLLECTION_DAY_API_NAME, {
+            await strapi.entityService.create('api::waste-collection-day.waste-collection-day', {
               data: day,
             })
           }
           await meilisearch.updateContentTypeInMeiliSearch({
-            contentType: COLLECTION_DAY_API_NAME,
+            contentType: 'api::waste-collection-day.waste-collection-day',
           })
         } catch (createWasteCollectionDaysError) {
           // In case of failure to add some debtor we want to delete all the previously created entries, so we call the

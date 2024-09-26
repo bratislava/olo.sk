@@ -891,34 +891,6 @@ export interface ApiBranchBranch extends Schema.CollectionType {
   }
 }
 
-export interface ApiCollectionDayCollectionDay extends Schema.CollectionType {
-  collectionName: 'collection_days'
-  info: {
-    singularName: 'collection-day'
-    pluralName: 'collection-days'
-    displayName: 'Odvozov\u00E9 dni'
-  }
-  options: {
-    draftAndPublish: false
-  }
-  attributes: {
-    collectionType: Attribute.String
-    address: Attribute.String
-    registrationNumber: Attribute.String
-    validity: Attribute.String
-    evenWeek: Attribute.String
-    oddWeek: Attribute.String
-    collectionDates: Attribute.Text
-    note: Attribute.Text
-    createdAt: Attribute.DateTime
-    updatedAt: Attribute.DateTime
-    createdBy: Attribute.Relation<'api::collection-day.collection-day', 'oneToOne', 'admin::user'> &
-      Attribute.Private
-    updatedBy: Attribute.Relation<'api::collection-day.collection-day', 'oneToOne', 'admin::user'> &
-      Attribute.Private
-  }
-}
-
 export interface ApiContactContact extends Schema.CollectionType {
   collectionName: 'contacts'
   info: {
@@ -1701,6 +1673,44 @@ export interface ApiTagTag extends Schema.CollectionType {
   }
 }
 
+export interface ApiWasteCollectionDayWasteCollectionDay extends Schema.CollectionType {
+  collectionName: 'waste_collection_days'
+  info: {
+    singularName: 'waste-collection-day'
+    pluralName: 'waste-collection-days'
+    displayName: 'Odvozov\u00E9 dni'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    type: Attribute.String
+    address: Attribute.String
+    registrationNumber: Attribute.String
+    validity: Attribute.String
+    evenWeek: Attribute.String
+    oddWeek: Attribute.String
+    collectionDates: Attribute.Text
+    note: Attribute.Text
+    importId: Attribute.String & Attribute.Private
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::waste-collection-day.waste-collection-day',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::waste-collection-day.waste-collection-day',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+  }
+}
+
 export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   collectionName: 'workshops'
   info: {
@@ -1748,7 +1758,6 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle
       'api::article-category.article-category': ApiArticleCategoryArticleCategory
       'api::branch.branch': ApiBranchBranch
-      'api::collection-day.collection-day': ApiCollectionDayCollectionDay
       'api::contact.contact': ApiContactContact
       'api::document.document': ApiDocumentDocument
       'api::document-category.document-category': ApiDocumentCategoryDocumentCategory
@@ -1764,6 +1773,7 @@ declare module '@strapi/types' {
       'api::service.service': ApiServiceService
       'api::service-category.service-category': ApiServiceCategoryServiceCategory
       'api::tag.tag': ApiTagTag
+      'api::waste-collection-day.waste-collection-day': ApiWasteCollectionDayWasteCollectionDay
       'api::workshop.workshop': ApiWorkshopWorkshop
     }
   }

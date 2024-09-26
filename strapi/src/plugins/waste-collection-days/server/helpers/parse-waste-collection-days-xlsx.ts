@@ -37,7 +37,7 @@ export const parseWasteCollectionDaysXlsx = (filePath: string, importId: string)
     .filter((row) => row.length !== 0 /* Filter empty rows */)
     .map((row, index) => {
       const [
-        collectionType,
+        type,
         address,
         registrationNumber,
         validity,
@@ -48,7 +48,7 @@ export const parseWasteCollectionDaysXlsx = (filePath: string, importId: string)
       ] = row.map(String)
 
       return {
-        collectionType,
+        type,
         address,
         registrationNumber,
         validity,

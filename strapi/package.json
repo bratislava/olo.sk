@@ -8,10 +8,10 @@
     "name": "City of Bratislava"
   },
   "scripts": {
-    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && yarn --cwd ./src/plugins/waste-collection-days/ build && strapi build",
+    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && yarn --cwd src/plugins/waste-collection-days/ build && strapi build",
     "dev": "yarn develop",
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
-    "postinstall": "patch-package && yarn --cwd ./src/plugins/wysiwyg/ install && yarn --cwd ./src/plugins/waste-collection-days/ install",
+    "postinstall": "patch-package && yarn --cwd ./src/plugins/wysiwyg/ install && yarn --cwd src/plugins/waste-collection-days/ install",
     "start": "strapi start",
     "strapi": "strapi",
     "ts:generate-types": "strapi ts:generate-types"

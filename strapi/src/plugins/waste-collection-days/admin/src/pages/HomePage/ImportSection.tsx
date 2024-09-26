@@ -12,7 +12,7 @@ const headerTexts = {
 
 const importLinks = {
   'waste-collection-days': (importId: string) =>
-    `/content-manager/collectionType/api::collection-day.collection-day?filters[$and][0][importId][$eq]=${importId}`,
+    `/content-manager/collectionType/api::waste-collection-day.waste-collection-day?filters[$and][0][importId][$eq]=${importId}`,
 }
 
 type ImportSectionProps = {

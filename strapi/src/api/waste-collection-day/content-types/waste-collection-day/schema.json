@@ -1,17 +1,18 @@
 {
   "kind": "collectionType",
-  "collectionName": "collection_days",
+  "collectionName": "waste_collection_days",
   "info": {
-    "singularName": "collection-day",
-    "pluralName": "collection-days",
-    "displayName": "Odvozové dni"
+    "singularName": "waste-collection-day",
+    "pluralName": "waste-collection-days",
+    "displayName": "Odvozové dni",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "collectionType": {
+    "type": {
       "type": "string"
     },
     "address": {
@@ -34,6 +35,10 @@
     },
     "note": {
       "type": "text"
+    },
+    "importId": {
+      "type": "string",
+      "private": true
     }
   }
 }

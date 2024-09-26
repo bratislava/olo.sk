@@ -9,23 +9,25 @@ import { client } from '@/src/services/graphql'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
-const OpeningHoursChangeAlert = () => {
+const OpeningTimesChangeAlert = () => {
   const { t, i18n } = useTranslation()
   const locale = i18n.language
 
   const { getFullPath } = useGetFullPath()
 
   const { data: articlesData } = useQuery({
-    queryFn: () => client.OpeningHoursChangeArticles({ locale }),
+    queryFn: () => client.OpeningTimesChangeArticles({ locale }),
     queryKey: ['articles', locale],
   })
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredArticles = articlesData?.articles?.data.filter(isDefined) ?? []
 
+  if (filteredArticles.length === 0) return null
+
   return (
     <div className="flex flex-col gap-4 rounded-lg bg-warning-softBackground-default p-4">
-      <Typography variant="h6">{t('openingHoursChangeAlert.title')}</Typography>
+      <Typography variant="h6">{t('openingTimesChangeAlert.title')}</Typography>
       <div className="flex flex-col gap-6">
         {filteredArticles
           ?.map((article, index) => {
@@ -40,7 +42,7 @@ const OpeningHoursChangeAlert = () => {
                 <div className="flex flex-col gap-4">
                   <Typography variant="p-default">{title}</Typography>
                   <Button variant="black-link" asLink href={getFullPath(article)}>
-                    {t('openingHoursChangeAlert.goToArticle')}
+                    {t('openingTimesChangeAlert.goToArticle')}
                   </Button>
                 </div>
               </Fragment>
@@ -53,4 +55,4 @@ const OpeningHoursChangeAlert = () => {
   )
 }
 
-export default OpeningHoursChangeAlert
+export default OpeningTimesChangeAlert

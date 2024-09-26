@@ -289,10 +289,31 @@ fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
 
 fragment ContactsSection on ComponentSectionsContacts {
   title
-  text
   contacts {
-    data {
-      ...ContactEntity
+    title
+    text
+    contact {
+      data {
+        ...ContactEntity
+      }
+    }
+  }
+  openingTimesContacts: openingTimes {
+    title
+    text
+    openingTime {
+      data {
+        ...OpeningTimeEntity
+      }
+    }
+  }
+  branchesContacts: branches {
+    title
+    text
+    branch {
+      data {
+        ...BranchEntity
+      }
     }
   }
 }

@@ -496,6 +496,57 @@ export type ComponentItemsColumnsListItemFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<ComponentItemsColumnsListItemFiltersInput>>>
 }
 
+export type ComponentItemsContactsBranch = {
+  __typename?: 'ComponentItemsContactsBranch'
+  branch?: Maybe<BranchEntityResponse>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsContactsBranchFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsContactsBranchFiltersInput>>>
+  branch?: InputMaybe<BranchFiltersInput>
+  not?: InputMaybe<ComponentItemsContactsBranchFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsContactsBranchFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentItemsContactsContact = {
+  __typename?: 'ComponentItemsContactsContact'
+  contact?: Maybe<ContactEntityResponse>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsContactsContactFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsContactsContactFiltersInput>>>
+  contact?: InputMaybe<ContactFiltersInput>
+  not?: InputMaybe<ComponentItemsContactsContactFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsContactsContactFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentItemsContactsOpeningTime = {
+  __typename?: 'ComponentItemsContactsOpeningTime'
+  id: Scalars['ID']['output']
+  openingTime?: Maybe<OpeningTimeEntityResponse>
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentItemsContactsOpeningTimeFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsContactsOpeningTimeFiltersInput>>>
+  not?: InputMaybe<ComponentItemsContactsOpeningTimeFiltersInput>
+  openingTime?: InputMaybe<OpeningTimeFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsContactsOpeningTimeFiltersInput>>>
+  text?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsFileItem = {
   __typename?: 'ComponentItemsFileItem'
   id: Scalars['ID']['output']
@@ -1134,16 +1185,28 @@ export type ComponentSectionsColumnsListRightColumnArgs = {
 
 export type ComponentSectionsContacts = {
   __typename?: 'ComponentSectionsContacts'
-  contacts?: Maybe<ContactRelationResponseCollection>
+  branches?: Maybe<Array<Maybe<ComponentItemsContactsBranch>>>
+  contacts?: Maybe<Array<Maybe<ComponentItemsContactsContact>>>
   id: Scalars['ID']['output']
-  text?: Maybe<Scalars['String']['output']>
+  openingTimes?: Maybe<Array<Maybe<ComponentItemsContactsOpeningTime>>>
   title?: Maybe<Scalars['String']['output']>
 }
 
-export type ComponentSectionsContactsContactsArgs = {
-  filters?: InputMaybe<ContactFiltersInput>
+export type ComponentSectionsContactsBranchesArgs = {
+  filters?: InputMaybe<ComponentItemsContactsBranchFiltersInput>
   pagination?: InputMaybe<PaginationArg>
-  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSectionsContactsContactsArgs = {
+  filters?: InputMaybe<ComponentItemsContactsContactFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSectionsContactsOpeningTimesArgs = {
+  filters?: InputMaybe<ComponentItemsContactsOpeningTimeFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
@@ -2107,6 +2170,9 @@ export type GenericMorph =
   | ComponentItemsCardsListItem
   | ComponentItemsColumnsItem
   | ComponentItemsColumnsListItem
+  | ComponentItemsContactsBranch
+  | ComponentItemsContactsContact
+  | ComponentItemsContactsOpeningTime
   | ComponentItemsFileItem
   | ComponentItemsFooterColumn
   | ComponentItemsFormCtaBannerLink
@@ -8282,23 +8348,109 @@ export type FormCtaBannerSectionFragment = {
 export type ContactsSectionFragment = {
   __typename?: 'ComponentSectionsContacts'
   title?: string | null
-  text?: string | null
-  contacts?: {
-    __typename?: 'ContactRelationResponseCollection'
-    data: Array<{
-      __typename?: 'ContactEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Contact'
-        label: string
-        text?: string | null
-        primaryEmail?: string | null
-        secondaryEmail?: string | null
-        primaryPhone?: string | null
-        secondaryPhone?: string | null
+  contacts?: Array<{
+    __typename?: 'ComponentItemsContactsContact'
+    title?: string | null
+    text?: string | null
+    contact?: {
+      __typename?: 'ContactEntityResponse'
+      data?: {
+        __typename?: 'ContactEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Contact'
+          label: string
+          text?: string | null
+          primaryEmail?: string | null
+          secondaryEmail?: string | null
+          primaryPhone?: string | null
+          secondaryPhone?: string | null
+        } | null
       } | null
-    }>
-  } | null
+    } | null
+  } | null> | null
+  openingTimesContacts?: Array<{
+    __typename?: 'ComponentItemsContactsOpeningTime'
+    title?: string | null
+    text?: string | null
+    openingTime?: {
+      __typename?: 'OpeningTimeEntityResponse'
+      data?: {
+        __typename?: 'OpeningTimeEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'OpeningTime'
+          openingHours?: Array<{
+            __typename?: 'ComponentItemsOpeningHoursItem'
+            label: string
+            value: string
+          } | null> | null
+        } | null
+      } | null
+    } | null
+  } | null> | null
+  branchesContacts?: Array<{
+    __typename?: 'ComponentItemsContactsBranch'
+    title?: string | null
+    text?: string | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Branch'
+          latitude?: number | null
+          longitude?: number | null
+          address?: string | null
+          publicTransportInfo?: string | null
+          parkingInfo?: string | null
+          barrierFreeInfo?: string | null
+          mapIconName?: string | null
+          title: string
+          page?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename: 'PageEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+            } | null
+          } | null
+          openingTimes?: {
+            __typename?: 'OpeningTimeRelationResponseCollection'
+            data: Array<{
+              __typename?: 'OpeningTimeEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'OpeningTime'
+                openingHours?: Array<{
+                  __typename?: 'ComponentItemsOpeningHoursItem'
+                  label: string
+                  value: string
+                } | null> | null
+              } | null
+            }>
+          } | null
+          contacts?: {
+            __typename?: 'ContactRelationResponseCollection'
+            data: Array<{
+              __typename?: 'ContactEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Contact'
+                label: string
+                text?: string | null
+                primaryEmail?: string | null
+                secondaryEmail?: string | null
+                primaryPhone?: string | null
+                secondaryPhone?: string | null
+              } | null
+            }>
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null> | null
 }
 
 export type OpeningTimesSectionFragment = {
@@ -9038,23 +9190,109 @@ type PageSections_ComponentSectionsColumnsList_Fragment = {
 type PageSections_ComponentSectionsContacts_Fragment = {
   __typename: 'ComponentSectionsContacts'
   title?: string | null
-  text?: string | null
-  contacts?: {
-    __typename?: 'ContactRelationResponseCollection'
-    data: Array<{
-      __typename?: 'ContactEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Contact'
-        label: string
-        text?: string | null
-        primaryEmail?: string | null
-        secondaryEmail?: string | null
-        primaryPhone?: string | null
-        secondaryPhone?: string | null
+  contacts?: Array<{
+    __typename?: 'ComponentItemsContactsContact'
+    title?: string | null
+    text?: string | null
+    contact?: {
+      __typename?: 'ContactEntityResponse'
+      data?: {
+        __typename?: 'ContactEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Contact'
+          label: string
+          text?: string | null
+          primaryEmail?: string | null
+          secondaryEmail?: string | null
+          primaryPhone?: string | null
+          secondaryPhone?: string | null
+        } | null
       } | null
-    }>
-  } | null
+    } | null
+  } | null> | null
+  openingTimesContacts?: Array<{
+    __typename?: 'ComponentItemsContactsOpeningTime'
+    title?: string | null
+    text?: string | null
+    openingTime?: {
+      __typename?: 'OpeningTimeEntityResponse'
+      data?: {
+        __typename?: 'OpeningTimeEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'OpeningTime'
+          openingHours?: Array<{
+            __typename?: 'ComponentItemsOpeningHoursItem'
+            label: string
+            value: string
+          } | null> | null
+        } | null
+      } | null
+    } | null
+  } | null> | null
+  branchesContacts?: Array<{
+    __typename?: 'ComponentItemsContactsBranch'
+    title?: string | null
+    text?: string | null
+    branch?: {
+      __typename?: 'BranchEntityResponse'
+      data?: {
+        __typename: 'BranchEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'Branch'
+          latitude?: number | null
+          longitude?: number | null
+          address?: string | null
+          publicTransportInfo?: string | null
+          parkingInfo?: string | null
+          barrierFreeInfo?: string | null
+          mapIconName?: string | null
+          title: string
+          page?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename: 'PageEntity'
+              id?: string | null
+              attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+            } | null
+          } | null
+          openingTimes?: {
+            __typename?: 'OpeningTimeRelationResponseCollection'
+            data: Array<{
+              __typename?: 'OpeningTimeEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'OpeningTime'
+                openingHours?: Array<{
+                  __typename?: 'ComponentItemsOpeningHoursItem'
+                  label: string
+                  value: string
+                } | null> | null
+              } | null
+            }>
+          } | null
+          contacts?: {
+            __typename?: 'ContactRelationResponseCollection'
+            data: Array<{
+              __typename?: 'ContactEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Contact'
+                label: string
+                text?: string | null
+                primaryEmail?: string | null
+                secondaryEmail?: string | null
+                primaryPhone?: string | null
+                secondaryPhone?: string | null
+              } | null
+            }>
+          } | null
+        } | null
+      } | null
+    } | null
+  } | null> | null
 }
 
 type PageSections_ComponentSectionsDivider_Fragment = {
@@ -10933,11 +11171,11 @@ export type LatestArticlesQuery = {
   } | null
 }
 
-export type OpeningHoursChangeArticlesQueryVariables = Exact<{
+export type OpeningTimesChangeArticlesQueryVariables = Exact<{
   locale: Scalars['I18NLocaleCode']['input']
 }>
 
-export type OpeningHoursChangeArticlesQuery = {
+export type OpeningTimesChangeArticlesQuery = {
   __typename?: 'Query'
   articles?: {
     __typename?: 'ArticleEntityResponseCollection'
@@ -17212,23 +17450,109 @@ export type PageEntityFragment = {
       | {
           __typename: 'ComponentSectionsContacts'
           title?: string | null
-          text?: string | null
-          contacts?: {
-            __typename?: 'ContactRelationResponseCollection'
-            data: Array<{
-              __typename?: 'ContactEntity'
-              id?: string | null
-              attributes?: {
-                __typename?: 'Contact'
-                label: string
-                text?: string | null
-                primaryEmail?: string | null
-                secondaryEmail?: string | null
-                primaryPhone?: string | null
-                secondaryPhone?: string | null
+          contacts?: Array<{
+            __typename?: 'ComponentItemsContactsContact'
+            title?: string | null
+            text?: string | null
+            contact?: {
+              __typename?: 'ContactEntityResponse'
+              data?: {
+                __typename?: 'ContactEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Contact'
+                  label: string
+                  text?: string | null
+                  primaryEmail?: string | null
+                  secondaryEmail?: string | null
+                  primaryPhone?: string | null
+                  secondaryPhone?: string | null
+                } | null
               } | null
-            }>
-          } | null
+            } | null
+          } | null> | null
+          openingTimesContacts?: Array<{
+            __typename?: 'ComponentItemsContactsOpeningTime'
+            title?: string | null
+            text?: string | null
+            openingTime?: {
+              __typename?: 'OpeningTimeEntityResponse'
+              data?: {
+                __typename?: 'OpeningTimeEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'OpeningTime'
+                  openingHours?: Array<{
+                    __typename?: 'ComponentItemsOpeningHoursItem'
+                    label: string
+                    value: string
+                  } | null> | null
+                } | null
+              } | null
+            } | null
+          } | null> | null
+          branchesContacts?: Array<{
+            __typename?: 'ComponentItemsContactsBranch'
+            title?: string | null
+            text?: string | null
+            branch?: {
+              __typename?: 'BranchEntityResponse'
+              data?: {
+                __typename: 'BranchEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'Branch'
+                  latitude?: number | null
+                  longitude?: number | null
+                  address?: string | null
+                  publicTransportInfo?: string | null
+                  parkingInfo?: string | null
+                  barrierFreeInfo?: string | null
+                  mapIconName?: string | null
+                  title: string
+                  page?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename: 'PageEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  openingTimes?: {
+                    __typename?: 'OpeningTimeRelationResponseCollection'
+                    data: Array<{
+                      __typename?: 'OpeningTimeEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'OpeningTime'
+                        openingHours?: Array<{
+                          __typename?: 'ComponentItemsOpeningHoursItem'
+                          label: string
+                          value: string
+                        } | null> | null
+                      } | null
+                    }>
+                  } | null
+                  contacts?: {
+                    __typename?: 'ContactRelationResponseCollection'
+                    data: Array<{
+                      __typename?: 'ContactEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Contact'
+                        label: string
+                        text?: string | null
+                        primaryEmail?: string | null
+                        secondaryEmail?: string | null
+                        primaryPhone?: string | null
+                        secondaryPhone?: string | null
+                      } | null
+                    }>
+                  } | null
+                } | null
+              } | null
+            } | null
+          } | null> | null
         }
       | {
           __typename: 'ComponentSectionsDivider'
@@ -19594,23 +19918,109 @@ export type PagesQuery = {
           | {
               __typename: 'ComponentSectionsContacts'
               title?: string | null
-              text?: string | null
-              contacts?: {
-                __typename?: 'ContactRelationResponseCollection'
-                data: Array<{
-                  __typename?: 'ContactEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'Contact'
-                    label: string
-                    text?: string | null
-                    primaryEmail?: string | null
-                    secondaryEmail?: string | null
-                    primaryPhone?: string | null
-                    secondaryPhone?: string | null
+              contacts?: Array<{
+                __typename?: 'ComponentItemsContactsContact'
+                title?: string | null
+                text?: string | null
+                contact?: {
+                  __typename?: 'ContactEntityResponse'
+                  data?: {
+                    __typename?: 'ContactEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Contact'
+                      label: string
+                      text?: string | null
+                      primaryEmail?: string | null
+                      secondaryEmail?: string | null
+                      primaryPhone?: string | null
+                      secondaryPhone?: string | null
+                    } | null
                   } | null
-                }>
-              } | null
+                } | null
+              } | null> | null
+              openingTimesContacts?: Array<{
+                __typename?: 'ComponentItemsContactsOpeningTime'
+                title?: string | null
+                text?: string | null
+                openingTime?: {
+                  __typename?: 'OpeningTimeEntityResponse'
+                  data?: {
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
+                  } | null
+                } | null
+              } | null> | null
+              branchesContacts?: Array<{
+                __typename?: 'ComponentItemsContactsBranch'
+                title?: string | null
+                text?: string | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename: 'BranchEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Branch'
+                      latitude?: number | null
+                      longitude?: number | null
+                      address?: string | null
+                      publicTransportInfo?: string | null
+                      parkingInfo?: string | null
+                      barrierFreeInfo?: string | null
+                      mapIconName?: string | null
+                      title: string
+                      page?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename: 'PageEntity'
+                          id?: string | null
+                          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                        } | null
+                      } | null
+                      openingTimes?: {
+                        __typename?: 'OpeningTimeRelationResponseCollection'
+                        data: Array<{
+                          __typename?: 'OpeningTimeEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'OpeningTime'
+                            openingHours?: Array<{
+                              __typename?: 'ComponentItemsOpeningHoursItem'
+                              label: string
+                              value: string
+                            } | null> | null
+                          } | null
+                        }>
+                      } | null
+                      contacts?: {
+                        __typename?: 'ContactRelationResponseCollection'
+                        data: Array<{
+                          __typename?: 'ContactEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'Contact'
+                            label: string
+                            text?: string | null
+                            primaryEmail?: string | null
+                            secondaryEmail?: string | null
+                            primaryPhone?: string | null
+                            secondaryPhone?: string | null
+                          } | null
+                        }>
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsDivider'
@@ -22000,23 +22410,109 @@ export type PageBySlugQuery = {
           | {
               __typename: 'ComponentSectionsContacts'
               title?: string | null
-              text?: string | null
-              contacts?: {
-                __typename?: 'ContactRelationResponseCollection'
-                data: Array<{
-                  __typename?: 'ContactEntity'
-                  id?: string | null
-                  attributes?: {
-                    __typename?: 'Contact'
-                    label: string
-                    text?: string | null
-                    primaryEmail?: string | null
-                    secondaryEmail?: string | null
-                    primaryPhone?: string | null
-                    secondaryPhone?: string | null
+              contacts?: Array<{
+                __typename?: 'ComponentItemsContactsContact'
+                title?: string | null
+                text?: string | null
+                contact?: {
+                  __typename?: 'ContactEntityResponse'
+                  data?: {
+                    __typename?: 'ContactEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Contact'
+                      label: string
+                      text?: string | null
+                      primaryEmail?: string | null
+                      secondaryEmail?: string | null
+                      primaryPhone?: string | null
+                      secondaryPhone?: string | null
+                    } | null
                   } | null
-                }>
-              } | null
+                } | null
+              } | null> | null
+              openingTimesContacts?: Array<{
+                __typename?: 'ComponentItemsContactsOpeningTime'
+                title?: string | null
+                text?: string | null
+                openingTime?: {
+                  __typename?: 'OpeningTimeEntityResponse'
+                  data?: {
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
+                  } | null
+                } | null
+              } | null> | null
+              branchesContacts?: Array<{
+                __typename?: 'ComponentItemsContactsBranch'
+                title?: string | null
+                text?: string | null
+                branch?: {
+                  __typename?: 'BranchEntityResponse'
+                  data?: {
+                    __typename: 'BranchEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Branch'
+                      latitude?: number | null
+                      longitude?: number | null
+                      address?: string | null
+                      publicTransportInfo?: string | null
+                      parkingInfo?: string | null
+                      barrierFreeInfo?: string | null
+                      mapIconName?: string | null
+                      title: string
+                      page?: {
+                        __typename?: 'PageEntityResponse'
+                        data?: {
+                          __typename: 'PageEntity'
+                          id?: string | null
+                          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                        } | null
+                      } | null
+                      openingTimes?: {
+                        __typename?: 'OpeningTimeRelationResponseCollection'
+                        data: Array<{
+                          __typename?: 'OpeningTimeEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'OpeningTime'
+                            openingHours?: Array<{
+                              __typename?: 'ComponentItemsOpeningHoursItem'
+                              label: string
+                              value: string
+                            } | null> | null
+                          } | null
+                        }>
+                      } | null
+                      contacts?: {
+                        __typename?: 'ContactRelationResponseCollection'
+                        data: Array<{
+                          __typename?: 'ContactEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'Contact'
+                            label: string
+                            text?: string | null
+                            primaryEmail?: string | null
+                            secondaryEmail?: string | null
+                            primaryPhone?: string | null
+                            secondaryPhone?: string | null
+                          } | null
+                        }>
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsDivider'
@@ -28635,14 +29131,37 @@ export const CardSliderSectionFragmentDoc = gql`
 export const ContactsSectionFragmentDoc = gql`
   fragment ContactsSection on ComponentSectionsContacts {
     title
-    text
     contacts {
-      data {
-        ...ContactEntity
+      title
+      text
+      contact {
+        data {
+          ...ContactEntity
+        }
+      }
+    }
+    openingTimesContacts: openingTimes {
+      title
+      text
+      openingTime {
+        data {
+          ...OpeningTimeEntity
+        }
+      }
+    }
+    branchesContacts: branches {
+      title
+      text
+      branch {
+        data {
+          ...BranchEntity
+        }
       }
     }
   }
   ${ContactEntityFragmentDoc}
+  ${OpeningTimeEntityFragmentDoc}
+  ${BranchEntityFragmentDoc}
 `
 export const OpeningTimesSectionFragmentDoc = gql`
   fragment OpeningTimesSection on ComponentSectionsOpeningTimes {
@@ -29131,8 +29650,8 @@ export const LatestArticlesDocument = gql`
   }
   ${ArticleEntityFragmentDoc}
 `
-export const OpeningHoursChangeArticlesDocument = gql`
-  query OpeningHoursChangeArticles($locale: I18NLocaleCode!) {
+export const OpeningTimesChangeArticlesDocument = gql`
+  query OpeningTimesChangeArticles($locale: I18NLocaleCode!) {
     articles(
       filters: { isCurrentChangeInOpeningHours: { eq: true } }
       sort: "addedAt:desc"
@@ -29630,18 +30149,18 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables,
       )
     },
-    OpeningHoursChangeArticles(
-      variables: OpeningHoursChangeArticlesQueryVariables,
+    OpeningTimesChangeArticles(
+      variables: OpeningTimesChangeArticlesQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<OpeningHoursChangeArticlesQuery> {
+    ): Promise<OpeningTimesChangeArticlesQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<OpeningHoursChangeArticlesQuery>(
-            OpeningHoursChangeArticlesDocument,
+          client.request<OpeningTimesChangeArticlesQuery>(
+            OpeningTimesChangeArticlesDocument,
             variables,
             { ...requestHeaders, ...wrappedRequestHeaders },
           ),
-        'OpeningHoursChangeArticles',
+        'OpeningTimesChangeArticles',
         'query',
         variables,
       )

@@ -84,7 +84,7 @@ query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
   }
 }
 
-query OpeningHoursChangeArticles($locale: I18NLocaleCode!) {
+query OpeningTimesChangeArticles($locale: I18NLocaleCode!) {
   articles(
     filters: { isCurrentChangeInOpeningHours: { eq: true } }
     sort: "addedAt:desc"

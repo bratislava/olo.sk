@@ -5,6 +5,7 @@ export const pictogramNameMap = {
   // Bratislava DS
   dokumenty: 'DocumentsPictogram',
   'transparentne-mesto': 'TransparentCityPictogram',
+  'doprava-a-mapy': 'TransportationAndMaps',
   // waste-types
   paper: 'WastePaperPictogram',
   plastic: 'WastePlasticPictogram',

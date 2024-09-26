@@ -26,7 +26,8 @@ fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
   title
   text
   videoUrl
-  imageTitle
+  alternativeTextVideo
+  imageQuote
   image {
     data {
       ...UploadImageEntity

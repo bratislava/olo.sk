@@ -12,19 +12,23 @@
     "text": {
       "type": "text"
     },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageQuote": {
+      "type": "text"
+    },
+    "alternativeTextVideo": {
+      "type": "text"
+    },
     "videoUrl": {
       "type": "string",
       "required": true
-    },
-    "image": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false
-    },
-    "imageTitle": {
-      "type": "text"
     }
   }
 }

@@ -241,17 +241,19 @@ input ComponentHeaderSectionsBranchMapInput {
 }
 
 type ComponentHeaderSectionsCareers {
+  alternativeTextVideo: String
   id: ID!
   image: UploadFileEntityResponse
-  imageTitle: String
+  imageQuote: String
   text: String
   title: String
   videoUrl: String!
 }
 
 input ComponentHeaderSectionsCareersFiltersInput {
+  alternativeTextVideo: StringFilterInput
   and: [ComponentHeaderSectionsCareersFiltersInput]
-  imageTitle: StringFilterInput
+  imageQuote: StringFilterInput
   not: ComponentHeaderSectionsCareersFiltersInput
   or: [ComponentHeaderSectionsCareersFiltersInput]
   text: StringFilterInput
@@ -260,9 +262,10 @@ input ComponentHeaderSectionsCareersFiltersInput {
 }
 
 input ComponentHeaderSectionsCareersInput {
+  alternativeTextVideo: String
   id: ID
   image: ID
-  imageTitle: String
+  imageQuote: String
   text: String
   title: String
   videoUrl: String

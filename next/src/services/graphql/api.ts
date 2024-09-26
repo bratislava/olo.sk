@@ -334,9 +334,10 @@ export type ComponentHeaderSectionsBranchMapBranchesArgs = {
 
 export type ComponentHeaderSectionsCareers = {
   __typename?: 'ComponentHeaderSectionsCareers'
+  alternativeTextVideo?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
   image?: Maybe<UploadFileEntityResponse>
-  imageTitle?: Maybe<Scalars['String']['output']>
+  imageQuote?: Maybe<Scalars['String']['output']>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
   videoUrl: Scalars['String']['output']
@@ -5788,7 +5789,8 @@ export type CareersHeaderSectionFragment = {
   title?: string | null
   text?: string | null
   videoUrl: string
-  imageTitle?: string | null
+  alternativeTextVideo?: string | null
+  imageQuote?: string | null
   image?: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -26668,7 +26670,8 @@ export const CareersHeaderSectionFragmentDoc = gql`
     title
     text
     videoUrl
-    imageTitle
+    alternativeTextVideo
+    imageQuote
     image {
       data {
         ...UploadImageEntity

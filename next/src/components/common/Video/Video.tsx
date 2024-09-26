@@ -9,8 +9,7 @@ export type VideoProps = {
 
 const Video = ({ url, ariaLabel }: VideoProps) => {
   return (
-    <div className="relative w-full overflow-hidden rounded-3xl pb-[56.25%]">
-      {/* pb-[56.25%] creates a 16:9 aspect ratio */}
+    <div className="relative aspect-video w-full overflow-hidden rounded-3xl">
       <iframe
         width="100%"
         height="100%"

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_waste_collection_days",
+  "info": {
+    "displayName": "Odvozové dni"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "anchorId": {
+      "type": "string"
+    },
+    "wasteCollectionDaysType": {
+      "type": "string"
+    }
+  }
+}

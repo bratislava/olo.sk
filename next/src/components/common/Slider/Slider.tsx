@@ -1,3 +1,4 @@
+import { readableColorIsBlack } from 'color2k'
 import { AnimatePresence, motion, Variant } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -12,7 +13,6 @@ import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type SliderProps = {
   slides: SlideItemFragment[]
-  backgroundColor?: string
 }
 
 /**
@@ -20,13 +20,13 @@ type SliderProps = {
  * Inspired by marianum.sk: https://github.com/bratislava/marianum.sk/blob/master/next/components/molecules/Slider.tsx
  */
 
-const Slider = ({ slides, backgroundColor = 'bg-action-background-default' }: SliderProps) => {
+const Slider = ({ slides }: SliderProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
   const [[slideIndex, transitionDirection], setSlideIndex] = useState([0, 0])
 
-  const { title, text, link, media } = slides[slideIndex]
+  const { title, text, link, media, backgroundColor } = slides[slideIndex]
   const { url, alternativeText } = media?.data?.attributes ?? {}
 
   const handleGoToNext = () => {
@@ -58,14 +58,16 @@ const Slider = ({ slides, backgroundColor = 'bg-action-background-default' }: Sl
     },
   }
 
+  const invertedTypographyClassNames = {
+    'text-content-primaryInverted': !readableColorIsBlack(backgroundColor), // Change the text color to white if contrast with the background is insufficient
+  }
+
   return (
     <div
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
-      className={cn(
-        'relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2 lg:h-[26.125rem]',
-        backgroundColor,
-      )}
+      className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2 lg:h-[26.125rem]"
+      style={{ backgroundColor }}
     >
       <AnimatePresence initial={false} custom={transitionDirection} mode="wait">
         <motion.div
@@ -89,12 +91,21 @@ const Slider = ({ slides, backgroundColor = 'bg-action-background-default' }: Sl
           ) : null}
           <div className="h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
             <div className="flex flex-col gap-4 lg:gap-6">
-              <div className="flex flex-col gap-2 lg:gap-3">
+              <div className={cn('flex flex-col gap-2 lg:gap-3', invertedTypographyClassNames)}>
                 <Typography variant="h3">{title}</Typography>
                 {text ? <Typography variant="p-default">{text}</Typography> : null}
               </div>
               {link ? (
-                <Button variant="black-solid" asLink hasLinkIcon={false} {...getLinkProps(link)} />
+                <Button
+                  variant="black-solid"
+                  asLink
+                  hasLinkIcon={false}
+                  {...getLinkProps(link)}
+                  className={cn({
+                    'border-background-primary bg-background-primary text-background-primaryInverted hover:border-content-secondaryInverted hover:bg-content-secondaryInverted':
+                      !readableColorIsBlack(backgroundColor),
+                  })}
+                />
               ) : null}
             </div>
           </div>

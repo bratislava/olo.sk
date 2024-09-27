@@ -1485,6 +1485,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.board-members',
         'sections.vacancies',
         'sections.global-search',
+        'sections.waste-collection-days',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1680,6 +1681,44 @@ export interface ApiTagTag extends Schema.CollectionType {
   }
 }
 
+export interface ApiWasteCollectionDayWasteCollectionDay extends Schema.CollectionType {
+  collectionName: 'waste_collection_days'
+  info: {
+    singularName: 'waste-collection-day'
+    pluralName: 'waste-collection-days'
+    displayName: 'Odvozov\u00E9 dni'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    type: Attribute.String
+    address: Attribute.String
+    registrationNumber: Attribute.String
+    validity: Attribute.String
+    evenWeek: Attribute.String
+    oddWeek: Attribute.String
+    collectionDates: Attribute.Text
+    note: Attribute.Text
+    importId: Attribute.String & Attribute.Private
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::waste-collection-day.waste-collection-day',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::waste-collection-day.waste-collection-day',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+  }
+}
+
 export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   collectionName: 'workshops'
   info: {
@@ -1742,6 +1781,7 @@ declare module '@strapi/types' {
       'api::service.service': ApiServiceService
       'api::service-category.service-category': ApiServiceCategoryServiceCategory
       'api::tag.tag': ApiTagTag
+      'api::waste-collection-day.waste-collection-day': ApiWasteCollectionDayWasteCollectionDay
       'api::workshop.workshop': ApiWorkshopWorkshop
     }
   }

@@ -11,6 +11,7 @@ const createDummySlides = () => {
     return {
       title,
       text: 'Subtext',
+      backgroundColor: index % 2 === 0 ? '#F1B434' : '#1F5F0F',
       media: {
         data: {
           attributes: {
@@ -45,11 +46,11 @@ export default meta
 type Story = StoryObj<typeof SliderComponent>
 
 export const Slider: Story = {
-  render: (props) => {
+  render: (args) => {
     return (
       // 798px = 49.875rem
       <div className="max-w-[49.875rem]">
-        <SliderComponent {...props} />
+        <SliderComponent {...args} />
       </div>
     )
   },

@@ -111,6 +111,13 @@ fragment TableSection on ComponentSectionsTable {
   anchorId
 }
 
+fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
+  title
+  text
+  anchorId
+  wasteCollectionDaysType
+}
+
 fragment FaqSection on ComponentSectionsFaq {
   title
   text
@@ -400,6 +407,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsTable {
     ...TableSection
+  }
+
+  ... on ComponentSectionsWasteCollectionDays {
+    ...WasteCollectionDays
   }
 
   ... on ComponentSectionsFaq {

@@ -1,0 +1,16 @@
+diff --git a/node_modules/strapi-plugin-meilisearch/server/services/lifecycle/lifecycle.js b/node_modules/strapi-plugin-meilisearch/server/services/lifecycle/lifecycle.js
+index a3f8037..18c91ee 100644
+--- a/node_modules/strapi-plugin-meilisearch/server/services/lifecycle/lifecycle.js
++++ b/node_modules/strapi-plugin-meilisearch/server/services/lifecycle/lifecycle.js
+@@ -12,6 +12,11 @@ module.exports = ({ strapi }) => {
+      * @returns {Promise<object>}
+      */
+     async subscribeContentType({ contentType }) {
++      // Each time waste collection day is imported it causes to refresh the meilisearch which is
++      // extremely slow.
++      if (contentType === 'api::waste-collection-day.waste-collection-day') {
++        return Promise.resolve({})
++      }
+       const contentTypeUid = contentTypeService.getContentTypeUid({
+         contentType: contentType,
+       })

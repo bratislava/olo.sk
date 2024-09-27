@@ -8,10 +8,12 @@
     "name": "City of Bratislava"
   },
   "scripts": {
-    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && strapi build",
+    "build": "yarn plugins:build && strapi build",
     "dev": "yarn develop",
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
-    "postinstall": "patch-package && yarn --cwd ./src/plugins/wysiwyg/ install",
+    "plugins:build": "for D in ./src/plugins/*/; do echo \"Building plugin ${D}\" && yarn --cwd \"${D}\" build; done",
+    "plugins:install": "for D in ./src/plugins/*/; do echo \"Installing plugin dependencies in ${D}\" && yarn --cwd \"${D}\" install; done",
+    "postinstall": "patch-package && yarn plugins:install",
     "start": "strapi start",
     "strapi": "strapi",
     "ts:generate-types": "strapi ts:generate-types"
@@ -28,9 +30,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "5.3.4",
-    "strapi-plugin-meilisearch": "0.9.1",
+    "strapi-plugin-meilisearch": "0.9.2",
     "strapi-provider-upload-ts-minio": "^3.1.0",
-    "styled-components": "5.3.3"
+    "styled-components": "5.3.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

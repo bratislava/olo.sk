@@ -776,7 +776,7 @@ export type ComponentItemsOrderedCardsItemFiltersInput = {
 
 export type ComponentItemsSlide = {
   __typename?: 'ComponentItemsSlide'
-  backgroundColor?: Maybe<Scalars['String']['output']>
+  backgroundColor: Scalars['String']['output']
   id: Scalars['ID']['output']
   link?: Maybe<ComponentItemsLink>
   media: UploadFileEntityResponse
@@ -1489,6 +1489,15 @@ export type ComponentSectionsVacancies = {
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsWasteCollectionDays = {
+  __typename?: 'ComponentSectionsWasteCollectionDays'
+  anchorId?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+  wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentSectionsWasteSortingCards = {
@@ -2224,6 +2233,7 @@ export type GenericMorph =
   | ComponentSectionsSortingGuideAccordions
   | ComponentSectionsTable
   | ComponentSectionsVacancies
+  | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | Contact
@@ -2247,6 +2257,7 @@ export type GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser
+  | WasteCollectionDay
   | Workshop
 
 export type Homepage = {
@@ -2470,6 +2481,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  createWasteCollectionDay?: Maybe<WasteCollectionDayEntityResponse>
   createWorkshop?: Maybe<WorkshopEntityResponse>
   deleteArticle?: Maybe<ArticleEntityResponse>
   deleteArticleCategory?: Maybe<ArticleCategoryEntityResponse>
@@ -2495,6 +2507,7 @@ export type Mutation = {
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>
   /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  deleteWasteCollectionDay?: Maybe<WasteCollectionDayEntityResponse>
   deleteWorkshop?: Maybe<WorkshopEntityResponse>
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>
@@ -2532,6 +2545,7 @@ export type Mutation = {
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse
+  updateWasteCollectionDay?: Maybe<WasteCollectionDayEntityResponse>
   updateWorkshop?: Maybe<WorkshopEntityResponse>
   upload: UploadFileEntityResponse
 }
@@ -2708,6 +2722,10 @@ export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput
 }
 
+export type MutationCreateWasteCollectionDayArgs = {
+  data: WasteCollectionDayInput
+}
+
 export type MutationCreateWorkshopArgs = {
   data: WorkshopInput
 }
@@ -2807,6 +2825,10 @@ export type MutationDeleteUsersPermissionsRoleArgs = {
 }
 
 export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID']['input']
+}
+
+export type MutationDeleteWasteCollectionDayArgs = {
   id: Scalars['ID']['input']
 }
 
@@ -2969,6 +2991,11 @@ export type MutationUpdateUsersPermissionsRoleArgs = {
 
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput
+  id: Scalars['ID']['input']
+}
+
+export type MutationUpdateWasteCollectionDayArgs = {
+  data: WasteCollectionDayInput
   id: Scalars['ID']['input']
 }
 
@@ -3203,6 +3230,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsSortingGuideAccordions
   | ComponentSectionsTable
   | ComponentSectionsVacancies
+  | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | Error
@@ -3272,6 +3300,8 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>
+  wasteCollectionDay?: Maybe<WasteCollectionDayEntityResponse>
+  wasteCollectionDays?: Maybe<WasteCollectionDayEntityResponseCollection>
   workshop?: Maybe<WorkshopEntityResponse>
   workshops?: Maybe<WorkshopEntityResponseCollection>
 }
@@ -3510,6 +3540,16 @@ export type QueryUsersPermissionsUserArgs = {
 
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryWasteCollectionDayArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type QueryWasteCollectionDaysArgs = {
+  filters?: InputMaybe<WasteCollectionDayFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
@@ -4149,6 +4189,67 @@ export type UsersPermissionsUserInput = {
 export type UsersPermissionsUserRelationResponseCollection = {
   __typename?: 'UsersPermissionsUserRelationResponseCollection'
   data: Array<UsersPermissionsUserEntity>
+}
+
+export type WasteCollectionDay = {
+  __typename?: 'WasteCollectionDay'
+  address?: Maybe<Scalars['String']['output']>
+  collectionDates?: Maybe<Scalars['String']['output']>
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  evenWeek?: Maybe<Scalars['String']['output']>
+  note?: Maybe<Scalars['String']['output']>
+  oddWeek?: Maybe<Scalars['String']['output']>
+  registrationNumber?: Maybe<Scalars['String']['output']>
+  type?: Maybe<Scalars['String']['output']>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+  validity?: Maybe<Scalars['String']['output']>
+}
+
+export type WasteCollectionDayEntity = {
+  __typename?: 'WasteCollectionDayEntity'
+  attributes?: Maybe<WasteCollectionDay>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type WasteCollectionDayEntityResponse = {
+  __typename?: 'WasteCollectionDayEntityResponse'
+  data?: Maybe<WasteCollectionDayEntity>
+}
+
+export type WasteCollectionDayEntityResponseCollection = {
+  __typename?: 'WasteCollectionDayEntityResponseCollection'
+  data: Array<WasteCollectionDayEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type WasteCollectionDayFiltersInput = {
+  address?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<WasteCollectionDayFiltersInput>>>
+  collectionDates?: InputMaybe<StringFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  evenWeek?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  importId?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<WasteCollectionDayFiltersInput>
+  note?: InputMaybe<StringFilterInput>
+  oddWeek?: InputMaybe<StringFilterInput>
+  or?: InputMaybe<Array<InputMaybe<WasteCollectionDayFiltersInput>>>
+  registrationNumber?: InputMaybe<StringFilterInput>
+  type?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+  validity?: InputMaybe<StringFilterInput>
+}
+
+export type WasteCollectionDayInput = {
+  address?: InputMaybe<Scalars['String']['input']>
+  collectionDates?: InputMaybe<Scalars['String']['input']>
+  evenWeek?: InputMaybe<Scalars['String']['input']>
+  importId?: InputMaybe<Scalars['String']['input']>
+  note?: InputMaybe<Scalars['String']['input']>
+  oddWeek?: InputMaybe<Scalars['String']['input']>
+  registrationNumber?: InputMaybe<Scalars['String']['input']>
+  type?: InputMaybe<Scalars['String']['input']>
+  validity?: InputMaybe<Scalars['String']['input']>
 }
 
 export type Workshop = {
@@ -6917,6 +7018,14 @@ export type TableSectionFragment = {
   title?: string | null
   text?: string | null
   anchorId?: string | null
+}
+
+export type WasteCollectionDaysFragment = {
+  __typename?: 'ComponentSectionsWasteCollectionDays'
+  title?: string | null
+  text?: string | null
+  anchorId?: string | null
+  wasteCollectionDaysType?: string | null
 }
 
 export type FaqSectionFragment = {
@@ -10477,6 +10586,14 @@ type PageSections_ComponentSectionsVacancies_Fragment = {
   backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
 }
 
+type PageSections_ComponentSectionsWasteCollectionDays_Fragment = {
+  __typename: 'ComponentSectionsWasteCollectionDays'
+  title?: string | null
+  text?: string | null
+  anchorId?: string | null
+  wasteCollectionDaysType?: string | null
+}
+
 type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
   __typename: 'ComponentSectionsWasteSortingCards'
   title?: string | null
@@ -10788,6 +10905,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsSortingGuideAccordions_Fragment
   | PageSections_ComponentSectionsTable_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
+  | PageSections_ComponentSectionsWasteCollectionDays_Fragment
   | PageSections_ComponentSectionsWasteSortingCards_Fragment
   | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
@@ -12452,7 +12570,7 @@ export type SlideItemFragment = {
   __typename?: 'ComponentItemsSlide'
   title: string
   text?: string | null
-  backgroundColor?: string | null
+  backgroundColor: string
   media: {
     __typename?: 'UploadFileEntityResponse'
     data?: {
@@ -12868,7 +12986,7 @@ export type HeroHomepageSectionFragment = {
     __typename?: 'ComponentItemsSlide'
     title: string
     text?: string | null
-    backgroundColor?: string | null
+    backgroundColor: string
     media: {
       __typename?: 'UploadFileEntityResponse'
       data?: {
@@ -13664,7 +13782,7 @@ export type HomepageEntityFragment = {
         __typename?: 'ComponentItemsSlide'
         title: string
         text?: string | null
-        backgroundColor?: string | null
+        backgroundColor: string
         media: {
           __typename?: 'UploadFileEntityResponse'
           data?: {
@@ -14476,7 +14594,7 @@ export type HomepageQuery = {
             __typename?: 'ComponentItemsSlide'
             title: string
             text?: string | null
-            backgroundColor?: string | null
+            backgroundColor: string
             media: {
               __typename?: 'UploadFileEntityResponse'
               data?: {
@@ -18763,6 +18881,13 @@ export type PageEntityFragment = {
           backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
         }
       | {
+          __typename: 'ComponentSectionsWasteCollectionDays'
+          title?: string | null
+          text?: string | null
+          anchorId?: string | null
+          wasteCollectionDaysType?: string | null
+        }
+      | {
           __typename: 'ComponentSectionsWasteSortingCards'
           title?: string | null
           text?: string | null
@@ -21233,6 +21358,13 @@ export type PagesQuery = {
               title?: string | null
               text?: string | null
               backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionDays'
+              title?: string | null
+              text?: string | null
+              anchorId?: string | null
+              wasteCollectionDaysType?: string | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -23725,6 +23857,13 @@ export type PageBySlugQuery = {
               title?: string | null
               text?: string | null
               backgroundColorVacancies?: Enum_Componentsectionsvacancies_Backgroundcolor | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionDays'
+              title?: string | null
+              text?: string | null
+              anchorId?: string | null
+              wasteCollectionDaysType?: string | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -26261,6 +26400,22 @@ export type ServiceBySlugQuery = {
         > | null
       } | null
     }>
+  } | null
+}
+
+export type WasteCollectionDayEntityFragment = {
+  __typename?: 'WasteCollectionDayEntity'
+  id?: string | null
+  attributes?: {
+    __typename?: 'WasteCollectionDay'
+    type?: string | null
+    address?: string | null
+    registrationNumber?: string | null
+    validity?: string | null
+    evenWeek?: string | null
+    oddWeek?: string | null
+    collectionDates?: string | null
+    note?: string | null
   } | null
 }
 
@@ -28862,6 +29017,14 @@ export const TableSectionFragmentDoc = gql`
     anchorId
   }
 `
+export const WasteCollectionDaysFragmentDoc = gql`
+  fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
+    title
+    text
+    anchorId
+    wasteCollectionDaysType
+  }
+`
 export const FaqCategorySlugEntityFragmentDoc = gql`
   fragment FaqCategorySlugEntity on FaqCategoryEntity {
     __typename
@@ -29246,6 +29409,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsTable {
       ...TableSection
     }
+    ... on ComponentSectionsWasteCollectionDays {
+      ...WasteCollectionDays
+    }
     ... on ComponentSectionsFaq {
       ...FaqSection
     }
@@ -29307,6 +29473,7 @@ export const PageSectionsFragmentDoc = gql`
   ${WorkshopsSectionFragmentDoc}
   ${ColumnsListSectionFragmentDoc}
   ${TableSectionFragmentDoc}
+  ${WasteCollectionDaysFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}
   ${BannerSectionFragmentDoc}
@@ -29455,6 +29622,21 @@ export const ServiceEntityFragmentDoc = gql`
   ${ServiceCategoryEntityFragmentDoc}
   ${UploadImageEntityFragmentDoc}
   ${ServiceSectionsFragmentDoc}
+`
+export const WasteCollectionDayEntityFragmentDoc = gql`
+  fragment WasteCollectionDayEntity on WasteCollectionDayEntity {
+    id
+    attributes {
+      type
+      address
+      registrationNumber
+      validity
+      evenWeek
+      oddWeek
+      collectionDates
+      note
+    }
+  }
 `
 export const WorkshopEntityFragmentDoc = gql`
   fragment WorkshopEntity on WorkshopEntity {

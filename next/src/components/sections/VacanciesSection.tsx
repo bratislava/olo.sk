@@ -1,8 +1,10 @@
-import React from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'next-i18next'
 
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { VacanciesSectionFragment } from '@/src/services/graphql/api'
+import { fetchNalgooOpenPositions } from '@/src/services/openapi-nalgoo/fetchOpenPositions'
 import cn from '@/src/utils/cn'
 
 type Props = {
@@ -15,7 +17,16 @@ type Props = {
  */
 
 const VacanciesSection = ({ section, className }: Props) => {
+  const { i18n } = useTranslation()
+  const locale = i18n.language
   const { title, text, backgroundColorVacancies: backgroundColor } = section ?? {}
+
+  const { data } = useQuery({
+    queryKey: ['OpenPositions', locale],
+    queryFn: () => fetchNalgooOpenPositions(),
+  })
+
+  console.log('data', data)
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -24,7 +35,7 @@ const VacanciesSection = ({ section, className }: Props) => {
       className={cn('py-6 lg:py-12', className)}
     >
       <div className="flex flex-col gap-6">
-        <SectionHeader title={title} text={text} />
+        <SectionHeader title={title} text={`${text}`} />
 
         {/* TODO get and show positions from Nalgoo */}
         <div className="h-40 rounded-xl border border-dashed bg-background-primary" />

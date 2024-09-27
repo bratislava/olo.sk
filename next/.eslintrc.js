@@ -52,5 +52,5 @@ module.exports = {
     'prettier/prettier': ['error', { endOfLine: 'auto' }], // TODO revisit, prettier should not be run by eslint
     'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
   },
-  ignorePatterns: ['*.config.*', '.eslintrc.js', 'src/services/graphql/api.ts'],
+  ignorePatterns: ['*.config.*', '.eslintrc.js', 'src/services/graphql/api.ts', '/services/openapi-*/*.ts'],
 }

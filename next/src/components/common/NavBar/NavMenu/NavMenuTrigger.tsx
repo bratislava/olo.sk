@@ -24,11 +24,7 @@ const NavMenuTrigger = forwardRef<HTMLButtonElement, NavMenuTriggerProps>(
           className,
         )}
       >
-        {/* For some reason, Figma uses line-height 150%, but it actually aligns as 100% in Figma in this case, so we manually use 100% here */}
-        <Typography variant="p-default-bold" className_onlyWhenNecessary="leading-1">
-          {label}
-        </Typography>
-
+        <Typography variant="p-default-bold">{label}</Typography>
         <Icon name="chevron-dole-maly" className="size-6" aria-hidden />
       </NavigationMenu.Trigger>
     )

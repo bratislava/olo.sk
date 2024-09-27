@@ -10,6 +10,7 @@ type Article {
   coverMedia: UploadFileEntityResponse
   createdAt: DateTime
   gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
+  isCurrentChangeInOpeningHours: Boolean
   locale: String
   localizations(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   perex: String
@@ -93,6 +94,7 @@ input ArticleFiltersInput {
   content: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
+  isCurrentChangeInOpeningHours: BooleanFilterInput
   locale: StringFilterInput
   localizations: ArticleFiltersInput
   not: ArticleFiltersInput
@@ -112,6 +114,7 @@ input ArticleInput {
   content: String
   coverMedia: ID
   gallery: [ID]
+  isCurrentChangeInOpeningHours: Boolean
   perex: String
   publishedAt: DateTime
   slug: String
@@ -480,6 +483,75 @@ input ComponentItemsColumnsListItemInput {
   content: String
   icon: ID
   id: ID
+}
+
+type ComponentItemsContactsBranch {
+  branch: BranchEntityResponse
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentItemsContactsBranchFiltersInput {
+  and: [ComponentItemsContactsBranchFiltersInput]
+  branch: BranchFiltersInput
+  not: ComponentItemsContactsBranchFiltersInput
+  or: [ComponentItemsContactsBranchFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsContactsBranchInput {
+  branch: ID
+  id: ID
+  text: String
+  title: String
+}
+
+type ComponentItemsContactsContact {
+  contact: ContactEntityResponse
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentItemsContactsContactFiltersInput {
+  and: [ComponentItemsContactsContactFiltersInput]
+  contact: ContactFiltersInput
+  not: ComponentItemsContactsContactFiltersInput
+  or: [ComponentItemsContactsContactFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsContactsContactInput {
+  contact: ID
+  id: ID
+  text: String
+  title: String
+}
+
+type ComponentItemsContactsOpeningTime {
+  id: ID!
+  openingTime: OpeningTimeEntityResponse
+  text: String
+  title: String
+}
+
+input ComponentItemsContactsOpeningTimeFiltersInput {
+  and: [ComponentItemsContactsOpeningTimeFiltersInput]
+  not: ComponentItemsContactsOpeningTimeFiltersInput
+  openingTime: OpeningTimeFiltersInput
+  or: [ComponentItemsContactsOpeningTimeFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentItemsContactsOpeningTimeInput {
+  id: ID
+  openingTime: ID
+  text: String
+  title: String
 }
 
 type ComponentItemsFileItem {
@@ -1214,25 +1286,28 @@ input ComponentSectionsColumnsListInput {
 }
 
 type ComponentSectionsContacts {
-  contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactRelationResponseCollection
+  branches(filters: ComponentItemsContactsBranchFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsContactsBranch]
+  contacts(filters: ComponentItemsContactsContactFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsContactsContact]
   id: ID!
-  text: String
+  openingTimes(filters: ComponentItemsContactsOpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsContactsOpeningTime]
   title: String
 }
 
 input ComponentSectionsContactsFiltersInput {
   and: [ComponentSectionsContactsFiltersInput]
-  contacts: ContactFiltersInput
+  branches: ComponentItemsContactsBranchFiltersInput
+  contacts: ComponentItemsContactsContactFiltersInput
   not: ComponentSectionsContactsFiltersInput
+  openingTimes: ComponentItemsContactsOpeningTimeFiltersInput
   or: [ComponentSectionsContactsFiltersInput]
-  text: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsContactsInput {
-  contacts: [ID]
+  branches: [ComponentItemsContactsBranchInput]
+  contacts: [ComponentItemsContactsContactInput]
   id: ID
-  text: String
+  openingTimes: [ComponentItemsContactsOpeningTimeInput]
   title: String
 }
 
@@ -2411,7 +2486,7 @@ type FormRelationResponseCollection {
   data: [FormEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection

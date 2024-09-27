@@ -138,6 +138,9 @@ const config: Config = {
         },
       },
       warning: {
+        background: {
+          default: 'rgb(var(--token-warning-background-default))',
+        },
         softBackground: {
           default: 'rgb(var(--token-warning-soft-background-default))',
         },

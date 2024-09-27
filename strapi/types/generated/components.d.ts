@@ -449,8 +449,9 @@ export interface SectionsContacts extends Schema.Component {
   }
   attributes: {
     title: Attribute.String
-    text: Attribute.Text
-    contacts: Attribute.Relation<'sections.contacts', 'oneToMany', 'api::contact.contact'>
+    contacts: Attribute.Component<'items.contacts-contact', true>
+    openingTimes: Attribute.Component<'items.contacts-opening-time', true>
+    branches: Attribute.Component<'items.contacts-branch', true>
   }
 }
 
@@ -968,6 +969,46 @@ export interface ItemsFileItem extends Schema.Component {
   }
 }
 
+export interface ItemsContactsOpeningTime extends Schema.Component {
+  collectionName: 'components_items_contacts_opening_times'
+  info: {
+    displayName: 'Contacts opening time'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    openingTime: Attribute.Relation<
+      'items.contacts-opening-time',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
+export interface ItemsContactsContact extends Schema.Component {
+  collectionName: 'components_items_contacts_contacts'
+  info: {
+    displayName: 'Contacts contact'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    contact: Attribute.Relation<'items.contacts-contact', 'oneToOne', 'api::contact.contact'>
+  }
+}
+
+export interface ItemsContactsBranch extends Schema.Component {
+  collectionName: 'components_items_contacts_branches'
+  info: {
+    displayName: 'Contacts branch'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    branch: Attribute.Relation<'items.contacts-branch', 'oneToOne', 'api::branch.branch'>
+  }
+}
+
 export interface ItemsColumnsListItem extends Schema.Component {
   collectionName: 'components_items_columns_list_items'
   info: {
@@ -1107,6 +1148,9 @@ declare module '@strapi/types' {
       'items.form-cta-banner-link': ItemsFormCtaBannerLink
       'items.footer-column': ItemsFooterColumn
       'items.file-item': ItemsFileItem
+      'items.contacts-opening-time': ItemsContactsOpeningTime
+      'items.contacts-contact': ItemsContactsContact
+      'items.contacts-branch': ItemsContactsBranch
       'items.columns-list-item': ItemsColumnsListItem
       'items.columns-item': ItemsColumnsItem
       'items.cards-list-item': ItemsCardsListItem

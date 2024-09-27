@@ -36,7 +36,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <BAQueryClientProvider>
         <HydrationBoundary state={pageProps.dehydratedState}>
           <QueryParamProvider adapter={NextAdapter}>
-            {/*       <BAI18nProvider> */}
+            {/* <BAI18nProvider> */}
             <OverlayProvider>
               <NavMenuContextProvider>
                 {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}

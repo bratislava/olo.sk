@@ -60,6 +60,7 @@ const ContactsBlock = ({
 
 const ContactsSection = ({ section }: Props) => {
   const { t } = useTranslation()
+
   const {
     title,
     contacts,

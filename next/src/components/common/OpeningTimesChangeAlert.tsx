@@ -17,7 +17,7 @@ const OpeningTimesChangeAlert = () => {
 
   const { data: articlesData } = useQuery({
     queryFn: () => client.OpeningTimesChangeArticles({ locale }),
-    queryKey: ['articles', locale],
+    queryKey: ['OpeningTimesChangeArticles', locale],
   })
 
   // eslint-disable-next-line unicorn/no-array-callback-reference

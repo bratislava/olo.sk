@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { VacanciesSectionFragment } from '@/src/services/graphql/api'
-import { fetchNalgooOpenPositions } from '@/src/services/openapi-nalgoo/fetchOpenPositions'
+import { fetchOpenPositionsFromApi } from '@/src/services/nalgoo/fetchOpenPositionsFromApi'
 import cn from '@/src/utils/cn'
 
 type Props = {
@@ -23,7 +23,7 @@ const VacanciesSection = ({ section, className }: Props) => {
 
   const { data } = useQuery({
     queryKey: ['OpenPositions', locale],
-    queryFn: () => fetchNalgooOpenPositions(),
+    queryFn: () => fetchOpenPositionsFromApi(),
   })
 
   console.log('data', data)

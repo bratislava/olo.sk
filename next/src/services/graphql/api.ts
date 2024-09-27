@@ -3121,6 +3121,7 @@ export type PageFiltersInput = {
 
 export type PageHeaderDynamicZone =
   | ComponentHeaderSectionsBranchMap
+  | ComponentHeaderSectionsCareers
   | ComponentHeaderSectionsFeaturedNews
   | ComponentHeaderSectionsGallery
   | ComponentHeaderSectionsImage
@@ -6209,6 +6210,29 @@ type HeaderSections_ComponentHeaderSectionsBranchMap_Fragment = {
   } | null
 }
 
+type HeaderSections_ComponentHeaderSectionsCareers_Fragment = {
+  __typename: 'ComponentHeaderSectionsCareers'
+  videoUrl: string
+  alternativeTextVideo?: string | null
+  imageQuote?: string | null
+  image?: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  } | null
+}
+
 type HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment = {
   __typename: 'ComponentHeaderSectionsFeaturedNews'
   articlesTitle: string
@@ -6449,6 +6473,7 @@ type HeaderSections_Error_Fragment = { __typename: 'Error' }
 
 export type HeaderSectionsFragment =
   | HeaderSections_ComponentHeaderSectionsBranchMap_Fragment
+  | HeaderSections_ComponentHeaderSectionsCareers_Fragment
   | HeaderSections_ComponentHeaderSectionsFeaturedNews_Fragment
   | HeaderSections_ComponentHeaderSectionsGallery_Fragment
   | HeaderSections_ComponentHeaderSectionsImage_Fragment
@@ -16052,6 +16077,28 @@ export type PageEntityFragment = {
           } | null
         }
       | {
+          __typename: 'ComponentHeaderSectionsCareers'
+          videoUrl: string
+          alternativeTextVideo?: string | null
+          imageQuote?: string | null
+          image?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          } | null
+        }
+      | {
           __typename: 'ComponentHeaderSectionsFeaturedNews'
           articlesTitle: string
           firstArticle?: {
@@ -18354,6 +18401,28 @@ export type PagesQuery = {
                     } | null
                   } | null
                 }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsCareers'
+              videoUrl: string
+              alternativeTextVideo?: string | null
+              imageQuote?: string | null
+              image?: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
               } | null
             }
           | {
@@ -20683,6 +20752,28 @@ export type PageBySlugQuery = {
                     } | null
                   } | null
                 }>
+              } | null
+            }
+          | {
+              __typename: 'ComponentHeaderSectionsCareers'
+              videoUrl: string
+              alternativeTextVideo?: string | null
+              imageQuote?: string | null
+              image?: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
               } | null
             }
           | {
@@ -26803,32 +26894,6 @@ export const NavigationEntityFragmentDoc = gql`
   }
   ${PageSlugEntityFragmentDoc}
 `
-export const UploadImageEntityFragmentDoc = gql`
-  fragment UploadImageEntity on UploadFileEntity {
-    id
-    attributes {
-      url
-      width
-      height
-      caption
-      alternativeText
-      name
-    }
-  }
-`
-export const CareersHeaderSectionFragmentDoc = gql`
-  fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
-    videoUrl
-    alternativeTextVideo
-    imageQuote
-    image {
-      data {
-        ...UploadImageEntity
-      }
-    }
-  }
-  ${UploadImageEntityFragmentDoc}
-`
 export const IconHeaderSectionFragmentDoc = gql`
   fragment IconHeaderSection on ComponentHeaderSectionsIcon {
     iconName
@@ -27048,6 +27113,19 @@ export const FormEntityFragmentDoc = gql`
   }
   ${FormSlugEntityFragmentDoc}
   ${ServiceSlugEntityFragmentDoc}
+`
+export const UploadImageEntityFragmentDoc = gql`
+  fragment UploadImageEntity on UploadFileEntity {
+    id
+    attributes {
+      url
+      width
+      height
+      caption
+      alternativeText
+      name
+    }
+  }
 `
 export const SlideItemFragmentDoc = gql`
   fragment SlideItem on ComponentItemsSlide {
@@ -27540,6 +27618,19 @@ export const BranchMapHeaderSectionFragmentDoc = gql`
   }
   ${BranchEntityFragmentDoc}
 `
+export const CareersHeaderSectionFragmentDoc = gql`
+  fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
+    videoUrl
+    alternativeTextVideo
+    imageQuote
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
 export const HeaderSectionsFragmentDoc = gql`
   fragment HeaderSections on PageHeaderDynamicZone {
     __typename
@@ -27561,6 +27652,9 @@ export const HeaderSectionsFragmentDoc = gql`
     ... on ComponentHeaderSectionsBranchMap {
       ...BranchMapHeaderSection
     }
+    ... on ComponentHeaderSectionsCareers {
+      ...CareersHeaderSection
+    }
   }
   ${ImageHeaderSectionFragmentDoc}
   ${SideImageHeaderSectionFragmentDoc}
@@ -27568,6 +27662,7 @@ export const HeaderSectionsFragmentDoc = gql`
   ${GalleryHeaderSectionFragmentDoc}
   ${PickupDayHeaderSectionFragmentDoc}
   ${BranchMapHeaderSectionFragmentDoc}
+  ${CareersHeaderSectionFragmentDoc}
 `
 export const RichtextSectionFragmentDoc = gql`
   fragment RichtextSection on ComponentSectionsRichtext {

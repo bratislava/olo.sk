@@ -95,4 +95,8 @@ fragment HeaderSections on PageHeaderDynamicZone {
   ... on ComponentHeaderSectionsBranchMap {
     ...BranchMapHeaderSection
   }
+  
+  ... on ComponentHeaderSectionsCareers {
+    ...CareersHeaderSection
+  }
 }

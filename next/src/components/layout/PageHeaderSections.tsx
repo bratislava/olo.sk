@@ -1,5 +1,6 @@
 import React from 'react'
 
+import CareersPageHeader from '@/src/components/sections/headers/CareersPageHeader'
 import PageHeaderBasic from '@/src/components/sections/headers/PageHeaderBasic'
 import PageHeaderBranchMap from '@/src/components/sections/headers/PageHeaderBranchMap'
 import PageHeaderFeaturedNews from '@/src/components/sections/headers/PageHeaderFeaturedNews'
@@ -41,6 +42,9 @@ const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
     // eslint-disable-next-line no-secrets/no-secrets
     case 'ComponentHeaderSectionsPickupDay':
       return <PageHeaderPickupDay header={header} title={title} />
+
+    case 'ComponentHeaderSectionsCareers':
+      return <CareersPageHeader header={header} title={title} perex={perex} />
 
     case 'ComponentHeaderSectionsBranchMap':
       return <PageHeaderBranchMap header={header} title={title} perex={perex} />

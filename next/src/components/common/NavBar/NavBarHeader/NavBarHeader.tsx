@@ -16,15 +16,15 @@ type NavBarHeaderProps = {
 }
 
 const NavBarHeader = ({ className }: NavBarHeaderProps) => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const locale = i18n.language
 
   const { currentWeekMessage } = useCurrentWeekParity()
   const { getLinkProps } = useGetLinkProps()
   const { data } = useQuery(generalQuery(locale))
-  const { t } = useTranslation()
 
   const { contactsLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
+  const { children, href } = getLinkProps(contactsLink)
 
   return (
     <div className={cn('bg-action-background-default py-3', className)}>
@@ -36,7 +36,7 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
         </div>
 
         <Button
-          href={getLinkProps(contactsLink).href}
+          href={href}
           asLink
           hasLinkIcon={false}
           aria-label={t('navBar.contactsButton')}
@@ -44,7 +44,7 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
           className="flex items-center justify-center"
         >
           <Icon name="telefon" className="size-6" />
-          {t('navBar.contactsButton')}
+          {children}
         </Button>
       </div>
     </div>

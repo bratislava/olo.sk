@@ -13,6 +13,8 @@ type MenuItemArticleCardProps = {
   className?: string
 }
 
+// TODO: Tag should have font size of 12px
+
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1949-19741&m=dev
  */
@@ -29,12 +31,14 @@ const MenuItemArticleCard = ({
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-4 lg:flex-row">
           {/* 6.25rem = 100px */}
-          <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />
+          {imgSrc ? (
+            <CardImage imgSrc={imgSrc} className="aspect-[100/56] w-[6.25rem] rounded-lg" />
+          ) : null}
           <div className="flex flex-col justify-center gap-3">
             <Tag variant="without-bg" text={tagText} />
             <Typography
               variant="h6"
-              className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
+              className_onlyWhenNecessary="lg:line-clamp-1 leading-tight lg:group-hover/CardBase:underline text-wrap"
             >
               {title}
             </Typography>

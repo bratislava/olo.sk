@@ -37,7 +37,7 @@ const MenuItemWorkshopCard = ({
           >
             <Typography
               variant="h6"
-              className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
+              className_onlyWhenNecessary="lg:line-clamp-1 leading-tight lg:group-hover/CardBase:underline text-wrap"
             >
               {title}
             </Typography>

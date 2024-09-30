@@ -48,7 +48,11 @@ const ArticlesSection = ({ section }: Props) => {
   }, [filters.page, filters.pageSize])
 
   useEffect(() => {
-    setFilters((previousState) => ({ ...previousState, search: debouncedInput, page: 1 }))
+    setFilters((previousState) => ({
+      ...previousState,
+      search: debouncedInput,
+      page: 1,
+    }))
   }, [debouncedInput, setFilters])
 
   const { data, isPending, isError, error, isFetching } = useQuery({

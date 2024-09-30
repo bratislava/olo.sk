@@ -90,7 +90,6 @@ const ImageAndTextOverlapped = ({
   const ImageContent = image?.attributes?.url ? (
     <Image
       src={image.attributes.url}
-      // @ts-ignore
       alt={image.attributes?.alternativeText ?? ''}
       fill
       sizes={generateImageSizes({ md: '50vw', default: '100vw' })}

@@ -8,12 +8,12 @@
     "name": "City of Bratislava"
   },
   "scripts": {
-    "build": "yarn plugins:build && strapi build",
+    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && yarn --cwd ./src/plugins/waste-collection-days-import/ build && strapi build",
     "dev": "yarn develop",
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
+    "postinstall": "patch-package && yarn --cwd ./src/plugins/wysiwyg/ install && yarn --cwd ./src/plugins/waste-collection-days-import/ install",
     "plugins:build": "for D in ./src/plugins/*/; do echo \"Building plugin ${D}\" && yarn --cwd \"${D}\" build; done",
     "plugins:install": "for D in ./src/plugins/*/; do echo \"Installing plugin dependencies in ${D}\" && yarn --cwd \"${D}\" install; done",
-    "postinstall": "patch-package && yarn plugins:install",
     "start": "strapi start",
     "strapi": "strapi",
     "ts:generate-types": "strapi ts:generate-types"

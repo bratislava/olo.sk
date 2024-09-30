@@ -84,16 +84,23 @@ const Slider = ({ slides }: SliderProps) => {
           className="flex flex-col lg:h-full"
         >
           {url ? (
-            // 20.125rem = 322px, 6rem = 96px
-            <div className="relative flex aspect-heroSliderMedia lg:absolute lg:bottom-0 lg:right-0 lg:top-24 lg:h-[20.125rem]">
+            // 8rem = 128px, 18.125rem = 290px
+            <div className="relative z-0 flex aspect-heroSliderMedia xl:absolute xl:right-0 xl:top-32 xl:h-[18.125rem]">
               <Image src={url} alt={alternativeText ?? ''} fill className="object-cover" />
             </div>
           ) : null}
-          <div className="h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
+          <div className="z-1 h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
             <div className="flex flex-col gap-4 lg:gap-6">
               <div className={cn('flex flex-col gap-2 lg:gap-3', invertedTypographyClassNames)}>
                 <Typography variant="h3">{title}</Typography>
-                {text ? <Typography variant="p-default">{text}</Typography> : null}
+                {text ? (
+                  <Typography
+                    variant="p-default"
+                    className_onlyWhenNecessary="overflow-hidden truncate text-nowrap"
+                  >
+                    {text}
+                  </Typography>
+                ) : null}
               </div>
               {link ? (
                 <Button
@@ -117,7 +124,7 @@ const Slider = ({ slides }: SliderProps) => {
         aria-label={t('carousel.aria.controlButtons')}
         role="region"
         // Currently, controls are hidden for tablet and mobile devices
-        className="hidden gap-3 px-4 pb-6 lg:flex lg:px-6 lg:pb-8"
+        className="z-1 hidden gap-3 px-4 pb-6 lg:flex lg:px-6 lg:pb-8"
       >
         <li>
           <Button

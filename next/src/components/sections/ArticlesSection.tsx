@@ -39,7 +39,12 @@ const ArticlesSection = ({ section }: Props) => {
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
 
-  const [filters, setFilters] = useRoutePreservedState(articlesDefaultFilters)
+  const PAGE_SIZE = 20
+
+  const [filters, setFilters] = useRoutePreservedState({
+    ...articlesDefaultFilters,
+    pageSize: PAGE_SIZE,
+  })
 
   const searchRef = useRef<null | HTMLInputElement>(null)
 
@@ -48,7 +53,11 @@ const ArticlesSection = ({ section }: Props) => {
   }, [filters.page, filters.pageSize])
 
   useEffect(() => {
-    setFilters((previousState) => ({ ...previousState, search: debouncedInput, page: 1 }))
+    setFilters((previousState) => ({
+      ...previousState,
+      search: debouncedInput,
+      page: 1,
+    }))
   }, [debouncedInput, setFilters])
 
   const { data, isPending, isError, error, isFetching } = useQuery({

@@ -69,6 +69,9 @@ fragment PageEntity on PageEntity {
     sections {
       ...PageSections
     }
+    seo {
+      ...Seo
+    }
   }
 }
 

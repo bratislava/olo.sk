@@ -1914,6 +1914,71 @@ input ComponentSectionsWorkshopsInput {
   workshops: [ID]
 }
 
+type ComponentSharedMetaSocial {
+  description: String!
+  id: ID!
+  image: UploadFileEntityResponse
+  socialNetwork: ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK!
+  title: String!
+}
+
+input ComponentSharedMetaSocialFiltersInput {
+  and: [ComponentSharedMetaSocialFiltersInput]
+  description: StringFilterInput
+  not: ComponentSharedMetaSocialFiltersInput
+  or: [ComponentSharedMetaSocialFiltersInput]
+  socialNetwork: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSharedMetaSocialInput {
+  description: String
+  id: ID
+  image: ID
+  socialNetwork: ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK
+  title: String
+}
+
+type ComponentSharedSeo {
+  canonicalURL: String
+  id: ID!
+  keywords: String
+  metaDescription: String!
+  metaImage: UploadFileEntityResponse
+  metaRobots: String
+  metaSocial(filters: ComponentSharedMetaSocialFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSharedMetaSocial]
+  metaTitle: String!
+  metaViewport: String
+  structuredData: JSON
+}
+
+input ComponentSharedSeoFiltersInput {
+  and: [ComponentSharedSeoFiltersInput]
+  canonicalURL: StringFilterInput
+  keywords: StringFilterInput
+  metaDescription: StringFilterInput
+  metaRobots: StringFilterInput
+  metaSocial: ComponentSharedMetaSocialFiltersInput
+  metaTitle: StringFilterInput
+  metaViewport: StringFilterInput
+  not: ComponentSharedSeoFiltersInput
+  or: [ComponentSharedSeoFiltersInput]
+  structuredData: JSONFilterInput
+}
+
+input ComponentSharedSeoInput {
+  canonicalURL: String
+  id: ID
+  keywords: String
+  metaDescription: String
+  metaImage: ID
+  metaRobots: String
+  metaSocial: [ComponentSharedMetaSocialInput]
+  metaTitle: String
+  metaViewport: String
+  structuredData: JSON
+}
+
 type Contact {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   createdAt: DateTime
@@ -2257,6 +2322,11 @@ enum ENUM_COMPONENTSECTIONSVACANCIES_BACKGROUNDCOLOR {
   tertiary
 }
 
+enum ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK {
+  Facebook
+  Twitter
+}
+
 enum ENUM_SERVICECATEGORY_CATEGORYCOLOR {
   blue
   green
@@ -2511,7 +2581,7 @@ type FormRelationResponseCollection {
   data: [FormEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | ComponentSharedMetaSocial | ComponentSharedSeo | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2987,6 +3057,7 @@ type Page {
   perex: String
   publishedAt: DateTime
   sections: [PageSectionsDynamicZone]
+  seo: ComponentSharedSeo
   slug: String!
   title: String!
   updatedAt: DateTime
@@ -3020,6 +3091,7 @@ input PageFiltersInput {
   parentPage: PageFiltersInput
   perex: StringFilterInput
   publishedAt: DateTimeFilterInput
+  seo: ComponentSharedSeoFiltersInput
   slug: StringFilterInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
@@ -3038,6 +3110,7 @@ input PageInput {
   perex: String
   publishedAt: DateTime
   sections: [PageSectionsDynamicZoneInput!]
+  seo: ComponentSharedSeoInput
   slug: String
   title: String
 }
@@ -3130,6 +3203,7 @@ type Service {
   localizations(filters: ServiceFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceRelationResponseCollection
   publishedAt: DateTime
   sections: [ServiceSectionsDynamicZone]
+  seo: ComponentSharedSeo
   serviceCategories(filters: ServiceCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ServiceCategoryRelationResponseCollection
   slug: String!
   title: String!
@@ -3213,6 +3287,7 @@ input ServiceFiltersInput {
   not: ServiceFiltersInput
   or: [ServiceFiltersInput]
   publishedAt: DateTimeFilterInput
+  seo: ComponentSharedSeoFiltersInput
   serviceCategories: ServiceCategoryFiltersInput
   slug: StringFilterInput
   title: StringFilterInput
@@ -3223,6 +3298,7 @@ input ServiceInput {
   image: ID
   publishedAt: DateTime
   sections: [ServiceSectionsDynamicZoneInput!]
+  seo: ComponentSharedSeoInput
   serviceCategories: [ID]
   slug: String
   title: String

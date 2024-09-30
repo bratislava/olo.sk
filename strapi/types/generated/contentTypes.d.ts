@@ -1495,6 +1495,12 @@ export interface ApiPagePage extends Schema.CollectionType {
         }
       }>
     branch: Attribute.Relation<'api::page.page', 'oneToOne', 'api::branch.branch'>
+    seo: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1556,6 +1562,12 @@ export interface ApiServiceService extends Schema.CollectionType {
         'sections.form-cta-banner',
       ]
     > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }>
+    seo: Attribute.Component<'shared.seo'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true

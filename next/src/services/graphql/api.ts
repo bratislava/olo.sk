@@ -1540,6 +1540,79 @@ export type ComponentSectionsWorkshopsWorkshopsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSharedMetaSocial = {
+  __typename?: 'ComponentSharedMetaSocial'
+  description: Scalars['String']['output']
+  id: Scalars['ID']['output']
+  image?: Maybe<UploadFileEntityResponse>
+  socialNetwork: Enum_Componentsharedmetasocial_Socialnetwork
+  title: Scalars['String']['output']
+}
+
+export type ComponentSharedMetaSocialFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>
+  description?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentSharedMetaSocialFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>
+  socialNetwork?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentSharedMetaSocialInput = {
+  description?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['ID']['input']>
+  image?: InputMaybe<Scalars['ID']['input']>
+  socialNetwork?: InputMaybe<Enum_Componentsharedmetasocial_Socialnetwork>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ComponentSharedSeo = {
+  __typename?: 'ComponentSharedSeo'
+  canonicalURL?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  keywords?: Maybe<Scalars['String']['output']>
+  metaDescription: Scalars['String']['output']
+  metaImage?: Maybe<UploadFileEntityResponse>
+  metaRobots?: Maybe<Scalars['String']['output']>
+  metaSocial?: Maybe<Array<Maybe<ComponentSharedMetaSocial>>>
+  metaTitle: Scalars['String']['output']
+  metaViewport?: Maybe<Scalars['String']['output']>
+  structuredData?: Maybe<Scalars['JSON']['output']>
+}
+
+export type ComponentSharedSeoMetaSocialArgs = {
+  filters?: InputMaybe<ComponentSharedMetaSocialFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSharedSeoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>
+  canonicalURL?: InputMaybe<StringFilterInput>
+  keywords?: InputMaybe<StringFilterInput>
+  metaDescription?: InputMaybe<StringFilterInput>
+  metaRobots?: InputMaybe<StringFilterInput>
+  metaSocial?: InputMaybe<ComponentSharedMetaSocialFiltersInput>
+  metaTitle?: InputMaybe<StringFilterInput>
+  metaViewport?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentSharedSeoFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>
+  structuredData?: InputMaybe<JsonFilterInput>
+}
+
+export type ComponentSharedSeoInput = {
+  canonicalURL?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['ID']['input']>
+  keywords?: InputMaybe<Scalars['String']['input']>
+  metaDescription?: InputMaybe<Scalars['String']['input']>
+  metaImage?: InputMaybe<Scalars['ID']['input']>
+  metaRobots?: InputMaybe<Scalars['String']['input']>
+  metaSocial?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialInput>>>
+  metaTitle?: InputMaybe<Scalars['String']['input']>
+  metaViewport?: InputMaybe<Scalars['String']['input']>
+  structuredData?: InputMaybe<Scalars['JSON']['input']>
+}
+
 export type Contact = {
   __typename?: 'Contact'
   branches?: Maybe<BranchRelationResponseCollection>
@@ -1888,6 +1961,11 @@ export enum Enum_Componentsectionsvacancies_Backgroundcolor {
   Primary = 'primary',
   Secondary = 'secondary',
   Tertiary = 'tertiary',
+}
+
+export enum Enum_Componentsharedmetasocial_Socialnetwork {
+  Facebook = 'Facebook',
+  Twitter = 'Twitter',
 }
 
 export enum Enum_Servicecategory_Categorycolor {
@@ -2246,6 +2324,8 @@ export type GenericMorph =
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
+  | ComponentSharedMetaSocial
+  | ComponentSharedSeo
   | Contact
   | Document
   | DocumentCategory
@@ -3133,6 +3213,7 @@ export type Page = {
   perex?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<PageSectionsDynamicZone>>>
+  seo?: Maybe<ComponentSharedSeo>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
@@ -3183,6 +3264,7 @@ export type PageFiltersInput = {
   parentPage?: InputMaybe<PageFiltersInput>
   perex?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>
   slug?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
@@ -3207,6 +3289,7 @@ export type PageInput = {
   perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['PageSectionsDynamicZoneInput']['input']>>
+  seo?: InputMaybe<ComponentSharedSeoInput>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
@@ -3589,6 +3672,7 @@ export type Service = {
   localizations?: Maybe<ServiceRelationResponseCollection>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<ServiceSectionsDynamicZone>>>
+  seo?: Maybe<ComponentSharedSeo>
   serviceCategories?: Maybe<ServiceCategoryRelationResponseCollection>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
@@ -3708,6 +3792,7 @@ export type ServiceFiltersInput = {
   not?: InputMaybe<ServiceFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>
   serviceCategories?: InputMaybe<ServiceCategoryFiltersInput>
   slug?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
@@ -3718,6 +3803,7 @@ export type ServiceInput = {
   image?: InputMaybe<Scalars['ID']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['ServiceSectionsDynamicZoneInput']['input']>>
+  seo?: InputMaybe<ComponentSharedSeoInput>
   serviceCategories?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
@@ -19255,6 +19341,14 @@ export type PageEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
+    } | null
   } | null
 }
 
@@ -21756,6 +21850,14 @@ export type PagesQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -24277,6 +24379,14 @@ export type PageBySlugQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -24310,6 +24420,38 @@ export type PageRedirectByAliasQuery = {
       } | null
     }>
   } | null
+}
+
+export type MetaSocialFragment = {
+  __typename?: 'ComponentSharedMetaSocial'
+  socialNetwork: Enum_Componentsharedmetasocial_Socialnetwork
+  title: string
+  description: string
+  image?: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  } | null
+}
+
+export type SeoFragment = {
+  __typename?: 'ComponentSharedSeo'
+  id: string
+  metaTitle: string
+  metaDescription: string
+  keywords?: string | null
+  metaViewport?: string | null
 }
 
 export type ServiceSlugEntityFragment = {
@@ -24821,6 +24963,14 @@ export type ServiceCardEntityFragment = {
         } | null
       } | null
     } | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
+    } | null
   } | null
 }
 
@@ -24861,6 +25011,14 @@ export type ServiceSearchEntityFragment = {
           name: string
         } | null
       } | null
+    } | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
     } | null
   } | null
 }
@@ -25396,6 +25554,14 @@ export type ServiceEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
+    } | null
   } | null
 }
 
@@ -25942,6 +26108,14 @@ export type ServicesQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -26522,6 +26696,14 @@ export type ServiceBySlugQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -29633,6 +29815,15 @@ export const PageSectionsFragmentDoc = gql`
   ${VacanciesSectionFragmentDoc}
   ${GlobalSearchSectionFragmentDoc}
 `
+export const SeoFragmentDoc = gql`
+  fragment Seo on ComponentSharedSeo {
+    id
+    metaTitle
+    metaDescription
+    keywords
+    metaViewport
+  }
+`
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
     ...PageCardEntity
@@ -29645,11 +29836,28 @@ export const PageEntityFragmentDoc = gql`
       sections {
         ...PageSections
       }
+      seo {
+        ...Seo
+      }
     }
   }
   ${PageCardEntityFragmentDoc}
   ${HeaderSectionsFragmentDoc}
   ${PageSectionsFragmentDoc}
+  ${SeoFragmentDoc}
+`
+export const MetaSocialFragmentDoc = gql`
+  fragment MetaSocial on ComponentSharedMetaSocial {
+    socialNetwork
+    title
+    description
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
 `
 export const ServiceCategoryEntityFragmentDoc = gql`
   fragment ServiceCategoryEntity on ServiceCategoryEntity {
@@ -29675,11 +29883,15 @@ export const ServiceCardEntityFragmentDoc = gql`
           ...UploadImageEntity
         }
       }
+      seo {
+        ...Seo
+      }
     }
   }
   ${ServiceSlugEntityFragmentDoc}
   ${ServiceCategoryEntityFragmentDoc}
   ${UploadImageEntityFragmentDoc}
+  ${SeoFragmentDoc}
 `
 export const ServiceSearchEntityFragmentDoc = gql`
   fragment ServiceSearchEntity on ServiceEntity {

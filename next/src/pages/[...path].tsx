@@ -1,6 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
@@ -8,6 +7,7 @@ import { useEffect, useMemo } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
+import SeoHead from '@/src/components/common/SeoHead'
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
@@ -169,16 +169,12 @@ const Page = ({ entity: page, general, navigation }: PageProps) => {
     return null
   }
 
-  const { title, perex, sections, alias } = page.attributes
+  const { title, perex, sections, alias, seo } = page.attributes
   const [header] = page.attributes.header ?? []
 
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
-      {/* TODO common Head/Seo component */}
-      <Head>
-        <title>{title}</title>
-        {perex && <meta name="description" content={perex} />}
-      </Head>
+      <SeoHead title={title} description={perex} seo={seo} />
 
       <PageLayout>
         {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}

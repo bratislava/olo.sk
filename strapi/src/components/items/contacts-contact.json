@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_items_contacts_contacts",
+  "info": {
+    "displayName": "Contacts contact"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contact.contact"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<svg
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-miterlimit="10"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path d="M9.54883 6.51489V18.8549" />
+  <path d="M14.4492 17.485V5.14502" />
+  <path
+    d="M9.54953 18.855L14.4495 17.485L19.3545 18.855V6.51502L14.4495 5.14502L9.53953 6.51502L4.64453 5.14502V17.485L9.54953 18.855Z"
+  />
+</svg>

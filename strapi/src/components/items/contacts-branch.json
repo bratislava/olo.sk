@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_items_contacts_branches",
+  "info": {
+    "displayName": "Contacts branch"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::branch.branch"
+    }
+  }
+}

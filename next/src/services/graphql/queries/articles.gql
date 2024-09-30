@@ -4,6 +4,7 @@ fragment ArticleSlugEntity on ArticleEntity {
   attributes {
     slug
     title
+    isCurrentChangeInOpeningHours
   }
 }
 
@@ -79,6 +80,19 @@ query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
   articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
     data {
       ...ArticleEntity
+    }
+  }
+}
+
+query OpeningTimesChangeArticles($locale: I18NLocaleCode!) {
+  articles(
+    filters: { isCurrentChangeInOpeningHours: { eq: true } }
+    sort: "addedAt:desc"
+    pagination: { limit: -1 }
+    locale: $locale
+  ) {
+    data {
+      ...ArticleSlugEntity
     }
   }
 }

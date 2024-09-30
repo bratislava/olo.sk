@@ -39,12 +39,7 @@ const ArticlesSection = ({ section }: Props) => {
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
 
-  const PAGE_SIZE = 20
-
-  const [filters, setFilters] = useRoutePreservedState({
-    ...articlesDefaultFilters,
-    pageSize: PAGE_SIZE,
-  })
+  const [filters, setFilters] = useRoutePreservedState(articlesDefaultFilters)
 
   const searchRef = useRef<null | HTMLInputElement>(null)
 

@@ -9,16 +9,20 @@
 import React from 'react'
 import { Box, ContentLayout, HeaderLayout, Layout, Stack } from '@strapi/design-system'
 import ImportSection from '../../components/ImportSection'
+import DeleteSection from '../../components/DeleteSection'
+import UpdateMeilisearchSection from '../../components/UpdateMeilisearchSection'
 
 const HomePage = () => {
   return (
     <div>
       <Box background="neutral100">
         <Layout>
-          <HeaderLayout title="Import Excel súborov"></HeaderLayout>
+          <HeaderLayout title="Import odvozových dní"></HeaderLayout>
           <ContentLayout>
             <Stack spacing={4}>
               <ImportSection type={'waste-collection-days'} />
+              <DeleteSection type={'waste-collection-days'} />
+              <UpdateMeilisearchSection type={'waste-collection-days'} />
             </Stack>
           </ContentLayout>
         </Layout>

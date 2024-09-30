@@ -42,6 +42,11 @@ fragment IconHeaderSection on ComponentHeaderSectionsIcon {
 
 fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
   carouselTitle
+  tags {
+    data {
+      id
+    }
+  }
   anchors {
     ...Anchor
   }

@@ -6,14 +6,19 @@
   },
   "options": {},
   "attributes": {
-    "carouselTitle": {
-      "type": "string",
-      "required": true
-    },
     "anchors": {
       "type": "component",
       "repeatable": true,
       "component": "items.anchor"
+    },
+    "carouselTitle": {
+      "type": "string",
+      "required": true
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
     },
     "showMoreLink": {
       "type": "component",

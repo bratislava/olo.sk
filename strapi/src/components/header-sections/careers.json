@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_header_sections_careers",
+  "info": {
+    "displayName": "Kariéra",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageQuote": {
+      "type": "text"
+    },
+    "alternativeTextVideo": {
+      "type": "text"
+    },
+    "videoUrl": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -22,6 +22,17 @@ fragment GalleryHeaderSection on ComponentHeaderSectionsGallery {
   }
 }
 
+fragment CareersHeaderSection on ComponentHeaderSectionsCareers {
+  videoUrl
+  alternativeTextVideo
+  imageQuote
+  image {
+    data {
+      ...UploadImageEntity
+    }
+  }
+}
+
 fragment FeaturedNewsHeaderSection on ComponentHeaderSectionsFeaturedNews {
   articlesTitle
   firstArticle {
@@ -83,5 +94,9 @@ fragment HeaderSections on PageHeaderDynamicZone {
 
   ... on ComponentHeaderSectionsBranchMap {
     ...BranchMapHeaderSection
+  }
+  
+  ... on ComponentHeaderSectionsCareers {
+    ...CareersHeaderSection
   }
 }

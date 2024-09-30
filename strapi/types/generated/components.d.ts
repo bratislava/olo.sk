@@ -1057,6 +1057,20 @@ export interface HeaderSectionsFeaturedNews extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsCareers extends Schema.Component {
+  collectionName: 'components_header_sections_careers'
+  info: {
+    displayName: 'Kari\u00E9ra'
+    description: ''
+  }
+  attributes: {
+    image: Attribute.Media<'images'>
+    imageQuote: Attribute.Text
+    alternativeTextVideo: Attribute.Text
+    videoUrl: Attribute.String & Attribute.Required
+  }
+}
+
 export interface HeaderSectionsBranchMap extends Schema.Component {
   collectionName: 'components_header_sections_branch_maps'
   info: {
@@ -1141,6 +1155,7 @@ declare module '@strapi/types' {
       'header-sections.icon': HeaderSectionsIcon
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.featured-news': HeaderSectionsFeaturedNews
+      'header-sections.careers': HeaderSectionsCareers
       'header-sections.branch-map': HeaderSectionsBranchMap
     }
   }

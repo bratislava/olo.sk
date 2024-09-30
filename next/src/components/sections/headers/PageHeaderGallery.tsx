@@ -15,7 +15,6 @@ import { isDefined } from '@/src/utils/isDefined'
 type Props = {
   title: string
   perex?: string | null | undefined
-
   header: GalleryHeaderSectionFragment
 }
 

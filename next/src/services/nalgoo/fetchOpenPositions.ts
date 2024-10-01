@@ -1,13 +1,13 @@
-// import { clientApiclient } from '@/src/services/graphql'
-import { clientApi } from '@/src/services/nalgoo/client-api'
-// import { parseContentTypePathPrefixes } from '@/src/services/navigation/parseContentTypePathPrefixes'
-// import { parseTopLevelPages } from '@/src/services/navigation/parseTopLevelPages'
-
 /**
  * Fetches and parses client data from the Nalgoo client.
  * It's wrapped into function to use it both directly and in API handler.
  *
  */
 export const fetchOpenPositions = async () => {
-  return clientApi.jobOfferGet()
+  // TODO: this fetch should not directly fetch the data, but use OpenAPI generation and client with requests
+  const response = await fetch(
+    `${process.env.NEXT_NALGOO_URL}/job-offer?api_key=${process.env.NEXT_PUBLIC_NALGOO_API_KEY}`,
+  )
+
+  return response.json()
 }

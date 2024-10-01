@@ -1,6 +1,6 @@
 {
-  "aliasInfoMessage.message,page": "",
   "aliasInfoMessage.message.article": "Tento článok nájdete aj na",
+  "aliasInfoMessage.message.page": "Túto stránku nájdete aj na",
   "aria.close": "Zavrieť",
   "articlePage.shareblock.buttonText": "Zdieľať článok",
   "articlePage.shareblock.text": "Páčil sa vám článok?",
@@ -19,6 +19,8 @@
   "contactsSection.branch": "Adresa a doprava",
   "contactsSection.contacts": "Kontakty",
   "contactsSection.openingTimes": "Otváracie hodiny",
+  "contactsSidebar.navigate": "Navigovať",
+  "contactsSidebar.writeUs": "Poslať email",
   "documentPageContent.descriptionTitle": "Popis",
   "documentPageContent.detailsTitle": "Detaily",
   "documentPageContent.documentCategory": "Kategória",

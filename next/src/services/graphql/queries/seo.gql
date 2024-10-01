@@ -1,0 +1,30 @@
+fragment MetaSocial on ComponentSharedMetaSocial {
+  socialNetwork
+  title
+  description
+  image {
+    data {
+      ...UploadImageEntity
+    }
+  }
+}
+
+fragment Seo on ComponentSharedSeo {
+  id
+  metaTitle
+  metaDescription
+  keywords
+  metaViewport
+  # These fields are hidden in Strapi
+  #  metaImage {
+  #    data {
+  #      ...UploadImageEntity
+  #    }
+  #  }
+  #  metaSocial {
+  #    ...MetaSocial
+  #  }
+  #  metaRobots
+  #  structuredData
+  #  canonicalURL
+}

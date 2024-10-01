@@ -44,6 +44,9 @@ fragment ServiceCardEntity on ServiceEntity {
         ...UploadImageEntity
       }
     }
+    seo {
+      ...Seo
+    }
   }
 }
 

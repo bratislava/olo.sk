@@ -16,7 +16,9 @@ const Tag = ({ variant, text, className }: TagProps) => {
     <div className={className}>
       <Typography
         variant="p-small-black"
-        className_onlyWhenNecessary="uppercase tracking-wide text-success-content-default"
+        // 0.75rem = 12px
+        // TODO: The resizing of text should be done via the Typography component
+        className_onlyWhenNecessary="uppercase tracking-wide text-success-content-default text-[0.75rem]"
       >
         {text}
       </Typography>

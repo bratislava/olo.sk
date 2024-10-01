@@ -5,6 +5,7 @@ import CardBase from '@/src/components/common/Card/CardBase'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
+import { useTailwindBreakpointValue } from '@/src/utils/useTailwindBreakpointValue'
 
 type MenuItemBranchCardProps = {
   title: string
@@ -17,9 +18,6 @@ type MenuItemBranchCardProps = {
  * Figma: https://www.figma.com/design/sCtADmxpqyNCJO2y1GpD6F/OLO-Web-Kate?node-id=406-3655&t=Jkul07XBrrsdNgzU-4
  */
 
-// TODO: title should be: text-size-p-default-bold
-// TODO: href and link icon
-
 const MenuItemBranchCard = ({
   title,
   subText: address,
@@ -27,17 +25,19 @@ const MenuItemBranchCard = ({
   className,
 }: MenuItemBranchCardProps) => {
   const { t } = useTranslation()
+  const { isMobileBreakpoint } = useTailwindBreakpointValue()
 
   return (
     <NavMenuLink href={linkHref} isCard className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-2">
           <Typography
-            variant="h6"
+            variant={isMobileBreakpoint ? 'p-default-black' : 'h6'}
             className_onlyWhenNecessary="line-clamp-3 lg:group-hover/CardBase:underline"
           >
             {title}
           </Typography>
+
           <div className="flex flex-col gap-4">
             {address ? <Typography variant="p-default">{address}</Typography> : null}
             <Button variant="black-link" href={linkHref} asLink hasLinkIcon>

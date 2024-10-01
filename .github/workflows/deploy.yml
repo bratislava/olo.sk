@@ -49,6 +49,7 @@ jobs:
       url: https://tkg.dev.bratislava.sk
       debug: --debug
     secrets:
+      # to obtain olo secret use: kubectl get secret default-*** -n olo -o json
       service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 

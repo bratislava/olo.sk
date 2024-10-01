@@ -26,22 +26,25 @@ const MobileNavBarHeader = ({
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
-  // TODO: Refactor focus ring behaviour
+  // TODO: Refactor focus ring behaviour and sizes of search and hamburger buttons
 
   return (
-    <SectionContainer classNameInner="fixed z-30 bg-background-primary h-[61px] top-0 w-full py-4 border-b border-border-default">
-      <div className="flex flex-row items-center justify-between">
+    <SectionContainer
+      // 3.8125rem = 61px, leaving one pixel for the border
+      classNameInner="fixed z-30 bg-background-primary h-[61px] top-0 w-full py-4 border-b border-border-default"
+    >
+      <div className="flex items-center justify-between">
         <NavBarLogo className="text-action-background-default" />
 
         <div
-          // 60px = 3.75rem
+          // 3.75rem = 60px
           className="-my-4 flex h-[3.75rem] gap-2"
         >
           {searchLink ? (
             <Button
               href={getLinkProps(searchLink).href}
               asLink
-              icon={<Icon name="lupa" className="size-6" />}
+              icon={<Icon name="lupa" />}
               hasLinkIcon={false}
               aria-label={t('navBar.aria.searchButton')}
               variant="icon-wrapped"
@@ -51,7 +54,7 @@ const MobileNavBarHeader = ({
 
           <Button
             asLink
-            icon={<Icon name={isMobileMenuOpen ? 'krizik' : 'hamburger'} className="size-6" />}
+            icon={<Icon name={isMobileMenuOpen ? 'krizik' : 'hamburger'} />}
             hasLinkIcon={false}
             onPress={() => setMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={

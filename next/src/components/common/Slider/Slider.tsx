@@ -66,7 +66,7 @@ const Slider = ({ slides }: SliderProps) => {
     <div
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
-      className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2 lg:h-[26.125rem]"
+      className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2"
       style={{ backgroundColor }}
     >
       <AnimatePresence initial={false} custom={transitionDirection} mode="wait">
@@ -84,9 +84,10 @@ const Slider = ({ slides }: SliderProps) => {
           className="flex flex-col lg:h-full"
         >
           {url ? (
-            // 8rem = 128px, 18.125rem = 290px
-            <div className="relative z-0 flex aspect-heroSliderMedia xl:absolute xl:right-0 xl:top-32 xl:h-[18.125rem]">
-              <Image src={url} alt={alternativeText ?? ''} fill className="object-cover" />
+            //  20.125rem = 322px
+            <div className="relative z-0 flex aspect-heroSliderMedia lg:absolute lg:bottom-0 lg:right-0 lg:h-[20.125rem]">
+              {/* Use object-contain to always show the whole illustration */}
+              <Image src={url} alt={alternativeText ?? ''} fill className="object-contain" />
             </div>
           ) : null}
           <div className="z-1 h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
@@ -108,6 +109,7 @@ const Slider = ({ slides }: SliderProps) => {
                   asLink
                   hasLinkIcon={false}
                   {...getLinkProps(link)}
+                  // TODO implement and use inverted Button variant
                   className={cn({
                     'border-background-primary bg-background-primary text-background-primaryInverted hover:border-content-secondaryInverted hover:bg-content-secondaryInverted':
                       !readableColorIsBlack(backgroundColor),

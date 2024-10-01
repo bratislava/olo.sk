@@ -161,6 +161,7 @@ type Branch {
   localizations(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   longitude: Float
   mapIconName: String
+  navigateToLink: String
   openingTimes(filters: OpeningTimeFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): OpeningTimeRelationResponseCollection
   page: PageEntityResponse
   parkingInfo: String
@@ -196,6 +197,7 @@ input BranchFiltersInput {
   localizations: BranchFiltersInput
   longitude: FloatFilterInput
   mapIconName: StringFilterInput
+  navigateToLink: StringFilterInput
   not: BranchFiltersInput
   openingTimes: OpeningTimeFiltersInput
   or: [BranchFiltersInput]
@@ -214,6 +216,7 @@ input BranchInput {
   latitude: Float
   longitude: Float
   mapIconName: String
+  navigateToLink: String
   openingTimes: [ID]
   page: ID
   parkingInfo: String
@@ -1979,6 +1982,40 @@ input ComponentSharedSeoInput {
   structuredData: JSON
 }
 
+type ComponentSidebarsContactsSidebar {
+  branch: BranchEntityResponse
+  contact: ContactEntityResponse
+  id: ID!
+}
+
+input ComponentSidebarsContactsSidebarFiltersInput {
+  and: [ComponentSidebarsContactsSidebarFiltersInput]
+  branch: BranchFiltersInput
+  contact: ContactFiltersInput
+  not: ComponentSidebarsContactsSidebarFiltersInput
+  or: [ComponentSidebarsContactsSidebarFiltersInput]
+}
+
+input ComponentSidebarsContactsSidebarInput {
+  branch: ID
+  contact: ID
+  id: ID
+}
+
+type ComponentSidebarsEmptySidebar {
+  id: ID!
+}
+
+input ComponentSidebarsEmptySidebarFiltersInput {
+  and: [ComponentSidebarsEmptySidebarFiltersInput]
+  not: ComponentSidebarsEmptySidebarFiltersInput
+  or: [ComponentSidebarsEmptySidebarFiltersInput]
+}
+
+input ComponentSidebarsEmptySidebarInput {
+  id: ID
+}
+
 type Contact {
   branches(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
   createdAt: DateTime
@@ -2581,7 +2618,7 @@ type FormRelationResponseCollection {
   data: [FormEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | ComponentSharedMetaSocial | ComponentSharedSeo | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentSidebarsContactsSidebar | ComponentSidebarsEmptySidebar | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -3058,6 +3095,7 @@ type Page {
   publishedAt: DateTime
   sections: [PageSectionsDynamicZone]
   seo: ComponentSharedSeo
+  sidebar: [PageSidebarDynamicZone]
   slug: String!
   title: String!
   updatedAt: DateTime
@@ -3111,6 +3149,7 @@ input PageInput {
   publishedAt: DateTime
   sections: [PageSectionsDynamicZoneInput!]
   seo: ComponentSharedSeoInput
+  sidebar: [PageSidebarDynamicZoneInput!]
   slug: String
   title: String
 }
@@ -3122,6 +3161,10 @@ type PageRelationResponseCollection {
 union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsGlobalSearch | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsTable | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
+
+union PageSidebarDynamicZone = ComponentSidebarsContactsSidebar | ComponentSidebarsEmptySidebar | Error
+
+scalar PageSidebarDynamicZoneInput
 
 type Pagination {
   page: Int!

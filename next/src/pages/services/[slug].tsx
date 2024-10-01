@@ -120,6 +120,7 @@ const Page = ({ entity, general, navigation }: PageProps) => {
         <SectionContainer background="secondary">
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </SectionContainer>
+
         <ServicePageHeader title={title} serviceCategories={serviceCategories?.data ?? []} />
 
         <ServicePageContent service={entity} />

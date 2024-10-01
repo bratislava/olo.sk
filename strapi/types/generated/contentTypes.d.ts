@@ -862,6 +862,18 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
+    navigateToLink: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
+    mapIconName: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
     publicTransportInfo: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -878,12 +890,6 @@ export interface ApiBranchBranch extends Schema.CollectionType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true
-        }
-      }>
-    mapIconName: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false
         }
       }>
     createdAt: Attribute.DateTime
@@ -1494,6 +1500,18 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true
         }
       }>
+    sidebar: Attribute.DynamicZone<['sidebars.empty-sidebar', 'sidebars.contacts-sidebar']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
+      Attribute.SetMinMax<
+        {
+          max: 1
+        },
+        number
+      >
     branch: Attribute.Relation<'api::page.page', 'oneToOne', 'api::branch.branch'>
     seo: Attribute.Component<'shared.seo'> &
       Attribute.SetPluginOptions<{

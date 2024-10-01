@@ -1,0 +1,26 @@
+fragment ContactsSidebar on ComponentSidebarsContactsSidebar {
+  id
+  contact {
+    data {
+      ...ContactEntity
+    }
+  }
+  branch {
+    data {
+      ...BranchEntity
+    }
+  }
+}
+
+fragment PageSidebars on PageSidebarDynamicZone {
+  __typename
+
+  ... on ComponentSidebarsEmptySidebar {
+    id
+    # This component has no fields
+  }
+
+  ... on ComponentSidebarsContactsSidebar {
+    ...ContactsSidebar
+  }
+}

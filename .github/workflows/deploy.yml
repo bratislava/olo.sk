@@ -29,11 +29,12 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: next/
+      namespace: olo
       cluster: tkg-innov-dev
       url: https://tkg.dev.bratislava.sk
       debug: --debug
     secrets:
-      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-dev-strapi:
@@ -43,11 +44,12 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: strapi/
+      namespace: olo
       cluster: tkg-innov-dev
       url: https://tkg.dev.bratislava.sk
       debug: --debug
     secrets:
-      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-dev-next:
@@ -57,11 +59,12 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: next/
+      namespace: olo
       cluster: tkg-innov-dev
       url: https://tkg.dev.bratislava.sk
       debug: --debug
     secrets:
-      service-account: ${{ secrets.DEV_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-staging:
@@ -71,12 +74,13 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: next/
+      namespace: olo
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
       debug: --debug
       flag: --staging
     secrets:
-      service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.STAGING_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-staging-strapi:
@@ -86,12 +90,13 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: strapi/
+      namespace: olo
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
       debug: --debug
       flag: --staging
     secrets:
-      service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.STAGING_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-staging-next:
@@ -101,12 +106,13 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: next/
+      namespace: olo
       cluster: tkg-innov-staging
       url: https://tkg.staging.bratislava.sk
       debug: --debug
       flag: --staging
     secrets:
-      service-account: ${{ secrets.STAGING_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.STAGING_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-prod:
@@ -116,11 +122,12 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: next/
+      namespace: olo
       cluster: tkg-innov-prod
       url: https://tkg.bratislava.sk
       flag: --production
     secrets:
-      service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.PROD_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-prod-strapi:
@@ -130,12 +137,13 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: strapi/
+      namespace: olo
       cluster: tkg-innov-prod
       url: https://tkg.bratislava.sk
       flag: --production
       debug: --debug
     secrets:
-      service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.PROD_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   deploy-prod-next:
@@ -145,12 +153,13 @@ jobs:
     uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
     with:
       directory: next/
+      namespace: olo
       cluster: tkg-innov-prod
       url: https://tkg.bratislava.sk
       flag: --production
       debug: --debug
     secrets:
-      service-account: ${{ secrets.PROD_STANDALONE_TOKEN }}
+      service-account: ${{ secrets.PROD_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
   build-storybook:

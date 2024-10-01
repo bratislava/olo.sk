@@ -20,13 +20,13 @@ jobs:
   conditions:
     needs: validate
     name: Check for cluster conditions
-    uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/cluster-deploy-conditions.yml@stable
 
   deploy-dev:
     name: after dev Strapi deploy Next
     if: needs.conditions.outputs.dev == 'true'
     needs: [conditions, deploy-dev-strapi, build-storybook]
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: next/
       namespace: olo
@@ -41,7 +41,7 @@ jobs:
     name: dev Strapi
     needs: conditions
     if: needs.conditions.outputs.dev-strapi == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: strapi/
       namespace: olo
@@ -57,7 +57,7 @@ jobs:
     name: dev Next
     needs: [conditions, build-storybook]
     if: needs.conditions.outputs.dev-next == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: next/
       namespace: olo
@@ -72,7 +72,7 @@ jobs:
     name: after staging Strapi deploy Next
     if: needs.conditions.outputs.staging == 'true'
     needs: [conditions, deploy-staging-strapi, build-storybook]
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: next/
       namespace: olo
@@ -88,7 +88,7 @@ jobs:
     name: staging Strapi
     needs: conditions
     if: needs.conditions.outputs.staging-strapi == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: strapi/
       namespace: olo
@@ -104,7 +104,7 @@ jobs:
     name: staging Next
     needs: [conditions, build-storybook]
     if: needs.conditions.outputs.staging-next == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: next/
       namespace: olo
@@ -120,7 +120,7 @@ jobs:
     name: after prod Strapi deploy Next
     if: needs.conditions.outputs.prod == 'true'
     needs: [conditions, deploy-prod-strapi, build-storybook]
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: next/
       namespace: olo
@@ -135,7 +135,7 @@ jobs:
     name: prod Strapi
     needs: conditions
     if: needs.conditions.outputs.prod-strapi == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: strapi/
       namespace: olo
@@ -151,7 +151,7 @@ jobs:
     name: prod Next
     needs: [conditions, build-storybook]
     if: needs.conditions.outputs.prod-next == 'true'
-    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli-inhouse.yml@stable
+    uses: bratislava/github-actions/.github/workflows/deploy-with-bratiska-cli.yml@stable
     with:
       directory: next/
       namespace: olo

@@ -3,13 +3,15 @@ import React, { forwardRef } from 'react'
 
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 import Typography from '@/src/components/common/Typography/Typography'
+import cn from '@/src/utils/cn'
 
 type MobileNavMenuTriggerProps = {
   label: string
+  className?: string
 }
 
 const MobileNavMenuTrigger = forwardRef<HTMLButtonElement, MobileNavMenuTriggerProps>(
-  ({ label }, forwardedRef) => {
+  ({ label, className }, forwardedRef) => {
     return (
       <NavigationMenu.Trigger
         ref={forwardedRef}
@@ -17,7 +19,7 @@ const MobileNavMenuTrigger = forwardRef<HTMLButtonElement, MobileNavMenuTriggerP
         // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
         onPointerMove={(event) => event.preventDefault()}
         onPointerLeave={(event) => event.preventDefault()}
-        className="w-full"
+        className={cn('w-full', className)}
       >
         <BasicRowCard
           variant="icon-label"

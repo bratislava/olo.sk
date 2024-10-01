@@ -9,6 +9,10 @@ type MobileNavMenuSectionProps = {
   className?: string
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1500-4423&t=Ugldx7yVPrGI2aTr-1
+ */
+
 const MobileNavMenuSection = ({ section, className }: MobileNavMenuSectionProps) => {
   const { label, links, specialSectionType, hasDividers } = section
 

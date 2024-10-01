@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import FocusTrap from 'focus-trap-react'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import * as React from 'react'
@@ -17,12 +18,17 @@ type MobileNavBarProps = {
   className?: string
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1381-16138&t=Ugldx7yVPrGI2aTr-1
+ */
+
 const MobileNavBar = ({ className }: MobileNavBarProps) => {
   const { i18n } = useTranslation()
   const pathname = usePathname()
 
   const { currentWeekMessage } = useCurrentWeekParity()
-  const { isMobileMenuOpen, setMobileMenuOpen } = useNavMenuContext()
+  const { isMobileMenuOpen, setMobileMenuOpen, isMobileMegaMenuOpen, setIsMobileMegaMenuOpen } =
+    useNavMenuContext()
 
   const locale = i18n.language
   const { data } = useQuery(generalQuery(locale))
@@ -31,7 +37,7 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
   const { searchLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
   const { contactsLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
 
-  // TODO: Investigate the FocusTrap component
+  // TODO: Investigate the FocusTrap behaviour
 
   useEffect(() => {
     setMobileMenuOpen(false)
@@ -39,14 +45,16 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
 
   return (
     <div className={cn(className)}>
-      <div className="fixed top-0 z-30 w-full">
-        <MobileNavBarHeader
-          searchLink={searchLink}
-          isMobileMenuOpen={isMobileMenuOpen}
-          setMobileMenuOpen={setMobileMenuOpen}
-        />
-        {isMobileMenuOpen ? <MobileNavMenu menus={menus} contactsLink={contactsLink} /> : null}
-      </div>
+      <FocusTrap active={isMobileMenuOpen}>
+        <div>
+          <MobileNavBarHeader
+            searchLink={searchLink}
+            isMobileMenuOpen={isMobileMenuOpen}
+            setMobileMenuOpen={setMobileMenuOpen}
+          />
+          {isMobileMenuOpen ? <MobileNavMenu menus={menus} contactsLink={contactsLink} /> : null}
+        </div>
+      </FocusTrap>
 
       {isMobileMenuOpen ? null : (
         <MobileNavBarCurrentWeekMessage currentWeekMessage={currentWeekMessage} />

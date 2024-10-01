@@ -14,6 +14,10 @@ type MobileNavBarHeaderProps = {
   setMobileMenuOpen: (value: boolean) => void
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1381-14948&t=Ugldx7yVPrGI2aTr-1
+ */
+
 const MobileNavBarHeader = ({
   searchLink,
   isMobileMenuOpen,
@@ -22,12 +26,17 @@ const MobileNavBarHeader = ({
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
+  // TODO: Refactor focus ring behaviour
+
   return (
-    <SectionContainer classNameInner="py-4 border-b border-border-default">
-      <div className="flex size-full flex-row items-center justify-between">
+    <SectionContainer classNameInner="fixed z-30 bg-background-primary h-[61px] top-0 w-full py-4 border-b border-border-default">
+      <div className="flex flex-row items-center justify-between">
         <NavBarLogo className="text-action-background-default" />
 
-        <div className="flex h-full gap-6">
+        <div
+          // 60px = 3.75rem
+          className="-my-4 flex h-[3.75rem] gap-2"
+        >
           {searchLink ? (
             <Button
               href={getLinkProps(searchLink).href}
@@ -36,7 +45,7 @@ const MobileNavBarHeader = ({
               hasLinkIcon={false}
               aria-label={t('navBar.aria.searchButton')}
               variant="icon-wrapped"
-              className="p-1" // TODO: The icon should occupy the entire height of the Header
+              className="p-1"
             />
           ) : null}
 
@@ -51,7 +60,7 @@ const MobileNavBarHeader = ({
                 : t('mobileNavBar.aria.openSearch')
             }
             variant="icon-wrapped"
-            className="p-1" // TODO: The icon should occupy the entire height of the Header
+            className="p-1"
           />
         </div>
       </div>

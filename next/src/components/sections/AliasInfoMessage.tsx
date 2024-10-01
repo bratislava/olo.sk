@@ -19,7 +19,7 @@ const AliasInfoMessage = ({ alias, variant = 'page' }: Props) => {
   }
 
   const translationMap = {
-    page: t('aliasInfoMessage.message,page'),
+    page: t('aliasInfoMessage.message.page'),
     article: t('aliasInfoMessage.message.article'),
   }
 

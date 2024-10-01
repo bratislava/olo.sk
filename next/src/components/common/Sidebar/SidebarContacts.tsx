@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 
-import Divider from '@/src/components/common/Sidebar/Divider'
 import cn from '@/src/utils/cn'
 
 export type SidebarContactsProps = {
@@ -22,19 +21,11 @@ const SidebarContacts = ({
   return (
     <div
       className={cn(
-        'flex flex-col overflow-hidden rounded-lg border border-border-default bg-background-primary',
+        'flex flex-col divide-y divide-border-default overflow-hidden rounded-lg border border-border-default bg-background-primary',
         className,
       )}
     >
-      {children.map((child, index) => {
-        return (
-          // eslint-disable-next-line react/no-array-index-key
-          <div className="px-3 lg:px-5" key={index}>
-            {index > 0 && <Divider />}
-            {child}
-          </div>
-        )
-      })}
+      {children}
     </div>
   )
 }

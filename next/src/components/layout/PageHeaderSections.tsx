@@ -18,7 +18,7 @@ type Props = {
   breadcrumbs: Breadcrumb[]
 }
 
-const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
+const PageHeaderSections = ({ title, perex, header, breadcrumbs }: Props) => {
   switch (header?.__typename) {
     case 'ComponentHeaderSectionsImage':
       return <PageHeaderImage header={header} title={title} perex={perex} />
@@ -54,4 +54,4 @@ const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
   }
 }
 
-export default PageHeaderSection
+export default PageHeaderSections

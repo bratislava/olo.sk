@@ -24,6 +24,7 @@ export type Scalars = {
   JSON: { input: any; output: any }
   PageHeaderDynamicZoneInput: { input: any; output: any }
   PageSectionsDynamicZoneInput: { input: any; output: any }
+  PageSidebarDynamicZoneInput: { input: any; output: any }
   ServiceSectionsDynamicZoneInput: { input: any; output: any }
   Upload: { input: any; output: any }
   WorkshopSectionsDynamicZoneInput: { input: any; output: any }
@@ -233,6 +234,7 @@ export type Branch = {
   localizations?: Maybe<BranchRelationResponseCollection>
   longitude?: Maybe<Scalars['Float']['output']>
   mapIconName?: Maybe<Scalars['String']['output']>
+  navigateToLink?: Maybe<Scalars['String']['output']>
   openingTimes?: Maybe<OpeningTimeRelationResponseCollection>
   page?: Maybe<PageEntityResponse>
   parkingInfo?: Maybe<Scalars['String']['output']>
@@ -291,6 +293,7 @@ export type BranchFiltersInput = {
   localizations?: InputMaybe<BranchFiltersInput>
   longitude?: InputMaybe<FloatFilterInput>
   mapIconName?: InputMaybe<StringFilterInput>
+  navigateToLink?: InputMaybe<StringFilterInput>
   not?: InputMaybe<BranchFiltersInput>
   openingTimes?: InputMaybe<OpeningTimeFiltersInput>
   or?: InputMaybe<Array<InputMaybe<BranchFiltersInput>>>
@@ -309,6 +312,7 @@ export type BranchInput = {
   latitude?: InputMaybe<Scalars['Float']['input']>
   longitude?: InputMaybe<Scalars['Float']['input']>
   mapIconName?: InputMaybe<Scalars['String']['input']>
+  navigateToLink?: InputMaybe<Scalars['String']['input']>
   openingTimes?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   page?: InputMaybe<Scalars['ID']['input']>
   parkingInfo?: InputMaybe<Scalars['String']['input']>
@@ -1540,6 +1544,91 @@ export type ComponentSectionsWorkshopsWorkshopsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSharedMetaSocial = {
+  __typename?: 'ComponentSharedMetaSocial'
+  description: Scalars['String']['output']
+  id: Scalars['ID']['output']
+  image?: Maybe<UploadFileEntityResponse>
+  socialNetwork: Enum_Componentsharedmetasocial_Socialnetwork
+  title: Scalars['String']['output']
+}
+
+export type ComponentSharedMetaSocialFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>
+  description?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentSharedMetaSocialFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>
+  socialNetwork?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentSharedMetaSocialInput = {
+  description?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['ID']['input']>
+  image?: InputMaybe<Scalars['ID']['input']>
+  socialNetwork?: InputMaybe<Enum_Componentsharedmetasocial_Socialnetwork>
+  title?: InputMaybe<Scalars['String']['input']>
+}
+
+export type ComponentSharedSeo = {
+  __typename?: 'ComponentSharedSeo'
+  canonicalURL?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  keywords?: Maybe<Scalars['String']['output']>
+  metaDescription: Scalars['String']['output']
+  metaImage?: Maybe<UploadFileEntityResponse>
+  metaRobots?: Maybe<Scalars['String']['output']>
+  metaSocial?: Maybe<Array<Maybe<ComponentSharedMetaSocial>>>
+  metaTitle: Scalars['String']['output']
+  metaViewport?: Maybe<Scalars['String']['output']>
+  structuredData?: Maybe<Scalars['JSON']['output']>
+}
+
+export type ComponentSharedSeoMetaSocialArgs = {
+  filters?: InputMaybe<ComponentSharedMetaSocialFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSharedSeoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>
+  canonicalURL?: InputMaybe<StringFilterInput>
+  keywords?: InputMaybe<StringFilterInput>
+  metaDescription?: InputMaybe<StringFilterInput>
+  metaRobots?: InputMaybe<StringFilterInput>
+  metaSocial?: InputMaybe<ComponentSharedMetaSocialFiltersInput>
+  metaTitle?: InputMaybe<StringFilterInput>
+  metaViewport?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentSharedSeoFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedSeoFiltersInput>>>
+  structuredData?: InputMaybe<JsonFilterInput>
+}
+
+export type ComponentSharedSeoInput = {
+  canonicalURL?: InputMaybe<Scalars['String']['input']>
+  id?: InputMaybe<Scalars['ID']['input']>
+  keywords?: InputMaybe<Scalars['String']['input']>
+  metaDescription?: InputMaybe<Scalars['String']['input']>
+  metaImage?: InputMaybe<Scalars['ID']['input']>
+  metaRobots?: InputMaybe<Scalars['String']['input']>
+  metaSocial?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialInput>>>
+  metaTitle?: InputMaybe<Scalars['String']['input']>
+  metaViewport?: InputMaybe<Scalars['String']['input']>
+  structuredData?: InputMaybe<Scalars['JSON']['input']>
+}
+
+export type ComponentSidebarsContactsSidebar = {
+  __typename?: 'ComponentSidebarsContactsSidebar'
+  branch?: Maybe<BranchEntityResponse>
+  contact?: Maybe<ContactEntityResponse>
+  id: Scalars['ID']['output']
+}
+
+export type ComponentSidebarsEmptySidebar = {
+  __typename?: 'ComponentSidebarsEmptySidebar'
+  id: Scalars['ID']['output']
+}
+
 export type Contact = {
   __typename?: 'Contact'
   branches?: Maybe<BranchRelationResponseCollection>
@@ -1888,6 +1977,11 @@ export enum Enum_Componentsectionsvacancies_Backgroundcolor {
   Primary = 'primary',
   Secondary = 'secondary',
   Tertiary = 'tertiary',
+}
+
+export enum Enum_Componentsharedmetasocial_Socialnetwork {
+  Facebook = 'Facebook',
+  Twitter = 'Twitter',
 }
 
 export enum Enum_Servicecategory_Categorycolor {
@@ -2246,6 +2340,10 @@ export type GenericMorph =
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
+  | ComponentSharedMetaSocial
+  | ComponentSharedSeo
+  | ComponentSidebarsContactsSidebar
+  | ComponentSidebarsEmptySidebar
   | Contact
   | Document
   | DocumentCategory
@@ -3133,6 +3231,8 @@ export type Page = {
   perex?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<PageSectionsDynamicZone>>>
+  seo?: Maybe<ComponentSharedSeo>
+  sidebar?: Maybe<Array<Maybe<PageSidebarDynamicZone>>>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
@@ -3183,6 +3283,7 @@ export type PageFiltersInput = {
   parentPage?: InputMaybe<PageFiltersInput>
   perex?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>
   slug?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
@@ -3207,6 +3308,8 @@ export type PageInput = {
   perex?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['PageSectionsDynamicZoneInput']['input']>>
+  seo?: InputMaybe<ComponentSharedSeoInput>
+  sidebar?: InputMaybe<Array<Scalars['PageSidebarDynamicZoneInput']['input']>>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
@@ -3244,6 +3347,11 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
+  | Error
+
+export type PageSidebarDynamicZone =
+  | ComponentSidebarsContactsSidebar
+  | ComponentSidebarsEmptySidebar
   | Error
 
 export type Pagination = {
@@ -3589,6 +3697,7 @@ export type Service = {
   localizations?: Maybe<ServiceRelationResponseCollection>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<ServiceSectionsDynamicZone>>>
+  seo?: Maybe<ComponentSharedSeo>
   serviceCategories?: Maybe<ServiceCategoryRelationResponseCollection>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
@@ -3708,6 +3817,7 @@ export type ServiceFiltersInput = {
   not?: InputMaybe<ServiceFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  seo?: InputMaybe<ComponentSharedSeoFiltersInput>
   serviceCategories?: InputMaybe<ServiceCategoryFiltersInput>
   slug?: InputMaybe<StringFilterInput>
   title?: InputMaybe<StringFilterInput>
@@ -3718,6 +3828,7 @@ export type ServiceInput = {
   image?: InputMaybe<Scalars['ID']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['ServiceSectionsDynamicZoneInput']['input']>>
+  seo?: InputMaybe<ComponentSharedSeoInput>
   serviceCategories?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
@@ -5639,10 +5750,11 @@ export type GeneralQuery = {
                     latitude?: number | null
                     longitude?: number | null
                     address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
                     publicTransportInfo?: string | null
                     parkingInfo?: string | null
                     barrierFreeInfo?: string | null
-                    mapIconName?: string | null
                     title: string
                     page?: {
                       __typename?: 'PageEntityResponse'
@@ -6236,10 +6348,11 @@ export type BranchMapHeaderSectionFragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -6297,10 +6410,11 @@ type HeaderSections_ComponentHeaderSectionsBranchMap_Fragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -6955,10 +7069,11 @@ export type BranchesSectionFragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -8570,10 +8685,11 @@ export type ContactsSectionFragment = {
           latitude?: number | null
           longitude?: number | null
           address?: string | null
+          navigateToLink?: string | null
+          mapIconName?: string | null
           publicTransportInfo?: string | null
           parkingInfo?: string | null
           barrierFreeInfo?: string | null
-          mapIconName?: string | null
           title: string
           page?: {
             __typename?: 'PageEntityResponse'
@@ -8653,10 +8769,11 @@ export type OpeningTimesSectionFragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -9113,10 +9230,11 @@ type PageSections_ComponentSectionsBranches_Fragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -9412,10 +9530,11 @@ type PageSections_ComponentSectionsContacts_Fragment = {
           latitude?: number | null
           longitude?: number | null
           address?: string | null
+          navigateToLink?: string | null
+          mapIconName?: string | null
           publicTransportInfo?: string | null
           parkingInfo?: string | null
           barrierFreeInfo?: string | null
-          mapIconName?: string | null
           title: string
           page?: {
             __typename?: 'PageEntityResponse'
@@ -10131,10 +10250,11 @@ type PageSections_ComponentSectionsOpeningTimes_Fragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -10968,6 +11088,176 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
 
+export type ContactsSidebarFragment = {
+  __typename?: 'ComponentSidebarsContactsSidebar'
+  id: string
+  contact?: {
+    __typename?: 'ContactEntityResponse'
+    data?: {
+      __typename?: 'ContactEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Contact'
+        label: string
+        text?: string | null
+        primaryEmail?: string | null
+        secondaryEmail?: string | null
+        primaryPhone?: string | null
+        secondaryPhone?: string | null
+      } | null
+    } | null
+  } | null
+  branch?: {
+    __typename?: 'BranchEntityResponse'
+    data?: {
+      __typename: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        latitude?: number | null
+        longitude?: number | null
+        address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
+        publicTransportInfo?: string | null
+        parkingInfo?: string | null
+        barrierFreeInfo?: string | null
+        title: string
+        page?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+          } | null
+        } | null
+        openingTimes?: {
+          __typename?: 'OpeningTimeRelationResponseCollection'
+          data: Array<{
+            __typename?: 'OpeningTimeEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'OpeningTime'
+              openingHours?: Array<{
+                __typename?: 'ComponentItemsOpeningHoursItem'
+                label: string
+                value: string
+              } | null> | null
+            } | null
+          }>
+        } | null
+        contacts?: {
+          __typename?: 'ContactRelationResponseCollection'
+          data: Array<{
+            __typename?: 'ContactEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Contact'
+              label: string
+              text?: string | null
+              primaryEmail?: string | null
+              secondaryEmail?: string | null
+              primaryPhone?: string | null
+              secondaryPhone?: string | null
+            } | null
+          }>
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
+type PageSidebars_ComponentSidebarsContactsSidebar_Fragment = {
+  __typename: 'ComponentSidebarsContactsSidebar'
+  id: string
+  contact?: {
+    __typename?: 'ContactEntityResponse'
+    data?: {
+      __typename?: 'ContactEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Contact'
+        label: string
+        text?: string | null
+        primaryEmail?: string | null
+        secondaryEmail?: string | null
+        primaryPhone?: string | null
+        secondaryPhone?: string | null
+      } | null
+    } | null
+  } | null
+  branch?: {
+    __typename?: 'BranchEntityResponse'
+    data?: {
+      __typename: 'BranchEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Branch'
+        latitude?: number | null
+        longitude?: number | null
+        address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
+        publicTransportInfo?: string | null
+        parkingInfo?: string | null
+        barrierFreeInfo?: string | null
+        title: string
+        page?: {
+          __typename?: 'PageEntityResponse'
+          data?: {
+            __typename: 'PageEntity'
+            id?: string | null
+            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+          } | null
+        } | null
+        openingTimes?: {
+          __typename?: 'OpeningTimeRelationResponseCollection'
+          data: Array<{
+            __typename?: 'OpeningTimeEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'OpeningTime'
+              openingHours?: Array<{
+                __typename?: 'ComponentItemsOpeningHoursItem'
+                label: string
+                value: string
+              } | null> | null
+            } | null
+          }>
+        } | null
+        contacts?: {
+          __typename?: 'ContactRelationResponseCollection'
+          data: Array<{
+            __typename?: 'ContactEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Contact'
+              label: string
+              text?: string | null
+              primaryEmail?: string | null
+              secondaryEmail?: string | null
+              primaryPhone?: string | null
+              secondaryPhone?: string | null
+            } | null
+          }>
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
+type PageSidebars_ComponentSidebarsEmptySidebar_Fragment = {
+  __typename: 'ComponentSidebarsEmptySidebar'
+  id: string
+}
+
+type PageSidebars_Error_Fragment = { __typename: 'Error' }
+
+export type PageSidebarsFragment =
+  | PageSidebars_ComponentSidebarsContactsSidebar_Fragment
+  | PageSidebars_ComponentSidebarsEmptySidebar_Fragment
+  | PageSidebars_Error_Fragment
+
 export type ArticleSlugEntityFragment = {
   __typename: 'ArticleEntity'
   id?: string | null
@@ -11393,10 +11683,11 @@ export type BranchEntityFragment = {
     latitude?: number | null
     longitude?: number | null
     address?: string | null
+    navigateToLink?: string | null
+    mapIconName?: string | null
     publicTransportInfo?: string | null
     parkingInfo?: string | null
     barrierFreeInfo?: string | null
-    mapIconName?: string | null
     title: string
     page?: {
       __typename?: 'PageEntityResponse'
@@ -11456,10 +11747,11 @@ export type BranchesQuery = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -13544,10 +13836,11 @@ export type KoloHomepageSectionFragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -14341,10 +14634,11 @@ export type HomepageEntityFragment = {
             latitude?: number | null
             longitude?: number | null
             address?: string | null
+            navigateToLink?: string | null
+            mapIconName?: string | null
             publicTransportInfo?: string | null
             parkingInfo?: string | null
             barrierFreeInfo?: string | null
-            mapIconName?: string | null
             title: string
             page?: {
               __typename?: 'PageEntityResponse'
@@ -15157,10 +15451,11 @@ export type HomepageQuery = {
                 latitude?: number | null
                 longitude?: number | null
                 address?: string | null
+                navigateToLink?: string | null
+                mapIconName?: string | null
                 publicTransportInfo?: string | null
                 parkingInfo?: string | null
                 barrierFreeInfo?: string | null
-                mapIconName?: string | null
                 title: string
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -15474,10 +15769,11 @@ export type MenuLinkFragment = {
         latitude?: number | null
         longitude?: number | null
         address?: string | null
+        navigateToLink?: string | null
+        mapIconName?: string | null
         publicTransportInfo?: string | null
         parkingInfo?: string | null
         barrierFreeInfo?: string | null
-        mapIconName?: string | null
         title: string
         page?: {
           __typename?: 'PageEntityResponse'
@@ -15575,10 +15871,11 @@ export type MenuSectionFragment = {
           latitude?: number | null
           longitude?: number | null
           address?: string | null
+          navigateToLink?: string | null
+          mapIconName?: string | null
           publicTransportInfo?: string | null
           parkingInfo?: string | null
           barrierFreeInfo?: string | null
-          mapIconName?: string | null
           title: string
           page?: {
             __typename?: 'PageEntityResponse'
@@ -15681,10 +15978,11 @@ export type MenuItemFragment = {
             latitude?: number | null
             longitude?: number | null
             address?: string | null
+            navigateToLink?: string | null
+            mapIconName?: string | null
             publicTransportInfo?: string | null
             parkingInfo?: string | null
             barrierFreeInfo?: string | null
-            mapIconName?: string | null
             title: string
             page?: {
               __typename?: 'PageEntityResponse'
@@ -16020,10 +16318,11 @@ export type MenuFragment = {
               latitude?: number | null
               longitude?: number | null
               address?: string | null
+              navigateToLink?: string | null
+              mapIconName?: string | null
               publicTransportInfo?: string | null
               parkingInfo?: string | null
               barrierFreeInfo?: string | null
-              mapIconName?: string | null
               title: string
               page?: {
                 __typename?: 'PageEntityResponse'
@@ -16370,10 +16669,11 @@ export type MenuEntityFragment = {
                 latitude?: number | null
                 longitude?: number | null
                 address?: string | null
+                navigateToLink?: string | null
+                mapIconName?: string | null
                 publicTransportInfo?: string | null
                 parkingInfo?: string | null
                 barrierFreeInfo?: string | null
-                mapIconName?: string | null
                 title: string
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -16792,10 +17092,11 @@ export type PageEntityFragment = {
                 latitude?: number | null
                 longitude?: number | null
                 address?: string | null
+                navigateToLink?: string | null
+                mapIconName?: string | null
                 publicTransportInfo?: string | null
                 parkingInfo?: string | null
                 barrierFreeInfo?: string | null
-                mapIconName?: string | null
                 title: string
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -17409,10 +17710,11 @@ export type PageEntityFragment = {
                 latitude?: number | null
                 longitude?: number | null
                 address?: string | null
+                navigateToLink?: string | null
+                mapIconName?: string | null
                 publicTransportInfo?: string | null
                 parkingInfo?: string | null
                 barrierFreeInfo?: string | null
-                mapIconName?: string | null
                 title: string
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -17703,10 +18005,11 @@ export type PageEntityFragment = {
                   latitude?: number | null
                   longitude?: number | null
                   address?: string | null
+                  navigateToLink?: string | null
+                  mapIconName?: string | null
                   publicTransportInfo?: string | null
                   parkingInfo?: string | null
                   barrierFreeInfo?: string | null
-                  mapIconName?: string | null
                   title: string
                   page?: {
                     __typename?: 'PageEntityResponse'
@@ -18459,10 +18762,11 @@ export type PageEntityFragment = {
                 latitude?: number | null
                 longitude?: number | null
                 address?: string | null
+                navigateToLink?: string | null
+                mapIconName?: string | null
                 publicTransportInfo?: string | null
                 parkingInfo?: string | null
                 barrierFreeInfo?: string | null
-                mapIconName?: string | null
                 title: string
                 page?: {
                   __typename?: 'PageEntityResponse'
@@ -19255,6 +19559,97 @@ export type PageEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    sidebar?: Array<
+      | {
+          __typename: 'ComponentSidebarsContactsSidebar'
+          id: string
+          contact?: {
+            __typename?: 'ContactEntityResponse'
+            data?: {
+              __typename?: 'ContactEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Contact'
+                label: string
+                text?: string | null
+                primaryEmail?: string | null
+                secondaryEmail?: string | null
+                primaryPhone?: string | null
+                secondaryPhone?: string | null
+              } | null
+            } | null
+          } | null
+          branch?: {
+            __typename?: 'BranchEntityResponse'
+            data?: {
+              __typename: 'BranchEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Branch'
+                latitude?: number | null
+                longitude?: number | null
+                address?: string | null
+                navigateToLink?: string | null
+                mapIconName?: string | null
+                publicTransportInfo?: string | null
+                parkingInfo?: string | null
+                barrierFreeInfo?: string | null
+                title: string
+                page?: {
+                  __typename?: 'PageEntityResponse'
+                  data?: {
+                    __typename: 'PageEntity'
+                    id?: string | null
+                    attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                  } | null
+                } | null
+                openingTimes?: {
+                  __typename?: 'OpeningTimeRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'OpeningTimeEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'OpeningTime'
+                      openingHours?: Array<{
+                        __typename?: 'ComponentItemsOpeningHoursItem'
+                        label: string
+                        value: string
+                      } | null> | null
+                    } | null
+                  }>
+                } | null
+                contacts?: {
+                  __typename?: 'ContactRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'ContactEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Contact'
+                      label: string
+                      text?: string | null
+                      primaryEmail?: string | null
+                      secondaryEmail?: string | null
+                      primaryPhone?: string | null
+                      secondaryPhone?: string | null
+                    } | null
+                  }>
+                } | null
+              } | null
+            } | null
+          } | null
+        }
+      | { __typename: 'ComponentSidebarsEmptySidebar'; id: string }
+      | { __typename: 'Error' }
+      | null
+    > | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
+    } | null
   } | null
 }
 
@@ -19289,10 +19684,11 @@ export type PagesQuery = {
                     latitude?: number | null
                     longitude?: number | null
                     address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
                     publicTransportInfo?: string | null
                     parkingInfo?: string | null
                     barrierFreeInfo?: string | null
-                    mapIconName?: string | null
                     title: string
                     page?: {
                       __typename?: 'PageEntityResponse'
@@ -19906,10 +20302,11 @@ export type PagesQuery = {
                     latitude?: number | null
                     longitude?: number | null
                     address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
                     publicTransportInfo?: string | null
                     parkingInfo?: string | null
                     barrierFreeInfo?: string | null
-                    mapIconName?: string | null
                     title: string
                     page?: {
                       __typename?: 'PageEntityResponse'
@@ -20200,10 +20597,11 @@ export type PagesQuery = {
                       latitude?: number | null
                       longitude?: number | null
                       address?: string | null
+                      navigateToLink?: string | null
+                      mapIconName?: string | null
                       publicTransportInfo?: string | null
                       parkingInfo?: string | null
                       barrierFreeInfo?: string | null
-                      mapIconName?: string | null
                       title: string
                       page?: {
                         __typename?: 'PageEntityResponse'
@@ -20960,10 +21358,11 @@ export type PagesQuery = {
                     latitude?: number | null
                     longitude?: number | null
                     address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
                     publicTransportInfo?: string | null
                     parkingInfo?: string | null
                     barrierFreeInfo?: string | null
-                    mapIconName?: string | null
                     title: string
                     page?: {
                       __typename?: 'PageEntityResponse'
@@ -21756,6 +22155,97 @@ export type PagesQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        sidebar?: Array<
+          | {
+              __typename: 'ComponentSidebarsContactsSidebar'
+              id: string
+              contact?: {
+                __typename?: 'ContactEntityResponse'
+                data?: {
+                  __typename?: 'ContactEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Contact'
+                    label: string
+                    text?: string | null
+                    primaryEmail?: string | null
+                    secondaryEmail?: string | null
+                    primaryPhone?: string | null
+                    secondaryPhone?: string | null
+                  } | null
+                } | null
+              } | null
+              branch?: {
+                __typename?: 'BranchEntityResponse'
+                data?: {
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    latitude?: number | null
+                    longitude?: number | null
+                    address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
+                    publicTransportInfo?: string | null
+                    parkingInfo?: string | null
+                    barrierFreeInfo?: string | null
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                    openingTimes?: {
+                      __typename?: 'OpeningTimeRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'OpeningTimeEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'OpeningTime'
+                          openingHours?: Array<{
+                            __typename?: 'ComponentItemsOpeningHoursItem'
+                            label: string
+                            value: string
+                          } | null> | null
+                        } | null
+                      }>
+                    } | null
+                    contacts?: {
+                      __typename?: 'ContactRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'ContactEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Contact'
+                          label: string
+                          text?: string | null
+                          primaryEmail?: string | null
+                          secondaryEmail?: string | null
+                          primaryPhone?: string | null
+                          secondaryPhone?: string | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                } | null
+              } | null
+            }
+          | { __typename: 'ComponentSidebarsEmptySidebar'; id: string }
+          | { __typename: 'Error' }
+          | null
+        > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -21810,10 +22300,11 @@ export type PageBySlugQuery = {
                     latitude?: number | null
                     longitude?: number | null
                     address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
                     publicTransportInfo?: string | null
                     parkingInfo?: string | null
                     barrierFreeInfo?: string | null
-                    mapIconName?: string | null
                     title: string
                     page?: {
                       __typename?: 'PageEntityResponse'
@@ -22427,10 +22918,11 @@ export type PageBySlugQuery = {
                     latitude?: number | null
                     longitude?: number | null
                     address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
                     publicTransportInfo?: string | null
                     parkingInfo?: string | null
                     barrierFreeInfo?: string | null
-                    mapIconName?: string | null
                     title: string
                     page?: {
                       __typename?: 'PageEntityResponse'
@@ -22721,10 +23213,11 @@ export type PageBySlugQuery = {
                       latitude?: number | null
                       longitude?: number | null
                       address?: string | null
+                      navigateToLink?: string | null
+                      mapIconName?: string | null
                       publicTransportInfo?: string | null
                       parkingInfo?: string | null
                       barrierFreeInfo?: string | null
-                      mapIconName?: string | null
                       title: string
                       page?: {
                         __typename?: 'PageEntityResponse'
@@ -23481,10 +23974,11 @@ export type PageBySlugQuery = {
                     latitude?: number | null
                     longitude?: number | null
                     address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
                     publicTransportInfo?: string | null
                     parkingInfo?: string | null
                     barrierFreeInfo?: string | null
-                    mapIconName?: string | null
                     title: string
                     page?: {
                       __typename?: 'PageEntityResponse'
@@ -24277,6 +24771,97 @@ export type PageBySlugQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        sidebar?: Array<
+          | {
+              __typename: 'ComponentSidebarsContactsSidebar'
+              id: string
+              contact?: {
+                __typename?: 'ContactEntityResponse'
+                data?: {
+                  __typename?: 'ContactEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Contact'
+                    label: string
+                    text?: string | null
+                    primaryEmail?: string | null
+                    secondaryEmail?: string | null
+                    primaryPhone?: string | null
+                    secondaryPhone?: string | null
+                  } | null
+                } | null
+              } | null
+              branch?: {
+                __typename?: 'BranchEntityResponse'
+                data?: {
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    latitude?: number | null
+                    longitude?: number | null
+                    address?: string | null
+                    navigateToLink?: string | null
+                    mapIconName?: string | null
+                    publicTransportInfo?: string | null
+                    parkingInfo?: string | null
+                    barrierFreeInfo?: string | null
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                    openingTimes?: {
+                      __typename?: 'OpeningTimeRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'OpeningTimeEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'OpeningTime'
+                          openingHours?: Array<{
+                            __typename?: 'ComponentItemsOpeningHoursItem'
+                            label: string
+                            value: string
+                          } | null> | null
+                        } | null
+                      }>
+                    } | null
+                    contacts?: {
+                      __typename?: 'ContactRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'ContactEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Contact'
+                          label: string
+                          text?: string | null
+                          primaryEmail?: string | null
+                          secondaryEmail?: string | null
+                          primaryPhone?: string | null
+                          secondaryPhone?: string | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                } | null
+              } | null
+            }
+          | { __typename: 'ComponentSidebarsEmptySidebar'; id: string }
+          | { __typename: 'Error' }
+          | null
+        > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -24310,6 +24895,38 @@ export type PageRedirectByAliasQuery = {
       } | null
     }>
   } | null
+}
+
+export type MetaSocialFragment = {
+  __typename?: 'ComponentSharedMetaSocial'
+  socialNetwork: Enum_Componentsharedmetasocial_Socialnetwork
+  title: string
+  description: string
+  image?: {
+    __typename?: 'UploadFileEntityResponse'
+    data?: {
+      __typename?: 'UploadFileEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'UploadFile'
+        url: string
+        width?: number | null
+        height?: number | null
+        caption?: string | null
+        alternativeText?: string | null
+        name: string
+      } | null
+    } | null
+  } | null
+}
+
+export type SeoFragment = {
+  __typename?: 'ComponentSharedSeo'
+  id: string
+  metaTitle: string
+  metaDescription: string
+  keywords?: string | null
+  metaViewport?: string | null
 }
 
 export type ServiceSlugEntityFragment = {
@@ -24821,6 +25438,14 @@ export type ServiceCardEntityFragment = {
         } | null
       } | null
     } | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
+    } | null
   } | null
 }
 
@@ -24861,6 +25486,14 @@ export type ServiceSearchEntityFragment = {
           name: string
         } | null
       } | null
+    } | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
     } | null
   } | null
 }
@@ -25396,6 +26029,14 @@ export type ServiceEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    seo?: {
+      __typename?: 'ComponentSharedSeo'
+      id: string
+      metaTitle: string
+      metaDescription: string
+      keywords?: string | null
+      metaViewport?: string | null
+    } | null
   } | null
 }
 
@@ -25942,6 +26583,14 @@ export type ServicesQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -26522,6 +27171,14 @@ export type ServiceBySlugQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        seo?: {
+          __typename?: 'ComponentSharedSeo'
+          id: string
+          metaTitle: string
+          metaDescription: string
+          keywords?: string | null
+          metaViewport?: string | null
+        } | null
       } | null
     }>
   } | null
@@ -28681,10 +29338,11 @@ export const BranchEntityFragmentDoc = gql`
       latitude
       longitude
       address
+      navigateToLink
+      mapIconName
       publicTransportInfo
       parkingInfo
       barrierFreeInfo
-      mapIconName
     }
   }
   ${BranchSlugEntityFragmentDoc}
@@ -29633,6 +30291,44 @@ export const PageSectionsFragmentDoc = gql`
   ${VacanciesSectionFragmentDoc}
   ${GlobalSearchSectionFragmentDoc}
 `
+export const ContactsSidebarFragmentDoc = gql`
+  fragment ContactsSidebar on ComponentSidebarsContactsSidebar {
+    id
+    contact {
+      data {
+        ...ContactEntity
+      }
+    }
+    branch {
+      data {
+        ...BranchEntity
+      }
+    }
+  }
+  ${ContactEntityFragmentDoc}
+  ${BranchEntityFragmentDoc}
+`
+export const PageSidebarsFragmentDoc = gql`
+  fragment PageSidebars on PageSidebarDynamicZone {
+    __typename
+    ... on ComponentSidebarsEmptySidebar {
+      id
+    }
+    ... on ComponentSidebarsContactsSidebar {
+      ...ContactsSidebar
+    }
+  }
+  ${ContactsSidebarFragmentDoc}
+`
+export const SeoFragmentDoc = gql`
+  fragment Seo on ComponentSharedSeo {
+    id
+    metaTitle
+    metaDescription
+    keywords
+    metaViewport
+  }
+`
 export const PageEntityFragmentDoc = gql`
   fragment PageEntity on PageEntity {
     ...PageCardEntity
@@ -29645,11 +30341,32 @@ export const PageEntityFragmentDoc = gql`
       sections {
         ...PageSections
       }
+      sidebar {
+        ...PageSidebars
+      }
+      seo {
+        ...Seo
+      }
     }
   }
   ${PageCardEntityFragmentDoc}
   ${HeaderSectionsFragmentDoc}
   ${PageSectionsFragmentDoc}
+  ${PageSidebarsFragmentDoc}
+  ${SeoFragmentDoc}
+`
+export const MetaSocialFragmentDoc = gql`
+  fragment MetaSocial on ComponentSharedMetaSocial {
+    socialNetwork
+    title
+    description
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
 `
 export const ServiceCategoryEntityFragmentDoc = gql`
   fragment ServiceCategoryEntity on ServiceCategoryEntity {
@@ -29675,11 +30392,15 @@ export const ServiceCardEntityFragmentDoc = gql`
           ...UploadImageEntity
         }
       }
+      seo {
+        ...Seo
+      }
     }
   }
   ${ServiceSlugEntityFragmentDoc}
   ${ServiceCategoryEntityFragmentDoc}
   ${UploadImageEntityFragmentDoc}
+  ${SeoFragmentDoc}
 `
 export const ServiceSearchEntityFragmentDoc = gql`
   fragment ServiceSearchEntity on ServiceEntity {

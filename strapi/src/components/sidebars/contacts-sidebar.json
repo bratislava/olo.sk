@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sidebars_contacts_sidebars",
+  "info": {
+    "displayName": "Kontakty"
+  },
+  "options": {},
+  "attributes": {
+    "contact": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contact.contact"
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::branch.branch"
+    }
+  }
+}

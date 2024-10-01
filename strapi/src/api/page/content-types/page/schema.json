@@ -113,11 +113,34 @@
         }
       }
     },
+    "sidebar": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "sidebars.empty-sidebar",
+        "sidebars.contacts-sidebar"
+      ],
+      "max": 1
+    },
     "branch": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::branch.branch",
       "mappedBy": "page"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.seo"
     }
   }
 }

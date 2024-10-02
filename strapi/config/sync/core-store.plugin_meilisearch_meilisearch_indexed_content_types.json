@@ -1,0 +1,15 @@
+{
+  "key": "plugin_meilisearch_meilisearch_indexed_content_types",
+  "value": [
+    "api::article.article",
+    "api::document.document",
+    "api::faq.faq",
+    "api::page.page",
+    "api::service.service",
+    "api::workshop.workshop",
+    "api::waste-collection-day.waste-collection-day"
+  ],
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

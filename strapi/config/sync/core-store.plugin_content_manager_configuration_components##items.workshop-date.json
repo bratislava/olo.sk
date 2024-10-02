@@ -1,0 +1,76 @@
+{
+  "key": "plugin_content_manager_configuration_components::items.workshop-date",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "internalName",
+      "defaultSortBy": "internalName",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "internalName": {
+        "edit": {
+          "label": "internalName",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "internalName",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "datetime": {
+        "edit": {
+          "label": "datetime",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "datetime",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "internalName",
+        "datetime"
+      ],
+      "edit": [
+        [
+          {
+            "name": "internalName",
+            "size": 6
+          },
+          {
+            "name": "datetime",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "items.workshop-date",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

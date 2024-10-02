@@ -12,6 +12,7 @@
   "carousel.aria.previous": "Predchádzajúci",
   "common.download": "Stiahnuť",
   "common.findOutMore": "Zistiť viac",
+  "common.integrationError": "Nastala chyba v získavaní dát.",
   "common.loading": "Načítavam…",
   "common.readMore": "Čítať viac",
   "common.showingResults": "Zobrazujeme {{current}} z {{total}} výsledkov",

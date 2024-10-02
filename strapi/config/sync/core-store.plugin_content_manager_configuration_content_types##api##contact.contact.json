@@ -1,0 +1,237 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::contact.contact",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "label",
+      "defaultSortBy": "label",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "label": {
+        "edit": {
+          "label": "Názov kontaktu",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "label",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "text": {
+        "edit": {
+          "label": "Doplnkový text",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "text",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "primaryEmail": {
+        "edit": {
+          "label": "Email - primárny",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "primaryEmail",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "secondaryEmail": {
+        "edit": {
+          "label": "Email - sekundárny",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "secondaryEmail",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "primaryPhone": {
+        "edit": {
+          "label": "Telefón - primárny",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "primaryPhone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "secondaryPhone": {
+        "edit": {
+          "label": "Telefón - sekundárny",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "secondaryPhone",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "branches": {
+        "edit": {
+          "label": "branches",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "branches",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "label",
+        "text",
+        "primaryEmail",
+        "secondaryEmail",
+        "primaryPhone",
+        "secondaryPhone",
+        "updatedAt"
+      ],
+      "edit": [
+        [
+          {
+            "name": "label",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "primaryEmail",
+            "size": 6
+          },
+          {
+            "name": "secondaryEmail",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "primaryPhone",
+            "size": 6
+          },
+          {
+            "name": "secondaryPhone",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "branches",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "api::contact.contact"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

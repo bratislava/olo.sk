@@ -1,0 +1,176 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::homepage.homepage",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "heroSection": {
+        "edit": {
+          "label": "Hero sekcia",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "heroSection",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "articlesSection": {
+        "edit": {
+          "label": "Najnovšie články",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "articlesSection",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "koloSection": {
+        "edit": {
+          "label": "KOLO",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "koloSection",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "servicesSection": {
+        "edit": {
+          "label": "Služby",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "servicesSection",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "edit": [
+        [
+          {
+            "name": "heroSection",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "articlesSection",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "koloSection",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "servicesSection",
+            "size": 12
+          }
+        ]
+      ],
+      "list": [
+        "id",
+        "createdAt",
+        "heroSection",
+        "articlesSection"
+      ]
+    },
+    "uid": "api::homepage.homepage"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

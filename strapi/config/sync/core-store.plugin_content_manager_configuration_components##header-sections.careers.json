@@ -1,0 +1,115 @@
+{
+  "key": "plugin_content_manager_configuration_components::header-sections.careers",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "videoUrl",
+      "defaultSortBy": "videoUrl",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "image": {
+        "edit": {
+          "label": "image",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "image",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "imageQuote": {
+        "edit": {
+          "label": "imageQuote",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "imageQuote",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "alternativeTextVideo": {
+        "edit": {
+          "label": "alternativeTextVideo",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "alternativeTextVideo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "videoUrl": {
+        "edit": {
+          "label": "videoUrl",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "videoUrl",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "image",
+        "imageQuote",
+        "alternativeTextVideo"
+      ],
+      "edit": [
+        [
+          {
+            "name": "image",
+            "size": 6
+          },
+          {
+            "name": "imageQuote",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "alternativeTextVideo",
+            "size": 6
+          },
+          {
+            "name": "videoUrl",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "header-sections.careers",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

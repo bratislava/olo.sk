@@ -1,0 +1,154 @@
+{
+  "name": "Public",
+  "description": "Default role given to unauthenticated user.",
+  "type": "public",
+  "permissions": [
+    {
+      "action": "api::article-category.article-category.find"
+    },
+    {
+      "action": "api::article-category.article-category.findOne"
+    },
+    {
+      "action": "api::article.article.find"
+    },
+    {
+      "action": "api::article.article.findOne"
+    },
+    {
+      "action": "api::branch.branch.find"
+    },
+    {
+      "action": "api::branch.branch.findOne"
+    },
+    {
+      "action": "api::contact.contact.find"
+    },
+    {
+      "action": "api::contact.contact.findOne"
+    },
+    {
+      "action": "api::document-category.document-category.find"
+    },
+    {
+      "action": "api::document-category.document-category.findOne"
+    },
+    {
+      "action": "api::document.document.find"
+    },
+    {
+      "action": "api::document.document.findOne"
+    },
+    {
+      "action": "api::faq-category.faq-category.find"
+    },
+    {
+      "action": "api::faq-category.faq-category.findOne"
+    },
+    {
+      "action": "api::faq.faq.find"
+    },
+    {
+      "action": "api::faq.faq.findOne"
+    },
+    {
+      "action": "api::footer.footer.find"
+    },
+    {
+      "action": "api::form.form.find"
+    },
+    {
+      "action": "api::form.form.findOne"
+    },
+    {
+      "action": "api::homepage.homepage.find"
+    },
+    {
+      "action": "api::menu.menu.find"
+    },
+    {
+      "action": "api::navigation.navigation.find"
+    },
+    {
+      "action": "api::opening-time.opening-time.find"
+    },
+    {
+      "action": "api::opening-time.opening-time.findOne"
+    },
+    {
+      "action": "api::page.page.find"
+    },
+    {
+      "action": "api::page.page.findOne"
+    },
+    {
+      "action": "api::service-category.service-category.find"
+    },
+    {
+      "action": "api::service-category.service-category.findOne"
+    },
+    {
+      "action": "api::service.service.find"
+    },
+    {
+      "action": "api::service.service.findOne"
+    },
+    {
+      "action": "api::tag.tag.find"
+    },
+    {
+      "action": "api::tag.tag.findOne"
+    },
+    {
+      "action": "api::waste-collection-day.waste-collection-day.find"
+    },
+    {
+      "action": "api::waste-collection-day.waste-collection-day.findOne"
+    },
+    {
+      "action": "api::workshop.workshop.find"
+    },
+    {
+      "action": "api::workshop.workshop.findOne"
+    },
+    {
+      "action": "plugin::content-type-builder.components.getComponent"
+    },
+    {
+      "action": "plugin::content-type-builder.components.getComponents"
+    },
+    {
+      "action": "plugin::i18n.locales.listLocales"
+    },
+    {
+      "action": "plugin::upload.content-api.find"
+    },
+    {
+      "action": "plugin::upload.content-api.findOne"
+    },
+    {
+      "action": "plugin::users-permissions.auth.callback"
+    },
+    {
+      "action": "plugin::users-permissions.auth.connect"
+    },
+    {
+      "action": "plugin::users-permissions.auth.emailConfirmation"
+    },
+    {
+      "action": "plugin::users-permissions.auth.forgotPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.register"
+    },
+    {
+      "action": "plugin::users-permissions.auth.resetPassword"
+    },
+    {
+      "action": "plugin::users-permissions.auth.sendEmailConfirmation"
+    },
+    {
+      "action": "plugin::users-permissions.user.me"
+    }
+  ]
+}

@@ -27,8 +27,7 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
   const pathname = usePathname()
 
   const { currentWeekMessage } = useCurrentWeekParity()
-  const { isMobileMenuOpen, setMobileMenuOpen, isMobileMegaMenuOpen, setIsMobileMegaMenuOpen } =
-    useNavMenuContext()
+  const { isMobileMenuOpen, setMobileMenuOpen } = useNavMenuContext()
 
   const locale = i18n.language
   const { data } = useQuery(generalQuery(locale))
@@ -37,8 +36,6 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
   const { searchLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
   const { contactsLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
 
-  // TODO: Investigate the FocusTrap behaviour
-
   useEffect(() => {
     setMobileMenuOpen(false)
   }, [pathname, setMobileMenuOpen])
@@ -46,16 +43,14 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
   return (
     <div className={cn(className)}>
       <FocusTrap active={isMobileMenuOpen}>
-        <div>
-          <MobileNavBarHeader
-            searchLink={searchLink}
-            isMobileMenuOpen={isMobileMenuOpen}
-            setMobileMenuOpen={setMobileMenuOpen}
-          />
+        <div
+          // 3.8125rem = 61px, leaving one pixel for the border
+          className="fixed top-0 z-30 h-[3.8125rem] w-full"
+        >
+          <MobileNavBarHeader searchLink={searchLink} />
           {isMobileMenuOpen ? <MobileNavMenu menus={menus} contactsLink={contactsLink} /> : null}
         </div>
       </FocusTrap>
-
       {isMobileMenuOpen ? null : (
         <MobileNavBarCurrentWeekMessage currentWeekMessage={currentWeekMessage} />
       )}

@@ -15,7 +15,6 @@ type MobileNavMenuContentProps = {
 const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
   const { getLinkProps } = useGetLinkProps()
   const { label, sections, seeAllLink } = menuItem
-  // const { setIsMobileMegaMenuOpen } = useNavMenuContext()
 
   return (
     <NavigationMenu.Content
@@ -25,22 +24,24 @@ const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
       onPointerLeave={(event) => event.preventDefault()}
       className="flex size-full flex-col items-center"
     >
-      <MobileNavMenuContentHeader label={label} />
+      <div>
+        <MobileNavMenuContentHeader label={label} />
 
-      <div className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default py-6">
-        {sections.map((section, index) => {
-          return (
-            <MobileNavMenuSection
-              key={section.id}
-              section={section}
-              className={cn({ 'pt-6': index > 0 })}
-            />
-          )
-        })}
+        <div className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default py-6">
+          {sections.map((section, index) => {
+            return (
+              <MobileNavMenuSection
+                key={section.id}
+                section={section}
+                className={cn({ 'pt-6': index > 0 })}
+              />
+            )
+          })}
+        </div>
+
+        <Divider className="-mx-4 w-dvw" />
+        <NavMenuLink {...getLinkProps(seeAllLink)} className="py-6" />
       </div>
-
-      <Divider className="-mx-4 w-dvw" />
-      <NavMenuLink {...getLinkProps(seeAllLink)} className="py-6" />
     </NavigationMenu.Content>
   )
 }

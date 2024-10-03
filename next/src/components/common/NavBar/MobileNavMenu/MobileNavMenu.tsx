@@ -53,7 +53,6 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
       <NavigationMenu.Root
         value={menuValue}
         onValueChange={setMenuValue}
-        delayDuration={8000}
         aria-label={t('navBar.aria.navBarAriaLabel')}
       >
         <SectionContainer

@@ -1,0 +1,97 @@
+{
+  "key": "plugin_content_manager_configuration_components::header-sections.featured-news",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "articlesTitle",
+      "defaultSortBy": "articlesTitle",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "articlesTitle": {
+        "edit": {
+          "label": "Nadpis nad článkami",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "articlesTitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "firstArticle": {
+        "edit": {
+          "label": "Prvý článok",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "firstArticle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "secondArticle": {
+        "edit": {
+          "label": "Druhý článok",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "secondArticle",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "articlesTitle"
+      ],
+      "edit": [
+        [
+          {
+            "name": "articlesTitle",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "firstArticle",
+            "size": 6
+          },
+          {
+            "name": "secondArticle",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "header-sections.featured-news",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

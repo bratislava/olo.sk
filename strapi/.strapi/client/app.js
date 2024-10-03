@@ -7,6 +7,7 @@ import graphql from "@strapi/plugin-graphql/strapi-admin";
 import i18N from "@strapi/plugin-i18n/strapi-admin";
 import seo from "@strapi/plugin-seo/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
+import configSync from "strapi-plugin-config-sync/strapi-admin";
 import meilisearch from "strapi-plugin-meilisearch/strapi-admin";
 import wysiwyg from "../../src/plugins/wysiwyg/strapi-admin";
 import wasteCollectionDaysImport from "../../src/plugins/waste-collection-days-import/strapi-admin";
@@ -23,6 +24,7 @@ renderAdmin(document.getElementById("strapi"), {
     i18n: i18N,
     seo: seo,
     "users-permissions": usersPermissions,
+    "config-sync": configSync,
     meilisearch: meilisearch,
     wysiwyg: wysiwyg,
     "waste-collection-days-import": wasteCollectionDaysImport,

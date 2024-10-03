@@ -1,0 +1,160 @@
+{
+  "key": "plugin_content_manager_configuration_components::sections.kolo-homepage-section",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "title",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "Nadpis",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "text": {
+        "edit": {
+          "label": "Text",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "text",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "mainCards": {
+        "edit": {
+          "label": "Dlaždice",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "mainCards",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "branchesTitle": {
+        "edit": {
+          "label": "Nadpis pre pobočky",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "branchesTitle",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "branches": {
+        "edit": {
+          "label": "Pobočky",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "branches",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "showMoreLink": {
+        "edit": {
+          "label": "showMoreLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "showMoreLink",
+          "searchable": false,
+          "sortable": false
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "title",
+        "text",
+        "mainCards"
+      ],
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "mainCards",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "branchesTitle",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "branches",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "showMoreLink",
+            "size": 12
+          }
+        ]
+      ]
+    },
+    "uid": "sections.kolo-homepage-section",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

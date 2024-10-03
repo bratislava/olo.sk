@@ -55,13 +55,7 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
         onValueChange={setMenuValue}
         aria-label={t('navBar.aria.navBarAriaLabel')}
       >
-        <SectionContainer
-          classNameInner={cn(
-            'flex flex-col',
-            // TODO: Check under which conditions the padding should be applied
-            // { 'py-2': menuValue === '' },
-          )}
-        >
+        <SectionContainer classNameInner={cn('flex flex-col', { 'py-2': menuValue === '' })}>
           <NavigationMenu.List className="flex flex-col gap-2">
             <div
               // gap-0.5 to ensure that items' focus rings do not overlap

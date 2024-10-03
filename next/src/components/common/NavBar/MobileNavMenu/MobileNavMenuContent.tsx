@@ -1,10 +1,12 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
-import MobileNavMenuContentHeader from '@/src/components/common/NavBar/MobileNavMenu/MobileNavMenuContentHeader'
+import Icon from '@/src/components/common/Icon/Icon'
 import MobileNavMenuSection from '@/src/components/common/NavBar/MobileNavMenu/MobileNavMenuSection'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
+import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Divider from '@/src/components/common/Sidebar/Divider'
+import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
@@ -14,6 +16,8 @@ type MobileNavMenuContentProps = {
 
 const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
   const { getLinkProps } = useGetLinkProps()
+  const { setMenuValue } = useNavMenuContext()
+
   const { label, sections, seeAllLink } = menuItem
 
   return (
@@ -25,7 +29,15 @@ const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
       className="flex size-full flex-col items-center"
     >
       <div>
-        <MobileNavMenuContentHeader label={label} />
+        <NavigationMenu.Link asChild>
+          <div
+            onClick={() => setMenuValue('')}
+            className="-mx-4 flex w-dvw cursor-pointer items-center justify-center border-b border-border-default px-6 py-4"
+          >
+            <Typography variant="p-default-black">{label}</Typography>
+            <Icon name="sipka-dolava" className="absolute left-1" />
+          </div>
+        </NavigationMenu.Link>
 
         <div className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default py-6">
           {sections.map((section, index) => {

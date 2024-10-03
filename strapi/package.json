@@ -8,18 +8,22 @@
     "name": "City of Bratislava"
   },
   "scripts": {
-    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && strapi build",
+    "build": "yarn --cwd ./src/plugins/wysiwyg/ build && yarn --cwd ./src/plugins/waste-collection-days-import/ build && strapi build",
     "dev": "yarn develop",
     "develop": "cross-env ENV_PATH='./.env.local' strapi develop",
-    "postinstall": "patch-package && yarn --cwd ./src/plugins/wysiwyg/ install",
+    "postinstall": "patch-package && yarn --cwd ./src/plugins/wysiwyg/ install && yarn --cwd ./src/plugins/waste-collection-days-import/ install",
+    "plugins:build": "for D in ./src/plugins/*/; do echo \"Building plugin ${D}\" && yarn --cwd \"${D}\" build; done",
+    "plugins:install": "for D in ./src/plugins/*/; do echo \"Installing plugin dependencies in ${D}\" && yarn --cwd \"${D}\" install; done",
     "start": "strapi start",
     "strapi": "strapi",
-    "ts:generate-types": "strapi ts:generate-types"
+    "ts:generate-types": "strapi ts:generate-types",
+    "cs": "config-sync"
   },
   "dependencies": {
     "@strapi/plugin-color-picker": "4.25.8",
     "@strapi/plugin-graphql": "4.25.8",
     "@strapi/plugin-i18n": "4.25.8",
+    "@strapi/plugin-seo": "^1.9.9",
     "@strapi/plugin-users-permissions": "4.25.8",
     "@strapi/strapi": "4.25.8",
     "patch-package": "^8.0.0",
@@ -28,9 +32,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "5.3.4",
-    "strapi-plugin-meilisearch": "0.9.1",
+    "strapi-plugin-config-sync": "^1.2.6",
+    "strapi-plugin-meilisearch": "0.9.2",
     "strapi-provider-upload-ts-minio": "^3.1.0",
-    "styled-components": "5.3.3"
+    "styled-components": "5.3.3",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",

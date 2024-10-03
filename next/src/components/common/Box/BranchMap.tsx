@@ -35,7 +35,6 @@ const BranchMap = ({ latitude, longitude, mapMarker, className }: BranchMapProps
             },
           }}
           reuseMaps
-          interactive={false}
           zoom={14}
           mapboxAccessToken={accessToken}
           mapStyle={mapStyle}

@@ -67,6 +67,22 @@
       },
       "type": "text"
     },
+    "navigateToLink": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
+    },
+    "mapIconName": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
+    },
     "publicTransportInfo": {
       "pluginOptions": {
         "i18n": {
@@ -90,14 +106,6 @@
         }
       },
       "type": "text"
-    },
-    "mapIconName": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string"
     }
   }
 }

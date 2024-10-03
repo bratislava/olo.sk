@@ -1,0 +1,268 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::waste-collection-day.waste-collection-day",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "type",
+      "defaultSortBy": "type",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "type": {
+        "edit": {
+          "label": "type",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "type",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "address": {
+        "edit": {
+          "label": "address",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "address",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "registrationNumber": {
+        "edit": {
+          "label": "registrationNumber",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "registrationNumber",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "validity": {
+        "edit": {
+          "label": "validity",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "validity",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "evenWeek": {
+        "edit": {
+          "label": "evenWeek",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "evenWeek",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "oddWeek": {
+        "edit": {
+          "label": "oddWeek",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "oddWeek",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "collectionDates": {
+        "edit": {
+          "label": "collectionDates",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "collectionDates",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "note": {
+        "edit": {
+          "label": "note",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "note",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "importId": {
+        "edit": {
+          "label": "importId",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "importId",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "type",
+        "address",
+        "registrationNumber"
+      ],
+      "edit": [
+        [
+          {
+            "name": "type",
+            "size": 6
+          },
+          {
+            "name": "address",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "registrationNumber",
+            "size": 6
+          },
+          {
+            "name": "validity",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "evenWeek",
+            "size": 6
+          },
+          {
+            "name": "oddWeek",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "collectionDates",
+            "size": 6
+          },
+          {
+            "name": "note",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "importId",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "api::waste-collection-day.waste-collection-day"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

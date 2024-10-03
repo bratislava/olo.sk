@@ -66,7 +66,8 @@
         "header-sections.image",
         "header-sections.side-image",
         "header-sections.pickup-day",
-        "header-sections.branch-map"
+        "header-sections.branch-map",
+        "header-sections.careers"
       ],
       "max": 1,
       "pluginOptions": {
@@ -103,7 +104,8 @@
         "sections.opening-times",
         "sections.board-members",
         "sections.vacancies",
-        "sections.global-search"
+        "sections.global-search",
+        "sections.waste-collection-days"
       ],
       "pluginOptions": {
         "i18n": {
@@ -111,11 +113,34 @@
         }
       }
     },
+    "sidebar": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "sidebars.empty-sidebar",
+        "sidebars.contacts-sidebar"
+      ],
+      "max": 1
+    },
     "branch": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::branch.branch",
       "mappedBy": "page"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.seo"
     }
   }
 }

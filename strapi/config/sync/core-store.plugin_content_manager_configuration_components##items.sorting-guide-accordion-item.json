@@ -1,0 +1,99 @@
+{
+  "key": "plugin_content_manager_configuration_components::items.sorting-guide-accordion-item",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "title",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "Názov komodity",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "wasteType": {
+        "edit": {
+          "label": "Typ komodity",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "wasteType",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "sortingGuide": {
+        "edit": {
+          "label": "Patrí / nepatrí",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "sortingGuide",
+          "searchable": false,
+          "sortable": false
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "title",
+        "wasteType",
+        "sortingGuide"
+      ],
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "wasteType",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "sortingGuide",
+            "size": 12
+          }
+        ]
+      ]
+    },
+    "uid": "items.sorting-guide-accordion-item",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

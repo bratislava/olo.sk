@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import AnimateHeight from '@/src/components/common/Accordion/AnimateHeight'
 import Icon from '@/src/components/common/Icon/Icon'
@@ -8,6 +8,8 @@ import cn from '@/src/utils/cn'
 export type AccordionProps = {
   title: string
   hasBottomBorder?: boolean
+  hasHeaderBorder?: boolean
+  sectionPadding?: boolean // mainly used in HeadingsList
   icon?: ReactNode
   children?: ReactNode
   className?: string
@@ -25,6 +27,8 @@ const Accordion = ({
   title,
   icon,
   hasBottomBorder,
+  hasHeaderBorder = false,
+  sectionPadding = false,
   children,
   className,
   innerClassName,
@@ -41,10 +45,13 @@ const Accordion = ({
               'relative flex cursor-pointer items-center justify-center gap-4 text-left after:absolute after:inset-0',
               'group-open:pb-0 focus:outline-none',
               {
-                'py-5 group-open:border-none group-open:py-5 group-open:pb-3 lg:group-open:pb-4':
-                  !icon,
-                'p-4 group-open:border-b group-open:border-border-default group-open:p-4 lg:p-8 lg:group-open:p-8':
-                  icon,
+                'group-open:py-5 group-open:pb-3 lg:group-open:pb-4': !icon && !hasHeaderBorder,
+                'py-5': !icon,
+                'py-4 group-open:pb-4': hasHeaderBorder,
+                'px-4': sectionPadding,
+                'p-4 group-open:p-4 lg:p-8 lg:group-open:p-8': icon,
+                'group-open:border-none': !icon && !hasHeaderBorder,
+                'group-open:border-b group-open:border-border-default': icon || hasHeaderBorder,
                 'border-b border-border-default': hasBottomBorder,
               },
             )}
@@ -64,9 +71,10 @@ const Accordion = ({
 
           <div
             className={cn(
-              'border-b border-border-default',
               {
-                'pb-5': !icon,
+                'border-b border-border-default': !sectionPadding,
+                'pb-5': !icon && !sectionPadding,
+                'px-4': sectionPadding,
               },
               innerClassName,
             )}

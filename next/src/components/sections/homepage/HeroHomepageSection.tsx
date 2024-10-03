@@ -27,8 +27,9 @@ const HeroHomepageSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-12">
       <div className="flex flex-col gap-4 lg:gap-12">
-        <div className="flex flex-col gap-4 lg:grid lg:h-[450px] lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8 lg:gap-y-6">
-          <Slider slides={filteredSlides} />
+        {/* 28.125rem = 450px */}
+        <div className="flex flex-col gap-4 lg:grid lg:h-[28.125rem] lg:grid-cols-3 lg:grid-rows-2 lg:gap-x-8 lg:gap-y-6">
+          {filteredSlides?.length ? <Slider slides={filteredSlides} /> : null}
 
           {mainTiles?.filter(isDefined).map((tile, index) => {
             const { children: label, href } = getLinkProps(tile.link)

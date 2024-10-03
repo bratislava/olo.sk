@@ -15,7 +15,6 @@ import { isDefined } from '@/src/utils/isDefined'
 type Props = {
   title: string
   perex?: string | null | undefined
-
   header: GalleryHeaderSectionFragment
 }
 
@@ -96,7 +95,7 @@ const PageHeaderGallery = ({ title, perex, header }: Props) => {
               <div className="absolute bottom-4 right-4 z-1">
                 <Button
                   variant="category-plain"
-                  className="border border-dashed border-action-background-default bg-white"
+                  className="bg-white ring-offset-action-border-default"
                   onPress={() => openAtImageIndex(0)}
                 >
                   {t('pageHeaderGallery.buttonText')}

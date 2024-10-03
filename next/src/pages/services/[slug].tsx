@@ -1,12 +1,12 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
 import { useMemo } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
+import SeoHead from '@/src/components/common/SeoHead'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import ServicePageContent from '@/src/components/page-contents/service/ServicePageContent'
@@ -110,19 +110,17 @@ const Page = ({ entity, general, navigation }: PageProps) => {
     return null
   }
 
-  const { title, serviceCategories } = entity.attributes
+  const { title, serviceCategories, seo } = entity.attributes
 
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
-      {/* TODO common Head/Seo component */}
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <SeoHead title={title} seo={seo} />
 
       <PageLayout>
         <SectionContainer background="secondary">
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </SectionContainer>
+
         <ServicePageHeader title={title} serviceCategories={serviceCategories?.data ?? []} />
 
         <ServicePageContent service={entity} />

@@ -44,6 +44,17 @@ fragment ServiceCardEntity on ServiceEntity {
         ...UploadImageEntity
       }
     }
+    seo {
+      ...Seo
+    }
+  }
+}
+
+fragment ServiceSearchEntity on ServiceEntity {
+  ...ServiceCardEntity
+  attributes {
+    publishedAt
+    updatedAt
   }
 }
 

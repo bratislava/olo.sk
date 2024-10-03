@@ -11,6 +11,7 @@ export type BasicRowCardProps = {
   value?: string
   label?: ReactNode
   className?: string
+  innerClassName?: string
 } & (
   | {
       value: string
@@ -36,10 +37,17 @@ export type BasicRowCardProps = {
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1341-9981&m=dev
  */
 
-const BasicRowCard = ({ variant, value, label, iconName, className }: BasicRowCardProps) => {
+const BasicRowCard = ({
+  variant,
+  value,
+  label,
+  iconName,
+  className,
+  innerClassName,
+}: BasicRowCardProps) => {
   return (
     <CardBase variant="unstyled" className={cn('bg-background-primary', className)}>
-      <div className="py-3 lg:py-4">
+      <div className={cn('py-3 lg:py-4', innerClassName)}>
         {variant === 'icon-value' ? (
           <div className="flex gap-3 lg:gap-4">
             <IconWrapper name={iconName} />

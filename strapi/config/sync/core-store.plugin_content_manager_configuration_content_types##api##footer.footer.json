@@ -1,0 +1,216 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::footer.footer",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "facebookUrl",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "text": {
+        "edit": {
+          "label": "Text",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "text",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "facebookUrl": {
+        "edit": {
+          "label": "Facebook URL",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "facebookUrl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "instagramUrl": {
+        "edit": {
+          "label": "Instagram URL",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "instagramUrl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "linkedinUrl": {
+        "edit": {
+          "label": "LinkedIn Url",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "linkedinUrl",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "columns": {
+        "edit": {
+          "label": "Stĺpce s odkazmi",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "columns",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "bottomLinks": {
+        "edit": {
+          "label": "Odkazy na spodu stránky",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "bottomLinks",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "edit": [
+        [
+          {
+            "name": "text",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "facebookUrl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "instagramUrl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "linkedinUrl",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "columns",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "bottomLinks",
+            "size": 12
+          }
+        ]
+      ],
+      "list": [
+        "id",
+        "facebookUrl",
+        "instagramUrl",
+        "columns"
+      ]
+    },
+    "uid": "api::footer.footer"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

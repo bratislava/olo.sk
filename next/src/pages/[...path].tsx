@@ -1,6 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import * as React from 'react'
@@ -8,10 +7,12 @@ import { useEffect, useMemo } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/NavMenuLatestArticlesList'
+import SeoHead from '@/src/components/common/SeoHead'
 import PageHeaderSections from '@/src/components/layout/PageHeaderSections'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
+import Sidebars from '@/src/components/layout/Sidebars'
 import AliasInfoMessage from '@/src/components/sections/AliasInfoMessage'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
@@ -19,6 +20,7 @@ import { GeneralQuery, PageEntityFragment } from '@/src/services/graphql/api'
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import cn from '@/src/utils/cn'
 import { NOT_FOUND } from '@/src/utils/conts'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
@@ -169,16 +171,15 @@ const Page = ({ entity: page, general, navigation }: PageProps) => {
     return null
   }
 
-  const { title, perex, sections, alias } = page.attributes
+  const { title, perex, sections, alias, seo } = page.attributes
+
+  // Header and sidebar has always max 1 element
   const [header] = page.attributes.header ?? []
+  const [sidebar] = page.attributes.sidebar ?? []
 
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
-      {/* TODO common Head/Seo component */}
-      <Head>
-        <title>{title}</title>
-        {perex && <meta name="description" content={perex} />}
-      </Head>
+      <SeoHead title={title} description={perex} seo={seo} />
 
       <PageLayout>
         {/* Some header elements overflow the section layout, so they need to be outside SectionContainer */}
@@ -189,8 +190,22 @@ const Page = ({ entity: page, general, navigation }: PageProps) => {
         )}
         <PageHeaderSections header={header} title={title} perex={perex} breadcrumbs={breadcrumbs} />
 
-        <Sections sections={sections?.filter(isDefined) ?? []} />
-
+        {/* TODO this was very quickly implemented sidebar layout, should be revisited and simplified, better setup for spacings etc. */}
+        <div
+          className={cn({
+            // classes copied from SectionContainer
+            'mx-auto flex max-w-screen-xl flex-col items-start md:flex-row': sidebar,
+          })}
+        >
+          <div>
+            <Sections sections={sections?.filter(isDefined) ?? []} />
+          </div>
+          {sidebar ? (
+            <div className="w-full shrink-0 grow pr-4 max-lg:px-4 md:max-w-80 lg:pr-8">
+              <Sidebars sidebar={sidebar} />
+            </div>
+          ) : null}
+        </div>
         {alias ? (
           <SectionContainer>
             <AliasInfoMessage alias={alias} />

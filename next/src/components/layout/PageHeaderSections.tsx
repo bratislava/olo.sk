@@ -1,5 +1,6 @@
 import React from 'react'
 
+import CareersPageHeader from '@/src/components/sections/headers/CareersPageHeader'
 import PageHeaderBasic from '@/src/components/sections/headers/PageHeaderBasic'
 import PageHeaderBranchMap from '@/src/components/sections/headers/PageHeaderBranchMap'
 import PageHeaderFeaturedNews from '@/src/components/sections/headers/PageHeaderFeaturedNews'
@@ -17,7 +18,7 @@ type Props = {
   breadcrumbs: Breadcrumb[]
 }
 
-const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
+const PageHeaderSections = ({ title, perex, header, breadcrumbs }: Props) => {
   switch (header?.__typename) {
     case 'ComponentHeaderSectionsImage':
       return <PageHeaderImage header={header} title={title} perex={perex} />
@@ -42,6 +43,9 @@ const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
     case 'ComponentHeaderSectionsPickupDay':
       return <PageHeaderPickupDay header={header} title={title} />
 
+    case 'ComponentHeaderSectionsCareers':
+      return <CareersPageHeader header={header} title={title} perex={perex} />
+
     case 'ComponentHeaderSectionsBranchMap':
       return <PageHeaderBranchMap header={header} title={title} perex={perex} />
 
@@ -50,4 +54,4 @@ const PageHeaderSection = ({ title, perex, header, breadcrumbs }: Props) => {
   }
 }
 
-export default PageHeaderSection
+export default PageHeaderSections

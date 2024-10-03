@@ -111,6 +111,13 @@ fragment TableSection on ComponentSectionsTable {
   anchorId
 }
 
+fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
+  title
+  text
+  anchorId
+  wasteCollectionDaysType
+}
+
 fragment FaqSection on ComponentSectionsFaq {
   title
   text
@@ -289,10 +296,31 @@ fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
 
 fragment ContactsSection on ComponentSectionsContacts {
   title
-  text
   contacts {
-    data {
-      ...ContactEntity
+    title
+    text
+    contact {
+      data {
+        ...ContactEntity
+      }
+    }
+  }
+  openingTimesContacts: openingTimes {
+    title
+    text
+    openingTime {
+      data {
+        ...OpeningTimeEntity
+      }
+    }
+  }
+  branchesContacts: branches {
+    title
+    text
+    branch {
+      data {
+        ...BranchEntity
+      }
     }
   }
 }
@@ -379,6 +407,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsTable {
     ...TableSection
+  }
+
+  ... on ComponentSectionsWasteCollectionDays {
+    ...WasteCollectionDays
   }
 
   ... on ComponentSectionsFaq {

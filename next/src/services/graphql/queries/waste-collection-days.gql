@@ -1,0 +1,13 @@
+fragment WasteCollectionDayEntity on WasteCollectionDayEntity {
+  id
+  attributes {
+    type
+    address
+    registrationNumber
+    validity
+    evenWeek
+    oddWeek
+    collectionDates
+    note
+  }
+}

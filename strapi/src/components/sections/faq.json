@@ -25,6 +25,11 @@
       "relation": "oneToMany",
       "target": "api::faq.faq"
     },
+    "faqCategories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::faq-category.faq-category"
+    },
     "showMoreLink": {
       "type": "component",
       "repeatable": false,

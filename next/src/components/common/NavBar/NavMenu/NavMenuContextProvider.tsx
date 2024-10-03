@@ -5,8 +5,6 @@ type NavMenuContextType = {
   setMenuValue: (value: string) => void
   isMobileMenuOpen: boolean
   setMobileMenuOpen: (value: boolean) => void
-  isMobileMegaMenuOpen: boolean
-  setIsMobileMegaMenuOpen: (value: boolean) => void
 }
 
 const NavMenuContext = createContext<NavMenuContextType>({
@@ -14,8 +12,6 @@ const NavMenuContext = createContext<NavMenuContextType>({
   setMenuValue: () => {},
   isMobileMenuOpen: false,
   setMobileMenuOpen: () => {},
-  isMobileMegaMenuOpen: false,
-  setIsMobileMegaMenuOpen: () => {},
 })
 
 /**
@@ -25,7 +21,6 @@ const NavMenuContext = createContext<NavMenuContextType>({
 export const NavMenuContextProvider = ({ children }: PropsWithChildren<{}>) => {
   const [menuValue, setMenuValue] = useState('')
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isMobileMegaMenuOpen, setIsMobileMegaMenuOpen] = useState(false)
 
   return (
     <NavMenuContext.Provider
@@ -34,8 +29,6 @@ export const NavMenuContextProvider = ({ children }: PropsWithChildren<{}>) => {
         setMenuValue,
         isMobileMenuOpen,
         setMobileMenuOpen,
-        isMobileMegaMenuOpen,
-        setIsMobileMegaMenuOpen,
       }}
     >
       {children}

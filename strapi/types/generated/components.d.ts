@@ -1065,8 +1065,9 @@ export interface HeaderSectionsPickupDay extends Schema.Component {
     description: ''
   }
   attributes: {
-    carouselTitle: Attribute.String & Attribute.Required
     anchors: Attribute.Component<'items.anchor', true>
+    carouselTitle: Attribute.String & Attribute.Required
+    tags: Attribute.Relation<'header-sections.pickup-day', 'oneToMany', 'api::tag.tag'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }

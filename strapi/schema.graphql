@@ -348,6 +348,7 @@ type ComponentHeaderSectionsPickupDay {
   carouselTitle: String!
   id: ID!
   showMoreLink: ComponentItemsLink
+  tags(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
 }
 
 input ComponentHeaderSectionsPickupDayFiltersInput {
@@ -357,6 +358,7 @@ input ComponentHeaderSectionsPickupDayFiltersInput {
   not: ComponentHeaderSectionsPickupDayFiltersInput
   or: [ComponentHeaderSectionsPickupDayFiltersInput]
   showMoreLink: ComponentItemsLinkFiltersInput
+  tags: TagFiltersInput
 }
 
 input ComponentHeaderSectionsPickupDayInput {
@@ -364,6 +366,7 @@ input ComponentHeaderSectionsPickupDayInput {
   carouselTitle: String
   id: ID
   showMoreLink: ComponentItemsLinkInput
+  tags: [ID]
 }
 
 type ComponentHeaderSectionsSideImage {

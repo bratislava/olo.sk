@@ -386,11 +386,19 @@ export type ComponentHeaderSectionsPickupDay = {
   carouselTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
   showMoreLink?: Maybe<ComponentItemsLink>
+  tags?: Maybe<TagRelationResponseCollection>
 }
 
 export type ComponentHeaderSectionsPickupDayAnchorsArgs = {
   filters?: InputMaybe<ComponentItemsAnchorFiltersInput>
   pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentHeaderSectionsPickupDayTagsArgs = {
+  filters?: InputMaybe<TagFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
@@ -6263,6 +6271,10 @@ export type IconHeaderSectionFragment = {
 export type PickupDayHeaderSectionFragment = {
   __typename?: 'ComponentHeaderSectionsPickupDay'
   carouselTitle: string
+  tags?: {
+    __typename?: 'TagRelationResponseCollection'
+    data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+  } | null
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
     label: string
@@ -6633,6 +6645,10 @@ type HeaderSections_ComponentHeaderSectionsImage_Fragment = {
 type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
   __typename: 'ComponentHeaderSectionsPickupDay'
   carouselTitle: string
+  tags?: {
+    __typename?: 'TagRelationResponseCollection'
+    data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+  } | null
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
     label: string
@@ -11956,6 +11972,93 @@ export type ArticleBySlugQuery = {
             __typename?: 'TagEntity'
             id?: string | null
             attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+          }>
+        } | null
+      } | null
+    }>
+  } | null
+}
+
+export type ArticlesByTagIdsQueryVariables = Exact<{
+  tagsIds: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>
+}>
+
+export type ArticlesByTagIdsQuery = {
+  __typename?: 'Query'
+  tags?: {
+    __typename?: 'TagEntityResponseCollection'
+    data: Array<{
+      __typename?: 'TagEntity'
+      attributes?: {
+        __typename?: 'Tag'
+        title: string
+        articles?: {
+          __typename?: 'ArticleRelationResponseCollection'
+          data: Array<{
+            __typename: 'ArticleEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Article'
+              alias?: string | null
+              content?: string | null
+              perex?: string | null
+              addedAt: any
+              slug: string
+              title: string
+              isCurrentChangeInOpeningHours?: boolean | null
+              gallery?: {
+                __typename?: 'UploadFileRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                }>
+              } | null
+              coverMedia?: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
+              } | null
+              articleCategory?: {
+                __typename?: 'ArticleCategoryEntityResponse'
+                data?: {
+                  __typename?: 'ArticleCategoryEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'ArticleCategory'
+                    title: string
+                    slug: string
+                  } | null
+                } | null
+              } | null
+              tags?: {
+                __typename?: 'TagRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'TagEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
+                }>
+              } | null
+            } | null
           }>
         } | null
       } | null
@@ -17710,6 +17813,10 @@ export type PageEntityFragment = {
       | {
           __typename: 'ComponentHeaderSectionsPickupDay'
           carouselTitle: string
+          tags?: {
+            __typename?: 'TagRelationResponseCollection'
+            data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+          } | null
           anchors?: Array<{
             __typename?: 'ComponentItemsAnchor'
             label: string
@@ -20506,6 +20613,10 @@ export type PagesQuery = {
           | {
               __typename: 'ComponentHeaderSectionsPickupDay'
               carouselTitle: string
+              tags?: {
+                __typename?: 'TagRelationResponseCollection'
+                data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+              } | null
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
                 label: string
@@ -23342,6 +23453,10 @@ export type PageBySlugQuery = {
           | {
               __typename: 'ComponentHeaderSectionsPickupDay'
               carouselTitle: string
+              tags?: {
+                __typename?: 'TagRelationResponseCollection'
+                data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+              } | null
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
                 label: string
@@ -32368,6 +32483,11 @@ export const AnchorFragmentDoc = gql`
 export const PickupDayHeaderSectionFragmentDoc = gql`
   fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
     carouselTitle
+    tags {
+      data {
+        id
+      }
+    }
     anchors {
       ...Anchor
     }
@@ -33438,6 +33558,23 @@ export const ArticleBySlugDocument = gql`
   }
   ${ArticleEntityFragmentDoc}
 `
+export const ArticlesByTagIdsDocument = gql`
+  query ArticlesByTagIds($tagsIds: [ID]!) {
+    tags(filters: { id: { in: $tagsIds } }) {
+      data {
+        attributes {
+          title
+          articles {
+            data {
+              ...ArticleEntity
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ArticleEntityFragmentDoc}
+`
 export const LatestArticlesDocument = gql`
   query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
     articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
@@ -33928,6 +34065,21 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'ArticleBySlug',
+        'query',
+        variables,
+      )
+    },
+    ArticlesByTagIds(
+      variables: ArticlesByTagIdsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<ArticlesByTagIdsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticlesByTagIdsQuery>(ArticlesByTagIdsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'ArticlesByTagIds',
         'query',
         variables,
       )

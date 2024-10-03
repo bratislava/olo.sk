@@ -1,0 +1,19 @@
+<svg
+  width="56"
+  height="56"
+  viewBox="0 0 56 56"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-miterlimit="10"
+>
+  <path d="M31.9586 10.6738V18.1551H39.4399" />
+  <path d="M39.4406 40.9111V18.1551L31.9593 10.6738H19.7006V40.0388H40.3161" />
+  <path d="M19.6996 15.1016H15.6833V44.4578H33.6908" />
+  <path d="M25.8863 15.1099H22.2288" />
+  <path d="M25.8863 35.2788H22.2288" />
+  <path d="M35.695 23.0112H22.2288" />
+  <path d="M33.9975 26.1875H22.2288" />
+  <path d="M32.8153 45.3267V39.3489" />
+</svg>

@@ -1,0 +1,57 @@
+{
+  "key": "plugin_content_manager_configuration_components::header-sections.icon",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "iconName",
+      "defaultSortBy": "iconName",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "iconName": {
+        "edit": {
+          "label": "iconName",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "iconName",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "iconName"
+      ],
+      "edit": [
+        [
+          {
+            "name": "iconName",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "header-sections.icon",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

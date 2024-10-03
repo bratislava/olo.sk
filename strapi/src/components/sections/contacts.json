@@ -9,13 +9,20 @@
     "title": {
       "type": "string"
     },
-    "text": {
-      "type": "text"
-    },
     "contacts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::contact.contact"
+      "type": "component",
+      "repeatable": true,
+      "component": "items.contacts-contact"
+    },
+    "openingTimes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.contacts-opening-time"
+    },
+    "branches": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.contacts-branch"
     }
   }
 }

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_items_contacts_opening_times",
+  "info": {
+    "displayName": "Contacts opening time"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "openingTime": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::opening-time.opening-time"
+    }
+  }
+}

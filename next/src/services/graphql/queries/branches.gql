@@ -32,10 +32,11 @@ fragment BranchEntity on BranchEntity {
     latitude
     longitude
     address
+    navigateToLink
+    mapIconName
     publicTransportInfo
     parkingInfo
     barrierFreeInfo
-    mapIconName
   }
 }
 

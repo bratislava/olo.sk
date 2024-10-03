@@ -1,5 +1,74 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
+export interface SidebarsEmptySidebar extends Schema.Component {
+  collectionName: 'components_sidebars_empty_sidebars'
+  info: {
+    displayName: 'Pr\u00E1zdny sidebar'
+  }
+  attributes: {}
+}
+
+export interface SidebarsContactsSidebar extends Schema.Component {
+  collectionName: 'components_sidebars_contacts_sidebars'
+  info: {
+    displayName: 'Kontakty'
+  }
+  attributes: {
+    contact: Attribute.Relation<'sidebars.contacts-sidebar', 'oneToOne', 'api::contact.contact'>
+    branch: Attribute.Relation<'sidebars.contacts-sidebar', 'oneToOne', 'api::branch.branch'>
+  }
+}
+
+export interface SharedSeo extends Schema.Component {
+  collectionName: 'components_shared_seos'
+  info: {
+    displayName: 'seo'
+    icon: 'search'
+  }
+  attributes: {
+    metaTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60
+      }>
+    metaDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 50
+        maxLength: 160
+      }>
+    metaImage: Attribute.Media<'images' | 'files' | 'videos'>
+    metaSocial: Attribute.Component<'shared.meta-social', true>
+    keywords: Attribute.Text
+    metaRobots: Attribute.String
+    structuredData: Attribute.JSON
+    metaViewport: Attribute.String
+    canonicalURL: Attribute.String
+  }
+}
+
+export interface SharedMetaSocial extends Schema.Component {
+  collectionName: 'components_shared_meta_socials'
+  info: {
+    displayName: 'metaSocial'
+    icon: 'project-diagram'
+  }
+  attributes: {
+    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> & Attribute.Required
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60
+      }>
+    description: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 65
+      }>
+    image: Attribute.Media<'images' | 'files' | 'videos'>
+  }
+}
+
 export interface MenuMenuSection extends Schema.Component {
   collectionName: 'components_menu_menu_sections'
   info: {
@@ -78,6 +147,19 @@ export interface SectionsWasteSortingCards extends Schema.Component {
     text: Attribute.Text
     cards: Attribute.Component<'items.waste-sorting-cards-item', true>
     banner: Attribute.Component<'sections.banner'>
+  }
+}
+
+export interface SectionsWasteCollectionDays extends Schema.Component {
+  collectionName: 'components_sections_waste_collection_days'
+  info: {
+    displayName: 'Odvozov\u00E9 dni'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    anchorId: Attribute.String
+    wasteCollectionDaysType: Attribute.String
   }
 }
 
@@ -436,8 +518,9 @@ export interface SectionsContacts extends Schema.Component {
   }
   attributes: {
     title: Attribute.String
-    text: Attribute.Text
-    contacts: Attribute.Relation<'sections.contacts', 'oneToMany', 'api::contact.contact'>
+    contacts: Attribute.Component<'items.contacts-contact', true>
+    openingTimes: Attribute.Component<'items.contacts-opening-time', true>
+    branches: Attribute.Component<'items.contacts-branch', true>
   }
 }
 
@@ -697,7 +780,9 @@ export interface ItemsSlide extends Schema.Component {
   attributes: {
     title: Attribute.Text & Attribute.Required
     text: Attribute.Text
-    backgroundColor: Attribute.String & Attribute.CustomField<'plugin::color-picker.color'>
+    backgroundColor: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::color-picker.color'>
     media: Attribute.Media<'images'> & Attribute.Required
     link: Attribute.Component<'items.link'>
   }
@@ -843,6 +928,46 @@ export interface ItemsFileItem extends Schema.Component {
   attributes: {
     title: Attribute.String
     media: Attribute.Media<'images' | 'files'> & Attribute.Required
+  }
+}
+
+export interface ItemsContactsOpeningTime extends Schema.Component {
+  collectionName: 'components_items_contacts_opening_times'
+  info: {
+    displayName: 'Contacts opening time'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    openingTime: Attribute.Relation<
+      'items.contacts-opening-time',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
+export interface ItemsContactsContact extends Schema.Component {
+  collectionName: 'components_items_contacts_contacts'
+  info: {
+    displayName: 'Contacts contact'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    contact: Attribute.Relation<'items.contacts-contact', 'oneToOne', 'api::contact.contact'>
+  }
+}
+
+export interface ItemsContactsBranch extends Schema.Component {
+  collectionName: 'components_items_contacts_branches'
+  info: {
+    displayName: 'Contacts branch'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    branch: Attribute.Relation<'items.contacts-branch', 'oneToOne', 'api::branch.branch'>
   }
 }
 
@@ -1001,6 +1126,20 @@ export interface HeaderSectionsFeaturedNews extends Schema.Component {
   }
 }
 
+export interface HeaderSectionsCareers extends Schema.Component {
+  collectionName: 'components_header_sections_careers'
+  info: {
+    displayName: 'Kari\u00E9ra'
+    description: ''
+  }
+  attributes: {
+    image: Attribute.Media<'images'>
+    imageQuote: Attribute.Text
+    alternativeTextVideo: Attribute.Text
+    videoUrl: Attribute.String & Attribute.Required
+  }
+}
+
 export interface HeaderSectionsBranchMap extends Schema.Component {
   collectionName: 'components_header_sections_branch_maps'
   info: {
@@ -1016,11 +1155,16 @@ export interface HeaderSectionsBranchMap extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'sidebars.empty-sidebar': SidebarsEmptySidebar
+      'sidebars.contacts-sidebar': SidebarsContactsSidebar
+      'shared.seo': SharedSeo
+      'shared.meta-social': SharedMetaSocial
       'menu.menu-section': MenuMenuSection
       'menu.menu-link': MenuMenuLink
       'menu.menu-item': MenuMenuItem
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
+      'sections.waste-collection-days': SectionsWasteCollectionDays
       'sections.vacancies': SectionsVacancies
       'sections.table': SectionsTable
       'sections.sorting-guide': SectionsSortingGuide
@@ -1069,6 +1213,9 @@ declare module '@strapi/types' {
       'items.form-cta-banner-link': ItemsFormCtaBannerLink
       'items.footer-column': ItemsFooterColumn
       'items.file-item': ItemsFileItem
+      'items.contacts-opening-time': ItemsContactsOpeningTime
+      'items.contacts-contact': ItemsContactsContact
+      'items.contacts-branch': ItemsContactsBranch
       'items.columns-list-item': ItemsColumnsListItem
       'items.columns-item': ItemsColumnsItem
       'items.cards-list-item': ItemsCardsListItem
@@ -1081,6 +1228,7 @@ declare module '@strapi/types' {
       'header-sections.icon': HeaderSectionsIcon
       'header-sections.gallery': HeaderSectionsGallery
       'header-sections.featured-news': HeaderSectionsFeaturedNews
+      'header-sections.careers': HeaderSectionsCareers
       'header-sections.branch-map': HeaderSectionsBranchMap
     }
   }

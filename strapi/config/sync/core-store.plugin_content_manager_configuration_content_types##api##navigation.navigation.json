@@ -1,0 +1,197 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::navigation.navigation",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "articlesParentPage": {
+        "edit": {
+          "label": "articlesParentPage",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "articlesParentPage",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "documentsParentPage": {
+        "edit": {
+          "label": "documentsParentPage",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "documentsParentPage",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "faqCategoriesParentPage": {
+        "edit": {
+          "label": "faqCategoriesParentPage",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "faqCategoriesParentPage",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "servicesParentPage": {
+        "edit": {
+          "label": "servicesParentPage",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "servicesParentPage",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "workshopsParentPage": {
+        "edit": {
+          "label": "workshopsParentPage",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "workshopsParentPage",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "articlesParentPage",
+        "documentsParentPage",
+        "faqCategoriesParentPage"
+      ],
+      "edit": [
+        [
+          {
+            "name": "articlesParentPage",
+            "size": 6
+          },
+          {
+            "name": "documentsParentPage",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "faqCategoriesParentPage",
+            "size": 6
+          },
+          {
+            "name": "servicesParentPage",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "workshopsParentPage",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "api::navigation.navigation"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

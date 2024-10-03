@@ -13,7 +13,7 @@ export type ArticlesFilters = {
 export const articlesDefaultFilters: ArticlesFilters = {
   search: '',
   page: 1,
-  pageSize: 5,
+  pageSize: 20,
 }
 
 export const getMeiliArticlesQueryKey = (filters: ArticlesFilters, locale: string) => [

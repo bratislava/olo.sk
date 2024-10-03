@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_iframe_sections",
+  "info": {
+    "displayName": "Iframe",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "iframeTitle": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -50,6 +50,7 @@ fragment ColumnsSection on ComponentSectionsColumns {
 fragment IframeSection on ComponentSectionsIframeSection {
   title
   text
+  backgroundColorIframe: backgroundColor
   iframeTitle
   body
   url
@@ -432,7 +433,7 @@ fragment PageSections on PageSectionsDynamicZone {
   #  ... on ComponentSectionsFiles {
   #    ...FilesSection
   #  }
-  
+
   ... on ComponentSectionsIframeSection {
     ...IframeSection
   }

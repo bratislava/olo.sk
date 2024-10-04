@@ -6983,6 +6983,7 @@ export type IframeSectionFragment = {
   iframeTitle: string
   body?: string | null
   url: string
+  backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
 }
 
 export type ImageAndTextOverlappedSectionFragment = {
@@ -9982,6 +9983,7 @@ type PageSections_ComponentSectionsIframeSection_Fragment = {
   iframeTitle: string
   body?: string | null
   url: string
+  backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -18497,6 +18499,7 @@ export type PageEntityFragment = {
           iframeTitle: string
           body?: string | null
           url: string
+          backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
         }
       | {
           __typename: 'ComponentSectionsImageAndText'
@@ -21101,6 +21104,7 @@ export type PagesQuery = {
               iframeTitle: string
               body?: string | null
               url: string
+              backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -23725,6 +23729,7 @@ export type PageBySlugQuery = {
               iframeTitle: string
               body?: string | null
               url: string
+              backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -30020,6 +30025,7 @@ export const IframeSectionFragmentDoc = gql`
   fragment IframeSection on ComponentSectionsIframeSection {
     title
     text
+    backgroundColorIframe: backgroundColor
     iframeTitle
     body
     url

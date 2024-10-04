@@ -27,7 +27,18 @@ const IframeSection = ({ section, className }: IframeSectionProps) => {
         <SectionHeader title={title} text={text} />
 
         {body?.length ? <Markdown content={body} /> : null}
-        <iframe title={iframeTitle} src={url} width="100%" style={{ height: height * 0.85 }} />
+        <iframe
+          title={iframeTitle}
+          src={url}
+          width="100%"
+          style={{ height: height * 0.85 }}
+          loading="lazy"
+          sandbox="allow-same-origin allow-scripts allow-modals allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-forms"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allow="fullscreen"
+          // 50rem = 800px
+          className="max-h-screen min-h-[50rem]"
+        />
       </div>
     </SectionContainer>
   )

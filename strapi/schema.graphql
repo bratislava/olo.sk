@@ -1533,7 +1533,6 @@ input ComponentSectionsHeroHomepageSectionInput {
 }
 
 type ComponentSectionsIframeSection {
-  backgroundColor: ENUM_COMPONENTSECTIONSIFRAMESECTION_BACKGROUNDCOLOR!
   body: String
   id: ID!
   iframeTitle: String!
@@ -1544,7 +1543,6 @@ type ComponentSectionsIframeSection {
 
 input ComponentSectionsIframeSectionFiltersInput {
   and: [ComponentSectionsIframeSectionFiltersInput]
-  backgroundColor: StringFilterInput
   body: StringFilterInput
   iframeTitle: StringFilterInput
   not: ComponentSectionsIframeSectionFiltersInput
@@ -1555,7 +1553,6 @@ input ComponentSectionsIframeSectionFiltersInput {
 }
 
 input ComponentSectionsIframeSectionInput {
-  backgroundColor: ENUM_COMPONENTSECTIONSIFRAMESECTION_BACKGROUNDCOLOR
   body: String
   id: ID
   iframeTitle: String
@@ -2351,12 +2348,6 @@ enum ENUM_COMPONENTSECTIONSDIVIDER_BACKGROUNDCOLOR {
 }
 
 enum ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR {
-  primary
-  secondary
-  tertiary
-}
-
-enum ENUM_COMPONENTSECTIONSIFRAMESECTION_BACKGROUNDCOLOR {
   primary
   secondary
   tertiary

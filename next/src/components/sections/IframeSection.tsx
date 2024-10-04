@@ -18,11 +18,11 @@ type IframeSectionProps = {
 
 const IframeSection = ({ section, className }: IframeSectionProps) => {
   const { height } = useWindowSize()
-  const { title, text, iframeTitle, body, url, backgroundColorIframe } = section ?? {}
+  const { title, text, iframeTitle, body, url } = section ?? {}
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
-    <SectionContainer background={backgroundColorIframe} className={cn('py-6 lg:py-18', className)}>
+    <SectionContainer background="primary" className={cn('py-6 lg:py-18', className)}>
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
 

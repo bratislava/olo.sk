@@ -1358,7 +1358,6 @@ export type ComponentSectionsHeroHomepageSectionInput = {
 
 export type ComponentSectionsIframeSection = {
   __typename?: 'ComponentSectionsIframeSection'
-  backgroundColor: Enum_Componentsectionsiframesection_Backgroundcolor
   body?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
   iframeTitle: Scalars['String']['output']
@@ -1960,12 +1959,6 @@ export enum Enum_Componentsectionsdivider_Backgroundcolor {
 }
 
 export enum Enum_Componentsectionsfaq_Backgroundcolor {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Tertiary = 'tertiary',
-}
-
-export enum Enum_Componentsectionsiframesection_Backgroundcolor {
   Primary = 'primary',
   Secondary = 'secondary',
   Tertiary = 'tertiary',
@@ -7007,7 +7000,6 @@ export type IframeSectionFragment = {
   iframeTitle: string
   body?: string | null
   url: string
-  backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
 }
 
 export type ImageAndTextOverlappedSectionFragment = {
@@ -10399,7 +10391,6 @@ type PageSections_ComponentSectionsIframeSection_Fragment = {
   iframeTitle: string
   body?: string | null
   url: string
-  backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -19210,7 +19201,6 @@ export type PageEntityFragment = {
           iframeTitle: string
           body?: string | null
           url: string
-          backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
         }
       | {
           __typename: 'ComponentSectionsImageAndText'
@@ -22039,7 +22029,6 @@ export type PagesQuery = {
               iframeTitle: string
               body?: string | null
               url: string
-              backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -24888,7 +24877,6 @@ export type PageBySlugQuery = {
               iframeTitle: string
               body?: string | null
               url: string
-              backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -32899,7 +32887,6 @@ export const IframeSectionFragmentDoc = gql`
   fragment IframeSection on ComponentSectionsIframeSection {
     title
     text
-    backgroundColorIframe: backgroundColor
     iframeTitle
     body
     url

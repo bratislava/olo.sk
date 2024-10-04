@@ -50,7 +50,6 @@ fragment ColumnsSection on ComponentSectionsColumns {
 fragment IframeSection on ComponentSectionsIframeSection {
   title
   text
-  backgroundColorIframe: backgroundColor
   iframeTitle
   body
   url

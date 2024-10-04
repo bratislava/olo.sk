@@ -1,10 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Meta, StoryObj } from '@storybook/react'
 
-import {
-  Enum_Componentsectionsiframesection_Backgroundcolor,
-  IframeSectionFragment,
-} from '@/src/services/graphql/api'
+import { IframeSectionFragment } from '@/src/services/graphql/api'
 
 import IframeSectionComponent from './IframeSection'
 
@@ -15,9 +12,8 @@ const meta: Meta<Props> = {
   args: {
     title: 'Section title',
     text: '',
-    backgroundColorIframe: Enum_Componentsectionsiframesection_Backgroundcolor.Secondary,
     iframeTitle: 'Lorem ipsum dolor sit amet',
-    url: 'https://www.youtube.com/embed/8QBjTTCj2JA',
+    url: 'https://olo.venzeo.com/publicView/87a15623e28d126b9d70b53c44c75889b10a2bae5d0979aeb7/list',
     body: 'Lorem ipsum dolor sit amet. Hic voluptas **deserunt sit suscipit saepe** ad error facilis ea illo nulla est maxime deleniti et pariatur autem. Non velit unde et expedita iure ea magnam velit ut illum quia id quos nisi. Aut **minima modi qui mollitia voluptatibus** ut quaerat omnis.',
   },
 }

@@ -348,6 +348,7 @@ type ComponentHeaderSectionsPickupDay {
   carouselTitle: String!
   id: ID!
   showMoreLink: ComponentItemsLink
+  tags(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
 }
 
 input ComponentHeaderSectionsPickupDayFiltersInput {
@@ -357,6 +358,7 @@ input ComponentHeaderSectionsPickupDayFiltersInput {
   not: ComponentHeaderSectionsPickupDayFiltersInput
   or: [ComponentHeaderSectionsPickupDayFiltersInput]
   showMoreLink: ComponentItemsLinkFiltersInput
+  tags: TagFiltersInput
 }
 
 input ComponentHeaderSectionsPickupDayInput {
@@ -364,6 +366,7 @@ input ComponentHeaderSectionsPickupDayInput {
   carouselTitle: String
   id: ID
   showMoreLink: ComponentItemsLinkInput
+  tags: [ID]
 }
 
 type ComponentHeaderSectionsSideImage {
@@ -1384,6 +1387,7 @@ input ComponentSectionsDocumentsInput {
 
 type ComponentSectionsFaq {
   backgroundColor: ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR!
+  faqCategories(filters: FaqCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqCategoryRelationResponseCollection
   faqs(filters: FaqFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): FaqRelationResponseCollection
   id: ID!
   showMoreLink: ComponentItemsLink
@@ -1420,6 +1424,7 @@ input ComponentSectionsFaqCategoriesInput {
 input ComponentSectionsFaqFiltersInput {
   and: [ComponentSectionsFaqFiltersInput]
   backgroundColor: StringFilterInput
+  faqCategories: FaqCategoryFiltersInput
   faqs: FaqFiltersInput
   not: ComponentSectionsFaqFiltersInput
   or: [ComponentSectionsFaqFiltersInput]
@@ -1430,6 +1435,7 @@ input ComponentSectionsFaqFiltersInput {
 
 input ComponentSectionsFaqInput {
   backgroundColor: ENUM_COMPONENTSECTIONSFAQ_BACKGROUNDCOLOR
+  faqCategories: [ID]
   faqs: [ID]
   id: ID
   showMoreLink: ComponentItemsLinkInput

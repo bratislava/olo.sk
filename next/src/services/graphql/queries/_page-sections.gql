@@ -139,6 +139,11 @@ fragment FaqSection on ComponentSectionsFaq {
       ...FaqEntity
     }
   }
+  faqCategories {
+    data {
+      ...FaqCategoryEntity
+    }
+  }
 }
 
 fragment FilesSection on ComponentSectionsFiles {

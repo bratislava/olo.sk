@@ -19,6 +19,56 @@ export interface SidebarsContactsSidebar extends Schema.Component {
   }
 }
 
+export interface SharedSeo extends Schema.Component {
+  collectionName: 'components_shared_seos'
+  info: {
+    displayName: 'seo'
+    icon: 'search'
+  }
+  attributes: {
+    metaTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60
+      }>
+    metaDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 50
+        maxLength: 160
+      }>
+    metaImage: Attribute.Media<'images' | 'files' | 'videos'>
+    metaSocial: Attribute.Component<'shared.meta-social', true>
+    keywords: Attribute.Text
+    metaRobots: Attribute.String
+    structuredData: Attribute.JSON
+    metaViewport: Attribute.String
+    canonicalURL: Attribute.String
+  }
+}
+
+export interface SharedMetaSocial extends Schema.Component {
+  collectionName: 'components_shared_meta_socials'
+  info: {
+    displayName: 'metaSocial'
+    icon: 'project-diagram'
+  }
+  attributes: {
+    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> & Attribute.Required
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60
+      }>
+    description: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 65
+      }>
+    image: Attribute.Media<'images' | 'files' | 'videos'>
+  }
+}
+
 export interface MenuMenuSection extends Schema.Component {
   collectionName: 'components_menu_menu_sections'
   info: {
@@ -69,56 +119,6 @@ export interface MenuMenuItem extends Schema.Component {
     label: Attribute.String & Attribute.Required
     sections: Attribute.Component<'menu.menu-section', true>
     seeAllLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SharedSeo extends Schema.Component {
-  collectionName: 'components_shared_seos'
-  info: {
-    displayName: 'seo'
-    icon: 'search'
-  }
-  attributes: {
-    metaTitle: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60
-      }>
-    metaDescription: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 50
-        maxLength: 160
-      }>
-    metaImage: Attribute.Media<'images' | 'files' | 'videos'>
-    metaSocial: Attribute.Component<'shared.meta-social', true>
-    keywords: Attribute.Text
-    metaRobots: Attribute.String
-    structuredData: Attribute.JSON
-    metaViewport: Attribute.String
-    canonicalURL: Attribute.String
-  }
-}
-
-export interface SharedMetaSocial extends Schema.Component {
-  collectionName: 'components_shared_meta_socials'
-  info: {
-    displayName: 'metaSocial'
-    icon: 'project-diagram'
-  }
-  attributes: {
-    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> & Attribute.Required
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60
-      }>
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 65
-      }>
-    image: Attribute.Media<'images' | 'files' | 'videos'>
   }
 }
 
@@ -479,6 +479,7 @@ export interface SectionsFaq extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
+    faqCategories: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq-category.faq-category'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }
@@ -679,6 +680,114 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
       'api::article.article'
     >
     showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface HeaderSectionsSideImage extends Schema.Component {
+  collectionName: 'components_header_sections_side_images'
+  info: {
+    displayName: 'Obr\u00E1zok vpravo'
+    icon: 'picture'
+    description: ''
+  }
+  attributes: {
+    media: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsPickupDay extends Schema.Component {
+  collectionName: 'components_header_sections_pickup_days'
+  info: {
+    displayName: 'Odvozov\u00FD de\u0148'
+    description: ''
+  }
+  attributes: {
+    anchors: Attribute.Component<'items.anchor', true>
+    carouselTitle: Attribute.String & Attribute.Required
+    tags: Attribute.Relation<'header-sections.pickup-day', 'oneToMany', 'api::tag.tag'>
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface HeaderSectionsImage extends Schema.Component {
+  collectionName: 'components_header_sections_images'
+  info: {
+    displayName: 'Obr\u00E1zok na cel\u00FA \u0161\u00EDrku'
+    icon: 'picture'
+    description: ''
+  }
+  attributes: {
+    media: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsIcon extends Schema.Component {
+  collectionName: 'components_header_sections_icons'
+  info: {
+    displayName: 'Ikonka'
+    description: ''
+  }
+  attributes: {
+    iconName: Attribute.String & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsGallery extends Schema.Component {
+  collectionName: 'components_header_sections_galleries'
+  info: {
+    displayName: 'Gal\u00E9ria'
+    icon: 'landscape'
+    description: ''
+  }
+  attributes: {
+    medias: Attribute.Media<'images', true> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsFeaturedNews extends Schema.Component {
+  collectionName: 'components_header_sections_featured_news'
+  info: {
+    displayName: 'Aktuality (\u010Dl\u00E1nky)'
+    description: ''
+  }
+  attributes: {
+    articlesTitle: Attribute.String & Attribute.Required
+    firstArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+    secondArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+  }
+}
+
+export interface HeaderSectionsCareers extends Schema.Component {
+  collectionName: 'components_header_sections_careers'
+  info: {
+    displayName: 'Kari\u00E9ra'
+    description: ''
+  }
+  attributes: {
+    image: Attribute.Media<'images'>
+    imageQuote: Attribute.Text
+    alternativeTextVideo: Attribute.Text
+    videoUrl: Attribute.String & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsBranchMap extends Schema.Component {
+  collectionName: 'components_header_sections_branch_maps'
+  info: {
+    displayName: 'Mapa pobo\u010Diek'
+    icon: 'pinMap'
+    description: ''
+  }
+  attributes: {
+    branches: Attribute.Relation<'header-sections.branch-map', 'oneToMany', 'api::branch.branch'>
   }
 }
 
@@ -1063,123 +1172,16 @@ export interface ItemsAnchor extends Schema.Component {
   }
 }
 
-export interface HeaderSectionsSideImage extends Schema.Component {
-  collectionName: 'components_header_sections_side_images'
-  info: {
-    displayName: 'Obr\u00E1zok vpravo'
-    icon: 'picture'
-    description: ''
-  }
-  attributes: {
-    media: Attribute.Media<'images'> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsPickupDay extends Schema.Component {
-  collectionName: 'components_header_sections_pickup_days'
-  info: {
-    displayName: 'Odvozov\u00FD de\u0148'
-    description: ''
-  }
-  attributes: {
-    carouselTitle: Attribute.String & Attribute.Required
-    anchors: Attribute.Component<'items.anchor', true>
-    showMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface HeaderSectionsImage extends Schema.Component {
-  collectionName: 'components_header_sections_images'
-  info: {
-    displayName: 'Obr\u00E1zok na cel\u00FA \u0161\u00EDrku'
-    icon: 'picture'
-    description: ''
-  }
-  attributes: {
-    media: Attribute.Media<'images'> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsIcon extends Schema.Component {
-  collectionName: 'components_header_sections_icons'
-  info: {
-    displayName: 'Ikonka'
-    description: ''
-  }
-  attributes: {
-    iconName: Attribute.String & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsGallery extends Schema.Component {
-  collectionName: 'components_header_sections_galleries'
-  info: {
-    displayName: 'Gal\u00E9ria'
-    icon: 'landscape'
-    description: ''
-  }
-  attributes: {
-    medias: Attribute.Media<'images', true> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsFeaturedNews extends Schema.Component {
-  collectionName: 'components_header_sections_featured_news'
-  info: {
-    displayName: 'Aktuality (\u010Dl\u00E1nky)'
-    description: ''
-  }
-  attributes: {
-    articlesTitle: Attribute.String & Attribute.Required
-    firstArticle: Attribute.Relation<
-      'header-sections.featured-news',
-      'oneToOne',
-      'api::article.article'
-    >
-    secondArticle: Attribute.Relation<
-      'header-sections.featured-news',
-      'oneToOne',
-      'api::article.article'
-    >
-  }
-}
-
-export interface HeaderSectionsCareers extends Schema.Component {
-  collectionName: 'components_header_sections_careers'
-  info: {
-    displayName: 'Kari\u00E9ra'
-    description: ''
-  }
-  attributes: {
-    image: Attribute.Media<'images'>
-    imageQuote: Attribute.Text
-    alternativeTextVideo: Attribute.Text
-    videoUrl: Attribute.String & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsBranchMap extends Schema.Component {
-  collectionName: 'components_header_sections_branch_maps'
-  info: {
-    displayName: 'Mapa pobo\u010Diek'
-    icon: 'pinMap'
-    description: ''
-  }
-  attributes: {
-    branches: Attribute.Relation<'header-sections.branch-map', 'oneToMany', 'api::branch.branch'>
-  }
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'sidebars.empty-sidebar': SidebarsEmptySidebar
       'sidebars.contacts-sidebar': SidebarsContactsSidebar
+      'shared.seo': SharedSeo
+      'shared.meta-social': SharedMetaSocial
       'menu.menu-section': MenuMenuSection
       'menu.menu-link': MenuMenuLink
       'menu.menu-item': MenuMenuItem
-      'shared.seo': SharedSeo
-      'shared.meta-social': SharedMetaSocial
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.waste-collection-days': SectionsWasteCollectionDays
@@ -1214,6 +1216,14 @@ declare module '@strapi/types' {
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
+      'header-sections.side-image': HeaderSectionsSideImage
+      'header-sections.pickup-day': HeaderSectionsPickupDay
+      'header-sections.image': HeaderSectionsImage
+      'header-sections.icon': HeaderSectionsIcon
+      'header-sections.gallery': HeaderSectionsGallery
+      'header-sections.featured-news': HeaderSectionsFeaturedNews
+      'header-sections.careers': HeaderSectionsCareers
+      'header-sections.branch-map': HeaderSectionsBranchMap
       'items.workshop-date': ItemsWorkshopDate
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide
@@ -1241,14 +1251,6 @@ declare module '@strapi/types' {
       'items.card-slider-card': ItemsCardSliderCard
       'items.board-members-item': ItemsBoardMembersItem
       'items.anchor': ItemsAnchor
-      'header-sections.side-image': HeaderSectionsSideImage
-      'header-sections.pickup-day': HeaderSectionsPickupDay
-      'header-sections.image': HeaderSectionsImage
-      'header-sections.icon': HeaderSectionsIcon
-      'header-sections.gallery': HeaderSectionsGallery
-      'header-sections.featured-news': HeaderSectionsFeaturedNews
-      'header-sections.careers': HeaderSectionsCareers
-      'header-sections.branch-map': HeaderSectionsBranchMap
     }
   }
 }

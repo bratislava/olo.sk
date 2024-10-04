@@ -1,13 +1,22 @@
-import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
+import DOMpurify from 'dompurify'
+import parse from 'html-react-parser'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import Button from '@/src/components/common/Button/Button'
+import Icon from '@/src/components/common/Icon/Icon'
+import SidebarCareer from '@/src/components/common/Sidebar/SidebarCareer'
+import Typography from '@/src/components/common/Typography/Typography'
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
+import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery } from '@/src/services/graphql/api'
+import { fetchPositionsDetailFromApi } from '@/src/services/nalgoo/fetchPositionsDetailFromApi'
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
@@ -113,11 +122,11 @@ export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
   //       },
   //     }))
 
-  const paths = [{ params: { id: '1234' } }]
+  // const paths = [{ params: { id: '97336' } }]
   // eslint-disable-next-line no-console
-  console.log(`Articles: Generated static paths for ${paths.length} slugs.`)
+  // console.log(`Articles: Generated static paths for ${paths.length} slugs.`)
 
-  return { paths, fallback: 'blocking' }
+  return { paths: [], fallback: 'blocking' }
 }
 
 export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
@@ -137,7 +146,9 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return NOT_FOUND
   }
 
-  const entity = { id: '1234', title: 'Hello world' }
+  // console.log('params id', id)
+
+  const entity = { id, title: 'Hello world' }
   if (!entity) {
     return NOT_FOUND
   }
@@ -193,26 +204,101 @@ const Page = ({ entity, navigation, general }: PageProps) => {
   //   }
 
   //   const { title, sections } = entity.attributes
-  console.log('title', entity.title)
+
+  const {
+    isError,
+    isPending,
+    error,
+    data: positionDetail,
+  } = useQuery({
+    queryKey: ['PositionsDetail', entity.id],
+    queryFn: () => fetchPositionsDetailFromApi(entity.id),
+  })
+
+  // const breadcrumbs = useMemo(
+  //   () => [
+  //     ...getPageBreadcrumbs('', navigation.pagePathsMap),
+  //     { title: entity.attributes?.title ?? '', path: null },
+  //   ],
+  //   [entity.attributes?.title, navigation.pagePathsMap, parentPagePath],
+  // )
+
+  const { t } = useTranslation()
+  const hasData = !isError && !isPending
+  const HTML_REGEX = /(<([^>]+)>)/gi
+
+  const title = isError ? error.message : isPending ? t('common.loading') : positionDetail.name
+  if (hasData) {
+    console.log('parse source', positionDetail.job_note)
+    console.log('parse', parse(positionDetail.job_note))
+  }
 
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
       {/* TODO common Head/Seo component */}
       <Head>
-        <title>Title: {entity.title}</title>
+        <title>{t('career.detailHeadline')}</title>
       </Head>
+
+      {/* <PageHeaderSections
+        title={positionDetail.title}
+        header={{ media: { data: { attributes: { url: '', name: '' } } } }}
+      /> */}
 
       <PageLayout>
         <SectionContainer background="secondary">
           {/* <Breadcrumbs breadcrumbs={breadcrumbs} /> */}
-          {/* <HeaderTitleText title={title} /> */}
-          <div>Hello World {entity.id}</div>
-          <div>{entity.toString()}</div>
+          <HeaderTitleText title={title} />
         </SectionContainer>
         {/* TODO fix y-padding so we don't change it from here */}
-        {/* <div className="flex flex-col py-6 lg:py-12 [&>*]:py-3 [&>*]:lg:py-6">
-          <Sections sections={sections?.filter(isDefined) ?? []} />
-        </div> */}
+        <div className="relative mx-auto max-w-screen-xl bg-background-primary px-4 py-6 md:px-0 lg:px-8 lg:py-12">
+          <div className="flex flex-col items-start gap-4 md:flex-row lg:gap-8">
+            <div className="flex w-full shrink flex-col md:w-[50rem]">
+              {hasData && (
+                <div className="rounded-lg border border-border-default">
+                  <Icon name="pomoc" />
+                  <div>
+                    <Typography variant="p-default-black">{t('career.address')}</Typography>
+                    <Typography variant="p-default">
+                      {positionDetail.region_description.replaceAll(HTML_REGEX, '')}
+                    </Typography>
+                    {parse(positionDetail.job_note)}
+                    {parse(DOMpurify.sanitize(positionDetail.benefit))}
+                  </div>
+                </div>
+              )}
+            </div>
+            {hasData && (
+              <SidebarCareer className="p-0 lg:p-0">
+                {/* TODO: chceme to pridat do zoznamov sidebarov? */}
+                <div className="px-5 py-4">
+                  <div className="pb-2">
+                    <Typography variant="p-default-black">{t('career.contact')}</Typography>
+                  </div>
+                  <Typography variant="p-default">
+                    {positionDetail.user_consultant?.firstname}{' '}
+                    {positionDetail.user_consultant?.lastname}
+                  </Typography>
+                  <Typography variant="p-default">
+                    {positionDetail.user_consultant?.email}
+                  </Typography>
+                </div>
+                <div className="flex flex-col gap-3 px-5 pb-4 pt-5">
+                  <Typography variant="p-default-black">{t('career.interested')}</Typography>
+                  <Button
+                    variant="category-solid"
+                    href={positionDetail.apply_url}
+                    startIcon={<Icon name="karty-a-preukazy" />}
+                    hasLinkIcon={false}
+                    asLink
+                  >
+                    {t('career.sendCV')}
+                  </Button>
+                </div>
+              </SidebarCareer>
+            )}
+          </div>
+        </div>
       </PageLayout>
     </GeneralContextProvider>
   )

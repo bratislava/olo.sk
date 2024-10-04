@@ -1342,6 +1342,7 @@ export type ComponentSectionsHeroHomepageSectionInput = {
 
 export type ComponentSectionsIframeSection = {
   __typename?: 'ComponentSectionsIframeSection'
+  backgroundColor: Enum_Componentsectionsiframesection_Backgroundcolor
   body?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
   iframeTitle: Scalars['String']['output']
@@ -1943,6 +1944,12 @@ export enum Enum_Componentsectionsdivider_Backgroundcolor {
 }
 
 export enum Enum_Componentsectionsfaq_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
+export enum Enum_Componentsectionsiframesection_Backgroundcolor {
   Primary = 'primary',
   Secondary = 'secondary',
   Tertiary = 'tertiary',

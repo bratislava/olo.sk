@@ -22,6 +22,16 @@
     "url": {
       "type": "string",
       "required": true
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "default": "primary",
+      "required": true
     }
   }
 }

@@ -52,6 +52,7 @@ const MobileNavBarHeader = ({ searchLink }: MobileNavBarHeaderProps) => {
               : t('mobileNavBar.aria.openSearch')
           }
           variant="icon-wrapped"
+          className="-mr-2" // To align the icon with the right edge of the menu cards
         />
       </div>
     </SectionContainer>

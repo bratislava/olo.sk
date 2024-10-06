@@ -57,33 +57,34 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
       >
         <SectionContainer classNameInner={cn('flex flex-col', { 'py-2': menuValue === '' })}>
           <NavigationMenu.List className="flex flex-col gap-2">
-            <div
-              // gap-0.5 to ensure that items' focus rings do not overlap
-              className="flex flex-col gap-0.5"
-            >
+            {/* gap-0.5 to ensure that items' focus rings do not overlap */}
+            <div className="flex flex-col gap-0.5">
               {menus?.map((menuItem) => (
                 <MobileNavMenuItem key={menuItem.id} menuItem={menuItem} />
               ))}
             </div>
 
-            <>
-              <Divider className="-mx-4 w-dvw" />
-
-              {isMobileMenuOpen && contactsLink ? (
-                <BasicRowCard
-                  iconName="chevron-doprava"
-                  variant="icon-label"
-                  label={
-                    <Link href={href}>
-                      <div className="flex items-center gap-4">
-                        <Icon name="telefon" className="size-5" />
-                        <Typography variant="p-default-black">{children}</Typography>
-                      </div>
-                    </Link>
-                  }
-                />
-              ) : null}
-            </>
+            {isMobileMenuOpen && contactsLink ? (
+              <>
+                <Divider className="-mx-4 w-dvw" />
+                <li>
+                  <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
+                    <BasicRowCard
+                      iconName="chevron-doprava"
+                      variant="icon-label"
+                      label={
+                        <Link href={href}>
+                          <div className="flex items-center gap-4">
+                            <Icon name="telefon" className="size-5" />
+                            <Typography variant="p-default-black">{children}</Typography>
+                          </div>
+                        </Link>
+                      }
+                    />
+                  </NavigationMenu.Link>
+                </li>
+              </>
+            ) : null}
           </NavigationMenu.List>
         </SectionContainer>
       </NavigationMenu.Root>

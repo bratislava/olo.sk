@@ -10,6 +10,10 @@ type WasteRemovalCardsSectionProps = {
   section: WasteRemovalCardsSectionFragment
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1-5&m=dev
+ */
+
 const WasteRemovalCardsSection = ({ section }: WasteRemovalCardsSectionProps) => {
   const { title, text, cardsWasteRemovalCardsSection: cards } = section
 

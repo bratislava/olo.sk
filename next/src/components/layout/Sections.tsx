@@ -15,6 +15,7 @@ import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection
 import FaqSection from '@/src/components/sections/FaqSection'
 import FormCtaBannerSection from '@/src/components/sections/FormCtaBannerSection'
 import GlobalSearchSection from '@/src/components/sections/GlobalSearchSection'
+import IframeSection from '@/src/components/sections/IframeSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OpeningTimesSection from '@/src/components/sections/OpeningTimesSection'
@@ -81,6 +82,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     // case 'ComponentSectionsFiles':
     //   return <FilesSection section={section} />
+
+    case 'ComponentSectionsIframeSection':
+      return <IframeSection section={section} />
 
     case 'ComponentSectionsBanner':
       return <BannerSection section={section} />

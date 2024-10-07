@@ -85,6 +85,10 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
   }
 }
 
+/**
+ * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=619-11100&m=dev
+ */
+
 const Page = ({ entity, navigation, general }: PageProps) => {
   const {
     isError,

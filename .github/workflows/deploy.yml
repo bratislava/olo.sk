@@ -34,6 +34,7 @@ jobs:
       url: https://tkg.dev.bratislava.sk
       debug: --debug
     secrets:
+      # to obtain a new token, follow this readme https://github.com/bratislava/github-actions/?tab=readme-ov-file#setup-new-namespace
       service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 
@@ -49,7 +50,6 @@ jobs:
       url: https://tkg.dev.bratislava.sk
       debug: --debug
     secrets:
-      # to obtain olo secret use: kubectl get secret default-*** -n olo -o json
       service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
 

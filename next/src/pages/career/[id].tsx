@@ -5,7 +5,9 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useMemo } from 'react'
 
+import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import Button from '@/src/components/common/Button/Button'
 import CareerRowCard from '@/src/components/common/Card/CareerRowCard'
 import Icon from '@/src/components/common/Icon/Icon'
@@ -19,11 +21,12 @@ import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery } from '@/src/services/graphql/api'
 import { fetchPositionsDetailFromApi } from '@/src/services/nalgoo/fetchPositionsDetailFromApi'
-import { getEducationTypes, getEmploymentForms, getSalary } from '@/src/services/nalgoo/utils'
+import { getSalary } from '@/src/services/nalgoo/utils'
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
 import { NOT_FOUND } from '@/src/utils/conts'
+import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { generalQuery } from '@/src/utils/queryOptions'
 
 type PageProps = {
@@ -53,7 +56,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
     return NOT_FOUND
   }
 
-  const entity = { id, title: 'Hello world' }
+  const entity = { id, title: '' }
   if (!entity) {
     return NOT_FOUND
   }
@@ -93,17 +96,17 @@ const Page = ({ entity, navigation, general }: PageProps) => {
     queryFn: () => fetchPositionsDetailFromApi(entity.id),
   })
 
-  // const breadcrumbs = useMemo(
-  //   () => [
-  //     ...getPageBreadcrumbs('', navigation.pagePathsMap),
-  //     { title: entity.attributes?.title ?? '', path: null },
-  //   ],
-  //   [entity.attributes?.title, navigation.pagePathsMap, parentPagePath],
-  // )
-
   const { t } = useTranslation()
   const hasData = !isError && !isPending
   const HTML_REGEX = /(<([^>]+)>)/gi
+
+  const breadcrumbs = useMemo(
+    () => [
+      ...getPageBreadcrumbs('o-nas/kariera', navigation.pagePathsMap),
+      { title: t('career.openPositions'), path: null },
+    ],
+    [navigation.pagePathsMap, t],
+  )
 
   const title = isError ? error.message : isPending ? t('common.loading') : positionDetail.name
 
@@ -121,8 +124,8 @@ const Page = ({ entity, navigation, general }: PageProps) => {
 
       <PageLayout>
         <SectionContainer background="secondary">
-          {/* <Breadcrumbs breadcrumbs={breadcrumbs} /> */}
-          <HeaderTitleText title={title} />
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          <HeaderTitleText title={title ?? ''} />
         </SectionContainer>
         <SectionContainer background="primary">
           <div
@@ -138,20 +141,22 @@ const Page = ({ entity, navigation, general }: PageProps) => {
                         className="border-b border-r border-border-default"
                         icon={<OloIcon name="career-place" />}
                         label={t('career.address')}
-                        value={positionDetail.region_description.replaceAll(HTML_REGEX, '')}
+                        value={positionDetail?.region_description?.replaceAll(HTML_REGEX, '') ?? ''}
                       />
                       <CareerRowCard
                         className="border-b border-border-default"
                         icon={<OloIcon name="career-calendar" />}
                         label={t('career.contractType')}
-                        // TODO: properly parse employment_forms codes
-                        value={getEmploymentForms(positionDetail.employment_forms)}
+                        value={
+                          positionDetail?.employment_forms?.map((eForm) => eForm.name).join(', ') ??
+                          ''
+                        }
                       />
                       <CareerRowCard
                         className="border-r border-border-default"
                         icon={<OloIcon name="career-time" />}
                         label={t('career.start')}
-                        value={positionDetail.date_start}
+                        value={positionDetail.date_start ?? ''}
                       />
                       <CareerRowCard
                         icon={<OloIcon name="career-salary" />}
@@ -160,22 +165,24 @@ const Page = ({ entity, navigation, general }: PageProps) => {
                         toolTipText={getSalary(positionDetail.salary_text)[1]}
                       />
                     </div>
-                    <div className="prose prose-h2:mt-10 prose-p:last:mb-0 prose-ul:my-0 prose-li:list-disc divide-y-1 divide-border-default">
+                    <div className="prose divide-y-1 divide-border-default prose-h2:mt-10 prose-p:last:mb-0 prose-ul:my-0 prose-li:list-disc">
                       <div className="pb-10">
                         <Typography variant="h2">{t('career.positionInformation')}</Typography>
                         <Typography variant="h4">{t('career.positionResponsibilities')}</Typography>
-                        <div>{parse(DOMPurify.sanitize(positionDetail.job_note))}</div>
+                        <div>{parse(DOMPurify.sanitize(positionDetail.job_note ?? ''))}</div>
                       </div>
                       <div className="pb-10">
                         <Typography variant="h2">{t('career.interviewInformation')}</Typography>
-                        <div>{parse(positionDetail.interview)}</div>
+                        <div>{parse(positionDetail.interview ?? '')}</div>
                       </div>
                       <div className="pb-10">
                         <Typography variant="h2">{t('career.employeeRequirements')}</Typography>
                         <div className="pb-2 pt-4">
                           <Typography variant="h5">{t('career.employeeEducation')}</Typography>
                         </div>
-                        <div>{getEducationTypes(positionDetail.educations)}</div>
+                        <div>
+                          {positionDetail?.educations?.map((eForm) => eForm.name).join(', ') ?? ''}
+                        </div>
                         {positionDetail.specialization && (
                           <>
                             <div className="pb-2 pt-4">
@@ -189,7 +196,7 @@ const Page = ({ entity, navigation, general }: PageProps) => {
                         <div className="pb-2 pt-4">
                           <Typography variant="h5">{t('career.personalRequirements')}</Typography>
                         </div>
-                        <div>{parse(positionDetail.personal_prerequisites)}</div>
+                        <div>{parse(positionDetail.personal_prerequisites ?? '')}</div>
                         {positionDetail.practise && (
                           <>
                             <div className="pb-2 pt-4">
@@ -210,7 +217,7 @@ const Page = ({ entity, navigation, general }: PageProps) => {
                       <div>
                         <Typography variant="h2">{t('career.benefits')}</Typography>
                         <div className="prose-p:my-0 prose-img:my-0">
-                          {parse(positionDetail.benefit)}
+                          {parse(positionDetail.benefit ?? '')}
                         </div>
                       </div>
                     </div>

@@ -16,9 +16,6 @@
       "type": "string",
       "required": true
     },
-    "body": {
-      "type": "string"
-    },
     "url": {
       "type": "string",
       "required": true

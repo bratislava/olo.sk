@@ -51,7 +51,6 @@ fragment IframeSection on ComponentSectionsIframeSection {
   title
   text
   iframeTitle
-  body
   url
 }
 

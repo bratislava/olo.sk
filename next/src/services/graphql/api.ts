@@ -1358,7 +1358,6 @@ export type ComponentSectionsHeroHomepageSectionInput = {
 
 export type ComponentSectionsIframeSection = {
   __typename?: 'ComponentSectionsIframeSection'
-  body?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
   iframeTitle: Scalars['String']['output']
   text?: Maybe<Scalars['String']['output']>
@@ -6998,7 +6997,6 @@ export type IframeSectionFragment = {
   title?: string | null
   text?: string | null
   iframeTitle: string
-  body?: string | null
   url: string
 }
 
@@ -10389,7 +10387,6 @@ type PageSections_ComponentSectionsIframeSection_Fragment = {
   title?: string | null
   text?: string | null
   iframeTitle: string
-  body?: string | null
   url: string
 }
 
@@ -19199,7 +19196,6 @@ export type PageEntityFragment = {
           title?: string | null
           text?: string | null
           iframeTitle: string
-          body?: string | null
           url: string
         }
       | {
@@ -22027,7 +22023,6 @@ export type PagesQuery = {
               title?: string | null
               text?: string | null
               iframeTitle: string
-              body?: string | null
               url: string
             }
           | {
@@ -24875,7 +24870,6 @@ export type PageBySlugQuery = {
               title?: string | null
               text?: string | null
               iframeTitle: string
-              body?: string | null
               url: string
             }
           | {
@@ -32888,7 +32882,6 @@ export const IframeSectionFragmentDoc = gql`
     title
     text
     iframeTitle
-    body
     url
   }
 `

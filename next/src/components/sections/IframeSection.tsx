@@ -1,7 +1,6 @@
 import React from 'react'
 import { useWindowSize } from 'usehooks-ts'
 
-import Markdown from '@/src/components/formatting/Markdown'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { IframeSectionFragment } from '@/src/services/graphql/api'
@@ -18,7 +17,7 @@ type IframeSectionProps = {
 
 const IframeSection = ({ section, className }: IframeSectionProps) => {
   const { height } = useWindowSize()
-  const { title, text, iframeTitle, body, url } = section ?? {}
+  const { title, text, iframeTitle, url } = section ?? {}
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -26,7 +25,6 @@ const IframeSection = ({ section, className }: IframeSectionProps) => {
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
 
-        {body?.length ? <Markdown content={body} /> : null}
         <iframe
           title={iframeTitle}
           src={url}

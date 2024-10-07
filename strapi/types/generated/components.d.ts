@@ -384,7 +384,6 @@ export interface SectionsIframeSection extends Schema.Component {
     title: Attribute.String
     text: Attribute.String
     iframeTitle: Attribute.String & Attribute.Required
-    body: Attribute.String
     url: Attribute.String & Attribute.Required
   }
 }

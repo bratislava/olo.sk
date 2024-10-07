@@ -1533,7 +1533,6 @@ input ComponentSectionsHeroHomepageSectionInput {
 }
 
 type ComponentSectionsIframeSection {
-  body: String
   id: ID!
   iframeTitle: String!
   text: String
@@ -1543,7 +1542,6 @@ type ComponentSectionsIframeSection {
 
 input ComponentSectionsIframeSectionFiltersInput {
   and: [ComponentSectionsIframeSectionFiltersInput]
-  body: StringFilterInput
   iframeTitle: StringFilterInput
   not: ComponentSectionsIframeSectionFiltersInput
   or: [ComponentSectionsIframeSectionFiltersInput]
@@ -1553,7 +1551,6 @@ input ComponentSectionsIframeSectionFiltersInput {
 }
 
 input ComponentSectionsIframeSectionInput {
-  body: String
   id: ID
   iframeTitle: String
   text: String

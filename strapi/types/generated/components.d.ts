@@ -408,6 +408,7 @@ export interface SectionsFaq extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
+    faqCategories: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq-category.faq-category'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }
@@ -1064,8 +1065,9 @@ export interface HeaderSectionsPickupDay extends Schema.Component {
     description: ''
   }
   attributes: {
-    carouselTitle: Attribute.String & Attribute.Required
     anchors: Attribute.Component<'items.anchor', true>
+    carouselTitle: Attribute.String & Attribute.Required
+    tags: Attribute.Relation<'header-sections.pickup-day', 'oneToMany', 'api::tag.tag'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }

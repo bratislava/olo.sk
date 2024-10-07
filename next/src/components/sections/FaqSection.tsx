@@ -19,10 +19,20 @@ type Props = {
  */
 
 const FaqSection = ({ section }: Props) => {
-  const { title, text, backgroundColorFaq, faqs, showMoreLink } = section ?? {}
+  const { title, text, backgroundColorFaq, faqs, faqCategories, showMoreLink } = section ?? {}
+
+  const filteredFaqsFromCategories =
+    faqCategories?.data
+      .flatMap((category) => category.attributes?.faqs?.data)
+      // eslint-disable-next-line unicorn/no-array-callback-reference
+      .filter(isDefined) ?? []
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredFaqs = faqs?.data.filter(isDefined) ?? []
+  // const filteredFaqs = faqs?.data.filter(isDefined) ?? []
+
+  // eslint-disable-next-line unicorn/prefer-spread
+  const faqsToRender = Array.from(new Set([...filteredFaqs, ...filteredFaqsFromCategories]))
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -31,7 +41,7 @@ const FaqSection = ({ section }: Props) => {
         <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
 
         <FaqGroup
-          faqs={filteredFaqs}
+          faqs={faqsToRender}
           className={cn({
             'border-none': backgroundColorFaq !== Enum_Componentsectionsfaq_Backgroundcolor.Primary,
           })}

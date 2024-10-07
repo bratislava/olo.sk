@@ -374,6 +374,20 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
   }
 }
 
+export interface SectionsIframeSection extends Schema.Component {
+  collectionName: 'components_sections_iframe_sections'
+  info: {
+    displayName: 'Iframe (Venzeo)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    iframeTitle: Attribute.String & Attribute.Required
+    url: Attribute.String & Attribute.Required
+  }
+}
+
 export interface SectionsHeroHomepageSection extends Schema.Component {
   collectionName: 'components_sections_hero_homepage_sections'
   info: {
@@ -1179,6 +1193,7 @@ declare module '@strapi/types' {
       'sections.kolo-homepage-section': SectionsKoloHomepageSection
       'sections.image-and-text': SectionsImageAndText
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
+      'sections.iframe-section': SectionsIframeSection
       'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.global-search': SectionsGlobalSearch
       'sections.form-cta-banner': SectionsFormCtaBanner

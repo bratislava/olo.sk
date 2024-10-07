@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_iframe_sections",
+  "info": {
+    "displayName": "Iframe (Venzeo)",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "iframeTitle": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

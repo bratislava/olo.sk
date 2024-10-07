@@ -1356,6 +1356,15 @@ export type ComponentSectionsHeroHomepageSectionInput = {
   smallTiles?: InputMaybe<Array<InputMaybe<ComponentItemsHeroSmallTileInput>>>
 }
 
+export type ComponentSectionsIframeSection = {
+  __typename?: 'ComponentSectionsIframeSection'
+  id: Scalars['ID']['output']
+  iframeTitle: Scalars['String']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+  url: Scalars['String']['output']
+}
+
 export type ComponentSectionsImageAndText = {
   __typename?: 'ComponentSectionsImageAndText'
   backgroundColor: Enum_Componentsectionsimageandtext_Backgroundcolor
@@ -2341,6 +2350,7 @@ export type GenericMorph =
   | ComponentSectionsFormCtaBanner
   | ComponentSectionsGlobalSearch
   | ComponentSectionsHeroHomepageSection
+  | ComponentSectionsIframeSection
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsKoloHomepageSection
@@ -3350,6 +3360,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsFaq
   | ComponentSectionsFaqCategories
   | ComponentSectionsGlobalSearch
+  | ComponentSectionsIframeSection
   | ComponentSectionsImageAndText
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOpeningTimes
@@ -6981,6 +6992,14 @@ export type ColumnsSectionFragment = {
   } | null>
 }
 
+export type IframeSectionFragment = {
+  __typename?: 'ComponentSectionsIframeSection'
+  title?: string | null
+  text?: string | null
+  iframeTitle: string
+  url: string
+}
+
 export type ImageAndTextOverlappedSectionFragment = {
   __typename?: 'ComponentSectionsImageAndTextOverlapped'
   title?: string | null
@@ -10363,6 +10382,14 @@ type PageSections_ComponentSectionsGlobalSearch_Fragment = {
   title?: string | null
 }
 
+type PageSections_ComponentSectionsIframeSection_Fragment = {
+  __typename: 'ComponentSectionsIframeSection'
+  title?: string | null
+  text?: string | null
+  iframeTitle: string
+  url: string
+}
+
 type PageSections_ComponentSectionsImageAndText_Fragment = {
   __typename: 'ComponentSectionsImageAndText'
   title?: string | null
@@ -11489,6 +11516,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsFaq_Fragment
   | PageSections_ComponentSectionsFaqCategories_Fragment
   | PageSections_ComponentSectionsGlobalSearch_Fragment
+  | PageSections_ComponentSectionsIframeSection_Fragment
   | PageSections_ComponentSectionsImageAndText_Fragment
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOpeningTimes_Fragment
@@ -19164,6 +19192,13 @@ export type PageEntityFragment = {
         }
       | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
       | {
+          __typename: 'ComponentSectionsIframeSection'
+          title?: string | null
+          text?: string | null
+          iframeTitle: string
+          url: string
+        }
+      | {
           __typename: 'ComponentSectionsImageAndText'
           title?: string | null
           text?: string | null
@@ -21983,6 +22018,13 @@ export type PagesQuery = {
               } | null
             }
           | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
+          | {
+              __typename: 'ComponentSectionsIframeSection'
+              title?: string | null
+              text?: string | null
+              iframeTitle: string
+              url: string
+            }
           | {
               __typename: 'ComponentSectionsImageAndText'
               title?: string | null
@@ -24823,6 +24865,13 @@ export type PageBySlugQuery = {
               } | null
             }
           | { __typename: 'ComponentSectionsGlobalSearch'; title?: string | null }
+          | {
+              __typename: 'ComponentSectionsIframeSection'
+              title?: string | null
+              text?: string | null
+              iframeTitle: string
+              url: string
+            }
           | {
               __typename: 'ComponentSectionsImageAndText'
               title?: string | null
@@ -32828,6 +32877,14 @@ export const DocumentsSectionFragmentDoc = gql`
   }
   ${DocumentEntityFragmentDoc}
 `
+export const IframeSectionFragmentDoc = gql`
+  fragment IframeSection on ComponentSectionsIframeSection {
+    title
+    text
+    iframeTitle
+    url
+  }
+`
 export const DividerSectionFragmentDoc = gql`
   fragment DividerSection on ComponentSectionsDivider {
     backgroundColorDivider: backgroundColor
@@ -33091,6 +33148,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsDocuments {
       ...DocumentsSection
     }
+    ... on ComponentSectionsIframeSection {
+      ...IframeSection
+    }
     ... on ComponentSectionsBanner {
       ...BannerSection
     }
@@ -33149,6 +33209,7 @@ export const PageSectionsFragmentDoc = gql`
   ${WasteCollectionDaysFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}
+  ${IframeSectionFragmentDoc}
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}
   ${CardsListSectionFragmentDoc}

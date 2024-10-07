@@ -1,25 +1,22 @@
+import React from 'react'
+
 import BasicCard from '@/src/components/common/Card/BasicCard'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import { CardSliderSectionFragment } from '@/src/services/graphql/api'
+import { WasteRemovalCardsSectionFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 
 type WasteRemovalCardsSectionProps = {
-  section: CardSliderSectionFragment
+  section: WasteRemovalCardsSectionFragment
 }
 
 const WasteRemovalCardsSection = ({ section }: WasteRemovalCardsSectionProps) => {
-  const {
-    title,
-    text,
-    backgroundColorCardSlider: backgroundColor,
-    cardsCardSlider: cards,
-  } = section
+  const { title, text, cardsWasteRemovalCardsSection: cards } = section
 
   const filteredCards = cards?.filter(isDefined) ?? []
 
   return (
-    <SectionContainer background={backgroundColor}>
+    <SectionContainer background="primary">
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-6">

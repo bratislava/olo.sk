@@ -3,20 +3,16 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import { OloTruckImage, ZevoIronHandImage } from '@/src/assets/images'
 import WasteRemovalCardsSectionComponent from '@/src/components/sections/WasteRemovalCardsSection'
-import {
-  CardSliderSectionFragment,
-  Enum_Componentsectionscardslider_Backgroundcolor,
-} from '@/src/services/graphql/api'
+import { WasteRemovalCardsSectionFragment } from '@/src/services/graphql/api'
 
-type Props = CardSliderSectionFragment
+type Props = WasteRemovalCardsSectionFragment
 
 const meta: Meta<Props> = {
   title: 'Sections/Waste Removal Cards',
   args: {
     title: 'Prehľad veľkokapacitných a lisovacích kontajnerov s cenami',
     text: 'Subtext',
-    backgroundColorCardSlider: Enum_Componentsectionscardslider_Backgroundcolor.Primary,
-    cardsCardSlider: [
+    cardsWasteRemovalCardsSection: [
       {
         __typename: 'ComponentItemsCardSliderCard',
         title: 'Card title',

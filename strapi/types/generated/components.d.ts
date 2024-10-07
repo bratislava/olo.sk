@@ -97,6 +97,18 @@ export interface SectionsWasteSortingCards extends Schema.Component {
   }
 }
 
+export interface SectionsWasteRemovalCardsSection extends Schema.Component {
+  collectionName: 'components_sections_waste_removal_cards_sections'
+  info: {
+    displayName: 'Karty (odvoz odpadu kontajnerom)'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.card-slider-card', true>
+  }
+}
+
 export interface SectionsWasteCollectionDays extends Schema.Component {
   collectionName: 'components_sections_waste_collection_days'
   info: {
@@ -1163,6 +1175,7 @@ declare module '@strapi/types' {
       'shared.meta-social': SharedMetaSocial
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
+      'sections.waste-removal-cards-section': SectionsWasteRemovalCardsSection
       'sections.waste-collection-days': SectionsWasteCollectionDays
       'sections.vacancies': SectionsVacancies
       'sections.table': SectionsTable

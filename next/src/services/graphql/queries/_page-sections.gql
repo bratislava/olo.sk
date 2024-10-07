@@ -72,6 +72,20 @@ fragment BranchesSection on ComponentSectionsBranches {
   }
 }
 
+fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCardsSection {
+  title
+  text
+  cardsWasteRemovalCardsSection: cards {
+    title
+    text
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+}
+
 fragment WorkshopsSection on ComponentSectionsWorkshops {
   title
   text

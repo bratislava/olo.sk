@@ -1,5 +1,8 @@
 export { default as AccessibleIcon } from './accessible.svg'
 export { default as CareerCalendarIcon } from './career-calendar.svg'
+export { default as CareerPlaceIcon } from './career-place.svg'
+export { default as CareerSalaryIcon } from './career-salary.svg'
+export { default as CareerTimeIcon } from './career-time.svg'
 export { default as ChatIcon } from './chat.svg'
 export { default as DirectionsIcon } from './directions.svg'
 export { default as BusIcon } from './directions-bus.svg'

@@ -14,6 +14,9 @@ export const oloIconNameMap = {
   // size 24 px
   accessible: 'AccessibleIcon',
   'career-calendar': 'CareerCalendarIcon',
+  'career-place': 'CareerPlaceIcon',
+  'career-salary': 'CareerSalaryIcon',
+  'career-time': 'CareerTimeIcon',
   chat: 'ChatIcon',
   directions: 'DirectionsIcon',
   'live-help': 'LiveHelpIcon',

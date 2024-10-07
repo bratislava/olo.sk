@@ -9,6 +9,8 @@ import { VacanciesSectionFragment } from '@/src/services/graphql/api'
 import { fetchOpenPositionsFromApi } from '@/src/services/nalgoo/fetchOpenPositionsFromApi'
 import cn from '@/src/utils/cn'
 
+import { getEmploymentForms, getSalary } from '../../services/nalgoo/utils'
+
 type Props = {
   section: VacanciesSectionFragment | null | undefined
   className?: string
@@ -50,8 +52,12 @@ const VacanciesSection = ({ section, className }: Props) => {
                 <JobPositionRowCard
                   key={position.id}
                   // TODO: temporary strings as placeholder
-                  metaData={['Oddelenie', 'Úväzok', 'Plat']}
-                  linkHref={`/${position.id}`}
+                  metaData={[
+                    'Oddelenie',
+                    getEmploymentForms(position.employment_forms),
+                    getSalary(position.salary_text)[0],
+                  ]}
+                  linkHref={`career/${position.id}`}
                   title={position.name}
                 />
               )

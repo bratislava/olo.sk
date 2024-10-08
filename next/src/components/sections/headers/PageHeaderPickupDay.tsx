@@ -28,23 +28,34 @@ type Props = Pick<PageHeaderBasicProps, 'title'> & {
  */
 
 const PageHeaderPickupDay = ({ title, header }: Props) => {
-  const { t, i18n } = useTranslation()
-  const locale = i18n.language
+  const { t } = useTranslation()
 
   const { getFullPath } = useGetFullPath()
   const { getLinkProps } = useGetLinkProps()
 
-  const { carouselTitle, anchors, showMoreLink } = header
+  const { carouselTitle, tags, anchors, showMoreLink } = header
 
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
-  const { data: articlesData } = useQuery({
-    queryKey: ['LatestArticles', { limit: LATEST_ARTICLES_COUNT, locale }],
-    queryFn: () => client.LatestArticles({ limit: LATEST_ARTICLES_COUNT, locale }),
+  // eslint-disable-next-line unicorn/no-array-callback-reference
+  const filteredTagIds = tags?.data.map((tag) => tag.id).filter(isDefined) ?? []
+
+  const { data: articlesByTagsData } = useQuery({
+    queryKey: ['ArticlesByTagIds', { tagsIds: filteredTagIds }],
+    queryFn: () => client.ArticlesByTagIds({ tagsIds: filteredTagIds }),
   })
 
   const filteredArticles =
-    articlesData?.articles?.data.filter((article) => isDefined(article?.attributes)) ?? []
+    articlesByTagsData?.tags?.data
+      // eslint-disable-next-line unicorn/no-array-callback-reference
+      .filter(isDefined)
+      // without flattening, we would get an array of articles for each tag
+      .flatMap((tag) => tag.attributes?.articles?.data)
+      // eslint-disable-next-line unicorn/no-array-callback-reference
+      .filter(isDefined) ?? []
+
+  // eslint-disable-next-line unicorn/prefer-spread
+  const articlesToRender = Array.from(new Set(filteredArticles))
 
   return (
     <SectionContainer background="secondary">
@@ -87,12 +98,12 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
             {t('pageHeaderPickupDay.allNews')}
           </Button>
         </div>
-        {filteredArticles.length > 0 ? (
+        {articlesToRender.length > 0 ? (
           <ResponsiveCarousel
             desktop={4}
             shiftVariant="byPage"
             controlsVariant="side"
-            items={filteredArticles
+            items={articlesToRender
               .map((article) => {
                 if (!article.attributes) return null
 

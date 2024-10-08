@@ -66,7 +66,7 @@ const Slider = ({ slides }: SliderProps) => {
     <div
       // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
-      className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2 lg:h-[26.125rem]"
+      className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl lg:col-span-2 lg:row-span-2"
       style={{ backgroundColor }}
     >
       <AnimatePresence initial={false} custom={transitionDirection} mode="wait">
@@ -84,16 +84,24 @@ const Slider = ({ slides }: SliderProps) => {
           className="flex flex-col lg:h-full"
         >
           {url ? (
-            // 20.125rem = 322px, 6rem = 96px
-            <div className="relative flex aspect-heroSliderMedia lg:absolute lg:bottom-0 lg:right-0 lg:top-24 lg:h-[20.125rem]">
-              <Image src={url} alt={alternativeText ?? ''} fill className="object-cover" />
+            //  20.125rem = 322px
+            <div className="relative z-0 flex aspect-heroSliderMedia lg:absolute lg:bottom-0 lg:right-0 lg:h-[20.125rem]">
+              {/* Use object-contain to always show the whole illustration */}
+              <Image src={url} alt={alternativeText ?? ''} fill className="object-contain" />
             </div>
           ) : null}
-          <div className="h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
+          <div className="z-1 h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">
             <div className="flex flex-col gap-4 lg:gap-6">
               <div className={cn('flex flex-col gap-2 lg:gap-3', invertedTypographyClassNames)}>
                 <Typography variant="h3">{title}</Typography>
-                {text ? <Typography variant="p-default">{text}</Typography> : null}
+                {text ? (
+                  <Typography
+                    variant="p-default"
+                    className_onlyWhenNecessary="overflow-hidden truncate text-nowrap"
+                  >
+                    {text}
+                  </Typography>
+                ) : null}
               </div>
               {link ? (
                 <Button
@@ -101,6 +109,7 @@ const Slider = ({ slides }: SliderProps) => {
                   asLink
                   hasLinkIcon={false}
                   {...getLinkProps(link)}
+                  // TODO implement and use inverted Button variant
                   className={cn({
                     'border-background-primary bg-background-primary text-background-primaryInverted hover:border-content-secondaryInverted hover:bg-content-secondaryInverted':
                       !readableColorIsBlack(backgroundColor),
@@ -117,7 +126,7 @@ const Slider = ({ slides }: SliderProps) => {
         aria-label={t('carousel.aria.controlButtons')}
         role="region"
         // Currently, controls are hidden for tablet and mobile devices
-        className="hidden gap-3 px-4 pb-6 lg:flex lg:px-6 lg:pb-8"
+        className="z-1 hidden gap-3 px-4 pb-6 lg:flex lg:px-6 lg:pb-8"
       >
         <li>
           <Button

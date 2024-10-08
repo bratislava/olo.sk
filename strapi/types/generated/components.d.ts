@@ -374,6 +374,20 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
   }
 }
 
+export interface SectionsIframeSection extends Schema.Component {
+  collectionName: 'components_sections_iframe_sections'
+  info: {
+    displayName: 'Iframe (Venzeo)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    iframeTitle: Attribute.String & Attribute.Required
+    url: Attribute.String & Attribute.Required
+  }
+}
+
 export interface SectionsHeroHomepageSection extends Schema.Component {
   collectionName: 'components_sections_hero_homepage_sections'
   info: {
@@ -461,6 +475,7 @@ export interface SectionsFaq extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
+    faqCategories: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq-category.faq-category'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }
@@ -1064,8 +1079,9 @@ export interface HeaderSectionsPickupDay extends Schema.Component {
     description: ''
   }
   attributes: {
-    carouselTitle: Attribute.String & Attribute.Required
     anchors: Attribute.Component<'items.anchor', true>
+    carouselTitle: Attribute.String & Attribute.Required
+    tags: Attribute.Relation<'header-sections.pickup-day', 'oneToMany', 'api::tag.tag'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }
@@ -1177,6 +1193,7 @@ declare module '@strapi/types' {
       'sections.kolo-homepage-section': SectionsKoloHomepageSection
       'sections.image-and-text': SectionsImageAndText
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
+      'sections.iframe-section': SectionsIframeSection
       'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.global-search': SectionsGlobalSearch
       'sections.form-cta-banner': SectionsFormCtaBanner

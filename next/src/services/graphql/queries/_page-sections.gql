@@ -47,6 +47,13 @@ fragment ColumnsSection on ComponentSectionsColumns {
   }
 }
 
+fragment IframeSection on ComponentSectionsIframeSection {
+  title
+  text
+  iframeTitle
+  url
+}
+
 fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
   title
   text
@@ -128,6 +135,11 @@ fragment FaqSection on ComponentSectionsFaq {
   faqs {
     data {
       ...FaqEntity
+    }
+  }
+  faqCategories {
+    data {
+      ...FaqCategoryEntity
     }
   }
 }
@@ -424,6 +436,10 @@ fragment PageSections on PageSectionsDynamicZone {
   #  ... on ComponentSectionsFiles {
   #    ...FilesSection
   #  }
+
+  ... on ComponentSectionsIframeSection {
+    ...IframeSection
+  }
 
   ... on ComponentSectionsBanner {
     ...BannerSection

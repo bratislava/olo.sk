@@ -78,7 +78,7 @@
       "visibleColumns": {
         "edit": {
           "label": "Viditeľné stĺpce",
-          "description": "Ak nie je vybraný žiaden, zobrazia sa všetky.",
+          "description": "Ak nie je vybraný žiaden stĺpec, zobrazia sa všetky",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -91,12 +91,7 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "text",
-        "anchorId"
-      ],
+      "list": ["id", "title", "text", "anchorId"],
       "edit": [
         [
           {

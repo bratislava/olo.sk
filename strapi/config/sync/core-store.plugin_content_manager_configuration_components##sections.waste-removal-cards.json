@@ -1,5 +1,5 @@
 {
-  "key": "plugin_content_manager_configuration_components::items.file-item",
+  "key": "plugin_content_manager_configuration_components::sections.waste-removal-cards",
   "value": {
     "settings": {
       "bulkable": true,
@@ -21,8 +21,8 @@
       },
       "title": {
         "edit": {
-          "label": "Názov",
-          "description": "Ak je pole prázdne, použije sa originálny názov súboru.",
+          "label": "title",
+          "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -33,16 +33,30 @@
           "sortable": true
         }
       },
-      "media": {
+      "text": {
         "edit": {
-          "label": "Súbor",
+          "label": "text",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "media",
+          "label": "text",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "cards": {
+        "edit": {
+          "label": "cards",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "cards",
           "searchable": false,
           "sortable": false
         }
@@ -52,7 +66,8 @@
       "list": [
         "id",
         "title",
-        "media"
+        "text",
+        "cards"
       ],
       "edit": [
         [
@@ -61,13 +76,19 @@
             "size": 6
           },
           {
-            "name": "media",
+            "name": "text",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "cards",
+            "size": 12
           }
         ]
       ]
     },
-    "uid": "items.file-item",
+    "uid": "sections.waste-removal-cards",
     "isComponent": true
   },
   "type": "object",

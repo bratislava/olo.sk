@@ -1,7 +1,8 @@
 {
   "collectionName": "components_sections_waste_collection_days",
   "info": {
-    "displayName": "Odvozové dni"
+    "displayName": "Odvozové dni",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -16,6 +17,19 @@
     },
     "wasteCollectionDaysType": {
       "type": "string"
+    },
+    "visibleColumns": {
+      "type": "customField",
+      "options": [
+        "Adresa:address",
+        "Evidenčné číslo:registrationNumber",
+        "Platnosť:validity",
+        "Párny týždeň:evenWeek",
+        "Nepárny týždeň:oddWeek",
+        "Dátumy odvozov:collectionDates",
+        "Poznámka:note"
+      ],
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }

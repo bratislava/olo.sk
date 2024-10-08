@@ -10599,6 +10599,11 @@ strapi-plugin-meilisearch@0.9.2:
     "@strapi/utils" "^4.5.4"
     meilisearch "^0.30.0"
 
+strapi-plugin-multi-select@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-multi-select/-/strapi-plugin-multi-select-1.2.3.tgz#7ee98bb005c4f550ea0ce77d892f93a88dd7ba63"
+  integrity sha512-l5y5N3Hi1RcfRAtmQcAIn5u81amAQ+azWKgLcdzI1i3Hm5AZRCcZbtNDXb4ETsZUw7jvktRrD7F5QYOwzc8fiw==
+
 strapi-provider-upload-ts-minio@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/strapi-provider-upload-ts-minio/-/strapi-provider-upload-ts-minio-3.1.0.tgz#ed2e55c4654a92c3059ef4090008b1506912b604"

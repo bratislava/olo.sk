@@ -81,7 +81,7 @@
       "latitude": {
         "edit": {
           "label": "Zemepisná šírka",
-          "description": "",
+          "description": "Desatinnú časť súradnice treba oddeliť bodkou alebo čiarkou (závisí od jazyka, v ktorom pracujete so Strapi)",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -250,12 +250,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "openingTimes",
-        "navigateToLink"
-      ],
       "edit": [
         [
           {
@@ -319,6 +313,12 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "openingTimes",
+        "navigateToLink"
       ]
     },
     "uid": "api::branch.branch"

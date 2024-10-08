@@ -20,7 +20,6 @@ const WasteCollectionPointsSection = ({ section }: WasteCollectionPointsSectionP
     backgroundColorWasteCollectionPoints: backgroundColor,
   } = section
 
-  // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredCards = cards?.filter(isDefined) ?? []
 
   return (

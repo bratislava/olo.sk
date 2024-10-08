@@ -25,6 +25,7 @@
     "@strapi/plugin-i18n": "4.25.8",
     "@strapi/plugin-seo": "^1.9.9",
     "@strapi/plugin-users-permissions": "4.25.8",
+    "@strapi/provider-upload-aws-s3": "^5.0.2",
     "@strapi/strapi": "4.25.8",
     "patch-package": "^8.0.0",
     "pg": "^8.11.3",
@@ -34,7 +35,6 @@
     "react-router-dom": "5.3.4",
     "strapi-plugin-config-sync": "^1.2.6",
     "strapi-plugin-meilisearch": "0.9.2",
-    "strapi-provider-upload-ts-minio": "^3.1.0",
     "styled-components": "5.3.3",
     "xlsx": "^0.18.5"
   },

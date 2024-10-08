@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_sections_waste_collection_points_sections",
+  "info": {
+    "displayName": "Zberné miesta",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.location-cards-item"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "default": "primary",
+      "required": true
+    }
+  }
+}

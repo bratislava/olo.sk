@@ -106,7 +106,8 @@
         "sections.vacancies",
         "sections.global-search",
         "sections.waste-collection-days",
-        "sections.iframe-section"
+        "sections.iframe-section",
+        "sections.waste-collection-points-section"
       ],
       "pluginOptions": {
         "i18n": {

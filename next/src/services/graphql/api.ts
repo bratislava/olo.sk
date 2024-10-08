@@ -729,6 +729,23 @@ export type ComponentItemsLinkInput = {
   workshop?: InputMaybe<Scalars['ID']['input']>
 }
 
+export type ComponentItemsLocationCardsItem = {
+  __typename?: 'ComponentItemsLocationCardsItem'
+  address?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  linkHref: Scalars['String']['output']
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsLocationCardsItemFiltersInput = {
+  address?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsLocationCardsItemFiltersInput>>>
+  linkHref?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentItemsLocationCardsItemFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsLocationCardsItemFiltersInput>>>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsMenuHeader = {
   __typename?: 'ComponentItemsMenuHeader'
   contactsLink?: Maybe<ComponentItemsLink>
@@ -1538,6 +1555,21 @@ export type ComponentSectionsWasteCollectionDays = {
   wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
 }
 
+export type ComponentSectionsWasteCollectionPointsSection = {
+  __typename?: 'ComponentSectionsWasteCollectionPointsSection'
+  backgroundColor: Enum_Componentsectionswastecollectionpointssection_Backgroundcolor
+  cards?: Maybe<Array<Maybe<ComponentItemsLocationCardsItem>>>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsWasteCollectionPointsSectionCardsArgs = {
+  filters?: InputMaybe<ComponentItemsLocationCardsItemFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsWasteSortingCards = {
   __typename?: 'ComponentSectionsWasteSortingCards'
   banner?: Maybe<ComponentSectionsBanner>
@@ -2004,6 +2036,12 @@ export enum Enum_Componentsectionsvacancies_Backgroundcolor {
   Tertiary = 'tertiary',
 }
 
+export enum Enum_Componentsectionswastecollectionpointssection_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
 export enum Enum_Componentsharedmetasocial_Socialnetwork {
   Facebook = 'Facebook',
   Twitter = 'Twitter',
@@ -2318,6 +2356,7 @@ export type GenericMorph =
   | ComponentItemsHeroSmallTile
   | ComponentItemsHomepageServiceTile
   | ComponentItemsLink
+  | ComponentItemsLocationCardsItem
   | ComponentItemsMenuHeader
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOpeningTimesItem
@@ -2364,6 +2403,7 @@ export type GenericMorph =
   | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
+  | ComponentSectionsWasteCollectionPointsSection
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | ComponentSharedMetaSocial
@@ -3372,6 +3412,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
+  | ComponentSectionsWasteCollectionPointsSection
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | Error
@@ -6962,6 +7003,19 @@ export type ImageAndTextSectionFragment = {
       } | null
     } | null
   } | null
+}
+
+export type WasteCollectionPointsSectionFragment = {
+  __typename?: 'ComponentSectionsWasteCollectionPointsSection'
+  title?: string | null
+  text?: string | null
+  backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpointssection_Backgroundcolor
+  cardsWasteCollectionPointsCards?: Array<{
+    __typename?: 'ComponentItemsLocationCardsItem'
+    title: string
+    linkHref: string
+    address?: string | null
+  } | null> | null
 }
 
 export type ColumnsSectionFragment = {
@@ -11215,6 +11269,19 @@ type PageSections_ComponentSectionsWasteCollectionDays_Fragment = {
   wasteCollectionDaysType?: string | null
 }
 
+type PageSections_ComponentSectionsWasteCollectionPointsSection_Fragment = {
+  __typename: 'ComponentSectionsWasteCollectionPointsSection'
+  title?: string | null
+  text?: string | null
+  backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpointssection_Backgroundcolor
+  cardsWasteCollectionPointsCards?: Array<{
+    __typename?: 'ComponentItemsLocationCardsItem'
+    title: string
+    linkHref: string
+    address?: string | null
+  } | null> | null
+}
+
 type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
   __typename: 'ComponentSectionsWasteSortingCards'
   title?: string | null
@@ -11528,6 +11595,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsTable_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteCollectionDays_Fragment
+  | PageSections_ComponentSectionsWasteCollectionPointsSection_Fragment
   | PageSections_ComponentSectionsWasteSortingCards_Fragment
   | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
@@ -20018,6 +20086,18 @@ export type PageEntityFragment = {
           wasteCollectionDaysType?: string | null
         }
       | {
+          __typename: 'ComponentSectionsWasteCollectionPointsSection'
+          title?: string | null
+          text?: string | null
+          backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpointssection_Backgroundcolor
+          cardsWasteCollectionPointsCards?: Array<{
+            __typename?: 'ComponentItemsLocationCardsItem'
+            title: string
+            linkHref: string
+            address?: string | null
+          } | null> | null
+        }
+      | {
           __typename: 'ComponentSectionsWasteSortingCards'
           title?: string | null
           text?: string | null
@@ -22843,6 +22923,18 @@ export type PagesQuery = {
               text?: string | null
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionPointsSection'
+              title?: string | null
+              text?: string | null
+              backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpointssection_Backgroundcolor
+              cardsWasteCollectionPointsCards?: Array<{
+                __typename?: 'ComponentItemsLocationCardsItem'
+                title: string
+                linkHref: string
+                address?: string | null
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -25690,6 +25782,18 @@ export type PageBySlugQuery = {
               text?: string | null
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionPointsSection'
+              title?: string | null
+              text?: string | null
+              backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpointssection_Backgroundcolor
+              cardsWasteCollectionPointsCards?: Array<{
+                __typename?: 'ComponentItemsLocationCardsItem'
+                title: string
+                linkHref: string
+                address?: string | null
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -33077,6 +33181,18 @@ export const OpeningTimesSectionFragmentDoc = gql`
   ${OpeningTimeEntityFragmentDoc}
   ${BranchEntityFragmentDoc}
 `
+export const WasteCollectionPointsSectionFragmentDoc = gql`
+  fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPointsSection {
+    title
+    text
+    backgroundColorWasteCollectionPoints: backgroundColor
+    cardsWasteCollectionPointsCards: cards {
+      title
+      linkHref
+      address
+    }
+  }
+`
 export const BoardMembersSectionFragmentDoc = gql`
   fragment BoardMembersSection on ComponentSectionsBoardMembers {
     title
@@ -33187,6 +33303,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsOpeningTimes {
       ...OpeningTimesSection
     }
+    ... on ComponentSectionsWasteCollectionPointsSection {
+      ...WasteCollectionPointsSection
+    }
     ... on ComponentSectionsBoardMembers {
       ...BoardMembersSection
     }
@@ -33222,6 +33341,7 @@ export const PageSectionsFragmentDoc = gql`
   ${CardSliderSectionFragmentDoc}
   ${ContactsSectionFragmentDoc}
   ${OpeningTimesSectionFragmentDoc}
+  ${WasteCollectionPointsSectionFragmentDoc}
   ${BoardMembersSectionFragmentDoc}
   ${VacanciesSectionFragmentDoc}
   ${GlobalSearchSectionFragmentDoc}

@@ -14,7 +14,7 @@ export default ({ env }) => ({
             secretAccessKey: env('MINIO_SECRET_KEY'),
           },
           endpoint: env('MINIO_PRIVATE_ENDPOINT'),
-          region: '',
+          region: 'bratislava',
           params: {
             Bucket: env('MINIO_BUCKET'),
           },

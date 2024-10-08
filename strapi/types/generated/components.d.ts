@@ -101,12 +101,26 @@ export interface SectionsWasteCollectionDays extends Schema.Component {
   collectionName: 'components_sections_waste_collection_days'
   info: {
     displayName: 'Odvozov\u00E9 dni'
+    description: ''
   }
   attributes: {
     title: Attribute.String
     text: Attribute.Text
     anchorId: Attribute.String
     wasteCollectionDaysType: Attribute.String
+    visibleColumns: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'Adresa:address',
+          'Eviden\u010Dn\u00E9 \u010D\u00EDslo:registrationNumber',
+          'Platnos\u0165:validity',
+          'P\u00E1rny t\u00FD\u017Ede\u0148:evenWeek',
+          'Nep\u00E1rny t\u00FD\u017Ede\u0148:oddWeek',
+          'D\u00E1tumy odvozov:collectionDates',
+          'Pozn\u00E1mka:note',
+        ]
+      >
   }
 }
 

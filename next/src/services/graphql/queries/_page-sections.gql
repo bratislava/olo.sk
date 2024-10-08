@@ -123,6 +123,7 @@ fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
   text
   anchorId
   wasteCollectionDaysType
+  visibleColumns
 }
 
 fragment FaqSection on ComponentSectionsFaq {

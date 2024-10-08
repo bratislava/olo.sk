@@ -1896,6 +1896,7 @@ type ComponentSectionsWasteCollectionDays {
   id: ID!
   text: String
   title: String
+  visibleColumns: JSON
   wasteCollectionDaysType: String
 }
 
@@ -1906,6 +1907,7 @@ input ComponentSectionsWasteCollectionDaysFiltersInput {
   or: [ComponentSectionsWasteCollectionDaysFiltersInput]
   text: StringFilterInput
   title: StringFilterInput
+  visibleColumns: JSONFilterInput
   wasteCollectionDaysType: StringFilterInput
 }
 
@@ -1914,6 +1916,7 @@ input ComponentSectionsWasteCollectionDaysInput {
   id: ID
   text: String
   title: String
+  visibleColumns: JSON
   wasteCollectionDaysType: String
 }
 

@@ -23,7 +23,7 @@ const WasteRemovalCardsSection = ({ section }: WasteRemovalCardsSectionProps) =>
     <SectionContainer background="primary">
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-6">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6">
           {filteredCards.map((card) => {
             return (
               <BasicCard

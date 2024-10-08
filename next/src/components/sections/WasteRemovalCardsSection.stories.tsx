@@ -14,7 +14,6 @@ const meta: Meta<Props> = {
     text: 'Subtext',
     cardsWasteRemovalCardsSection: [
       {
-        __typename: 'ComponentItemsCardSliderCard',
         title: 'Card title',
         text: 'Card text',
         image: {
@@ -27,7 +26,6 @@ const meta: Meta<Props> = {
         },
       },
       {
-        __typename: 'ComponentItemsCardSliderCard',
         title: 'Card title',
         text: 'Card text',
         image: {
@@ -43,7 +41,7 @@ const meta: Meta<Props> = {
   },
   parameters: {
     controls: {
-      exclude: ['cardsCardSlider'],
+      exclude: ['cardsWasteRemovalCardsSection'],
     },
   },
 }

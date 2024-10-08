@@ -27,6 +27,7 @@ import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import TableSection from '@/src/components/sections/TableSection'
 import VacanciesSection from '@/src/components/sections/VacanciesSection'
 import WasteCollectionDays from '@/src/components/sections/WasteCollectionDays'
+import WasteCollectionPointsSection from '@/src/components/sections/WasteCollectionPointsSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
@@ -66,6 +67,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsTable':
       return <TableSection section={section} />
+
+    case 'ComponentSectionsWasteCollectionPointsSection':
+      return <WasteCollectionPointsSection section={section} />
 
     case 'ComponentSectionsWasteCollectionDays':
       return <WasteCollectionDays section={section} />

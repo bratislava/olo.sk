@@ -37,6 +37,7 @@ jobs:
       # to obtain a new token, follow this readme https://github.com/bratislava/github-actions/?tab=readme-ov-file#setup-new-namespace
       service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-dev-strapi:
     name: dev Strapi
@@ -52,6 +53,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-dev-next:
     name: dev Next
@@ -67,6 +69,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.DEV_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-staging:
     name: after staging Strapi deploy Next
@@ -83,6 +86,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.STAGING_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-staging-strapi:
     name: staging Strapi
@@ -99,6 +103,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.STAGING_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-staging-next:
     name: staging Next
@@ -115,6 +120,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.STAGING_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-prod:
     name: after prod Strapi deploy Next
@@ -130,6 +136,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.PROD_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-prod-strapi:
     name: prod Strapi
@@ -146,6 +153,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.PROD_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   deploy-prod-next:
     name: prod Next
@@ -162,6 +170,7 @@ jobs:
     secrets:
       service-account: ${{ secrets.PROD_OLO_TOKEN }}
       registry-pass: ${{ secrets.HARBOR_REGISTRY_PASSWORD }}
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
   build-storybook:
     name: Build & Push Storybook

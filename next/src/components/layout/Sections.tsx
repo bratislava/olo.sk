@@ -77,7 +77,7 @@ const SectionContent = ({ section }: { section: Section }) => {
     case 'ComponentSectionsDocuments':
       return <DocumentsSection section={section} />
 
-    case 'ComponentSectionsWasteRemovalCardsSection':
+    case 'ComponentSectionsWasteRemovalCards':
       return <WasteRemovalCardsSection section={section} />
 
     // case 'ComponentSectionsFiles':

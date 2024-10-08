@@ -79,7 +79,7 @@ fragment BranchesSection on ComponentSectionsBranches {
   }
 }
 
-fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCardsSection {
+fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCards {
   title
   text
   cardsWasteRemovalCardsSection: cards {

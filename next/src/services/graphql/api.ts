@@ -1538,15 +1538,15 @@ export type ComponentSectionsWasteCollectionDays = {
   wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
 }
 
-export type ComponentSectionsWasteRemovalCardsSection = {
-  __typename?: 'ComponentSectionsWasteRemovalCardsSection'
+export type ComponentSectionsWasteRemovalCards = {
+  __typename?: 'ComponentSectionsWasteRemovalCards'
   cards?: Maybe<Array<Maybe<ComponentItemsCardSliderCard>>>
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
 
-export type ComponentSectionsWasteRemovalCardsSectionCardsArgs = {
+export type ComponentSectionsWasteRemovalCardsCardsArgs = {
   filters?: InputMaybe<ComponentItemsCardSliderCardFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
@@ -2378,7 +2378,7 @@ export type GenericMorph =
   | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
-  | ComponentSectionsWasteRemovalCardsSection
+  | ComponentSectionsWasteRemovalCards
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | ComponentSharedMetaSocial
@@ -3887,7 +3887,7 @@ export type ServiceSectionsDynamicZone =
   | ComponentSectionsFaq
   | ComponentSectionsFormCtaBanner
   | ComponentSectionsRichtext
-  | ComponentSectionsWasteRemovalCardsSection
+  | ComponentSectionsWasteRemovalCards
   | Error
 
 export type StringFilterInput = {
@@ -7179,7 +7179,7 @@ export type BranchesSectionFragment = {
 }
 
 export type WasteRemovalCardsSectionFragment = {
-  __typename?: 'ComponentSectionsWasteRemovalCardsSection'
+  __typename?: 'ComponentSectionsWasteRemovalCards'
   title?: string | null
   text?: string | null
   cardsWasteRemovalCardsSection?: Array<{
@@ -26839,8 +26839,8 @@ type ServiceSections_ComponentSectionsRichtext_Fragment = {
   backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
 }
 
-type ServiceSections_ComponentSectionsWasteRemovalCardsSection_Fragment = {
-  __typename: 'ComponentSectionsWasteRemovalCardsSection'
+type ServiceSections_ComponentSectionsWasteRemovalCards_Fragment = {
+  __typename: 'ComponentSectionsWasteRemovalCards'
   title?: string | null
   text?: string | null
   cardsWasteRemovalCardsSection?: Array<{
@@ -26874,7 +26874,7 @@ export type ServiceSectionsFragment =
   | ServiceSections_ComponentSectionsFaq_Fragment
   | ServiceSections_ComponentSectionsFormCtaBanner_Fragment
   | ServiceSections_ComponentSectionsRichtext_Fragment
-  | ServiceSections_ComponentSectionsWasteRemovalCardsSection_Fragment
+  | ServiceSections_ComponentSectionsWasteRemovalCards_Fragment
   | ServiceSections_Error_Fragment
 
 export type ServiceCardEntityFragment = {
@@ -27706,7 +27706,7 @@ export type ServiceEntityFragment = {
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
         }
       | {
-          __typename: 'ComponentSectionsWasteRemovalCardsSection'
+          __typename: 'ComponentSectionsWasteRemovalCards'
           title?: string | null
           text?: string | null
           cardsWasteRemovalCardsSection?: Array<{
@@ -28506,7 +28506,7 @@ export type ServicesQuery = {
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
             }
           | {
-              __typename: 'ComponentSectionsWasteRemovalCardsSection'
+              __typename: 'ComponentSectionsWasteRemovalCards'
               title?: string | null
               text?: string | null
               cardsWasteRemovalCardsSection?: Array<{
@@ -29340,7 +29340,7 @@ export type ServiceBySlugQuery = {
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
             }
           | {
-              __typename: 'ComponentSectionsWasteRemovalCardsSection'
+              __typename: 'ComponentSectionsWasteRemovalCards'
               title?: string | null
               text?: string | null
               cardsWasteRemovalCardsSection?: Array<{
@@ -33497,7 +33497,7 @@ export const ServiceSearchEntityFragmentDoc = gql`
   ${ServiceCardEntityFragmentDoc}
 `
 export const WasteRemovalCardsSectionFragmentDoc = gql`
-  fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCardsSection {
+  fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCards {
     title
     text
     cardsWasteRemovalCardsSection: cards {
@@ -33545,7 +33545,7 @@ export const ServiceSectionsFragmentDoc = gql`
     ... on ComponentSectionsDocuments {
       ...DocumentsSection
     }
-    ... on ComponentSectionsWasteRemovalCardsSection {
+    ... on ComponentSectionsWasteRemovalCards {
       ...WasteRemovalCardsSection
     }
     ... on ComponentSectionsFaq {

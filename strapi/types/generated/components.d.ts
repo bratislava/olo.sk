@@ -150,8 +150,8 @@ export interface SectionsWasteSortingCards extends Schema.Component {
   }
 }
 
-export interface SectionsWasteRemovalCardsSection extends Schema.Component {
-  collectionName: 'components_sections_waste_removal_cards_sections'
+export interface SectionsWasteRemovalCards extends Schema.Component {
+  collectionName: 'components_sections_waste_removal_cards'
   info: {
     displayName: 'Karty (odvoz odpadu kontajnerom)'
   }
@@ -1192,7 +1192,7 @@ declare module '@strapi/types' {
       'menu.menu-item': MenuMenuItem
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
-      'sections.waste-removal-cards-section': SectionsWasteRemovalCardsSection
+      'sections.waste-removal-cards': SectionsWasteRemovalCards
       'sections.waste-collection-days': SectionsWasteCollectionDays
       'sections.vacancies': SectionsVacancies
       'sections.table': SectionsTable

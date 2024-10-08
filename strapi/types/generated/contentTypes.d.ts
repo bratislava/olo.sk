@@ -1579,7 +1579,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         'sections.faq',
         'sections.cards-list',
         'sections.form-cta-banner',
-        'sections.waste-removal-cards-section',
+        'sections.waste-removal-cards',
       ]
     > &
       Attribute.SetPluginOptions<{

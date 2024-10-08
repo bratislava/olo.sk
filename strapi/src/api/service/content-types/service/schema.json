@@ -45,9 +45,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -67,7 +65,7 @@
         "sections.faq",
         "sections.cards-list",
         "sections.form-cta-banner",
-        "sections.waste-removal-cards-section"
+        "sections.waste-removal-cards"
       ]
     },
     "seo": {

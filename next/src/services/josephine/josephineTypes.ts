@@ -9,7 +9,7 @@
  *  Note: We use generated interfaces instead of manually changing them into types, event though we prefer types.
  */
 
-export interface JosefineObject {
+export interface JosephineObject {
   tenders: Tenders
 }
 

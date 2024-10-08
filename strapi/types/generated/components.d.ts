@@ -113,7 +113,8 @@ export interface SectionsWasteCollectionDays extends Schema.Component {
 export interface SectionsVacancies extends Schema.Component {
   collectionName: 'components_sections_vacancies'
   info: {
-    displayName: 'Pracovn\u00E9 poz\u00EDcie (placeholder)'
+    displayName: 'Pracovn\u00E9 poz\u00EDcie'
+    description: ''
   }
   attributes: {
     title: Attribute.String
@@ -208,6 +209,17 @@ export interface SectionsRichtext extends Schema.Component {
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
+  }
+}
+
+export interface SectionsProcurements extends Schema.Component {
+  collectionName: 'components_sections_procurements'
+  info: {
+    displayName: 'Verejn\u00E9 obstar\u00E1vanie'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
   }
 }
 
@@ -1185,6 +1197,7 @@ declare module '@strapi/types' {
       'sections.services': SectionsServices
       'sections.services-homepage-section': SectionsServicesHomepageSection
       'sections.richtext': SectionsRichtext
+      'sections.procurements': SectionsProcurements
       'sections.ordered-cards': SectionsOrderedCards
       'sections.opening-times': SectionsOpeningTimes
       'sections.kolo-homepage-section': SectionsKoloHomepageSection

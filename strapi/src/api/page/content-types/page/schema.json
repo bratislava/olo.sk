@@ -107,7 +107,7 @@
         "sections.global-search",
         "sections.waste-collection-days",
         "sections.iframe-section",
-        "sections.waste-collection-points-section"
+        "sections.waste-collection-points"
       ],
       "pluginOptions": {
         "i18n": {
@@ -122,10 +122,7 @@
         }
       },
       "type": "dynamiczone",
-      "components": [
-        "sidebars.empty-sidebar",
-        "sidebars.contacts-sidebar"
-      ],
+      "components": ["sidebars.empty-sidebar", "sidebars.contacts-sidebar"],
       "max": 1
     },
     "branch": {

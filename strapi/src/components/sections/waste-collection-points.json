@@ -1,5 +1,5 @@
 {
-  "collectionName": "components_sections_waste_collection_points_sections",
+  "collectionName": "components_sections_waste_collection_points",
   "info": {
     "displayName": "Zberné miesta",
     "description": ""
@@ -19,11 +19,7 @@
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": [
-        "primary",
-        "secondary",
-        "tertiary"
-      ],
+      "enum": ["primary", "secondary", "tertiary"],
       "default": "primary",
       "required": true
     }

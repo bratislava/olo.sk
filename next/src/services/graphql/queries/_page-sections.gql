@@ -32,7 +32,7 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   }
 }
 
-fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPointsSection {
+fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPoints {
   title
   text
   backgroundColorWasteCollectionPoints: backgroundColor
@@ -500,7 +500,7 @@ fragment PageSections on PageSectionsDynamicZone {
     ...OpeningTimesSection
   }
 
-  ... on ComponentSectionsWasteCollectionPointsSection {
+  ... on ComponentSectionsWasteCollectionPoints {
     ...WasteCollectionPointsSection
   }
 

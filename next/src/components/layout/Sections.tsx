@@ -68,7 +68,7 @@ const SectionContent = ({ section }: { section: Section }) => {
     case 'ComponentSectionsTable':
       return <TableSection section={section} />
 
-    case 'ComponentSectionsWasteCollectionPointsSection':
+    case 'ComponentSectionsWasteCollectionPoints':
       return <WasteCollectionPointsSection section={section} />
 
     case 'ComponentSectionsWasteCollectionDays':

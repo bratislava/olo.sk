@@ -383,6 +383,11 @@ fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
   title
 }
 
+fragment ProcurementsSection on ComponentSectionsProcurements {
+  title
+  text
+}
+
 fragment PageSections on PageSectionsDynamicZone {
   __typename
 
@@ -500,5 +505,9 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsGlobalSearch {
     ...GlobalSearchSection
+  }
+
+  ... on ComponentSectionsProcurements {
+    ...ProcurementsSection
   }
 }

@@ -18,6 +18,10 @@ fragment ServiceSections on ServiceSectionsDynamicZone {
     ...DocumentsSection
   }
 
+  ... on ComponentSectionsWasteRemovalCards {
+    ...WasteRemovalCardsSection
+  }
+
   ... on ComponentSectionsFaq {
     ...FaqSection
   }

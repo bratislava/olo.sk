@@ -1484,7 +1484,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.workshops',
         'sections.documents',
         'sections.ordered-cards',
-        'sections.table',
         'sections.sorting-guide',
         'sections.sorting-guide-accordions',
         'sections.contacts',
@@ -1580,6 +1579,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         'sections.faq',
         'sections.cards-list',
         'sections.form-cta-banner',
+        'sections.waste-removal-cards',
       ]
     > &
       Attribute.SetPluginOptions<{

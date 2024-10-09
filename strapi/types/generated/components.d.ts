@@ -69,59 +69,6 @@ export interface SharedMetaSocial extends Schema.Component {
   }
 }
 
-export interface MenuMenuSection extends Schema.Component {
-  collectionName: 'components_menu_menu_sections'
-  info: {
-    displayName: 'menu section'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    links: Attribute.Component<'menu.menu-link', true>
-    colSpan: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0
-          max: 3
-        },
-        number
-      > &
-      Attribute.DefaultTo<1>
-    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
-    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    specialSectionType: Attribute.Enumeration<['latest articles']>
-  }
-}
-
-export interface MenuMenuLink extends Schema.Component {
-  collectionName: 'components_menu_menu_link'
-  info: {
-    displayName: 'menu link'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String
-    url: Attribute.String
-    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
-    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
-    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
-    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
-  }
-}
-
-export interface MenuMenuItem extends Schema.Component {
-  collectionName: 'components_menu_menu_items'
-  info: {
-    displayName: 'menu item'
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    sections: Attribute.Component<'menu.menu-section', true>
-    seeAllLink: Attribute.Component<'items.link'>
-  }
-}
-
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
@@ -150,19 +97,15 @@ export interface SectionsWasteSortingCards extends Schema.Component {
   }
 }
 
-export interface SectionsWasteCollectionPoints extends Schema.Component {
-  collectionName: 'components_sections_waste_collection_points'
+export interface SectionsWasteRemovalCards extends Schema.Component {
+  collectionName: 'components_sections_waste_removal_cards'
   info: {
-    displayName: 'Zbern\u00E9 miesta'
-    description: ''
+    displayName: 'Karty (odvoz odpadu kontajnerom)'
   }
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    cards: Attribute.Component<'items.location-cards-item', true>
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
+    cards: Attribute.Component<'items.card-slider-card', true>
   }
 }
 
@@ -170,12 +113,26 @@ export interface SectionsWasteCollectionDays extends Schema.Component {
   collectionName: 'components_sections_waste_collection_days'
   info: {
     displayName: 'Odvozov\u00E9 dni'
+    description: ''
   }
   attributes: {
     title: Attribute.String
     text: Attribute.Text
     anchorId: Attribute.String
     wasteCollectionDaysType: Attribute.String
+    visibleColumns: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'Adresa:address',
+          'Eviden\u010Dn\u00E9 \u010D\u00EDslo:registrationNumber',
+          'Platnos\u0165:validity',
+          'P\u00E1rny t\u00FD\u017Ede\u0148:evenWeek',
+          'Nep\u00E1rny t\u00FD\u017Ede\u0148:oddWeek',
+          'D\u00E1tumy odvozov:collectionDates',
+          'Pozn\u00E1mka:note',
+        ]
+      >
   }
 }
 
@@ -188,19 +145,6 @@ export interface SectionsVacancies extends Schema.Component {
     title: Attribute.String
     text: Attribute.Text
     backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
-  }
-}
-
-export interface SectionsTable extends Schema.Component {
-  collectionName: 'components_sections_tables'
-  info: {
-    displayName: 'Odvozov\u00E9 dni (placeholder)'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    anchorId: Attribute.String
-    text: Attribute.Text
   }
 }
 
@@ -695,6 +639,59 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
   }
 }
 
+export interface MenuMenuSection extends Schema.Component {
+  collectionName: 'components_menu_menu_sections'
+  info: {
+    displayName: 'menu section'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    links: Attribute.Component<'menu.menu-link', true>
+    colSpan: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0
+          max: 3
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>
+    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
+    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    specialSectionType: Attribute.Enumeration<['latest articles']>
+  }
+}
+
+export interface MenuMenuLink extends Schema.Component {
+  collectionName: 'components_menu_menu_link'
+  info: {
+    displayName: 'menu link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
+    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
+    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
+  }
+}
+
+export interface MenuMenuItem extends Schema.Component {
+  collectionName: 'components_menu_menu_items'
+  info: {
+    displayName: 'menu item'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    sections: Attribute.Component<'menu.menu-section', true>
+    seeAllLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface ItemsWorkshopDate extends Schema.Component {
   collectionName: 'components_items_workshop_dates'
   info: {
@@ -868,18 +865,6 @@ export interface ItemsMenuHeader extends Schema.Component {
   attributes: {
     contactsLink: Attribute.Component<'items.link'>
     searchLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface ItemsLocationCardsItem extends Schema.Component {
-  collectionName: 'components_items_location_cards_items'
-  info: {
-    displayName: 'Location Cards item'
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    address: Attribute.String
-    link: Attribute.Component<'items.link'> & Attribute.Required
   }
 }
 
@@ -1203,15 +1188,11 @@ declare module '@strapi/types' {
       'sidebars.contacts-sidebar': SidebarsContactsSidebar
       'shared.seo': SharedSeo
       'shared.meta-social': SharedMetaSocial
-      'menu.menu-section': MenuMenuSection
-      'menu.menu-link': MenuMenuLink
-      'menu.menu-item': MenuMenuItem
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
-      'sections.waste-collection-points': SectionsWasteCollectionPoints
+      'sections.waste-removal-cards': SectionsWasteRemovalCards
       'sections.waste-collection-days': SectionsWasteCollectionDays
       'sections.vacancies': SectionsVacancies
-      'sections.table': SectionsTable
       'sections.sorting-guide': SectionsSortingGuide
       'sections.sorting-guide-accordions': SectionsSortingGuideAccordions
       'sections.services': SectionsServices
@@ -1241,6 +1222,9 @@ declare module '@strapi/types' {
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
+      'menu.menu-section': MenuMenuSection
+      'menu.menu-link': MenuMenuLink
+      'menu.menu-item': MenuMenuItem
       'items.workshop-date': ItemsWorkshopDate
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide
@@ -1252,7 +1236,6 @@ declare module '@strapi/types' {
       'items.opening-times-item': ItemsOpeningTimesItem
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
-      'items.location-cards-item': ItemsLocationCardsItem
       'items.link': ItemsLink
       'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.hero-small-tile': ItemsHeroSmallTile

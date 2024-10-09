@@ -38,8 +38,10 @@ fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPoints 
   backgroundColorWasteCollectionPoints: backgroundColor
   cardsWasteCollectionPointsCards: cards {
     title
-    linkHref
     address
+    link {
+      ...Link
+    }
   }
 }
 

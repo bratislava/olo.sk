@@ -754,14 +754,14 @@ input ComponentItemsLinkInput {
 type ComponentItemsLocationCardsItem {
   address: String
   id: ID!
-  linkHref: String!
+  link: ComponentItemsLink!
   title: String!
 }
 
 input ComponentItemsLocationCardsItemFiltersInput {
   address: StringFilterInput
   and: [ComponentItemsLocationCardsItemFiltersInput]
-  linkHref: StringFilterInput
+  link: ComponentItemsLinkFiltersInput
   not: ComponentItemsLocationCardsItemFiltersInput
   or: [ComponentItemsLocationCardsItemFiltersInput]
   title: StringFilterInput
@@ -770,7 +770,7 @@ input ComponentItemsLocationCardsItemFiltersInput {
 input ComponentItemsLocationCardsItemInput {
   address: String
   id: ID
-  linkHref: String
+  link: ComponentItemsLinkInput
   title: String
 }
 

@@ -65,9 +65,6 @@ const SectionContent = ({ section }: { section: Section }) => {
     case 'ComponentSectionsColumnsList':
       return <ColumnsListSection section={section} />
 
-    case 'ComponentSectionsTable':
-      return <TableSection section={section} />
-
     case 'ComponentSectionsWasteCollectionPoints':
       return <WasteCollectionPointsSection section={section} />
 

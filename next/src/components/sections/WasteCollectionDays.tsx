@@ -28,7 +28,7 @@ const Table = ({
   visibleColumns,
 }: {
   rows: WasteCollectionDayEntityFragment[]
-  visibleColumns: string[] | null | undefined // WasteCollectionDaysFragment['visibleColumns'] is unfortunately typed as any, but docs say it should be string[]
+  visibleColumns: string[] | null | undefined // WasteCollectionDaysFragment[ 'visibleColumns' ] is unfortunately typed as any, but docs say it should be string[]
 }) => {
   const allColumns = [
     'address',

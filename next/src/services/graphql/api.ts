@@ -1515,14 +1515,6 @@ export type ComponentSectionsSortingGuideAccordionsSortingGuideAccordionsArgs = 
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
-export type ComponentSectionsTable = {
-  __typename?: 'ComponentSectionsTable'
-  anchorId?: Maybe<Scalars['String']['output']>
-  id: Scalars['ID']['output']
-  text?: Maybe<Scalars['String']['output']>
-  title?: Maybe<Scalars['String']['output']>
-}
-
 export type ComponentSectionsVacancies = {
   __typename?: 'ComponentSectionsVacancies'
   backgroundColor?: Maybe<Enum_Componentsectionsvacancies_Backgroundcolor>
@@ -1539,6 +1531,20 @@ export type ComponentSectionsWasteCollectionDays = {
   title?: Maybe<Scalars['String']['output']>
   visibleColumns?: Maybe<Scalars['JSON']['output']>
   wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsWasteRemovalCards = {
+  __typename?: 'ComponentSectionsWasteRemovalCards'
+  cards?: Maybe<Array<Maybe<ComponentItemsCardSliderCard>>>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsWasteRemovalCardsCardsArgs = {
+  filters?: InputMaybe<ComponentItemsCardSliderCardFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
 export type ComponentSectionsWasteSortingCards = {
@@ -2364,9 +2370,9 @@ export type GenericMorph =
   | ComponentSectionsServicesHomepageSection
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
-  | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
+  | ComponentSectionsWasteRemovalCards
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | ComponentSharedMetaSocial
@@ -3372,7 +3378,6 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsServices
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
-  | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteSortingCards
@@ -3875,6 +3880,7 @@ export type ServiceSectionsDynamicZone =
   | ComponentSectionsFaq
   | ComponentSectionsFormCtaBanner
   | ComponentSectionsRichtext
+  | ComponentSectionsWasteRemovalCards
   | Error
 
 export type StringFilterInput = {
@@ -7229,6 +7235,33 @@ export type BranchesSectionFragment = {
   } | null
 }
 
+export type WasteRemovalCardsSectionFragment = {
+  __typename?: 'ComponentSectionsWasteRemovalCards'
+  title?: string | null
+  text?: string | null
+  cardsWasteRemovalCardsSection?: Array<{
+    __typename?: 'ComponentItemsCardSliderCard'
+    title: string
+    text?: string | null
+    image: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    }
+  } | null> | null
+}
+
 export type WorkshopsSectionFragment = {
   __typename?: 'ComponentSectionsWorkshops'
   title?: string | null
@@ -7294,13 +7327,6 @@ export type ColumnsListSectionFragment = {
       } | null
     } | null
   } | null> | null
-}
-
-export type TableSectionFragment = {
-  __typename?: 'ComponentSectionsTable'
-  title?: string | null
-  text?: string | null
-  anchorId?: string | null
 }
 
 export type WasteCollectionDaysFragment = {
@@ -11341,13 +11367,6 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
   } | null
 }
 
-type PageSections_ComponentSectionsTable_Fragment = {
-  __typename: 'ComponentSectionsTable'
-  title?: string | null
-  text?: string | null
-  anchorId?: string | null
-}
-
 type PageSections_ComponentSectionsVacancies_Fragment = {
   __typename: 'ComponentSectionsVacancies'
   title?: string | null
@@ -11674,7 +11693,6 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsServices_Fragment
   | PageSections_ComponentSectionsSortingGuide_Fragment
   | PageSections_ComponentSectionsSortingGuideAccordions_Fragment
-  | PageSections_ComponentSectionsTable_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteCollectionDays_Fragment
   | PageSections_ComponentSectionsWasteSortingCards_Fragment
@@ -20404,12 +20422,6 @@ export type PageEntityFragment = {
           } | null
         }
       | {
-          __typename: 'ComponentSectionsTable'
-          title?: string | null
-          text?: string | null
-          anchorId?: string | null
-        }
-      | {
           __typename: 'ComponentSectionsVacancies'
           title?: string | null
           text?: string | null
@@ -23310,12 +23322,6 @@ export type PagesQuery = {
                   } | null
                 } | null
               } | null
-            }
-          | {
-              __typename: 'ComponentSectionsTable'
-              title?: string | null
-              text?: string | null
-              anchorId?: string | null
             }
           | {
               __typename: 'ComponentSectionsVacancies'
@@ -26240,12 +26246,6 @@ export type PageBySlugQuery = {
               } | null
             }
           | {
-              __typename: 'ComponentSectionsTable'
-              title?: string | null
-              text?: string | null
-              anchorId?: string | null
-            }
-          | {
               __typename: 'ComponentSectionsVacancies'
               title?: string | null
               text?: string | null
@@ -27380,6 +27380,33 @@ type ServiceSections_ComponentSectionsRichtext_Fragment = {
   backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
 }
 
+type ServiceSections_ComponentSectionsWasteRemovalCards_Fragment = {
+  __typename: 'ComponentSectionsWasteRemovalCards'
+  title?: string | null
+  text?: string | null
+  cardsWasteRemovalCardsSection?: Array<{
+    __typename?: 'ComponentItemsCardSliderCard'
+    title: string
+    text?: string | null
+    image: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    }
+  } | null> | null
+}
+
 type ServiceSections_Error_Fragment = { __typename: 'Error' }
 
 export type ServiceSectionsFragment =
@@ -27388,6 +27415,7 @@ export type ServiceSectionsFragment =
   | ServiceSections_ComponentSectionsFaq_Fragment
   | ServiceSections_ComponentSectionsFormCtaBanner_Fragment
   | ServiceSections_ComponentSectionsRichtext_Fragment
+  | ServiceSections_ComponentSectionsWasteRemovalCards_Fragment
   | ServiceSections_Error_Fragment
 
 export type ServiceCardEntityFragment = {
@@ -28218,6 +28246,32 @@ export type ServiceEntityFragment = {
           content?: string | null
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
         }
+      | {
+          __typename: 'ComponentSectionsWasteRemovalCards'
+          title?: string | null
+          text?: string | null
+          cardsWasteRemovalCardsSection?: Array<{
+            __typename?: 'ComponentItemsCardSliderCard'
+            title: string
+            text?: string | null
+            image: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
+            }
+          } | null> | null
+        }
       | { __typename: 'Error' }
       | null
     > | null
@@ -28991,6 +29045,32 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
+          | {
+              __typename: 'ComponentSectionsWasteRemovalCards'
+              title?: string | null
+              text?: string | null
+              cardsWasteRemovalCardsSection?: Array<{
+                __typename?: 'ComponentItemsCardSliderCard'
+                title: string
+                text?: string | null
+                image: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | { __typename: 'Error' }
           | null
@@ -29799,6 +29879,32 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
+          | {
+              __typename: 'ComponentSectionsWasteRemovalCards'
+              title?: string | null
+              text?: string | null
+              cardsWasteRemovalCardsSection?: Array<{
+                __typename?: 'ComponentItemsCardSliderCard'
+                title: string
+                text?: string | null
+                image: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | { __typename: 'Error' }
           | null
@@ -33316,13 +33422,6 @@ export const ColumnsListSectionFragmentDoc = gql`
   }
   ${UploadImageEntityFragmentDoc}
 `
-export const TableSectionFragmentDoc = gql`
-  fragment TableSection on ComponentSectionsTable {
-    title
-    text
-    anchorId
-  }
-`
 export const WasteCollectionDaysFragmentDoc = gql`
   fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
     title
@@ -33727,9 +33826,6 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsColumnsList {
       ...ColumnsListSection
     }
-    ... on ComponentSectionsTable {
-      ...TableSection
-    }
     ... on ComponentSectionsWasteCollectionDays {
       ...WasteCollectionDays
     }
@@ -33796,7 +33892,6 @@ export const PageSectionsFragmentDoc = gql`
   ${BranchesSectionFragmentDoc}
   ${WorkshopsSectionFragmentDoc}
   ${ColumnsListSectionFragmentDoc}
-  ${TableSectionFragmentDoc}
   ${WasteCollectionDaysFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}
@@ -33938,6 +34033,22 @@ export const ServiceSearchEntityFragmentDoc = gql`
   }
   ${ServiceCardEntityFragmentDoc}
 `
+export const WasteRemovalCardsSectionFragmentDoc = gql`
+  fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCards {
+    title
+    text
+    cardsWasteRemovalCardsSection: cards {
+      title
+      text
+      image {
+        data {
+          ...UploadImageEntity
+        }
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
 export const FormCtaBannerLinkFragmentDoc = gql`
   fragment FormCtaBannerLink on ComponentItemsFormCtaBannerLink {
     label
@@ -33971,6 +34082,9 @@ export const ServiceSectionsFragmentDoc = gql`
     ... on ComponentSectionsDocuments {
       ...DocumentsSection
     }
+    ... on ComponentSectionsWasteRemovalCards {
+      ...WasteRemovalCardsSection
+    }
     ... on ComponentSectionsFaq {
       ...FaqSection
     }
@@ -33983,6 +34097,7 @@ export const ServiceSectionsFragmentDoc = gql`
   }
   ${CardsListSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}
+  ${WasteRemovalCardsSectionFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${RichtextSectionFragmentDoc}
   ${FormCtaBannerSectionFragmentDoc}

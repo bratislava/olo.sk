@@ -19,6 +19,20 @@
           "sortable": false
         }
       },
+      "anchors": {
+        "edit": {
+          "label": "Kotvy",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "anchors",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "carouselTitle": {
         "edit": {
           "label": "Nadpis nad článkami",
@@ -33,16 +47,17 @@
           "sortable": true
         }
       },
-      "anchors": {
+      "tags": {
         "edit": {
-          "label": "Kotvy",
-          "description": "",
+          "label": "Tagy",
+          "description": "Zobrazia sa iba články z vybraných tagov.",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "title"
         },
         "list": {
-          "label": "anchors",
+          "label": "tags",
           "searchable": false,
           "sortable": false
         }
@@ -79,6 +94,12 @@
         [
           {
             "name": "carouselTitle",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "tags",
             "size": 6
           }
         ],

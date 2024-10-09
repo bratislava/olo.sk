@@ -79,6 +79,20 @@ fragment BranchesSection on ComponentSectionsBranches {
   }
 }
 
+fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCards {
+  title
+  text
+  cardsWasteRemovalCardsSection: cards {
+    title
+    text
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
+  }
+}
+
 fragment WorkshopsSection on ComponentSectionsWorkshops {
   title
   text
@@ -110,12 +124,6 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
     }
     content
   }
-}
-
-fragment TableSection on ComponentSectionsTable {
-  title
-  text
-  anchorId
 }
 
 fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
@@ -416,10 +424,6 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsColumnsList {
     ...ColumnsListSection
-  }
-
-  ... on ComponentSectionsTable {
-    ...TableSection
   }
 
   ... on ComponentSectionsWasteCollectionDays {

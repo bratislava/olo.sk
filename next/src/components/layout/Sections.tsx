@@ -24,9 +24,9 @@ import RichtextSection from '@/src/components/sections/RichtextSection'
 import ServicesSection from '@/src/components/sections/ServicesSection'
 import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
 import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
-import TableSection from '@/src/components/sections/TableSection'
 import VacanciesSection from '@/src/components/sections/VacanciesSection'
 import WasteCollectionDays from '@/src/components/sections/WasteCollectionDays'
+import WasteRemovalCardsSection from '@/src/components/sections/WasteRemovalCardsSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
@@ -64,9 +64,6 @@ const SectionContent = ({ section }: { section: Section }) => {
     case 'ComponentSectionsColumnsList':
       return <ColumnsListSection section={section} />
 
-    case 'ComponentSectionsTable':
-      return <TableSection section={section} />
-
     case 'ComponentSectionsWasteCollectionDays':
       return <WasteCollectionDays section={section} />
 
@@ -75,6 +72,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsDocuments':
       return <DocumentsSection section={section} />
+
+    case 'ComponentSectionsWasteRemovalCards':
+      return <WasteRemovalCardsSection section={section} />
 
     // case 'ComponentSectionsFiles':
     //   return <FilesSection section={section} />

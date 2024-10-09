@@ -16,9 +16,9 @@ type Props = {
  */
 
 const BranchesSection = ({ section }: Props) => {
-  const { title, text, branches } = section
-
   const { getFullPath } = useGetFullPath()
+
+  const { title: sectionTitle, text, branches } = section
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredBranches = branches?.data.filter(isDefined) ?? []
@@ -27,18 +27,20 @@ const BranchesSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div className="flex flex-col items-start gap-6 lg:gap-12">
-        <SectionHeader title={title} text={text} />
+        <SectionHeader title={sectionTitle} text={text} />
         <ul className="flex flex-col gap-4 self-stretch lg:grid lg:grid-cols-3 lg:items-start lg:gap-8">
           {filteredBranches
             .map((branch, index) => {
               if (!branch.attributes) return null
+              const { title, address, image } = branch.attributes
 
               return (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={index} className="h-full [&>*]:h-full">
                   <BranchCard
-                    title={branch.attributes.title}
-                    address={branch.attributes.address}
+                    title={title}
+                    address={address}
+                    imgSrc={image?.data?.attributes?.url ?? ''}
                     linkHref={getFullPath(branch)}
                   />
                 </li>

@@ -1311,7 +1311,6 @@ export type ComponentSectionsFilesFilesArgs = {
 export type ComponentSectionsFormCtaBanner = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   bannerLink: ComponentItemsFormCtaBannerLink
-  bannerTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
@@ -8877,7 +8876,6 @@ export type FormCtaBannerSectionFragment = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -26779,7 +26777,6 @@ type ServiceSections_ComponentSectionsFormCtaBanner_Fragment = {
   __typename: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -27647,7 +27644,6 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsFormCtaBanner'
           title?: string | null
           text?: string | null
-          bannerTitle: string
           bannerLink: {
             __typename?: 'ComponentItemsFormCtaBannerLink'
             label?: string | null
@@ -28447,7 +28443,6 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -29281,7 +29276,6 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -33482,7 +33476,6 @@ export const FormCtaBannerSectionFragmentDoc = gql`
   fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
     title
     text
-    bannerTitle
     bannerLink {
       ...FormCtaBannerLink
     }

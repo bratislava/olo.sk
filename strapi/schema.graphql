@@ -1468,7 +1468,6 @@ input ComponentSectionsFilesInput {
 
 type ComponentSectionsFormCtaBanner {
   bannerLink: ComponentItemsFormCtaBannerLink!
-  bannerTitle: String!
   id: ID!
   text: String
   title: String
@@ -1477,7 +1476,6 @@ type ComponentSectionsFormCtaBanner {
 input ComponentSectionsFormCtaBannerFiltersInput {
   and: [ComponentSectionsFormCtaBannerFiltersInput]
   bannerLink: ComponentItemsFormCtaBannerLinkFiltersInput
-  bannerTitle: StringFilterInput
   not: ComponentSectionsFormCtaBannerFiltersInput
   or: [ComponentSectionsFormCtaBannerFiltersInput]
   text: StringFilterInput
@@ -1486,7 +1484,6 @@ input ComponentSectionsFormCtaBannerFiltersInput {
 
 input ComponentSectionsFormCtaBannerInput {
   bannerLink: ComponentItemsFormCtaBannerLinkInput
-  bannerTitle: String
   id: ID
   text: String
   title: String

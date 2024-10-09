@@ -76,6 +76,21 @@ query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
   }
 }
 
+query ArticlesByTagIds($tagsIds: [ID]!) {
+  tags(filters: { id: { in: $tagsIds } }) {
+    data {
+      attributes {
+        title
+        articles {
+          data {
+            ...ArticleEntity
+          }
+        }
+      }
+    }
+  }
+}
+
 query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
   articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
     data {

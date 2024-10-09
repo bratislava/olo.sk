@@ -1,0 +1,58 @@
+{
+  "key": "plugin_content_manager_configuration_components::header-sections.branch-map",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "branches": {
+        "edit": {
+          "label": "Pobočky",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "branches",
+          "searchable": false,
+          "sortable": false
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "branches"
+      ],
+      "edit": [
+        [
+          {
+            "name": "branches",
+            "size": 12
+          }
+        ]
+      ]
+    },
+    "uid": "header-sections.branch-map",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

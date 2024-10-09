@@ -1492,6 +1492,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.vacancies',
         'sections.global-search',
         'sections.waste-collection-days',
+        'sections.iframe-section',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1577,6 +1578,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         'sections.faq',
         'sections.cards-list',
         'sections.form-cta-banner',
+        'sections.waste-removal-cards',
       ]
     > &
       Attribute.SetPluginOptions<{

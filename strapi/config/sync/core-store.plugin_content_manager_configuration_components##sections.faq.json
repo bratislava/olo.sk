@@ -1,0 +1,161 @@
+{
+  "key": "plugin_content_manager_configuration_components::sections.faq",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "title",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "Nadpis",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "text": {
+        "edit": {
+          "label": "Text",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "text",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "backgroundColor": {
+        "edit": {
+          "label": "Pozadie",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "backgroundColor",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "faqs": {
+        "edit": {
+          "label": "Otázky",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "faqs",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "faqCategories": {
+        "edit": {
+          "label": "Kategória",
+          "description": "Zobraziť všetky otázky z vybranej kategórie",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "faqCategories",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "showMoreLink": {
+        "edit": {
+          "label": "showMoreLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "showMoreLink",
+          "searchable": false,
+          "sortable": false
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "title",
+        "backgroundColor",
+        "faqs"
+      ],
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "text",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "faqCategories",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "faqs",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "showMoreLink",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "backgroundColor",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "sections.faq",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

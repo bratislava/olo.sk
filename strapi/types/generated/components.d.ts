@@ -97,16 +97,42 @@ export interface SectionsWasteSortingCards extends Schema.Component {
   }
 }
 
+export interface SectionsWasteRemovalCards extends Schema.Component {
+  collectionName: 'components_sections_waste_removal_cards'
+  info: {
+    displayName: 'Karty (odvoz odpadu kontajnerom)'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.card-slider-card', true>
+  }
+}
+
 export interface SectionsWasteCollectionDays extends Schema.Component {
   collectionName: 'components_sections_waste_collection_days'
   info: {
     displayName: 'Odvozov\u00E9 dni'
+    description: ''
   }
   attributes: {
     title: Attribute.String
     text: Attribute.Text
     anchorId: Attribute.String
     wasteCollectionDaysType: Attribute.String
+    visibleColumns: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'Adresa:address',
+          'Eviden\u010Dn\u00E9 \u010D\u00EDslo:registrationNumber',
+          'Platnos\u0165:validity',
+          'P\u00E1rny t\u00FD\u017Ede\u0148:evenWeek',
+          'Nep\u00E1rny t\u00FD\u017Ede\u0148:oddWeek',
+          'D\u00E1tumy odvozov:collectionDates',
+          'Pozn\u00E1mka:note',
+        ]
+      >
   }
 }
 
@@ -308,6 +334,20 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
   }
 }
 
+export interface SectionsIframeSection extends Schema.Component {
+  collectionName: 'components_sections_iframe_sections'
+  info: {
+    displayName: 'Iframe (Venzeo)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    iframeTitle: Attribute.String & Attribute.Required
+    url: Attribute.String & Attribute.Required
+  }
+}
+
 export interface SectionsHeroHomepageSection extends Schema.Component {
   collectionName: 'components_sections_hero_homepage_sections'
   info: {
@@ -395,6 +435,7 @@ export interface SectionsFaq extends Schema.Component {
       Attribute.Required &
       Attribute.DefaultTo<'primary'>
     faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
+    faqCategories: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq-category.faq-category'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }
@@ -1051,8 +1092,9 @@ export interface HeaderSectionsPickupDay extends Schema.Component {
     description: ''
   }
   attributes: {
-    carouselTitle: Attribute.String & Attribute.Required
     anchors: Attribute.Component<'items.anchor', true>
+    carouselTitle: Attribute.String & Attribute.Required
+    tags: Attribute.Relation<'header-sections.pickup-day', 'oneToMany', 'api::tag.tag'>
     showMoreLink: Attribute.Component<'items.link'>
   }
 }
@@ -1148,6 +1190,7 @@ declare module '@strapi/types' {
       'shared.meta-social': SharedMetaSocial
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
+      'sections.waste-removal-cards': SectionsWasteRemovalCards
       'sections.waste-collection-days': SectionsWasteCollectionDays
       'sections.vacancies': SectionsVacancies
       'sections.sorting-guide': SectionsSortingGuide
@@ -1160,6 +1203,7 @@ declare module '@strapi/types' {
       'sections.kolo-homepage-section': SectionsKoloHomepageSection
       'sections.image-and-text': SectionsImageAndText
       'sections.image-and-text-overlapped': SectionsImageAndTextOverlapped
+      'sections.iframe-section': SectionsIframeSection
       'sections.hero-homepage-section': SectionsHeroHomepageSection
       'sections.global-search': SectionsGlobalSearch
       'sections.form-cta-banner': SectionsFormCtaBanner

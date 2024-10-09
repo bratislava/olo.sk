@@ -1,0 +1,78 @@
+{
+  "key": "plugin_content_manager_configuration_components::sidebars.contacts-sidebar",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "contact": {
+        "edit": {
+          "label": "Kontakt",
+          "description": "Zobrazí sa primárny email a primárny telefón.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "label"
+        },
+        "list": {
+          "label": "contact",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "branch": {
+        "edit": {
+          "label": "Pobočka",
+          "description": "Zobrazí sa adresa a tlačidlo Navigovať (ak má pobočka vyplnený odkaz pre navigáciu)",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "branch",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "contact",
+        "branch"
+      ],
+      "edit": [
+        [
+          {
+            "name": "contact",
+            "size": 6
+          },
+          {
+            "name": "branch",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "sidebars.contacts-sidebar",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

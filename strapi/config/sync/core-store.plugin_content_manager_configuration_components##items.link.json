@@ -1,0 +1,199 @@
+{
+  "key": "plugin_content_manager_configuration_components::items.link",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "label",
+      "defaultSortBy": "url",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "label": {
+        "edit": {
+          "label": "Text odkazu",
+          "description": "Ak je toto pole prázdne, text odkazu bude zodpovedať názvu zadanej entity (page, article, workshop...) alebo zadanej URL (z poľa url). Zo zvyšných polí treba vyplniť vždy iba jedno. Ak sa vyplní viacero, odkaz bude smerovať na prvé vyplnené pole a ostatné sa odignorujú.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "label",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "url": {
+        "edit": {
+          "label": "Url",
+          "description": "Iba pre externé adresy - treba vždy vypĺňať s \"http://\" alebo \"https://\" ",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "url",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "page": {
+        "edit": {
+          "label": "Stránka",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "page",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "article": {
+        "edit": {
+          "label": "Článok",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "article",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "branch": {
+        "edit": {
+          "label": "Pobočka",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "branch",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "document": {
+        "edit": {
+          "label": "Dokument",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "document",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "service": {
+        "edit": {
+          "label": "Služba",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "service",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "workshop": {
+        "edit": {
+          "label": "Workshop",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "workshop",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "url",
+        "page",
+        "article"
+      ],
+      "edit": [
+        [
+          {
+            "name": "label",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "page",
+            "size": 6
+          },
+          {
+            "name": "article",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "branch",
+            "size": 6
+          },
+          {
+            "name": "document",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "service",
+            "size": 6
+          },
+          {
+            "name": "workshop",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "url",
+            "size": 12
+          }
+        ]
+      ]
+    },
+    "uid": "items.link",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

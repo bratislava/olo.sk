@@ -1,0 +1,77 @@
+{
+  "key": "plugin_content_manager_configuration_components::sections.richtext",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "id",
+      "defaultSortBy": "id",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "content": {
+        "edit": {
+          "label": "Text",
+          "description": "Okrem URL sa dá link pridať aj na OLO stránky, články, služby, dokumenty alebo workshopy. V tom prípade treba do odkazu namiesto URL napísať \"~/TYP/ID\". Namiesto TYP treba napísať \"page\", \"article\", \"service\", \"document\" alebo \"workshop\". Namiesto ID treba napísať id daného obsahového typu.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "content",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "backgroundColor": {
+        "edit": {
+          "label": "Pozadie",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "backgroundColor",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "list": [
+        "id",
+        "backgroundColor"
+      ],
+      "edit": [
+        [
+          {
+            "name": "content",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "backgroundColor",
+            "size": 6
+          }
+        ]
+      ]
+    },
+    "uid": "sections.richtext",
+    "isComponent": true
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

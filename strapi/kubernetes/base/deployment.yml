@@ -38,7 +38,7 @@ spec:
             - secretRef:
                 name: ${BUILD_REPOSITORY_NAME}-meilisearch-secret
             - secretRef:
-                name: minio-secret-standalone
+                name: minio-secret-${NAMESPACE}
             - configMapRef:
                 name: ${BUILD_REPOSITORY_NAME}-env
             - configMapRef:

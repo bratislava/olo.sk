@@ -29,7 +29,7 @@ const BasicCard = ({
       className={cn('hover:border-border-default', className)}
       title={title}
     >
-      <CardImage imgSrc={imgSrc} className="aspect-[384/204] rounded-t-lg" />
+      <CardImage imgSrc={imgSrc} className="aspect-[384/204]" />
       <div className="flex h-full flex-col justify-between gap-5 p-4 lg:px-5">
         <div className="flex flex-col gap-3">
           <Typography variant="h5" className_onlyWhenNecessary="line-clamp-3">

@@ -1,0 +1,329 @@
+{
+  "key": "plugin_content_manager_configuration_content_types::api::branch.branch",
+  "value": {
+    "settings": {
+      "bulkable": true,
+      "filterable": true,
+      "searchable": true,
+      "pageSize": 10,
+      "mainField": "title",
+      "defaultSortBy": "title",
+      "defaultSortOrder": "ASC"
+    },
+    "metadatas": {
+      "id": {
+        "edit": {},
+        "list": {
+          "label": "id",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "title": {
+        "edit": {
+          "label": "Názov",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "title",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "page": {
+        "edit": {
+          "label": "Stránka pobočky",
+          "description": "Použije sa ako odkaz na pobočku.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "page",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "openingTimes": {
+        "edit": {
+          "label": "Otváracie hodiny",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "internalName"
+        },
+        "list": {
+          "label": "openingTimes",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "contacts": {
+        "edit": {
+          "label": "Kontakty",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "label"
+        },
+        "list": {
+          "label": "contacts",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "latitude": {
+        "edit": {
+          "label": "Zemepisná šírka",
+          "description": "Desatinnú časť súradnice treba oddeliť bodkou alebo čiarkou (závisí od jazyka, v ktorom pracujete so Strapi)",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "latitude",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "longitude": {
+        "edit": {
+          "label": "Zemepisná dĺžka",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "longitude",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "address": {
+        "edit": {
+          "label": "Adresa",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "address",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "navigateToLink": {
+        "edit": {
+          "label": "navigateToLink",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "navigateToLink",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "mapIconName": {
+        "edit": {
+          "label": "Ikonka",
+          "description": "Uveďte \"kolo\" pre KOLO pobočky.",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "mapIconName",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "publicTransportInfo": {
+        "edit": {
+          "label": "Dostupnosť MHD",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "publicTransportInfo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "parkingInfo": {
+        "edit": {
+          "label": "Parkovanie",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "parkingInfo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "barrierFreeInfo": {
+        "edit": {
+          "label": "Bezbariérovosť",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "barrierFreeInfo",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdAt": {
+        "edit": {
+          "label": "createdAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "createdAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedAt": {
+        "edit": {
+          "label": "updatedAt",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true
+        },
+        "list": {
+          "label": "updatedAt",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "createdBy": {
+        "edit": {
+          "label": "createdBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "createdBy",
+          "searchable": true,
+          "sortable": true
+        }
+      },
+      "updatedBy": {
+        "edit": {
+          "label": "updatedBy",
+          "description": "",
+          "placeholder": "",
+          "visible": false,
+          "editable": true,
+          "mainField": "firstname"
+        },
+        "list": {
+          "label": "updatedBy",
+          "searchable": true,
+          "sortable": true
+        }
+      }
+    },
+    "layouts": {
+      "edit": [
+        [
+          {
+            "name": "title",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "page",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "openingTimes",
+            "size": 6
+          },
+          {
+            "name": "contacts",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "latitude",
+            "size": 6
+          },
+          {
+            "name": "longitude",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "address",
+            "size": 6
+          },
+          {
+            "name": "publicTransportInfo",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "parkingInfo",
+            "size": 6
+          },
+          {
+            "name": "barrierFreeInfo",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "mapIconName",
+            "size": 6
+          },
+          {
+            "name": "navigateToLink",
+            "size": 6
+          }
+        ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "openingTimes",
+        "navigateToLink"
+      ]
+    },
+    "uid": "api::branch.branch"
+  },
+  "type": "object",
+  "environment": null,
+  "tag": null
+}

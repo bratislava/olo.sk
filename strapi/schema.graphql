@@ -751,6 +751,29 @@ input ComponentItemsLinkInput {
   workshop: ID
 }
 
+type ComponentItemsLocationCardsItem {
+  address: String
+  id: ID!
+  link: ComponentItemsLink!
+  title: String!
+}
+
+input ComponentItemsLocationCardsItemFiltersInput {
+  address: StringFilterInput
+  and: [ComponentItemsLocationCardsItemFiltersInput]
+  link: ComponentItemsLinkFiltersInput
+  not: ComponentItemsLocationCardsItemFiltersInput
+  or: [ComponentItemsLocationCardsItemFiltersInput]
+  title: StringFilterInput
+}
+
+input ComponentItemsLocationCardsItemInput {
+  address: String
+  id: ID
+  link: ComponentItemsLinkInput
+  title: String
+}
+
 type ComponentItemsMenuHeader {
   contactsLink: ComponentItemsLink
   id: ID!
@@ -1877,6 +1900,32 @@ input ComponentSectionsWasteCollectionDaysInput {
   wasteCollectionDaysType: String
 }
 
+type ComponentSectionsWasteCollectionPoints {
+  backgroundColor: ENUM_COMPONENTSECTIONSWASTECOLLECTIONPOINTS_BACKGROUNDCOLOR!
+  cards(filters: ComponentItemsLocationCardsItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsLocationCardsItem]
+  id: ID!
+  text: String
+  title: String
+}
+
+input ComponentSectionsWasteCollectionPointsFiltersInput {
+  and: [ComponentSectionsWasteCollectionPointsFiltersInput]
+  backgroundColor: StringFilterInput
+  cards: ComponentItemsLocationCardsItemFiltersInput
+  not: ComponentSectionsWasteCollectionPointsFiltersInput
+  or: [ComponentSectionsWasteCollectionPointsFiltersInput]
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsWasteCollectionPointsInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSWASTECOLLECTIONPOINTS_BACKGROUNDCOLOR
+  cards: [ComponentItemsLocationCardsItemInput]
+  id: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsWasteRemovalCards {
   cards(filters: ComponentItemsCardSliderCardFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardSliderCard]
   id: ID!
@@ -2394,6 +2443,12 @@ enum ENUM_COMPONENTSECTIONSVACANCIES_BACKGROUNDCOLOR {
   tertiary
 }
 
+enum ENUM_COMPONENTSECTIONSWASTECOLLECTIONPOINTS_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 enum ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK {
   Facebook
   Twitter
@@ -2653,7 +2708,7 @@ type FormRelationResponseCollection {
   data: [FormEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteRemovalCards | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentSidebarsContactsSidebar | ComponentSidebarsEmptySidebar | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsLocationCardsItem | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteCollectionPoints | ComponentSectionsWasteRemovalCards | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentSidebarsContactsSidebar | ComponentSidebarsEmptySidebar | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -3193,7 +3248,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsGlobalSearch | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsGlobalSearch | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteCollectionPoints | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 

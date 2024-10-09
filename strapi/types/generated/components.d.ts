@@ -109,6 +109,22 @@ export interface SectionsWasteRemovalCards extends Schema.Component {
   }
 }
 
+export interface SectionsWasteCollectionPoints extends Schema.Component {
+  collectionName: 'components_sections_waste_collection_points'
+  info: {
+    displayName: 'Zbern\u00E9 miesta'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.location-cards-item', true>
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'primary'>
+  }
+}
+
 export interface SectionsWasteCollectionDays extends Schema.Component {
   collectionName: 'components_sections_waste_collection_days'
   info: {
@@ -868,6 +884,18 @@ export interface ItemsMenuHeader extends Schema.Component {
   }
 }
 
+export interface ItemsLocationCardsItem extends Schema.Component {
+  collectionName: 'components_items_location_cards_items'
+  info: {
+    displayName: 'Location Cards item'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    address: Attribute.String
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
 export interface ItemsLink extends Schema.Component {
   collectionName: 'components_items_links'
   info: {
@@ -1191,6 +1219,7 @@ declare module '@strapi/types' {
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.waste-removal-cards': SectionsWasteRemovalCards
+      'sections.waste-collection-points': SectionsWasteCollectionPoints
       'sections.waste-collection-days': SectionsWasteCollectionDays
       'sections.vacancies': SectionsVacancies
       'sections.sorting-guide': SectionsSortingGuide
@@ -1236,6 +1265,7 @@ declare module '@strapi/types' {
       'items.opening-times-item': ItemsOpeningTimesItem
       'items.opening-hours-item': ItemsOpeningHoursItem
       'items.menu-header': ItemsMenuHeader
+      'items.location-cards-item': ItemsLocationCardsItem
       'items.link': ItemsLink
       'items.homepage-service-tile': ItemsHomepageServiceTile
       'items.hero-small-tile': ItemsHeroSmallTile

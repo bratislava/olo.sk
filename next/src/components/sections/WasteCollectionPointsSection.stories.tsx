@@ -10,6 +10,13 @@ import WasteCollectionPointsSectionComponent from './WasteCollectionPointsSectio
 
 type Props = WasteCollectionPointsSectionFragment
 
+const dummyWasteCollectionPoints = () =>
+  ['Podunajské Biskupice', 'Vrakuňa', 'Nové Mesto'].map((title) => ({
+    title,
+    address: 'Názov ulice, popis miesta',
+    link: { url: 'https://' },
+  }))
+
 const meta: Meta<Props> = {
   title: 'Sections/Zberné miesta',
   args: {
@@ -17,23 +24,7 @@ const meta: Meta<Props> = {
     text: 'Lorem ipsum dolor sit amet consectetur. Nisi non integer fringilla vel arcu vitae iaculis lorem. Semper at vestibulum massa ut nulla quisque tortor a aliquam. Enim vitae rhoncus sed dictum viverra pellentesque tincidunt convallis nulla. Aliquam diam ultrices aliquam diam venenatis.',
     backgroundColorWasteCollectionPoints:
       Enum_Componentsectionswastecollectionpoints_Backgroundcolor.Primary,
-    cardsWasteCollectionPointsCards: [
-      {
-        title: 'Podunajské Biskupice',
-        address: 'Lieskovská cesta, areál A-Z STAV s.r.o.',
-        linkHref: '#',
-      },
-      {
-        title: 'Vrakuňa',
-        address: 'Majerská ul., koniec ulice',
-        linkHref: '#',
-      },
-      {
-        title: 'Nové Mesto',
-        address: 'rôzne zberné miesta (podľa druhu odpadu)',
-        linkHref: '#',
-      },
-    ],
+    cardsWasteCollectionPointsCards: dummyWasteCollectionPoints(),
   },
   parameters: {
     controls: {

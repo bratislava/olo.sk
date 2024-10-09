@@ -3,6 +3,7 @@ import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { WasteCollectionPointsSectionFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
+import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 type WasteCollectionPointsSectionProps = {
   section: WasteCollectionPointsSectionFragment
@@ -13,6 +14,8 @@ type WasteCollectionPointsSectionProps = {
  */
 
 const WasteCollectionPointsSection = ({ section }: WasteCollectionPointsSectionProps) => {
+  const { getLinkProps } = useGetLinkProps()
+
   const {
     title: sectionTitle,
     text,
@@ -35,7 +38,7 @@ const WasteCollectionPointsSection = ({ section }: WasteCollectionPointsSectionP
         <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-8">
           {filteredCards
             .map((card, index) => {
-              const { title, address, linkHref } = card
+              const { title, address, link } = card
 
               return (
                 // eslint-disable-next-line react/no-array-index-key
@@ -43,7 +46,7 @@ const WasteCollectionPointsSection = ({ section }: WasteCollectionPointsSectionP
                   <LocationCard
                     title={title}
                     address={address}
-                    linkHref={linkHref}
+                    linkHref={getLinkProps(link).href}
                     className="h-full"
                   />
                 </li>

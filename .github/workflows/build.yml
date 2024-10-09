@@ -17,6 +17,8 @@ jobs:
     with:
       directory: strapi/
       debug: --debug
+    secrets:
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
     permissions: write-all
 
   next:
@@ -27,4 +29,6 @@ jobs:
     with:
       directory: next/
       debug: --debug
+    secrets:
+      docker-pass: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
     permissions: write-all

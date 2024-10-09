@@ -34,14 +34,15 @@ const WasteCollectionPointsSection = ({ section }: WasteCollectionPointsSectionP
 
         <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-8">
           {filteredCards
-            .map((card) => {
+            .map((card, index) => {
               const { title, address, linkHref } = card
 
               return (
-                <li key={title}>
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index}>
                   <LocationCard
                     title={title}
-                    address={address ?? ''}
+                    address={address}
                     linkHref={linkHref}
                     className="h-full"
                   />

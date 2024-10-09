@@ -7,7 +7,7 @@ import Typography from '@/src/components/common/Typography/Typography'
 
 type LocationCardProps = {
   title: string
-  address: string
+  address?: string | null | undefined
   linkHref: string
   iconName?: OloIconName
   hasWhiteBackground?: boolean
@@ -48,9 +48,11 @@ const LocationCard = ({
           >
             {title}
           </Typography>
-          <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">
-            {address}
-          </Typography>
+          {address ? (
+            <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">
+              {address}
+            </Typography>
+          ) : null}
         </div>
         <Button variant="category-outline" href={linkHref} asLink stretched fullWidth>
           {t('common.findOutMore')}

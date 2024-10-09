@@ -1513,14 +1513,6 @@ export type ComponentSectionsSortingGuideAccordionsSortingGuideAccordionsArgs = 
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
-export type ComponentSectionsTable = {
-  __typename?: 'ComponentSectionsTable'
-  anchorId?: Maybe<Scalars['String']['output']>
-  id: Scalars['ID']['output']
-  text?: Maybe<Scalars['String']['output']>
-  title?: Maybe<Scalars['String']['output']>
-}
-
 export type ComponentSectionsVacancies = {
   __typename?: 'ComponentSectionsVacancies'
   backgroundColor?: Maybe<Enum_Componentsectionsvacancies_Backgroundcolor>
@@ -2376,7 +2368,6 @@ export type GenericMorph =
   | ComponentSectionsServicesHomepageSection
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
-  | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteRemovalCards
@@ -3385,7 +3376,6 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsServices
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
-  | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteSortingCards
@@ -7271,13 +7261,6 @@ export type ColumnsListSectionFragment = {
       } | null
     } | null
   } | null> | null
-}
-
-export type TableSectionFragment = {
-  __typename?: 'ComponentSectionsTable'
-  title?: string | null
-  text?: string | null
-  anchorId?: string | null
 }
 
 export type WasteCollectionDaysFragment = {
@@ -11238,13 +11221,6 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
   } | null
 }
 
-type PageSections_ComponentSectionsTable_Fragment = {
-  __typename: 'ComponentSectionsTable'
-  title?: string | null
-  text?: string | null
-  anchorId?: string | null
-}
-
 type PageSections_ComponentSectionsVacancies_Fragment = {
   __typename: 'ComponentSectionsVacancies'
   title?: string | null
@@ -11571,7 +11547,6 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsServices_Fragment
   | PageSections_ComponentSectionsSortingGuide_Fragment
   | PageSections_ComponentSectionsSortingGuideAccordions_Fragment
-  | PageSections_ComponentSectionsTable_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteCollectionDays_Fragment
   | PageSections_ComponentSectionsWasteSortingCards_Fragment
@@ -20045,12 +20020,6 @@ export type PageEntityFragment = {
           } | null
         }
       | {
-          __typename: 'ComponentSectionsTable'
-          title?: string | null
-          text?: string | null
-          anchorId?: string | null
-        }
-      | {
           __typename: 'ComponentSectionsVacancies'
           title?: string | null
           text?: string | null
@@ -22871,12 +22840,6 @@ export type PagesQuery = {
                   } | null
                 } | null
               } | null
-            }
-          | {
-              __typename: 'ComponentSectionsTable'
-              title?: string | null
-              text?: string | null
-              anchorId?: string | null
             }
           | {
               __typename: 'ComponentSectionsVacancies'
@@ -25719,12 +25682,6 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               } | null
-            }
-          | {
-              __typename: 'ComponentSectionsTable'
-              title?: string | null
-              text?: string | null
-              anchorId?: string | null
             }
           | {
               __typename: 'ComponentSectionsVacancies'
@@ -32881,13 +32838,6 @@ export const ColumnsListSectionFragmentDoc = gql`
   }
   ${UploadImageEntityFragmentDoc}
 `
-export const TableSectionFragmentDoc = gql`
-  fragment TableSection on ComponentSectionsTable {
-    title
-    text
-    anchorId
-  }
-`
 export const WasteCollectionDaysFragmentDoc = gql`
   fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
     title
@@ -33292,9 +33242,6 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsColumnsList {
       ...ColumnsListSection
     }
-    ... on ComponentSectionsTable {
-      ...TableSection
-    }
     ... on ComponentSectionsWasteCollectionDays {
       ...WasteCollectionDays
     }
@@ -33361,7 +33308,6 @@ export const PageSectionsFragmentDoc = gql`
   ${BranchesSectionFragmentDoc}
   ${WorkshopsSectionFragmentDoc}
   ${ColumnsListSectionFragmentDoc}
-  ${TableSectionFragmentDoc}
   ${WasteCollectionDaysFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}

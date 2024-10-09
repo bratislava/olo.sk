@@ -126,12 +126,6 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
   }
 }
 
-fragment TableSection on ComponentSectionsTable {
-  title
-  text
-  anchorId
-}
-
 fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
   title
   text
@@ -430,10 +424,6 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsColumnsList {
     ...ColumnsListSection
-  }
-
-  ... on ComponentSectionsTable {
-    ...TableSection
   }
 
   ... on ComponentSectionsWasteCollectionDays {

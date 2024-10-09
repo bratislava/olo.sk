@@ -1484,7 +1484,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.workshops',
         'sections.documents',
         'sections.ordered-cards',
-        'sections.table',
         'sections.sorting-guide',
         'sections.sorting-guide-accordions',
         'sections.contacts',

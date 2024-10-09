@@ -24,7 +24,6 @@ import RichtextSection from '@/src/components/sections/RichtextSection'
 import ServicesSection from '@/src/components/sections/ServicesSection'
 import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
 import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
-import TableSection from '@/src/components/sections/TableSection'
 import VacanciesSection from '@/src/components/sections/VacanciesSection'
 import WasteCollectionDays from '@/src/components/sections/WasteCollectionDays'
 import WasteRemovalCardsSection from '@/src/components/sections/WasteRemovalCardsSection'
@@ -64,9 +63,6 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsColumnsList':
       return <ColumnsListSection section={section} />
-
-    case 'ComponentSectionsTable':
-      return <TableSection section={section} />
 
     case 'ComponentSectionsWasteCollectionDays':
       return <WasteCollectionDays section={section} />

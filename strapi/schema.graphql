@@ -156,6 +156,7 @@ type Branch {
   barrierFreeInfo: String
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactRelationResponseCollection
   createdAt: DateTime
+  image: UploadFileEntityResponse
   latitude: Float
   locale: String
   localizations(filters: BranchFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchRelationResponseCollection
@@ -213,6 +214,7 @@ input BranchInput {
   address: String
   barrierFreeInfo: String
   contacts: [ID]
+  image: ID
   latitude: Float
   longitude: Float
   mapIconName: String

@@ -49,6 +49,7 @@ const CardSliderSection = ({ section }: Props) => {
                   hasWhiteBackground={
                     backgroundColor === Enum_Componentsectionscardslider_Backgroundcolor.Primary
                   }
+                  lineClamp={3}
                 />
               )
             })}

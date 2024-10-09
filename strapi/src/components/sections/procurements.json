@@ -1,15 +1,16 @@
 {
   "collectionName": "components_sections_procurements",
   "info": {
-    "displayName": "Verejné obstarávanie"
+    "displayName": "Verejné obstarávanie",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
       "type": "string"
     },
-    "text": {
-      "type": "text"
+    "content": {
+      "type": "richtext"
     }
   }
 }

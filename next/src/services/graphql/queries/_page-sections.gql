@@ -385,7 +385,7 @@ fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
 
 fragment ProcurementsSection on ComponentSectionsProcurements {
   title
-  text
+  content
 }
 
 fragment PageSections on PageSectionsDynamicZone {

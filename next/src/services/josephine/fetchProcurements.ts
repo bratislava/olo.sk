@@ -5,10 +5,12 @@ import { JosephineObject } from '@/src/services/josephine/josephineTypes'
 /**
  * Fetches and parses client data from the Josephine client.
  * It's wrapped into function to use it both directly and in API handler.
+ * @param timeframe - ['running', 'ended', 'all'] used for different fetch calls to Josephine API
  *
  */
-export const fetchProcurements = async (timeframe) => {
-  const fetchUrl = `${process.env.NEXT_JOSEPHINE_URL}${process.env.NEXT_PUBLIC_JOSEPHINE_API_TOKEN}${timeframe && timeframe !== 'all' ? `/${timeframe}` : ''}`
+export const fetchProcurements = async (timeframe: string | undefined) => {
+  const postFix = timeframe && timeframe !== 'all' ? `/${timeframe}` : ''
+  const fetchUrl = `${process.env.NEXT_JOSEPHINE_URL}${process.env.NEXT_PUBLIC_JOSEPHINE_API_TOKEN}${postFix}`
   const response = await fetch(fetchUrl)
 
   const xml = await response.text()

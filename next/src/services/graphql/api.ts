@@ -1454,8 +1454,8 @@ export type ComponentSectionsOrderedCardsCardsArgs = {
 
 export type ComponentSectionsProcurements = {
   __typename?: 'ComponentSectionsProcurements'
+  content?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
-  text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
 
@@ -9188,7 +9188,7 @@ export type GlobalSearchSectionFragment = {
 export type ProcurementsSectionFragment = {
   __typename?: 'ComponentSectionsProcurements'
   title?: string | null
-  text?: string | null
+  content?: string | null
 }
 
 type PageSections_ComponentSectionsArticles_Fragment = {
@@ -10776,7 +10776,7 @@ type PageSections_ComponentSectionsOrderedCards_Fragment = {
 type PageSections_ComponentSectionsProcurements_Fragment = {
   __typename: 'ComponentSectionsProcurements'
   title?: string | null
-  text?: string | null
+  content?: string | null
 }
 
 type PageSections_ComponentSectionsRichtext_Fragment = {
@@ -19594,7 +19594,11 @@ export type PageEntityFragment = {
             iconName?: string | null
           } | null>
         }
-      | { __typename: 'ComponentSectionsProcurements'; title?: string | null; text?: string | null }
+      | {
+          __typename: 'ComponentSectionsProcurements'
+          title?: string | null
+          content?: string | null
+        }
       | {
           __typename: 'ComponentSectionsRichtext'
           content?: string | null
@@ -22426,7 +22430,7 @@ export type PagesQuery = {
           | {
               __typename: 'ComponentSectionsProcurements'
               title?: string | null
-              text?: string | null
+              content?: string | null
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -25279,7 +25283,7 @@ export type PageBySlugQuery = {
           | {
               __typename: 'ComponentSectionsProcurements'
               title?: string | null
-              text?: string | null
+              content?: string | null
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -33152,7 +33156,7 @@ export const GlobalSearchSectionFragmentDoc = gql`
 export const ProcurementsSectionFragmentDoc = gql`
   fragment ProcurementsSection on ComponentSectionsProcurements {
     title
-    text
+    content
   }
 `
 export const PageSectionsFragmentDoc = gql`

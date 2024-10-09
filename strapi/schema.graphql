@@ -1708,22 +1708,22 @@ input ComponentSectionsOrderedCardsInput {
 }
 
 type ComponentSectionsProcurements {
+  content: String
   id: ID!
-  text: String
   title: String
 }
 
 input ComponentSectionsProcurementsFiltersInput {
   and: [ComponentSectionsProcurementsFiltersInput]
+  content: StringFilterInput
   not: ComponentSectionsProcurementsFiltersInput
   or: [ComponentSectionsProcurementsFiltersInput]
-  text: StringFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsProcurementsInput {
+  content: String
   id: ID
-  text: String
   title: String
 }
 

@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 import CardBase from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
 import Link from '@/src/components/common/Link/Link'
@@ -30,12 +32,13 @@ const JobPositionRowCard = ({ title, className, linkHref, metaData }: JobPositio
           {metaData?.length ? (
             <div className="flex items-center gap-3">
               {metaData.map((item, index) => (
-                <>
+                // eslint-disable-next-line react/no-array-index-key
+                <Fragment key={index}>
                   {index > 0 ? (
                     <div aria-hidden className="size-1 rounded-full bg-content-secondary" />
                   ) : null}
                   <Typography variant="p-small">{item}</Typography>
-                </>
+                </Fragment>
               ))}
             </div>
           ) : null}

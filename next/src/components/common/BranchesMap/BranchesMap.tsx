@@ -44,7 +44,7 @@ const BranchesMap = ({ branches }: Props) => {
                     title={title}
                     linkHref={getFullPath(branch)}
                     address={address}
-                    imgSrc={image?.data?.attributes?.url ?? ''}
+                    imgSrc={image?.data?.attributes?.url}
                     variant="unstyled"
                     className="size-full"
                     typographyClassName={cn({

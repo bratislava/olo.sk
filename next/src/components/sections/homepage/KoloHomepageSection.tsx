@@ -75,9 +75,9 @@ const KoloHomepageSection = ({ section }: Props) => {
                   <li key={index} className="[&>*]:h-full">
                     <BranchCard
                       title={title}
-                      linkHref={getFullPath(branch) ?? '#'} // TODO remove the fallback value
-                      imgSrc={image?.data?.attributes?.url ?? ''}
-                      address={address ?? ''} // TODO remove the fallback value
+                      linkHref={getFullPath(branch)}
+                      imgSrc={image?.data?.attributes?.url}
+                      address={address}
                     />
                   </li>
                 )

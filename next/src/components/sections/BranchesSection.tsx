@@ -40,7 +40,7 @@ const BranchesSection = ({ section }: Props) => {
                   <BranchCard
                     title={title}
                     address={address}
-                    imgSrc={image?.data?.attributes?.url ?? ''}
+                    imgSrc={image?.data?.attributes?.url}
                     linkHref={getFullPath(branch)}
                   />
                 </li>

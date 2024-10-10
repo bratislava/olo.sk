@@ -1,6 +1,5 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
-import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
@@ -30,14 +29,15 @@ const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
     >
       {/* TODO wrap in <ul> */}
 
-      <Button
-        variant="unstyled"
-        onPress={() => setMenuValue('')}
+      {/* Our Button (implemented by react-aria-components) is not compatible with radix and causes press events problem on mobile */}
+      <button
+        type="button"
+        onClick={() => setMenuValue('')}
         className="flex w-full items-center justify-center border-b border-border-default p-4"
       >
         <Typography variant="p-default-black">{label}</Typography>
-        <Icon name="sipka-dolava" className="absolute left-4" />
-      </Button>
+        <Icon name="sipka-dolava" className="absolute left-4" aria-hidden />
+      </button>
 
       <div className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default px-4 py-6">
         {sections.map((section, index) => {

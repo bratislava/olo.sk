@@ -36,7 +36,7 @@
       "slug": {
         "edit": {
           "label": "Slug",
-          "description": "Zo slugu a prepojiení na rodičovskú stránku sa skladá cesta v URLke.",
+          "description": "Zo slugu a prepojení na rodičovskú stránku sa skladá cesta v URLke.",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -77,7 +77,7 @@
       },
       "parentPage": {
         "edit": {
-          "label": "Rodiočvská stránka",
+          "label": "Rodičovská stránka",
           "description": "",
           "placeholder": "",
           "visible": true,

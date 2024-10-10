@@ -92,7 +92,7 @@
       },
       "seo": {
         "edit": {
-          "label": "seo",
+          "label": "Seo",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -164,12 +164,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "serviceCategories"
-      ],
       "edit": [
         [
           {
@@ -205,6 +199,12 @@
             "size": 12
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "slug",
+        "serviceCategories"
       ]
     },
     "uid": "api::service.service"

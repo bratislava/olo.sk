@@ -64,7 +64,7 @@
       "media": {
         "edit": {
           "label": "Obrázok",
-          "description": "",
+          "description": "Pomer strán obrázka treba mať 19:10. Je možné vložiť aj GIF.",
           "placeholder": "",
           "visible": true,
           "editable": true

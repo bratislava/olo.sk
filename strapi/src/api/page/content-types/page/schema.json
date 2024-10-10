@@ -97,7 +97,6 @@
         "sections.workshops",
         "sections.documents",
         "sections.ordered-cards",
-        "sections.table",
         "sections.sorting-guide",
         "sections.sorting-guide-accordions",
         "sections.contacts",
@@ -105,7 +104,9 @@
         "sections.board-members",
         "sections.vacancies",
         "sections.global-search",
-        "sections.waste-collection-days"
+        "sections.waste-collection-days",
+        "sections.iframe-section",
+        "sections.waste-collection-points"
       ],
       "pluginOptions": {
         "i18n": {
@@ -120,10 +121,7 @@
         }
       },
       "type": "dynamiczone",
-      "components": [
-        "sidebars.empty-sidebar",
-        "sidebars.contacts-sidebar"
-      ],
+      "components": ["sidebars.empty-sidebar", "sidebars.contacts-sidebar"],
       "max": 1
     },
     "branch": {

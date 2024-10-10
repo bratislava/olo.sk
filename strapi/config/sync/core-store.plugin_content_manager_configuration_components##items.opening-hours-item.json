@@ -22,7 +22,7 @@
       "label": {
         "edit": {
           "label": "label",
-          "description": "",
+          "description": "Napr. \"Utorok\", \"Víkend\", \"Ostatné dni\"",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -36,7 +36,7 @@
       "value": {
         "edit": {
           "label": "value",
-          "description": "",
+          "description": "Napr. \"10:00 - 15:00\", \"Zatvorené\"",
           "placeholder": "",
           "visible": true,
           "editable": true

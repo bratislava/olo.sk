@@ -892,6 +892,12 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
+    image: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1484,7 +1490,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.workshops',
         'sections.documents',
         'sections.ordered-cards',
-        'sections.table',
         'sections.sorting-guide',
         'sections.sorting-guide-accordions',
         'sections.contacts',
@@ -1493,6 +1498,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.vacancies',
         'sections.global-search',
         'sections.waste-collection-days',
+        'sections.iframe-section',
+        'sections.waste-collection-points',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1578,6 +1585,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         'sections.faq',
         'sections.cards-list',
         'sections.form-cta-banner',
+        'sections.waste-removal-cards',
       ]
     > &
       Attribute.SetPluginOptions<{

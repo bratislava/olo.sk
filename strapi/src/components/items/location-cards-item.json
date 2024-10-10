@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_items_location_cards_items",
+  "info": {
+    "displayName": "Location Cards item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link",
+      "required": true
+    }
+  }
+}

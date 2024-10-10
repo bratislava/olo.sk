@@ -1,5 +1,5 @@
 {
-  "key": "plugin_content_manager_configuration_components::sections.faq",
+  "key": "plugin_content_manager_configuration_components::sections.iframe-section",
   "value": {
     "settings": {
       "bulkable": true,
@@ -47,62 +47,32 @@
           "sortable": true
         }
       },
-      "backgroundColor": {
+      "iframeTitle": {
         "edit": {
-          "label": "Pozadie",
-          "description": "",
+          "label": "iframeTitle",
+          "description": "Na webe sa použije ako skrytý atribút pre čítačky obrazovky, nezobrazuje sa vizuálne.",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "backgroundColor",
+          "label": "iframeTitle",
           "searchable": true,
           "sortable": true
         }
       },
-      "faqs": {
+      "url": {
         "edit": {
-          "label": "Otázky",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "faqs",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "faqCategories": {
-        "edit": {
-          "label": "Kategória",
-          "description": "Zobraziť všetky otázky z vybranej kategórie",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "title"
-        },
-        "list": {
-          "label": "faqCategories",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "showMoreLink": {
-        "edit": {
-          "label": "showMoreLink",
+          "label": "Url",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "showMoreLink",
-          "searchable": false,
-          "sortable": false
+          "label": "url",
+          "searchable": true,
+          "sortable": true
         }
       }
     },
@@ -110,8 +80,8 @@
       "list": [
         "id",
         "title",
-        "backgroundColor",
-        "faqs"
+        "text",
+        "iframeTitle"
       ],
       "edit": [
         [
@@ -128,31 +98,19 @@
         ],
         [
           {
-            "name": "faqCategories",
+            "name": "iframeTitle",
             "size": 12
           }
         ],
         [
           {
-            "name": "faqs",
+            "name": "url",
             "size": 12
-          }
-        ],
-        [
-          {
-            "name": "showMoreLink",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "backgroundColor",
-            "size": 6
           }
         ]
       ]
     },
-    "uid": "sections.faq",
+    "uid": "sections.iframe-section",
     "isComponent": true
   },
   "type": "object",

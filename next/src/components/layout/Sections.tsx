@@ -15,6 +15,7 @@ import FaqCategoriesSection from '@/src/components/sections/FaqCategoriesSection
 import FaqSection from '@/src/components/sections/FaqSection'
 import FormCtaBannerSection from '@/src/components/sections/FormCtaBannerSection'
 import GlobalSearchSection from '@/src/components/sections/GlobalSearchSection'
+import IframeSection from '@/src/components/sections/IframeSection'
 import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTextOverlappedSection'
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OpeningTimesSection from '@/src/components/sections/OpeningTimesSection'
@@ -23,9 +24,10 @@ import RichtextSection from '@/src/components/sections/RichtextSection'
 import ServicesSection from '@/src/components/sections/ServicesSection'
 import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
 import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
-import TableSection from '@/src/components/sections/TableSection'
 import VacanciesSection from '@/src/components/sections/VacanciesSection'
 import WasteCollectionDays from '@/src/components/sections/WasteCollectionDays'
+import WasteCollectionPointsSection from '@/src/components/sections/WasteCollectionPointsSection'
+import WasteRemovalCardsSection from '@/src/components/sections/WasteRemovalCardsSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
 import { PageSectionsFragment, ServiceSectionsFragment } from '@/src/services/graphql/api'
@@ -63,8 +65,8 @@ const SectionContent = ({ section }: { section: Section }) => {
     case 'ComponentSectionsColumnsList':
       return <ColumnsListSection section={section} />
 
-    case 'ComponentSectionsTable':
-      return <TableSection section={section} />
+    case 'ComponentSectionsWasteCollectionPoints':
+      return <WasteCollectionPointsSection section={section} />
 
     case 'ComponentSectionsWasteCollectionDays':
       return <WasteCollectionDays section={section} />
@@ -75,8 +77,14 @@ const SectionContent = ({ section }: { section: Section }) => {
     case 'ComponentSectionsDocuments':
       return <DocumentsSection section={section} />
 
+    case 'ComponentSectionsWasteRemovalCards':
+      return <WasteRemovalCardsSection section={section} />
+
     // case 'ComponentSectionsFiles':
     //   return <FilesSection section={section} />
+
+    case 'ComponentSectionsIframeSection':
+      return <IframeSection section={section} />
 
     case 'ComponentSectionsBanner':
       return <BannerSection section={section} />

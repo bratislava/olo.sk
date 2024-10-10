@@ -18,6 +18,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: `${process.env.MINIO_BUCKET}.s3.bratislava.sk`,
+      },
+      {
+        protocol: 'https',
         hostname: 'api.mapbox.com',
       },
     ],

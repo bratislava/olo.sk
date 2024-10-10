@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import { FileRowCardProps } from '@/src/components/common/Card/FileRowCard'
@@ -9,6 +10,7 @@ import cn from '@/src/utils/cn'
 import { formatFileExtension } from '@/src/utils/formatFileExtension'
 import { formatFileSize } from '@/src/utils/formatFileSize'
 import { isDefined } from '@/src/utils/isDefined'
+import { useGetDownloadAriaLabel } from '@/src/utils/useGetDownloadAriaLabel'
 
 type Props = {
   section: FilesSectionFragment | null | undefined
@@ -23,6 +25,11 @@ type Props = {
 
 const FilesSection = ({ section, className }: Props) => {
   const { title, text, files } = section ?? {}
+
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
+
+  const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredFiles = files?.filter(isDefined) ?? []
@@ -41,10 +48,13 @@ const FilesSection = ({ section, className }: Props) => {
               const { name, size, url, ext } = file.media.data?.attributes ?? {}
 
               return {
+                variant: 'single-file',
                 title: file.title ?? name,
                 linkHref: url,
                 // TODO handle locale
-                metaData: [formatFileExtension(ext ?? ''), formatFileSize(size, 'sk')].filter(
+                buttonLabel: `${t('common.download')} [${formatFileExtension(ext ?? '')}, ${formatFileSize(size, locale)}]`,
+                ariaLabel: getDownloadAriaLabel(filteredFiles[0]),
+                metaData: [formatFileExtension(ext ?? ''), formatFileSize(size, locale)].filter(
                   // eslint-disable-next-line unicorn/no-array-callback-reference
                   isDefined,
                 ),

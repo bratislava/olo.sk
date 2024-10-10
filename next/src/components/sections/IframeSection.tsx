@@ -23,11 +23,11 @@ const IframeSection = ({ section, className }: IframeSectionProps) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer
       background="primary"
-      className={cn('py-6 lg:py-18', { 'mx-0 max-w-full px-0': isFullScreen }, className)}
+      classNameInner={cn({ 'mx-0 max-w-full px-0 lg:px-0': isFullScreen })}
+      className={cn('py-6 lg:py-18', className)}
     >
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
-
         <iframe
           title={iframeTitle}
           src={url}

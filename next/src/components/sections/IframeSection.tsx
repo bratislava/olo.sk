@@ -17,11 +17,14 @@ type IframeSectionProps = {
 
 const IframeSection = ({ section, className }: IframeSectionProps) => {
   const { height } = useWindowSize()
-  const { title, text, iframeTitle, url } = section ?? {}
+  const { title, text, iframeTitle, url, isFullScreen } = section ?? {}
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
-    <SectionContainer background="primary" className={cn('py-6 lg:py-18', className)}>
+    <SectionContainer
+      background="primary"
+      className={cn('py-6 lg:py-18', { 'mx-0 max-w-full px-0': isFullScreen }, className)}
+    >
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
 

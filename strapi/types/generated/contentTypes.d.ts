@@ -1500,6 +1500,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.waste-collection-days',
         'sections.iframe-section',
         'sections.waste-collection-points',
+        'sections.child-pages-cards-list',
       ]
     > &
       Attribute.SetPluginOptions<{

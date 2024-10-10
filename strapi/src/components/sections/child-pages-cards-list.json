@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_child_pages_cards_lists",
+  "info": {
+    "displayName": "Karty (zoznam dcérskych stránok)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": ["primary", "secondary", "tertiary"],
+      "default": "primary",
+      "required": true
+    },
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
+    }
+  }
+}

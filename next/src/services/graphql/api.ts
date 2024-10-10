@@ -1186,6 +1186,15 @@ export type ComponentSectionsCardsListCardsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSectionsChildPagesCardsList = {
+  __typename?: 'ComponentSectionsChildPagesCardsList'
+  backgroundColor: Enum_Componentsectionschildpagescardslist_Backgroundcolor
+  id: Scalars['ID']['output']
+  page?: Maybe<PageEntityResponse>
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
 export type ComponentSectionsColumns = {
   __typename?: 'ComponentSectionsColumns'
   backgroundColor: Enum_Componentsectionscolumns_Backgroundcolor
@@ -1980,6 +1989,12 @@ export enum Enum_Componentsectionscardslider_Backgroundcolor {
   Tertiary = 'tertiary',
 }
 
+export enum Enum_Componentsectionschildpagescardslist_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
 export enum Enum_Componentsectionscolumnslist_Backgroundcolor {
   Primary = 'primary',
   Secondary = 'secondary',
@@ -2387,6 +2402,7 @@ export type GenericMorph =
   | ComponentSectionsBranches
   | ComponentSectionsCardSlider
   | ComponentSectionsCardsList
+  | ComponentSectionsChildPagesCardsList
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
   | ComponentSectionsContacts
@@ -3401,6 +3417,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsBranches
   | ComponentSectionsCardSlider
   | ComponentSectionsCardsList
+  | ComponentSectionsChildPagesCardsList
   | ComponentSectionsColumns
   | ComponentSectionsColumnsList
   | ComponentSectionsContacts
@@ -9908,6 +9925,10 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
   } | null> | null
 }
 
+type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
+  __typename: 'ComponentSectionsChildPagesCardsList'
+}
+
 type PageSections_ComponentSectionsColumns_Fragment = {
   __typename: 'ComponentSectionsColumns'
   title?: string | null
@@ -11895,6 +11916,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsBranches_Fragment
   | PageSections_ComponentSectionsCardSlider_Fragment
   | PageSections_ComponentSectionsCardsList_Fragment
+  | PageSections_ComponentSectionsChildPagesCardsList_Fragment
   | PageSections_ComponentSectionsColumns_Fragment
   | PageSections_ComponentSectionsColumnsList_Fragment
   | PageSections_ComponentSectionsContacts_Fragment
@@ -19020,6 +19042,7 @@ export type PageEntityFragment = {
             }
           } | null> | null
         }
+      | { __typename: 'ComponentSectionsChildPagesCardsList' }
       | {
           __typename: 'ComponentSectionsColumns'
           title?: string | null
@@ -21990,6 +22013,7 @@ export type PagesQuery = {
                 }
               } | null> | null
             }
+          | { __typename: 'ComponentSectionsChildPagesCardsList' }
           | {
               __typename: 'ComponentSectionsColumns'
               title?: string | null
@@ -25000,6 +25024,7 @@ export type PageBySlugQuery = {
                 }
               } | null> | null
             }
+          | { __typename: 'ComponentSectionsChildPagesCardsList' }
           | {
               __typename: 'ComponentSectionsColumns'
               title?: string | null

@@ -184,7 +184,8 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo"
+          "barrierFreeInfo",
+          "image"
         ],
         "locales": [
           "sk"
@@ -231,7 +232,8 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo"
+          "barrierFreeInfo",
+          "image"
         ],
         "locales": [
           "sk"
@@ -256,7 +258,8 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo"
+          "barrierFreeInfo",
+          "image"
         ],
         "locales": [
           "sk"

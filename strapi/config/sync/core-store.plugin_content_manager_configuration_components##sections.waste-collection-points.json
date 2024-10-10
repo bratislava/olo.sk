@@ -1,5 +1,5 @@
 {
-  "key": "plugin_content_manager_configuration_components::sections.cards-list",
+  "key": "plugin_content_manager_configuration_components::sections.waste-collection-points",
   "value": {
     "settings": {
       "bulkable": true,
@@ -21,7 +21,7 @@
       },
       "title": {
         "edit": {
-          "label": "Nadpis",
+          "label": "title",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -35,7 +35,7 @@
       },
       "text": {
         "edit": {
-          "label": "Text",
+          "label": "text",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -47,37 +47,9 @@
           "sortable": true
         }
       },
-      "linkLabelOverride": {
-        "edit": {
-          "label": "Text odkazu (linkLabelOverride)",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "linkLabelOverride",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "columnCount": {
-        "edit": {
-          "label": "počet kariet v riadku",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "columnCount",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "cards": {
         "edit": {
-          "label": "Dlaždice",
+          "label": "cards",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -87,6 +59,20 @@
           "label": "cards",
           "searchable": false,
           "sortable": false
+        }
+      },
+      "backgroundColor": {
+        "edit": {
+          "label": "backgroundColor",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "backgroundColor",
+          "searchable": true,
+          "sortable": true
         }
       }
     },
@@ -101,18 +87,10 @@
         [
           {
             "name": "title",
-            "size": 12
-          }
-        ],
-        [
+            "size": 6
+          },
           {
             "name": "text",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "linkLabelOverride",
             "size": 6
           }
         ],
@@ -124,13 +102,13 @@
         ],
         [
           {
-            "name": "columnCount",
-            "size": 4
+            "name": "backgroundColor",
+            "size": 6
           }
         ]
       ]
     },
-    "uid": "sections.cards-list",
+    "uid": "sections.waste-collection-points",
     "isComponent": true
   },
   "type": "object",

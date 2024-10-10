@@ -1560,6 +1560,7 @@ input ComponentSectionsHeroHomepageSectionInput {
 type ComponentSectionsIframeSection {
   id: ID!
   iframeTitle: String!
+  isFullScreen: Boolean
   text: String
   title: String
   url: String!
@@ -1568,6 +1569,7 @@ type ComponentSectionsIframeSection {
 input ComponentSectionsIframeSectionFiltersInput {
   and: [ComponentSectionsIframeSectionFiltersInput]
   iframeTitle: StringFilterInput
+  isFullScreen: BooleanFilterInput
   not: ComponentSectionsIframeSectionFiltersInput
   or: [ComponentSectionsIframeSectionFiltersInput]
   text: StringFilterInput
@@ -1578,6 +1580,7 @@ input ComponentSectionsIframeSectionFiltersInput {
 input ComponentSectionsIframeSectionInput {
   id: ID
   iframeTitle: String
+  isFullScreen: Boolean
   text: String
   title: String
   url: String

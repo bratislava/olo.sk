@@ -65,6 +65,7 @@ fragment IframeSection on ComponentSectionsIframeSection {
   text
   iframeTitle
   url
+  isFullScreen
 }
 
 fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {

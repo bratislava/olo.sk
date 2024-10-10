@@ -24,7 +24,6 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
   const { data } = useQuery(generalQuery(locale))
 
   const { contactsLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
-  const { children, href } = getLinkProps(contactsLink)
 
   return (
     <div className={cn('bg-action-background-default py-3', className)}>
@@ -35,17 +34,17 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
           <Typography variant="p-small">{currentWeekMessage}</Typography>
         </div>
 
-        <Button
-          href={href}
-          asLink
-          hasLinkIcon={false}
-          aria-label={t('navBar.contactsButton')}
-          variant="icon-wrapped"
-          className="flex items-center justify-center"
-        >
-          <Icon name="telefon" className="size-6" />
-          {children}
-        </Button>
+        {contactsLink ? (
+          <Button
+            asLink
+            {...getLinkProps(contactsLink)}
+            hasLinkIcon={false}
+            startIcon={<Icon name="telefon" className="size-6" />}
+            aria-label={t('navBar.contactsButton')}
+            variant="icon-wrapped"
+            className="flex items-center justify-center"
+          />
+        ) : null}
       </div>
     </div>
   )

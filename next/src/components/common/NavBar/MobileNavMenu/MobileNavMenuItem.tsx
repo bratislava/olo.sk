@@ -11,7 +11,7 @@ type MobileNavMenuItemProps = {
 
 const MobileNavMenuItem = ({ menuItem }: MobileNavMenuItemProps) => {
   return (
-    <NavigationMenu.Item className="flex size-full flex-col">
+    <NavigationMenu.Item>
       <MobileNavMenuTrigger label={menuItem.label} />
       <MobileNavMenuContent menuItem={menuItem} />
     </NavigationMenu.Item>

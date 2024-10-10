@@ -27,16 +27,19 @@ const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
       // https://github.com/radix-ui/primitives/issues/1630#issuecomment-1237106380
       onPointerMove={(event) => event.preventDefault()}
       onPointerLeave={(event) => event.preventDefault()}
-      className="flex size-full flex-col items-center"
     >
-      <Button variant="unstyled" onPress={() => setMenuValue('')}>
-        <div className="-mx-4 flex w-dvw cursor-pointer items-center justify-center border-b border-border-default px-6 py-4">
-          <Typography variant="p-default-black">{label}</Typography>
-          <Icon name="sipka-dolava" className="absolute left-1" />
-        </div>
+      {/* TODO wrap in <ul> */}
+
+      <Button
+        variant="unstyled"
+        onPress={() => setMenuValue('')}
+        className="flex w-full items-center justify-center border-b border-border-default p-4"
+      >
+        <Typography variant="p-default-black">{label}</Typography>
+        <Icon name="sipka-dolava" className="absolute left-4" />
       </Button>
 
-      <div className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default py-6">
+      <div className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default px-4 py-6">
         {sections.map((section, index) => {
           return (
             <NavMenuSection
@@ -50,8 +53,8 @@ const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
 
       {seeAllLink ? (
         <>
-          <Divider className="-mx-4 w-dvw" />
-          <NavMenuLink {...getLinkProps(seeAllLink)} className="py-6" />
+          <Divider />
+          <NavMenuLink {...getLinkProps(seeAllLink)} className="px-4 py-6" />
         </>
       ) : null}
     </NavigationMenu.Content>

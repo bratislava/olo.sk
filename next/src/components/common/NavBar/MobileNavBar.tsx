@@ -33,8 +33,7 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
   const { data } = useQuery(generalQuery(locale))
   const menus = useMemo(() => getParsedMenus(data?.menu), [data?.menu])
 
-  const { searchLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
-  const { contactsLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
+  const { searchLink, contactsLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
 
   useEffect(() => {
     setMobileMenuOpen(false)
@@ -51,9 +50,8 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
           {isMobileMenuOpen ? <MobileNavMenu menus={menus} contactsLink={contactsLink} /> : null}
         </div>
       </FocusTrap>
-      {isMobileMenuOpen ? null : (
-        <MobileNavBarCurrentWeekMessage currentWeekMessage={currentWeekMessage} />
-      )}
+
+      <MobileNavBarCurrentWeekMessage currentWeekMessage={currentWeekMessage} />
     </div>
   )
 }

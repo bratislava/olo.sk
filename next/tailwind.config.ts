@@ -31,6 +31,7 @@ const config: Config = {
   plugins: [
     removeNativeSearchInputStyling,
     require('tailwind-scrollbar-hide'),
+    require('@tailwindcss/typography'),
     pluginRAC,
     // require('tailwindcss-animate'),
   ],

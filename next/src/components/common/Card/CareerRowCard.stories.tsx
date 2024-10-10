@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import Icon from '@/src/components/common/Icon/Icon'
+
 import CareerRowCardComponent from './CareerRowCard'
 
 const meta: Meta<typeof CareerRowCardComponent> = {
@@ -9,6 +11,7 @@ const meta: Meta<typeof CareerRowCardComponent> = {
     value: 'value',
     label: 'label',
     toolTipText: 'tooltip text',
+    icon: <Icon name="pomoc" />,
   },
   parameters: { controls: { exclude: ['className'] } },
   tags: ['autodocs'],

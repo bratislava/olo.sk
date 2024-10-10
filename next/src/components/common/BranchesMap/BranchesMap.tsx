@@ -34,7 +34,7 @@ const BranchesMap = ({ branches }: Props) => {
         {branches
           .map((branch, index) => {
             if (!branch.attributes) return null
-            const { title, address } = branch.attributes
+            const { title, address, image } = branch.attributes
 
             return (
               <Fragment key={branch.id}>
@@ -44,6 +44,7 @@ const BranchesMap = ({ branches }: Props) => {
                     title={title}
                     linkHref={getFullPath(branch)}
                     address={address}
+                    imgSrc={image?.data?.attributes?.url}
                     variant="unstyled"
                     className="size-full"
                     typographyClassName={cn({

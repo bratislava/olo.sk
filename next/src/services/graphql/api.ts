@@ -229,6 +229,7 @@ export type Branch = {
   barrierFreeInfo?: Maybe<Scalars['String']['output']>
   contacts?: Maybe<ContactRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  image?: Maybe<UploadFileEntityResponse>
   latitude?: Maybe<Scalars['Float']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<BranchRelationResponseCollection>
@@ -309,6 +310,7 @@ export type BranchInput = {
   address?: InputMaybe<Scalars['String']['input']>
   barrierFreeInfo?: InputMaybe<Scalars['String']['input']>
   contacts?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  image?: InputMaybe<Scalars['ID']['input']>
   latitude?: InputMaybe<Scalars['Float']['input']>
   longitude?: InputMaybe<Scalars['Float']['input']>
   mapIconName?: InputMaybe<Scalars['String']['input']>
@@ -5871,6 +5873,22 @@ export type GeneralQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -6473,6 +6491,22 @@ export type BranchMapHeaderSectionFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -6534,6 +6568,22 @@ type HeaderSections_ComponentHeaderSectionsBranchMap_Fragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     }>
@@ -7295,6 +7345,22 @@ export type BranchesSectionFragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     }>
@@ -9129,6 +9195,22 @@ export type ContactsSectionFragment = {
               } | null
             }>
           } | null
+          image?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -9212,6 +9294,22 @@ export type OpeningTimesSectionFragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -9674,6 +9772,22 @@ type PageSections_ComponentSectionsBranches_Fragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -9973,6 +10087,22 @@ type PageSections_ComponentSectionsContacts_Fragment = {
                 secondaryPhone?: string | null
               } | null
             }>
+          } | null
+          image?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
           } | null
         } | null
       } | null
@@ -10898,6 +11028,22 @@ type PageSections_ComponentSectionsOpeningTimes_Fragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -11850,6 +11996,22 @@ export type ContactsSidebarFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     } | null
   } | null
@@ -11928,6 +12090,22 @@ type PageSidebars_ComponentSidebarsContactsSidebar_Fragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -12503,6 +12681,22 @@ export type BranchEntityFragment = {
         } | null
       }>
     } | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
   } | null
 }
 
@@ -12566,6 +12760,22 @@ export type BranchesQuery = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     }>
@@ -14656,6 +14866,22 @@ export type KoloHomepageSectionFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -15453,6 +15679,22 @@ export type HomepageEntityFragment = {
                   secondaryPhone?: string | null
                 } | null
               }>
+            } | null
+            image?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
             } | null
           } | null
         }>
@@ -16271,6 +16513,22 @@ export type HomepageQuery = {
                     } | null
                   }>
                 } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null
             }>
           } | null
@@ -16589,6 +16847,22 @@ export type MenuLinkFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     } | null
   } | null
@@ -16690,6 +16964,22 @@ export type MenuSectionFragment = {
                 secondaryPhone?: string | null
               } | null
             }>
+          } | null
+          image?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
           } | null
         } | null
       } | null
@@ -16797,6 +17087,22 @@ export type MenuItemFragment = {
                   secondaryPhone?: string | null
                 } | null
               }>
+            } | null
+            image?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
             } | null
           } | null
         } | null
@@ -17137,6 +17443,22 @@ export type MenuFragment = {
                     secondaryPhone?: string | null
                   } | null
                 }>
+              } | null
+              image?: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
               } | null
             } | null
           } | null
@@ -17488,6 +17810,22 @@ export type MenuEntityFragment = {
                       secondaryPhone?: string | null
                     } | null
                   }>
+                } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
                 } | null
               } | null
             } | null
@@ -17911,6 +18249,22 @@ export type PageEntityFragment = {
                       secondaryPhone?: string | null
                     } | null
                   }>
+                } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
                 } | null
               } | null
             }>
@@ -18534,6 +18888,22 @@ export type PageEntityFragment = {
                     } | null
                   }>
                 } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null
             }>
           } | null
@@ -18828,6 +19198,22 @@ export type PageEntityFragment = {
                         secondaryPhone?: string | null
                       } | null
                     }>
+                  } | null
+                  image?: {
+                    __typename?: 'UploadFileEntityResponse'
+                    data?: {
+                      __typename?: 'UploadFileEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'UploadFile'
+                        url: string
+                        width?: number | null
+                        height?: number | null
+                        caption?: string | null
+                        alternativeText?: string | null
+                        name: string
+                      } | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -19798,6 +20184,22 @@ export type PageEntityFragment = {
                     } | null
                   }>
                 } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null
             } | null
           } | null
@@ -20708,6 +21110,22 @@ export type PageEntityFragment = {
                     } | null
                   }>
                 } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null
             } | null
           } | null
@@ -20802,6 +21220,22 @@ export type PagesQuery = {
                           secondaryPhone?: string | null
                         } | null
                       }>
+                    } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
                     } | null
                   } | null
                 }>
@@ -21425,6 +21859,22 @@ export type PagesQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 }>
               } | null
@@ -21719,6 +22169,22 @@ export type PagesQuery = {
                             secondaryPhone?: string | null
                           } | null
                         }>
+                      } | null
+                      image?: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            width?: number | null
+                            height?: number | null
+                            caption?: string | null
+                            alternativeText?: string | null
+                            name: string
+                          } | null
+                        } | null
                       } | null
                     } | null
                   } | null
@@ -22709,6 +23175,22 @@ export type PagesQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -23618,6 +24100,22 @@ export type PagesQuery = {
                           secondaryPhone?: string | null
                         } | null
                       }>
+                    } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -23734,6 +24232,22 @@ export type PageBySlugQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 }>
               } | null
@@ -24356,6 +24870,22 @@ export type PageBySlugQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 }>
               } | null
@@ -24650,6 +25180,22 @@ export type PageBySlugQuery = {
                             secondaryPhone?: string | null
                           } | null
                         }>
+                      } | null
+                      image?: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            width?: number | null
+                            height?: number | null
+                            caption?: string | null
+                            alternativeText?: string | null
+                            name: string
+                          } | null
+                        } | null
                       } | null
                     } | null
                   } | null
@@ -25640,6 +26186,22 @@ export type PageBySlugQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -26549,6 +27111,22 @@ export type PageBySlugQuery = {
                           secondaryPhone?: string | null
                         } | null
                       }>
+                    } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -32857,12 +33435,18 @@ export const BranchEntityFragmentDoc = gql`
       publicTransportInfo
       parkingInfo
       barrierFreeInfo
+      image {
+        data {
+          ...UploadImageEntity
+        }
+      }
     }
   }
   ${BranchSlugEntityFragmentDoc}
   ${PageSlugEntityFragmentDoc}
   ${OpeningTimeEntityFragmentDoc}
   ${ContactEntityFragmentDoc}
+  ${UploadImageEntityFragmentDoc}
 `
 export const KoloHomepageSectionFragmentDoc = gql`
   fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {

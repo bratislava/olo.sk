@@ -23,10 +23,7 @@ const MobileNavBarHeader = ({ searchLink }: MobileNavBarHeaderProps) => {
   const { isMobileMenuOpen, setMobileMenuOpen } = useNavMenuContext()
 
   return (
-    <SectionContainer
-      // 3.8125rem = 61px, leaving one pixel for the border
-      classNameInner="py-4 bg-background-primary flex justify-between items-center h-[3.8125rem] border-b border-border-default"
-    >
+    <SectionContainer classNameInner="py-4 bg-background-primary flex justify-between items-center h-mobileNavBar border-b border-border-default">
       <NavBarLogo className="text-action-background-default" />
 
       <div>

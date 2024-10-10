@@ -30,7 +30,7 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
   const { menuValue, setMenuValue, isMobileMenuOpen, setMobileMenuOpen } = useNavMenuContext()
 
   const { height } = useWindowSize()
-  const heightWithoutHeader = `calc(${height}px - 61px)` // 61px = 3.8125rem, including 1px for the border
+  const heightWithoutHeader = `calc(${height}px - 60px)` // 60px = 3.75rem = mobileNavBar
 
   useEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
@@ -46,7 +46,7 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
   return (
     <div
       className={cn(
-        'fixed left-0 top-[3.8125rem] flex w-screen flex-col overflow-y-scroll bg-background-primary lg:hidden',
+        'fixed left-0 top-mobileNavBar flex w-screen flex-col overflow-y-scroll bg-background-primary lg:hidden',
         {
           'animate-fadeIn': isMobileMenuOpen,
           'animate-fadeOut': !isMobileMenuOpen,
@@ -94,7 +94,7 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
 
         {/* Viewport represents popup div with links that appears under menu button */}
         <NavigationMenu.Viewport
-          className="fixed left-0 top-[3.8125rem] w-screen bg-background-primary"
+          className="fixed left-0 top-mobileNavBar w-screen bg-background-primary"
           // TODO add animation, e.g. data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight
           style={{ height: heightWithoutHeader }}
         />

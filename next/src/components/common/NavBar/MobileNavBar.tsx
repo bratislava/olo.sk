@@ -42,10 +42,7 @@ const MobileNavBar = ({ className }: MobileNavBarProps) => {
   return (
     <div className={cn(className)}>
       <FocusTrap active={isMobileMenuOpen}>
-        <div
-          // 3.8125rem = 61px, leaving one pixel for the border
-          className="fixed top-0 z-30 h-[3.8125rem] w-full"
-        >
+        <div className="fixed top-0 z-30 h-mobileNavBar w-full">
           <MobileNavBarHeader searchLink={searchLink} />
           {isMobileMenuOpen ? <MobileNavMenu menus={menus} contactsLink={contactsLink} /> : null}
         </div>

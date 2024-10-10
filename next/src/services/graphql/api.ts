@@ -7196,6 +7196,73 @@ export type ColumnsSectionFragment = {
   } | null>
 }
 
+export type ChildPagesCardsListSectionFragment = {
+  __typename?: 'ComponentSectionsChildPagesCardsList'
+  title?: string | null
+  text?: string | null
+  backgroundColorChildPagesCardsList: Enum_Componentsectionschildpagescardslist_Backgroundcolor
+  parentPage?: {
+    __typename?: 'PageEntityResponse'
+    data?: {
+      __typename?: 'PageEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Page'
+        slug: string
+        title: string
+        childPages?: {
+          __typename?: 'PageRelationResponseCollection'
+          data: Array<{
+            __typename?: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              slug: string
+              title: string
+              childPages?: {
+                __typename?: 'PageRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'PageEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    childPages?: {
+                      __typename?: 'PageRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'PageEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          childPages?: {
+                            __typename?: 'PageRelationResponseCollection'
+                            data: Array<{
+                              __typename?: 'PageEntity'
+                              id?: string | null
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                              } | null
+                            }>
+                          } | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                }>
+              } | null
+            } | null
+          }>
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
 export type IframeSectionFragment = {
   __typename?: 'ComponentSectionsIframeSection'
   title?: string | null
@@ -9927,6 +9994,69 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
 
 type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
   __typename: 'ComponentSectionsChildPagesCardsList'
+  title?: string | null
+  text?: string | null
+  backgroundColorChildPagesCardsList: Enum_Componentsectionschildpagescardslist_Backgroundcolor
+  parentPage?: {
+    __typename?: 'PageEntityResponse'
+    data?: {
+      __typename?: 'PageEntity'
+      id?: string | null
+      attributes?: {
+        __typename?: 'Page'
+        slug: string
+        title: string
+        childPages?: {
+          __typename?: 'PageRelationResponseCollection'
+          data: Array<{
+            __typename?: 'PageEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'Page'
+              slug: string
+              title: string
+              childPages?: {
+                __typename?: 'PageRelationResponseCollection'
+                data: Array<{
+                  __typename?: 'PageEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    childPages?: {
+                      __typename?: 'PageRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'PageEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          childPages?: {
+                            __typename?: 'PageRelationResponseCollection'
+                            data: Array<{
+                              __typename?: 'PageEntity'
+                              id?: string | null
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                              } | null
+                            }>
+                          } | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                }>
+              } | null
+            } | null
+          }>
+        } | null
+      } | null
+    } | null
+  } | null
 }
 
 type PageSections_ComponentSectionsColumns_Fragment = {
@@ -19042,7 +19172,72 @@ export type PageEntityFragment = {
             }
           } | null> | null
         }
-      | { __typename: 'ComponentSectionsChildPagesCardsList' }
+      | {
+          __typename: 'ComponentSectionsChildPagesCardsList'
+          title?: string | null
+          text?: string | null
+          backgroundColorChildPagesCardsList: Enum_Componentsectionschildpagescardslist_Backgroundcolor
+          parentPage?: {
+            __typename?: 'PageEntityResponse'
+            data?: {
+              __typename?: 'PageEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'Page'
+                slug: string
+                title: string
+                childPages?: {
+                  __typename?: 'PageRelationResponseCollection'
+                  data: Array<{
+                    __typename?: 'PageEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'Page'
+                      slug: string
+                      title: string
+                      childPages?: {
+                        __typename?: 'PageRelationResponseCollection'
+                        data: Array<{
+                          __typename?: 'PageEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'Page'
+                            slug: string
+                            title: string
+                            childPages?: {
+                              __typename?: 'PageRelationResponseCollection'
+                              data: Array<{
+                                __typename?: 'PageEntity'
+                                id?: string | null
+                                attributes?: {
+                                  __typename?: 'Page'
+                                  slug: string
+                                  title: string
+                                  childPages?: {
+                                    __typename?: 'PageRelationResponseCollection'
+                                    data: Array<{
+                                      __typename?: 'PageEntity'
+                                      id?: string | null
+                                      attributes?: {
+                                        __typename?: 'Page'
+                                        slug: string
+                                        title: string
+                                      } | null
+                                    }>
+                                  } | null
+                                } | null
+                              }>
+                            } | null
+                          } | null
+                        }>
+                      } | null
+                    } | null
+                  }>
+                } | null
+              } | null
+            } | null
+          } | null
+        }
       | {
           __typename: 'ComponentSectionsColumns'
           title?: string | null
@@ -22013,7 +22208,72 @@ export type PagesQuery = {
                 }
               } | null> | null
             }
-          | { __typename: 'ComponentSectionsChildPagesCardsList' }
+          | {
+              __typename: 'ComponentSectionsChildPagesCardsList'
+              title?: string | null
+              text?: string | null
+              backgroundColorChildPagesCardsList: Enum_Componentsectionschildpagescardslist_Backgroundcolor
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    childPages?: {
+                      __typename?: 'PageRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'PageEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          childPages?: {
+                            __typename?: 'PageRelationResponseCollection'
+                            data: Array<{
+                              __typename?: 'PageEntity'
+                              id?: string | null
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                childPages?: {
+                                  __typename?: 'PageRelationResponseCollection'
+                                  data: Array<{
+                                    __typename?: 'PageEntity'
+                                    id?: string | null
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                      childPages?: {
+                                        __typename?: 'PageRelationResponseCollection'
+                                        data: Array<{
+                                          __typename?: 'PageEntity'
+                                          id?: string | null
+                                          attributes?: {
+                                            __typename?: 'Page'
+                                            slug: string
+                                            title: string
+                                          } | null
+                                        }>
+                                      } | null
+                                    } | null
+                                  }>
+                                } | null
+                              } | null
+                            }>
+                          } | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                } | null
+              } | null
+            }
           | {
               __typename: 'ComponentSectionsColumns'
               title?: string | null
@@ -25024,7 +25284,72 @@ export type PageBySlugQuery = {
                 }
               } | null> | null
             }
-          | { __typename: 'ComponentSectionsChildPagesCardsList' }
+          | {
+              __typename: 'ComponentSectionsChildPagesCardsList'
+              title?: string | null
+              text?: string | null
+              backgroundColorChildPagesCardsList: Enum_Componentsectionschildpagescardslist_Backgroundcolor
+              parentPage?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename?: 'PageEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Page'
+                    slug: string
+                    title: string
+                    childPages?: {
+                      __typename?: 'PageRelationResponseCollection'
+                      data: Array<{
+                        __typename?: 'PageEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'Page'
+                          slug: string
+                          title: string
+                          childPages?: {
+                            __typename?: 'PageRelationResponseCollection'
+                            data: Array<{
+                              __typename?: 'PageEntity'
+                              id?: string | null
+                              attributes?: {
+                                __typename?: 'Page'
+                                slug: string
+                                title: string
+                                childPages?: {
+                                  __typename?: 'PageRelationResponseCollection'
+                                  data: Array<{
+                                    __typename?: 'PageEntity'
+                                    id?: string | null
+                                    attributes?: {
+                                      __typename?: 'Page'
+                                      slug: string
+                                      title: string
+                                      childPages?: {
+                                        __typename?: 'PageRelationResponseCollection'
+                                        data: Array<{
+                                          __typename?: 'PageEntity'
+                                          id?: string | null
+                                          attributes?: {
+                                            __typename?: 'Page'
+                                            slug: string
+                                            title: string
+                                          } | null
+                                        }>
+                                      } | null
+                                    } | null
+                                  }>
+                                } | null
+                              } | null
+                            }>
+                          } | null
+                        } | null
+                      }>
+                    } | null
+                  } | null
+                } | null
+              } | null
+            }
           | {
               __typename: 'ComponentSectionsColumns'
               title?: string | null
@@ -33626,53 +33951,6 @@ export const MenuEntityFragmentDoc = gql`
   }
   ${MenuFragmentDoc}
 `
-export const ChildPageFragmentDoc = gql`
-  fragment ChildPage on Page {
-    slug
-    title
-  }
-`
-export const PageChildPagesFragmentDoc = gql`
-  fragment PageChildPages on PageEntity {
-    id
-    attributes {
-      ...ChildPage
-      childPages {
-        data {
-          id
-          attributes {
-            ...ChildPage
-            childPages {
-              data {
-                id
-                attributes {
-                  ...ChildPage
-                  childPages {
-                    data {
-                      id
-                      attributes {
-                        ...ChildPage
-                        childPages {
-                          data {
-                            id
-                            attributes {
-                              ...ChildPage
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${ChildPageFragmentDoc}
-`
 export const PageCardEntityFragmentDoc = gql`
   fragment PageCardEntity on PageEntity {
     ...PageSlugEntity
@@ -34076,6 +34354,66 @@ export const DocumentsSectionFragmentDoc = gql`
   }
   ${DocumentEntityFragmentDoc}
 `
+export const ChildPageFragmentDoc = gql`
+  fragment ChildPage on Page {
+    slug
+    title
+  }
+`
+export const PageChildPagesFragmentDoc = gql`
+  fragment PageChildPages on PageEntity {
+    id
+    attributes {
+      ...ChildPage
+      childPages {
+        data {
+          id
+          attributes {
+            ...ChildPage
+            childPages {
+              data {
+                id
+                attributes {
+                  ...ChildPage
+                  childPages {
+                    data {
+                      id
+                      attributes {
+                        ...ChildPage
+                        childPages {
+                          data {
+                            id
+                            attributes {
+                              ...ChildPage
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${ChildPageFragmentDoc}
+`
+export const ChildPagesCardsListSectionFragmentDoc = gql`
+  fragment ChildPagesCardsListSection on ComponentSectionsChildPagesCardsList {
+    title
+    text
+    backgroundColorChildPagesCardsList: backgroundColor
+    parentPage: page {
+      data {
+        ...PageChildPages
+      }
+    }
+  }
+  ${PageChildPagesFragmentDoc}
+`
 export const IframeSectionFragmentDoc = gql`
   fragment IframeSection on ComponentSectionsIframeSection {
     title
@@ -34359,6 +34697,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsDocuments {
       ...DocumentsSection
     }
+    ... on ComponentSectionsChildPagesCardsList {
+      ...ChildPagesCardsListSection
+    }
     ... on ComponentSectionsIframeSection {
       ...IframeSection
     }
@@ -34422,6 +34763,7 @@ export const PageSectionsFragmentDoc = gql`
   ${WasteCollectionDaysFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}
+  ${ChildPagesCardsListSectionFragmentDoc}
   ${IframeSectionFragmentDoc}
   ${BannerSectionFragmentDoc}
   ${DividerSectionFragmentDoc}

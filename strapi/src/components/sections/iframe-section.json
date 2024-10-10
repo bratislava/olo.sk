@@ -1,7 +1,7 @@
 {
   "collectionName": "components_sections_iframe_sections",
   "info": {
-    "displayName": "Iframe (Venzeo)",
+    "displayName": "Iframe section",
     "description": ""
   },
   "options": {},
@@ -19,6 +19,10 @@
     "url": {
       "type": "string",
       "required": true
+    },
+    "isFullScreen": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

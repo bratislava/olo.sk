@@ -2,7 +2,6 @@ import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import DOMPurify from 'dompurify'
 import parse from 'html-react-parser'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useMemo } from 'react'
@@ -12,6 +11,7 @@ import Button from '@/src/components/common/Button/Button'
 import CareerRowCard from '@/src/components/common/Card/CareerRowCard'
 import Icon from '@/src/components/common/Icon/Icon'
 import OloIcon from '@/src/components/common/Icon/OloIcon'
+import SeoHead from '@/src/components/common/SeoHead'
 import SidebarCareer from '@/src/components/common/Sidebar/SidebarCareer'
 import Typography from '@/src/components/common/Typography/Typography'
 import PageLayout from '@/src/components/layout/PageLayout'
@@ -89,6 +89,8 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=619-11100&m=dev
  */
 
+// TODO: In current version following features are missing: Breadcrumbs, Responsive design for smaller screens, HeaderImage
+
 const Page = ({ entity, navigation, general }: PageProps) => {
   const {
     isError,
@@ -116,10 +118,7 @@ const Page = ({ entity, navigation, general }: PageProps) => {
 
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
-      {/* TODO common Head/Seo component */}
-      <Head>
-        <title>{t('career.detailHeadline')}</title>
-      </Head>
+      <SeoHead title={t('career.detailHeadline')} />
 
       {/* <PageHeaderSections
         title={positionDetail.title}
@@ -140,9 +139,9 @@ const Page = ({ entity, navigation, general }: PageProps) => {
               <div className="flex w-full shrink flex-col md:w-[50rem]">
                 {hasData && (
                   <>
-                    <div className="flex flex-row flex-wrap justify-between rounded-lg border border-border-default">
+                    <div className="grid grid-cols-1 rounded-lg border border-border-default md:grid-cols-2 md:grid-rows-2">
                       <CareerRowCard
-                        className="border-b border-r border-border-default"
+                        className="border-b border-border-default md:border-r"
                         icon={<OloIcon name="career-place" />}
                         label={t('career.address')}
                         value={positionDetail?.region_description?.replaceAll(HTML_REGEX, '') ?? ''}
@@ -157,7 +156,7 @@ const Page = ({ entity, navigation, general }: PageProps) => {
                         }
                       />
                       <CareerRowCard
-                        className="border-r border-border-default"
+                        className="border-b border-border-default md:border-b-0 md:border-r"
                         icon={<OloIcon name="career-time" />}
                         label={t('career.start')}
                         value={positionDetail.date_start ?? ''}

@@ -19,8 +19,8 @@ type CareerRowCardProps = {
 
 const CareerRowCard = ({ value, label, toolTipText, icon, className }: CareerRowCardProps) => {
   return (
-    <CardBase variant="unstyled" className={cn('flex w-1/2 flex-row gap-4 p-6', className)}>
-      <div className="w-6">{icon}</div>
+    <CardBase variant="unstyled" className={cn('flex flex-row gap-4 p-6', className)}>
+      <div className="size-6">{icon}</div>
       <div className="flex grow flex-col gap-1 lg:gap-2">
         <Typography variant="p-default-black">{label}</Typography>
         <Typography variant="p-default">{value}</Typography>

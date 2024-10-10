@@ -895,7 +895,7 @@ export interface ApiBranchBranch extends Schema.CollectionType {
     image: Attribute.Media<'images'> &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true
+          localized: false
         }
       }>
     createdAt: Attribute.DateTime

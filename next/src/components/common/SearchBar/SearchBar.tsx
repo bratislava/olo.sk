@@ -48,7 +48,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           </Label>
         ) : null}
         <div className="relative">
-          {/* 3.75rem = 60px, 0.75rem = 12px */}
+          {/* 0.75rem = 12px */}
           <Input
             className={cn(
               'w-full rounded-lg border border-border-default px-13 py-4 outline-none',
@@ -63,7 +63,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
             className="pointer-events-none absolute left-4 top-[calc(50%_-_0.75rem)]"
           />
           {isLoading ? (
-            <Spinner size="small" className="absolute right-[3.75rem] top-[calc(50%_-_0.75rem)]" />
+            <Spinner size="small" className="absolute right-15 top-[calc(50%_-_0.75rem)]" />
           ) : null}
           {input ? (
             <Button

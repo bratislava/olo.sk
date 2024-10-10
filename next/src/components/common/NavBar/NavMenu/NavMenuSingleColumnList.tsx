@@ -15,13 +15,13 @@ export type NavMenuColumnListProps = {
 }
 
 const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColumnListProps) => {
-  const { getLinkProps } = useGetLinkProps()
   const { t } = useTranslation()
+  const { getLinkProps } = useGetLinkProps()
 
   return (
     <ul
       className={cn(
-        'flex flex-col gap-5 bg-background-primary',
+        'flex flex-col gap-4 bg-background-primary lg:gap-5',
         { 'divide-y divide-border-default': hasDividers },
         className,
       )}
@@ -42,7 +42,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
                 : ''
             }
             linkHref={href}
-            className={cn({ 'pt-5': index !== 0 })}
+            className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : link.branch?.data?.attributes ? (
           <MenuItemBranchCard
@@ -50,7 +50,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
             title={children}
             subText={link?.branch?.data?.attributes?.address ?? ''}
             linkHref={href}
-            className={cn({ 'pt-5': index !== 0 })}
+            className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : (
           <NavMenuLink key={link.id} href={href} target={target}>

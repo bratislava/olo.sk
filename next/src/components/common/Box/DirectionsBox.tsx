@@ -35,10 +35,7 @@ const DirectionsBox = ({ branch }: DirectionsBoxProps) => {
         latitude={latitude}
         longitude={longitude}
         mapMarker={
-          <OloMarker
-            mapIconName={mapIconName}
-            className="size-[3.75rem] text-action-background-default" // 3.75rem = 60px
-          />
+          <OloMarker mapIconName={mapIconName} className="size-15 text-action-background-default" />
         }
         className="w-full lg:w-1/3"
       />

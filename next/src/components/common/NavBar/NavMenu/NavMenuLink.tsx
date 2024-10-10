@@ -28,8 +28,9 @@ const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
             {children}
           </NavigationMenu.Link>
         ) : (
-          <NavigationMenu.Link asChild>
+          <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
             <Button
+              ref={ref}
               href={href}
               target={target}
               variant="unstyled"
@@ -37,7 +38,6 @@ const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
               startIcon={<Icon name="sipka-doprava" />}
               hasLinkIcon={false}
               className="flex gap-4"
-              ref={ref} // Forward the ref to the Button
             >
               {children}
             </Button>

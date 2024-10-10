@@ -12,10 +12,6 @@
     "text": {
       "type": "text"
     },
-    "bannerTitle": {
-      "type": "string",
-      "required": true
-    },
     "bannerLink": {
       "type": "component",
       "repeatable": false,

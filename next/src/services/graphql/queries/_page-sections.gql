@@ -322,7 +322,6 @@ fragment CardSliderSection on ComponentSectionsCardSlider {
 fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
   title
   text
-  bannerTitle
   bannerLink {
     ...FormCtaBannerLink
   }

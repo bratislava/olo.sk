@@ -413,7 +413,6 @@ export interface SectionsFormCtaBanner extends Schema.Component {
   attributes: {
     title: Attribute.String
     text: Attribute.Text
-    bannerTitle: Attribute.String & Attribute.Required
     bannerLink: Attribute.Component<'items.form-cta-banner-link'> & Attribute.Required
   }
 }

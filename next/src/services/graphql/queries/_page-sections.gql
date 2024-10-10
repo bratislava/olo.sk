@@ -32,6 +32,19 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   }
 }
 
+fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPoints {
+  title
+  text
+  backgroundColorWasteCollectionPoints: backgroundColor
+  cardsWasteCollectionPointsCards: cards {
+    title
+    address
+    link {
+      ...Link
+    }
+  }
+}
+
 fragment ColumnsSection on ComponentSectionsColumns {
   title
   text
@@ -492,6 +505,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsOpeningTimes {
     ...OpeningTimesSection
+  }
+
+  ... on ComponentSectionsWasteCollectionPoints {
+    ...WasteCollectionPointsSection
   }
 
   ... on ComponentSectionsBoardMembers {

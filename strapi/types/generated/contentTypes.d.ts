@@ -1493,6 +1493,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.global-search',
         'sections.waste-collection-days',
         'sections.iframe-section',
+        'sections.waste-collection-points',
       ]
     > &
       Attribute.SetPluginOptions<{

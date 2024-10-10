@@ -26,6 +26,7 @@ import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuid
 import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import VacanciesSection from '@/src/components/sections/VacanciesSection'
 import WasteCollectionDays from '@/src/components/sections/WasteCollectionDays'
+import WasteCollectionPointsSection from '@/src/components/sections/WasteCollectionPointsSection'
 import WasteRemovalCardsSection from '@/src/components/sections/WasteRemovalCardsSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'
 import WorkshopsSection from '@/src/components/sections/WorkshopsSection'
@@ -63,6 +64,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsColumnsList':
       return <ColumnsListSection section={section} />
+
+    case 'ComponentSectionsWasteCollectionPoints':
+      return <WasteCollectionPointsSection section={section} />
 
     case 'ComponentSectionsWasteCollectionDays':
       return <WasteCollectionDays section={section} />

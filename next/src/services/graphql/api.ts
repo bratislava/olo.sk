@@ -729,6 +729,23 @@ export type ComponentItemsLinkInput = {
   workshop?: InputMaybe<Scalars['ID']['input']>
 }
 
+export type ComponentItemsLocationCardsItem = {
+  __typename?: 'ComponentItemsLocationCardsItem'
+  address?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  link: ComponentItemsLink
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsLocationCardsItemFiltersInput = {
+  address?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsLocationCardsItemFiltersInput>>>
+  link?: InputMaybe<ComponentItemsLinkFiltersInput>
+  not?: InputMaybe<ComponentItemsLocationCardsItemFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsLocationCardsItemFiltersInput>>>
+  title?: InputMaybe<StringFilterInput>
+}
+
 export type ComponentItemsMenuHeader = {
   __typename?: 'ComponentItemsMenuHeader'
   contactsLink?: Maybe<ComponentItemsLink>
@@ -1531,6 +1548,21 @@ export type ComponentSectionsWasteCollectionDays = {
   wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
 }
 
+export type ComponentSectionsWasteCollectionPoints = {
+  __typename?: 'ComponentSectionsWasteCollectionPoints'
+  backgroundColor: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+  cards?: Maybe<Array<Maybe<ComponentItemsLocationCardsItem>>>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsWasteCollectionPointsCardsArgs = {
+  filters?: InputMaybe<ComponentItemsLocationCardsItemFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsWasteRemovalCards = {
   __typename?: 'ComponentSectionsWasteRemovalCards'
   cards?: Maybe<Array<Maybe<ComponentItemsCardSliderCard>>>
@@ -2011,6 +2043,12 @@ export enum Enum_Componentsectionsvacancies_Backgroundcolor {
   Tertiary = 'tertiary',
 }
 
+export enum Enum_Componentsectionswastecollectionpoints_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
 export enum Enum_Componentsharedmetasocial_Socialnetwork {
   Facebook = 'Facebook',
   Twitter = 'Twitter',
@@ -2325,6 +2363,7 @@ export type GenericMorph =
   | ComponentItemsHeroSmallTile
   | ComponentItemsHomepageServiceTile
   | ComponentItemsLink
+  | ComponentItemsLocationCardsItem
   | ComponentItemsMenuHeader
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOpeningTimesItem
@@ -2370,6 +2409,7 @@ export type GenericMorph =
   | ComponentSectionsSortingGuideAccordions
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
+  | ComponentSectionsWasteCollectionPoints
   | ComponentSectionsWasteRemovalCards
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
@@ -3378,6 +3418,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsSortingGuideAccordions
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
+  | ComponentSectionsWasteCollectionPoints
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | Error
@@ -6969,6 +7010,95 @@ export type ImageAndTextSectionFragment = {
       } | null
     } | null
   } | null
+}
+
+export type WasteCollectionPointsSectionFragment = {
+  __typename?: 'ComponentSectionsWasteCollectionPoints'
+  title?: string | null
+  text?: string | null
+  backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+  cardsWasteCollectionPointsCards?: Array<{
+    __typename?: 'ComponentItemsLocationCardsItem'
+    title: string
+    address?: string | null
+    link: {
+      __typename?: 'ComponentItemsLink'
+      label?: string | null
+      url?: string | null
+      page?: {
+        __typename?: 'PageEntityResponse'
+        data?: {
+          __typename: 'PageEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        } | null
+      } | null
+      article?: {
+        __typename?: 'ArticleEntityResponse'
+        data?: {
+          __typename: 'ArticleEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
+        } | null
+      } | null
+      branch?: {
+        __typename?: 'BranchEntityResponse'
+        data?: {
+          __typename: 'BranchEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Branch'
+            title: string
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+      document?: {
+        __typename?: 'DocumentEntityResponse'
+        data?: {
+          __typename: 'DocumentEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename: 'WorkshopEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              datetime: any
+            } | null> | null
+          } | null
+        } | null
+      } | null
+    }
+  } | null> | null
 }
 
 export type ColumnsSectionFragment = {
@@ -11237,6 +11367,95 @@ type PageSections_ComponentSectionsWasteCollectionDays_Fragment = {
   visibleColumns?: any | null
 }
 
+type PageSections_ComponentSectionsWasteCollectionPoints_Fragment = {
+  __typename: 'ComponentSectionsWasteCollectionPoints'
+  title?: string | null
+  text?: string | null
+  backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+  cardsWasteCollectionPointsCards?: Array<{
+    __typename?: 'ComponentItemsLocationCardsItem'
+    title: string
+    address?: string | null
+    link: {
+      __typename?: 'ComponentItemsLink'
+      label?: string | null
+      url?: string | null
+      page?: {
+        __typename?: 'PageEntityResponse'
+        data?: {
+          __typename: 'PageEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        } | null
+      } | null
+      article?: {
+        __typename?: 'ArticleEntityResponse'
+        data?: {
+          __typename: 'ArticleEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
+        } | null
+      } | null
+      branch?: {
+        __typename?: 'BranchEntityResponse'
+        data?: {
+          __typename: 'BranchEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Branch'
+            title: string
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+      document?: {
+        __typename?: 'DocumentEntityResponse'
+        data?: {
+          __typename: 'DocumentEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename: 'WorkshopEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              datetime: any
+            } | null> | null
+          } | null
+        } | null
+      } | null
+    }
+  } | null> | null
+}
+
 type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
   __typename: 'ComponentSectionsWasteSortingCards'
   title?: string | null
@@ -11549,6 +11768,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsSortingGuideAccordions_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteCollectionDays_Fragment
+  | PageSections_ComponentSectionsWasteCollectionPoints_Fragment
   | PageSections_ComponentSectionsWasteSortingCards_Fragment
   | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
@@ -20034,6 +20254,94 @@ export type PageEntityFragment = {
           visibleColumns?: any | null
         }
       | {
+          __typename: 'ComponentSectionsWasteCollectionPoints'
+          title?: string | null
+          text?: string | null
+          backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+          cardsWasteCollectionPointsCards?: Array<{
+            __typename?: 'ComponentItemsLocationCardsItem'
+            title: string
+            address?: string | null
+            link: {
+              __typename?: 'ComponentItemsLink'
+              label?: string | null
+              url?: string | null
+              page?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename: 'PageEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                } | null
+              } | null
+              article?: {
+                __typename?: 'ArticleEntityResponse'
+                data?: {
+                  __typename: 'ArticleEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
+                } | null
+              } | null
+              branch?: {
+                __typename?: 'BranchEntityResponse'
+                data?: {
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+              document?: {
+                __typename?: 'DocumentEntityResponse'
+                data?: {
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                } | null
+              } | null
+              service?: {
+                __typename?: 'ServiceEntityResponse'
+                data?: {
+                  __typename: 'ServiceEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                } | null
+              } | null
+              workshop?: {
+                __typename?: 'WorkshopEntityResponse'
+                data?: {
+                  __typename: 'WorkshopEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      datetime: any
+                    } | null> | null
+                  } | null
+                } | null
+              } | null
+            }
+          } | null> | null
+        }
+      | {
           __typename: 'ComponentSectionsWasteSortingCards'
           title?: string | null
           text?: string | null
@@ -22854,6 +23162,94 @@ export type PagesQuery = {
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
               visibleColumns?: any | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionPoints'
+              title?: string | null
+              text?: string | null
+              backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+              cardsWasteCollectionPointsCards?: Array<{
+                __typename?: 'ComponentItemsLocationCardsItem'
+                title: string
+                address?: string | null
+                link: {
+                  __typename?: 'ComponentItemsLink'
+                  label?: string | null
+                  url?: string | null
+                  page?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename: 'PageEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  article?: {
+                    __typename?: 'ArticleEntityResponse'
+                    data?: {
+                      __typename: 'ArticleEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
+                    } | null
+                  } | null
+                  branch?: {
+                    __typename?: 'BranchEntityResponse'
+                    data?: {
+                      __typename: 'BranchEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Branch'
+                        title: string
+                        page?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename: 'PageEntity'
+                            id?: string | null
+                            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                  document?: {
+                    __typename?: 'DocumentEntityResponse'
+                    data?: {
+                      __typename: 'DocumentEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                    } | null
+                  } | null
+                  service?: {
+                    __typename?: 'ServiceEntityResponse'
+                    data?: {
+                      __typename: 'ServiceEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  workshop?: {
+                    __typename?: 'WorkshopEntityResponse'
+                    data?: {
+                      __typename: 'WorkshopEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          datetime: any
+                        } | null> | null
+                      } | null
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -25696,6 +26092,94 @@ export type PageBySlugQuery = {
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
               visibleColumns?: any | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionPoints'
+              title?: string | null
+              text?: string | null
+              backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+              cardsWasteCollectionPointsCards?: Array<{
+                __typename?: 'ComponentItemsLocationCardsItem'
+                title: string
+                address?: string | null
+                link: {
+                  __typename?: 'ComponentItemsLink'
+                  label?: string | null
+                  url?: string | null
+                  page?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename: 'PageEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  article?: {
+                    __typename?: 'ArticleEntityResponse'
+                    data?: {
+                      __typename: 'ArticleEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
+                    } | null
+                  } | null
+                  branch?: {
+                    __typename?: 'BranchEntityResponse'
+                    data?: {
+                      __typename: 'BranchEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Branch'
+                        title: string
+                        page?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename: 'PageEntity'
+                            id?: string | null
+                            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                  document?: {
+                    __typename?: 'DocumentEntityResponse'
+                    data?: {
+                      __typename: 'DocumentEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                    } | null
+                  } | null
+                  service?: {
+                    __typename?: 'ServiceEntityResponse'
+                    data?: {
+                      __typename: 'ServiceEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  workshop?: {
+                    __typename?: 'WorkshopEntityResponse'
+                    data?: {
+                      __typename: 'WorkshopEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          datetime: any
+                        } | null> | null
+                      } | null
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -33183,6 +33667,21 @@ export const OpeningTimesSectionFragmentDoc = gql`
   ${OpeningTimeEntityFragmentDoc}
   ${BranchEntityFragmentDoc}
 `
+export const WasteCollectionPointsSectionFragmentDoc = gql`
+  fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPoints {
+    title
+    text
+    backgroundColorWasteCollectionPoints: backgroundColor
+    cardsWasteCollectionPointsCards: cards {
+      title
+      address
+      link {
+        ...Link
+      }
+    }
+  }
+  ${LinkFragmentDoc}
+`
 export const BoardMembersSectionFragmentDoc = gql`
   fragment BoardMembersSection on ComponentSectionsBoardMembers {
     title
@@ -33290,6 +33789,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsOpeningTimes {
       ...OpeningTimesSection
     }
+    ... on ComponentSectionsWasteCollectionPoints {
+      ...WasteCollectionPointsSection
+    }
     ... on ComponentSectionsBoardMembers {
       ...BoardMembersSection
     }
@@ -33324,6 +33826,7 @@ export const PageSectionsFragmentDoc = gql`
   ${CardSliderSectionFragmentDoc}
   ${ContactsSectionFragmentDoc}
   ${OpeningTimesSectionFragmentDoc}
+  ${WasteCollectionPointsSectionFragmentDoc}
   ${BoardMembersSectionFragmentDoc}
   ${VacanciesSectionFragmentDoc}
   ${GlobalSearchSectionFragmentDoc}

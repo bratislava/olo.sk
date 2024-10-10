@@ -20,7 +20,7 @@ const IframeSection = ({ section, className }: IframeSectionProps) => {
   const { title, text, iframeTitle, url, isFullScreen } = section ?? {}
 
   return (
-    // TODO padding-y should probably be managed by the SectionContainer
+    // TODO: Padding-y should probably be managed by the SectionContainer
     <SectionContainer
       background="primary"
       classNameInner={cn({ 'mx-0 max-w-full px-0 lg:px-0': isFullScreen })}

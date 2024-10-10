@@ -1,5 +1,5 @@
 {
-  "key": "plugin_content_manager_configuration_components::sections.cards-list",
+  "key": "plugin_content_manager_configuration_components::items.location-cards-item",
   "value": {
     "settings": {
       "bulkable": true,
@@ -21,7 +21,7 @@
       },
       "title": {
         "edit": {
-          "label": "Nadpis",
+          "label": "title",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -33,58 +33,30 @@
           "sortable": true
         }
       },
-      "text": {
+      "address": {
         "edit": {
-          "label": "Text",
+          "label": "address",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "text",
+          "label": "address",
           "searchable": true,
           "sortable": true
         }
       },
-      "linkLabelOverride": {
+      "link": {
         "edit": {
-          "label": "Text odkazu (linkLabelOverride)",
+          "label": "link",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "linkLabelOverride",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "columnCount": {
-        "edit": {
-          "label": "počet kariet v riadku",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "columnCount",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "cards": {
-        "edit": {
-          "label": "Dlaždice",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "cards",
+          "label": "link",
           "searchable": false,
           "sortable": false
         }
@@ -94,43 +66,29 @@
       "list": [
         "id",
         "title",
-        "text",
-        "cards"
+        "address",
+        "link"
       ],
       "edit": [
         [
           {
             "name": "title",
-            "size": 12
-          }
-        ],
-        [
+            "size": 6
+          },
           {
-            "name": "text",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "linkLabelOverride",
+            "name": "address",
             "size": 6
           }
         ],
         [
           {
-            "name": "cards",
+            "name": "link",
             "size": 12
-          }
-        ],
-        [
-          {
-            "name": "columnCount",
-            "size": 4
           }
         ]
       ]
     },
-    "uid": "sections.cards-list",
+    "uid": "items.location-cards-item",
     "isComponent": true
   },
   "type": "object",

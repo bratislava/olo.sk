@@ -1174,6 +1174,7 @@ export type ComponentSectionsCardSliderCardsArgs = {
 export type ComponentSectionsCardsList = {
   __typename?: 'ComponentSectionsCardsList'
   cards?: Maybe<Array<Maybe<ComponentItemsCardsListItem>>>
+  columnCount?: Maybe<Scalars['Int']['output']>
   id: Scalars['ID']['output']
   linkLabelOverride?: Maybe<Scalars['String']['output']>
   text?: Maybe<Scalars['String']['output']>
@@ -8211,6 +8212,7 @@ export type CardsListSectionFragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -9822,6 +9824,7 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -18935,6 +18938,7 @@ export type PageEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -21905,6 +21909,7 @@ export type PagesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -24915,6 +24920,7 @@ export type PageBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -27214,6 +27220,7 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -28037,6 +28044,7 @@ export type ServiceEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -28816,6 +28824,7 @@ export type ServicesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -29649,6 +29658,7 @@ export type ServiceBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -34063,6 +34073,7 @@ export const CardsListSectionFragmentDoc = gql`
     title
     text
     linkLabelOverride
+    columnCount
     cardsCardsList: cards {
       title
       subtext

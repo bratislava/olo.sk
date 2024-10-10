@@ -8,8 +8,10 @@ import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
 export type FileRowCardProps = {
+  variant: 'single-file' | 'multiple-files'
   title: string
   linkHref: string
+  buttonLabel: string
   metaData?: string[]
   iconName?: IconName
   hasBottomBorder?: boolean
@@ -22,8 +24,10 @@ export type FileRowCardProps = {
  */
 
 const FileRowCard = ({
+  variant,
   title,
   linkHref,
+  buttonLabel,
   metaData,
   iconName = 'priloha',
   hasBottomBorder = false,
@@ -34,7 +38,7 @@ const FileRowCard = ({
 
   return (
     <CardBase variant="unstyled" className={className}>
-      <div className="bg-background-primary px-4 lg:px-5">
+      <div className="bg-background-primary px-4 lg:px-5" title={title}>
         <div
           className={cn('flex items-center gap-3 py-4 lg:gap-4', {
             'border-b border-border-default': hasBottomBorder,
@@ -73,10 +77,13 @@ const FileRowCard = ({
             asLink
             stretched
             hasLinkIcon={false}
-            startIcon={<Icon name="stiahnut" />}
-            className="max-lg:hidden"
+            // eslint-disable-next-line sonarjs/no-duplicate-string
+            startIcon={variant === 'single-file' ? <Icon name="stiahnut" /> : undefined}
+            aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
+            endIcon={variant === 'multiple-files' ? <Icon name="sipka-doprava" /> : undefined}
+            className="whitespace-nowrap max-lg:hidden"
           >
-            {t('common.download')}
+            {buttonLabel}
           </Button>
           {/* Screen: mobile */}
           <Button
@@ -86,7 +93,9 @@ const FileRowCard = ({
             aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
             stretched
             hasLinkIcon={false}
-            icon={<Icon name="stiahnut" />}
+            icon={
+              variant === 'single-file' ? <Icon name="stiahnut" /> : <Icon name="sipka-doprava" />
+            }
             className="ml-auto p-1.5 lg:hidden"
           />
         </div>

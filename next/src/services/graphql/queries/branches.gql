@@ -37,6 +37,11 @@ fragment BranchEntity on BranchEntity {
     publicTransportInfo
     parkingInfo
     barrierFreeInfo
+    image {
+      data {
+        ...UploadImageEntity
+      }
+    }
   }
 }
 

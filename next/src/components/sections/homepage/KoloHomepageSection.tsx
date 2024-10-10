@@ -24,7 +24,14 @@ const KoloHomepageSection = ({ section }: Props) => {
   const { getLinkProps } = useGetLinkProps()
   const { getFullPath } = useGetFullPath()
 
-  const { title, text, mainCards, branchesTitle, branches, showMoreLink } = section ?? {}
+  const {
+    title: sectionTitle,
+    text,
+    mainCards,
+    branchesTitle,
+    branches,
+    showMoreLink,
+  } = section ?? {}
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredBranches = branches?.data.filter(isDefined) ?? []
@@ -33,7 +40,7 @@ const KoloHomepageSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer className="py-6 lg:py-12">
       <div className="flex flex-col gap-6 lg:gap-12">
-        <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
+        <SectionHeader title={sectionTitle} text={text} showMoreLink={showMoreLink} />
 
         <ul
           className={cn({
@@ -61,14 +68,16 @@ const KoloHomepageSection = ({ section }: Props) => {
             {filteredBranches
               .map((branch, index) => {
                 if (!branch.attributes) return null
+                const { title, address, image } = branch.attributes
 
                 return (
                   // eslint-disable-next-line react/no-array-index-key
                   <li key={index} className="[&>*]:h-full">
                     <BranchCard
-                      title={branch?.attributes.title}
-                      linkHref={getFullPath(branch) ?? '#'} // TODO remove the fallback value
-                      address={branch?.attributes.address ?? ''} // TODO remove the fallback value
+                      title={title}
+                      linkHref={getFullPath(branch)}
+                      imgSrc={image?.data?.attributes?.url}
+                      address={address}
                     />
                   </li>
                 )

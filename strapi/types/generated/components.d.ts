@@ -353,7 +353,7 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
 export interface SectionsIframeSection extends Schema.Component {
   collectionName: 'components_sections_iframe_sections'
   info: {
-    displayName: 'Iframe (Venzeo a in\u00E9 extern\u00E9 odkazy)'
+    displayName: 'Iframe'
     description: ''
   }
   attributes: {

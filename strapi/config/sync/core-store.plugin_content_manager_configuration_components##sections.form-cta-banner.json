@@ -47,20 +47,6 @@
           "sortable": true
         }
       },
-      "bannerTitle": {
-        "edit": {
-          "label": "Nadpis v banneri",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "bannerTitle",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "bannerLink": {
         "edit": {
           "label": "Odkaz (tlačidlo)",
@@ -80,8 +66,7 @@
       "list": [
         "id",
         "title",
-        "text",
-        "bannerTitle"
+        "text"
       ],
       "edit": [
         [
@@ -93,12 +78,6 @@
         [
           {
             "name": "text",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "bannerTitle",
             "size": 12
           }
         ],

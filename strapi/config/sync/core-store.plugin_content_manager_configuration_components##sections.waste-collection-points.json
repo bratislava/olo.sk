@@ -21,7 +21,7 @@
       },
       "title": {
         "edit": {
-          "label": "title",
+          "label": "Nadpis",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -35,7 +35,7 @@
       },
       "text": {
         "edit": {
-          "label": "text",
+          "label": "Text",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -49,7 +49,7 @@
       },
       "cards": {
         "edit": {
-          "label": "cards",
+          "label": "Kartičky",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -63,7 +63,7 @@
       },
       "backgroundColor": {
         "edit": {
-          "label": "backgroundColor",
+          "label": "Pozadie",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -87,11 +87,13 @@
         [
           {
             "name": "title",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "text",
-            "size": 6
+            "size": 12
           }
         ],
         [

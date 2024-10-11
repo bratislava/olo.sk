@@ -135,7 +135,6 @@
     "eslint-plugin-xss": "^0.1.12",
     "i18next-http-backend": "^2.5.1",
     "i18next-parser": "^8.13.0",
-    "isomorphic-dompurify": "^2.16.0",
     "postcss": "8.4.41",
     "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "0.6.6",

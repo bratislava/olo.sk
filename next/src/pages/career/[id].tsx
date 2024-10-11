@@ -1,6 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import parse from 'html-react-parser'
-import DOMPurify from 'isomorphic-dompurify'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -41,6 +40,7 @@ type StaticParams = {
 }
 
 export const getStaticPaths: GetStaticPaths<StaticParams> = async () => {
+  // TODO: fetch all open position ID and generate paths
   return { paths: [], fallback: 'blocking' }
 }
 
@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=619-11100&m=dev
  */
 
-// TODO: In a current version following features are missing: Breadcrumbs, Responsive design for smaller screens, HeaderImage
+// TODO: In a current version following features are missing: Breadcrumbs, Responsive design for smaller screens, HeaderImage and sanitization check
 
 const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
   const { t } = useTranslation()
@@ -113,7 +113,7 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
       <PageLayout>
         <SectionContainer background="secondary">
           <Breadcrumbs breadcrumbs={breadcrumbs} />
-          <HeaderTitleText title={positionDetail?.name || ''} />
+          <HeaderTitleText title={positionDetail?.name ?? ''} />
         </SectionContainer>
         <SectionContainer background="primary">
           <div
@@ -154,7 +154,7 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                   <div className="pb-10">
                     <Typography variant="h2">{t('career.positionInformation')}</Typography>
                     <Typography variant="h4">{t('career.positionResponsibilities')}</Typography>
-                    <div>{parse(DOMPurify.sanitize(positionDetail.job_note ?? ''))}</div>
+                    <div>{parse(positionDetail.job_note ?? '')}</div>
                   </div>
                   <div className="pb-10">
                     <Typography variant="h2">{t('career.interviewInformation')}</Typography>

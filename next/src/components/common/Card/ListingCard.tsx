@@ -52,11 +52,11 @@ const ListingCard = ({
           stretched
           hasLinkIcon={false}
           aria-label={`${t('common.showMore')}: ${title}`}
-          className="flex w-full items-center justify-between"
+          className="flex w-full items-center justify-between gap-2"
           {...getLinkProps(link)}
         >
           <Typography variant="button-default">{getLinkProps(link).children}</Typography>
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-background-secondary">
+          <div className="flex size-10 shrink-0 items-center justify-center self-end rounded-lg bg-background-secondary">
             <Icon name={getLinkProps(link).href.startsWith('http') ? 'export' : 'sipka-doprava'} />
           </div>
         </Button>

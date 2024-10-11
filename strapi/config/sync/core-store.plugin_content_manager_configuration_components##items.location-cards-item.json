@@ -1,5 +1,5 @@
 {
-  "key": "plugin_content_manager_configuration_components::sections.form-cta-banner",
+  "key": "plugin_content_manager_configuration_components::items.location-cards-item",
   "value": {
     "settings": {
       "bulkable": true,
@@ -21,7 +21,7 @@
       },
       "title": {
         "edit": {
-          "label": "Nadpis",
+          "label": "Názov zberného miesta",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -33,30 +33,30 @@
           "sortable": true
         }
       },
-      "text": {
+      "address": {
         "edit": {
-          "label": "Text",
+          "label": "Adresa",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "text",
+          "label": "address",
           "searchable": true,
           "sortable": true
         }
       },
-      "bannerLink": {
+      "link": {
         "edit": {
-          "label": "Odkaz (tlačidlo)",
+          "label": "Odkaz",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "bannerLink",
+          "label": "link",
           "searchable": false,
           "sortable": false
         }
@@ -66,7 +66,8 @@
       "list": [
         "id",
         "title",
-        "text"
+        "address",
+        "link"
       ],
       "edit": [
         [
@@ -77,19 +78,19 @@
         ],
         [
           {
-            "name": "text",
+            "name": "address",
             "size": 12
           }
         ],
         [
           {
-            "name": "bannerLink",
+            "name": "link",
             "size": 12
           }
         ]
       ]
     },
-    "uid": "sections.form-cta-banner",
+    "uid": "items.location-cards-item",
     "isComponent": true
   },
   "type": "object",

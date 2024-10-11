@@ -1262,6 +1262,7 @@ input ComponentSectionsCardSliderInput {
 
 type ComponentSectionsCardsList {
   cards(filters: ComponentItemsCardsListItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsCardsListItem]
+  columnCount: Int
   id: ID!
   linkLabelOverride: String
   text: String
@@ -1271,6 +1272,7 @@ type ComponentSectionsCardsList {
 input ComponentSectionsCardsListFiltersInput {
   and: [ComponentSectionsCardsListFiltersInput]
   cards: ComponentItemsCardsListItemFiltersInput
+  columnCount: IntFilterInput
   linkLabelOverride: StringFilterInput
   not: ComponentSectionsCardsListFiltersInput
   or: [ComponentSectionsCardsListFiltersInput]
@@ -1280,6 +1282,7 @@ input ComponentSectionsCardsListFiltersInput {
 
 input ComponentSectionsCardsListInput {
   cards: [ComponentItemsCardsListItemInput]
+  columnCount: Int
   id: ID
   linkLabelOverride: String
   text: String
@@ -1493,7 +1496,6 @@ input ComponentSectionsFilesInput {
 
 type ComponentSectionsFormCtaBanner {
   bannerLink: ComponentItemsFormCtaBannerLink!
-  bannerTitle: String!
   id: ID!
   text: String
   title: String
@@ -1502,7 +1504,6 @@ type ComponentSectionsFormCtaBanner {
 input ComponentSectionsFormCtaBannerFiltersInput {
   and: [ComponentSectionsFormCtaBannerFiltersInput]
   bannerLink: ComponentItemsFormCtaBannerLinkFiltersInput
-  bannerTitle: StringFilterInput
   not: ComponentSectionsFormCtaBannerFiltersInput
   or: [ComponentSectionsFormCtaBannerFiltersInput]
   text: StringFilterInput
@@ -1511,7 +1512,6 @@ input ComponentSectionsFormCtaBannerFiltersInput {
 
 input ComponentSectionsFormCtaBannerInput {
   bannerLink: ComponentItemsFormCtaBannerLinkInput
-  bannerTitle: String
   id: ID
   text: String
   title: String

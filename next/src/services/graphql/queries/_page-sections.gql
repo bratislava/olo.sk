@@ -211,6 +211,7 @@ fragment CardsListSection on ComponentSectionsCardsList {
   title
   text
   linkLabelOverride
+  columnCount
   cardsCardsList: cards {
     title
     subtext
@@ -323,7 +324,6 @@ fragment CardSliderSection on ComponentSectionsCardSlider {
 fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
   title
   text
-  bannerTitle
   bannerLink {
     ...FormCtaBannerLink
   }

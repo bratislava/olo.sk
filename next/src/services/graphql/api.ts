@@ -1174,6 +1174,7 @@ export type ComponentSectionsCardSliderCardsArgs = {
 export type ComponentSectionsCardsList = {
   __typename?: 'ComponentSectionsCardsList'
   cards?: Maybe<Array<Maybe<ComponentItemsCardsListItem>>>
+  columnCount?: Maybe<Scalars['Int']['output']>
   id: Scalars['ID']['output']
   linkLabelOverride?: Maybe<Scalars['String']['output']>
   text?: Maybe<Scalars['String']['output']>
@@ -1330,7 +1331,6 @@ export type ComponentSectionsFilesFilesArgs = {
 export type ComponentSectionsFormCtaBanner = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   bannerLink: ComponentItemsFormCtaBannerLink
-  bannerTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
@@ -8214,6 +8214,7 @@ export type CardsListSectionFragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -9075,7 +9076,6 @@ export type FormCtaBannerSectionFragment = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -9826,6 +9826,7 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -18940,6 +18941,7 @@ export type PageEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -21911,6 +21913,7 @@ export type PagesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -24922,6 +24925,7 @@ export type PageBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -27222,6 +27226,7 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -27847,7 +27852,6 @@ type ServiceSections_ComponentSectionsFormCtaBanner_Fragment = {
   __typename: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -28046,6 +28050,7 @@ export type ServiceEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -28715,7 +28720,6 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsFormCtaBanner'
           title?: string | null
           text?: string | null
-          bannerTitle: string
           bannerLink: {
             __typename?: 'ComponentItemsFormCtaBannerLink'
             label?: string | null
@@ -28826,6 +28830,7 @@ export type ServicesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -29515,7 +29520,6 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -29660,6 +29664,7 @@ export type ServiceBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -30349,7 +30354,6 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -34076,6 +34080,7 @@ export const CardsListSectionFragmentDoc = gql`
     title
     text
     linkLabelOverride
+    columnCount
     cardsCardsList: cards {
       title
       subtext
@@ -34576,7 +34581,6 @@ export const FormCtaBannerSectionFragmentDoc = gql`
   fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
     title
     text
-    bannerTitle
     bannerLink {
       ...FormCtaBannerLink
     }

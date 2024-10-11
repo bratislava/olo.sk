@@ -353,7 +353,7 @@ export interface SectionsImageAndTextOverlapped extends Schema.Component {
 export interface SectionsIframeSection extends Schema.Component {
   collectionName: 'components_sections_iframe_sections'
   info: {
-    displayName: 'Iframe (Venzeo)'
+    displayName: 'Iframe'
     description: ''
   }
   attributes: {
@@ -361,6 +361,7 @@ export interface SectionsIframeSection extends Schema.Component {
     text: Attribute.Text
     iframeTitle: Attribute.String & Attribute.Required
     url: Attribute.String & Attribute.Required
+    isFullScreen: Attribute.Boolean & Attribute.DefaultTo<false>
   }
 }
 

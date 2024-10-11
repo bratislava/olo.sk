@@ -1379,6 +1379,7 @@ export type ComponentSectionsIframeSection = {
   __typename?: 'ComponentSectionsIframeSection'
   id: Scalars['ID']['output']
   iframeTitle: Scalars['String']['output']
+  isFullScreen?: Maybe<Scalars['Boolean']['output']>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
   url: Scalars['String']['output']
@@ -7185,6 +7186,7 @@ export type IframeSectionFragment = {
   text?: string | null
   iframeTitle: string
   url: string
+  isFullScreen?: boolean | null
 }
 
 export type ImageAndTextOverlappedSectionFragment = {
@@ -10677,6 +10679,7 @@ type PageSections_ComponentSectionsIframeSection_Fragment = {
   text?: string | null
   iframeTitle: string
   url: string
+  isFullScreen?: boolean | null
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -19826,6 +19829,7 @@ export type PageEntityFragment = {
           text?: string | null
           iframeTitle: string
           url: string
+          isFullScreen?: boolean | null
         }
       | {
           __typename: 'ComponentSectionsImageAndText'
@@ -22817,6 +22821,7 @@ export type PagesQuery = {
               text?: string | null
               iframeTitle: string
               url: string
+              isFullScreen?: boolean | null
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -25828,6 +25833,7 @@ export type PageBySlugQuery = {
               text?: string | null
               iframeTitle: string
               url: string
+              isFullScreen?: boolean | null
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -34061,6 +34067,7 @@ export const IframeSectionFragmentDoc = gql`
     text
     iframeTitle
     url
+    isFullScreen
   }
 `
 export const DividerSectionFragmentDoc = gql`

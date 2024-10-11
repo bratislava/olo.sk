@@ -63,7 +63,7 @@
       },
       "columnCount": {
         "edit": {
-          "label": "počet kariet v riadku",
+          "label": "Počet kartičiek v riadku",
           "description": "",
           "placeholder": "",
           "visible": true,

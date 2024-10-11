@@ -5,9 +5,7 @@
  */
 export const fetchOpenPositions = async () => {
   // TODO: this fetch should not directly fetch the data, but use OpenAPI generation and client with requests
-  // more information about "expand" param can be found in the swagger documentation for Nalgoo https://ats.nalgoo.com/api/rest/swagger.json?api_key=
   const response = await fetch(
-    // eslint-disable-next-line no-secrets/no-secrets
     `${process.env.NEXT_NALGOO_URL}/job-offer?expand=company_sectors,regions,employment_forms,position_type,business_unit,custom_fields&api_key=${process.env.NEXT_NALGOO_API_KEY}`,
   )
 

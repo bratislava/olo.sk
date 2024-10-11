@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "content_owners",
+  "info": {
+    "singularName": "content-owner",
+    "pluralName": "content-owners",
+    "displayName": "Zodpovedné osoby",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "pages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page.page",
+      "mappedBy": "contentOwner"
+    }
+  }
+}

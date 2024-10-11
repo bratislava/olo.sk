@@ -8,12 +8,8 @@ import Markdown from '@/src/components/formatting/Markdown'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { ProcurementsSectionFragment } from '@/src/services/graphql/api'
-import {
-  fetchProcurementsFromApiAll,
-  fetchProcurementsFromApiEnded,
-  fetchProcurementsFromApiRunning,
-} from '@/src/services/josephine/fetchProcurementsFromApi'
-import { JosephineObject } from '@/src/services/josephine/josephineTypes'
+import { ProcurementObject } from '@/src/services/josephine/fetchProcurements'
+import { fetchProcurementsFromApiRunning } from '@/src/services/josephine/fetchProcurementsFromApi'
 import cn from '@/src/utils/cn'
 import { formatPrice } from '@/src/utils/formatPrice'
 
@@ -22,10 +18,10 @@ type Props = {
   className?: string
 }
 
-const getRows = (procurements: JosephineObject, allColumns: string[], locale: string) => {
-  if (!procurements?.tenders?.tender || !allColumns) return []
+const getRows = (procurements: ProcurementObject, allColumns: string[], locale: string) => {
+  if (!procurements?.tenders || !allColumns) return []
 
-  return procurements?.tenders?.tender.map((tender) => {
+  return procurements?.tenders.map((tender) => {
     const tenderAttributes = Object.fromEntries(
       Object.entries(tender).filter((entry: [key: string, value: string]) =>
         allColumns.includes(entry[0]),
@@ -61,35 +57,11 @@ const ProcurementsSection = ({ section, className }: Props) => {
     error: errorRunning,
     data: procurementsRunning,
   } = useQuery({
-    queryKey: ['Procurements running'],
-    queryFn: fetchProcurementsFromApiRunning,
+    queryKey: ['Procurements running'], // TODO: add query key for pagination ['Procurement', currentPage]
+    queryFn: () => fetchProcurementsFromApiRunning(7),
   })
 
-  const {
-    isPending: pendingEnded,
-    isError: isErrorEnded,
-    error: errorEnded,
-    data: procurementsEnded,
-  } = useQuery({
-    queryKey: ['Procurements ended'],
-    queryFn: fetchProcurementsFromApiEnded,
-  })
-
-  const {
-    isPending: pendingAll,
-    isError: isErrorAll,
-    error: errorAll,
-    data: procurementsAll,
-  } = useQuery({
-    queryKey: ['Procurements all'],
-    queryFn: fetchProcurementsFromApiAll,
-  })
-
-  console.log('data running', procurementsRunning)
-
-  console.log('data ended', procurementsEnded)
-
-  console.log('data all', procurementsAll)
+  // TODO: add another param to fetch for ended
 
   const visibleColumns = [
     'tender_name',
@@ -98,7 +70,7 @@ const ProcurementsSection = ({ section, className }: Props) => {
     'tender_ted_number',
     'tender_reference_number',
     'tender_predicted_value',
-    // 'tender_rounds',
+    // 'tender_rounds', // TODO: wait for discussion
     'tender_link',
   ]
 
@@ -142,28 +114,6 @@ const ProcurementsSection = ({ section, className }: Props) => {
           allColumns={allColumns}
           headerAllColumns={headerAllColumns}
         />
-      )}
-
-      {pendingEnded ? (
-        <Typography>Loading...</Typography>
-      ) : isErrorEnded ? (
-        <Typography>{errorEnded.message}</Typography>
-      ) : (
-        <>
-          <Typography>Ended</Typography>
-          <Typography>{JSON.stringify(procurementsEnded, null, 2)}</Typography>
-        </>
-      )}
-
-      {pendingAll ? (
-        <Typography>Loading...</Typography>
-      ) : isErrorAll ? (
-        <Typography>{errorAll.message}</Typography>
-      ) : (
-        <>
-          <Typography>All procurements</Typography>
-          <Typography>{JSON.stringify(procurementsAll, null, 2)}</Typography>
-        </>
       )}
     </SectionContainer>
   )

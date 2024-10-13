@@ -1174,6 +1174,7 @@ export type ComponentSectionsCardSliderCardsArgs = {
 export type ComponentSectionsCardsList = {
   __typename?: 'ComponentSectionsCardsList'
   cards?: Maybe<Array<Maybe<ComponentItemsCardsListItem>>>
+  columnCount?: Maybe<Scalars['Int']['output']>
   id: Scalars['ID']['output']
   linkLabelOverride?: Maybe<Scalars['String']['output']>
   text?: Maybe<Scalars['String']['output']>
@@ -1339,7 +1340,6 @@ export type ComponentSectionsFilesFilesArgs = {
 export type ComponentSectionsFormCtaBanner = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   bannerLink: ComponentItemsFormCtaBannerLink
-  bannerTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
@@ -1388,6 +1388,7 @@ export type ComponentSectionsIframeSection = {
   __typename?: 'ComponentSectionsIframeSection'
   id: Scalars['ID']['output']
   iframeTitle: Scalars['String']['output']
+  isFullScreen?: Maybe<Scalars['Boolean']['output']>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
   url: Scalars['String']['output']
@@ -1775,6 +1776,57 @@ export type ContactRelationResponseCollection = {
   data: Array<ContactEntity>
 }
 
+export type ContentOwner = {
+  __typename?: 'ContentOwner'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  email?: Maybe<Scalars['String']['output']>
+  name: Scalars['String']['output']
+  pages?: Maybe<PageRelationResponseCollection>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type ContentOwnerPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ContentOwnerEntity = {
+  __typename?: 'ContentOwnerEntity'
+  attributes?: Maybe<ContentOwner>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type ContentOwnerEntityResponse = {
+  __typename?: 'ContentOwnerEntityResponse'
+  data?: Maybe<ContentOwnerEntity>
+}
+
+export type ContentOwnerEntityResponseCollection = {
+  __typename?: 'ContentOwnerEntityResponseCollection'
+  data: Array<ContentOwnerEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ContentOwnerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ContentOwnerFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  email?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  name?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ContentOwnerFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ContentOwnerFiltersInput>>>
+  pages?: InputMaybe<PageFiltersInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ContentOwnerInput = {
+  email?: InputMaybe<Scalars['String']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+}
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>
@@ -2069,6 +2121,13 @@ export enum Enum_Componentsectionswastecollectionpoints_Backgroundcolor {
 export enum Enum_Componentsharedmetasocial_Socialnetwork {
   Facebook = 'Facebook',
   Twitter = 'Twitter',
+}
+
+export enum Enum_Page_Contentstate {
+  ContentStateDone = 'contentState_done',
+  ContentStateFinalising = 'contentState_finalising',
+  ContentStateInProgress = 'contentState_inProgress',
+  ContentStateTodo = 'contentState_todo',
 }
 
 export enum Enum_Servicecategory_Categorycolor {
@@ -2436,6 +2495,7 @@ export type GenericMorph =
   | ComponentSidebarsContactsSidebar
   | ComponentSidebarsEmptySidebar
   | Contact
+  | ContentOwner
   | Document
   | DocumentCategory
   | Faq
@@ -2653,6 +2713,7 @@ export type Mutation = {
   createBranch?: Maybe<BranchEntityResponse>
   createBranchLocalization?: Maybe<BranchEntityResponse>
   createContact?: Maybe<ContactEntityResponse>
+  createContentOwner?: Maybe<ContentOwnerEntityResponse>
   createDocument?: Maybe<DocumentEntityResponse>
   createDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   createDocumentCategoryLocalization?: Maybe<DocumentCategoryEntityResponse>
@@ -2686,6 +2747,7 @@ export type Mutation = {
   deleteArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   deleteBranch?: Maybe<BranchEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
+  deleteContentOwner?: Maybe<ContentOwnerEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
   deleteDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   deleteFaq?: Maybe<FaqEntityResponse>
@@ -2723,6 +2785,7 @@ export type Mutation = {
   updateArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   updateBranch?: Maybe<BranchEntityResponse>
   updateContact?: Maybe<ContactEntityResponse>
+  updateContentOwner?: Maybe<ContentOwnerEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
   updateDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   updateFaq?: Maybe<FaqEntityResponse>
@@ -2790,6 +2853,10 @@ export type MutationCreateBranchLocalizationArgs = {
 
 export type MutationCreateContactArgs = {
   data: ContactInput
+}
+
+export type MutationCreateContentOwnerArgs = {
+  data: ContentOwnerInput
 }
 
 export type MutationCreateDocumentArgs = {
@@ -2948,6 +3015,10 @@ export type MutationDeleteContactArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationDeleteContentOwnerArgs = {
+  id: Scalars['ID']['input']
+}
+
 export type MutationDeleteDocumentArgs = {
   id: Scalars['ID']['input']
 }
@@ -3088,6 +3159,11 @@ export type MutationUpdateBranchArgs = {
 
 export type MutationUpdateContactArgs = {
   data: ContactInput
+  id: Scalars['ID']['input']
+}
+
+export type MutationUpdateContentOwnerArgs = {
+  data: ContentOwnerInput
   id: Scalars['ID']['input']
 }
 
@@ -3365,6 +3441,8 @@ export type PageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>
   branch?: InputMaybe<BranchFiltersInput>
   childPages?: InputMaybe<PageFiltersInput>
+  contentOwner?: InputMaybe<ContentOwnerFiltersInput>
+  contentState?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -3394,6 +3472,8 @@ export type PageInput = {
   alias?: InputMaybe<Scalars['String']['input']>
   branch?: InputMaybe<Scalars['ID']['input']>
   childPages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  contentOwner?: InputMaybe<Scalars['ID']['input']>
+  contentState?: InputMaybe<Enum_Page_Contentstate>
   header?: InputMaybe<Array<Scalars['PageHeaderDynamicZoneInput']['input']>>
   parentPage?: InputMaybe<Scalars['ID']['input']>
   perex?: InputMaybe<Scalars['String']['input']>
@@ -3477,6 +3557,8 @@ export type Query = {
   branches?: Maybe<BranchEntityResponseCollection>
   contact?: Maybe<ContactEntityResponse>
   contacts?: Maybe<ContactEntityResponseCollection>
+  contentOwner?: Maybe<ContentOwnerEntityResponse>
+  contentOwners?: Maybe<ContentOwnerEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
   documentCategories?: Maybe<DocumentCategoryEntityResponseCollection>
   documentCategory?: Maybe<DocumentCategoryEntityResponse>
@@ -3565,6 +3647,16 @@ export type QueryContactsArgs = {
   filters?: InputMaybe<ContactFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryContentOwnerArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type QueryContentOwnersArgs = {
+  filters?: InputMaybe<ContentOwnerFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
@@ -7269,6 +7361,7 @@ export type IframeSectionFragment = {
   text?: string | null
   iframeTitle: string
   url: string
+  isFullScreen?: boolean | null
 }
 
 export type ImageAndTextOverlappedSectionFragment = {
@@ -8296,6 +8389,7 @@ export type CardsListSectionFragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -9157,7 +9251,6 @@ export type FormCtaBannerSectionFragment = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -9908,6 +10001,7 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -10827,6 +10921,7 @@ type PageSections_ComponentSectionsIframeSection_Fragment = {
   text?: string | null
   iframeTitle: string
   url: string
+  isFullScreen?: boolean | null
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -19089,6 +19184,7 @@ export type PageEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -20042,6 +20138,7 @@ export type PageEntityFragment = {
           text?: string | null
           iframeTitle: string
           url: string
+          isFullScreen?: boolean | null
         }
       | {
           __typename: 'ComponentSectionsImageAndText'
@@ -22125,6 +22222,7 @@ export type PagesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -23098,6 +23196,7 @@ export type PagesQuery = {
               text?: string | null
               iframeTitle: string
               url: string
+              isFullScreen?: boolean | null
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -25201,6 +25300,7 @@ export type PageBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -26174,6 +26274,7 @@ export type PageBySlugQuery = {
               text?: string | null
               iframeTitle: string
               url: string
+              isFullScreen?: boolean | null
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -27566,6 +27667,7 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -28191,7 +28293,6 @@ type ServiceSections_ComponentSectionsFormCtaBanner_Fragment = {
   __typename: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -28390,6 +28491,7 @@ export type ServiceEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -29059,7 +29161,6 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsFormCtaBanner'
           title?: string | null
           text?: string | null
-          bannerTitle: string
           bannerLink: {
             __typename?: 'ComponentItemsFormCtaBannerLink'
             label?: string | null
@@ -29170,6 +29271,7 @@ export type ServicesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -29859,7 +29961,6 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -30004,6 +30105,7 @@ export type ServiceBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -30693,7 +30795,6 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -34420,6 +34521,7 @@ export const IframeSectionFragmentDoc = gql`
     text
     iframeTitle
     url
+    isFullScreen
   }
 `
 export const DividerSectionFragmentDoc = gql`
@@ -34432,6 +34534,7 @@ export const CardsListSectionFragmentDoc = gql`
     title
     text
     linkLabelOverride
+    columnCount
     cardsCardsList: cards {
       title
       subtext
@@ -34936,7 +35039,6 @@ export const FormCtaBannerSectionFragmentDoc = gql`
   fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
     title
     text
-    bannerTitle
     bannerLink {
       ...FormCtaBannerLink
     }

@@ -1,5 +1,5 @@
 {
-  "key": "plugin_content_manager_configuration_components::sections.table",
+  "key": "plugin_content_manager_configuration_components::sections.waste-collection-points",
   "value": {
     "settings": {
       "bulkable": true,
@@ -33,20 +33,6 @@
           "sortable": true
         }
       },
-      "anchorId": {
-        "edit": {
-          "label": "anchorId",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "anchorId",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "text": {
         "edit": {
           "label": "Text",
@@ -60,14 +46,42 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "cards": {
+        "edit": {
+          "label": "Kartičky",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "cards",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "backgroundColor": {
+        "edit": {
+          "label": "Pozadie",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "backgroundColor",
+          "searchable": true,
+          "sortable": true
+        }
       }
     },
     "layouts": {
       "list": [
         "id",
         "title",
-        "anchorId",
-        "text"
+        "text",
+        "cards"
       ],
       "edit": [
         [
@@ -84,13 +98,19 @@
         ],
         [
           {
-            "name": "anchorId",
+            "name": "cards",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "backgroundColor",
             "size": 6
           }
         ]
       ]
     },
-    "uid": "sections.table",
+    "uid": "sections.waste-collection-points",
     "isComponent": true
   },
   "type": "object",

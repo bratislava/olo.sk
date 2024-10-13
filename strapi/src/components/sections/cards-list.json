@@ -15,6 +15,12 @@
     "linkLabelOverride": {
       "type": "text"
     },
+    "columnCount": {
+      "type": "integer",
+      "default": 3,
+      "min": 2,
+      "max": 4
+    },
     "cards": {
       "type": "component",
       "repeatable": true,

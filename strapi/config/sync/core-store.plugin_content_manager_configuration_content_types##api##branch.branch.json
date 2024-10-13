@@ -122,8 +122,8 @@
       },
       "navigateToLink": {
         "edit": {
-          "label": "navigateToLink",
-          "description": "",
+          "label": "Odkaz na navigáciu",
+          "description": "Napríklad Google Mapy",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -188,6 +188,20 @@
           "label": "barrierFreeInfo",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "image": {
+        "edit": {
+          "label": "Ilustračný obrázok",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "image",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -310,6 +324,12 @@
           },
           {
             "name": "navigateToLink",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "image",
             "size": 6
           }
         ]

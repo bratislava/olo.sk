@@ -85,7 +85,7 @@ const Slider = ({ slides }: SliderProps) => {
         >
           {url ? (
             //  20.125rem = 322px
-            <div className="relative z-0 flex aspect-heroSliderMedia lg:absolute lg:bottom-0 lg:right-0 lg:h-[20.125rem]">
+            <div className="relative z-0 flex aspect-heroSliderMedia lg:absolute lg:right-0 lg:top-32 lg:h-[20.125rem]">
               {/* Use object-contain to always show the whole illustration */}
               <Image src={url} alt={alternativeText ?? ''} fill className="object-contain" />
             </div>

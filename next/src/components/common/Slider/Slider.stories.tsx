@@ -48,8 +48,8 @@ type Story = StoryObj<typeof SliderComponent>
 export const Slider: Story = {
   render: (args) => {
     return (
-      // 798px = 49.875rem
-      <div className="max-w-[49.875rem]">
+      // 798px = 49.875rem, 28.125rem = 450px
+      <div className="max-w-[49.875rem] lg:h-[28.125rem]">
         <SliderComponent {...args} />
       </div>
     )

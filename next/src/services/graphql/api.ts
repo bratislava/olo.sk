@@ -5571,8 +5571,8 @@ export type NavigationQuery = {
       id?: string | null
       attributes?: {
         __typename?: 'Page'
-        slug: string
         title: string
+        slug: string
         childPages?: {
           __typename?: 'PageRelationResponseCollection'
           data: Array<{
@@ -5580,8 +5580,8 @@ export type NavigationQuery = {
             id?: string | null
             attributes?: {
               __typename?: 'Page'
-              slug: string
               title: string
+              slug: string
               childPages?: {
                 __typename?: 'PageRelationResponseCollection'
                 data: Array<{
@@ -5589,8 +5589,8 @@ export type NavigationQuery = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
-                    slug: string
                     title: string
+                    slug: string
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
@@ -5598,8 +5598,8 @@ export type NavigationQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
-                          slug: string
                           title: string
+                          slug: string
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
@@ -5607,8 +5607,8 @@ export type NavigationQuery = {
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
-                                slug: string
                                 title: string
+                                slug: string
                               } | null
                             }>
                           } | null
@@ -7208,8 +7208,8 @@ export type ChildPagesCardsListSectionFragment = {
       id?: string | null
       attributes?: {
         __typename?: 'Page'
-        slug: string
         title: string
+        slug: string
         childPages?: {
           __typename?: 'PageRelationResponseCollection'
           data: Array<{
@@ -7217,8 +7217,8 @@ export type ChildPagesCardsListSectionFragment = {
             id?: string | null
             attributes?: {
               __typename?: 'Page'
-              slug: string
               title: string
+              slug: string
               childPages?: {
                 __typename?: 'PageRelationResponseCollection'
                 data: Array<{
@@ -7226,8 +7226,8 @@ export type ChildPagesCardsListSectionFragment = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
-                    slug: string
                     title: string
+                    slug: string
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
@@ -7235,8 +7235,8 @@ export type ChildPagesCardsListSectionFragment = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
-                          slug: string
                           title: string
+                          slug: string
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
@@ -7244,8 +7244,8 @@ export type ChildPagesCardsListSectionFragment = {
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
-                                slug: string
                                 title: string
+                                slug: string
                               } | null
                             }>
                           } | null
@@ -10004,8 +10004,8 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
       id?: string | null
       attributes?: {
         __typename?: 'Page'
-        slug: string
         title: string
+        slug: string
         childPages?: {
           __typename?: 'PageRelationResponseCollection'
           data: Array<{
@@ -10013,8 +10013,8 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
             id?: string | null
             attributes?: {
               __typename?: 'Page'
-              slug: string
               title: string
+              slug: string
               childPages?: {
                 __typename?: 'PageRelationResponseCollection'
                 data: Array<{
@@ -10022,8 +10022,8 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
-                    slug: string
                     title: string
+                    slug: string
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
@@ -10031,8 +10031,8 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
-                          slug: string
                           title: string
+                          slug: string
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
@@ -10040,8 +10040,8 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
-                                slug: string
                                 title: string
+                                slug: string
                               } | null
                             }>
                           } | null
@@ -18263,15 +18263,15 @@ export type OpeningTimeEntityFragment = {
   } | null
 }
 
-export type ChildPageFragment = { __typename?: 'Page'; slug: string; title: string }
+export type ChildPageFragment = { __typename?: 'Page'; title: string; slug: string }
 
 export type PageChildPagesFragment = {
   __typename?: 'PageEntity'
   id?: string | null
   attributes?: {
     __typename?: 'Page'
-    slug: string
     title: string
+    slug: string
     childPages?: {
       __typename?: 'PageRelationResponseCollection'
       data: Array<{
@@ -18279,8 +18279,8 @@ export type PageChildPagesFragment = {
         id?: string | null
         attributes?: {
           __typename?: 'Page'
-          slug: string
           title: string
+          slug: string
           childPages?: {
             __typename?: 'PageRelationResponseCollection'
             data: Array<{
@@ -18288,8 +18288,8 @@ export type PageChildPagesFragment = {
               id?: string | null
               attributes?: {
                 __typename?: 'Page'
-                slug: string
                 title: string
+                slug: string
                 childPages?: {
                   __typename?: 'PageRelationResponseCollection'
                   data: Array<{
@@ -18297,14 +18297,14 @@ export type PageChildPagesFragment = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'Page'
-                      slug: string
                       title: string
+                      slug: string
                       childPages?: {
                         __typename?: 'PageRelationResponseCollection'
                         data: Array<{
                           __typename?: 'PageEntity'
                           id?: string | null
-                          attributes?: { __typename?: 'Page'; slug: string; title: string } | null
+                          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
                         }>
                       } | null
                     } | null
@@ -19184,8 +19184,8 @@ export type PageEntityFragment = {
               id?: string | null
               attributes?: {
                 __typename?: 'Page'
-                slug: string
                 title: string
+                slug: string
                 childPages?: {
                   __typename?: 'PageRelationResponseCollection'
                   data: Array<{
@@ -19193,8 +19193,8 @@ export type PageEntityFragment = {
                     id?: string | null
                     attributes?: {
                       __typename?: 'Page'
-                      slug: string
                       title: string
+                      slug: string
                       childPages?: {
                         __typename?: 'PageRelationResponseCollection'
                         data: Array<{
@@ -19202,8 +19202,8 @@ export type PageEntityFragment = {
                           id?: string | null
                           attributes?: {
                             __typename?: 'Page'
-                            slug: string
                             title: string
+                            slug: string
                             childPages?: {
                               __typename?: 'PageRelationResponseCollection'
                               data: Array<{
@@ -19211,8 +19211,8 @@ export type PageEntityFragment = {
                                 id?: string | null
                                 attributes?: {
                                   __typename?: 'Page'
-                                  slug: string
                                   title: string
+                                  slug: string
                                   childPages?: {
                                     __typename?: 'PageRelationResponseCollection'
                                     data: Array<{
@@ -19220,8 +19220,8 @@ export type PageEntityFragment = {
                                       id?: string | null
                                       attributes?: {
                                         __typename?: 'Page'
-                                        slug: string
                                         title: string
+                                        slug: string
                                       } | null
                                     }>
                                   } | null
@@ -22220,8 +22220,8 @@ export type PagesQuery = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
-                    slug: string
                     title: string
+                    slug: string
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
@@ -22229,8 +22229,8 @@ export type PagesQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
-                          slug: string
                           title: string
+                          slug: string
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
@@ -22238,8 +22238,8 @@ export type PagesQuery = {
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
-                                slug: string
                                 title: string
+                                slug: string
                                 childPages?: {
                                   __typename?: 'PageRelationResponseCollection'
                                   data: Array<{
@@ -22247,8 +22247,8 @@ export type PagesQuery = {
                                     id?: string | null
                                     attributes?: {
                                       __typename?: 'Page'
-                                      slug: string
                                       title: string
+                                      slug: string
                                       childPages?: {
                                         __typename?: 'PageRelationResponseCollection'
                                         data: Array<{
@@ -22256,8 +22256,8 @@ export type PagesQuery = {
                                           id?: string | null
                                           attributes?: {
                                             __typename?: 'Page'
-                                            slug: string
                                             title: string
+                                            slug: string
                                           } | null
                                         }>
                                       } | null
@@ -25296,8 +25296,8 @@ export type PageBySlugQuery = {
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
-                    slug: string
                     title: string
+                    slug: string
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
@@ -25305,8 +25305,8 @@ export type PageBySlugQuery = {
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
-                          slug: string
                           title: string
+                          slug: string
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
@@ -25314,8 +25314,8 @@ export type PageBySlugQuery = {
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
-                                slug: string
                                 title: string
+                                slug: string
                                 childPages?: {
                                   __typename?: 'PageRelationResponseCollection'
                                   data: Array<{
@@ -25323,8 +25323,8 @@ export type PageBySlugQuery = {
                                     id?: string | null
                                     attributes?: {
                                       __typename?: 'Page'
-                                      slug: string
                                       title: string
+                                      slug: string
                                       childPages?: {
                                         __typename?: 'PageRelationResponseCollection'
                                         data: Array<{
@@ -25332,8 +25332,8 @@ export type PageBySlugQuery = {
                                           id?: string | null
                                           attributes?: {
                                             __typename?: 'Page'
-                                            slug: string
                                             title: string
+                                            slug: string
                                           } | null
                                         }>
                                       } | null
@@ -34356,8 +34356,8 @@ export const DocumentsSectionFragmentDoc = gql`
 `
 export const ChildPageFragmentDoc = gql`
   fragment ChildPage on Page {
-    slug
     title
+    slug
   }
 `
 export const PageChildPagesFragmentDoc = gql`

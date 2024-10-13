@@ -1,6 +1,6 @@
 fragment ChildPage on Page {
-  slug
   title
+  slug
 }
 
 fragment PageChildPages on PageEntity {

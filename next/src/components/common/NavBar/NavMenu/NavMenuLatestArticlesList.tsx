@@ -7,7 +7,7 @@ import { isDefined } from '@/src/utils/isDefined'
 import { latestArticlesQuery } from '@/src/utils/queryOptions'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
-export const LATEST_ARTICLES_COUNT = 6
+export const LATEST_ARTICLES_COUNT = 3
 
 type NavMenuLatestArticlesListProps = {
   hasDividers?: boolean

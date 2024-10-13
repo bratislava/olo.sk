@@ -39,9 +39,7 @@ const MobileNavBarHeader = ({ searchLink }: MobileNavBarHeaderProps) => {
         ) : null}
 
         <Button
-          asLink
           icon={<Icon name={isMobileMenuOpen ? 'krizik' : 'hamburger'} />}
-          hasLinkIcon={false}
           onPress={() => setMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={
             isMobileMenuOpen

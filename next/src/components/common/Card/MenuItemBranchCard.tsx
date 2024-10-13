@@ -40,7 +40,7 @@ const MenuItemBranchCard = ({
 
           <div className="flex flex-col gap-4">
             {address ? <Typography variant="p-default">{address}</Typography> : null}
-            <Button variant="black-link" href={linkHref} asLink hasLinkIcon>
+            <Button variant="black-link" href={linkHref} asLink stretched>
               {t('navBar.branchCard.showDetails')}
             </Button>
           </div>

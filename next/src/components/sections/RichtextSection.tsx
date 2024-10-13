@@ -13,10 +13,7 @@ const RichtextSection = ({ section }: Props) => {
 
   return (
     <SectionContainer background={backgroundColorRichtext} className="py-12">
-      {/* 50 rem = 800px */}
-      <div className="max-w-[50rem]">
-        <Markdown content={content} />
-      </div>
+      <Markdown content={content} />
     </SectionContainer>
   )
 }

@@ -33,7 +33,7 @@ PropsWithChildren<Record<any, any>>) => {
     // TODO set table width to be exact to that of SectionContainer without hardcoding it
     <div className="lg:flex lg:justify-center">
       {/* 80rem = 1280px (max-width of SectionContainer), 4rem = 64px (its horizontal padding) */}
-      <div className="lg:-mx-52 lg:max-w-[min(100vw-4rem,80rem-4rem)]">
+      <div className="lg:max-w-[min(100vw-4rem,80rem-4rem)]">
         <div className="relative">
           <div className={cn('overflow-x-auto', scrollFadeClassNames)} ref={tableWrapperRef}>
             <table {...props} className="border-separate border-spacing-0">

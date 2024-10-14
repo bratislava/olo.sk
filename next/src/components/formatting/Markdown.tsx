@@ -180,16 +180,17 @@ const Markdown = ({ content, className }: MarkdownProps) => {
         blockquote: ({ node, ...props }) => (
           <blockquote className="border-l-4 border-action-background-default pl-8" {...props} />
         ),
-        ol: ({ children, ...props }) => (
+        ol: ({ children, node, ...props }) => (
           <ol className="list-decimal pl-8 marker:text-content-secondary" {...props}>
             {children}
           </ol>
         ),
-        ul: ({ children, ...props }) => (
+        ul: ({ children, node, ...props }) => (
           <ul className="list-disc pl-8 marker:text-content-secondary" {...props}>
             {children}
           </ul>
         ),
+        li: ({ children, node, ...props }) => <li {...props}>{children}</li>,
         // Remark-gfm components: del, input, table, tbody, td, th, thead, and tr
         // TODO tables need revisit - align, spacing, etc.
         table: ({ children, node, ...props }) => (
@@ -222,9 +223,9 @@ const Markdown = ({ content, className }: MarkdownProps) => {
             {children}
           </tr>
         ),
-        td: ({ children }) => <td className="px-6">{children}</td>,
+        td: ({ children }) => <td className="px-5 py-1">{children}</td>,
         th: ({ children }) => (
-          <th className="bg-background-secondary px-6 text-left font-bold">{children}</th>
+          <th className="bg-background-secondary px-5 py-1 font-bold">{children}</th>
         ),
         hr: () => <hr className="my-8 border-t border-border-default" />,
       }}

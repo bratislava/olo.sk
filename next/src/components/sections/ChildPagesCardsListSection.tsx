@@ -25,8 +25,6 @@ const ChildPagesCardsListSection = ({ section }: ChildPagesCardsListSectionProps
   const { childPages } = page?.data?.attributes ?? {}
   const filteredChildPages = childPages?.data?.filter(isDefined) ?? []
 
-  if (filteredChildPages.length === 0) return null
-
   return (
     <SectionContainer background={backgroundColor} className="py-18">
       <div className="flex flex-col gap-6">
@@ -34,7 +32,6 @@ const ChildPagesCardsListSection = ({ section }: ChildPagesCardsListSectionProps
 
         <ul className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4">
           {filteredChildPages
-
             .map((childPage) => {
               return (
                 <li key={childPage.id}>

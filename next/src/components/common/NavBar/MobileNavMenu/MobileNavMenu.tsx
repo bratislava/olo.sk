@@ -24,9 +24,6 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
 
-  // TODO use directly in link item
-  const { href, children } = getLinkProps(contactsLink)
-
   const { menuValue, setMenuValue, isMobileMenuOpen, setMobileMenuOpen } = useNavMenuContext()
 
   const { height } = useWindowSize()
@@ -77,11 +74,12 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
                     iconName="chevron-doprava"
                     variant="icon-label"
                     label={
-                      // TODO refactor
-                      <Link href={href}>
+                      <Link href={getLinkProps(contactsLink).href}>
                         <div className="flex items-center gap-4">
                           <Icon name="telefon" className="size-5" />
-                          <Typography variant="p-default-black">{children}</Typography>
+                          <Typography variant="p-default-black">
+                            {getLinkProps(contactsLink).children}
+                          </Typography>
                         </div>
                       </Link>
                     }
@@ -94,8 +92,7 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
 
         {/* Viewport represents popup div with links that appears under menu button */}
         <NavigationMenu.Viewport
-          className="fixed left-0 top-mobileNavBar w-screen overflow-y-scroll bg-background-primary"
-          // TODO add animation, e.g. data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight
+          className="fixed left-0 top-mobileNavBar w-screen overflow-y-scroll bg-background-primary data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight"
           style={{ height: heightWithoutHeader }}
         />
       </NavigationMenu.Root>

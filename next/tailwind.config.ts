@@ -191,6 +191,14 @@ const config: Config = {
         heroSliderMedia: '612/322',
       },
       keyframes: {
+        enterFromRight: {
+          from: { opacity: '0', transform: 'translateX(200px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        exitToRight: {
+          from: { opacity: '1', transform: 'translateX(0)' },
+          to: { opacity: '0', transform: 'translateX(200px)' },
+        },
         fadeIn: {
           from: { opacity: '0' },
           to: { opacity: '1' },
@@ -201,6 +209,8 @@ const config: Config = {
         },
       },
       animation: {
+        enterFromRight: 'enterFromRight 250ms ease',
+        exitToRight: 'exitToRight 250ms ease',
         fadeIn: 'fadeIn 200ms ease',
         fadeOut: 'fadeOut 200ms ease',
       },

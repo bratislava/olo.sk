@@ -66,6 +66,7 @@
     "string-replace-async": "^3.0.2",
     "tailwind-merge": "2.5.2",
     "tailwind-scrollbar-hide": "1.1.7",
+    "tailwindcss-animate": "^1.0.7",
     "tailwindcss-react-aria-components": "1.1.5",
     "use-query-params": "^2.2.1",
     "usehooks-ts": "^3.1.0"

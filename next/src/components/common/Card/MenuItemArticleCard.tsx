@@ -4,12 +4,11 @@ import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Tag from '@/src/components/common/Tag/Tag'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
-import { useTailwindBreakpointValue } from '@/src/utils/useTailwindBreakpointValue'
 
 type MenuItemArticleCardProps = {
   title: string
   linkHref: string
-  tagText: string
+  tagText?: string
   imgSrc?: string
   className?: string
 }
@@ -25,23 +24,24 @@ const MenuItemArticleCard = ({
   imgSrc,
   className,
 }: MenuItemArticleCardProps) => {
-  const { isMobileBreakpoint } = useTailwindBreakpointValue()
-
   return (
     <NavMenuLink href={linkHref} isCard className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-4 lg:flex-row">
-          {imgSrc ? (
-            <CardImage
-              imgSrc={imgSrc}
-              // 6.25rem = 100px
-              className="aspect-[100/56] w-[6.25rem] rounded-lg"
-            />
-          ) : null}
-          <div className="flex flex-col justify-center gap-3">
-            <Tag variant="without-bg" text={tagText} />
+          <CardImage
+            imgSrc={imgSrc}
+            // 6.25rem = 100px
+            className="aspect-[100/56] w-[6.25rem] rounded-lg"
+          />
+
+          <div
+            className={cn('flex flex-col justify-center', {
+              'gap-3': tagText,
+            })}
+          >
+            {tagText ? <Tag variant="without-bg" text={tagText} /> : null}
             <Typography
-              variant={isMobileBreakpoint ? 'h5' : 'h6'}
+              variant="h6"
               className_onlyWhenNecessary="lg:line-clamp-1 leading-tight lg:group-hover/CardBase:underline text-wrap"
             >
               {title}

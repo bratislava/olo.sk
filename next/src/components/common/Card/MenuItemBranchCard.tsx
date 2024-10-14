@@ -5,7 +5,6 @@ import CardBase from '@/src/components/common/Card/CardBase'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
-import { useTailwindBreakpointValue } from '@/src/utils/useTailwindBreakpointValue'
 
 type MenuItemBranchCardProps = {
   title: string
@@ -25,15 +24,14 @@ const MenuItemBranchCard = ({
   className,
 }: MenuItemBranchCardProps) => {
   const { t } = useTranslation()
-  const { isMobileBreakpoint } = useTailwindBreakpointValue()
 
   return (
     <NavMenuLink href={linkHref} isCard className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-2">
           <Typography
-            variant={isMobileBreakpoint ? 'p-default-black' : 'h6'}
-            className_onlyWhenNecessary="line-clamp-3 lg:group-hover/CardBase:underline"
+            variant="h6"
+            className_onlyWhenNecessary="text-wrap lg:group-hover/CardBase:underline"
           >
             {title}
           </Typography>

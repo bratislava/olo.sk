@@ -74,7 +74,7 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
                     iconName="chevron-doprava"
                     variant="icon-label"
                     label={
-                      <Link href={getLinkProps(contactsLink).href}>
+                      <Link href={getLinkProps(contactsLink).href} stretched>
                         <div className="flex items-center gap-4">
                           <Icon name="telefon" className="size-5" />
                           <Typography variant="p-default-black">

@@ -27,7 +27,10 @@ const MenuItemWorkshopCard = ({
     <NavMenuLink href={linkHref} isCard className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex items-start gap-4">
-          <div className="rounded-[20px] bg-background-secondary p-4">
+          <div
+            // 1.25rem = 20px
+            className="rounded-[1.25rem] bg-background-secondary p-4"
+          >
             <OloIcon name={iconName} className="size-6" />
           </div>
           <div
@@ -37,7 +40,7 @@ const MenuItemWorkshopCard = ({
           >
             <Typography
               variant="h6"
-              className_onlyWhenNecessary="lg:line-clamp-1 leading-tight lg:group-hover/CardBase:underline text-wrap"
+              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
             >
               {title}
             </Typography>

@@ -24,33 +24,34 @@ const MenuItemWorkshopCard = ({
   className,
 }: MenuItemWorkshopCardProps) => {
   return (
-    <NavMenuLink href={linkHref} isCard className={cn(className)}>
-      <CardBase variant="unstyled">
-        <div className="flex items-start gap-4">
-          <div
-            // 1.25rem = 20px
-            className="rounded-[1.25rem] bg-background-secondary p-4"
-          >
-            <OloIcon name={iconName} className="size-6" />
-          </div>
-          <div
-            className={cn('flex flex-col items-start gap-2 self-stretch', {
-              'justify-center': !mostRecentWorkshopDate,
-            })}
-          >
+    <CardBase variant="unstyled" className={cn(className)}>
+      <div className="flex items-start gap-4">
+        <div
+          // 1.25rem = 20px
+          className="rounded-[1.25rem] bg-background-secondary p-4"
+        >
+          <OloIcon name={iconName} className="size-6" />
+        </div>
+        <div
+          className={cn('flex flex-col items-start gap-2 self-stretch', {
+            'justify-center': !mostRecentWorkshopDate,
+          })}
+        >
+          <NavMenuLink href={linkHref} stretched>
             <Typography
               variant="h6"
               className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
             >
               {title}
             </Typography>
-            {mostRecentWorkshopDate ? (
-              <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
-            ) : null}
-          </div>
+          </NavMenuLink>
+
+          {mostRecentWorkshopDate ? (
+            <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
+          ) : null}
         </div>
-      </CardBase>
-    </NavMenuLink>
+      </div>
+    </CardBase>
   )
 }
 

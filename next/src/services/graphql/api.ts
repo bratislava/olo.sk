@@ -5659,7 +5659,7 @@ export type NavigationQuery = {
   topLevelPages?: {
     __typename?: 'PageEntityResponseCollection'
     data: Array<{
-      __typename?: 'PageEntity'
+      __typename: 'PageEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Page'
@@ -5668,7 +5668,7 @@ export type NavigationQuery = {
         childPages?: {
           __typename?: 'PageRelationResponseCollection'
           data: Array<{
-            __typename?: 'PageEntity'
+            __typename: 'PageEntity'
             id?: string | null
             attributes?: {
               __typename?: 'Page'
@@ -5677,7 +5677,7 @@ export type NavigationQuery = {
               childPages?: {
                 __typename?: 'PageRelationResponseCollection'
                 data: Array<{
-                  __typename?: 'PageEntity'
+                  __typename: 'PageEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
@@ -5686,7 +5686,7 @@ export type NavigationQuery = {
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
-                        __typename?: 'PageEntity'
+                        __typename: 'PageEntity'
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
@@ -5695,7 +5695,7 @@ export type NavigationQuery = {
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
-                              __typename?: 'PageEntity'
+                              __typename: 'PageEntity'
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
@@ -7296,7 +7296,7 @@ export type ChildPagesCardsListSectionFragment = {
   parentPage?: {
     __typename?: 'PageEntityResponse'
     data?: {
-      __typename?: 'PageEntity'
+      __typename: 'PageEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Page'
@@ -7305,7 +7305,7 @@ export type ChildPagesCardsListSectionFragment = {
         childPages?: {
           __typename?: 'PageRelationResponseCollection'
           data: Array<{
-            __typename?: 'PageEntity'
+            __typename: 'PageEntity'
             id?: string | null
             attributes?: {
               __typename?: 'Page'
@@ -7314,7 +7314,7 @@ export type ChildPagesCardsListSectionFragment = {
               childPages?: {
                 __typename?: 'PageRelationResponseCollection'
                 data: Array<{
-                  __typename?: 'PageEntity'
+                  __typename: 'PageEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
@@ -7323,7 +7323,7 @@ export type ChildPagesCardsListSectionFragment = {
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
-                        __typename?: 'PageEntity'
+                        __typename: 'PageEntity'
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
@@ -7332,7 +7332,7 @@ export type ChildPagesCardsListSectionFragment = {
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
-                              __typename?: 'PageEntity'
+                              __typename: 'PageEntity'
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
@@ -10094,7 +10094,7 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
   parentPage?: {
     __typename?: 'PageEntityResponse'
     data?: {
-      __typename?: 'PageEntity'
+      __typename: 'PageEntity'
       id?: string | null
       attributes?: {
         __typename?: 'Page'
@@ -10103,7 +10103,7 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
         childPages?: {
           __typename?: 'PageRelationResponseCollection'
           data: Array<{
-            __typename?: 'PageEntity'
+            __typename: 'PageEntity'
             id?: string | null
             attributes?: {
               __typename?: 'Page'
@@ -10112,7 +10112,7 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
               childPages?: {
                 __typename?: 'PageRelationResponseCollection'
                 data: Array<{
-                  __typename?: 'PageEntity'
+                  __typename: 'PageEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
@@ -10121,7 +10121,7 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
-                        __typename?: 'PageEntity'
+                        __typename: 'PageEntity'
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
@@ -10130,7 +10130,7 @@ type PageSections_ComponentSectionsChildPagesCardsList_Fragment = {
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
-                              __typename?: 'PageEntity'
+                              __typename: 'PageEntity'
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
@@ -18360,8 +18360,8 @@ export type OpeningTimeEntityFragment = {
 
 export type ChildPageFragment = { __typename?: 'Page'; title: string; slug: string }
 
-export type PageChildPagesFragment = {
-  __typename?: 'PageEntity'
+export type PageChildPagesEntityFragment = {
+  __typename: 'PageEntity'
   id?: string | null
   attributes?: {
     __typename?: 'Page'
@@ -18370,7 +18370,7 @@ export type PageChildPagesFragment = {
     childPages?: {
       __typename?: 'PageRelationResponseCollection'
       data: Array<{
-        __typename?: 'PageEntity'
+        __typename: 'PageEntity'
         id?: string | null
         attributes?: {
           __typename?: 'Page'
@@ -18379,7 +18379,7 @@ export type PageChildPagesFragment = {
           childPages?: {
             __typename?: 'PageRelationResponseCollection'
             data: Array<{
-              __typename?: 'PageEntity'
+              __typename: 'PageEntity'
               id?: string | null
               attributes?: {
                 __typename?: 'Page'
@@ -18388,7 +18388,7 @@ export type PageChildPagesFragment = {
                 childPages?: {
                   __typename?: 'PageRelationResponseCollection'
                   data: Array<{
-                    __typename?: 'PageEntity'
+                    __typename: 'PageEntity'
                     id?: string | null
                     attributes?: {
                       __typename?: 'Page'
@@ -18397,7 +18397,7 @@ export type PageChildPagesFragment = {
                       childPages?: {
                         __typename?: 'PageRelationResponseCollection'
                         data: Array<{
-                          __typename?: 'PageEntity'
+                          __typename: 'PageEntity'
                           id?: string | null
                           attributes?: { __typename?: 'Page'; title: string; slug: string } | null
                         }>
@@ -19276,7 +19276,7 @@ export type PageEntityFragment = {
           parentPage?: {
             __typename?: 'PageEntityResponse'
             data?: {
-              __typename?: 'PageEntity'
+              __typename: 'PageEntity'
               id?: string | null
               attributes?: {
                 __typename?: 'Page'
@@ -19285,7 +19285,7 @@ export type PageEntityFragment = {
                 childPages?: {
                   __typename?: 'PageRelationResponseCollection'
                   data: Array<{
-                    __typename?: 'PageEntity'
+                    __typename: 'PageEntity'
                     id?: string | null
                     attributes?: {
                       __typename?: 'Page'
@@ -19294,7 +19294,7 @@ export type PageEntityFragment = {
                       childPages?: {
                         __typename?: 'PageRelationResponseCollection'
                         data: Array<{
-                          __typename?: 'PageEntity'
+                          __typename: 'PageEntity'
                           id?: string | null
                           attributes?: {
                             __typename?: 'Page'
@@ -19303,7 +19303,7 @@ export type PageEntityFragment = {
                             childPages?: {
                               __typename?: 'PageRelationResponseCollection'
                               data: Array<{
-                                __typename?: 'PageEntity'
+                                __typename: 'PageEntity'
                                 id?: string | null
                                 attributes?: {
                                   __typename?: 'Page'
@@ -19312,7 +19312,7 @@ export type PageEntityFragment = {
                                   childPages?: {
                                     __typename?: 'PageRelationResponseCollection'
                                     data: Array<{
-                                      __typename?: 'PageEntity'
+                                      __typename: 'PageEntity'
                                       id?: string | null
                                       attributes?: {
                                         __typename?: 'Page'
@@ -22314,7 +22314,7 @@ export type PagesQuery = {
               parentPage?: {
                 __typename?: 'PageEntityResponse'
                 data?: {
-                  __typename?: 'PageEntity'
+                  __typename: 'PageEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
@@ -22323,7 +22323,7 @@ export type PagesQuery = {
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
-                        __typename?: 'PageEntity'
+                        __typename: 'PageEntity'
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
@@ -22332,7 +22332,7 @@ export type PagesQuery = {
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
-                              __typename?: 'PageEntity'
+                              __typename: 'PageEntity'
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
@@ -22341,7 +22341,7 @@ export type PagesQuery = {
                                 childPages?: {
                                   __typename?: 'PageRelationResponseCollection'
                                   data: Array<{
-                                    __typename?: 'PageEntity'
+                                    __typename: 'PageEntity'
                                     id?: string | null
                                     attributes?: {
                                       __typename?: 'Page'
@@ -22350,7 +22350,7 @@ export type PagesQuery = {
                                       childPages?: {
                                         __typename?: 'PageRelationResponseCollection'
                                         data: Array<{
-                                          __typename?: 'PageEntity'
+                                          __typename: 'PageEntity'
                                           id?: string | null
                                           attributes?: {
                                             __typename?: 'Page'
@@ -25392,7 +25392,7 @@ export type PageBySlugQuery = {
               parentPage?: {
                 __typename?: 'PageEntityResponse'
                 data?: {
-                  __typename?: 'PageEntity'
+                  __typename: 'PageEntity'
                   id?: string | null
                   attributes?: {
                     __typename?: 'Page'
@@ -25401,7 +25401,7 @@ export type PageBySlugQuery = {
                     childPages?: {
                       __typename?: 'PageRelationResponseCollection'
                       data: Array<{
-                        __typename?: 'PageEntity'
+                        __typename: 'PageEntity'
                         id?: string | null
                         attributes?: {
                           __typename?: 'Page'
@@ -25410,7 +25410,7 @@ export type PageBySlugQuery = {
                           childPages?: {
                             __typename?: 'PageRelationResponseCollection'
                             data: Array<{
-                              __typename?: 'PageEntity'
+                              __typename: 'PageEntity'
                               id?: string | null
                               attributes?: {
                                 __typename?: 'Page'
@@ -25419,7 +25419,7 @@ export type PageBySlugQuery = {
                                 childPages?: {
                                   __typename?: 'PageRelationResponseCollection'
                                   data: Array<{
-                                    __typename?: 'PageEntity'
+                                    __typename: 'PageEntity'
                                     id?: string | null
                                     attributes?: {
                                       __typename?: 'Page'
@@ -25428,7 +25428,7 @@ export type PageBySlugQuery = {
                                       childPages?: {
                                         __typename?: 'PageRelationResponseCollection'
                                         data: Array<{
-                                          __typename?: 'PageEntity'
+                                          __typename: 'PageEntity'
                                           id?: string | null
                                           attributes?: {
                                             __typename?: 'Page'
@@ -34461,28 +34461,33 @@ export const ChildPageFragmentDoc = gql`
     slug
   }
 `
-export const PageChildPagesFragmentDoc = gql`
-  fragment PageChildPages on PageEntity {
+export const PageChildPagesEntityFragmentDoc = gql`
+  fragment PageChildPagesEntity on PageEntity {
+    __typename
     id
     attributes {
       ...ChildPage
       childPages {
         data {
+          __typename
           id
           attributes {
             ...ChildPage
             childPages {
               data {
+                __typename
                 id
                 attributes {
                   ...ChildPage
                   childPages {
                     data {
+                      __typename
                       id
                       attributes {
                         ...ChildPage
                         childPages {
                           data {
+                            __typename
                             id
                             attributes {
                               ...ChildPage
@@ -34509,11 +34514,11 @@ export const ChildPagesCardsListSectionFragmentDoc = gql`
     backgroundColorChildPagesCardsList: backgroundColor
     parentPage: page {
       data {
-        ...PageChildPages
+        ...PageChildPagesEntity
       }
     }
   }
-  ${PageChildPagesFragmentDoc}
+  ${PageChildPagesEntityFragmentDoc}
 `
 export const IframeSectionFragmentDoc = gql`
   fragment IframeSection on ComponentSectionsIframeSection {
@@ -35234,12 +35239,12 @@ export const NavigationDocument = gql`
     }
     topLevelPages: pages(filters: { parentPage: { id: { eq: null } } }, locale: $locale) {
       data {
-        ...PageChildPages
+        ...PageChildPagesEntity
       }
     }
   }
   ${NavigationEntityFragmentDoc}
-  ${PageChildPagesFragmentDoc}
+  ${PageChildPagesEntityFragmentDoc}
 `
 export const GeneralDocument = gql`
   query General($locale: I18NLocaleCode!) {

@@ -1,5 +1,6 @@
 export { default as DocumentsPictogram } from './dokumenty.svg'
 export { default as TransportationAndMaps } from './doprava-a-mapy.svg'
+export { default as DigitalServicesPictogram } from './elektronicke-sluzby.svg'
 export { default as PigCoinBankPictogram } from './pig-coin-bank.svg'
 export { default as TransparentCityPictogram } from './transparentne-mesto.svg'
 export { default as WasteCemeteryPictogram } from './waste-cemetery.svg'

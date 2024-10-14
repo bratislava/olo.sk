@@ -25,31 +25,31 @@ const MenuItemArticleCard = ({
   className,
 }: MenuItemArticleCardProps) => {
   return (
-    <NavMenuLink href={linkHref} isCard className={cn(className)}>
-      <CardBase variant="unstyled">
-        <div className="flex flex-col items-start gap-4 lg:flex-row">
-          <CardImage
-            imgSrc={imgSrc}
-            // 6.25rem = 100px
-            className="aspect-[100/56] w-[6.25rem] rounded-lg"
-          />
+    <CardBase variant="unstyled" className={cn(className)}>
+      <div className="flex flex-col items-start gap-4 lg:flex-row">
+        <CardImage
+          imgSrc={imgSrc}
+          // 6.25rem = 100px
+          className="aspect-[100/56] w-[6.25rem] rounded-lg"
+        />
+        <div
+          className={cn('flex flex-col justify-center', {
+            'gap-3': tagText,
+          })}
+        >
+          {tagText ? <Tag variant="without-bg" text={tagText} /> : null}
 
-          <div
-            className={cn('flex flex-col justify-center', {
-              'gap-3': tagText,
-            })}
-          >
-            {tagText ? <Tag variant="without-bg" text={tagText} /> : null}
+          <NavMenuLink href={linkHref} stretched>
             <Typography
               variant="h6"
               className_onlyWhenNecessary="lg:line-clamp-1 leading-tight lg:group-hover/CardBase:underline text-wrap"
             >
               {title}
             </Typography>
-          </div>
+          </NavMenuLink>
         </div>
-      </CardBase>
-    </NavMenuLink>
+      </div>
+    </CardBase>
   )
 }
 

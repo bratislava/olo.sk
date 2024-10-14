@@ -8,27 +8,28 @@ import cn from '@/src/utils/cn'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuLinkProps = {
-  isCard?: boolean
+  stretched?: boolean // If true, the link will be stretched to the full width of the parent (useful for cards)
   className?: string
 } & NavigationMenu.NavigationMenuLinkProps &
   Omit<LinkProps, 'children'> // To be able to spread link props
 
 /**
- * Based on: // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
+ * Based on: https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
  */
 
 const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
-  ({ href, children, target, isCard = false, className }, ref) => {
+  ({ href, children, target, stretched = false, className }, ref) => {
     const { setMobileMenuOpen } = useNavMenuContext()
 
     return (
       <li className={cn('flex w-full', className)}>
-        {isCard ? (
+        {stretched ? (
           <NavigationMenu.Link href={href} onClick={() => setMobileMenuOpen(false)}>
-            {children}
+            <div className="after:absolute after:inset-0">{children}</div>
           </NavigationMenu.Link>
         ) : (
           <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
+            {/* TODO: Should ideally be extracted as a separate variant */}
             <Button
               ref={ref}
               href={href}

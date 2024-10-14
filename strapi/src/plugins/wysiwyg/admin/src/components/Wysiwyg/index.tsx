@@ -74,7 +74,13 @@ const Wysiwyg = ({
             </Typography>
           )}
         </Box>
-
+        <Typography variant="pi">
+          Poznámka k odkazom: Okrem URL sa dá pridať aj „interný“ odkaz na OLO stránky, články,
+          služby, dokumenty alebo workshopy. V tom prípade treba do odkazu namiesto URL napísať
+          "~/TYP/ID". Namiesto TYP treba napísať "page", "article", "service", "document" alebo
+          "workshop". Namiesto ID treba napísať zodpovedajúce id - je to číslo, ktoré je jedinečné
+          pre každú stránku, článok, službu, dokument, či workshop a nájdeme ho cez Správcu obsahu.
+        </Typography>
         <Button
           startIcon={<Landscape />}
           variant="secondary"
@@ -83,15 +89,12 @@ const Wysiwyg = ({
         >
           Media library
         </Button>
-
         <Editor disabled={disabled} name={name} onChange={onChange} value={value} />
-
         {error && (
           <Typography variant="pi" textColor="danger600">
             {formatMessage({ id: error, defaultMessage: error })}
           </Typography>
         )}
-
         {description && <Typography variant="pi">{formatMessage(description)}</Typography>}
       </Stack>
       <MediaLib

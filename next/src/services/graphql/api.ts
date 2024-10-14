@@ -1456,6 +1456,7 @@ export type ComponentSectionsProcurements = {
   __typename?: 'ComponentSectionsProcurements'
   content?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
+  tendersPerPage?: Maybe<Scalars['Int']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
 
@@ -9189,6 +9190,7 @@ export type ProcurementsSectionFragment = {
   __typename?: 'ComponentSectionsProcurements'
   title?: string | null
   content?: string | null
+  tendersPerPage?: number | null
 }
 
 type PageSections_ComponentSectionsArticles_Fragment = {
@@ -10777,6 +10779,7 @@ type PageSections_ComponentSectionsProcurements_Fragment = {
   __typename: 'ComponentSectionsProcurements'
   title?: string | null
   content?: string | null
+  tendersPerPage?: number | null
 }
 
 type PageSections_ComponentSectionsRichtext_Fragment = {
@@ -19598,6 +19601,7 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsProcurements'
           title?: string | null
           content?: string | null
+          tendersPerPage?: number | null
         }
       | {
           __typename: 'ComponentSectionsRichtext'
@@ -22431,6 +22435,7 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsProcurements'
               title?: string | null
               content?: string | null
+              tendersPerPage?: number | null
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -25284,6 +25289,7 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsProcurements'
               title?: string | null
               content?: string | null
+              tendersPerPage?: number | null
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -33157,6 +33163,7 @@ export const ProcurementsSectionFragmentDoc = gql`
   fragment ProcurementsSection on ComponentSectionsProcurements {
     title
     content
+    tendersPerPage
   }
 `
 export const PageSectionsFragmentDoc = gql`

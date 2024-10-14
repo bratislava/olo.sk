@@ -11,6 +11,9 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "tendersPerPage": {
+      "type": "integer"
     }
   }
 }

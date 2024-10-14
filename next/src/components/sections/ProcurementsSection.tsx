@@ -1,7 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
+import { useState } from 'react'
 import { Link } from 'react-aria-components'
 
+import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
 import Table from '@/src/components/common/Table/Table'
 import Typography from '@/src/components/common/Typography/Typography'
 import Markdown from '@/src/components/formatting/Markdown'
@@ -28,11 +30,41 @@ const getRows = (procurements: ProcurementObject, allColumns: string[], locale: 
       ),
     )
 
-    const detailLink = <Link href={tender.tender_link}>{}</Link>
+    const detailLink = (
+      <Link className="underline" href={tender.tender_link} target="_blank">
+        Detail
+      </Link>
+    )
     const tenderValue =
       tender.tender_predicted_value && locale
         ? formatPrice(Number(tender.tender_predicted_value), locale)
         : ''
+
+    // find the right Date where tender is valid
+    const tenderRounds = tender.tender_rounds?.tender_round
+
+    console.log(
+      'tenderRounds',
+      ['2021-10-28 14:36:44', '2022-10-28 14:36:44'].sort(
+        (a, b) => new Date(b).getTime() - new Date(a).getTime(),
+      ),
+    )
+    const tenderFrom = Array.isArray(tenderRounds)
+      ? tenderRounds?.sort(
+          (tenderA, tenderB) =>
+            new Date(tenderB.tender_round_from).getTime() -
+            new Date(tenderA.tender_round_to).getTime(),
+        )[0]?.tender_round_from
+      : tenderRounds?.tender_round_from
+
+    // format date
+    const formattedTenderFrom = new Date(tenderFrom).toLocaleDateString('sk-SK', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    })
 
     return {
       id: tender.tender_id,
@@ -40,16 +72,19 @@ const getRows = (procurements: ProcurementObject, allColumns: string[], locale: 
         ...tenderAttributes,
         tender_link: detailLink,
         tender_predicted_value: tenderValue,
+        tender_from: formattedTenderFrom,
       },
     }
   })
 }
 
 const ProcurementsSection = ({ section, className }: Props) => {
-  const { title, content } = section ?? {}
+  const { title, content, tendersPerPage } = section ?? {}
 
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
   const locale = i18n.language
+
+  const [currentPage, setCurrentPage] = useState(1)
 
   const {
     isPending: pendingRunning,
@@ -57,11 +92,12 @@ const ProcurementsSection = ({ section, className }: Props) => {
     error: errorRunning,
     data: procurementsRunning,
   } = useQuery({
-    queryKey: ['Procurements running'], // TODO: add query key for pagination ['Procurement', currentPage]
-    queryFn: () => fetchProcurementsFromApiRunning(7),
+    queryKey: ['Procurements running', tendersPerPage, currentPage], // TODO: add query key for pagination ['Procurement', currentPage]
+    queryFn: () => fetchProcurementsFromApiRunning('running', currentPage, tendersPerPage ?? 5),
+    placeholderData: keepPreviousData,
   })
 
-  // TODO: add another param to fetch for ended
+  // TODO: add another param to fetch for ended procurements
 
   const visibleColumns = [
     'tender_name',
@@ -70,7 +106,7 @@ const ProcurementsSection = ({ section, className }: Props) => {
     'tender_ted_number',
     'tender_reference_number',
     'tender_predicted_value',
-    // 'tender_rounds', // TODO: wait for discussion
+    'tender_from',
     'tender_link',
   ]
 
@@ -81,7 +117,7 @@ const ProcurementsSection = ({ section, className }: Props) => {
     'tender_ted_number', // cislo vestnika EU
     'tender_reference_number', // Číslo z vestníka VO,
     'tender_predicted_value', // predpokladaná hodnota
-    // 'tender_rounds', // lehota na predkladanie ponuk (odtial: tender_round_from)
+    'tender_from', // lehota na predkladanie ponuk (odtial: tender_round_from)
     'tender_link', // link na detail
   ]
 
@@ -94,7 +130,7 @@ const ProcurementsSection = ({ section, className }: Props) => {
     tender_ted_number: 'Číslo z vestníka EU',
     tender_reference_number: 'Číslo z vestníka VO',
     tender_predicted_value: 'Predpokladaná hodnota',
-    // tender_rounds: 'Lehota na predkladanie ponúk',
+    tender_from: 'Lehota na predkladanie ponúk',
     tender_link: 'Detail zakázky',
   }
 
@@ -104,17 +140,31 @@ const ProcurementsSection = ({ section, className }: Props) => {
       <Markdown content={content} />
 
       {pendingRunning ? (
-        <Typography>Loading...</Typography>
+        <Typography variant="p-default">{t('common.loading')}</Typography>
       ) : isErrorRunning ? (
         <Typography>{errorRunning.message}</Typography>
       ) : (
-        <Table
-          rows={getRows(procurementsRunning, allColumns, locale)}
-          visibleColumns={visibleColumns}
-          allColumns={allColumns}
-          headerAllColumns={headerAllColumns}
-        />
+        <div className="py-6">
+          <Table
+            rows={getRows(procurementsRunning, allColumns, locale)}
+            visibleColumns={visibleColumns}
+            allColumns={allColumns}
+            headerAllColumns={headerAllColumns}
+          />
+        </div>
       )}
+      <div className="flex justify-between">
+        <div>Zobrazujeme x z y</div>
+        <PaginationWithInput
+          currentPage={Number(currentPage)}
+          totalCount={
+            tendersPerPage && procurementsRunning?.tendersCount
+              ? Math.round(procurementsRunning.tendersCount / tendersPerPage)
+              : 0
+          }
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      </div>
     </SectionContainer>
   )
 }

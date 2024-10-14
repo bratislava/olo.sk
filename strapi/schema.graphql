@@ -1710,6 +1710,7 @@ input ComponentSectionsOrderedCardsInput {
 type ComponentSectionsProcurements {
   content: String
   id: ID!
+  tendersPerPage: Int
   title: String
 }
 
@@ -1718,12 +1719,14 @@ input ComponentSectionsProcurementsFiltersInput {
   content: StringFilterInput
   not: ComponentSectionsProcurementsFiltersInput
   or: [ComponentSectionsProcurementsFiltersInput]
+  tendersPerPage: IntFilterInput
   title: StringFilterInput
 }
 
 input ComponentSectionsProcurementsInput {
   content: String
   id: ID
+  tendersPerPage: Int
   title: String
 }
 

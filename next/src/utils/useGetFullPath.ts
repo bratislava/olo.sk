@@ -7,7 +7,6 @@ import {
   BranchSlugEntityFragment,
   DocumentSlugEntityFragment,
   FaqCategorySlugEntityFragment,
-  PageEntityChildPagesFragment,
   PageSlugEntityFragment,
   ServiceSlugEntityFragment,
   WorkshopSlugEntityFragment,
@@ -17,7 +16,6 @@ import { PagePathsMap } from '@/src/services/navigation/parseTopLevelPages'
 
 export type UnionSlugEntityType =
   | PageSlugEntityFragment
-  | PageEntityChildPagesFragment
   | ArticleSlugEntityFragment
   | BranchSlugEntityFragment
   | DocumentSlugEntityFragment

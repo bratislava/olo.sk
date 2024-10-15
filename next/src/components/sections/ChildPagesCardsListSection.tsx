@@ -31,11 +31,13 @@ const ChildPagesCardsListSection = ({ section }: ChildPagesCardsListSectionProps
         <ul className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4">
           {filteredChildPages
             .map((childPage) => {
+              if (!childPage.attributes) return null
+
               return (
                 <li key={childPage.id}>
+                  {/* TODO add reasonable subtext */}
                   <ListingCard
-                    title={childPage?.attributes?.title ?? ''}
-                    subtext="" // TODO: Add an attribute `subtext` to each page
+                    title={childPage.attributes.title}
                     link={{ page: { data: childPage }, label: t('common.findOutMore') }}
                     className="h-full"
                   />

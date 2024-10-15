@@ -42,15 +42,11 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
 
   const { data: articlesByTagsData } = useQuery({
     queryKey: ['ArticlesByTagIds', { tagsIds: filteredTagIds }],
-    queryFn: () => client.ArticlesByTagIds({ tagsIds: filteredTagIds }),
+    queryFn: () => client.ArticlesByTagsIds({ tagsIds: filteredTagIds }),
   })
 
   const filteredArticles =
-    articlesByTagsData?.tags?.data
-      // eslint-disable-next-line unicorn/no-array-callback-reference
-      .filter(isDefined)
-      // without flattening, we would get an array of articles for each tag
-      .flatMap((tag) => tag.attributes?.articles?.data)
+    articlesByTagsData?.articles?.data
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined) ?? []
 

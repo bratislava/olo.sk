@@ -22,7 +22,7 @@
       "title": {
         "edit": {
           "label": "Nadpis",
-          "description": "Sekcia zobrazuje všetky články + vyhľadávanie.",
+          "description": "Ak sú polia \"Kategórie\" a \"Tagy\" prázdne, sekcia zobrazuje všetky články + vyhľadávanie. Ak je jedno z tých polí vyplnené, sekcia zobrazí iba zodpovedajúce články (bez vyhľadávania, ale s možnosťou pridať odkaz cez pole showMoreLink).",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -46,13 +46,58 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "categories": {
+        "edit": {
+          "label": "Kategórie",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "categories",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "tags": {
+        "edit": {
+          "label": "Tagy",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "tags",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "showMoreLink": {
+        "edit": {
+          "label": "showMoreLink (zobrazí sa iba pri výbere kategórie alebo tagu)",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "showMoreLink",
+          "searchable": false,
+          "sortable": false
+        }
       }
     },
     "layouts": {
       "list": [
         "id",
         "title",
-        "text"
+        "text",
+        "categories"
       ],
       "edit": [
         [
@@ -64,6 +109,22 @@
         [
           {
             "name": "text",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "categories",
+            "size": 6
+          },
+          {
+            "name": "tags",
+            "size": 6
+          }
+        ],
+        [
+          {
+            "name": "showMoreLink",
             "size": 12
           }
         ]

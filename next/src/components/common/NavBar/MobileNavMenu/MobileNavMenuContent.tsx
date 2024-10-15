@@ -1,5 +1,6 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
+import CardBase from '@/src/components/common/Card/CardBase'
 import Icon from '@/src/components/common/Icon/Icon'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
@@ -27,36 +28,42 @@ const MobileNavMenuContent = ({ menuItem }: MobileNavMenuContentProps) => {
       onPointerMove={(event) => event.preventDefault()}
       onPointerLeave={(event) => event.preventDefault()}
     >
-      {/* TODO wrap in <ul> */}
+      <ul>
+        <li>
+          {/* Our Button (implemented by react-aria-components) is not compatible with radix and causes press events problem on mobile */}
+          {/* TODO: Potentially extract into a separate component */}
+          <CardBase>
+            {/* TODO: Potentially have a FocusRingWrapper component for cases where using CardBase isn't an appropriate solution */}
+            <button
+              type="button"
+              onClick={() => setMenuValue('')}
+              className="flex w-full items-center justify-center border-b border-border-default p-4"
+            >
+              <Typography variant="p-default-black">{label}</Typography>
+              <Icon name="sipka-dolava" className="absolute left-4" aria-hidden />
+            </button>
+          </CardBase>
+        </li>
 
-      {/* Our Button (implemented by react-aria-components) is not compatible with radix and causes press events problem on mobile */}
-      <button
-        type="button"
-        onClick={() => setMenuValue('')}
-        className="flex w-full items-center justify-center border-b border-border-default p-4"
-      >
-        <Typography variant="p-default-black">{label}</Typography>
-        <Icon name="sipka-dolava" className="absolute left-4" aria-hidden />
-      </button>
+        <ul className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default px-4 py-6">
+          {sections.map((section, index) => {
+            return (
+              <li key={section.id}>
+                <NavMenuSection section={section} className={cn({ 'pt-6': index > 0 })} />
+              </li>
+            )
+          })}
+        </ul>
 
-      <div className="flex size-full flex-col justify-center gap-6 divide-y divide-border-default px-4 py-6">
-        {sections.map((section, index) => {
-          return (
-            <NavMenuSection
-              key={section.id}
-              section={section}
-              className={cn({ 'pt-6': index > 0 })}
-            />
-          )
-        })}
-      </div>
-
-      {seeAllLink ? (
-        <>
-          <Divider />
-          <NavMenuLink {...getLinkProps(seeAllLink)} className="px-4 py-6" />
-        </>
-      ) : null}
+        {seeAllLink ? (
+          <>
+            <li>
+              <Divider />
+            </li>
+            <NavMenuLink {...getLinkProps(seeAllLink)} className="px-4 py-6" />
+          </>
+        ) : null}
+      </ul>
     </NavigationMenu.Content>
   )
 }

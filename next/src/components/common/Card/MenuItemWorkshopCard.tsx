@@ -24,34 +24,36 @@ const MenuItemWorkshopCard = ({
   className,
 }: MenuItemWorkshopCardProps) => {
   return (
-    <CardBase variant="unstyled" className={cn(className)}>
-      <div className="flex items-start gap-4">
-        <div
-          // 1.25rem = 20px
-          className="rounded-[1.25rem] bg-background-secondary p-4"
-        >
-          <OloIcon name={iconName} className="size-6" />
-        </div>
-        <div
-          className={cn('flex flex-col items-start gap-2 self-stretch', {
-            'justify-center': !mostRecentWorkshopDate,
-          })}
-        >
-          <NavMenuLink href={linkHref} stretched>
-            <Typography
-              variant="h6"
-              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
-            >
-              {title}
-            </Typography>
-          </NavMenuLink>
+    <li className={cn(className)}>
+      <CardBase variant="unstyled">
+        <div className="flex items-start gap-4">
+          <div
+            // 1.25rem = 20px
+            className="rounded-[1.25rem] bg-background-secondary p-4"
+          >
+            <OloIcon name={iconName} className="size-6" />
+          </div>
+          <div
+            className={cn('flex flex-col items-start gap-2 self-stretch', {
+              'justify-center': !mostRecentWorkshopDate,
+            })}
+          >
+            <NavMenuLink href={linkHref} stretched>
+              <Typography
+                variant="h6"
+                className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
+              >
+                {title}
+              </Typography>
+            </NavMenuLink>
 
-          {mostRecentWorkshopDate ? (
-            <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
-          ) : null}
+            {mostRecentWorkshopDate ? (
+              <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
+            ) : null}
+          </div>
         </div>
-      </div>
-    </CardBase>
+      </CardBase>
+    </li>
   )
 }
 

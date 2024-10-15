@@ -27,26 +27,28 @@ const MenuItemBranchCard = ({
   const { t } = useTranslation()
 
   return (
-    <CardBase variant="unstyled" className={cn(className)}>
-      <div className="flex flex-col items-start gap-2">
-        <Typography
-          variant="h6"
-          className_onlyWhenNecessary="text-wrap lg:group-hover/CardBase:underline"
-        >
-          {title}
-        </Typography>
+    <li className={cn(className)}>
+      <CardBase variant="unstyled">
+        <div className="flex flex-col items-start gap-2">
+          <Typography
+            variant="h6"
+            className_onlyWhenNecessary="text-wrap lg:group-hover/CardBase:underline"
+          >
+            {title}
+          </Typography>
 
-        <div className="flex flex-col gap-4">
-          {address ? <Typography variant="p-default">{address}</Typography> : null}
+          <div className="flex flex-col gap-4">
+            {address ? <Typography variant="p-default">{address}</Typography> : null}
 
-          <NavMenuLink href={linkHref} stretched>
-            <Button variant="black-link" asLink endIcon={<Icon name="sipka-doprava" />}>
-              {t('navBar.branchCard.showDetails')}
-            </Button>
-          </NavMenuLink>
+            <NavMenuLink href={linkHref} stretched>
+              <Button variant="black-link" asLink endIcon={<Icon name="sipka-doprava" />}>
+                {t('navBar.branchCard.showDetails')}
+              </Button>
+            </NavMenuLink>
+          </div>
         </div>
-      </div>
-    </CardBase>
+      </CardBase>
+    </li>
   )
 }
 

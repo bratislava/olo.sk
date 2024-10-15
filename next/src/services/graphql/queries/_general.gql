@@ -36,7 +36,7 @@ query Navigation($locale: I18NLocaleCode!) {
   }
   topLevelPages: pages(filters: { parentPage: { id: { eq: null } } }, locale: $locale) {
     data {
-      ...PageChildPagesEntity
+      ...PageEntityChildPages
     }
   }
 }

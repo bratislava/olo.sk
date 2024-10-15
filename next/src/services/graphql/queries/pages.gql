@@ -3,7 +3,7 @@ fragment ChildPage on Page {
   slug
 }
 
-fragment PageChildPagesEntity on PageEntity {
+fragment PageEntityChildPages on PageEntity {
   __typename
   id
   attributes {

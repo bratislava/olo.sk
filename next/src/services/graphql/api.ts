@@ -18360,7 +18360,7 @@ export type OpeningTimeEntityFragment = {
 
 export type ChildPageFragment = { __typename?: 'Page'; title: string; slug: string }
 
-export type PageChildPagesEntityFragment = {
+export type PageEntityChildPagesFragment = {
   __typename: 'PageEntity'
   id?: string | null
   attributes?: {
@@ -34461,8 +34461,8 @@ export const ChildPageFragmentDoc = gql`
     slug
   }
 `
-export const PageChildPagesEntityFragmentDoc = gql`
-  fragment PageChildPagesEntity on PageEntity {
+export const PageEntityChildPagesFragmentDoc = gql`
+  fragment PageEntityChildPages on PageEntity {
     __typename
     id
     attributes {
@@ -34514,11 +34514,11 @@ export const ChildPagesCardsListSectionFragmentDoc = gql`
     backgroundColorChildPagesCardsList: backgroundColor
     parentPage: page {
       data {
-        ...PageChildPagesEntity
+        ...PageEntityChildPages
       }
     }
   }
-  ${PageChildPagesEntityFragmentDoc}
+  ${PageEntityChildPagesFragmentDoc}
 `
 export const IframeSectionFragmentDoc = gql`
   fragment IframeSection on ComponentSectionsIframeSection {
@@ -35239,12 +35239,12 @@ export const NavigationDocument = gql`
     }
     topLevelPages: pages(filters: { parentPage: { id: { eq: null } } }, locale: $locale) {
       data {
-        ...PageChildPagesEntity
+        ...PageEntityChildPages
       }
     }
   }
   ${NavigationEntityFragmentDoc}
-  ${PageChildPagesEntityFragmentDoc}
+  ${PageEntityChildPagesFragmentDoc}
 `
 export const GeneralDocument = gql`
   query General($locale: I18NLocaleCode!) {

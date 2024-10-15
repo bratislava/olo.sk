@@ -1,4 +1,4 @@
-import { PageChildPagesEntityFragment } from '@/src/services/graphql/api'
+import { PageEntityChildPagesFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
 
 const pagePathsMap: { [key: string]: { title: string; path: string } | undefined } = {}
@@ -9,7 +9,7 @@ export type PagePathsMap = typeof pagePathsMap
 // https://github.com/bratislava/marianum.sk/blob/02b806f8d16fe435100b60b17d6d70107de744fb/next/utils/parseNavigation.ts
 
 export const parseTopLevelPages = (
-  pages: PageChildPagesEntityFragment[],
+  pages: PageEntityChildPagesFragment[],
   parentPath: string = '',
 ) => {
   pages.forEach((page) => {

@@ -5,7 +5,6 @@ import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { ChildPagesCardsListSectionFragment } from '@/src/services/graphql/api'
 import { isDefined } from '@/src/utils/isDefined'
-import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 type ChildPagesCardsListSectionProps = {
   section: ChildPagesCardsListSectionFragment
@@ -13,7 +12,6 @@ type ChildPagesCardsListSectionProps = {
 
 const ChildPagesCardsListSection = ({ section }: ChildPagesCardsListSectionProps) => {
   const { t } = useTranslation()
-  const { getFullPath } = useGetFullPath()
 
   const {
     title,
@@ -38,7 +36,7 @@ const ChildPagesCardsListSection = ({ section }: ChildPagesCardsListSectionProps
                   <ListingCard
                     title={childPage?.attributes?.title ?? ''}
                     subtext="" // TODO: Add an attribute `subtext` to each page
-                    link={{ url: getFullPath(childPage), label: t('common.findOutMore') }}
+                    link={{ page: { data: childPage }, label: t('common.findOutMore') }}
                     className="h-full"
                   />
                 </li>

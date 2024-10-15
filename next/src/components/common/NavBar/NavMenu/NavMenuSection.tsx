@@ -28,7 +28,7 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
       {specialSectionType === 'latest_articles' ? (
         <NavMenuLatestArticlesList hasDividers={hasDividers} />
       ) : multicolumnBehaviour === 'split_equally' && colSpan > 1 && isDesktopBreakpoint ? (
-        <NavMenuTwoColumnList links={links} hasDividers={hasDividers} />
+        <NavMenuTwoColumnList links={links} />
       ) : (
         <NavMenuSingleColumnList links={links} hasDividers={hasDividers} />
       )}

@@ -60,6 +60,17 @@ fragment ColumnsSection on ComponentSectionsColumns {
   }
 }
 
+fragment ChildPagesCardsListSection on ComponentSectionsChildPagesCardsList {
+  title
+  text
+  backgroundColorChildPagesCardsList: backgroundColor
+  parentPage: page {
+    data {
+      ...PageEntityChildPages
+    }
+  }
+}
+
 fragment IframeSection on ComponentSectionsIframeSection {
   title
   text
@@ -450,6 +461,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsDocuments {
     ...DocumentsSection
+  }
+
+  ... on ComponentSectionsChildPagesCardsList {
+    ...ChildPagesCardsListSection
   }
 
   #  ... on ComponentSectionsFiles {

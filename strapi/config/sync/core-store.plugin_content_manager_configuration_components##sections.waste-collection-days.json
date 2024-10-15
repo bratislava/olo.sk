@@ -74,15 +74,24 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "visibleColumns": {
+        "edit": {
+          "label": "Viditeľné stĺpce",
+          "description": "Ak nie je vybraný žiaden stĺpec, zobrazia sa všetky",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "visibleColumns",
+          "searchable": false,
+          "sortable": false
+        }
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "text",
-        "anchorId"
-      ],
+      "list": ["id", "title", "text", "anchorId"],
       "edit": [
         [
           {
@@ -106,6 +115,12 @@
           {
             "name": "anchorId",
             "size": 6
+          }
+        ],
+        [
+          {
+            "name": "visibleColumns",
+            "size": 12
           }
         ]
       ]

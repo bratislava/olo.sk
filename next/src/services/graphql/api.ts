@@ -229,6 +229,7 @@ export type Branch = {
   barrierFreeInfo?: Maybe<Scalars['String']['output']>
   contacts?: Maybe<ContactRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  image?: Maybe<UploadFileEntityResponse>
   latitude?: Maybe<Scalars['Float']['output']>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<BranchRelationResponseCollection>
@@ -309,6 +310,7 @@ export type BranchInput = {
   address?: InputMaybe<Scalars['String']['input']>
   barrierFreeInfo?: InputMaybe<Scalars['String']['input']>
   contacts?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  image?: InputMaybe<Scalars['ID']['input']>
   latitude?: InputMaybe<Scalars['Float']['input']>
   longitude?: InputMaybe<Scalars['Float']['input']>
   mapIconName?: InputMaybe<Scalars['String']['input']>
@@ -727,6 +729,23 @@ export type ComponentItemsLinkInput = {
   service?: InputMaybe<Scalars['ID']['input']>
   url?: InputMaybe<Scalars['String']['input']>
   workshop?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type ComponentItemsLocationCardsItem = {
+  __typename?: 'ComponentItemsLocationCardsItem'
+  address?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  link: ComponentItemsLink
+  title: Scalars['String']['output']
+}
+
+export type ComponentItemsLocationCardsItemFiltersInput = {
+  address?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentItemsLocationCardsItemFiltersInput>>>
+  link?: InputMaybe<ComponentItemsLinkFiltersInput>
+  not?: InputMaybe<ComponentItemsLocationCardsItemFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentItemsLocationCardsItemFiltersInput>>>
+  title?: InputMaybe<StringFilterInput>
 }
 
 export type ComponentItemsMenuHeader = {
@@ -1155,6 +1174,7 @@ export type ComponentSectionsCardSliderCardsArgs = {
 export type ComponentSectionsCardsList = {
   __typename?: 'ComponentSectionsCardsList'
   cards?: Maybe<Array<Maybe<ComponentItemsCardsListItem>>>
+  columnCount?: Maybe<Scalars['Int']['output']>
   id: Scalars['ID']['output']
   linkLabelOverride?: Maybe<Scalars['String']['output']>
   text?: Maybe<Scalars['String']['output']>
@@ -1311,7 +1331,6 @@ export type ComponentSectionsFilesFilesArgs = {
 export type ComponentSectionsFormCtaBanner = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   bannerLink: ComponentItemsFormCtaBannerLink
-  bannerTitle: Scalars['String']['output']
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
@@ -1360,6 +1379,7 @@ export type ComponentSectionsIframeSection = {
   __typename?: 'ComponentSectionsIframeSection'
   id: Scalars['ID']['output']
   iframeTitle: Scalars['String']['output']
+  isFullScreen?: Maybe<Scalars['Boolean']['output']>
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
   url: Scalars['String']['output']
@@ -1547,6 +1567,35 @@ export type ComponentSectionsWasteCollectionDays = {
   wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
 }
 
+export type ComponentSectionsWasteCollectionPoints = {
+  __typename?: 'ComponentSectionsWasteCollectionPoints'
+  backgroundColor: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+  cards?: Maybe<Array<Maybe<ComponentItemsLocationCardsItem>>>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsWasteCollectionPointsCardsArgs = {
+  filters?: InputMaybe<ComponentItemsLocationCardsItemFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSectionsWasteRemovalCards = {
+  __typename?: 'ComponentSectionsWasteRemovalCards'
+  cards?: Maybe<Array<Maybe<ComponentItemsCardSliderCard>>>
+  id: Scalars['ID']['output']
+  text?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
+}
+
+export type ComponentSectionsWasteRemovalCardsCardsArgs = {
+  filters?: InputMaybe<ComponentItemsCardSliderCardFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
 export type ComponentSectionsWasteSortingCards = {
   __typename?: 'ComponentSectionsWasteSortingCards'
   banner?: Maybe<ComponentSectionsBanner>
@@ -1732,6 +1781,57 @@ export type ContactInput = {
 export type ContactRelationResponseCollection = {
   __typename?: 'ContactRelationResponseCollection'
   data: Array<ContactEntity>
+}
+
+export type ContentOwner = {
+  __typename?: 'ContentOwner'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  email?: Maybe<Scalars['String']['output']>
+  name: Scalars['String']['output']
+  pages?: Maybe<PageRelationResponseCollection>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type ContentOwnerPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ContentOwnerEntity = {
+  __typename?: 'ContentOwnerEntity'
+  attributes?: Maybe<ContentOwner>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type ContentOwnerEntityResponse = {
+  __typename?: 'ContentOwnerEntityResponse'
+  data?: Maybe<ContentOwnerEntity>
+}
+
+export type ContentOwnerEntityResponseCollection = {
+  __typename?: 'ContentOwnerEntityResponseCollection'
+  data: Array<ContentOwnerEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ContentOwnerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ContentOwnerFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  email?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  name?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ContentOwnerFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ContentOwnerFiltersInput>>>
+  pages?: InputMaybe<PageFiltersInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ContentOwnerInput = {
+  email?: InputMaybe<Scalars['String']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
 }
 
 export type DateTimeFilterInput = {
@@ -2013,9 +2113,22 @@ export enum Enum_Componentsectionsvacancies_Backgroundcolor {
   Tertiary = 'tertiary',
 }
 
+export enum Enum_Componentsectionswastecollectionpoints_Backgroundcolor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
 export enum Enum_Componentsharedmetasocial_Socialnetwork {
   Facebook = 'Facebook',
   Twitter = 'Twitter',
+}
+
+export enum Enum_Page_Contentstate {
+  ContentStateDone = 'contentState_done',
+  ContentStateFinalising = 'contentState_finalising',
+  ContentStateInProgress = 'contentState_inProgress',
+  ContentStateTodo = 'contentState_todo',
 }
 
 export enum Enum_Servicecategory_Categorycolor {
@@ -2327,6 +2440,7 @@ export type GenericMorph =
   | ComponentItemsHeroSmallTile
   | ComponentItemsHomepageServiceTile
   | ComponentItemsLink
+  | ComponentItemsLocationCardsItem
   | ComponentItemsMenuHeader
   | ComponentItemsOpeningHoursItem
   | ComponentItemsOpeningTimesItem
@@ -2374,6 +2488,8 @@ export type GenericMorph =
   | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
+  | ComponentSectionsWasteCollectionPoints
+  | ComponentSectionsWasteRemovalCards
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | ComponentSharedMetaSocial
@@ -2381,6 +2497,7 @@ export type GenericMorph =
   | ComponentSidebarsContactsSidebar
   | ComponentSidebarsEmptySidebar
   | Contact
+  | ContentOwner
   | Document
   | DocumentCategory
   | Faq
@@ -2598,6 +2715,7 @@ export type Mutation = {
   createBranch?: Maybe<BranchEntityResponse>
   createBranchLocalization?: Maybe<BranchEntityResponse>
   createContact?: Maybe<ContactEntityResponse>
+  createContentOwner?: Maybe<ContentOwnerEntityResponse>
   createDocument?: Maybe<DocumentEntityResponse>
   createDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   createDocumentCategoryLocalization?: Maybe<DocumentCategoryEntityResponse>
@@ -2631,6 +2749,7 @@ export type Mutation = {
   deleteArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   deleteBranch?: Maybe<BranchEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
+  deleteContentOwner?: Maybe<ContentOwnerEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
   deleteDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   deleteFaq?: Maybe<FaqEntityResponse>
@@ -2668,6 +2787,7 @@ export type Mutation = {
   updateArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   updateBranch?: Maybe<BranchEntityResponse>
   updateContact?: Maybe<ContactEntityResponse>
+  updateContentOwner?: Maybe<ContentOwnerEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
   updateDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   updateFaq?: Maybe<FaqEntityResponse>
@@ -2735,6 +2855,10 @@ export type MutationCreateBranchLocalizationArgs = {
 
 export type MutationCreateContactArgs = {
   data: ContactInput
+}
+
+export type MutationCreateContentOwnerArgs = {
+  data: ContentOwnerInput
 }
 
 export type MutationCreateDocumentArgs = {
@@ -2893,6 +3017,10 @@ export type MutationDeleteContactArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationDeleteContentOwnerArgs = {
+  id: Scalars['ID']['input']
+}
+
 export type MutationDeleteDocumentArgs = {
   id: Scalars['ID']['input']
 }
@@ -3033,6 +3161,11 @@ export type MutationUpdateBranchArgs = {
 
 export type MutationUpdateContactArgs = {
   data: ContactInput
+  id: Scalars['ID']['input']
+}
+
+export type MutationUpdateContentOwnerArgs = {
+  data: ContentOwnerInput
   id: Scalars['ID']['input']
 }
 
@@ -3310,6 +3443,8 @@ export type PageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>
   branch?: InputMaybe<BranchFiltersInput>
   childPages?: InputMaybe<PageFiltersInput>
+  contentOwner?: InputMaybe<ContentOwnerFiltersInput>
+  contentState?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -3339,6 +3474,8 @@ export type PageInput = {
   alias?: InputMaybe<Scalars['String']['input']>
   branch?: InputMaybe<Scalars['ID']['input']>
   childPages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  contentOwner?: InputMaybe<Scalars['ID']['input']>
+  contentState?: InputMaybe<Enum_Page_Contentstate>
   header?: InputMaybe<Array<Scalars['PageHeaderDynamicZoneInput']['input']>>
   parentPage?: InputMaybe<Scalars['ID']['input']>
   perex?: InputMaybe<Scalars['String']['input']>
@@ -3383,6 +3520,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
+  | ComponentSectionsWasteCollectionPoints
   | ComponentSectionsWasteSortingCards
   | ComponentSectionsWorkshops
   | Error
@@ -3422,6 +3560,8 @@ export type Query = {
   branches?: Maybe<BranchEntityResponseCollection>
   contact?: Maybe<ContactEntityResponse>
   contacts?: Maybe<ContactEntityResponseCollection>
+  contentOwner?: Maybe<ContentOwnerEntityResponse>
+  contentOwners?: Maybe<ContentOwnerEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
   documentCategories?: Maybe<DocumentCategoryEntityResponseCollection>
   documentCategory?: Maybe<DocumentCategoryEntityResponse>
@@ -3510,6 +3650,16 @@ export type QueryContactsArgs = {
   filters?: InputMaybe<ContactFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryContentOwnerArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type QueryContentOwnersArgs = {
+  filters?: InputMaybe<ContentOwnerFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
@@ -3883,6 +4033,7 @@ export type ServiceSectionsDynamicZone =
   | ComponentSectionsFaq
   | ComponentSectionsFormCtaBanner
   | ComponentSectionsRichtext
+  | ComponentSectionsWasteRemovalCards
   | Error
 
 export type StringFilterInput = {
@@ -5833,6 +5984,22 @@ export type GeneralQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -6435,6 +6602,22 @@ export type BranchMapHeaderSectionFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -6496,6 +6679,22 @@ type HeaderSections_ComponentHeaderSectionsBranchMap_Fragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     }>
@@ -6975,6 +7174,95 @@ export type ImageAndTextSectionFragment = {
   } | null
 }
 
+export type WasteCollectionPointsSectionFragment = {
+  __typename?: 'ComponentSectionsWasteCollectionPoints'
+  title?: string | null
+  text?: string | null
+  backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+  cardsWasteCollectionPointsCards?: Array<{
+    __typename?: 'ComponentItemsLocationCardsItem'
+    title: string
+    address?: string | null
+    link: {
+      __typename?: 'ComponentItemsLink'
+      label?: string | null
+      url?: string | null
+      page?: {
+        __typename?: 'PageEntityResponse'
+        data?: {
+          __typename: 'PageEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        } | null
+      } | null
+      article?: {
+        __typename?: 'ArticleEntityResponse'
+        data?: {
+          __typename: 'ArticleEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
+        } | null
+      } | null
+      branch?: {
+        __typename?: 'BranchEntityResponse'
+        data?: {
+          __typename: 'BranchEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Branch'
+            title: string
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+      document?: {
+        __typename?: 'DocumentEntityResponse'
+        data?: {
+          __typename: 'DocumentEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename: 'WorkshopEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              datetime: any
+            } | null> | null
+          } | null
+        } | null
+      } | null
+    }
+  } | null> | null
+}
+
 export type ColumnsSectionFragment = {
   __typename?: 'ComponentSectionsColumns'
   title?: string | null
@@ -7009,6 +7297,7 @@ export type IframeSectionFragment = {
   text?: string | null
   iframeTitle: string
   url: string
+  isFullScreen?: boolean | null
 }
 
 export type ImageAndTextOverlappedSectionFragment = {
@@ -7168,9 +7457,52 @@ export type BranchesSectionFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
+}
+
+export type WasteRemovalCardsSectionFragment = {
+  __typename?: 'ComponentSectionsWasteRemovalCards'
+  title?: string | null
+  text?: string | null
+  cardsWasteRemovalCardsSection?: Array<{
+    __typename?: 'ComponentItemsCardSliderCard'
+    title: string
+    text?: string | null
+    image: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    }
+  } | null> | null
 }
 
 export type WorkshopsSectionFragment = {
@@ -7238,13 +7570,6 @@ export type ColumnsListSectionFragment = {
       } | null
     } | null
   } | null> | null
-}
-
-export type TableSectionFragment = {
-  __typename?: 'ComponentSectionsTable'
-  title?: string | null
-  text?: string | null
-  anchorId?: string | null
 }
 
 export type WasteCollectionDaysFragment = {
@@ -8000,6 +8325,7 @@ export type CardsListSectionFragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -8861,7 +9187,6 @@ export type FormCtaBannerSectionFragment = {
   __typename?: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -8981,6 +9306,22 @@ export type ContactsSectionFragment = {
               } | null
             }>
           } | null
+          image?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -9064,6 +9405,22 @@ export type OpeningTimesSectionFragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -9533,6 +9890,22 @@ type PageSections_ComponentSectionsBranches_Fragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -9571,6 +9944,7 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -9832,6 +10206,22 @@ type PageSections_ComponentSectionsContacts_Fragment = {
                 secondaryPhone?: string | null
               } | null
             }>
+          } | null
+          image?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
           } | null
         } | null
       } | null
@@ -10407,6 +10797,7 @@ type PageSections_ComponentSectionsIframeSection_Fragment = {
   text?: string | null
   iframeTitle: string
   url: string
+  isFullScreen?: boolean | null
 }
 
 type PageSections_ComponentSectionsImageAndText_Fragment = {
@@ -10756,6 +11147,22 @@ type PageSections_ComponentSectionsOpeningTimes_Fragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -11219,12 +11626,7 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
   } | null
 }
 
-type PageSections_ComponentSectionsTable_Fragment = {
-  __typename: 'ComponentSectionsTable'
-  title?: string | null
-  text?: string | null
-  anchorId?: string | null
-}
+type PageSections_ComponentSectionsTable_Fragment = { __typename: 'ComponentSectionsTable' }
 
 type PageSections_ComponentSectionsVacancies_Fragment = {
   __typename: 'ComponentSectionsVacancies'
@@ -11240,6 +11642,95 @@ type PageSections_ComponentSectionsWasteCollectionDays_Fragment = {
   anchorId?: string | null
   wasteCollectionDaysType?: string | null
   visibleColumns?: any | null
+}
+
+type PageSections_ComponentSectionsWasteCollectionPoints_Fragment = {
+  __typename: 'ComponentSectionsWasteCollectionPoints'
+  title?: string | null
+  text?: string | null
+  backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+  cardsWasteCollectionPointsCards?: Array<{
+    __typename?: 'ComponentItemsLocationCardsItem'
+    title: string
+    address?: string | null
+    link: {
+      __typename?: 'ComponentItemsLink'
+      label?: string | null
+      url?: string | null
+      page?: {
+        __typename?: 'PageEntityResponse'
+        data?: {
+          __typename: 'PageEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+        } | null
+      } | null
+      article?: {
+        __typename?: 'ArticleEntityResponse'
+        data?: {
+          __typename: 'ArticleEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Article'
+            slug: string
+            title: string
+            isCurrentChangeInOpeningHours?: boolean | null
+          } | null
+        } | null
+      } | null
+      branch?: {
+        __typename?: 'BranchEntityResponse'
+        data?: {
+          __typename: 'BranchEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Branch'
+            title: string
+            page?: {
+              __typename?: 'PageEntityResponse'
+              data?: {
+                __typename: 'PageEntity'
+                id?: string | null
+                attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+              } | null
+            } | null
+          } | null
+        } | null
+      } | null
+      document?: {
+        __typename?: 'DocumentEntityResponse'
+        data?: {
+          __typename: 'DocumentEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+        } | null
+      } | null
+      service?: {
+        __typename?: 'ServiceEntityResponse'
+        data?: {
+          __typename: 'ServiceEntity'
+          id?: string | null
+          attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+        } | null
+      } | null
+      workshop?: {
+        __typename?: 'WorkshopEntityResponse'
+        data?: {
+          __typename: 'WorkshopEntity'
+          id?: string | null
+          attributes?: {
+            __typename?: 'Workshop'
+            title: string
+            slug: string
+            dates?: Array<{
+              __typename?: 'ComponentItemsWorkshopDate'
+              datetime: any
+            } | null> | null
+          } | null
+        } | null
+      } | null
+    }
+  } | null> | null
 }
 
 type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
@@ -11556,6 +12047,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsTable_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteCollectionDays_Fragment
+  | PageSections_ComponentSectionsWasteCollectionPoints_Fragment
   | PageSections_ComponentSectionsWasteSortingCards_Fragment
   | PageSections_ComponentSectionsWorkshops_Fragment
   | PageSections_Error_Fragment
@@ -11633,6 +12125,22 @@ export type ContactsSidebarFragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -11712,6 +12220,22 @@ type PageSidebars_ComponentSidebarsContactsSidebar_Fragment = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     } | null
@@ -12287,6 +12811,22 @@ export type BranchEntityFragment = {
         } | null
       }>
     } | null
+    image?: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    } | null
   } | null
 }
 
@@ -12350,6 +12890,22 @@ export type BranchesQuery = {
               secondaryPhone?: string | null
             } | null
           }>
+        } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
         } | null
       } | null
     }>
@@ -14440,6 +14996,22 @@ export type KoloHomepageSectionFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     }>
   } | null
@@ -15237,6 +15809,22 @@ export type HomepageEntityFragment = {
                   secondaryPhone?: string | null
                 } | null
               }>
+            } | null
+            image?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
             } | null
           } | null
         }>
@@ -16055,6 +16643,22 @@ export type HomepageQuery = {
                     } | null
                   }>
                 } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null
             }>
           } | null
@@ -16373,6 +16977,22 @@ export type MenuLinkFragment = {
             } | null
           }>
         } | null
+        image?: {
+          __typename?: 'UploadFileEntityResponse'
+          data?: {
+            __typename?: 'UploadFileEntity'
+            id?: string | null
+            attributes?: {
+              __typename?: 'UploadFile'
+              url: string
+              width?: number | null
+              height?: number | null
+              caption?: string | null
+              alternativeText?: string | null
+              name: string
+            } | null
+          } | null
+        } | null
       } | null
     } | null
   } | null
@@ -16474,6 +17094,22 @@ export type MenuSectionFragment = {
                 secondaryPhone?: string | null
               } | null
             }>
+          } | null
+          image?: {
+            __typename?: 'UploadFileEntityResponse'
+            data?: {
+              __typename?: 'UploadFileEntity'
+              id?: string | null
+              attributes?: {
+                __typename?: 'UploadFile'
+                url: string
+                width?: number | null
+                height?: number | null
+                caption?: string | null
+                alternativeText?: string | null
+                name: string
+              } | null
+            } | null
           } | null
         } | null
       } | null
@@ -16581,6 +17217,22 @@ export type MenuItemFragment = {
                   secondaryPhone?: string | null
                 } | null
               }>
+            } | null
+            image?: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
             } | null
           } | null
         } | null
@@ -16921,6 +17573,22 @@ export type MenuFragment = {
                     secondaryPhone?: string | null
                   } | null
                 }>
+              } | null
+              image?: {
+                __typename?: 'UploadFileEntityResponse'
+                data?: {
+                  __typename?: 'UploadFileEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'UploadFile'
+                    url: string
+                    width?: number | null
+                    height?: number | null
+                    caption?: string | null
+                    alternativeText?: string | null
+                    name: string
+                  } | null
+                } | null
               } | null
             } | null
           } | null
@@ -17272,6 +17940,22 @@ export type MenuEntityFragment = {
                       secondaryPhone?: string | null
                     } | null
                   }>
+                } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
                 } | null
               } | null
             } | null
@@ -17695,6 +18379,22 @@ export type PageEntityFragment = {
                       secondaryPhone?: string | null
                     } | null
                   }>
+                } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
                 } | null
               } | null
             }>
@@ -18318,6 +19018,22 @@ export type PageEntityFragment = {
                     } | null
                   }>
                 } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null
             }>
           } | null
@@ -18354,6 +19070,7 @@ export type PageEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -18612,6 +19329,22 @@ export type PageEntityFragment = {
                         secondaryPhone?: string | null
                       } | null
                     }>
+                  } | null
+                  image?: {
+                    __typename?: 'UploadFileEntityResponse'
+                    data?: {
+                      __typename?: 'UploadFileEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'UploadFile'
+                        url: string
+                        width?: number | null
+                        height?: number | null
+                        caption?: string | null
+                        alternativeText?: string | null
+                        name: string
+                      } | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -19225,6 +19958,7 @@ export type PageEntityFragment = {
           text?: string | null
           iframeTitle: string
           url: string
+          isFullScreen?: boolean | null
         }
       | {
           __typename: 'ComponentSectionsImageAndText'
@@ -19580,6 +20314,22 @@ export type PageEntityFragment = {
                       secondaryPhone?: string | null
                     } | null
                   }>
+                } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
                 } | null
               } | null
             } | null
@@ -20032,12 +20782,7 @@ export type PageEntityFragment = {
             } | null
           } | null
         }
-      | {
-          __typename: 'ComponentSectionsTable'
-          title?: string | null
-          text?: string | null
-          anchorId?: string | null
-        }
+      | { __typename: 'ComponentSectionsTable' }
       | {
           __typename: 'ComponentSectionsVacancies'
           title?: string | null
@@ -20051,6 +20796,94 @@ export type PageEntityFragment = {
           anchorId?: string | null
           wasteCollectionDaysType?: string | null
           visibleColumns?: any | null
+        }
+      | {
+          __typename: 'ComponentSectionsWasteCollectionPoints'
+          title?: string | null
+          text?: string | null
+          backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+          cardsWasteCollectionPointsCards?: Array<{
+            __typename?: 'ComponentItemsLocationCardsItem'
+            title: string
+            address?: string | null
+            link: {
+              __typename?: 'ComponentItemsLink'
+              label?: string | null
+              url?: string | null
+              page?: {
+                __typename?: 'PageEntityResponse'
+                data?: {
+                  __typename: 'PageEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                } | null
+              } | null
+              article?: {
+                __typename?: 'ArticleEntityResponse'
+                data?: {
+                  __typename: 'ArticleEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Article'
+                    slug: string
+                    title: string
+                    isCurrentChangeInOpeningHours?: boolean | null
+                  } | null
+                } | null
+              } | null
+              branch?: {
+                __typename?: 'BranchEntityResponse'
+                data?: {
+                  __typename: 'BranchEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Branch'
+                    title: string
+                    page?: {
+                      __typename?: 'PageEntityResponse'
+                      data?: {
+                        __typename: 'PageEntity'
+                        id?: string | null
+                        attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                      } | null
+                    } | null
+                  } | null
+                } | null
+              } | null
+              document?: {
+                __typename?: 'DocumentEntityResponse'
+                data?: {
+                  __typename: 'DocumentEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                } | null
+              } | null
+              service?: {
+                __typename?: 'ServiceEntityResponse'
+                data?: {
+                  __typename: 'ServiceEntity'
+                  id?: string | null
+                  attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                } | null
+              } | null
+              workshop?: {
+                __typename?: 'WorkshopEntityResponse'
+                data?: {
+                  __typename: 'WorkshopEntity'
+                  id?: string | null
+                  attributes?: {
+                    __typename?: 'Workshop'
+                    title: string
+                    slug: string
+                    dates?: Array<{
+                      __typename?: 'ComponentItemsWorkshopDate'
+                      datetime: any
+                    } | null> | null
+                  } | null
+                } | null
+              } | null
+            }
+          } | null> | null
         }
       | {
           __typename: 'ComponentSectionsWasteSortingCards'
@@ -20415,6 +21248,22 @@ export type PageEntityFragment = {
                     } | null
                   }>
                 } | null
+                image?: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                } | null
               } | null
             } | null
           } | null
@@ -20509,6 +21358,22 @@ export type PagesQuery = {
                           secondaryPhone?: string | null
                         } | null
                       }>
+                    } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
                     } | null
                   } | null
                 }>
@@ -21132,6 +21997,22 @@ export type PagesQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 }>
               } | null
@@ -21168,6 +22049,7 @@ export type PagesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -21426,6 +22308,22 @@ export type PagesQuery = {
                             secondaryPhone?: string | null
                           } | null
                         }>
+                      } | null
+                      image?: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            width?: number | null
+                            height?: number | null
+                            caption?: string | null
+                            alternativeText?: string | null
+                            name: string
+                          } | null
+                        } | null
                       } | null
                     } | null
                   } | null
@@ -22059,6 +22957,7 @@ export type PagesQuery = {
               text?: string | null
               iframeTitle: string
               url: string
+              isFullScreen?: boolean | null
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -22414,6 +23313,22 @@ export type PagesQuery = {
                           secondaryPhone?: string | null
                         } | null
                       }>
+                    } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -22866,12 +23781,7 @@ export type PagesQuery = {
                 } | null
               } | null
             }
-          | {
-              __typename: 'ComponentSectionsTable'
-              title?: string | null
-              text?: string | null
-              anchorId?: string | null
-            }
+          | { __typename: 'ComponentSectionsTable' }
           | {
               __typename: 'ComponentSectionsVacancies'
               title?: string | null
@@ -22885,6 +23795,94 @@ export type PagesQuery = {
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
               visibleColumns?: any | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionPoints'
+              title?: string | null
+              text?: string | null
+              backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+              cardsWasteCollectionPointsCards?: Array<{
+                __typename?: 'ComponentItemsLocationCardsItem'
+                title: string
+                address?: string | null
+                link: {
+                  __typename?: 'ComponentItemsLink'
+                  label?: string | null
+                  url?: string | null
+                  page?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename: 'PageEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  article?: {
+                    __typename?: 'ArticleEntityResponse'
+                    data?: {
+                      __typename: 'ArticleEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
+                    } | null
+                  } | null
+                  branch?: {
+                    __typename?: 'BranchEntityResponse'
+                    data?: {
+                      __typename: 'BranchEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Branch'
+                        title: string
+                        page?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename: 'PageEntity'
+                            id?: string | null
+                            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                  document?: {
+                    __typename?: 'DocumentEntityResponse'
+                    data?: {
+                      __typename: 'DocumentEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                    } | null
+                  } | null
+                  service?: {
+                    __typename?: 'ServiceEntityResponse'
+                    data?: {
+                      __typename: 'ServiceEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  workshop?: {
+                    __typename?: 'WorkshopEntityResponse'
+                    data?: {
+                      __typename: 'WorkshopEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          datetime: any
+                        } | null> | null
+                      } | null
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -23248,6 +24246,22 @@ export type PagesQuery = {
                           secondaryPhone?: string | null
                         } | null
                       }>
+                    } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -23364,6 +24378,22 @@ export type PageBySlugQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 }>
               } | null
@@ -23986,6 +25016,22 @@ export type PageBySlugQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 }>
               } | null
@@ -24022,6 +25068,7 @@ export type PageBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -24280,6 +25327,22 @@ export type PageBySlugQuery = {
                             secondaryPhone?: string | null
                           } | null
                         }>
+                      } | null
+                      image?: {
+                        __typename?: 'UploadFileEntityResponse'
+                        data?: {
+                          __typename?: 'UploadFileEntity'
+                          id?: string | null
+                          attributes?: {
+                            __typename?: 'UploadFile'
+                            url: string
+                            width?: number | null
+                            height?: number | null
+                            caption?: string | null
+                            alternativeText?: string | null
+                            name: string
+                          } | null
+                        } | null
                       } | null
                     } | null
                   } | null
@@ -24913,6 +25976,7 @@ export type PageBySlugQuery = {
               text?: string | null
               iframeTitle: string
               url: string
+              isFullScreen?: boolean | null
             }
           | {
               __typename: 'ComponentSectionsImageAndText'
@@ -25268,6 +26332,22 @@ export type PageBySlugQuery = {
                           secondaryPhone?: string | null
                         } | null
                       }>
+                    } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
                     } | null
                   } | null
                 } | null
@@ -25720,12 +26800,7 @@ export type PageBySlugQuery = {
                 } | null
               } | null
             }
-          | {
-              __typename: 'ComponentSectionsTable'
-              title?: string | null
-              text?: string | null
-              anchorId?: string | null
-            }
+          | { __typename: 'ComponentSectionsTable' }
           | {
               __typename: 'ComponentSectionsVacancies'
               title?: string | null
@@ -25739,6 +26814,94 @@ export type PageBySlugQuery = {
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
               visibleColumns?: any | null
+            }
+          | {
+              __typename: 'ComponentSectionsWasteCollectionPoints'
+              title?: string | null
+              text?: string | null
+              backgroundColorWasteCollectionPoints: Enum_Componentsectionswastecollectionpoints_Backgroundcolor
+              cardsWasteCollectionPointsCards?: Array<{
+                __typename?: 'ComponentItemsLocationCardsItem'
+                title: string
+                address?: string | null
+                link: {
+                  __typename?: 'ComponentItemsLink'
+                  label?: string | null
+                  url?: string | null
+                  page?: {
+                    __typename?: 'PageEntityResponse'
+                    data?: {
+                      __typename: 'PageEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  article?: {
+                    __typename?: 'ArticleEntityResponse'
+                    data?: {
+                      __typename: 'ArticleEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Article'
+                        slug: string
+                        title: string
+                        isCurrentChangeInOpeningHours?: boolean | null
+                      } | null
+                    } | null
+                  } | null
+                  branch?: {
+                    __typename?: 'BranchEntityResponse'
+                    data?: {
+                      __typename: 'BranchEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Branch'
+                        title: string
+                        page?: {
+                          __typename?: 'PageEntityResponse'
+                          data?: {
+                            __typename: 'PageEntity'
+                            id?: string | null
+                            attributes?: { __typename?: 'Page'; title: string; slug: string } | null
+                          } | null
+                        } | null
+                      } | null
+                    } | null
+                  } | null
+                  document?: {
+                    __typename?: 'DocumentEntityResponse'
+                    data?: {
+                      __typename: 'DocumentEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Document'; slug: string; title: string } | null
+                    } | null
+                  } | null
+                  service?: {
+                    __typename?: 'ServiceEntityResponse'
+                    data?: {
+                      __typename: 'ServiceEntity'
+                      id?: string | null
+                      attributes?: { __typename?: 'Service'; title: string; slug: string } | null
+                    } | null
+                  } | null
+                  workshop?: {
+                    __typename?: 'WorkshopEntityResponse'
+                    data?: {
+                      __typename: 'WorkshopEntity'
+                      id?: string | null
+                      attributes?: {
+                        __typename?: 'Workshop'
+                        title: string
+                        slug: string
+                        dates?: Array<{
+                          __typename?: 'ComponentItemsWorkshopDate'
+                          datetime: any
+                        } | null> | null
+                      } | null
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | {
               __typename: 'ComponentSectionsWasteSortingCards'
@@ -26103,6 +27266,22 @@ export type PageBySlugQuery = {
                         } | null
                       }>
                     } | null
+                    image?: {
+                      __typename?: 'UploadFileEntityResponse'
+                      data?: {
+                        __typename?: 'UploadFileEntity'
+                        id?: string | null
+                        attributes?: {
+                          __typename?: 'UploadFile'
+                          url: string
+                          width?: number | null
+                          height?: number | null
+                          caption?: string | null
+                          alternativeText?: string | null
+                          name: string
+                        } | null
+                      } | null
+                    } | null
                   } | null
                 } | null
               } | null
@@ -26197,6 +27376,7 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
   title?: string | null
   text?: string | null
   linkLabelOverride?: string | null
+  columnCount?: number | null
   cardsCardsList?: Array<{
     __typename?: 'ComponentItemsCardsListItem'
     title: string
@@ -26822,7 +28002,6 @@ type ServiceSections_ComponentSectionsFormCtaBanner_Fragment = {
   __typename: 'ComponentSectionsFormCtaBanner'
   title?: string | null
   text?: string | null
-  bannerTitle: string
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
     label?: string | null
@@ -26845,6 +28024,33 @@ type ServiceSections_ComponentSectionsRichtext_Fragment = {
   backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
 }
 
+type ServiceSections_ComponentSectionsWasteRemovalCards_Fragment = {
+  __typename: 'ComponentSectionsWasteRemovalCards'
+  title?: string | null
+  text?: string | null
+  cardsWasteRemovalCardsSection?: Array<{
+    __typename?: 'ComponentItemsCardSliderCard'
+    title: string
+    text?: string | null
+    image: {
+      __typename?: 'UploadFileEntityResponse'
+      data?: {
+        __typename?: 'UploadFileEntity'
+        id?: string | null
+        attributes?: {
+          __typename?: 'UploadFile'
+          url: string
+          width?: number | null
+          height?: number | null
+          caption?: string | null
+          alternativeText?: string | null
+          name: string
+        } | null
+      } | null
+    }
+  } | null> | null
+}
+
 type ServiceSections_Error_Fragment = { __typename: 'Error' }
 
 export type ServiceSectionsFragment =
@@ -26853,6 +28059,7 @@ export type ServiceSectionsFragment =
   | ServiceSections_ComponentSectionsFaq_Fragment
   | ServiceSections_ComponentSectionsFormCtaBanner_Fragment
   | ServiceSections_ComponentSectionsRichtext_Fragment
+  | ServiceSections_ComponentSectionsWasteRemovalCards_Fragment
   | ServiceSections_Error_Fragment
 
 export type ServiceCardEntityFragment = {
@@ -26993,6 +28200,7 @@ export type ServiceEntityFragment = {
           title?: string | null
           text?: string | null
           linkLabelOverride?: string | null
+          columnCount?: number | null
           cardsCardsList?: Array<{
             __typename?: 'ComponentItemsCardsListItem'
             title: string
@@ -27662,7 +28870,6 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsFormCtaBanner'
           title?: string | null
           text?: string | null
-          bannerTitle: string
           bannerLink: {
             __typename?: 'ComponentItemsFormCtaBannerLink'
             label?: string | null
@@ -27682,6 +28889,32 @@ export type ServiceEntityFragment = {
           __typename: 'ComponentSectionsRichtext'
           content?: string | null
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+        }
+      | {
+          __typename: 'ComponentSectionsWasteRemovalCards'
+          title?: string | null
+          text?: string | null
+          cardsWasteRemovalCardsSection?: Array<{
+            __typename?: 'ComponentItemsCardSliderCard'
+            title: string
+            text?: string | null
+            image: {
+              __typename?: 'UploadFileEntityResponse'
+              data?: {
+                __typename?: 'UploadFileEntity'
+                id?: string | null
+                attributes?: {
+                  __typename?: 'UploadFile'
+                  url: string
+                  width?: number | null
+                  height?: number | null
+                  caption?: string | null
+                  alternativeText?: string | null
+                  name: string
+                } | null
+              } | null
+            }
+          } | null> | null
         }
       | { __typename: 'Error' }
       | null
@@ -27747,6 +28980,7 @@ export type ServicesQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -28436,7 +29670,6 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -28456,6 +29689,32 @@ export type ServicesQuery = {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
+          | {
+              __typename: 'ComponentSectionsWasteRemovalCards'
+              title?: string | null
+              text?: string | null
+              cardsWasteRemovalCardsSection?: Array<{
+                __typename?: 'ComponentItemsCardSliderCard'
+                title: string
+                text?: string | null
+                image: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | { __typename: 'Error' }
           | null
@@ -28555,6 +29814,7 @@ export type ServiceBySlugQuery = {
               title?: string | null
               text?: string | null
               linkLabelOverride?: string | null
+              columnCount?: number | null
               cardsCardsList?: Array<{
                 __typename?: 'ComponentItemsCardsListItem'
                 title: string
@@ -29244,7 +30504,6 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsFormCtaBanner'
               title?: string | null
               text?: string | null
-              bannerTitle: string
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
                 label?: string | null
@@ -29264,6 +30523,32 @@ export type ServiceBySlugQuery = {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
+            }
+          | {
+              __typename: 'ComponentSectionsWasteRemovalCards'
+              title?: string | null
+              text?: string | null
+              cardsWasteRemovalCardsSection?: Array<{
+                __typename?: 'ComponentItemsCardSliderCard'
+                title: string
+                text?: string | null
+                image: {
+                  __typename?: 'UploadFileEntityResponse'
+                  data?: {
+                    __typename?: 'UploadFileEntity'
+                    id?: string | null
+                    attributes?: {
+                      __typename?: 'UploadFile'
+                      url: string
+                      width?: number | null
+                      height?: number | null
+                      caption?: string | null
+                      alternativeText?: string | null
+                      name: string
+                    } | null
+                  } | null
+                }
+              } | null> | null
             }
           | { __typename: 'Error' }
           | null
@@ -32304,12 +33589,18 @@ export const BranchEntityFragmentDoc = gql`
       publicTransportInfo
       parkingInfo
       barrierFreeInfo
+      image {
+        data {
+          ...UploadImageEntity
+        }
+      }
     }
   }
   ${BranchSlugEntityFragmentDoc}
   ${PageSlugEntityFragmentDoc}
   ${OpeningTimeEntityFragmentDoc}
   ${ContactEntityFragmentDoc}
+  ${UploadImageEntityFragmentDoc}
 `
 export const KoloHomepageSectionFragmentDoc = gql`
   fragment KoloHomepageSection on ComponentSectionsKoloHomepageSection {
@@ -32775,13 +34066,6 @@ export const ColumnsListSectionFragmentDoc = gql`
   }
   ${UploadImageEntityFragmentDoc}
 `
-export const TableSectionFragmentDoc = gql`
-  fragment TableSection on ComponentSectionsTable {
-    title
-    text
-    anchorId
-  }
-`
 export const WasteCollectionDaysFragmentDoc = gql`
   fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
     title
@@ -32933,6 +34217,7 @@ export const IframeSectionFragmentDoc = gql`
     text
     iframeTitle
     url
+    isFullScreen
   }
 `
 export const DividerSectionFragmentDoc = gql`
@@ -32945,6 +34230,7 @@ export const CardsListSectionFragmentDoc = gql`
     title
     text
     linkLabelOverride
+    columnCount
     cardsCardsList: cards {
       title
       subtext
@@ -33127,6 +34413,21 @@ export const OpeningTimesSectionFragmentDoc = gql`
   ${OpeningTimeEntityFragmentDoc}
   ${BranchEntityFragmentDoc}
 `
+export const WasteCollectionPointsSectionFragmentDoc = gql`
+  fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPoints {
+    title
+    text
+    backgroundColorWasteCollectionPoints: backgroundColor
+    cardsWasteCollectionPointsCards: cards {
+      title
+      address
+      link {
+        ...Link
+      }
+    }
+  }
+  ${LinkFragmentDoc}
+`
 export const BoardMembersSectionFragmentDoc = gql`
   fragment BoardMembersSection on ComponentSectionsBoardMembers {
     title
@@ -33193,9 +34494,6 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsColumnsList {
       ...ColumnsListSection
     }
-    ... on ComponentSectionsTable {
-      ...TableSection
-    }
     ... on ComponentSectionsWasteCollectionDays {
       ...WasteCollectionDays
     }
@@ -33244,6 +34542,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsOpeningTimes {
       ...OpeningTimesSection
     }
+    ... on ComponentSectionsWasteCollectionPoints {
+      ...WasteCollectionPointsSection
+    }
     ... on ComponentSectionsBoardMembers {
       ...BoardMembersSection
     }
@@ -33265,7 +34566,6 @@ export const PageSectionsFragmentDoc = gql`
   ${BranchesSectionFragmentDoc}
   ${WorkshopsSectionFragmentDoc}
   ${ColumnsListSectionFragmentDoc}
-  ${TableSectionFragmentDoc}
   ${WasteCollectionDaysFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}
@@ -33282,6 +34582,7 @@ export const PageSectionsFragmentDoc = gql`
   ${CardSliderSectionFragmentDoc}
   ${ContactsSectionFragmentDoc}
   ${OpeningTimesSectionFragmentDoc}
+  ${WasteCollectionPointsSectionFragmentDoc}
   ${BoardMembersSectionFragmentDoc}
   ${VacanciesSectionFragmentDoc}
   ${GlobalSearchSectionFragmentDoc}
@@ -33408,6 +34709,22 @@ export const ServiceSearchEntityFragmentDoc = gql`
   }
   ${ServiceCardEntityFragmentDoc}
 `
+export const WasteRemovalCardsSectionFragmentDoc = gql`
+  fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCards {
+    title
+    text
+    cardsWasteRemovalCardsSection: cards {
+      title
+      text
+      image {
+        data {
+          ...UploadImageEntity
+        }
+      }
+    }
+  }
+  ${UploadImageEntityFragmentDoc}
+`
 export const FormCtaBannerLinkFragmentDoc = gql`
   fragment FormCtaBannerLink on ComponentItemsFormCtaBannerLink {
     label
@@ -33425,7 +34742,6 @@ export const FormCtaBannerSectionFragmentDoc = gql`
   fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
     title
     text
-    bannerTitle
     bannerLink {
       ...FormCtaBannerLink
     }
@@ -33441,6 +34757,9 @@ export const ServiceSectionsFragmentDoc = gql`
     ... on ComponentSectionsDocuments {
       ...DocumentsSection
     }
+    ... on ComponentSectionsWasteRemovalCards {
+      ...WasteRemovalCardsSection
+    }
     ... on ComponentSectionsFaq {
       ...FaqSection
     }
@@ -33453,6 +34772,7 @@ export const ServiceSectionsFragmentDoc = gql`
   }
   ${CardsListSectionFragmentDoc}
   ${DocumentsSectionFragmentDoc}
+  ${WasteRemovalCardsSectionFragmentDoc}
   ${FaqSectionFragmentDoc}
   ${RichtextSectionFragmentDoc}
   ${FormCtaBannerSectionFragmentDoc}

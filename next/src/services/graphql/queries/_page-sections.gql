@@ -32,6 +32,19 @@ fragment ImageAndTextSection on ComponentSectionsImageAndText {
   }
 }
 
+fragment WasteCollectionPointsSection on ComponentSectionsWasteCollectionPoints {
+  title
+  text
+  backgroundColorWasteCollectionPoints: backgroundColor
+  cardsWasteCollectionPointsCards: cards {
+    title
+    address
+    link {
+      ...Link
+    }
+  }
+}
+
 fragment ColumnsSection on ComponentSectionsColumns {
   title
   text
@@ -52,6 +65,7 @@ fragment IframeSection on ComponentSectionsIframeSection {
   text
   iframeTitle
   url
+  isFullScreen
 }
 
 fragment ImageAndTextOverlappedSection on ComponentSectionsImageAndTextOverlapped {
@@ -75,6 +89,20 @@ fragment BranchesSection on ComponentSectionsBranches {
   branches {
     data {
       ...BranchEntity
+    }
+  }
+}
+
+fragment WasteRemovalCardsSection on ComponentSectionsWasteRemovalCards {
+  title
+  text
+  cardsWasteRemovalCardsSection: cards {
+    title
+    text
+    image {
+      data {
+        ...UploadImageEntity
+      }
     }
   }
 }
@@ -110,12 +138,6 @@ fragment ColumnsListSection on ComponentSectionsColumnsList {
     }
     content
   }
-}
-
-fragment TableSection on ComponentSectionsTable {
-  title
-  text
-  anchorId
 }
 
 fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
@@ -189,6 +211,7 @@ fragment CardsListSection on ComponentSectionsCardsList {
   title
   text
   linkLabelOverride
+  columnCount
   cardsCardsList: cards {
     title
     subtext
@@ -301,7 +324,6 @@ fragment CardSliderSection on ComponentSectionsCardSlider {
 fragment FormCtaBannerSection on ComponentSectionsFormCtaBanner {
   title
   text
-  bannerTitle
   bannerLink {
     ...FormCtaBannerLink
   }
@@ -424,10 +446,6 @@ fragment PageSections on PageSectionsDynamicZone {
     ...ColumnsListSection
   }
 
-  ... on ComponentSectionsTable {
-    ...TableSection
-  }
-
   ... on ComponentSectionsWasteCollectionDays {
     ...WasteCollectionDays
   }
@@ -494,6 +512,10 @@ fragment PageSections on PageSectionsDynamicZone {
 
   ... on ComponentSectionsOpeningTimes {
     ...OpeningTimesSection
+  }
+
+  ... on ComponentSectionsWasteCollectionPoints {
+    ...WasteCollectionPointsSection
   }
 
   ... on ComponentSectionsBoardMembers {

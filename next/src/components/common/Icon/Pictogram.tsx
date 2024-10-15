@@ -6,6 +6,7 @@ export const pictogramNameMap = {
   dokumenty: 'DocumentsPictogram',
   'transparentne-mesto': 'TransparentCityPictogram',
   'doprava-a-mapy': 'TransportationAndMaps',
+  'elektronicke-sluzby': 'DigitalServicesPictogram',
   // waste-types
   paper: 'WastePaperPictogram',
   plastic: 'WastePlasticPictogram',

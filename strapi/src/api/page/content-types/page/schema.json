@@ -107,7 +107,8 @@
         "sections.sorting-guide-accordions", 
         "sections.procurements", 
         "sections.global-search", 
-        "sections.workshops"
+        "sections.workshops",
+        "sections.waste-collection-points"
       ],
       "pluginOptions": {
         "i18n": {
@@ -143,6 +144,29 @@
         }
       },
       "component": "shared.seo"
+    },
+    "contentOwner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::content-owner.content-owner",
+      "private": true,
+      "inversedBy": "pages"
+    },
+    "contentState": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "contentState.todo",
+        "contentState.inProgress",
+        "contentState.finalising",
+        "contentState.done"
+      ],
+      "default": "contentState.todo",
+      "private": true
     }
   }
 }

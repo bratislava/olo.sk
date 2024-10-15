@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDebounceValue } from 'usehooks-ts'
 
 import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
@@ -17,6 +17,8 @@ import {
   meiliWasteCollectionDaysFetcher,
   wasteCollectionDaysDefaultFilters,
 } from '@/src/services/meili/fetchers/wasteCollectionDaysFetcher'
+import cn from '@/src/utils/cn'
+import { useHorizontalScrollFade } from '@/src/utils/useHorizontalScrollFade'
 import { useRoutePreservedState } from '@/src/utils/useRoutePreservedState'
 
 type Props = {
@@ -28,7 +30,7 @@ const Table = ({
   visibleColumns,
 }: {
   rows: WasteCollectionDayEntityFragment[]
-  visibleColumns: string[] | null | undefined // WasteCollectionDaysFragment['visibleColumns'] is unfortunately typed as any, but docs say it should be string[]
+  visibleColumns: string[] | null | undefined // WasteCollectionDaysFragment[ 'visibleColumns' ] is unfortunately typed as any, but docs say it should be string[]
 }) => {
   const allColumns = [
     'address',
@@ -62,40 +64,57 @@ const Table = ({
       )
     : allColumns.map((column) => headerAllColumns[column])
 
+  const tableWrapperRef = useRef<HTMLDivElement>(null)
+  const { scrollFadeClassNames } = useHorizontalScrollFade({ ref: tableWrapperRef })
+
   return (
-    <div className="overflow-hidden rounded-lg border border-border-default">
-      <table className="divide-y divide-border-default">
-        <thead className="bg-background-secondary">
-          <tr className="divide-x divide-border-default">
-            {headerColumns.map((column) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <th key={column} scope="col" className="px-6 py-4 text-left">
-                <Typography variant="p-default-bold">{column}</Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border-default">
-          {rows.map((row) => {
-            if (!row.attributes) return null
+    // TODO Table wrapping divs that enable horizontal scrolling are resued from RichtextTable - consider separating
+    <div className="lg:flex lg:justify-center">
+      {/* 80rem = 1280px (max-width of SectionContainer), 4rem = 64px (its horizontal padding) */}
+      <div className="grow lg:-mx-52 lg:max-w-[min(100vw-4rem,80rem-4rem)]">
+        <div className="relative">
+          <div
+            className={cn(
+              'overflow-x-auto rounded-lg border border-border-default',
+              scrollFadeClassNames,
+            )}
+            ref={tableWrapperRef}
+          >
+            <table className="w-full divide-y divide-border-default">
+              <thead className="bg-background-secondary">
+                <tr className="divide-x divide-border-default">
+                  {headerColumns.map((column) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <th key={column} scope="col" className="px-6 py-4 text-left">
+                      <Typography variant="p-default-bold">{column}</Typography>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border-default">
+                {rows.map((row) => {
+                  if (!row.attributes) return null
 
-            const cols = columns.map((column) => {
-              return column in row.attributes! ? row.attributes![column] : null
-            })
+                  const cols = columns.map((column) => {
+                    return column in row.attributes! ? row.attributes![column] : null
+                  })
 
-            return (
-              <tr key={row.id} className="divide-x divide-border-default">
-                {cols.map((cell, colIndex) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <td key={colIndex} className="px-6 py-4">
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+                  return (
+                    <tr key={row.id} className="divide-x divide-border-default">
+                      {cols.map((cell, colIndex) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <td key={colIndex} className="px-6 py-4">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

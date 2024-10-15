@@ -84,10 +84,18 @@ const Slider = ({ slides }: SliderProps) => {
           className="flex flex-col lg:h-full"
         >
           {url ? (
-            //  20.125rem = 322px
-            <div className="relative z-0 flex aspect-heroSliderMedia lg:absolute lg:bottom-0 lg:right-0 lg:h-[20.125rem]">
-              {/* Use object-contain to always show the whole illustration */}
-              <Image src={url} alt={alternativeText ?? ''} fill className="object-contain" />
+            <div
+              // 20.125rem = 322px
+              // Top positioning is used instead of bottom, to prevent the image from falling down on animating
+              className="relative z-0 flex aspect-heroSliderMedia lg:absolute lg:right-0 lg:top-32 lg:h-[20.125rem]"
+            >
+              <Image
+                src={url}
+                alt={alternativeText ?? ''}
+                fill
+                // Use object-contain to always show the whole illustration
+                className="object-contain"
+              />
             </div>
           ) : null}
           <div className="z-1 h-full px-4 py-6 lg:px-6 lg:py-8 lg:pb-0">

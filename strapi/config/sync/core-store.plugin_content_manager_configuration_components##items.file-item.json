@@ -22,7 +22,7 @@
       "title": {
         "edit": {
           "label": "Názov",
-          "description": "Ak je pole práznde, použije sa originálny názov súboru.",
+          "description": "Ak je pole prázdne, použije sa originálny názov súboru.",
           "placeholder": "",
           "visible": true,
           "editable": true

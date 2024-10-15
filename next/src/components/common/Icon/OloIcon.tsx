@@ -14,6 +14,9 @@ export const oloIconNameMap = {
   // size 24 px
   accessible: 'AccessibleIcon',
   'career-calendar': 'CareerCalendarIcon',
+  'career-place': 'CareerPlaceIcon',
+  'career-salary': 'CareerSalaryIcon',
+  'career-time': 'CareerTimeIcon',
   chat: 'ChatIcon',
   directions: 'DirectionsIcon',
   'live-help': 'LiveHelpIcon',
@@ -23,6 +26,18 @@ export const oloIconNameMap = {
   place: 'PlaceIcon',
   'directions-bus': 'BusIcon',
   'local-parking': 'ParkingIcon',
+  // size 24 px - Google Material symbols
+  'material-brush': 'MaterialBrushIconIcon',
+  'material-compost': 'MaterialCompostIcon',
+  'material-home-repair-service': 'MaterialHomeRepairServiceIcon',
+  'material-location-away': 'MaterialLocationAwayIcon',
+  'material-pedal-bike': 'MaterialPedalBikeIcon',
+  'material-recycling': 'MaterialRecyclingIcon',
+  'material-shopping-bag': 'MaterialShoppingBagIcon',
+  'material-smart-toy': 'MaterialSmartToyIcon',
+  'material-styler': 'MaterialStylerIcon',
+  'material-takeout-dining': 'MaterialTakeoutDiningIcon',
+  'material-tour': 'MaterialTourIcon',
   // size 32 px
   'social-media-facebook': 'FacebookIcon',
   'social-media-twitter': 'TwitterIcon',

@@ -184,7 +184,8 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo"
+          "barrierFreeInfo",
+          "image"
         ],
         "locales": [
           "sk"
@@ -231,7 +232,8 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo"
+          "barrierFreeInfo",
+          "image"
         ],
         "locales": [
           "sk"
@@ -256,7 +258,8 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo"
+          "barrierFreeInfo",
+          "image"
         ],
         "locales": [
           "sk"
@@ -325,6 +328,52 @@
           "primaryPhone",
           "secondaryPhone",
           "branches"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::content-owner.content-owner",
+      "properties": {
+        "fields": [
+          "name",
+          "email",
+          "pages"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::content-owner.content-owner",
+      "properties": {},
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::content-owner.content-owner",
+      "properties": {
+        "fields": [
+          "name",
+          "email",
+          "pages"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
+      "actionParameters": {},
+      "subject": "api::content-owner.content-owner",
+      "properties": {
+        "fields": [
+          "name",
+          "email",
+          "pages"
         ]
       },
       "conditions": []
@@ -1433,7 +1482,9 @@
           "seo.metaRobots",
           "seo.structuredData",
           "seo.metaViewport",
-          "seo.canonicalURL"
+          "seo.canonicalURL",
+          "contentOwner",
+          "contentState"
         ],
         "locales": [
           "sk"
@@ -1490,7 +1541,9 @@
           "seo.metaRobots",
           "seo.structuredData",
           "seo.metaViewport",
-          "seo.canonicalURL"
+          "seo.canonicalURL",
+          "contentOwner",
+          "contentState"
         ],
         "locales": [
           "sk"
@@ -1525,7 +1578,9 @@
           "seo.metaRobots",
           "seo.structuredData",
           "seo.metaViewport",
-          "seo.canonicalURL"
+          "seo.canonicalURL",
+          "contentOwner",
+          "contentState"
         ],
         "locales": [
           "sk"

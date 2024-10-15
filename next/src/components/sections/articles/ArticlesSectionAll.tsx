@@ -112,12 +112,18 @@ const ArticlesSectionAll = ({ section }: Props) => {
       {data?.estimatedTotalHits ? (
         <>
           <Divider />
+          {/* TODO separate this results count message and pagination into separate component */}
           <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
             <Typography>
-              {t('common.showingResults', {
-                current: data.hits.length,
-                total: data.estimatedTotalHits,
-              })}
+              {data.estimatedTotalHits < filters.pageSize
+                ? t('globalSearch.searchResultsFound.specific.singlepage', {
+                    count: data.estimatedTotalHits,
+                  })
+                : t('globalSearch.searchResultsFound.specific', {
+                    from: (filters.page - 1) * filters.pageSize + 1,
+                    to: Math.min(data.estimatedTotalHits, filters.page * filters.pageSize),
+                    all: data.estimatedTotalHits,
+                  })}
             </Typography>
             <PaginationWithInput
               currentPage={filters.page}

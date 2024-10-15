@@ -18,6 +18,7 @@ type Props = {
   className?: string
 }
 
+// TODO: add ended Procurements if needed
 const ProcurementsSection = ({ section, className }: Props) => {
   const { title, content, tendersPerPage } = section ?? {}
 
@@ -60,7 +61,9 @@ const ProcurementsSection = ({ section, className }: Props) => {
         <Typography>{errorRunning.message}</Typography>
       ) : (
         <div className="py-6">
-          <Typography variant="p-default">{t('procurements.actual')}</Typography>
+          <div className="pb-4">
+            <Typography variant="h4">{t('procurements.actual')}</Typography>
+          </div>
           <Table
             rows={getRows(procurementsRunning, locale, t('procurements.detail'))}
             visibleColumns={visibleColumns}

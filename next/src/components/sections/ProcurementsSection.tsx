@@ -1,7 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
-import { Link } from 'react-aria-components'
 
 import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
 import Table from '@/src/components/common/Table/Table'
@@ -10,72 +9,13 @@ import Markdown from '@/src/components/formatting/Markdown'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { ProcurementsSectionFragment } from '@/src/services/graphql/api'
-import { ProcurementObject } from '@/src/services/josephine/fetchProcurements'
 import { fetchProcurementsFromApiRunning } from '@/src/services/josephine/fetchProcurementsFromApi'
+import { allColumns, getRows, visibleColumns } from '@/src/services/josephine/utils'
 import cn from '@/src/utils/cn'
-import { formatPrice } from '@/src/utils/formatPrice'
 
 type Props = {
   section: ProcurementsSectionFragment | null | undefined
   className?: string
-}
-
-const getRows = (procurements: ProcurementObject, allColumns: string[], locale: string) => {
-  if (!procurements?.tenders || !allColumns) return []
-
-  return procurements?.tenders.map((tender) => {
-    const tenderAttributes = Object.fromEntries(
-      Object.entries(tender).filter((entry: [key: string, value: string]) =>
-        allColumns.includes(entry[0]),
-      ),
-    )
-
-    const detailLink = (
-      <Link className="underline" href={tender.tender_link} target="_blank">
-        Detail
-      </Link>
-    )
-    const tenderValue =
-      tender.tender_predicted_value && locale
-        ? formatPrice(Number(tender.tender_predicted_value), locale)
-        : ''
-
-    // find the right Date where tender is valid
-    const tenderRounds = tender.tender_rounds?.tender_round
-
-    console.log(
-      'tenderRounds',
-      ['2021-10-28 14:36:44', '2022-10-28 14:36:44'].sort(
-        (a, b) => new Date(b).getTime() - new Date(a).getTime(),
-      ),
-    )
-    const tenderFrom = Array.isArray(tenderRounds)
-      ? tenderRounds?.sort(
-          (tenderA, tenderB) =>
-            new Date(tenderB.tender_round_from).getTime() -
-            new Date(tenderA.tender_round_to).getTime(),
-        )[0]?.tender_round_from
-      : tenderRounds?.tender_round_from
-
-    // format date
-    const formattedTenderFrom = new Date(tenderFrom).toLocaleDateString('sk-SK', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-    })
-
-    return {
-      id: tender.tender_id,
-      attributes: {
-        ...tenderAttributes,
-        tender_link: detailLink,
-        tender_predicted_value: tenderValue,
-        tender_from: formattedTenderFrom,
-      },
-    }
-  })
 }
 
 const ProcurementsSection = ({ section, className }: Props) => {
@@ -97,41 +37,16 @@ const ProcurementsSection = ({ section, className }: Props) => {
     placeholderData: keepPreviousData,
   })
 
-  // TODO: add another param to fetch for ended procurements
-
-  const visibleColumns = [
-    'tender_name',
-    'tender_public_name',
-    'tender_number',
-    'tender_ted_number',
-    'tender_reference_number',
-    'tender_predicted_value',
-    'tender_from',
-    'tender_link',
-  ]
-
-  const allColumns = [
-    'tender_name', // nazov predmetu zakazky
-    'tender_public_name', // druh postupu
-    'tender_number', // cislo spisu VO
-    'tender_ted_number', // cislo vestnika EU
-    'tender_reference_number', // Číslo z vestníka VO,
-    'tender_predicted_value', // predpokladaná hodnota
-    'tender_from', // lehota na predkladanie ponuk (odtial: tender_round_from)
-    'tender_link', // link na detail
-  ]
-
-  // TODO translations
   // Type has to be specified to satisfy Typescript so "headerAllColumns[column]" can be used
   const headerAllColumns: { [key: string]: string } = {
-    tender_name: 'Názov predmetu zákazky',
-    tender_public_name: 'Druh postupu',
-    tender_number: 'Číslo spisu VO',
-    tender_ted_number: 'Číslo z vestníka EU',
-    tender_reference_number: 'Číslo z vestníka VO',
-    tender_predicted_value: 'Predpokladaná hodnota',
-    tender_from: 'Lehota na predkladanie ponúk',
-    tender_link: 'Detail zakázky',
+    tender_name: t('procurements.tenderName'),
+    tender_public_name: t('procurements.type'),
+    tender_number: t('procurements.voNumber'),
+    tender_ted_number: t('procurements.euNumber'),
+    tender_reference_number: t('procurements.voNumber2'),
+    tender_predicted_value: t('procurements.value'),
+    tender_from: t('procurements.deadline'),
+    tender_link: t('procurements.detail'),
   }
 
   return (
@@ -145,16 +60,16 @@ const ProcurementsSection = ({ section, className }: Props) => {
         <Typography>{errorRunning.message}</Typography>
       ) : (
         <div className="py-6">
+          <Typography variant="p-default">{t('procurements.actual')}</Typography>
           <Table
-            rows={getRows(procurementsRunning, allColumns, locale)}
+            rows={getRows(procurementsRunning, locale, t('procurements.detail'))}
             visibleColumns={visibleColumns}
             allColumns={allColumns}
             headerAllColumns={headerAllColumns}
           />
         </div>
       )}
-      <div className="flex justify-between">
-        <div>Zobrazujeme x z y</div>
+      <div className="flex justify-end">
         <PaginationWithInput
           currentPage={Number(currentPage)}
           totalCount={

@@ -1,5 +1,6 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
+import CardBase from '@/src/components/common/Card/CardBase'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
@@ -14,13 +15,16 @@ const NavMenuItem = ({ menuItem }: NavMenuItemProps) => {
   const { getLinkProps } = useGetLinkProps()
 
   return (
-    <NavigationMenu.Item>
-      <NavMenuTrigger label={menuItem.label} />
-      <NavMenuContent
-        sections={menuItem.sections}
-        seeAllLinkProps={getLinkProps(menuItem.seeAllLink)}
-      />
-    </NavigationMenu.Item>
+    <CardBase>
+      {/* TODO: Potentially have a FocusRingWrapper component for cases where using CardBase isn't an appropriate solution */}
+      <NavigationMenu.Item>
+        <NavMenuTrigger label={menuItem.label} />
+        <NavMenuContent
+          sections={menuItem.sections}
+          seeAllLinkProps={getLinkProps(menuItem.seeAllLink)}
+        />
+      </NavigationMenu.Item>
+    </CardBase>
   )
 }
 

@@ -22,8 +22,6 @@ const MobileNavBarHeader = ({ searchLink }: MobileNavBarHeaderProps) => {
   const { getLinkProps } = useGetLinkProps()
   const { isMobileMenuOpen, setMobileMenuOpen } = useNavMenuContext()
 
-  // TODO: Remove the black border which appears at the bottom of the header
-
   return (
     <SectionContainer classNameInner="py-4 bg-background-primary flex justify-between items-center h-mobileNavBar border-b border-border-default">
       <NavBarLogo className="text-action-background-default" />

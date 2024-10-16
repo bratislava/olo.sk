@@ -1,7 +1,8 @@
 {
   "collectionName": "components_sections_vacancies",
   "info": {
-    "displayName": "Pracovné pozície (placeholder)"
+    "displayName": "Pracovné pozície",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,7 +14,11 @@
     },
     "backgroundColor": {
       "type": "enumeration",
-      "enum": ["primary", "secondary", "tertiary"]
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
     }
   }
 }

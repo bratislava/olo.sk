@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_procurements",
+  "info": {
+    "displayName": "Verejné obstarávanie",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "tendersPerPage": {
+      "type": "integer"
+    }
+  }
+}

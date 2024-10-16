@@ -47,48 +47,6 @@
           "sortable": true
         }
       },
-      "identificationNumber": {
-        "edit": {
-          "label": "identificationNumber",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "identificationNumber",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "supplier": {
-        "edit": {
-          "label": "supplier",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "supplier",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "priceWithoutTax": {
-        "edit": {
-          "label": "priceWithoutTax",
-          "description": "",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "priceWithoutTax",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "documentCategory": {
         "edit": {
           "label": "Kategória",
@@ -130,6 +88,21 @@
           "label": "description",
           "searchable": true,
           "sortable": true
+        }
+      },
+      "tags": {
+        "edit": {
+          "label": "Tagy",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "tags",
+          "searchable": false,
+          "sortable": false
         }
       },
       "createdAt": {
@@ -209,6 +182,10 @@
           {
             "name": "documentCategory",
             "size": 6
+          },
+          {
+            "name": "tags",
+            "size": 6
           }
         ],
         [
@@ -219,22 +196,8 @@
         ],
         [
           {
-            "name": "identificationNumber",
-            "size": 6
-          },
-          {
-            "name": "supplier",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "priceWithoutTax",
-            "size": 6
-          },
-          {
             "name": "description",
-            "size": 6
+            "size": 12
           }
         ]
       ],

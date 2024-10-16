@@ -6,6 +6,7 @@ import { HydrationBoundary } from '@tanstack/react-query'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
+import PlausibleProvider from 'next-plausible'
 import { NextAdapter } from 'next-query-params'
 import { OverlayProvider } from 'react-aria'
 import { QueryParamProvider } from 'use-query-params'
@@ -27,29 +28,30 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         {/* look for CookieConsent component for 3rd party scripts you'd expect to find here */}
       </Head>
 
-      {/* <PlausibleProvider */}
-      {/*   domain={isProd ? 'bratislava.sk' : 'testing.bratislava.sk'} */}
-      {/*   taggedEvents */}
-      {/*   // uncomment for local testing, needs to be run with `yarn build && yarn start` */}
-      {/*   // trackLocalhost */}
-      {/* > */}
-      <BAQueryClientProvider>
-        <HydrationBoundary state={pageProps.dehydratedState}>
-          <QueryParamProvider adapter={NextAdapter}>
-            {/* <BAI18nProvider> */}
-            <OverlayProvider>
-              <NavMenuContextProvider>
-                {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
-                <div id="root">
-                  <Component {...pageProps} />
-                </div>
-              </NavMenuContextProvider>
-            </OverlayProvider>
-            {/* </BAI18nProvider> */}
-          </QueryParamProvider>
-        </HydrationBoundary>
-      </BAQueryClientProvider>
-      {/* </PlausibleProvider> */}
+      <PlausibleProvider
+        domain="testing.bratislava.sk"
+        taggedEvents
+        enabled
+        // uncomment for local testing, needs to be run with `yarn build && yarn start`
+        trackLocalhost
+      >
+        <BAQueryClientProvider>
+          <HydrationBoundary state={pageProps.dehydratedState}>
+            <QueryParamProvider adapter={NextAdapter}>
+              {/* <BAI18nProvider> */}
+              <OverlayProvider>
+                <NavMenuContextProvider>
+                  {/* This root div is used for locked body when mobile menu ist open, see MobileNavMenu component */}
+                  <div id="root">
+                    <Component {...pageProps} />
+                  </div>
+                </NavMenuContextProvider>
+              </OverlayProvider>
+              {/* </BAI18nProvider> */}
+            </QueryParamProvider>
+          </HydrationBoundary>
+        </BAQueryClientProvider>
+      </PlausibleProvider>
       {/* </NextIntlClientProvider> */}
     </>
   )

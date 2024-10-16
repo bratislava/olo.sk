@@ -32,9 +32,9 @@ export type FetchProcurementsProps = {
 const getTenderTo = (tenderRounds: TenderRoundElement | TenderRoundElement[]) =>
   Array.isArray(tenderRounds)
     ? tenderRounds?.sort(
-      (tenderA, tenderB) =>
-        new Date(tenderA.tender_round_to).getTime() - new Date(tenderB.tender_round_to).getTime(),
-    )[0]?.tender_round_to
+        (tenderA, tenderB) =>
+          new Date(tenderA.tender_round_to).getTime() - new Date(tenderB.tender_round_to).getTime(),
+      )[0]?.tender_round_to
     : tenderRounds?.tender_round_to
 
 /**

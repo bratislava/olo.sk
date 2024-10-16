@@ -53,7 +53,9 @@ const ProcurementsSection = ({ section, className }: Props) => {
   return (
     <SectionContainer background="primary" className={cn('py-6 lg:py-12', className)}>
       <SectionHeader title={title} />
-      <div className='pt-4'><Markdown content={content} /></div>
+      <div className="pt-4">
+        <Markdown content={content} />
+      </div>
 
       {pendingRunning ? (
         <Typography variant="p-default">{t('common.loading')}</Typography>

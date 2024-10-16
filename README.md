@@ -51,7 +51,7 @@ curl --request GET \
   --header 'Content-Type: application/json' | json_pp
 ```
 
-Then use "Default Admin API Key" for strapi in `strapi/.env.local` as `MEILISEARCH_ADMIN_API_KEY` and "Default Search API Key" in `next/.env.local` file as `NEXT_PUBLIC_MEILISEARCH_SEARCH_API_KEY`.
+Then use "Default Admin API Key" for strapi in local strapi instance in `http://localhost:1337/admin/plugins/meilisearch` as `Meilisearch API Key` and "Default Search API Key" in `next/.env.local` file as `NEXT_PUBLIC_MEILISEARCH_SEARCH_API_KEY`.
 
 ## Stay in touch
 [https://inovacie.bratislava.sk/](https://inovacie.bratislava.sk/)

@@ -122,8 +122,8 @@
       },
       "navigateToLink": {
         "edit": {
-          "label": "navigateToLink",
-          "description": "",
+          "label": "Odkaz na navigáciu",
+          "description": "Napríklad Google Mapy",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -192,7 +192,7 @@
       },
       "image": {
         "edit": {
-          "label": "image",
+          "label": "Ilustračný obrázok",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -264,12 +264,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "openingTimes",
-        "navigateToLink"
-      ],
       "edit": [
         [
           {
@@ -339,6 +333,12 @@
             "size": 6
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "openingTimes",
+        "navigateToLink"
       ]
     },
     "uid": "api::branch.branch"

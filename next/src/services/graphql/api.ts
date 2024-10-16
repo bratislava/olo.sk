@@ -1767,6 +1767,57 @@ export type ContactRelationResponseCollection = {
   data: Array<ContactEntity>
 }
 
+export type ContentOwner = {
+  __typename?: 'ContentOwner'
+  createdAt?: Maybe<Scalars['DateTime']['output']>
+  email?: Maybe<Scalars['String']['output']>
+  name: Scalars['String']['output']
+  pages?: Maybe<PageRelationResponseCollection>
+  updatedAt?: Maybe<Scalars['DateTime']['output']>
+}
+
+export type ContentOwnerPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ContentOwnerEntity = {
+  __typename?: 'ContentOwnerEntity'
+  attributes?: Maybe<ContentOwner>
+  id?: Maybe<Scalars['ID']['output']>
+}
+
+export type ContentOwnerEntityResponse = {
+  __typename?: 'ContentOwnerEntityResponse'
+  data?: Maybe<ContentOwnerEntity>
+}
+
+export type ContentOwnerEntityResponseCollection = {
+  __typename?: 'ContentOwnerEntityResponseCollection'
+  data: Array<ContentOwnerEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ContentOwnerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ContentOwnerFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  email?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  name?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ContentOwnerFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ContentOwnerFiltersInput>>>
+  pages?: InputMaybe<PageFiltersInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ContentOwnerInput = {
+  email?: InputMaybe<Scalars['String']['input']>
+  name?: InputMaybe<Scalars['String']['input']>
+  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+}
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>
@@ -2055,6 +2106,13 @@ export enum Enum_Componentsectionswastecollectionpoints_Backgroundcolor {
 export enum Enum_Componentsharedmetasocial_Socialnetwork {
   Facebook = 'Facebook',
   Twitter = 'Twitter',
+}
+
+export enum Enum_Page_Contentstate {
+  ContentStateDone = 'contentState_done',
+  ContentStateFinalising = 'contentState_finalising',
+  ContentStateInProgress = 'contentState_inProgress',
+  ContentStateTodo = 'contentState_todo',
 }
 
 export enum Enum_Servicecategory_Categorycolor {
@@ -2421,6 +2479,7 @@ export type GenericMorph =
   | ComponentSidebarsContactsSidebar
   | ComponentSidebarsEmptySidebar
   | Contact
+  | ContentOwner
   | Document
   | DocumentCategory
   | Faq
@@ -2638,6 +2697,7 @@ export type Mutation = {
   createBranch?: Maybe<BranchEntityResponse>
   createBranchLocalization?: Maybe<BranchEntityResponse>
   createContact?: Maybe<ContactEntityResponse>
+  createContentOwner?: Maybe<ContentOwnerEntityResponse>
   createDocument?: Maybe<DocumentEntityResponse>
   createDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   createDocumentCategoryLocalization?: Maybe<DocumentCategoryEntityResponse>
@@ -2671,6 +2731,7 @@ export type Mutation = {
   deleteArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   deleteBranch?: Maybe<BranchEntityResponse>
   deleteContact?: Maybe<ContactEntityResponse>
+  deleteContentOwner?: Maybe<ContentOwnerEntityResponse>
   deleteDocument?: Maybe<DocumentEntityResponse>
   deleteDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   deleteFaq?: Maybe<FaqEntityResponse>
@@ -2708,6 +2769,7 @@ export type Mutation = {
   updateArticleCategory?: Maybe<ArticleCategoryEntityResponse>
   updateBranch?: Maybe<BranchEntityResponse>
   updateContact?: Maybe<ContactEntityResponse>
+  updateContentOwner?: Maybe<ContentOwnerEntityResponse>
   updateDocument?: Maybe<DocumentEntityResponse>
   updateDocumentCategory?: Maybe<DocumentCategoryEntityResponse>
   updateFaq?: Maybe<FaqEntityResponse>
@@ -2775,6 +2837,10 @@ export type MutationCreateBranchLocalizationArgs = {
 
 export type MutationCreateContactArgs = {
   data: ContactInput
+}
+
+export type MutationCreateContentOwnerArgs = {
+  data: ContentOwnerInput
 }
 
 export type MutationCreateDocumentArgs = {
@@ -2933,6 +2999,10 @@ export type MutationDeleteContactArgs = {
   id: Scalars['ID']['input']
 }
 
+export type MutationDeleteContentOwnerArgs = {
+  id: Scalars['ID']['input']
+}
+
 export type MutationDeleteDocumentArgs = {
   id: Scalars['ID']['input']
 }
@@ -3073,6 +3143,11 @@ export type MutationUpdateBranchArgs = {
 
 export type MutationUpdateContactArgs = {
   data: ContactInput
+  id: Scalars['ID']['input']
+}
+
+export type MutationUpdateContentOwnerArgs = {
+  data: ContentOwnerInput
   id: Scalars['ID']['input']
 }
 
@@ -3350,6 +3425,8 @@ export type PageFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>
   branch?: InputMaybe<BranchFiltersInput>
   childPages?: InputMaybe<PageFiltersInput>
+  contentOwner?: InputMaybe<ContentOwnerFiltersInput>
+  contentState?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
@@ -3379,6 +3456,8 @@ export type PageInput = {
   alias?: InputMaybe<Scalars['String']['input']>
   branch?: InputMaybe<Scalars['ID']['input']>
   childPages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  contentOwner?: InputMaybe<Scalars['ID']['input']>
+  contentState?: InputMaybe<Enum_Page_Contentstate>
   header?: InputMaybe<Array<Scalars['PageHeaderDynamicZoneInput']['input']>>
   parentPage?: InputMaybe<Scalars['ID']['input']>
   perex?: InputMaybe<Scalars['String']['input']>
@@ -3461,6 +3540,8 @@ export type Query = {
   branches?: Maybe<BranchEntityResponseCollection>
   contact?: Maybe<ContactEntityResponse>
   contacts?: Maybe<ContactEntityResponseCollection>
+  contentOwner?: Maybe<ContentOwnerEntityResponse>
+  contentOwners?: Maybe<ContentOwnerEntityResponseCollection>
   document?: Maybe<DocumentEntityResponse>
   documentCategories?: Maybe<DocumentCategoryEntityResponseCollection>
   documentCategory?: Maybe<DocumentCategoryEntityResponse>
@@ -3549,6 +3630,16 @@ export type QueryContactsArgs = {
   filters?: InputMaybe<ContactFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type QueryContentOwnerArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>
+}
+
+export type QueryContentOwnersArgs = {
+  filters?: InputMaybe<ContentOwnerFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 

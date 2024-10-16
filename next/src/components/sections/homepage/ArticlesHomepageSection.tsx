@@ -74,6 +74,7 @@ const ArticlesHomepageSection = ({ section }: Props) => {
                   linkHref={getFullPath(article) ?? '#'}
                   imgSrc={coverMedia?.data?.attributes?.url}
                   tagText={articleCategory?.data?.attributes?.title}
+                  className="h-full"
                 />
               )
             })

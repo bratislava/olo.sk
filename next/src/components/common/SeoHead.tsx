@@ -44,9 +44,9 @@ const SeoHead = ({
 
   const fullPath = getFullPath(entity)
   const fullPathWithDomain = homepage
-    ? `https://testing.bratislava.sk/`
+    ? `https://olo.sk/`
     : fullPath
-      ? `https://testing.bratislava.sk${fullPath}`
+      ? `https://olo.sk${fullPath}`
       : null
 
   return (

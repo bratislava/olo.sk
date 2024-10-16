@@ -147,12 +147,12 @@ const SectionContent = ({ section }: { section: Section }) => {
 
 const Sections = ({ sections }: Props) => {
   return (
-    <>
+    <div className="w-full">
       {sections.map((section, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <SectionContent key={index} section={section} />
       ))}
-    </>
+    </div>
   )
 }
 

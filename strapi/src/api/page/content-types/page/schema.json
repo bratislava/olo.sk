@@ -121,10 +121,7 @@
         }
       },
       "type": "dynamiczone",
-      "components": [
-        "sidebars.empty-sidebar",
-        "sidebars.contacts-sidebar"
-      ],
+      "components": ["sidebars.empty-sidebar", "sidebars.contacts-sidebar"],
       "max": 1
     },
     "branch": {
@@ -142,29 +139,6 @@
         }
       },
       "component": "shared.seo"
-    },
-    "contentOwner": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::content-owner.content-owner",
-      "private": true,
-      "inversedBy": "pages"
-    },
-    "contentState": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "enumeration",
-      "enum": [
-        "contentState.todo",
-        "contentState.inProgress",
-        "contentState.finalising",
-        "contentState.done"
-      ],
-      "default": "contentState.todo",
-      "private": true
     }
   }
 }

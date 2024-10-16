@@ -68,16 +68,14 @@ export const meiliServicesFetcher = (filters: ServicesFilters) => {
                   }
                 : undefined,
             serviceCategories: {
-              data: hit.serviceCategories?.length
-                ? hit.serviceCategories.map(
-                    (category: ServiceCategoryEntityFragment['attributes']) =>
-                      category
-                        ? {
-                            attributes: { title: category.title },
-                          }
-                        : undefined,
-                  )
-                : undefined,
+              data: hit.serviceCategories.map(
+                (category: ServiceCategoryEntityFragment['attributes']) =>
+                  category
+                    ? {
+                        attributes: { title: category.title },
+                      }
+                    : undefined,
+              ),
             },
           },
         }

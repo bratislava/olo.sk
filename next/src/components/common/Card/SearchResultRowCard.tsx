@@ -40,7 +40,7 @@ const SearchResultRowCard = ({
     pages: 'transparentne-mesto',
     articles: undefined,
     documents: 'dokumenty',
-    services: 'elektronicke-sluzby',
+    services: undefined,
   }
 
   const pictogramName = pictogramNameBySearchOption[type]

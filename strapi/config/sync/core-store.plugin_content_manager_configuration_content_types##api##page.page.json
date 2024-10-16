@@ -176,35 +176,6 @@
           "sortable": false
         }
       },
-      "contentOwner": {
-        "edit": {
-          "label": "Za obsah zodpovedá",
-          "description": "Slúži iba pre internú evidenciu",
-          "placeholder": "",
-          "visible": true,
-          "editable": true,
-          "mainField": "name"
-        },
-        "list": {
-          "label": "contentOwner",
-          "searchable": true,
-          "sortable": true
-        }
-      },
-      "contentState": {
-        "edit": {
-          "label": "Stav obsahu",
-          "description": "Slúži iba pre internú evidenciu",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "contentState",
-          "searchable": true,
-          "sortable": true
-        }
-      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -322,16 +293,6 @@
           {
             "name": "seo",
             "size": 12
-          }
-        ],
-        [
-          {
-            "name": "contentOwner",
-            "size": 6
-          },
-          {
-            "name": "contentState",
-            "size": 6
           }
         ]
       ],

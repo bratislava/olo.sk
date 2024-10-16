@@ -184,8 +184,7 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo",
-          "image"
+          "barrierFreeInfo"
         ],
         "locales": [
           "sk"
@@ -232,8 +231,7 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo",
-          "image"
+          "barrierFreeInfo"
         ],
         "locales": [
           "sk"
@@ -258,8 +256,7 @@
           "mapIconName",
           "publicTransportInfo",
           "parkingInfo",
-          "barrierFreeInfo",
-          "image"
+          "barrierFreeInfo"
         ],
         "locales": [
           "sk"
@@ -328,52 +325,6 @@
           "primaryPhone",
           "secondaryPhone",
           "branches"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.create",
-      "actionParameters": {},
-      "subject": "api::content-owner.content-owner",
-      "properties": {
-        "fields": [
-          "name",
-          "email",
-          "pages"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.delete",
-      "actionParameters": {},
-      "subject": "api::content-owner.content-owner",
-      "properties": {},
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.read",
-      "actionParameters": {},
-      "subject": "api::content-owner.content-owner",
-      "properties": {
-        "fields": [
-          "name",
-          "email",
-          "pages"
-        ]
-      },
-      "conditions": []
-    },
-    {
-      "action": "plugin::content-manager.explorer.update",
-      "actionParameters": {},
-      "subject": "api::content-owner.content-owner",
-      "properties": {
-        "fields": [
-          "name",
-          "email",
-          "pages"
         ]
       },
       "conditions": []
@@ -1342,7 +1293,54 @@
       "conditions": []
     },
     {
+      "action": "plugin::content-manager.explorer.create",
+      "actionParameters": {},
+      "subject": "api::navigation.navigation",
+      "properties": {
+        "fields": [
+          "articlesParentPage",
+          "documentsParentPage",
+          "faqCategoriesParentPage",
+          "servicesParentPage",
+          "workshopsParentPage"
+        ],
+        "locales": [
+          "sk"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.delete",
+      "actionParameters": {},
+      "subject": "api::navigation.navigation",
+      "properties": {
+        "locales": [
+          "sk"
+        ]
+      },
+      "conditions": []
+    },
+    {
       "action": "plugin::content-manager.explorer.read",
+      "actionParameters": {},
+      "subject": "api::navigation.navigation",
+      "properties": {
+        "fields": [
+          "articlesParentPage",
+          "documentsParentPage",
+          "faqCategoriesParentPage",
+          "servicesParentPage",
+          "workshopsParentPage"
+        ],
+        "locales": [
+          "sk"
+        ]
+      },
+      "conditions": []
+    },
+    {
+      "action": "plugin::content-manager.explorer.update",
       "actionParameters": {},
       "subject": "api::navigation.navigation",
       "properties": {
@@ -1435,9 +1433,7 @@
           "seo.metaRobots",
           "seo.structuredData",
           "seo.metaViewport",
-          "seo.canonicalURL",
-          "contentOwner",
-          "contentState"
+          "seo.canonicalURL"
         ],
         "locales": [
           "sk"
@@ -1494,9 +1490,7 @@
           "seo.metaRobots",
           "seo.structuredData",
           "seo.metaViewport",
-          "seo.canonicalURL",
-          "contentOwner",
-          "contentState"
+          "seo.canonicalURL"
         ],
         "locales": [
           "sk"
@@ -1531,9 +1525,7 @@
           "seo.metaRobots",
           "seo.structuredData",
           "seo.metaViewport",
-          "seo.canonicalURL",
-          "contentOwner",
-          "contentState"
+          "seo.canonicalURL"
         ],
         "locales": [
           "sk"
@@ -1917,13 +1909,6 @@
           "dates.datetime"
         ]
       },
-      "conditions": []
-    },
-    {
-      "action": "plugin::i18n.locale.read",
-      "actionParameters": {},
-      "subject": null,
-      "properties": {},
       "conditions": []
     },
     {

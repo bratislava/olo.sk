@@ -1,8 +1,10 @@
 import NextLink from 'next/link'
-import { usePlausible } from 'next-plausible'
+// import { usePlausible } from 'next-plausible'
 import { ComponentProps, forwardRef } from 'react'
 
 import cn from '@/src/utils/cn'
+
+// Component copied from bratislava.sk repository with disabled plausible (for now)
 
 export type LinkPlausibleProps = { id: string }
 
@@ -16,15 +18,12 @@ export type LinkProps = Omit<ComponentProps<typeof NextLink>, 'as' | 'passHref'>
   stretched?: boolean
 }
 
-/*
- * Based on bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/components/common/MLink/MLink.tsx
- */
 const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     { href, children, className, variant = 'unstyled', stretched, plausibleProps, ...rest },
     ref,
   ) => {
-    const plausible = usePlausible()
+    // const plausible = usePlausible()
 
     const styles = cn(
       'underline-offset-2',
@@ -46,7 +45,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         ref={ref}
         {...rest}
         className={styles}
-        onClick={() => plausibleProps && plausible('Link click', { props: plausibleProps })}
+        // onClick={() => plausibleProps && plausible('Link click', { props: plausibleProps })}
       >
         {children}
       </NextLink>

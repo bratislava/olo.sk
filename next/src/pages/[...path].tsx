@@ -194,7 +194,7 @@ const Page = ({ entity: page, general, navigation }: PageProps) => {
         <div
           className={cn({
             // classes copied from SectionContainer
-            'mx-auto flex max-w-screen-xl flex-col items-start md:flex-row': sidebar,
+            'mx-auto flex max-w-screen-xl flex-col items-start md:flex-row lg:gap-8': sidebar,
           })}
         >
           <Sections sections={sections?.filter(isDefined) ?? []} />

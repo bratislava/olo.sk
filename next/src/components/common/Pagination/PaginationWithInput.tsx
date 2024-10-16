@@ -45,7 +45,7 @@ const PaginationWithInput = ({
         <div className="flex items-center justify-center gap-2">
           <Input
             className="items-center justify-center"
-            classNameInner={cn('w-[3.75rem] text-center', {
+            classNameInner={cn('w-15 text-center', {
               // widen input field slightly for more than 3 digits
               'w-[4.37rem]': inputValue.toString().length > 3,
             })}

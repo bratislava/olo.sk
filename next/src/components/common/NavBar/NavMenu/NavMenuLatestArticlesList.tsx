@@ -19,16 +19,14 @@ const NavMenuLatestArticlesList = ({ hasDividers, className }: NavMenuLatestArti
   const locale = i18n.language
 
   const { getFullPath } = useGetFullPath()
-
   const { data: articlesData } = useQuery(latestArticlesQuery(LATEST_ARTICLES_COUNT, locale))
-
   // eslint-disable-next-line unicorn/no-array-callback-reference
   const filteredArticles = articlesData?.articles?.data.filter(isDefined) ?? []
 
   return (
     <ul
       className={cn(
-        'flex flex-col gap-5',
+        'flex flex-col gap-4 lg:gap-5',
         { 'divide-y divide-border-default': hasDividers },
         className,
       )}
@@ -43,10 +41,9 @@ const NavMenuLatestArticlesList = ({ hasDividers, className }: NavMenuLatestArti
               key={article.id}
               title={title}
               linkHref={getFullPath(article) ?? '#'}
-              // TODO: Do we want to provide a default image here?
               imgSrc={coverMedia?.data?.attributes?.url}
               tagText={articleCategory?.data?.attributes?.title ?? ''}
-              className={cn({ 'pt-5': index !== 0 })}
+              className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
             />
           )
         })

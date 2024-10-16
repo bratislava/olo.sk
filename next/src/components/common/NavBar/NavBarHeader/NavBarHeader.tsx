@@ -16,13 +16,12 @@ type NavBarHeaderProps = {
 }
 
 const NavBarHeader = ({ className }: NavBarHeaderProps) => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const locale = i18n.language
 
   const { currentWeekMessage } = useCurrentWeekParity()
   const { getLinkProps } = useGetLinkProps()
   const { data } = useQuery(generalQuery(locale))
-  const { t } = useTranslation()
 
   const { contactsLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
 
@@ -35,17 +34,17 @@ const NavBarHeader = ({ className }: NavBarHeaderProps) => {
           <Typography variant="p-small">{currentWeekMessage}</Typography>
         </div>
 
-        <Button
-          href={getLinkProps(contactsLink).href}
-          asLink
-          hasLinkIcon={false}
-          aria-label={t('navBar.contactsButton')}
-          variant="icon-wrapped"
-          className="flex items-center justify-center"
-        >
-          <Icon name="telefon" className="size-6" />
-          {t('navBar.contactsButton')}
-        </Button>
+        {contactsLink ? (
+          <Button
+            asLink
+            {...getLinkProps(contactsLink)}
+            hasLinkIcon={false}
+            startIcon={<Icon name="telefon" className="size-6" />}
+            aria-label={t('navBar.contactsButton')}
+            variant="icon-wrapped"
+            className="flex items-center justify-center"
+          />
+        ) : null}
       </div>
     </div>
   )

@@ -24,10 +24,13 @@ const MenuItemWorkshopCard = ({
   className,
 }: MenuItemWorkshopCardProps) => {
   return (
-    <NavMenuLink href={linkHref} isCard className={cn(className)}>
+    <li className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex items-start gap-4">
-          <div className="rounded-[20px] bg-background-secondary p-4">
+          <div
+            // 1.25rem = 20px
+            className="rounded-[1.25rem] bg-background-secondary p-4"
+          >
             <OloIcon name={iconName} className="size-6" />
           </div>
           <div
@@ -35,19 +38,22 @@ const MenuItemWorkshopCard = ({
               'justify-center': !mostRecentWorkshopDate,
             })}
           >
-            <Typography
-              variant="h6"
-              className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
-            >
-              {title}
-            </Typography>
+            <NavMenuLink href={linkHref} stretched>
+              <Typography
+                variant="h6"
+                className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
+              >
+                {title}
+              </Typography>
+            </NavMenuLink>
+
             {mostRecentWorkshopDate ? (
               <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
             ) : null}
           </div>
         </div>
       </CardBase>
-    </NavMenuLink>
+    </li>
   )
 }
 

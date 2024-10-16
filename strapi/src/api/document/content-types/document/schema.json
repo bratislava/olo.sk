@@ -21,15 +21,6 @@
       "targetField": "title",
       "required": true
     },
-    "identificationNumber": {
-      "type": "string"
-    },
-    "supplier": {
-      "type": "string"
-    },
-    "priceWithoutTax": {
-      "type": "string"
-    },
     "documentCategory": {
       "type": "relation",
       "relation": "manyToOne",
@@ -45,6 +36,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "documents"
     }
   }
 }

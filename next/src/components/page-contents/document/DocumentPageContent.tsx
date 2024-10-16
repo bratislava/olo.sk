@@ -17,25 +17,14 @@ const DocumentPageContent = ({ document }: Props) => {
   const { t } = useTranslation()
   if (!document.attributes) return null
 
-  const {
-    files,
-    description,
-    documentCategory,
-    identificationNumber,
-    supplier,
-    publishedAt,
-    priceWithoutTax,
-  } = document.attributes ?? {}
+  const { files, description, documentCategory, publishedAt } = document.attributes ?? {}
 
   const detailItems = [
     {
       label: t('documentPageContent.documentCategory'),
       value: documentCategory?.data?.attributes?.title,
     },
-    { label: t('documentPageContent.identificationNumber'), value: identificationNumber },
-    { label: t('documentPageContent.supplier'), value: supplier },
     { label: t('documentPageContent.publishedAt'), value: formatDate(publishedAt) },
-    { label: t('documentPageContent.priceWithoutTax'), value: priceWithoutTax },
   ].filter((item) => !!item.value)
 
   // eslint-disable-next-line unicorn/no-array-callback-reference

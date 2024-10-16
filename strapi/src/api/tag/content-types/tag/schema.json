@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tag",
     "pluralName": "tags",
-    "displayName": "Tagy"
+    "displayName": "Tagy",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -39,6 +40,12 @@
       "relation": "manyToMany",
       "target": "api::article.article",
       "mappedBy": "tags"
+    },
+    "documents": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::document.document",
+      "inversedBy": "tags"
     }
   }
 }

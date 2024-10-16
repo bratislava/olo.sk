@@ -62,6 +62,21 @@
           "sortable": false
         }
       },
+      "documents": {
+        "edit": {
+          "label": "documents",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true,
+          "mainField": "title"
+        },
+        "list": {
+          "label": "documents",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -122,6 +137,12 @@
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "title",
+        "slug",
+        "createdAt"
+      ],
       "edit": [
         [
           {
@@ -139,14 +160,12 @@
           {
             "name": "articles",
             "size": 6
+          },
+          {
+            "name": "documents",
+            "size": 6
           }
         ]
-      ],
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "createdAt"
       ]
     },
     "uid": "api::tag.tag"

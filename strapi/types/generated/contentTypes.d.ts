@@ -1504,6 +1504,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.faq-categories',
         'sections.iframe-section',
         'sections.card-slider',
+        'sections.child-pages-cards-list',
         'sections.ordered-cards',
         'sections.waste-sorting-cards',
         'sections.contacts',

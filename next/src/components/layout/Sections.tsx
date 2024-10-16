@@ -4,6 +4,7 @@ import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
 import CardSliderSection from '@/src/components/sections/CardSliderSection'
 import CardsListSection from '@/src/components/sections/CardsListSection'
+import ChildPagesCardsListSection from '@/src/components/sections/ChildPagesCardsListSection'
 import ColumnsListSection from '@/src/components/sections/ColumnsListSection'
 import ColumnsSection from '@/src/components/sections/ColumnsSection'
 import ContactsSection from '@/src/components/sections/ContactsSection'
@@ -38,6 +39,7 @@ type Props = {
 }
 
 const SectionContent = ({ section }: { section: Section }) => {
+  // eslint-disable-next-line sonarjs/max-switch-cases
   switch (section.__typename) {
     case 'ComponentSectionsRichtext':
       return <RichtextSection section={section} />
@@ -78,6 +80,10 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsWasteRemovalCards':
       return <WasteRemovalCardsSection section={section} />
+
+    // eslint-disable-next-line no-secrets/no-secrets
+    case 'ComponentSectionsChildPagesCardsList':
+      return <ChildPagesCardsListSection section={section} />
 
     // case 'ComponentSectionsFiles':
     //   return <FilesSection section={section} />

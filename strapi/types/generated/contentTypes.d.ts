@@ -939,6 +939,30 @@ export interface ApiContactContact extends Schema.CollectionType {
   }
 }
 
+export interface ApiContentOwnerContentOwner extends Schema.CollectionType {
+  collectionName: 'content_owners'
+  info: {
+    singularName: 'content-owner'
+    pluralName: 'content-owners'
+    displayName: 'Zodpovedn\u00E9 osoby'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    name: Attribute.String & Attribute.Required
+    email: Attribute.Email
+    pages: Attribute.Relation<'api::content-owner.content-owner', 'oneToMany', 'api::page.page'>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::content-owner.content-owner', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::content-owner.content-owner', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
 export interface ApiDocumentDocument extends Schema.CollectionType {
   collectionName: 'documents'
   info: {
@@ -1500,6 +1524,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.waste-collection-days',
         'sections.iframe-section',
         'sections.waste-collection-points',
+        'sections.child-pages-cards-list',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1526,6 +1551,27 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true
         }
       }>
+    contentOwner: Attribute.Relation<
+      'api::page.page',
+      'manyToOne',
+      'api::content-owner.content-owner'
+    > &
+      Attribute.Private
+    contentState: Attribute.Enumeration<
+      [
+        'contentState.todo',
+        'contentState.inProgress',
+        'contentState.finalising',
+        'contentState.done',
+      ]
+    > &
+      Attribute.Private &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }> &
+      Attribute.DefaultTo<'contentState.todo'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1806,6 +1852,7 @@ declare module '@strapi/types' {
       'api::article-category.article-category': ApiArticleCategoryArticleCategory
       'api::branch.branch': ApiBranchBranch
       'api::contact.contact': ApiContactContact
+      'api::content-owner.content-owner': ApiContentOwnerContentOwner
       'api::document.document': ApiDocumentDocument
       'api::document-category.document-category': ApiDocumentCategoryDocumentCategory
       'api::faq.faq': ApiFaqFaq

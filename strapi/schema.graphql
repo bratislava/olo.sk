@@ -1289,6 +1289,32 @@ input ComponentSectionsCardsListInput {
   title: String
 }
 
+type ComponentSectionsChildPagesCardsList {
+  backgroundColor: ENUM_COMPONENTSECTIONSCHILDPAGESCARDSLIST_BACKGROUNDCOLOR!
+  id: ID!
+  page: PageEntityResponse
+  text: String
+  title: String
+}
+
+input ComponentSectionsChildPagesCardsListFiltersInput {
+  and: [ComponentSectionsChildPagesCardsListFiltersInput]
+  backgroundColor: StringFilterInput
+  not: ComponentSectionsChildPagesCardsListFiltersInput
+  or: [ComponentSectionsChildPagesCardsListFiltersInput]
+  page: PageFiltersInput
+  text: StringFilterInput
+  title: StringFilterInput
+}
+
+input ComponentSectionsChildPagesCardsListInput {
+  backgroundColor: ENUM_COMPONENTSECTIONSCHILDPAGESCARDSLIST_BACKGROUNDCOLOR
+  id: ID
+  page: ID
+  text: String
+  title: String
+}
+
 type ComponentSectionsColumns {
   backgroundColor: ENUM_COMPONENTSECTIONSCOLUMNS_BACKGROUNDCOLOR!
   id: ID!
@@ -1560,6 +1586,7 @@ input ComponentSectionsHeroHomepageSectionInput {
 type ComponentSectionsIframeSection {
   id: ID!
   iframeTitle: String!
+  isFullScreen: Boolean
   text: String
   title: String
   url: String!
@@ -1568,6 +1595,7 @@ type ComponentSectionsIframeSection {
 input ComponentSectionsIframeSectionFiltersInput {
   and: [ComponentSectionsIframeSectionFiltersInput]
   iframeTitle: StringFilterInput
+  isFullScreen: BooleanFilterInput
   not: ComponentSectionsIframeSectionFiltersInput
   or: [ComponentSectionsIframeSectionFiltersInput]
   text: StringFilterInput
@@ -1578,6 +1606,7 @@ input ComponentSectionsIframeSectionFiltersInput {
 input ComponentSectionsIframeSectionInput {
   id: ID
   iframeTitle: String
+  isFullScreen: Boolean
   text: String
   title: String
   url: String
@@ -2161,6 +2190,50 @@ type ContactRelationResponseCollection {
   data: [ContactEntity!]!
 }
 
+type ContentOwner {
+  createdAt: DateTime
+  email: String
+  name: String!
+  pages(filters: PageFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): PageRelationResponseCollection
+  updatedAt: DateTime
+}
+
+type ContentOwnerEntity {
+  attributes: ContentOwner
+  id: ID
+}
+
+type ContentOwnerEntityResponse {
+  data: ContentOwnerEntity
+}
+
+type ContentOwnerEntityResponseCollection {
+  data: [ContentOwnerEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input ContentOwnerFiltersInput {
+  and: [ContentOwnerFiltersInput]
+  createdAt: DateTimeFilterInput
+  email: StringFilterInput
+  id: IDFilterInput
+  name: StringFilterInput
+  not: ContentOwnerFiltersInput
+  or: [ContentOwnerFiltersInput]
+  pages: PageFiltersInput
+  updatedAt: DateTimeFilterInput
+}
+
+input ContentOwnerInput {
+  email: String
+  name: String
+  pages: [ID]
+}
+
+type ContentOwnerRelationResponseCollection {
+  data: [ContentOwnerEntity!]!
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
@@ -2380,6 +2453,12 @@ enum ENUM_COMPONENTSECTIONSCARDSLIDER_BACKGROUNDCOLOR {
   tertiary
 }
 
+enum ENUM_COMPONENTSECTIONSCHILDPAGESCARDSLIST_BACKGROUNDCOLOR {
+  primary
+  secondary
+  tertiary
+}
+
 enum ENUM_COMPONENTSECTIONSCOLUMNSLIST_BACKGROUNDCOLOR {
   primary
   secondary
@@ -2454,6 +2533,13 @@ enum ENUM_COMPONENTSECTIONSWASTECOLLECTIONPOINTS_BACKGROUNDCOLOR {
 enum ENUM_COMPONENTSHAREDMETASOCIAL_SOCIALNETWORK {
   Facebook
   Twitter
+}
+
+enum ENUM_PAGE_CONTENTSTATE {
+  contentState_done
+  contentState_finalising
+  contentState_inProgress
+  contentState_todo
 }
 
 enum ENUM_SERVICECATEGORY_CATEGORYCOLOR {
@@ -2710,7 +2796,7 @@ type FormRelationResponseCollection {
   data: [FormEntity!]!
 }
 
-union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsLocationCardsItem | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteCollectionPoints | ComponentSectionsWasteRemovalCards | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentSidebarsContactsSidebar | ComponentSidebarsEmptySidebar | Contact | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
+union GenericMorph = Article | ArticleCategory | Branch | ComponentHeaderSectionsBranchMap | ComponentHeaderSectionsCareers | ComponentHeaderSectionsFeaturedNews | ComponentHeaderSectionsGallery | ComponentHeaderSectionsIcon | ComponentHeaderSectionsImage | ComponentHeaderSectionsPickupDay | ComponentHeaderSectionsSideImage | ComponentItemsAnchor | ComponentItemsBoardMembersItem | ComponentItemsCardSliderCard | ComponentItemsCardsListItem | ComponentItemsColumnsItem | ComponentItemsColumnsListItem | ComponentItemsContactsBranch | ComponentItemsContactsContact | ComponentItemsContactsOpeningTime | ComponentItemsFileItem | ComponentItemsFooterColumn | ComponentItemsFormCtaBannerLink | ComponentItemsHeroMainTile | ComponentItemsHeroSmallTile | ComponentItemsHomepageServiceTile | ComponentItemsLink | ComponentItemsLocationCardsItem | ComponentItemsMenuHeader | ComponentItemsOpeningHoursItem | ComponentItemsOpeningTimesItem | ComponentItemsOrderedCardsItem | ComponentItemsSlide | ComponentItemsSortingGuide | ComponentItemsSortingGuideAccordionItem | ComponentItemsSortingGuideAlertMessage | ComponentItemsSortingGuideItem | ComponentItemsWasteSortingCardsItem | ComponentItemsWorkshopDate | ComponentMenuMenuItem | ComponentMenuMenuLink | ComponentMenuMenuSection | ComponentSectionsArticles | ComponentSectionsArticlesHomepageSection | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsChildPagesCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsFiles | ComponentSectionsFormCtaBanner | ComponentSectionsGlobalSearch | ComponentSectionsHeroHomepageSection | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsKoloHomepageSection | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsServicesHomepageSection | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteCollectionPoints | ComponentSectionsWasteRemovalCards | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | ComponentSharedMetaSocial | ComponentSharedSeo | ComponentSidebarsContactsSidebar | ComponentSidebarsEmptySidebar | Contact | ContentOwner | Document | DocumentCategory | Faq | FaqCategory | Footer | Form | Homepage | I18NLocale | Menu | Navigation | OpeningTime | Page | Service | ServiceCategory | Tag | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | WasteCollectionDay | Workshop
 
 type Homepage {
   articlesSection: ComponentSectionsArticlesHomepageSection
@@ -2970,6 +3056,7 @@ type Mutation {
   createBranch(data: BranchInput!, locale: I18NLocaleCode): BranchEntityResponse
   createBranchLocalization(data: BranchInput, id: ID, locale: I18NLocaleCode): BranchEntityResponse
   createContact(data: ContactInput!): ContactEntityResponse
+  createContentOwner(data: ContentOwnerInput!): ContentOwnerEntityResponse
   createDocument(data: DocumentInput!): DocumentEntityResponse
   createDocumentCategory(data: DocumentCategoryInput!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
   createDocumentCategoryLocalization(data: DocumentCategoryInput, id: ID, locale: I18NLocaleCode): DocumentCategoryEntityResponse
@@ -3005,6 +3092,7 @@ type Mutation {
   deleteArticleCategory(id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   deleteBranch(id: ID!, locale: I18NLocaleCode): BranchEntityResponse
   deleteContact(id: ID!): ContactEntityResponse
+  deleteContentOwner(id: ID!): ContentOwnerEntityResponse
   deleteDocument(id: ID!): DocumentEntityResponse
   deleteDocumentCategory(id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
   deleteFaq(id: ID!, locale: I18NLocaleCode): FaqEntityResponse
@@ -3050,6 +3138,7 @@ type Mutation {
   updateArticleCategory(data: ArticleCategoryInput!, id: ID!, locale: I18NLocaleCode): ArticleCategoryEntityResponse
   updateBranch(data: BranchInput!, id: ID!, locale: I18NLocaleCode): BranchEntityResponse
   updateContact(data: ContactInput!, id: ID!): ContactEntityResponse
+  updateContentOwner(data: ContentOwnerInput!, id: ID!): ContentOwnerEntityResponse
   updateDocument(data: DocumentInput!, id: ID!): DocumentEntityResponse
   updateDocumentCategory(data: DocumentCategoryInput!, id: ID!, locale: I18NLocaleCode): DocumentCategoryEntityResponse
   updateFaq(data: FaqInput!, id: ID!, locale: I18NLocaleCode): FaqEntityResponse
@@ -3212,6 +3301,8 @@ input PageFiltersInput {
   and: [PageFiltersInput]
   branch: BranchFiltersInput
   childPages: PageFiltersInput
+  contentOwner: ContentOwnerFiltersInput
+  contentState: StringFilterInput
   createdAt: DateTimeFilterInput
   id: IDFilterInput
   locale: StringFilterInput
@@ -3235,6 +3326,8 @@ input PageInput {
   alias: String
   branch: ID
   childPages: [ID]
+  contentOwner: ID
+  contentState: ENUM_PAGE_CONTENTSTATE
   header: [PageHeaderDynamicZoneInput!]
   parentPage: ID
   perex: String
@@ -3250,7 +3343,7 @@ type PageRelationResponseCollection {
   data: [PageEntity!]!
 }
 
-union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsGlobalSearch | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteCollectionPoints | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
+union PageSectionsDynamicZone = ComponentSectionsArticles | ComponentSectionsBanner | ComponentSectionsBoardMembers | ComponentSectionsBranches | ComponentSectionsCardSlider | ComponentSectionsCardsList | ComponentSectionsChildPagesCardsList | ComponentSectionsColumns | ComponentSectionsColumnsList | ComponentSectionsContacts | ComponentSectionsDivider | ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsFaqCategories | ComponentSectionsGlobalSearch | ComponentSectionsIframeSection | ComponentSectionsImageAndText | ComponentSectionsImageAndTextOverlapped | ComponentSectionsOpeningTimes | ComponentSectionsOrderedCards | ComponentSectionsRichtext | ComponentSectionsServices | ComponentSectionsSortingGuide | ComponentSectionsSortingGuideAccordions | ComponentSectionsVacancies | ComponentSectionsWasteCollectionDays | ComponentSectionsWasteCollectionPoints | ComponentSectionsWasteSortingCards | ComponentSectionsWorkshops | Error
 
 scalar PageSectionsDynamicZoneInput
 
@@ -3286,6 +3379,8 @@ type Query {
   branches(filters: BranchFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): BranchEntityResponseCollection
   contact(id: ID): ContactEntityResponse
   contacts(filters: ContactFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ContactEntityResponseCollection
+  contentOwner(id: ID): ContentOwnerEntityResponse
+  contentOwners(filters: ContentOwnerFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ContentOwnerEntityResponseCollection
   document(id: ID): DocumentEntityResponse
   documentCategories(filters: DocumentCategoryFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentCategoryEntityResponseCollection
   documentCategory(id: ID, locale: I18NLocaleCode): DocumentCategoryEntityResponse

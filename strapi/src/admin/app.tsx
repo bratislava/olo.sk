@@ -21,6 +21,11 @@ export default {
         'Auth.form.username.placeholder': 'napr. jankohrasko',
         'Auth.form.email.placeholder': 'napr. janko.hrasko@bratislava.sk',
         'Settings.webhooks.trigger.test': 'Testovací beh',
+        // Used in page.contentState field
+        'contentState.todo': 'TODO',
+        'contentState.inProgress': 'IN PROGRESS',
+        'contentState.finalising': 'FINALISING',
+        'contentState.done': 'DONE',
       },
     },
   },

@@ -74,6 +74,20 @@
           "searchable": true,
           "sortable": true
         }
+      },
+      "isFullScreen": {
+        "edit": {
+          "label": "Zobraziť na celú šírku",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "isFullScreen",
+          "searchable": true,
+          "sortable": true
+        }
       }
     },
     "layouts": {
@@ -106,6 +120,12 @@
           {
             "name": "url",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "isFullScreen",
+            "size": 4
           }
         ]
       ]

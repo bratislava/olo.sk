@@ -9,6 +9,11 @@ export const fetchPositionsDetail = async (id: string | undefined | string[]) =>
   const response = await fetch(
     // eslint-disable-next-line no-secrets/no-secrets
     `${process.env.NEXT_NALGOO_URL}/job-offer/${id}?expand=regions,employment_forms,positions,min_education,educations,workMode,position_type,business_unit,custom_fields&api_key=${process.env.NEXT_NALGOO_API_KEY}`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
   )
 
   return response.json()

@@ -3,6 +3,20 @@ import i18nextConfig from './next-i18next.config.js'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // set headers to solve Cross-Origin issue, according to the 
+  // https://blog.logrocket.com/using-cors-next-js-handle-cross-origin-requests/#additionalsecuritywithcrossoriginpolicies
+  async headers() {
+        return [
+            {
+                // matching all API routes
+                source: "/api/:path*",
+                headers: [
+                    // other headers omitted for brevity...
+                    { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" }
+                ]
+            }
+        ]
+    },
   i18n: i18nextConfig.i18n,
   reactStrictMode: true,
   output: 'standalone',

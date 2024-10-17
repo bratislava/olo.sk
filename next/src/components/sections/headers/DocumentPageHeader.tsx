@@ -80,7 +80,7 @@ const DocumentPageHeader = ({ document }: Props) => {
                 startIcon={<Icon name="stiahnut" />}
                 aria-label={getDownloadAriaLabel(filteredFiles[0])}
               >
-                {`${t('documentPageContent.downloadButtonLabel')} [${fileExtensionString}, ${fileSizeString}]`}
+                {t('documentPageContent.downloadButtonLabel')}
               </Button>
             ) : null}
           </div>

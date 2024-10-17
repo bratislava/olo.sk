@@ -58,6 +58,20 @@ const DocumentsAllSection = ({ section, className }: Props) => {
     placeholderData: keepPreviousData,
   })
 
+  const resultsCount = data?.estimatedTotalHits ?? 0
+
+  // TODO consider extracting this to a hook (also in GlobalSearchSection)
+  const resultsCountMessage =
+    resultsCount < filters.pageSize
+      ? t('globalSearch.searchResultsFound.specific.singlepage', {
+          count: resultsCount,
+        })
+      : t('globalSearch.searchResultsFound.specific', {
+          from: (filters.page - 1) * filters.pageSize + 1,
+          to: Math.min(resultsCount, filters.page * filters.pageSize),
+          all: resultsCount,
+        })
+
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer className={cn('py-6 lg:py-18', className)}>
@@ -123,14 +137,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
             </ul>
             {data?.estimatedTotalHits ? (
               <div className="flex items-center justify-between gap-6">
-                <div>
-                  <Typography>
-                    {t('common.showingResults', {
-                      current: data.hits.length,
-                      total: data.estimatedTotalHits,
-                    })}
-                  </Typography>
-                </div>
+                <Typography>{resultsCountMessage}</Typography>
                 <PaginationWithInput
                   currentPage={filters.page}
                   totalCount={Math.ceil(data.estimatedTotalHits / filters.pageSize)}

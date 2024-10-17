@@ -1,6 +1,8 @@
 import svgoConfig from './svgo.config.mjs'
 import i18nextConfig from './next-i18next.config.js'
 
+import { withPlausibleProxy } from 'next-plausible'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   i18n: i18nextConfig.i18n,
@@ -66,4 +68,4 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+export default withPlausibleProxy()(nextConfig)

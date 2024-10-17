@@ -1,4 +1,5 @@
 import { ArticleCardEntityFragment } from '@/src/services/graphql/api'
+import { isDefined } from '@/src/utils/isDefined'
 
 import { meiliClient } from '../meiliClient'
 import { ArticleMeili, SearchIndexWrapped } from '../types'
@@ -8,6 +9,8 @@ export type ArticlesFilters = {
   search: string
   page: number
   pageSize: number
+  categorySlugs?: string[]
+  tagSlugs?: string[]
 }
 
 export const articlesDefaultFilters: ArticlesFilters = {
@@ -28,7 +31,17 @@ export const meiliArticlesFetcher = (filters: ArticlesFilters, locale: string) =
     .index('search_index')
     .search<SearchIndexWrapped<'article', ArticleMeili>>(filters.search, {
       ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
-      filter: ['type = "article"', `locale = ${locale}`],
+      filter: [
+        'type = "article"',
+        `locale = ${locale}`,
+        // This works ↓
+        // `article.tags.slug = ${filters.tagSlugs[0]}`,
+        // This doesn't work ↓
+        filters.tagSlugs && filters.tagSlugs.length > 0
+          ? `article.tags.slug IN [${filters.tagSlugs.join(',')}]`
+          : '',
+        // eslint-disable-next-line unicorn/no-array-callback-reference
+      ].filter(isDefined),
       sort: ['article.publishedAtTimestamp:desc'],
       attributesToRetrieve: [
         // Only properties that are required to display listing are retrieved

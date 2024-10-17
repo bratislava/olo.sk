@@ -1,11 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import ArticleCard from '@/src/components/common/Card/ArticleCard'
 import ResponsiveCarousel from '@/src/components/common/Carousel/ResponsiveCarousel'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import { client } from '@/src/services/graphql'
 import { ArticlesSectionFragment } from '@/src/services/graphql/api'
+import {
+  articlesDefaultFilters,
+  ArticlesFilters,
+  getMeiliArticlesQueryKey,
+  meiliArticlesFetcher,
+} from '@/src/services/meili/fetchers/articlesFetcher'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
@@ -18,81 +24,75 @@ type Props = {
  */
 
 const ArticlesSectionFiltered = ({ section }: Props) => {
+  const { i18n } = useTranslation()
+  const locale = i18n.language
+
   const { title, text, categories, tags, showMoreLink } = section ?? {}
   const { getFullPath } = useGetFullPath()
 
   // TODO discuss the optimal number
   const ARTICLES_COUNT = 20
 
-  const filteredCategoriesIds =
+  const filteredCategorySlugs =
     categories?.data
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined)
-      .map((category) => category?.id)
+      .map((category) => category?.attributes?.slug)
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined) ?? []
 
-  const filteredTagsIds =
+  const filteredTagSlugs =
     tags?.data
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined)
-      .map((tag) => tag?.id)
+      .map((tag) => tag?.attributes?.slug)
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined) ?? []
 
-  // If we pass an empty array, all tags (categories) are fetched, so we pass an empty string
-  const tagsIdsToFetch = filteredTagsIds.length > 0 ? filteredTagsIds : ['']
-  const categoriesIdsToFetch = filteredCategoriesIds.length > 0 ? filteredCategoriesIds : ['']
+  const filters: ArticlesFilters = {
+    ...articlesDefaultFilters,
+    pageSize: ARTICLES_COUNT,
+    categorySlugs: filteredCategorySlugs,
+    tagSlugs: filteredTagSlugs,
+  }
 
-  // TODO limit the number of fetched articles
-  const { data: articlesFromTags } = useQuery({
-    queryKey: ['ArticlesFromTags', { tagsIds: tagsIdsToFetch }],
-    queryFn: () => client.ArticlesByTagsIds({ tagsIds: tagsIdsToFetch }),
+  const { data: articlesData } = useQuery({
+    queryKey: getMeiliArticlesQueryKey(filters, locale),
+    queryFn: () => meiliArticlesFetcher(filters, locale),
   })
-
-  // TODO limit the number of fetched articles
-  const { data: articlesFromCategories } = useQuery({
-    queryKey: ['ArticlesFromCategories', { CategoriesIds: categoriesIdsToFetch }],
-    queryFn: () => client.ArticlesByCategoriesIds({ categoriesIds: categoriesIdsToFetch }),
-  })
-
-  // TODO consider removing duplicates
-  const articlesToShow = [
-    ...(articlesFromTags?.articles?.data ?? []),
-    ...(articlesFromCategories?.articles?.data ?? []),
-  ]
-    .slice(0, ARTICLES_COUNT)
-    // sorts from newest to oldest
-    .sort((a, b) => (new Date(a.attributes?.addedAt) < new Date(b.attributes?.addedAt) ? 1 : -1))
 
   return (
     <div className="flex flex-col gap-6">
       <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
-      <ResponsiveCarousel
-        desktop={4}
-        shiftVariant="byPage"
-        controlsVariant="bottom"
-        hasVerticalPadding={false}
-        items={articlesToShow
-          .map((article) => {
-            if (!article.attributes) return null
+      <p>{`Filters: ${JSON.stringify(filters)}`} </p>
+      <p>{`ArticlesData: ${JSON.stringify(articlesData)}`} </p>
+      {articlesData?.hits.length ? (
+        <ResponsiveCarousel
+          desktop={4}
+          shiftVariant="byPage"
+          controlsVariant="bottom"
+          hasVerticalPadding={false}
+          items={articlesData.hits
+            .map((article) => {
+              if (!article.attributes) return null
 
-            const { title: articleTitle, coverMedia, articleCategory, slug } = article.attributes
+              const { title: articleTitle, coverMedia, articleCategory, slug } = article.attributes
 
-            return (
-              <ArticleCard
-                key={slug}
-                title={articleTitle}
-                linkHref={getFullPath(article) ?? '#'}
-                imgSrc={coverMedia?.data?.attributes?.url}
-                tagText={articleCategory?.data?.attributes?.title}
-                className="h-full"
-              />
-            )
-          })
-          // eslint-disable-next-line unicorn/no-array-callback-reference
-          .filter(isDefined)}
-      />
+              return (
+                <ArticleCard
+                  key={slug}
+                  title={articleTitle}
+                  linkHref={getFullPath(article) ?? '#'}
+                  imgSrc={coverMedia?.data?.attributes?.url}
+                  tagText={articleCategory?.data?.attributes?.title}
+                  className="h-full"
+                />
+              )
+            })
+            // eslint-disable-next-line unicorn/no-array-callback-reference
+            .filter(isDefined)}
+        />
+      ) : null}
     </div>
   )
 }

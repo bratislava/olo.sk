@@ -1,58 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
-export interface MenuMenuSection extends Schema.Component {
-  collectionName: 'components_menu_menu_sections'
-  info: {
-    displayName: 'menu section'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    links: Attribute.Component<'menu.menu-link', true>
-    colSpan: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0
-          max: 3
-        },
-        number
-      > &
-      Attribute.DefaultTo<1>
-    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
-    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    specialSectionType: Attribute.Enumeration<['latest articles']>
-  }
-}
-
-export interface MenuMenuLink extends Schema.Component {
-  collectionName: 'components_menu_menu_link'
-  info: {
-    displayName: 'menu link'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String
-    url: Attribute.String
-    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
-    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
-    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
-    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
-  }
-}
-
-export interface MenuMenuItem extends Schema.Component {
-  collectionName: 'components_menu_menu_items'
-  info: {
-    displayName: 'menu item'
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    sections: Attribute.Component<'menu.menu-section', true>
-    seeAllLink: Attribute.Component<'items.link'>
-  }
-}
-
 export interface SidebarsEmptySidebar extends Schema.Component {
   collectionName: 'components_sidebars_empty_sidebars'
   info: {
@@ -119,507 +66,6 @@ export interface SharedMetaSocial extends Schema.Component {
         maxLength: 65
       }>
     image: Attribute.Media<'images' | 'files' | 'videos'>
-  }
-}
-
-export interface HeaderSectionsSideImage extends Schema.Component {
-  collectionName: 'components_header_sections_side_images'
-  info: {
-    displayName: 'Obr\u00E1zok vpravo'
-    icon: 'picture'
-    description: ''
-  }
-  attributes: {
-    media: Attribute.Media<'images'> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsPickupDay extends Schema.Component {
-  collectionName: 'components_header_sections_pickup_days'
-  info: {
-    displayName: 'Odvozov\u00FD de\u0148'
-    description: ''
-  }
-  attributes: {
-    anchors: Attribute.Component<'items.anchor', true>
-    carouselTitle: Attribute.String & Attribute.Required
-    tags: Attribute.Relation<'header-sections.pickup-day', 'oneToMany', 'api::tag.tag'>
-    showMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface HeaderSectionsImage extends Schema.Component {
-  collectionName: 'components_header_sections_images'
-  info: {
-    displayName: 'Obr\u00E1zok na cel\u00FA \u0161\u00EDrku'
-    icon: 'picture'
-    description: ''
-  }
-  attributes: {
-    media: Attribute.Media<'images'> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsIcon extends Schema.Component {
-  collectionName: 'components_header_sections_icons'
-  info: {
-    displayName: 'Ikonka'
-    description: ''
-  }
-  attributes: {
-    iconName: Attribute.String & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsGallery extends Schema.Component {
-  collectionName: 'components_header_sections_galleries'
-  info: {
-    displayName: 'Gal\u00E9ria'
-    icon: 'landscape'
-    description: ''
-  }
-  attributes: {
-    medias: Attribute.Media<'images', true> & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsFeaturedNews extends Schema.Component {
-  collectionName: 'components_header_sections_featured_news'
-  info: {
-    displayName: 'Aktuality (\u010Dl\u00E1nky)'
-    description: ''
-  }
-  attributes: {
-    articlesTitle: Attribute.String & Attribute.Required
-    firstArticle: Attribute.Relation<
-      'header-sections.featured-news',
-      'oneToOne',
-      'api::article.article'
-    >
-    secondArticle: Attribute.Relation<
-      'header-sections.featured-news',
-      'oneToOne',
-      'api::article.article'
-    >
-  }
-}
-
-export interface HeaderSectionsCareers extends Schema.Component {
-  collectionName: 'components_header_sections_careers'
-  info: {
-    displayName: 'Kari\u00E9ra'
-    description: ''
-  }
-  attributes: {
-    image: Attribute.Media<'images'>
-    imageQuote: Attribute.Text
-    alternativeTextVideo: Attribute.Text
-    videoUrl: Attribute.String & Attribute.Required
-  }
-}
-
-export interface HeaderSectionsBranchMap extends Schema.Component {
-  collectionName: 'components_header_sections_branch_maps'
-  info: {
-    displayName: 'Mapa pobo\u010Diek'
-    icon: 'pinMap'
-    description: ''
-  }
-  attributes: {
-    branches: Attribute.Relation<'header-sections.branch-map', 'oneToMany', 'api::branch.branch'>
-  }
-}
-
-export interface ItemsWorkshopDate extends Schema.Component {
-  collectionName: 'components_items_workshop_dates'
-  info: {
-    displayName: 'Workshop date'
-    description: ''
-  }
-  attributes: {
-    internalName: Attribute.String & Attribute.Private
-    datetime: Attribute.DateTime & Attribute.Required
-  }
-}
-
-export interface ItemsWasteSortingCardsItem extends Schema.Component {
-  collectionName: 'components_items_waste_sorting_cards_items'
-  info: {
-    displayName: 'Waste Sorting Cards item'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    variant: Attribute.Enumeration<
-      [
-        'mixed',
-        'paper',
-        'plastic',
-        'glass',
-        'kitchen',
-        'cookingOilsAndFats',
-        'organic',
-        'civicAmenitySite',
-        'cemetery',
-        'christmasTrees',
-      ]
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'mixed'>
-    link: Attribute.Component<'items.link'> & Attribute.Required
-  }
-}
-
-export interface ItemsSortingGuide extends Schema.Component {
-  collectionName: 'components_items_sorting_guides'
-  info: {
-    displayName: 'Sorting Guide'
-    description: ''
-  }
-  attributes: {
-    titleGoesHere: Attribute.String & Attribute.DefaultTo<'Patr\u00ED sem'>
-    titleDoesntGoHere: Attribute.String & Attribute.DefaultTo<'Nepatr\u00ED sem'>
-    goesHereItems: Attribute.Component<'items.sorting-guide-item', true>
-    doesntGoHereItems: Attribute.Component<'items.sorting-guide-item', true>
-    alertMessageGoesHere: Attribute.Component<'items.sorting-guide-alert-message'>
-    alertMessageDoesntGoHere: Attribute.Component<'items.sorting-guide-alert-message'>
-    alertMessageBottom: Attribute.Component<'items.sorting-guide-alert-message'>
-  }
-}
-
-export interface ItemsSortingGuideItem extends Schema.Component {
-  collectionName: 'components_items_sorting_guide_items'
-  info: {
-    displayName: 'Sorting Guide Item'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-  }
-}
-
-export interface ItemsSortingGuideAlertMessage extends Schema.Component {
-  collectionName: 'components_items_sorting_guide_alert_messages'
-  info: {
-    displayName: 'Sorting Guide Alert Message'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-  }
-}
-
-export interface ItemsSortingGuideAccordionItem extends Schema.Component {
-  collectionName: 'components_items_sorting_guide_accordion_items'
-  info: {
-    displayName: 'sorting guide accordion item'
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    wasteType: Attribute.Enumeration<
-      [
-        'paper',
-        'plastic',
-        'glass',
-        'civicAmenitySite',
-        'cookingOilsAndFats',
-        'kitchen',
-        'organic',
-        'mixed',
-        'cemetery',
-        'christmasTrees',
-      ]
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'paper'>
-    sortingGuide: Attribute.Component<'items.sorting-guide'>
-  }
-}
-
-export interface ItemsSlide extends Schema.Component {
-  collectionName: 'components_items_slides'
-  info: {
-    displayName: 'slide'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.Text & Attribute.Required
-    text: Attribute.Text
-    backgroundColor: Attribute.String &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::color-picker.color'>
-    media: Attribute.Media<'images'> & Attribute.Required
-    link: Attribute.Component<'items.link'>
-  }
-}
-
-export interface ItemsOrderedCardsItem extends Schema.Component {
-  collectionName: 'components_items_ordered_cards_items'
-  info: {
-    displayName: 'Ordered Cards item'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.RichText
-    iconName: Attribute.String
-  }
-}
-
-export interface ItemsOpeningTimesItem extends Schema.Component {
-  collectionName: 'components_items_opening_times_items'
-  info: {
-    displayName: 'Opening Times item'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    openingTime: Attribute.Relation<
-      'items.opening-times-item',
-      'oneToOne',
-      'api::opening-time.opening-time'
-    >
-  }
-}
-
-export interface ItemsOpeningHoursItem extends Schema.Component {
-  collectionName: 'components_items_opening_hours_items'
-  info: {
-    displayName: 'opening hours item'
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    value: Attribute.String & Attribute.Required
-  }
-}
-
-export interface ItemsMenuHeader extends Schema.Component {
-  collectionName: 'components_items_menu_headers'
-  info: {
-    displayName: 'Menu header'
-    description: ''
-  }
-  attributes: {
-    contactsLink: Attribute.Component<'items.link'>
-    searchLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface ItemsLocationCardsItem extends Schema.Component {
-  collectionName: 'components_items_location_cards_items'
-  info: {
-    displayName: 'Location Cards item'
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    address: Attribute.String
-    link: Attribute.Component<'items.link'> & Attribute.Required
-  }
-}
-
-export interface ItemsLink extends Schema.Component {
-  collectionName: 'components_items_links'
-  info: {
-    displayName: 'link'
-    icon: 'link'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String
-    url: Attribute.String
-    page: Attribute.Relation<'items.link', 'oneToOne', 'api::page.page'>
-    article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>
-    branch: Attribute.Relation<'items.link', 'oneToOne', 'api::branch.branch'>
-    document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
-    service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
-    workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
-  }
-}
-
-export interface ItemsHomepageServiceTile extends Schema.Component {
-  collectionName: 'components_items_homepage_service_tiles'
-  info: {
-    displayName: 'homepage service tile'
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text
-    link: Attribute.Component<'items.link'>
-  }
-}
-
-export interface ItemsHeroSmallTile extends Schema.Component {
-  collectionName: 'components_items_hero_small_tiles'
-  info: {
-    displayName: 'hero small tile'
-  }
-  attributes: {
-    icon: Attribute.String
-    link: Attribute.Component<'items.link'>
-  }
-}
-
-export interface ItemsHeroMainTile extends Schema.Component {
-  collectionName: 'components_items_hero_main_tiles'
-  info: {
-    displayName: 'hero main tile'
-  }
-  attributes: {
-    text: Attribute.String
-    link: Attribute.Component<'items.link'>
-  }
-}
-
-export interface ItemsFormCtaBannerLink extends Schema.Component {
-  collectionName: 'components_items_form_cta_banner_links'
-  info: {
-    displayName: 'form cta banner link'
-    description: ''
-  }
-  attributes: {
-    label: Attribute.String
-    url: Attribute.String
-    email: Attribute.Email
-    form: Attribute.Relation<'items.form-cta-banner-link', 'oneToOne', 'api::form.form'>
-  }
-}
-
-export interface ItemsFooterColumn extends Schema.Component {
-  collectionName: 'components_items_footer_columns'
-  info: {
-    displayName: 'Footer column'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    links: Attribute.Component<'items.link', true>
-  }
-}
-
-export interface ItemsFileItem extends Schema.Component {
-  collectionName: 'components_items_file_items'
-  info: {
-    displayName: 'File item'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    media: Attribute.Media<'images' | 'files'> & Attribute.Required
-  }
-}
-
-export interface ItemsContactsOpeningTime extends Schema.Component {
-  collectionName: 'components_items_contacts_opening_times'
-  info: {
-    displayName: 'Contacts opening time'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    openingTime: Attribute.Relation<
-      'items.contacts-opening-time',
-      'oneToOne',
-      'api::opening-time.opening-time'
-    >
-  }
-}
-
-export interface ItemsContactsContact extends Schema.Component {
-  collectionName: 'components_items_contacts_contacts'
-  info: {
-    displayName: 'Contacts contact'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    contact: Attribute.Relation<'items.contacts-contact', 'oneToOne', 'api::contact.contact'>
-  }
-}
-
-export interface ItemsContactsBranch extends Schema.Component {
-  collectionName: 'components_items_contacts_branches'
-  info: {
-    displayName: 'Contacts branch'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    branch: Attribute.Relation<'items.contacts-branch', 'oneToOne', 'api::branch.branch'>
-  }
-}
-
-export interface ItemsColumnsListItem extends Schema.Component {
-  collectionName: 'components_items_columns_list_items'
-  info: {
-    displayName: 'Columns List item'
-    description: ''
-  }
-  attributes: {
-    icon: Attribute.Media<'images'>
-    content: Attribute.RichText & Attribute.Required
-  }
-}
-
-export interface ItemsColumnsItem extends Schema.Component {
-  collectionName: 'components_items_columns_items'
-  info: {
-    displayName: 'Columns item'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>
-  }
-}
-
-export interface ItemsCardsListItem extends Schema.Component {
-  collectionName: 'components_items_cards_list_items'
-  info: {
-    displayName: 'Cards List item'
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    subtext: Attribute.String
-    link: Attribute.Component<'items.link'> & Attribute.Required
-  }
-}
-
-export interface ItemsCardSliderCard extends Schema.Component {
-  collectionName: 'components_items_card_slider_cards'
-  info: {
-    displayName: 'Card Slider card'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text
-    image: Attribute.Media<'images'> & Attribute.Required
-  }
-}
-
-export interface ItemsBoardMembersItem extends Schema.Component {
-  collectionName: 'components_items_board_members_items'
-  info: {
-    displayName: 'Board Members item'
-  }
-  attributes: {
-    name: Attribute.String & Attribute.Required
-    position: Attribute.String & Attribute.Required
-    image: Attribute.Media<'images'>
-    links: Attribute.Component<'items.link', true>
-  }
-}
-
-export interface ItemsAnchor extends Schema.Component {
-  collectionName: 'components_items_anchors'
-  info: {
-    displayName: 'Anchor'
-  }
-  attributes: {
-    label: Attribute.String & Attribute.Required
-    targetId: Attribute.String & Attribute.Required
   }
 }
 
@@ -1225,52 +671,567 @@ export interface SectionsArticlesHomepageSection extends Schema.Component {
   }
 }
 
+export interface MenuMenuSection extends Schema.Component {
+  collectionName: 'components_menu_menu_sections'
+  info: {
+    displayName: 'menu section'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    links: Attribute.Component<'menu.menu-link', true>
+    colSpan: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0
+          max: 3
+        },
+        number
+      > &
+      Attribute.DefaultTo<1>
+    multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
+    hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    specialSectionType: Attribute.Enumeration<['latest articles']>
+  }
+}
+
+export interface MenuMenuLink extends Schema.Component {
+  collectionName: 'components_menu_menu_link'
+  info: {
+    displayName: 'menu link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    page: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::page.page'>
+    branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
+    service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
+    workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
+  }
+}
+
+export interface MenuMenuItem extends Schema.Component {
+  collectionName: 'components_menu_menu_items'
+  info: {
+    displayName: 'menu item'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    sections: Attribute.Component<'menu.menu-section', true>
+    seeAllLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsWorkshopDate extends Schema.Component {
+  collectionName: 'components_items_workshop_dates'
+  info: {
+    displayName: 'Workshop date'
+    description: ''
+  }
+  attributes: {
+    internalName: Attribute.String & Attribute.Private
+    datetime: Attribute.DateTime & Attribute.Required
+  }
+}
+
+export interface ItemsWasteSortingCardsItem extends Schema.Component {
+  collectionName: 'components_items_waste_sorting_cards_items'
+  info: {
+    displayName: 'Waste Sorting Cards item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    variant: Attribute.Enumeration<
+      [
+        'mixed',
+        'paper',
+        'plastic',
+        'glass',
+        'kitchen',
+        'cookingOilsAndFats',
+        'organic',
+        'civicAmenitySite',
+        'cemetery',
+        'christmasTrees',
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'mixed'>
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
+export interface ItemsSortingGuide extends Schema.Component {
+  collectionName: 'components_items_sorting_guides'
+  info: {
+    displayName: 'Sorting Guide'
+    description: ''
+  }
+  attributes: {
+    titleGoesHere: Attribute.String & Attribute.DefaultTo<'Patr\u00ED sem'>
+    titleDoesntGoHere: Attribute.String & Attribute.DefaultTo<'Nepatr\u00ED sem'>
+    goesHereItems: Attribute.Component<'items.sorting-guide-item', true>
+    doesntGoHereItems: Attribute.Component<'items.sorting-guide-item', true>
+    alertMessageGoesHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageDoesntGoHere: Attribute.Component<'items.sorting-guide-alert-message'>
+    alertMessageBottom: Attribute.Component<'items.sorting-guide-alert-message'>
+  }
+}
+
+export interface ItemsSortingGuideItem extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_items'
+  info: {
+    displayName: 'Sorting Guide Item'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+  }
+}
+
+export interface ItemsSortingGuideAlertMessage extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_alert_messages'
+  info: {
+    displayName: 'Sorting Guide Alert Message'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+  }
+}
+
+export interface ItemsSortingGuideAccordionItem extends Schema.Component {
+  collectionName: 'components_items_sorting_guide_accordion_items'
+  info: {
+    displayName: 'sorting guide accordion item'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    wasteType: Attribute.Enumeration<
+      [
+        'paper',
+        'plastic',
+        'glass',
+        'civicAmenitySite',
+        'cookingOilsAndFats',
+        'kitchen',
+        'organic',
+        'mixed',
+        'cemetery',
+        'christmasTrees',
+      ]
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'paper'>
+    sortingGuide: Attribute.Component<'items.sorting-guide'>
+  }
+}
+
+export interface ItemsSlide extends Schema.Component {
+  collectionName: 'components_items_slides'
+  info: {
+    displayName: 'slide'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.Text & Attribute.Required
+    text: Attribute.Text
+    backgroundColor: Attribute.String &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::color-picker.color'>
+    media: Attribute.Media<'images'> & Attribute.Required
+    link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsOrderedCardsItem extends Schema.Component {
+  collectionName: 'components_items_ordered_cards_items'
+  info: {
+    displayName: 'Ordered Cards item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.RichText
+    iconName: Attribute.String
+  }
+}
+
+export interface ItemsOpeningTimesItem extends Schema.Component {
+  collectionName: 'components_items_opening_times_items'
+  info: {
+    displayName: 'Opening Times item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    openingTime: Attribute.Relation<
+      'items.opening-times-item',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
+export interface ItemsOpeningHoursItem extends Schema.Component {
+  collectionName: 'components_items_opening_hours_items'
+  info: {
+    displayName: 'opening hours item'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    value: Attribute.String & Attribute.Required
+  }
+}
+
+export interface ItemsMenuHeader extends Schema.Component {
+  collectionName: 'components_items_menu_headers'
+  info: {
+    displayName: 'Menu header'
+    description: ''
+  }
+  attributes: {
+    contactsLink: Attribute.Component<'items.link'>
+    searchLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsLocationCardsItem extends Schema.Component {
+  collectionName: 'components_items_location_cards_items'
+  info: {
+    displayName: 'Location Cards item'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    address: Attribute.String
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
+export interface ItemsLink extends Schema.Component {
+  collectionName: 'components_items_links'
+  info: {
+    displayName: 'link'
+    icon: 'link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    page: Attribute.Relation<'items.link', 'oneToOne', 'api::page.page'>
+    article: Attribute.Relation<'items.link', 'oneToOne', 'api::article.article'>
+    branch: Attribute.Relation<'items.link', 'oneToOne', 'api::branch.branch'>
+    document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
+    service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
+    workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
+  }
+}
+
+export interface ItemsHomepageServiceTile extends Schema.Component {
+  collectionName: 'components_items_homepage_service_tiles'
+  info: {
+    displayName: 'homepage service tile'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsHeroSmallTile extends Schema.Component {
+  collectionName: 'components_items_hero_small_tiles'
+  info: {
+    displayName: 'hero small tile'
+  }
+  attributes: {
+    icon: Attribute.String
+    link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsHeroMainTile extends Schema.Component {
+  collectionName: 'components_items_hero_main_tiles'
+  info: {
+    displayName: 'hero main tile'
+  }
+  attributes: {
+    text: Attribute.String
+    link: Attribute.Component<'items.link'>
+  }
+}
+
+export interface ItemsFormCtaBannerLink extends Schema.Component {
+  collectionName: 'components_items_form_cta_banner_links'
+  info: {
+    displayName: 'form cta banner link'
+    description: ''
+  }
+  attributes: {
+    label: Attribute.String
+    url: Attribute.String
+    email: Attribute.Email
+    form: Attribute.Relation<'items.form-cta-banner-link', 'oneToOne', 'api::form.form'>
+  }
+}
+
+export interface ItemsFooterColumn extends Schema.Component {
+  collectionName: 'components_items_footer_columns'
+  info: {
+    displayName: 'Footer column'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    links: Attribute.Component<'items.link', true>
+  }
+}
+
+export interface ItemsFileItem extends Schema.Component {
+  collectionName: 'components_items_file_items'
+  info: {
+    displayName: 'File item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    media: Attribute.Media<'images' | 'files'> & Attribute.Required
+  }
+}
+
+export interface ItemsContactsOpeningTime extends Schema.Component {
+  collectionName: 'components_items_contacts_opening_times'
+  info: {
+    displayName: 'Contacts opening time'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    openingTime: Attribute.Relation<
+      'items.contacts-opening-time',
+      'oneToOne',
+      'api::opening-time.opening-time'
+    >
+  }
+}
+
+export interface ItemsContactsContact extends Schema.Component {
+  collectionName: 'components_items_contacts_contacts'
+  info: {
+    displayName: 'Contacts contact'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    contact: Attribute.Relation<'items.contacts-contact', 'oneToOne', 'api::contact.contact'>
+  }
+}
+
+export interface ItemsContactsBranch extends Schema.Component {
+  collectionName: 'components_items_contacts_branches'
+  info: {
+    displayName: 'Contacts branch'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    branch: Attribute.Relation<'items.contacts-branch', 'oneToOne', 'api::branch.branch'>
+  }
+}
+
+export interface ItemsColumnsListItem extends Schema.Component {
+  collectionName: 'components_items_columns_list_items'
+  info: {
+    displayName: 'Columns List item'
+    description: ''
+  }
+  attributes: {
+    icon: Attribute.Media<'images'>
+    content: Attribute.RichText & Attribute.Required
+  }
+}
+
+export interface ItemsColumnsItem extends Schema.Component {
+  collectionName: 'components_items_columns_items'
+  info: {
+    displayName: 'Columns item'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>
+  }
+}
+
+export interface ItemsCardsListItem extends Schema.Component {
+  collectionName: 'components_items_cards_list_items'
+  info: {
+    displayName: 'Cards List item'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    subtext: Attribute.String
+    link: Attribute.Component<'items.link'> & Attribute.Required
+  }
+}
+
+export interface ItemsCardSliderCard extends Schema.Component {
+  collectionName: 'components_items_card_slider_cards'
+  info: {
+    displayName: 'Card Slider card'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    image: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface ItemsBoardMembersItem extends Schema.Component {
+  collectionName: 'components_items_board_members_items'
+  info: {
+    displayName: 'Board Members item'
+  }
+  attributes: {
+    name: Attribute.String & Attribute.Required
+    position: Attribute.String & Attribute.Required
+    image: Attribute.Media<'images'>
+    links: Attribute.Component<'items.link', true>
+  }
+}
+
+export interface ItemsAnchor extends Schema.Component {
+  collectionName: 'components_items_anchors'
+  info: {
+    displayName: 'Anchor'
+  }
+  attributes: {
+    label: Attribute.String & Attribute.Required
+    targetId: Attribute.String & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsSideImage extends Schema.Component {
+  collectionName: 'components_header_sections_side_images'
+  info: {
+    displayName: 'Obr\u00E1zok vpravo'
+    icon: 'picture'
+    description: ''
+  }
+  attributes: {
+    media: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsPickupDay extends Schema.Component {
+  collectionName: 'components_header_sections_pickup_days'
+  info: {
+    displayName: 'Odvozov\u00FD de\u0148'
+    description: ''
+  }
+  attributes: {
+    anchors: Attribute.Component<'items.anchor', true>
+    carouselTitle: Attribute.String & Attribute.Required
+    tags: Attribute.Relation<'header-sections.pickup-day', 'oneToMany', 'api::tag.tag'>
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface HeaderSectionsImage extends Schema.Component {
+  collectionName: 'components_header_sections_images'
+  info: {
+    displayName: 'Obr\u00E1zok na cel\u00FA \u0161\u00EDrku'
+    icon: 'picture'
+    description: ''
+  }
+  attributes: {
+    media: Attribute.Media<'images'> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsIcon extends Schema.Component {
+  collectionName: 'components_header_sections_icons'
+  info: {
+    displayName: 'Ikonka'
+    description: ''
+  }
+  attributes: {
+    iconName: Attribute.String & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsGallery extends Schema.Component {
+  collectionName: 'components_header_sections_galleries'
+  info: {
+    displayName: 'Gal\u00E9ria'
+    icon: 'landscape'
+    description: ''
+  }
+  attributes: {
+    medias: Attribute.Media<'images', true> & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsFeaturedNews extends Schema.Component {
+  collectionName: 'components_header_sections_featured_news'
+  info: {
+    displayName: 'Aktuality (\u010Dl\u00E1nky)'
+    description: ''
+  }
+  attributes: {
+    articlesTitle: Attribute.String & Attribute.Required
+    firstArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+    secondArticle: Attribute.Relation<
+      'header-sections.featured-news',
+      'oneToOne',
+      'api::article.article'
+    >
+  }
+}
+
+export interface HeaderSectionsCareers extends Schema.Component {
+  collectionName: 'components_header_sections_careers'
+  info: {
+    displayName: 'Kari\u00E9ra'
+    description: ''
+  }
+  attributes: {
+    image: Attribute.Media<'images'>
+    imageQuote: Attribute.Text
+    alternativeTextVideo: Attribute.Text
+    videoUrl: Attribute.String & Attribute.Required
+  }
+}
+
+export interface HeaderSectionsBranchMap extends Schema.Component {
+  collectionName: 'components_header_sections_branch_maps'
+  info: {
+    displayName: 'Mapa pobo\u010Diek'
+    icon: 'pinMap'
+    description: ''
+  }
+  attributes: {
+    branches: Attribute.Relation<'header-sections.branch-map', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'menu.menu-section': MenuMenuSection
-      'menu.menu-link': MenuMenuLink
-      'menu.menu-item': MenuMenuItem
       'sidebars.empty-sidebar': SidebarsEmptySidebar
       'sidebars.contacts-sidebar': SidebarsContactsSidebar
       'shared.seo': SharedSeo
       'shared.meta-social': SharedMetaSocial
-      'header-sections.side-image': HeaderSectionsSideImage
-      'header-sections.pickup-day': HeaderSectionsPickupDay
-      'header-sections.image': HeaderSectionsImage
-      'header-sections.icon': HeaderSectionsIcon
-      'header-sections.gallery': HeaderSectionsGallery
-      'header-sections.featured-news': HeaderSectionsFeaturedNews
-      'header-sections.careers': HeaderSectionsCareers
-      'header-sections.branch-map': HeaderSectionsBranchMap
-      'items.workshop-date': ItemsWorkshopDate
-      'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
-      'items.sorting-guide': ItemsSortingGuide
-      'items.sorting-guide-item': ItemsSortingGuideItem
-      'items.sorting-guide-alert-message': ItemsSortingGuideAlertMessage
-      'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
-      'items.slide': ItemsSlide
-      'items.ordered-cards-item': ItemsOrderedCardsItem
-      'items.opening-times-item': ItemsOpeningTimesItem
-      'items.opening-hours-item': ItemsOpeningHoursItem
-      'items.menu-header': ItemsMenuHeader
-      'items.location-cards-item': ItemsLocationCardsItem
-      'items.link': ItemsLink
-      'items.homepage-service-tile': ItemsHomepageServiceTile
-      'items.hero-small-tile': ItemsHeroSmallTile
-      'items.hero-main-tile': ItemsHeroMainTile
-      'items.form-cta-banner-link': ItemsFormCtaBannerLink
-      'items.footer-column': ItemsFooterColumn
-      'items.file-item': ItemsFileItem
-      'items.contacts-opening-time': ItemsContactsOpeningTime
-      'items.contacts-contact': ItemsContactsContact
-      'items.contacts-branch': ItemsContactsBranch
-      'items.columns-list-item': ItemsColumnsListItem
-      'items.columns-item': ItemsColumnsItem
-      'items.cards-list-item': ItemsCardsListItem
-      'items.card-slider-card': ItemsCardSliderCard
-      'items.board-members-item': ItemsBoardMembersItem
-      'items.anchor': ItemsAnchor
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.waste-removal-cards': SectionsWasteRemovalCards
@@ -1306,6 +1267,45 @@ declare module '@strapi/types' {
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
+      'menu.menu-section': MenuMenuSection
+      'menu.menu-link': MenuMenuLink
+      'menu.menu-item': MenuMenuItem
+      'items.workshop-date': ItemsWorkshopDate
+      'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
+      'items.sorting-guide': ItemsSortingGuide
+      'items.sorting-guide-item': ItemsSortingGuideItem
+      'items.sorting-guide-alert-message': ItemsSortingGuideAlertMessage
+      'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
+      'items.slide': ItemsSlide
+      'items.ordered-cards-item': ItemsOrderedCardsItem
+      'items.opening-times-item': ItemsOpeningTimesItem
+      'items.opening-hours-item': ItemsOpeningHoursItem
+      'items.menu-header': ItemsMenuHeader
+      'items.location-cards-item': ItemsLocationCardsItem
+      'items.link': ItemsLink
+      'items.homepage-service-tile': ItemsHomepageServiceTile
+      'items.hero-small-tile': ItemsHeroSmallTile
+      'items.hero-main-tile': ItemsHeroMainTile
+      'items.form-cta-banner-link': ItemsFormCtaBannerLink
+      'items.footer-column': ItemsFooterColumn
+      'items.file-item': ItemsFileItem
+      'items.contacts-opening-time': ItemsContactsOpeningTime
+      'items.contacts-contact': ItemsContactsContact
+      'items.contacts-branch': ItemsContactsBranch
+      'items.columns-list-item': ItemsColumnsListItem
+      'items.columns-item': ItemsColumnsItem
+      'items.cards-list-item': ItemsCardsListItem
+      'items.card-slider-card': ItemsCardSliderCard
+      'items.board-members-item': ItemsBoardMembersItem
+      'items.anchor': ItemsAnchor
+      'header-sections.side-image': HeaderSectionsSideImage
+      'header-sections.pickup-day': HeaderSectionsPickupDay
+      'header-sections.image': HeaderSectionsImage
+      'header-sections.icon': HeaderSectionsIcon
+      'header-sections.gallery': HeaderSectionsGallery
+      'header-sections.featured-news': HeaderSectionsFeaturedNews
+      'header-sections.careers': HeaderSectionsCareers
+      'header-sections.branch-map': HeaderSectionsBranchMap
     }
   }
 }

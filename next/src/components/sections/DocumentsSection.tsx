@@ -24,12 +24,12 @@ type Props = {
  */
 
 const DocumentsSection = ({ section, className }: Props) => {
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
+
   const { title, text, showAll, documents } = section ?? {}
   const { getFullPath } = useGetFullPath()
   const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
-
-  const { t, i18n } = useTranslation()
-  const locale = i18n.language
 
   if (showAll) {
     return <DocumentsAllSection section={section} className={className} />
@@ -65,7 +65,6 @@ const DocumentsSection = ({ section, className }: Props) => {
                   variant: 'single-file',
                   title: documentTitle,
                   linkHref: url ?? '#',
-                  buttonLabel: `${t('common.download')} [${formatFileExtension(ext ?? '')}, ${formatFileSize(size, locale)}]`,
                   ariaLabel: getDownloadAriaLabel(filteredFiles[0]),
                   metaData: [
                     documentCategory?.data?.attributes?.title,
@@ -83,7 +82,6 @@ const DocumentsSection = ({ section, className }: Props) => {
                 variant: 'multiple-files',
                 title: documentTitle,
                 linkHref: getFullPath(document),
-                buttonLabel: t('common.show'),
                 ariaLabel: t('documentsSection.openDocumentPage', { title: documentTitle }),
                 // TODO replace with better icon
                 iconName: 'dokument',

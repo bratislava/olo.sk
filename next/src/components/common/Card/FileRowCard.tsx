@@ -11,7 +11,6 @@ export type FileRowCardProps = {
   variant: 'single-file' | 'multiple-files'
   title: string
   linkHref: string
-  buttonLabel: string
   metaData?: string[]
   iconName?: IconName
   hasBottomBorder?: boolean
@@ -27,7 +26,6 @@ const FileRowCard = ({
   variant,
   title,
   linkHref,
-  buttonLabel,
   metaData,
   iconName = 'priloha',
   hasBottomBorder = false,
@@ -79,11 +77,12 @@ const FileRowCard = ({
             hasLinkIcon={false}
             // eslint-disable-next-line sonarjs/no-duplicate-string
             startIcon={variant === 'single-file' ? <Icon name="stiahnut" /> : undefined}
+            // eslint-disable-next-line sonarjs/no-duplicate-string
             aria-label={ariaLabel ?? `${t('common.showMore')}: ${title}`}
             endIcon={variant === 'multiple-files' ? <Icon name="sipka-doprava" /> : undefined}
             className="whitespace-nowrap max-lg:hidden"
           >
-            {buttonLabel}
+            {variant === 'single-file' ? t('common.download') : t('common.show')}
           </Button>
           {/* Screen: mobile */}
           <Button

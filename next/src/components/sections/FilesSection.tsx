@@ -26,7 +26,7 @@ type Props = {
 const FilesSection = ({ section, className }: Props) => {
   const { title, text, files } = section ?? {}
 
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const locale = i18n.language
 
   const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
@@ -52,7 +52,6 @@ const FilesSection = ({ section, className }: Props) => {
                 title: file.title ?? name,
                 linkHref: url,
                 // TODO handle locale
-                buttonLabel: `${t('common.download')} [${formatFileExtension(ext ?? '')}, ${formatFileSize(size, locale)}]`,
                 ariaLabel: getDownloadAriaLabel(filteredFiles[0]),
                 metaData: [formatFileExtension(ext ?? ''), formatFileSize(size, locale)].filter(
                   // eslint-disable-next-line unicorn/no-array-callback-reference

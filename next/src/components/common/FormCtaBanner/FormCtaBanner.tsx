@@ -1,3 +1,5 @@
+import { usePlausible } from 'next-plausible'
+
 import Button from '@/src/components/common/Button/Button'
 import Icon from '@/src/components/common/Icon/Icon'
 import Typography from '@/src/components/common/Typography/Typography'
@@ -17,6 +19,9 @@ type FormCtaBannerProps = {
 
 const FormCtaBanner = ({ title, text, link, isFullWidthButton = false }: FormCtaBannerProps) => {
   const { getLinkProps } = useGetLinkProps()
+  const plausible = usePlausible()
+
+  const { plausibleProps } = getLinkProps(link)
 
   const isEmailLink = !!link.email
 
@@ -37,6 +42,7 @@ const FormCtaBanner = ({ title, text, link, isFullWidthButton = false }: FormCta
         variant="category-solid"
         asLink
         {...getLinkProps(link)}
+        onPress={() => plausibleProps && plausible('Link click', { props: plausibleProps })}
         fullWidth={isFullWidthButton}
         hasLinkIcon={!isEmailLink}
         startIcon={isEmailLink ? <Icon name="mail" /> : undefined}

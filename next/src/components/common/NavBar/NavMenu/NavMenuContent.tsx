@@ -71,7 +71,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
             onClick={(event) => event.stopPropagation()}
             className="flex w-full items-start justify-start border-t border-border-default py-6"
           >
-            <NavMenuLink {...seeAllLinkProps} />
+            <NavMenuLink {...seeAllLinkProps} plausibleProps={seeAllLinkProps.plausibleProps} />
           </div>
         ) : null}
       </SectionContainer>

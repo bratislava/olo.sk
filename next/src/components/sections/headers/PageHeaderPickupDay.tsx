@@ -41,8 +41,8 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
   const filteredTagIds = tags?.data.map((tag) => tag.id).filter(isDefined) ?? []
 
   const { data: articlesByTagsData } = useQuery({
-    queryKey: ['ArticlesByTagIds', { tagsIds: filteredTagIds }],
-    queryFn: () => client.ArticlesByTagsIds({ tagsIds: filteredTagIds }),
+    queryKey: ['ArticlesByTagIds', { tagIds: filteredTagIds }],
+    queryFn: () => client.ArticlesByTagIds({ tagIds: filteredTagIds }),
   })
 
   const filteredArticles =

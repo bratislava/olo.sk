@@ -35,8 +35,6 @@ const ArticlesSectionFiltered = ({ section }: Props) => {
 
   const filteredCategorySlugs =
     categories?.data
-      // eslint-disable-next-line unicorn/no-array-callback-reference
-      .filter(isDefined)
       .map((category) => category?.attributes?.slug)
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined) ?? []
@@ -64,8 +62,6 @@ const ArticlesSectionFiltered = ({ section }: Props) => {
   return (
     <div className="flex flex-col gap-6">
       <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
-      <p>{`Filters: ${JSON.stringify(filters)}`} </p>
-      <p>{`ArticlesData: ${JSON.stringify(articlesData)}`} </p>
       {articlesData?.hits.length ? (
         <ResponsiveCarousel
           desktop={4}

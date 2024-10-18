@@ -34,12 +34,16 @@ export const meiliArticlesFetcher = (filters: ArticlesFilters, locale: string) =
       filter: [
         'type = "article"',
         `locale = ${locale}`,
-        // This works ↓
-        // `article.tags.slug = ${filters.tagSlugs[0]}`,
-        // This doesn't work ↓
-        filters.tagSlugs && filters.tagSlugs.length > 0
-          ? `article.tags.slug IN [${filters.tagSlugs.join(',')}]`
-          : '',
+        filters.tagSlugs?.length
+          ? // eslint-disable-next-line sonarjs/no-nested-template-literals
+            filters.tagSlugs.map((tagSlug) => `article.tags.slug = ${tagSlug}`)
+          : null,
+        filters.categorySlugs?.length
+          ? // eslint-disable-next-line sonarjs/no-nested-template-literals
+            filters.categorySlugs.map(
+              (categorySlug) => `article.articleCategory.slug = ${categorySlug}`,
+            )
+          : null,
         // eslint-disable-next-line unicorn/no-array-callback-reference
       ].filter(isDefined),
       sort: ['article.publishedAtTimestamp:desc'],

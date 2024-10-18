@@ -12718,11 +12718,11 @@ export type ArticleBySlugQuery = {
   } | null
 }
 
-export type ArticlesByTagsIdsQueryVariables = Exact<{
-  tagsIds: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>
+export type ArticlesByTagIdsQueryVariables = Exact<{
+  tagIds: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>
 }>
 
-export type ArticlesByTagsIdsQuery = {
+export type ArticlesByTagIdsQuery = {
   __typename?: 'Query'
   articles?: {
     __typename?: 'ArticleEntityResponseCollection'
@@ -12773,11 +12773,11 @@ export type ArticlesByTagsIdsQuery = {
   } | null
 }
 
-export type ArticlesByCategoriesIdsQueryVariables = Exact<{
-  categoriesIds: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>
+export type ArticlesByCategoryIdsQueryVariables = Exact<{
+  categoryIds: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>
 }>
 
-export type ArticlesByCategoriesIdsQuery = {
+export type ArticlesByCategoryIdsQuery = {
   __typename?: 'Query'
   articles?: {
     __typename?: 'ArticleEntityResponseCollection'
@@ -35465,9 +35465,9 @@ export const ArticleBySlugDocument = gql`
   }
   ${ArticleEntityFragmentDoc}
 `
-export const ArticlesByTagsIdsDocument = gql`
-  query ArticlesByTagsIds($tagsIds: [ID]!) {
-    articles(filters: { tags: { id: { in: $tagsIds } } }) {
+export const ArticlesByTagIdsDocument = gql`
+  query ArticlesByTagIds($tagIds: [ID]!) {
+    articles(filters: { tags: { id: { in: $tagIds } } }) {
       data {
         ...ArticleCardEntity
       }
@@ -35475,9 +35475,9 @@ export const ArticlesByTagsIdsDocument = gql`
   }
   ${ArticleCardEntityFragmentDoc}
 `
-export const ArticlesByCategoriesIdsDocument = gql`
-  query ArticlesByCategoriesIds($categoriesIds: [ID]!) {
-    articles(filters: { articleCategory: { id: { in: $categoriesIds } } }) {
+export const ArticlesByCategoryIdsDocument = gql`
+  query ArticlesByCategoryIds($categoryIds: [ID]!) {
+    articles(filters: { articleCategory: { id: { in: $categoryIds } } }) {
       data {
         ...ArticleCardEntity
       }
@@ -35979,32 +35979,32 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         variables,
       )
     },
-    ArticlesByTagsIds(
-      variables: ArticlesByTagsIdsQueryVariables,
+    ArticlesByTagIds(
+      variables: ArticlesByTagIdsQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<ArticlesByTagsIdsQuery> {
+    ): Promise<ArticlesByTagIdsQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<ArticlesByTagsIdsQuery>(ArticlesByTagsIdsDocument, variables, {
+          client.request<ArticlesByTagIdsQuery>(ArticlesByTagIdsDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'ArticlesByTagsIds',
+        'ArticlesByTagIds',
         'query',
         variables,
       )
     },
-    ArticlesByCategoriesIds(
-      variables: ArticlesByCategoriesIdsQueryVariables,
+    ArticlesByCategoryIds(
+      variables: ArticlesByCategoryIdsQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<ArticlesByCategoriesIdsQuery> {
+    ): Promise<ArticlesByCategoryIdsQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<ArticlesByCategoriesIdsQuery>(ArticlesByCategoriesIdsDocument, variables, {
+          client.request<ArticlesByCategoryIdsQuery>(ArticlesByCategoryIdsDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'ArticlesByCategoriesIds',
+        'ArticlesByCategoryIds',
         'query',
         variables,
       )

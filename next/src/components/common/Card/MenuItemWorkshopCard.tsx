@@ -24,7 +24,7 @@ const MenuItemWorkshopCard = ({
   className,
 }: MenuItemWorkshopCardProps) => {
   return (
-    <li className={cn(className)}>
+    <NavMenuLink href={linkHref} isCard className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex items-start gap-4">
           <div
@@ -38,22 +38,19 @@ const MenuItemWorkshopCard = ({
               'justify-center': !mostRecentWorkshopDate,
             })}
           >
-            <NavMenuLink href={linkHref} stretched>
-              <Typography
-                variant="h6"
-                className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
-              >
-                {title}
-              </Typography>
-            </NavMenuLink>
-
+            <Typography
+              variant="h6"
+              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
+            >
+              {title}
+            </Typography>
             {mostRecentWorkshopDate ? (
               <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
             ) : null}
           </div>
         </div>
       </CardBase>
-    </li>
+    </NavMenuLink>
   )
 }
 

@@ -32,7 +32,7 @@ const config: Config = {
     removeNativeSearchInputStyling,
     require('tailwind-scrollbar-hide'),
     pluginRAC,
-    require('tailwindcss-animate'),
+    // require('tailwindcss-animate'),
   ],
   corePlugins: {
     container: false,
@@ -189,20 +189,6 @@ const config: Config = {
       },
       aspectRatio: {
         heroSliderMedia: '612/322',
-      },
-      keyframes: {
-        fadeIn: {
-          from: { opacity: '0' },
-          to: { opacity: '1' },
-        },
-        fadeOut: {
-          from: { opacity: '1' },
-          to: { opacity: '0' },
-        },
-      },
-      animation: {
-        fadeIn: 'fadeIn 200ms ease',
-        fadeOut: 'fadeOut 200ms ease',
       },
     },
   },

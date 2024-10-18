@@ -194,12 +194,11 @@ const Page = ({ entity: page, general, navigation }: PageProps) => {
         <div
           className={cn({
             // classes copied from SectionContainer
-            'mx-auto flex max-w-screen-xl flex-col items-start md:flex-row': sidebar,
+            'mx-auto flex max-w-screen-xl flex-col items-start md:flex-row lg:gap-8': sidebar,
           })}
         >
-          <div>
-            <Sections sections={sections?.filter(isDefined) ?? []} />
-          </div>
+          <Sections sections={sections?.filter(isDefined) ?? []} />
+
           {sidebar ? (
             <div className="w-full shrink-0 grow pr-4 max-lg:px-4 md:max-w-80 lg:pr-8">
               <Sidebars sidebar={sidebar} />

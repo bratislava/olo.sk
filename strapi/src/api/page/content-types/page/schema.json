@@ -106,7 +106,8 @@
         "sections.global-search",
         "sections.waste-collection-days",
         "sections.iframe-section",
-        "sections.waste-collection-points"
+        "sections.waste-collection-points",
+        "sections.child-pages-cards-list"
       ],
       "pluginOptions": {
         "i18n": {

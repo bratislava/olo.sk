@@ -192,6 +192,12 @@
       }
     },
     "layouts": {
+      "list": [
+        "id",
+        "title",
+        "slug",
+        "createdAt"
+      ],
       "edit": [
         [
           {
@@ -219,6 +225,12 @@
         ],
         [
           {
+            "name": "description",
+            "size": 12
+          }
+        ],
+        [
+          {
             "name": "identificationNumber",
             "size": 6
           },
@@ -231,18 +243,8 @@
           {
             "name": "priceWithoutTax",
             "size": 6
-          },
-          {
-            "name": "description",
-            "size": 6
           }
         ]
-      ],
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "createdAt"
       ]
     },
     "uid": "api::document.document"

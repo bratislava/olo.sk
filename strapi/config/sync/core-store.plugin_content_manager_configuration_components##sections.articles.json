@@ -50,7 +50,7 @@
       "categories": {
         "edit": {
           "label": "Kategórie",
-          "description": "",
+          "description": "Ak sa zadajú aj kategórie aj tagy, sekcia zobrazí články ktoré patria aspoň do jednej z vybraných kategórií a zároveň majú aspoň jeden z vybraných tagov.",
           "placeholder": "",
           "visible": true,
           "editable": true,

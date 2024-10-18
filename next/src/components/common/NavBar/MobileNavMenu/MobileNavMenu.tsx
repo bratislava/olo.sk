@@ -59,6 +59,7 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
         {/* Implemented slightly differently than in Figma, because NavigationMenu.List renders as <ul> and it must have direct children as <li>, visually it should be same with Figma */}
         <NavigationMenu.List className="flex flex-col gap-2 px-4 py-2">
           {menus?.map((menuItem) => {
+            // TODO solve invisible focus ring
             return <MobileNavMenuItem key={menuItem.id} menuItem={menuItem} />
           })}
 

@@ -123,11 +123,11 @@ const SearchResults = ({
           </div>
         ) : (
           // TODO keep this also during the first loading
-          // TODO IS PENDING, but handle contacts separately
           <Typography>{t('globalSearch.enterSearchQuery')}</Typography>
         )}
 
         {searchResultsData?.length && variant === 'specificResults' && onPageChange ? (
+          // TODO separate this results count message and pagination into separate component
           <div className="flex items-center justify-between">
             <Typography>{resultsCountMessage}</Typography>
             <PaginationWithInput

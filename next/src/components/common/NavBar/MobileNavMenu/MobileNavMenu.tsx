@@ -91,7 +91,8 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
 
         {/* Viewport represents popup div with links that appears under menu button */}
         <NavigationMenu.Viewport
-          className="fixed left-0 top-mobileNavBar w-screen overflow-y-scroll bg-background-primary data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight"
+          className="fixed left-0 top-mobileNavBar w-screen overflow-y-scroll bg-background-primary"
+          // TODO add animation, e.g. data-[state=closed]:animate-exitToRight data-[state=open]:animate-enterFromRight
           style={{ height: heightWithoutHeader }}
         />
       </NavigationMenu.Root>

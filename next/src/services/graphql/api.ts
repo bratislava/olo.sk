@@ -1875,11 +1875,9 @@ export type Document = {
   description?: Maybe<Scalars['String']['output']>
   documentCategory?: Maybe<DocumentCategoryEntityResponse>
   files: Array<Maybe<ComponentItemsFileItem>>
-  identificationNumber?: Maybe<Scalars['String']['output']>
-  priceWithoutTax?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   slug: Scalars['String']['output']
-  supplier?: Maybe<Scalars['String']['output']>
+  tags?: Maybe<TagRelationResponseCollection>
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
 }
@@ -1887,6 +1885,13 @@ export type Document = {
 export type DocumentFilesArgs = {
   filters?: InputMaybe<ComponentItemsFileItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type DocumentTagsArgs = {
+  filters?: InputMaybe<TagFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
@@ -1984,13 +1989,11 @@ export type DocumentFiltersInput = {
   documentCategory?: InputMaybe<DocumentCategoryFiltersInput>
   files?: InputMaybe<ComponentItemsFileItemFiltersInput>
   id?: InputMaybe<IdFilterInput>
-  identificationNumber?: InputMaybe<StringFilterInput>
   not?: InputMaybe<DocumentFiltersInput>
   or?: InputMaybe<Array<InputMaybe<DocumentFiltersInput>>>
-  priceWithoutTax?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
   slug?: InputMaybe<StringFilterInput>
-  supplier?: InputMaybe<StringFilterInput>
+  tags?: InputMaybe<TagFiltersInput>
   title?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
@@ -1999,11 +2002,9 @@ export type DocumentInput = {
   description?: InputMaybe<Scalars['String']['input']>
   documentCategory?: InputMaybe<Scalars['ID']['input']>
   files?: InputMaybe<Array<InputMaybe<ComponentItemsFileItemInput>>>
-  identificationNumber?: InputMaybe<Scalars['String']['input']>
-  priceWithoutTax?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
-  supplier?: InputMaybe<Scalars['String']['input']>
+  tags?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   title?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -4079,6 +4080,7 @@ export type Tag = {
   __typename?: 'Tag'
   articles?: Maybe<ArticleRelationResponseCollection>
   createdAt?: Maybe<Scalars['DateTime']['output']>
+  documents?: Maybe<DocumentRelationResponseCollection>
   locale?: Maybe<Scalars['String']['output']>
   localizations?: Maybe<TagRelationResponseCollection>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
@@ -4089,6 +4091,13 @@ export type Tag = {
 
 export type TagArticlesArgs = {
   filters?: InputMaybe<ArticleFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type TagDocumentsArgs = {
+  filters?: InputMaybe<DocumentFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
@@ -4122,6 +4131,7 @@ export type TagFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>
   articles?: InputMaybe<ArticleFiltersInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  documents?: InputMaybe<DocumentFiltersInput>
   id?: InputMaybe<IdFilterInput>
   locale?: InputMaybe<StringFilterInput>
   localizations?: InputMaybe<TagFiltersInput>
@@ -4135,6 +4145,7 @@ export type TagFiltersInput = {
 
 export type TagInput = {
   articles?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
+  documents?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
@@ -8188,9 +8199,6 @@ export type DocumentsSectionFragment = {
         title: string
         slug: string
         publishedAt?: any | null
-        identificationNumber?: string | null
-        supplier?: string | null
-        priceWithoutTax?: string | null
         description?: string | null
         documentCategory?: {
           __typename?: 'DocumentCategoryEntityResponse'
@@ -10570,9 +10578,6 @@ type PageSections_ComponentSectionsDocuments_Fragment = {
         title: string
         slug: string
         publishedAt?: any | null
-        identificationNumber?: string | null
-        supplier?: string | null
-        priceWithoutTax?: string | null
         description?: string | null
         documentCategory?: {
           __typename?: 'DocumentCategoryEntityResponse'
@@ -13293,9 +13298,6 @@ export type DocumentEntityFragment = {
     title: string
     slug: string
     publishedAt?: any | null
-    identificationNumber?: string | null
-    supplier?: string | null
-    priceWithoutTax?: string | null
     description?: string | null
     documentCategory?: {
       __typename?: 'DocumentCategoryEntityResponse'
@@ -13342,9 +13344,6 @@ export type DocumentsQuery = {
         title: string
         slug: string
         publishedAt?: any | null
-        identificationNumber?: string | null
-        supplier?: string | null
-        priceWithoutTax?: string | null
         description?: string | null
         documentCategory?: {
           __typename?: 'DocumentCategoryEntityResponse'
@@ -13425,9 +13424,6 @@ export type DocumentBySlugQuery = {
         title: string
         slug: string
         publishedAt?: any | null
-        identificationNumber?: string | null
-        supplier?: string | null
-        priceWithoutTax?: string | null
         description?: string | null
         documentCategory?: {
           __typename?: 'DocumentCategoryEntityResponse'
@@ -19867,9 +19863,6 @@ export type PageEntityFragment = {
                 title: string
                 slug: string
                 publishedAt?: any | null
-                identificationNumber?: string | null
-                supplier?: string | null
-                priceWithoutTax?: string | null
                 description?: string | null
                 documentCategory?: {
                   __typename?: 'DocumentCategoryEntityResponse'
@@ -23006,9 +22999,6 @@ export type PagesQuery = {
                     title: string
                     slug: string
                     publishedAt?: any | null
-                    identificationNumber?: string | null
-                    supplier?: string | null
-                    priceWithoutTax?: string | null
                     description?: string | null
                     documentCategory?: {
                       __typename?: 'DocumentCategoryEntityResponse'
@@ -26185,9 +26175,6 @@ export type PageBySlugQuery = {
                     title: string
                     slug: string
                     publishedAt?: any | null
-                    identificationNumber?: string | null
-                    supplier?: string | null
-                    priceWithoutTax?: string | null
                     description?: string | null
                     documentCategory?: {
                       __typename?: 'DocumentCategoryEntityResponse'
@@ -28286,9 +28273,6 @@ type ServiceSections_ComponentSectionsDocuments_Fragment = {
         title: string
         slug: string
         publishedAt?: any | null
-        identificationNumber?: string | null
-        supplier?: string | null
-        priceWithoutTax?: string | null
         description?: string | null
         documentCategory?: {
           __typename?: 'DocumentCategoryEntityResponse'
@@ -29109,9 +29093,6 @@ export type ServiceEntityFragment = {
                 title: string
                 slug: string
                 publishedAt?: any | null
-                identificationNumber?: string | null
-                supplier?: string | null
-                priceWithoutTax?: string | null
                 description?: string | null
                 documentCategory?: {
                   __typename?: 'DocumentCategoryEntityResponse'
@@ -29889,9 +29870,6 @@ export type ServicesQuery = {
                     title: string
                     slug: string
                     publishedAt?: any | null
-                    identificationNumber?: string | null
-                    supplier?: string | null
-                    priceWithoutTax?: string | null
                     description?: string | null
                     documentCategory?: {
                       __typename?: 'DocumentCategoryEntityResponse'
@@ -30723,9 +30701,6 @@ export type ServiceBySlugQuery = {
                     title: string
                     slug: string
                     publishedAt?: any | null
-                    identificationNumber?: string | null
-                    supplier?: string | null
-                    priceWithoutTax?: string | null
                     description?: string | null
                     documentCategory?: {
                       __typename?: 'DocumentCategoryEntityResponse'
@@ -31428,9 +31403,6 @@ export type WorkshopEntityFragment = {
                 title: string
                 slug: string
                 publishedAt?: any | null
-                identificationNumber?: string | null
-                supplier?: string | null
-                priceWithoutTax?: string | null
                 description?: string | null
                 documentCategory?: {
                   __typename?: 'DocumentCategoryEntityResponse'
@@ -32036,9 +32008,6 @@ export type WorkshopsQuery = {
                     title: string
                     slug: string
                     publishedAt?: any | null
-                    identificationNumber?: string | null
-                    supplier?: string | null
-                    priceWithoutTax?: string | null
                     description?: string | null
                     documentCategory?: {
                       __typename?: 'DocumentCategoryEntityResponse'
@@ -32687,9 +32656,6 @@ export type WorkshopByIdQuery = {
                     title: string
                     slug: string
                     publishedAt?: any | null
-                    identificationNumber?: string | null
-                    supplier?: string | null
-                    priceWithoutTax?: string | null
                     description?: string | null
                     documentCategory?: {
                       __typename?: 'DocumentCategoryEntityResponse'
@@ -33319,9 +33285,6 @@ export type WorkshopBySlugQuery = {
                     title: string
                     slug: string
                     publishedAt?: any | null
-                    identificationNumber?: string | null
-                    supplier?: string | null
-                    priceWithoutTax?: string | null
                     description?: string | null
                     documentCategory?: {
                       __typename?: 'DocumentCategoryEntityResponse'
@@ -34943,9 +34906,6 @@ export const DocumentEntityFragmentDoc = gql`
       title
       slug
       publishedAt
-      identificationNumber
-      supplier
-      priceWithoutTax
       documentCategory {
         data {
           ...DocumentCategoryEntity

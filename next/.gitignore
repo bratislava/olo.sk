@@ -42,3 +42,5 @@ next-env.d.ts
 # bratiska-cli manifests
 manifest-*.y?ml
 
+
+certificates

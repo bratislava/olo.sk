@@ -85,7 +85,7 @@ const Table = ({
                 <tr className="divide-x divide-border-default">
                   {headerColumns.map((column) => (
                     // eslint-disable-next-line react/no-array-index-key
-                    <th key={column} scope="col" className="px-6 py-4 text-left">
+                    <th key={column} scope="col" className="px-5 py-1 text-left">
                       <Typography variant="p-default-bold">{column}</Typography>
                     </th>
                   ))}
@@ -103,7 +103,7 @@ const Table = ({
                     <tr key={row.id} className="divide-x divide-border-default">
                       {cols.map((cell, colIndex) => (
                         // eslint-disable-next-line react/no-array-index-key
-                        <td key={colIndex} className="px-6 py-4">
+                        <td key={colIndex} className="px-5 py-1">
                           {cell}
                         </td>
                       ))}
@@ -181,9 +181,10 @@ const WasteCollectionDays = ({ section }: Props) => {
         {data?.estimatedTotalHits ? (
           <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
             <Typography>
-              {t('common.showingResults', {
-                current: data.hits.length,
-                total: data.estimatedTotalHits,
+              {t('globalSearch.searchResultsFound.specific', {
+                from: (filters.page - 1) * filters.pageSize + 1,
+                to: Math.min(data.estimatedTotalHits, filters.page * filters.pageSize),
+                all: data.estimatedTotalHits,
               })}
             </Typography>
             <PaginationWithInput

@@ -42,7 +42,7 @@ const MenuItemArticleCard = ({
             {tagText ? <Tag variant="without-bg" text={tagText} /> : null}
             <Typography
               variant="h6"
-              className_onlyWhenNecessary="lg:line-clamp-1 leading-tight lg:group-hover/CardBase:underline text-wrap"
+              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
             >
               {title}
             </Typography>

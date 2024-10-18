@@ -19,9 +19,7 @@ const NavMenuSection = ({ section, className }: NavMenuSectionProps) => {
     <div className={cn('lg:flex lg:w-full lg:flex-col lg:gap-6', className)}>
       <Typography
         variant="h6"
-        className_onlyWhenNecessary={cn('pb-4 lg:border-b lg:border-border-default', {
-          'pb-5': specialSectionType === 'latest_articles' || label === 'Workshopy', // To enhance readability of these sections on small devices
-        })}
+        className_onlyWhenNecessary="pb-4 lg:border-b lg:border-border-default"
       >
         {label}
       </Typography>

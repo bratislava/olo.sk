@@ -26,6 +26,13 @@ export const getSalary = (incomingText: string | undefined) => {
       : ['', '']
 }
 
+/**
+ * Parse incoming array of HTML Elements in order to be displayed as <img> and <p> tag pairs in
+ * benefits section
+ * @param benefits: React.JSX.Element[]
+ * @returns IconTextPair[]
+ */
+
 const parseBenefitsElements = (benefits: React.JSX.Element[]): IconTextPair[] => {
   const parsedElements: IconTextPair[] = []
   let iconTextPair: IconTextPair = { icon: null, text: '' }
@@ -57,6 +64,12 @@ const parseBenefitsElements = (benefits: React.JSX.Element[]): IconTextPair[] =>
   return parsedElements
 }
 
+/**
+ * Parse incoming Elements (various options, this data are already parsed from external Nalgoo API)
+ *  in order to be displayed as <img> and <p> tag pairs in benefits section
+ * @param benefits: React.JSX.Element[]
+ * @returns IconTextPair[]
+ */
 export const parseBenefits = (
   benefits: React.JSX.Element[] | React.JSX.Element | string,
 ): IconTextPair[] => {

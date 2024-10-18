@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 
 import WorkshopCard from '@/src/components/common/Card/WorkshopCard'
+import { isBaIcon } from '@/src/components/common/Icon/Icon'
+import { isOloIcon } from '@/src/components/common/Icon/OloIcon'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { client } from '@/src/services/graphql'
@@ -32,9 +34,6 @@ const WorkshopsSection = ({ section }: Props) => {
     // eslint-disable-next-line unicorn/no-array-callback-reference
     (showAll ? allWorkshops?.workshops : workshops)?.data.filter(isDefined) ?? []
 
-  // // eslint-disable-next-line unicorn/no-array-callback-reference
-  // const filteredWorkshops = workshops?.data.filter(isDefined) ?? []
-
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-18">
@@ -45,12 +44,17 @@ const WorkshopsSection = ({ section }: Props) => {
             .map((workshop, index) => {
               if (!workshop.attributes) return null
 
-              const { title: workshopTitle } = workshop.attributes
+              const { title: workshopTitle, iconName } = workshop.attributes
 
               return (
                 // eslint-disable-next-line react/no-array-index-key
                 <li key={index} className="h-full [&>*]:h-full">
-                  <WorkshopCard title={workshopTitle} linkHref={getFullPath(workshop) ?? '#'} />
+                  <WorkshopCard
+                    title={workshopTitle}
+                    // TODO this logic should be extracted to a separate component
+                    iconName={isBaIcon(iconName) || isOloIcon(iconName) ? iconName : 'live-help'}
+                    linkHref={getFullPath(workshop) ?? '#'}
+                  />
                 </li>
               )
             })

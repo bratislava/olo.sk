@@ -21,13 +21,12 @@
       "targetField": "title",
       "required": true
     },
+    "iconName": {
+      "type": "string"
+    },
     "sections": {
       "type": "dynamiczone",
-      "components": [
-        "sections.richtext",
-        "sections.faq",
-        "sections.documents"
-      ]
+      "components": ["sections.richtext", "sections.faq", "sections.documents"]
     },
     "dates": {
       "displayName": "workshopDate",

@@ -15,7 +15,7 @@ const MobileNavBarCurrentWeekMessage = ({
 }: MobileNavBarCurrentWeekMessageProps) => {
   return (
     <div className={cn(className)}>
-      <div aria-hidden className="h-[3.7rem]" />
+      <div aria-hidden className="h-mobileNavBar" />
       <SectionContainer className="w-full bg-action-background-default py-2 text-center">
         <Typography variant="p-small">{currentWeekMessage}</Typography>
       </SectionContainer>

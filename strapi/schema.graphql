@@ -4055,6 +4055,7 @@ type WasteCollectionDayRelationResponseCollection {
 type Workshop {
   createdAt: DateTime
   dates(filters: ComponentItemsWorkshopDateFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWorkshopDate]
+  iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZone]
   slug: String!
@@ -4080,6 +4081,7 @@ input WorkshopFiltersInput {
   and: [WorkshopFiltersInput]
   createdAt: DateTimeFilterInput
   dates: ComponentItemsWorkshopDateFiltersInput
+  iconName: StringFilterInput
   id: IDFilterInput
   not: WorkshopFiltersInput
   or: [WorkshopFiltersInput]
@@ -4091,6 +4093,7 @@ input WorkshopFiltersInput {
 
 input WorkshopInput {
   dates: [ComponentItemsWorkshopDateInput]
+  iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZoneInput!]
   slug: String

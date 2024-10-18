@@ -4592,6 +4592,7 @@ export type Workshop = {
   __typename?: 'Workshop'
   createdAt?: Maybe<Scalars['DateTime']['output']>
   dates?: Maybe<Array<Maybe<ComponentItemsWorkshopDate>>>
+  iconName?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<WorkshopSectionsDynamicZone>>>
   slug: Scalars['String']['output']
@@ -4626,6 +4627,7 @@ export type WorkshopFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
   createdAt?: InputMaybe<DateTimeFilterInput>
   dates?: InputMaybe<ComponentItemsWorkshopDateFiltersInput>
+  iconName?: InputMaybe<StringFilterInput>
   id?: InputMaybe<IdFilterInput>
   not?: InputMaybe<WorkshopFiltersInput>
   or?: InputMaybe<Array<InputMaybe<WorkshopFiltersInput>>>
@@ -4637,6 +4639,7 @@ export type WorkshopFiltersInput = {
 
 export type WorkshopInput = {
   dates?: InputMaybe<Array<InputMaybe<ComponentItemsWorkshopDateInput>>>
+  iconName?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['WorkshopSectionsDynamicZoneInput']['input']>>
   slug?: InputMaybe<Scalars['String']['input']>
@@ -4879,6 +4882,7 @@ export type FaqCategoryEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -4956,6 +4960,7 @@ export type FaqCategoryEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -5081,6 +5086,7 @@ export type FaqCategoriesQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -5158,6 +5164,7 @@ export type FaqCategoriesQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -5286,6 +5293,7 @@ export type FaqCategoryBySlugQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -5363,6 +5371,7 @@ export type FaqCategoryBySlugQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -5500,6 +5509,7 @@ export type LinkFragment = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
       } | null
     } | null
@@ -5834,6 +5844,7 @@ export type GeneralQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -5912,6 +5923,7 @@ export type GeneralQuery = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -6045,6 +6057,7 @@ export type GeneralQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -6123,6 +6136,7 @@ export type GeneralQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -6204,6 +6218,7 @@ export type GeneralQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -6281,6 +6296,7 @@ export type GeneralQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -6563,6 +6579,7 @@ export type PickupDayHeaderSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -6969,6 +6986,7 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -7118,6 +7136,7 @@ export type ImageAndTextSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -7192,6 +7211,7 @@ export type ImageAndTextSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -7277,6 +7297,7 @@ export type WasteCollectionPointsSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -7483,6 +7504,7 @@ export type ImageAndTextOverlappedSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -7611,6 +7633,7 @@ export type WorkshopsSectionFragment = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
       } | null
     }>
@@ -7747,6 +7770,7 @@ export type FaqSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -7868,6 +7892,7 @@ export type FaqSectionFragment = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -7945,6 +7970,7 @@ export type FaqSectionFragment = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -8067,6 +8093,7 @@ export type FaqSectionFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -8144,6 +8171,7 @@ export type FaqSectionFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -8323,6 +8351,7 @@ export type BannerSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -8397,6 +8426,7 @@ export type BannerSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -8488,6 +8518,7 @@ export type CardsListSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -8597,6 +8628,7 @@ export type WasteSortingCardsSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -8696,6 +8728,7 @@ export type WasteSortingCardsSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -8773,6 +8806,7 @@ export type WasteSortingCardsSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -8935,6 +8969,7 @@ export type SortingGuideSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -9012,6 +9047,7 @@ export type SortingGuideSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -9150,6 +9186,7 @@ export type SortingGuideAccordionsSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -9227,6 +9264,7 @@ export type SortingGuideAccordionsSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -9699,6 +9737,7 @@ export type BoardMembersSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -9908,6 +9947,7 @@ type PageSections_ComponentSectionsBanner_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -9982,6 +10022,7 @@ type PageSections_ComponentSectionsBanner_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -10082,6 +10123,7 @@ type PageSections_ComponentSectionsBoardMembers_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -10280,6 +10322,7 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -10686,6 +10729,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -10807,6 +10851,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -10884,6 +10929,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -11006,6 +11052,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -11083,6 +11130,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -11217,6 +11265,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -11291,6 +11340,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -11389,6 +11439,7 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -11642,6 +11693,7 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -11719,6 +11771,7 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -11857,6 +11910,7 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -11934,6 +11988,7 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -12039,6 +12094,7 @@ type PageSections_ComponentSectionsWasteCollectionPoints_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -12127,6 +12183,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -12226,6 +12283,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -12303,6 +12361,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -12328,6 +12387,7 @@ type PageSections_ComponentSectionsWorkshops_Fragment = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
       } | null
     }>
@@ -13572,6 +13632,7 @@ export type FaqEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -13649,6 +13710,7 @@ export type FaqEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -13786,6 +13848,7 @@ export type FaqsQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -13863,6 +13926,7 @@ export type FaqsQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -13952,6 +14016,7 @@ export type FooterColumnItemFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -14037,6 +14102,7 @@ export type FooterFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -14115,6 +14181,7 @@ export type FooterFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -14202,6 +14269,7 @@ export type FooterEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -14280,6 +14348,7 @@ export type FooterEntityFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -14451,6 +14520,7 @@ export type SlideItemFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -14530,6 +14600,7 @@ export type CardsListItemFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -14609,6 +14680,7 @@ export type HeroMainTileFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -14688,6 +14760,7 @@ export type HeroSmallTileFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -14768,6 +14841,7 @@ export type HomepageServiceTileFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -14867,6 +14941,7 @@ export type HeroHomepageSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -14948,6 +15023,7 @@ export type HeroHomepageSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -15029,6 +15105,7 @@ export type HeroHomepageSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -15178,6 +15255,7 @@ export type ArticlesHomepageSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -15262,6 +15340,7 @@ export type KoloHomepageSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -15414,6 +15493,7 @@ export type KoloHomepageSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -15498,6 +15578,7 @@ export type ServicesHomepageSectionFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -15576,6 +15657,7 @@ export type ServicesHomepageSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -15680,6 +15762,7 @@ export type HomepageEntityFragment = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -15761,6 +15844,7 @@ export type HomepageEntityFragment = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -15842,6 +15926,7 @@ export type HomepageEntityFragment = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -15990,6 +16075,7 @@ export type HomepageEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -16076,6 +16162,7 @@ export type HomepageEntityFragment = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -16228,6 +16315,7 @@ export type HomepageEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -16314,6 +16402,7 @@ export type HomepageEntityFragment = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -16392,6 +16481,7 @@ export type HomepageEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -16509,6 +16599,7 @@ export type HomepageQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -16590,6 +16681,7 @@ export type HomepageQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -16671,6 +16763,7 @@ export type HomepageQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -16823,6 +16916,7 @@ export type HomepageQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -16909,6 +17003,7 @@ export type HomepageQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -17061,6 +17156,7 @@ export type HomepageQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -17147,6 +17243,7 @@ export type HomepageQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -17225,6 +17322,7 @@ export type HomepageQuery = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -17343,6 +17441,7 @@ export type MenuLinkFragment = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
       } | null
     } | null
@@ -17461,6 +17560,7 @@ export type MenuSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -17584,6 +17684,7 @@ export type MenuItemFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -17662,6 +17763,7 @@ export type MenuItemFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -17741,6 +17843,7 @@ export type MenuHeaderFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -17815,6 +17918,7 @@ export type MenuHeaderFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -17940,6 +18044,7 @@ export type MenuFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -18018,6 +18123,7 @@ export type MenuFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -18099,6 +18205,7 @@ export type MenuFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -18176,6 +18283,7 @@ export type MenuFragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -18307,6 +18415,7 @@ export type MenuEntityFragment = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -18385,6 +18494,7 @@ export type MenuEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -18466,6 +18576,7 @@ export type MenuEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -18543,6 +18654,7 @@ export type MenuEntityFragment = {
               __typename?: 'Workshop'
               title: string
               slug: string
+              iconName?: string | null
               dates?: Array<{
                 __typename?: 'ComponentItemsWorkshopDate'
                 datetime: any
@@ -18977,6 +19089,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -19197,6 +19310,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -19274,6 +19388,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -19376,6 +19491,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -19571,6 +19687,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -19974,6 +20091,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -20114,6 +20232,7 @@ export type PageEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                iconName?: string | null
                                 dates?: Array<{
                                   __typename?: 'ComponentItemsWorkshopDate'
                                   datetime: any
@@ -20207,6 +20326,7 @@ export type PageEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                iconName?: string | null
                                 dates?: Array<{
                                   __typename?: 'ComponentItemsWorkshopDate'
                                   datetime: any
@@ -20333,6 +20453,7 @@ export type PageEntityFragment = {
                           __typename?: 'Workshop'
                           title: string
                           slug: string
+                          iconName?: string | null
                           dates?: Array<{
                             __typename?: 'ComponentItemsWorkshopDate'
                             datetime: any
@@ -20414,6 +20535,7 @@ export type PageEntityFragment = {
                           __typename?: 'Workshop'
                           title: string
                           slug: string
+                          iconName?: string | null
                           dates?: Array<{
                             __typename?: 'ComponentItemsWorkshopDate'
                             datetime: any
@@ -20541,6 +20663,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -20618,6 +20741,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -20718,6 +20842,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -20965,6 +21090,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21042,6 +21168,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21179,6 +21306,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21256,6 +21384,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21358,6 +21487,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21445,6 +21575,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21544,6 +21675,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21621,6 +21753,7 @@ export type PageEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -21645,6 +21778,7 @@ export type PageEntityFragment = {
                 __typename?: 'Workshop'
                 title: string
                 slug: string
+                iconName?: string | null
                 dates?: Array<{
                   __typename?: 'ComponentItemsWorkshopDate'
                   datetime: any
@@ -22109,6 +22243,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -22333,6 +22468,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -22410,6 +22546,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -22512,6 +22649,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -22707,6 +22845,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -23110,6 +23249,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -23254,6 +23394,7 @@ export type PagesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -23347,6 +23488,7 @@ export type PagesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -23481,6 +23623,7 @@ export type PagesQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -23570,6 +23713,7 @@ export type PagesQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -23697,6 +23841,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -23774,6 +23919,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -23874,6 +24020,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -24121,6 +24268,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24198,6 +24346,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24335,6 +24484,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24412,6 +24562,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24514,6 +24665,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24601,6 +24753,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24700,6 +24853,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24777,6 +24931,7 @@ export type PagesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -24801,6 +24956,7 @@ export type PagesQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -25285,6 +25441,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -25509,6 +25666,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -25586,6 +25744,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -25688,6 +25847,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -25883,6 +26043,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -26286,6 +26447,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -26430,6 +26592,7 @@ export type PageBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -26523,6 +26686,7 @@ export type PageBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -26657,6 +26821,7 @@ export type PageBySlugQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -26746,6 +26911,7 @@ export type PageBySlugQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -26873,6 +27039,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -26950,6 +27117,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -27050,6 +27218,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -27297,6 +27466,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27374,6 +27544,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27511,6 +27682,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27588,6 +27760,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27690,6 +27863,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27777,6 +27951,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27876,6 +28051,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27953,6 +28129,7 @@ export type PageBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -27977,6 +28154,7 @@ export type PageBySlugQuery = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -28247,6 +28425,7 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
             __typename?: 'Workshop'
             title: string
             slug: string
+            iconName?: string | null
             dates?: Array<{
               __typename?: 'ComponentItemsWorkshopDate'
               datetime: any
@@ -28381,6 +28560,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -28502,6 +28682,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -28579,6 +28760,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -28701,6 +28883,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -28778,6 +28961,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -29068,6 +29252,7 @@ export type ServiceEntityFragment = {
                     __typename?: 'Workshop'
                     title: string
                     slug: string
+                    iconName?: string | null
                     dates?: Array<{
                       __typename?: 'ComponentItemsWorkshopDate'
                       datetime: any
@@ -29204,6 +29389,7 @@ export type ServiceEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -29344,6 +29530,7 @@ export type ServiceEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                iconName?: string | null
                                 dates?: Array<{
                                   __typename?: 'ComponentItemsWorkshopDate'
                                   datetime: any
@@ -29437,6 +29624,7 @@ export type ServiceEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                iconName?: string | null
                                 dates?: Array<{
                                   __typename?: 'ComponentItemsWorkshopDate'
                                   datetime: any
@@ -29563,6 +29751,7 @@ export type ServiceEntityFragment = {
                           __typename?: 'Workshop'
                           title: string
                           slug: string
+                          iconName?: string | null
                           dates?: Array<{
                             __typename?: 'ComponentItemsWorkshopDate'
                             datetime: any
@@ -29644,6 +29833,7 @@ export type ServiceEntityFragment = {
                           __typename?: 'Workshop'
                           title: string
                           slug: string
+                          iconName?: string | null
                           dates?: Array<{
                             __typename?: 'ComponentItemsWorkshopDate'
                             datetime: any
@@ -29845,6 +30035,7 @@ export type ServicesQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -29981,6 +30172,7 @@ export type ServicesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -30125,6 +30317,7 @@ export type ServicesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -30218,6 +30411,7 @@ export type ServicesQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -30352,6 +30546,7 @@ export type ServicesQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -30441,6 +30636,7 @@ export type ServicesQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -30676,6 +30872,7 @@ export type ServiceBySlugQuery = {
                         __typename?: 'Workshop'
                         title: string
                         slug: string
+                        iconName?: string | null
                         dates?: Array<{
                           __typename?: 'ComponentItemsWorkshopDate'
                           datetime: any
@@ -30812,6 +31009,7 @@ export type ServiceBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -30956,6 +31154,7 @@ export type ServiceBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -31049,6 +31248,7 @@ export type ServiceBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -31183,6 +31383,7 @@ export type ServiceBySlugQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -31272,6 +31473,7 @@ export type ServiceBySlugQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -31376,6 +31578,7 @@ export type WorkshopSlugEntityFragment = {
     __typename?: 'Workshop'
     title: string
     slug: string
+    iconName?: string | null
     dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
   } | null
 }
@@ -31387,6 +31590,7 @@ export type WorkshopEntityFragment = {
     __typename?: 'Workshop'
     title: string
     slug: string
+    iconName?: string | null
     sections?: Array<
       | {
           __typename: 'ComponentSectionsDocuments'
@@ -31514,6 +31718,7 @@ export type WorkshopEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -31654,6 +31859,7 @@ export type WorkshopEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                iconName?: string | null
                                 dates?: Array<{
                                   __typename?: 'ComponentItemsWorkshopDate'
                                   datetime: any
@@ -31747,6 +31953,7 @@ export type WorkshopEntityFragment = {
                                 __typename?: 'Workshop'
                                 title: string
                                 slug: string
+                                iconName?: string | null
                                 dates?: Array<{
                                   __typename?: 'ComponentItemsWorkshopDate'
                                   datetime: any
@@ -31873,6 +32080,7 @@ export type WorkshopEntityFragment = {
                           __typename?: 'Workshop'
                           title: string
                           slug: string
+                          iconName?: string | null
                           dates?: Array<{
                             __typename?: 'ComponentItemsWorkshopDate'
                             datetime: any
@@ -31954,6 +32162,7 @@ export type WorkshopEntityFragment = {
                           __typename?: 'Workshop'
                           title: string
                           slug: string
+                          iconName?: string | null
                           dates?: Array<{
                             __typename?: 'ComponentItemsWorkshopDate'
                             datetime: any
@@ -31992,6 +32201,7 @@ export type WorkshopsQuery = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         sections?: Array<
           | {
               __typename: 'ComponentSectionsDocuments'
@@ -32119,6 +32329,7 @@ export type WorkshopsQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -32263,6 +32474,7 @@ export type WorkshopsQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -32356,6 +32568,7 @@ export type WorkshopsQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -32490,6 +32703,7 @@ export type WorkshopsQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -32579,6 +32793,7 @@ export type WorkshopsQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -32619,6 +32834,7 @@ export type WorkshopsStaticPathsQuery = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
       } | null
     }>
@@ -32640,6 +32856,7 @@ export type WorkshopByIdQuery = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         sections?: Array<
           | {
               __typename: 'ComponentSectionsDocuments'
@@ -32767,6 +32984,7 @@ export type WorkshopByIdQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -32911,6 +33129,7 @@ export type WorkshopByIdQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -33004,6 +33223,7 @@ export type WorkshopByIdQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -33138,6 +33358,7 @@ export type WorkshopByIdQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -33227,6 +33448,7 @@ export type WorkshopByIdQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -33269,6 +33491,7 @@ export type WorkshopBySlugQuery = {
         __typename?: 'Workshop'
         title: string
         slug: string
+        iconName?: string | null
         sections?: Array<
           | {
               __typename: 'ComponentSectionsDocuments'
@@ -33396,6 +33619,7 @@ export type WorkshopBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -33540,6 +33764,7 @@ export type WorkshopBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -33633,6 +33858,7 @@ export type WorkshopBySlugQuery = {
                                     __typename?: 'Workshop'
                                     title: string
                                     slug: string
+                                    iconName?: string | null
                                     dates?: Array<{
                                       __typename?: 'ComponentItemsWorkshopDate'
                                       datetime: any
@@ -33767,6 +33993,7 @@ export type WorkshopBySlugQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -33856,6 +34083,7 @@ export type WorkshopBySlugQuery = {
                               __typename?: 'Workshop'
                               title: string
                               slug: string
+                              iconName?: string | null
                               dates?: Array<{
                                 __typename?: 'ComponentItemsWorkshopDate'
                                 datetime: any
@@ -34047,6 +34275,7 @@ export const WorkshopSlugEntityFragmentDoc = gql`
     attributes {
       title
       slug
+      iconName
       dates {
         ...WorkshopDateItem
       }

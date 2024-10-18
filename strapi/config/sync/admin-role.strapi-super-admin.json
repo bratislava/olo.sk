@@ -1915,6 +1915,7 @@
         "fields": [
           "title",
           "slug",
+          "iconName",
           "sections",
           "dates.internalName",
           "dates.datetime"
@@ -1944,6 +1945,7 @@
         "fields": [
           "title",
           "slug",
+          "iconName",
           "sections",
           "dates.internalName",
           "dates.datetime"
@@ -1959,6 +1961,7 @@
         "fields": [
           "title",
           "slug",
+          "iconName",
           "sections",
           "dates.internalName",
           "dates.datetime"

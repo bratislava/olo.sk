@@ -50,7 +50,7 @@
       "showAll": {
         "edit": {
           "label": "Zobraziť všetky",
-          "description": "",
+          "description": "TRUE zobrazí všetky dokumenty spolu s vyhľadávaním. FALSE zobrazí iba vybrané dokumenty.",
           "placeholder": "",
           "visible": true,
           "editable": true

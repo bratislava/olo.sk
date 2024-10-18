@@ -21,9 +21,25 @@ type Story = StoryObj<typeof FileRowGroupComponent>
 export const FileRowGroup: Story = {
   args: {
     fileRowCardData: [
-      { title: 'File title 1', linkHref: '#', metaData: ['PDF', '1.2MB'] },
-      { title: 'File title 2', linkHref: '#', metaData: ['DOCX', '5MB'] },
-      { title: 'File title 3', linkHref: '#', metaData: ['PDF', '440GB'] },
+      {
+        // eslint-disable-next-line sonarjs/no-duplicate-string
+        variant: 'single-file',
+        title: 'File title 1',
+        linkHref: '#',
+        metaData: ['PDF', '1.2MB'],
+      },
+      {
+        variant: 'single-file',
+        title: 'File title 2',
+        linkHref: '#',
+        metaData: ['DOCX', '5MB'],
+      },
+      {
+        variant: 'single-file',
+        title: 'File title 3',
+        linkHref: '#',
+        metaData: ['PDF', '440GB'],
+      },
     ],
   },
   render: (args) => (

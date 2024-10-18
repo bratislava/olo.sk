@@ -157,48 +157,18 @@
         [
           {
             "name": "metaTitle",
-            "size": 6
-          },
+            "size": 12
+          }
+        ],
+        [
           {
             "name": "metaDescription",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "metaImage",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "metaSocial",
             "size": 12
           }
         ],
         [
           {
             "name": "keywords",
-            "size": 6
-          },
-          {
-            "name": "metaRobots",
-            "size": 6
-          }
-        ],
-        [
-          {
-            "name": "structuredData",
-            "size": 12
-          }
-        ],
-        [
-          {
-            "name": "metaViewport",
-            "size": 6
-          },
-          {
-            "name": "canonicalURL",
             "size": 6
           }
         ]

@@ -892,6 +892,12 @@ export interface ApiBranchBranch extends Schema.CollectionType {
           localized: true
         }
       }>
+    image: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -929,6 +935,30 @@ export interface ApiContactContact extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::contact.contact', 'oneToOne', 'admin::user'> &
       Attribute.Private
     updatedBy: Attribute.Relation<'api::contact.contact', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+  }
+}
+
+export interface ApiContentOwnerContentOwner extends Schema.CollectionType {
+  collectionName: 'content_owners'
+  info: {
+    singularName: 'content-owner'
+    pluralName: 'content-owners'
+    displayName: 'Zodpovedn\u00E9 osoby'
+    description: ''
+  }
+  options: {
+    draftAndPublish: false
+  }
+  attributes: {
+    name: Attribute.String & Attribute.Required
+    email: Attribute.Email
+    pages: Attribute.Relation<'api::content-owner.content-owner', 'oneToMany', 'api::page.page'>
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<'api::content-owner.content-owner', 'oneToOne', 'admin::user'> &
+      Attribute.Private
+    updatedBy: Attribute.Relation<'api::content-owner.content-owner', 'oneToOne', 'admin::user'> &
       Attribute.Private
   }
 }
@@ -1484,7 +1514,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.workshops',
         'sections.documents',
         'sections.ordered-cards',
-        'sections.table',
         'sections.sorting-guide',
         'sections.sorting-guide-accordions',
         'sections.contacts',
@@ -1493,6 +1522,9 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.vacancies',
         'sections.global-search',
         'sections.waste-collection-days',
+        'sections.iframe-section',
+        'sections.waste-collection-points',
+        'sections.child-pages-cards-list',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1519,6 +1551,27 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true
         }
       }>
+    contentOwner: Attribute.Relation<
+      'api::page.page',
+      'manyToOne',
+      'api::content-owner.content-owner'
+    > &
+      Attribute.Private
+    contentState: Attribute.Enumeration<
+      [
+        'contentState.todo',
+        'contentState.inProgress',
+        'contentState.finalising',
+        'contentState.done',
+      ]
+    > &
+      Attribute.Private &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false
+        }
+      }> &
+      Attribute.DefaultTo<'contentState.todo'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1578,6 +1631,7 @@ export interface ApiServiceService extends Schema.CollectionType {
         'sections.faq',
         'sections.cards-list',
         'sections.form-cta-banner',
+        'sections.waste-removal-cards',
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1798,6 +1852,7 @@ declare module '@strapi/types' {
       'api::article-category.article-category': ApiArticleCategoryArticleCategory
       'api::branch.branch': ApiBranchBranch
       'api::contact.contact': ApiContactContact
+      'api::content-owner.content-owner': ApiContentOwnerContentOwner
       'api::document.document': ApiDocumentDocument
       'api::document-category.document-category': ApiDocumentCategoryDocumentCategory
       'api::faq.faq': ApiFaqFaq

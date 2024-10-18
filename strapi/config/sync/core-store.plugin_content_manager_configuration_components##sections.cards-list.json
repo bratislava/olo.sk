@@ -61,6 +61,20 @@
           "sortable": true
         }
       },
+      "columnCount": {
+        "edit": {
+          "label": "Počet kartičiek v riadku",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "columnCount",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "cards": {
         "edit": {
           "label": "Dlaždice",
@@ -106,6 +120,12 @@
           {
             "name": "cards",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "columnCount",
+            "size": 4
           }
         ]
       ]

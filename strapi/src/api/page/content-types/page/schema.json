@@ -97,7 +97,6 @@
         "sections.workshops",
         "sections.documents",
         "sections.ordered-cards",
-        "sections.table",
         "sections.sorting-guide",
         "sections.sorting-guide-accordions",
         "sections.contacts",
@@ -105,7 +104,10 @@
         "sections.board-members",
         "sections.vacancies",
         "sections.global-search",
-        "sections.waste-collection-days"
+        "sections.waste-collection-days",
+        "sections.iframe-section",
+        "sections.waste-collection-points",
+        "sections.child-pages-cards-list"
       ],
       "pluginOptions": {
         "i18n": {
@@ -141,6 +143,29 @@
         }
       },
       "component": "shared.seo"
+    },
+    "contentOwner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::content-owner.content-owner",
+      "private": true,
+      "inversedBy": "pages"
+    },
+    "contentState": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "contentState.todo",
+        "contentState.inProgress",
+        "contentState.finalising",
+        "contentState.done"
+      ],
+      "default": "contentState.todo",
+      "private": true
     }
   }
 }

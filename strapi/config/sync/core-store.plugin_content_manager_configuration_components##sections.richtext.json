@@ -22,7 +22,7 @@
       "content": {
         "edit": {
           "label": "Text",
-          "description": "",
+          "description": "Okrem URL sa dá link pridať aj na OLO stránky, články, služby, dokumenty alebo workshopy. V tom prípade treba do odkazu namiesto URL napísať \"~/TYP/ID\". Namiesto TYP treba napísať \"page\", \"article\", \"service\", \"document\" alebo \"workshop\". Namiesto ID treba napísať id daného obsahového typu.",
           "placeholder": "",
           "visible": true,
           "editable": true

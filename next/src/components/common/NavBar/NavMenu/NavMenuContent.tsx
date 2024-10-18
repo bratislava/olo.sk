@@ -37,7 +37,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
         <ul
           // Together with onCLick in Viewport, it closes the menu on click outside of container area
           onClick={(event) => event.stopPropagation()}
-          className="grid w-full grid-cols-3 gap-8 divide-x divide-border-default border-b border-border-default py-8"
+          className="grid w-full grid-cols-3 gap-8 divide-x divide-border-default py-8"
         >
           {navMenuCells.map((cell, index) => {
             const leftPadding = { 'pl-8': index !== 0 }
@@ -69,7 +69,7 @@ const NavMenuContent = ({ sections, seeAllLinkProps, className }: NavMenuContent
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
           <div
             onClick={(event) => event.stopPropagation()}
-            className="flex w-full items-start justify-start py-6"
+            className="flex w-full items-start justify-start border-t border-border-default py-6"
           >
             <NavMenuLink {...seeAllLinkProps} />
           </div>

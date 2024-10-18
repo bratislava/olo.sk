@@ -17,72 +17,104 @@ import {
   meiliWasteCollectionDaysFetcher,
   wasteCollectionDaysDefaultFilters,
 } from '@/src/services/meili/fetchers/wasteCollectionDaysFetcher'
+import cn from '@/src/utils/cn'
+import { useHorizontalScrollFade } from '@/src/utils/useHorizontalScrollFade'
 import { useRoutePreservedState } from '@/src/utils/useRoutePreservedState'
 
 type Props = {
   section: WasteCollectionDaysFragment
 }
 
-const Table = ({ rows }: { rows: WasteCollectionDayEntityFragment[] }) => {
+const Table = ({
+  rows,
+  visibleColumns,
+}: {
+  rows: WasteCollectionDayEntityFragment[]
+  visibleColumns: string[] | null | undefined // WasteCollectionDaysFragment[ 'visibleColumns' ] is unfortunately typed as any, but docs say it should be string[]
+}) => {
+  const allColumns = [
+    'address',
+    'registrationNumber',
+    'validity',
+    'evenWeek',
+    'oddWeek',
+    'collectionDates',
+    'note',
+  ] as const
+
+  const columns = visibleColumns?.length
+    ? allColumns.filter((value) => visibleColumns.includes(value))
+    : allColumns
+
+  // TODO translations
+  // Type has to be specified to satisfy Typescript so "headerAllColumns[column]" can be used
+  const headerAllColumns: { [key: string]: string } = {
+    address: 'Adresa',
+    registrationNumber: 'Evidenčné číslo',
+    validity: 'Platnosť',
+    evenWeek: 'Párny týždeň',
+    oddWeek: 'Nepárny týždeň',
+    collectionDates: 'Dátumy odvozov',
+    note: 'Poznámka',
+  }
+
+  const headerColumns = visibleColumns?.length
+    ? visibleColumns.map((column) =>
+        column in headerAllColumns ? headerAllColumns[column] : column,
+      )
+    : allColumns.map((column) => headerAllColumns[column])
+
+  const tableWrapperRef = useRef<HTMLDivElement>(null)
+  const { scrollFadeClassNames } = useHorizontalScrollFade({ ref: tableWrapperRef })
+
   return (
-    <div className="overflow-hidden rounded-lg border border-border-default">
-      <table className="divide-y divide-border-default">
-        <thead className="bg-background-secondary">
-          <tr className="divide-x divide-border-default">
-            {[
-              'Typ odvozu',
-              'Adresa',
-              'Evidenčné číslo',
-              'Platnosť',
-              'Párny týždeň',
-              'Nepárny týždeň',
-              'Dátumy odvozov',
-              'Poznámka',
-            ].map((column) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <th key={column} scope="col" className="px-6 py-4 text-left">
-                <Typography variant="p-default-bold">{column}</Typography>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border-default">
-          {rows.map((row) => {
-            const {
-              type,
-              address,
-              registrationNumber,
-              validity,
-              evenWeek,
-              oddWeek,
-              collectionDates,
-              note,
-            } = row.attributes ?? {}
+    // TODO Table wrapping divs that enable horizontal scrolling are resued from RichtextTable - consider separating
+    <div className="lg:flex lg:justify-center">
+      {/* 80rem = 1280px (max-width of SectionContainer), 4rem = 64px (its horizontal padding) */}
+      <div className="grow lg:-mx-52 lg:max-w-[min(100vw-4rem,80rem-4rem)]">
+        <div className="relative">
+          <div
+            className={cn(
+              'overflow-x-auto rounded-lg border border-border-default',
+              scrollFadeClassNames,
+            )}
+            ref={tableWrapperRef}
+          >
+            <table className="w-full divide-y divide-border-default">
+              <thead className="bg-background-secondary">
+                <tr className="divide-x divide-border-default">
+                  {headerColumns.map((column) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <th key={column} scope="col" className="px-6 py-4 text-left">
+                      <Typography variant="p-default-bold">{column}</Typography>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border-default">
+                {rows.map((row) => {
+                  if (!row.attributes) return null
 
-            const cols = [
-              type,
-              address,
-              registrationNumber,
-              validity,
-              evenWeek,
-              oddWeek,
-              collectionDates,
-              note,
-            ]
+                  const cols = columns.map((column) => {
+                    return column in row.attributes! ? row.attributes![column] : null
+                  })
 
-            return (
-              <tr key={row.id} className="divide-x divide-border-default">
-                {cols.map((cell, colIndex) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <td key={colIndex} className="px-6 py-4">
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+                  return (
+                    <tr key={row.id} className="divide-x divide-border-default">
+                      {cols.map((cell, colIndex) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <td key={colIndex} className="px-6 py-4">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -95,7 +127,7 @@ const Table = ({ rows }: { rows: WasteCollectionDayEntityFragment[] }) => {
 const WasteCollectionDays = ({ section }: Props) => {
   const { t } = useTranslation()
 
-  const { title, text, anchorId, wasteCollectionDaysType } = section
+  const { title, text, anchorId, wasteCollectionDaysType, visibleColumns } = section
 
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
@@ -139,9 +171,9 @@ const WasteCollectionDays = ({ section }: Props) => {
         ) : isPending ? (
           <Typography variant="p-default">{t('common.loading')}</Typography>
         ) : data?.hits.length ? (
-          <Table rows={data.hits} />
+          <Table rows={data.hits} visibleColumns={visibleColumns} />
         ) : (
-          // TODO display proper message
+          // TODO translations - display proper message
           // eslint-disable-next-line i18next/no-literal-string
           <Typography>No hits</Typography>
         )}

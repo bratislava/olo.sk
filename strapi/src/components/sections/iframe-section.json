@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_iframe_sections",
+  "info": {
+    "displayName": "Iframe",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "iframeTitle": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "isFullScreen": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -2,6 +2,8 @@ resources:
   - ../../base
   - scaler.yml
   - ./secrets/revalidate.secret.yml
+  - ./secrets/nalgoo.secret.yml
+
 configMapGenerator:
   - name: ${BUILD_REPOSITORY_NAME}-env
     namespace: ${NAMESPACE}

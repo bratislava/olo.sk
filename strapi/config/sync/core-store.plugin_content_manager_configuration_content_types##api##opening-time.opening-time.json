@@ -22,7 +22,7 @@
       "internalName": {
         "edit": {
           "label": "internalName",
-          "description": "",
+          "description": "Táto hodnota sa na webe nikde nezobrazí, slúži len na to, aby content admin podľa tohto názvu vedel, o aké otváracie hodiny ide. Napr. \"Kolo Karlova Ves\"",
           "placeholder": "",
           "visible": true,
           "editable": true

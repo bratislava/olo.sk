@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-// import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
+import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
 import {
   FormCtaBannerLinkFragment,
   LinkFragment,
@@ -12,7 +12,7 @@ export type LinkProps = {
   children: ReactNode
   href: string
   target?: '_blank'
-  // plausibleProps?: LinkPlausibleProps
+  plausibleProps?: LinkPlausibleProps
 }
 
 // eslint-disable-next-line const-case/uppercase
@@ -70,11 +70,14 @@ export const useGetLinkProps = () => {
       target = '_blank'
     }
 
-    // const plausibleProps: LinkPlausibleProps | undefined = link?.plausibleId
-    //   ? { id: link.plausibleId }
-    //   : undefined
+    // TODO: Create common link fragment which contains plausibleId as a field
+    // @ts-ignore
+    const plausibleProps: LinkPlausibleProps | undefined = link?.plausibleId
+      ? // @ts-ignore
+        { id: link.plausibleId }
+      : undefined
 
-    return { children: label, href, target }
+    return { children: label, href, target, plausibleProps }
   }
 
   return { getLinkProps }

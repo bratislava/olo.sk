@@ -1,4 +1,5 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+import { usePlausible } from 'next-plausible'
 import { forwardRef } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
@@ -18,8 +19,11 @@ type NavMenuLinkProps = {
  */
 
 const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
-  ({ href, children, target, isCard = false, className }, ref) => {
+  ({ href, children, target, isCard = false, plausibleProps, className }, ref) => {
     const { setMobileMenuOpen } = useNavMenuContext()
+    const plausible = usePlausible()
+
+    // TODO: This component needs to be refactored to function properly with Plausible
 
     return (
       <li className={cn('flex w-full', className)}>
@@ -37,7 +41,8 @@ const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
               startIcon={<Icon name="sipka-doprava" />}
               hasLinkIcon={false}
               className="flex gap-4"
-              ref={ref} // Forward the ref to the Button
+              ref={ref}
+              onPress={() => plausibleProps && plausible('Link click', { props: plausibleProps })}
             >
               {children}
             </Button>

@@ -8,6 +8,7 @@ import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { DocumentEntityFragment } from '@/src/services/graphql/api'
 import { formatDate } from '@/src/utils/formatDate'
 import { formatFileExtension } from '@/src/utils/formatFileExtension'
+import { formatFileSize } from '@/src/utils/formatFileSize'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetDownloadAriaLabel } from '@/src/utils/useGetDownloadAriaLabel'
 
@@ -20,7 +21,8 @@ type Props = {
  */
 
 const DocumentPageHeader = ({ document }: Props) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
   const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
 
   if (!document.attributes) return null
@@ -31,16 +33,21 @@ const DocumentPageHeader = ({ document }: Props) => {
   const filteredFiles = files.filter(isDefined) ?? []
 
   const publishedAtString = `${t('documentPageContent.publishedAt')}: ${formatDate(publishedAt)}`
-  const fileExtensionString =
-    filteredFiles?.length === 1
-      ? formatFileExtension(filteredFiles[0]?.media.data?.attributes?.ext ?? '')
-      : null
-  // eslint-disable-next-line unicorn/no-array-callback-reference
-  const metadata = [publishedAtString, fileExtensionString].filter(isDefined)
+  const fileExtensionString = formatFileExtension(
+    filteredFiles[0]?.media.data?.attributes?.ext ?? '',
+  )
+  const fileSizeString = formatFileSize(filteredFiles[0]?.media.data?.attributes?.size, locale)
+
+  const metadata = (
+    filteredFiles.length === 1
+      ? [publishedAtString, fileExtensionString, fileSizeString]
+      : [publishedAtString, t('documentPageContent.numberOfFiles', { count: filteredFiles.length })]
+  )
+    // eslint-disable-next-line unicorn/no-array-callback-reference
+    .filter(isDefined)
 
   return (
     <SectionContainer background="secondary">
-      {/* 50rem = 800px */}
       <div className="py-6 lg:py-8">
         <div className="flex flex-col items-start gap-4 lg:gap-6">
           <div className="rounded-2xl bg-background-primary p-4">
@@ -69,6 +76,8 @@ const DocumentPageHeader = ({ document }: Props) => {
                 variant="category-solid"
                 asLink
                 href={filteredFiles[0].media.data?.attributes?.url ?? '#'}
+                hasLinkIcon={false}
+                startIcon={<Icon name="stiahnut" />}
                 aria-label={getDownloadAriaLabel(filteredFiles[0])}
               >
                 {t('documentPageContent.downloadButtonLabel')}

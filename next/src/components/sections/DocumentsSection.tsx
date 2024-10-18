@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import React from 'react'
 
 import { FileRowCardProps } from '@/src/components/common/Card/FileRowCard'
@@ -10,6 +11,8 @@ import cn from '@/src/utils/cn'
 import { formatFileExtension } from '@/src/utils/formatFileExtension'
 import { formatFileSize } from '@/src/utils/formatFileSize'
 import { isDefined } from '@/src/utils/isDefined'
+import { useGetDownloadAriaLabel } from '@/src/utils/useGetDownloadAriaLabel'
+import { useGetFullPath } from '@/src/utils/useGetFullPath'
 
 type Props = {
   section: DocumentsSectionFragment | null | undefined
@@ -21,22 +24,19 @@ type Props = {
  */
 
 const DocumentsSection = ({ section, className }: Props) => {
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
+
   const { title, text, showAll, documents } = section ?? {}
+  const { getFullPath } = useGetFullPath()
+  const { getDownloadAriaLabel } = useGetDownloadAriaLabel()
 
   if (showAll) {
     return <DocumentsAllSection section={section} className={className} />
   }
 
-  // TODO Now we take only first file from the document - discuss with the team
-  /* eslint-disable unicorn/no-array-callback-reference */
-  const filteredFiles =
-    documents?.data
-      ?.filter(isDefined)
-      .map((document) => document.attributes)
-      .filter(isDefined)
-      .map((document) => (document.files.length > 0 ? document.files[0] : null))
-      .filter(isDefined) ?? []
-  /* eslint-enable unicorn/no-array-callback-reference */
+  // eslint-disable-next-line unicorn/no-array-callback-reference
+  const filteredDocuments = documents?.data.filter(isDefined) ?? []
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -45,17 +45,50 @@ const DocumentsSection = ({ section, className }: Props) => {
         <SectionHeader title={title} text={text} />
 
         <FileRowGroup
-          fileRowCardData={filteredFiles
-            .map((file): FileRowCardProps | null => {
-              if (!file.media.data?.attributes) return null
+          fileRowCardData={filteredDocuments
+            .map((document): FileRowCardProps | null => {
+              if (!document.attributes) return null
 
-              const { name, size, url, ext } = file.media.data?.attributes ?? {}
+              const { title: documentTitle, files, documentCategory } = document.attributes
 
+              // eslint-disable-next-line unicorn/no-array-callback-reference
+              const filteredFiles =
+                files?.filter((file) => isDefined(file?.media.data?.attributes)) ?? []
+
+              // if document contains only one file, we want to download it directly
+              if (filteredFiles.length === 1) {
+                if (!filteredFiles[0]) return null
+
+                const { size, url, ext } = filteredFiles[0].media.data?.attributes ?? {}
+
+                return {
+                  variant: 'single-file',
+                  title: documentTitle,
+                  linkHref: url ?? '#',
+                  ariaLabel: getDownloadAriaLabel(filteredFiles[0]),
+                  metaData: [
+                    documentCategory?.data?.attributes?.title,
+                    formatFileExtension(ext ?? ''),
+                    formatFileSize(size, locale),
+                  ].filter(
+                    // eslint-disable-next-line unicorn/no-array-callback-reference
+                    isDefined,
+                  ),
+                }
+              }
+
+              // if document contains more files, we want to open its detail page
               return {
-                title: file.title ?? name,
-                linkHref: url,
-                // TODO handle locale
-                metaData: [formatFileExtension(ext ?? ''), formatFileSize(size, 'sk')].filter(
+                variant: 'multiple-files',
+                title: documentTitle,
+                linkHref: getFullPath(document),
+                ariaLabel: t('documentsSection.openDocumentPage', { title: documentTitle }),
+                // TODO replace with better icon
+                iconName: 'dokument',
+                metaData: [
+                  documentCategory?.data?.attributes?.title,
+                  t('documentsSection.numberOfFiles', { count: filteredFiles.length }),
+                ].filter(
                   // eslint-disable-next-line unicorn/no-array-callback-reference
                   isDefined,
                 ),

@@ -3,7 +3,7 @@ import parse from 'html-react-parser'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import Breadcrumbs from '@/src/components/common/Breadcrumbs/Breadcrumbs'
 import Button from '@/src/components/common/Button/Button'
@@ -20,7 +20,7 @@ import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
 import { GeneralQuery } from '@/src/services/graphql/api'
 import { fetchPositionsDetailFromApi } from '@/src/services/nalgoo/fetchPositionsDetailFromApi'
-import { getSalary } from '@/src/services/nalgoo/utils'
+import { getSalary, parseBenefits } from '@/src/services/nalgoo/utils'
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
@@ -96,10 +96,11 @@ export const getStaticProps: GetStaticProps<PageProps, StaticParams> = async ({
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=619-11100&m=dev
  */
 
-// TODO: In a current version following features are missing: Breadcrumbs, Responsive design for smaller screens, HeaderImage and sanitization check
+// TODO: In a current version following features are missing: Breadcrumbs, HeaderImage and sanitization check
 
 const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
   const { t } = useTranslation()
+  const [positionBenefit, setPositionBenefit] = useState<IconTextPair[]>([])
   const HTML_REGEX = /(<([^>]+)>)/gi
 
   const breadcrumbs = useMemo(
@@ -109,6 +110,14 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
     ],
     [navigation.pagePathsMap, t],
   )
+
+  useEffect(() => {
+    if (!positionDetail) return
+
+    const parsedBenefit =
+      typeof positionDetail.benefit === 'string' ? parse(positionDetail.benefit) : []
+    setPositionBenefit(parseBenefits(parsedBenefit))
+  }, [positionDetail])
 
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
@@ -133,7 +142,7 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
               className="relative mx-auto max-w-screen-xl bg-background-primary px-0 py-6 lg:py-12"
             >
               <div className="flex flex-col items-start gap-4 md:flex-row lg:gap-8">
-                <div className="flex w-full shrink flex-col md:w-[50rem]">
+                <div className="order-2 flex w-full shrink flex-col md:order-1 md:w-[50rem]">
                   <div className="grid grid-cols-1 rounded-lg border border-border-default md:grid-cols-2 md:grid-rows-2">
                     <CareerRowCard
                       className="border-b border-border-default md:border-r"
@@ -215,12 +224,18 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                     <div>
                       <Typography variant="h2">{t('career.benefits')}</Typography>
                       <div className="prose-p:my-0 prose-img:my-0">
-                        {parse(positionDetail.benefit ?? '')}
+                        {Array.isArray(positionBenefit) &&
+                          positionBenefit.map((benefit) => (
+                            <div key={benefit.key} className="flex items-center gap-4">
+                              <div className="w-10">{benefit.icon ?? benefit.icon}</div>
+                              <Typography variant="p-default">{benefit.text}</Typography>
+                            </div>
+                          ))}
                       </div>
                     </div>
                   </div>
                 </div>
-                <SidebarCareer className="p-0 lg:p-0">
+                <SidebarCareer className="order-1 w-full p-0 md:order-2 md:w-auto md:p-0">
                   <div className="px-5 py-4">
                     <div className="pb-2">
                       <Typography variant="p-default-black">{t('career.contact')}</Typography>

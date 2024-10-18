@@ -33,7 +33,7 @@ const config: Config = {
     require('tailwind-scrollbar-hide'),
     require('@tailwindcss/typography'),
     pluginRAC,
-    // require('tailwindcss-animate'),
+    require('tailwindcss-animate'),
   ],
   corePlugins: {
     container: false,
@@ -188,6 +188,31 @@ const config: Config = {
       },
       aspectRatio: {
         heroSliderMedia: '612/322',
+      },
+      // Animation-related code inspired by bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/tailwind.config.js
+      keyframes: {
+        enterFromRight: {
+          from: { opacity: '0', transform: 'translateX(200px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        exitToRight: {
+          from: { opacity: '1', transform: 'translateX(0)' },
+          to: { opacity: '0', transform: 'translateX(200px)' },
+        },
+        fadeIn: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        fadeOut: {
+          from: { opacity: '1' },
+          to: { opacity: '0' },
+        },
+      },
+      animation: {
+        enterFromRight: 'enterFromRight 250ms ease',
+        exitToRight: 'exitToRight 250ms ease',
+        fadeIn: 'fadeIn 200ms ease',
+        fadeOut: 'fadeOut 200ms ease',
       },
     },
   },

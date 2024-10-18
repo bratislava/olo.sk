@@ -1112,15 +1112,21 @@ input ComponentMenuMenuSectionInput {
 }
 
 type ComponentSectionsArticles {
+  categories(filters: ArticleCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleCategoryRelationResponseCollection
   id: ID!
+  showMoreLink: ComponentItemsLink
+  tags(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
   text: String
   title: String
 }
 
 input ComponentSectionsArticlesFiltersInput {
   and: [ComponentSectionsArticlesFiltersInput]
+  categories: ArticleCategoryFiltersInput
   not: ComponentSectionsArticlesFiltersInput
   or: [ComponentSectionsArticlesFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  tags: TagFiltersInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -1152,7 +1158,10 @@ input ComponentSectionsArticlesHomepageSectionInput {
 }
 
 input ComponentSectionsArticlesInput {
+  categories: [ID]
   id: ID
+  showMoreLink: ComponentItemsLinkInput
+  tags: [ID]
   text: String
   title: String
 }

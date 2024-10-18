@@ -165,6 +165,7 @@
       }
     },
     "layouts": {
+      "list": ["id", "title", "slug", "createdAt"],
       "edit": [
         [
           {
@@ -199,13 +200,13 @@
             "name": "description",
             "size": 12
           }
+        ],
+        [
+          {
+            "name": "description",
+            "size": 12
+          }
         ]
-      ],
-      "list": [
-        "id",
-        "title",
-        "slug",
-        "createdAt"
       ]
     },
     "uid": "api::document.document"

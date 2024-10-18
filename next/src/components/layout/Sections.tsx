@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ArticlesSection from '@/src/components/sections/ArticlesSection'
+import ArticlesSection from '@/src/components/sections/articles/ArticlesSection'
 import BannerSection from '@/src/components/sections/BannerSection'
 import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'

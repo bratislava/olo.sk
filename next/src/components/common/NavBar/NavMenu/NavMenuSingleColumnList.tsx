@@ -14,6 +14,7 @@ export type NavMenuColumnListProps = {
   className?: string
 }
 
+// TODO: Fix focus rings for the cards
 const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColumnListProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()

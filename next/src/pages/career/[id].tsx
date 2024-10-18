@@ -122,7 +122,9 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
       <PageLayout>
         <SectionContainer background="secondary">
           <Breadcrumbs breadcrumbs={breadcrumbs} />
-          <HeaderTitleText title={positionDetail.name} />
+          <HeaderTitleText
+            title={positionDetail && positionDetail.name ? positionDetail.name : ''}
+          />
         </SectionContainer>
         <SectionContainer background="primary">
           {positionDetail ? (

@@ -14,7 +14,6 @@ type NavMenuLatestArticlesListProps = {
   className?: string
 }
 
-// TODO: Fix focus rings for the cards
 const NavMenuLatestArticlesList = ({ hasDividers, className }: NavMenuLatestArticlesListProps) => {
   const { i18n } = useTranslation()
   const locale = i18n.language

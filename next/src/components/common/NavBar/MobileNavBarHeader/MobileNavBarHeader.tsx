@@ -44,9 +44,7 @@ const MobileNavBarHeader = ({ searchLink }: MobileNavBarHeaderProps) => {
           icon={<Icon name={isMobileMenuOpen ? 'krizik' : 'hamburger'} />}
           onPress={() => setMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={
-            isMobileMenuOpen
-              ? t('mobileNavBar.aria.closeSearch')
-              : t('mobileNavBar.aria.openSearch')
+            isMobileMenuOpen ? t('mobileNavBar.aria.closeMenu') : t('mobileNavBar.aria.openMenu')
           }
           variant="icon-wrapped"
           className="-mr-2" // To align the icon with the right edge of the menu cards

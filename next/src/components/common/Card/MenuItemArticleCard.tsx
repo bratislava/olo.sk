@@ -34,15 +34,11 @@ const MenuItemArticleCard = ({
             className="aspect-[100/56] w-[6.25rem] rounded-lg"
           />
 
-          <div
-            className={cn('flex flex-col justify-center', {
-              'gap-3': tagText,
-            })}
-          >
+          <div className="flex flex-col justify-center gap-3">
             {tagText ? <Tag variant="without-bg" text={tagText} /> : null}
             <Typography
               variant="h6"
-              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
+              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap lg:line-clamp-1"
             >
               {title}
             </Typography>

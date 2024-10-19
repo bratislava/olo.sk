@@ -1,6 +1,5 @@
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { IconName, isBaIcon } from '@/src/components/common/Icon/Icon'
-import OloIcon, { isOloIcon, OloIconName } from '@/src/components/common/Icon/OloIcon'
+import IconWrapper from '@/src/components/common/Icon/IconWrapper'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -9,7 +8,7 @@ type MenuItemWorkshopCardProps = {
   title: string
   linkHref: string
   subText?: string
-  iconName?: OloIconName | IconName
+  iconName?: string
   className?: string
 }
 
@@ -32,15 +31,9 @@ const MenuItemWorkshopCard = ({
             // 1.25rem = 20px
             className="rounded-[1.25rem] bg-background-secondary p-4"
           >
-            {
-              // TODO This should be extracted to a separate component
-              isBaIcon(iconName) ? (
-                <Icon name={iconName} className="size-6" />
-              ) : isOloIcon(iconName) ? (
-                <OloIcon name={iconName} className="size-6" />
-              ) : null
-            }
+            <IconWrapper name={iconName} className="size-6" />
           </div>
+
           <div
             className={cn('flex flex-col items-start gap-2 self-stretch', {
               'justify-center': !mostRecentWorkshopDate,

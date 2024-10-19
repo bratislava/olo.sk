@@ -2,8 +2,6 @@ import { useTranslation } from 'next-i18next'
 
 import MenuItemBranchCard from '@/src/components/common/Card/MenuItemBranchCard'
 import MenuItemWorkshopCard from '@/src/components/common/Card/MenuItemWorkshopCard'
-import { isBaIcon } from '@/src/components/common/Icon/Icon'
-import { isOloIcon } from '@/src/components/common/Icon/OloIcon'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import { NavMenuSectionProps } from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
 import cn from '@/src/utils/cn'
@@ -45,13 +43,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
                 : ''
             }
             linkHref={href}
-            // TODO this logic should be extracted to a separate component
-            iconName={
-              isBaIcon(link.workshop.data.attributes.iconName) ||
-              isOloIcon(link.workshop.data.attributes.iconName)
-                ? link.workshop.data.attributes.iconName
-                : 'live-help'
-            }
+            iconName={link?.workshop?.data?.attributes?.iconName ?? 'live-help'}
             className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : link.branch?.data?.attributes ? (

@@ -1112,15 +1112,21 @@ input ComponentMenuMenuSectionInput {
 }
 
 type ComponentSectionsArticles {
+  categories(filters: ArticleCategoryFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleCategoryRelationResponseCollection
   id: ID!
+  showMoreLink: ComponentItemsLink
+  tags(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
   text: String
   title: String
 }
 
 input ComponentSectionsArticlesFiltersInput {
   and: [ComponentSectionsArticlesFiltersInput]
+  categories: ArticleCategoryFiltersInput
   not: ComponentSectionsArticlesFiltersInput
   or: [ComponentSectionsArticlesFiltersInput]
+  showMoreLink: ComponentItemsLinkFiltersInput
+  tags: TagFiltersInput
   text: StringFilterInput
   title: StringFilterInput
 }
@@ -1152,7 +1158,10 @@ input ComponentSectionsArticlesHomepageSectionInput {
 }
 
 input ComponentSectionsArticlesInput {
+  categories: [ID]
   id: ID
+  showMoreLink: ComponentItemsLinkInput
+  tags: [ID]
   text: String
   title: String
 }
@@ -2299,11 +2308,9 @@ type Document {
   description: String
   documentCategory: DocumentCategoryEntityResponse
   files(filters: ComponentItemsFileItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsFileItem]!
-  identificationNumber: String
-  priceWithoutTax: String
   publishedAt: DateTime
   slug: String!
-  supplier: String
+  tags(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
   title: String!
   updatedAt: DateTime
 }
@@ -2380,13 +2387,11 @@ input DocumentFiltersInput {
   documentCategory: DocumentCategoryFiltersInput
   files: ComponentItemsFileItemFiltersInput
   id: IDFilterInput
-  identificationNumber: StringFilterInput
   not: DocumentFiltersInput
   or: [DocumentFiltersInput]
-  priceWithoutTax: StringFilterInput
   publishedAt: DateTimeFilterInput
   slug: StringFilterInput
-  supplier: StringFilterInput
+  tags: TagFiltersInput
   title: StringFilterInput
   updatedAt: DateTimeFilterInput
 }
@@ -2395,11 +2400,9 @@ input DocumentInput {
   description: String
   documentCategory: ID
   files: [ComponentItemsFileItemInput]
-  identificationNumber: String
-  priceWithoutTax: String
   publishedAt: DateTime
   slug: String
-  supplier: String
+  tags: [ID]
   title: String
 }
 
@@ -3570,6 +3573,7 @@ input StringFilterInput {
 type Tag {
   articles(filters: ArticleFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): ArticleRelationResponseCollection
   createdAt: DateTime
+  documents(filters: DocumentFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): DocumentRelationResponseCollection
   locale: String
   localizations(filters: TagFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TagRelationResponseCollection
   publishedAt: DateTime
@@ -3596,6 +3600,7 @@ input TagFiltersInput {
   and: [TagFiltersInput]
   articles: ArticleFiltersInput
   createdAt: DateTimeFilterInput
+  documents: DocumentFiltersInput
   id: IDFilterInput
   locale: StringFilterInput
   localizations: TagFiltersInput
@@ -3609,6 +3614,7 @@ input TagFiltersInput {
 
 input TagInput {
   articles: [ID]
+  documents: [ID]
   publishedAt: DateTime
   slug: String
   title: String
@@ -4049,6 +4055,7 @@ type WasteCollectionDayRelationResponseCollection {
 type Workshop {
   createdAt: DateTime
   dates(filters: ComponentItemsWorkshopDateFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentItemsWorkshopDate]
+  iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZone]
   slug: String!
@@ -4074,6 +4081,7 @@ input WorkshopFiltersInput {
   and: [WorkshopFiltersInput]
   createdAt: DateTimeFilterInput
   dates: ComponentItemsWorkshopDateFiltersInput
+  iconName: StringFilterInput
   id: IDFilterInput
   not: WorkshopFiltersInput
   or: [WorkshopFiltersInput]
@@ -4085,6 +4093,7 @@ input WorkshopFiltersInput {
 
 input WorkshopInput {
   dates: [ComponentItemsWorkshopDateInput]
+  iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZoneInput!]
   slug: String

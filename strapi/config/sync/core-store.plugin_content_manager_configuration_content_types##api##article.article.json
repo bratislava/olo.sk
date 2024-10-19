@@ -163,8 +163,8 @@
       },
       "isCurrentChangeInOpeningHours": {
         "edit": {
-          "label": "isCurrentChangeInOpeningHours",
-          "description": "",
+          "label": "Oznamuje článok zmenu otváracích hodín?",
+          "description": "Ak áno, tento oznam sa automaticky objaví v sekcii zobrazujúcej otváracie hodiny",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -235,12 +235,6 @@
       }
     },
     "layouts": {
-      "list": [
-        "id",
-        "title",
-        "articleCategory",
-        "addedAt"
-      ],
       "edit": [
         [
           {
@@ -302,6 +296,12 @@
             "size": 4
           }
         ]
+      ],
+      "list": [
+        "id",
+        "title",
+        "articleCategory",
+        "addedAt"
       ]
     },
     "uid": "api::article.article"

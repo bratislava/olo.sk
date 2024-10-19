@@ -75,6 +75,20 @@
           "sortable": false
         }
       },
+      "iconName": {
+        "edit": {
+          "label": "iconName",
+          "description": "Zadajte názov ikonky zo Strapi manuálu",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "iconName",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "createdAt": {
         "edit": {
           "label": "createdAt",
@@ -146,6 +160,12 @@
           {
             "name": "slug",
             "size": 12
+          }
+        ],
+        [
+          {
+            "name": "iconName",
+            "size": 6
           }
         ],
         [

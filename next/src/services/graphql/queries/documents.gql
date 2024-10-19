@@ -28,9 +28,6 @@ fragment DocumentEntity on DocumentEntity {
     title
     slug
     publishedAt
-    identificationNumber
-    supplier
-    priceWithoutTax
     documentCategory {
       data {
         ...DocumentCategoryEntity

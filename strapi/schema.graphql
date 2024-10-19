@@ -631,6 +631,7 @@ type ComponentItemsFormCtaBannerLink {
   form: FormEntityResponse
   id: ID!
   label: String
+  plausibleId: String
   url: String
 }
 
@@ -641,6 +642,7 @@ input ComponentItemsFormCtaBannerLinkFiltersInput {
   label: StringFilterInput
   not: ComponentItemsFormCtaBannerLinkFiltersInput
   or: [ComponentItemsFormCtaBannerLinkFiltersInput]
+  plausibleId: StringFilterInput
   url: StringFilterInput
 }
 
@@ -649,6 +651,7 @@ input ComponentItemsFormCtaBannerLinkInput {
   form: ID
   id: ID
   label: String
+  plausibleId: String
   url: String
 }
 
@@ -722,6 +725,7 @@ type ComponentItemsLink {
   id: ID!
   label: String
   page: PageEntityResponse
+  plausibleId: String
   service: ServiceEntityResponse
   url: String
   workshop: WorkshopEntityResponse
@@ -736,6 +740,7 @@ input ComponentItemsLinkFiltersInput {
   not: ComponentItemsLinkFiltersInput
   or: [ComponentItemsLinkFiltersInput]
   page: PageFiltersInput
+  plausibleId: StringFilterInput
   service: ServiceFiltersInput
   url: StringFilterInput
   workshop: WorkshopFiltersInput
@@ -748,6 +753,7 @@ input ComponentItemsLinkInput {
   id: ID
   label: String
   page: ID
+  plausibleId: String
   service: ID
   url: String
   workshop: ID
@@ -1052,6 +1058,7 @@ type ComponentMenuMenuLink {
   id: ID!
   label: String
   page: PageEntityResponse
+  plausibleId: String
   service: ServiceEntityResponse
   url: String
   workshop: WorkshopEntityResponse
@@ -1064,6 +1071,7 @@ input ComponentMenuMenuLinkFiltersInput {
   not: ComponentMenuMenuLinkFiltersInput
   or: [ComponentMenuMenuLinkFiltersInput]
   page: PageFiltersInput
+  plausibleId: StringFilterInput
   service: ServiceFiltersInput
   url: StringFilterInput
   workshop: WorkshopFiltersInput
@@ -1074,6 +1082,7 @@ input ComponentMenuMenuLinkInput {
   id: ID
   label: String
   page: ID
+  plausibleId: String
   service: ID
   url: String
   workshop: ID

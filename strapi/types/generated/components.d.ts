@@ -19,6 +19,56 @@ export interface SidebarsContactsSidebar extends Schema.Component {
   }
 }
 
+export interface SharedSeo extends Schema.Component {
+  collectionName: 'components_shared_seos'
+  info: {
+    displayName: 'seo'
+    icon: 'search'
+  }
+  attributes: {
+    metaTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60
+      }>
+    metaDescription: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 50
+        maxLength: 160
+      }>
+    metaImage: Attribute.Media<'images' | 'files' | 'videos'>
+    metaSocial: Attribute.Component<'shared.meta-social', true>
+    keywords: Attribute.Text
+    metaRobots: Attribute.String
+    structuredData: Attribute.JSON
+    metaViewport: Attribute.String
+    canonicalURL: Attribute.String
+  }
+}
+
+export interface SharedMetaSocial extends Schema.Component {
+  collectionName: 'components_shared_meta_socials'
+  info: {
+    displayName: 'metaSocial'
+    icon: 'project-diagram'
+  }
+  attributes: {
+    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> & Attribute.Required
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 60
+      }>
+    description: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 65
+      }>
+    image: Attribute.Media<'images' | 'files' | 'videos'>
+  }
+}
+
 export interface SectionsWorkshops extends Schema.Component {
   collectionName: 'components_sections_workshops'
   info: {
@@ -667,6 +717,7 @@ export interface MenuMenuLink extends Schema.Component {
     branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
     service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
+    plausibleId: Attribute.String
   }
 }
 
@@ -679,56 +730,6 @@ export interface MenuMenuItem extends Schema.Component {
     label: Attribute.String & Attribute.Required
     sections: Attribute.Component<'menu.menu-section', true>
     seeAllLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SharedSeo extends Schema.Component {
-  collectionName: 'components_shared_seos'
-  info: {
-    displayName: 'seo'
-    icon: 'search'
-  }
-  attributes: {
-    metaTitle: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60
-      }>
-    metaDescription: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 50
-        maxLength: 160
-      }>
-    metaImage: Attribute.Media<'images' | 'files' | 'videos'>
-    metaSocial: Attribute.Component<'shared.meta-social', true>
-    keywords: Attribute.Text
-    metaRobots: Attribute.String
-    structuredData: Attribute.JSON
-    metaViewport: Attribute.String
-    canonicalURL: Attribute.String
-  }
-}
-
-export interface SharedMetaSocial extends Schema.Component {
-  collectionName: 'components_shared_meta_socials'
-  info: {
-    displayName: 'metaSocial'
-    icon: 'project-diagram'
-  }
-  attributes: {
-    socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> & Attribute.Required
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60
-      }>
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 65
-      }>
-    image: Attribute.Media<'images' | 'files' | 'videos'>
   }
 }
 
@@ -936,6 +937,7 @@ export interface ItemsLink extends Schema.Component {
     document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
     service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
+    plausibleId: Attribute.String
   }
 }
 
@@ -984,6 +986,7 @@ export interface ItemsFormCtaBannerLink extends Schema.Component {
     url: Attribute.String
     email: Attribute.Email
     form: Attribute.Relation<'items.form-cta-banner-link', 'oneToOne', 'api::form.form'>
+    plausibleId: Attribute.String
   }
 }
 
@@ -1238,6 +1241,8 @@ declare module '@strapi/types' {
     export interface Components {
       'sidebars.empty-sidebar': SidebarsEmptySidebar
       'sidebars.contacts-sidebar': SidebarsContactsSidebar
+      'shared.seo': SharedSeo
+      'shared.meta-social': SharedMetaSocial
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.waste-removal-cards': SectionsWasteRemovalCards
@@ -1277,8 +1282,6 @@ declare module '@strapi/types' {
       'menu.menu-section': MenuMenuSection
       'menu.menu-link': MenuMenuLink
       'menu.menu-item': MenuMenuItem
-      'shared.seo': SharedSeo
-      'shared.meta-social': SharedMetaSocial
       'items.workshop-date': ItemsWorkshopDate
       'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
       'items.sorting-guide': ItemsSortingGuide

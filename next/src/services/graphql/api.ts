@@ -623,6 +623,7 @@ export type ComponentItemsFormCtaBannerLink = {
   form?: Maybe<FormEntityResponse>
   id: Scalars['ID']['output']
   label?: Maybe<Scalars['String']['output']>
+  plausibleId?: Maybe<Scalars['String']['output']>
   url?: Maybe<Scalars['String']['output']>
 }
 
@@ -700,6 +701,7 @@ export type ComponentItemsLink = {
   id: Scalars['ID']['output']
   label?: Maybe<Scalars['String']['output']>
   page?: Maybe<PageEntityResponse>
+  plausibleId?: Maybe<Scalars['String']['output']>
   service?: Maybe<ServiceEntityResponse>
   url?: Maybe<Scalars['String']['output']>
   workshop?: Maybe<WorkshopEntityResponse>
@@ -714,6 +716,7 @@ export type ComponentItemsLinkFiltersInput = {
   not?: InputMaybe<ComponentItemsLinkFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentItemsLinkFiltersInput>>>
   page?: InputMaybe<PageFiltersInput>
+  plausibleId?: InputMaybe<StringFilterInput>
   service?: InputMaybe<ServiceFiltersInput>
   url?: InputMaybe<StringFilterInput>
   workshop?: InputMaybe<WorkshopFiltersInput>
@@ -726,6 +729,7 @@ export type ComponentItemsLinkInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   label?: InputMaybe<Scalars['String']['input']>
   page?: InputMaybe<Scalars['ID']['input']>
+  plausibleId?: InputMaybe<Scalars['String']['input']>
   service?: InputMaybe<Scalars['ID']['input']>
   url?: InputMaybe<Scalars['String']['input']>
   workshop?: InputMaybe<Scalars['ID']['input']>
@@ -998,6 +1002,7 @@ export type ComponentMenuMenuLink = {
   id: Scalars['ID']['output']
   label?: Maybe<Scalars['String']['output']>
   page?: Maybe<PageEntityResponse>
+  plausibleId?: Maybe<Scalars['String']['output']>
   service?: Maybe<ServiceEntityResponse>
   url?: Maybe<Scalars['String']['output']>
   workshop?: Maybe<WorkshopEntityResponse>
@@ -1010,6 +1015,7 @@ export type ComponentMenuMenuLinkFiltersInput = {
   not?: InputMaybe<ComponentMenuMenuLinkFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ComponentMenuMenuLinkFiltersInput>>>
   page?: InputMaybe<PageFiltersInput>
+  plausibleId?: InputMaybe<StringFilterInput>
   service?: InputMaybe<ServiceFiltersInput>
   url?: InputMaybe<StringFilterInput>
   workshop?: InputMaybe<WorkshopFiltersInput>
@@ -1020,6 +1026,7 @@ export type ComponentMenuMenuLinkInput = {
   id?: InputMaybe<Scalars['ID']['input']>
   label?: InputMaybe<Scalars['String']['input']>
   page?: InputMaybe<Scalars['ID']['input']>
+  plausibleId?: InputMaybe<Scalars['String']['input']>
   service?: InputMaybe<Scalars['ID']['input']>
   url?: InputMaybe<Scalars['String']['input']>
   workshop?: InputMaybe<Scalars['ID']['input']>
@@ -4784,6 +4791,7 @@ export type FaqCategoryEntityFragment = {
       }
       primaryButtonLink: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -4861,6 +4869,7 @@ export type FaqCategoryEntityFragment = {
       }
       secondaryButtonLink?: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -4986,6 +4995,7 @@ export type FaqCategoriesQuery = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -5063,6 +5073,7 @@ export type FaqCategoriesQuery = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -5191,6 +5202,7 @@ export type FaqCategoryBySlugQuery = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -5268,6 +5280,7 @@ export type FaqCategoryBySlugQuery = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -5405,6 +5418,7 @@ export type ServiceCategoryBySlugQuery = {
 
 export type LinkFragment = {
   __typename?: 'ComponentItemsLink'
+  plausibleId?: string | null
   label?: string | null
   url?: string | null
   page?: {
@@ -5480,6 +5494,7 @@ export type LinkFragment = {
 
 export type FormCtaBannerLinkFragment = {
   __typename?: 'ComponentItemsFormCtaBannerLink'
+  plausibleId?: string | null
   label?: string | null
   url?: string | null
   email?: string | null
@@ -5739,6 +5754,7 @@ export type GeneralQuery = {
           title: string
           links?: Array<{
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -5817,6 +5833,7 @@ export type GeneralQuery = {
         } | null> | null
         bottomLinks?: Array<{
           __typename?: 'ComponentItemsLink'
+          plausibleId?: string | null
           label?: string | null
           url?: string | null
           page?: {
@@ -5916,6 +5933,7 @@ export type GeneralQuery = {
             links?: Array<{
               __typename?: 'ComponentMenuMenuLink'
               id: string
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -6028,6 +6046,7 @@ export type GeneralQuery = {
           } | null> | null
           seeAllLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -6109,6 +6128,7 @@ export type GeneralQuery = {
           id: string
           contactsLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -6186,6 +6206,7 @@ export type GeneralQuery = {
           } | null
           searchLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -6468,6 +6489,7 @@ export type PickupDayHeaderSectionFragment = {
   } | null> | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -6874,6 +6896,7 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
   } | null> | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -7023,6 +7046,7 @@ export type ImageAndTextSectionFragment = {
   }
   primaryButton?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -7097,6 +7121,7 @@ export type ImageAndTextSectionFragment = {
   } | null
   secondaryButton?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -7182,6 +7207,7 @@ export type WasteCollectionPointsSectionFragment = {
     address?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -7388,6 +7414,7 @@ export type ImageAndTextOverlappedSectionFragment = {
   }
   readMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -7652,6 +7679,7 @@ export type FaqSectionFragment = {
   backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -7773,6 +7801,7 @@ export type FaqSectionFragment = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -7850,6 +7879,7 @@ export type FaqSectionFragment = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -7972,6 +8002,7 @@ export type FaqSectionFragment = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -8049,6 +8080,7 @@ export type FaqSectionFragment = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -8231,6 +8263,7 @@ export type BannerSectionFragment = {
   }
   primaryButtonLink: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -8305,6 +8338,7 @@ export type BannerSectionFragment = {
   }
   secondaryButtonLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -8396,6 +8430,7 @@ export type CardsListSectionFragment = {
     subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -8505,6 +8540,7 @@ export type WasteSortingCardsSectionFragment = {
     variant: Enum_Componentitemswastesortingcardsitem_Variant
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -8604,6 +8640,7 @@ export type WasteSortingCardsSectionFragment = {
     }
     primaryButtonLink: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -8681,6 +8718,7 @@ export type WasteSortingCardsSectionFragment = {
     }
     secondaryButtonLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -8843,6 +8881,7 @@ export type SortingGuideSectionFragment = {
     }
     primaryButtonLink: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -8920,6 +8959,7 @@ export type SortingGuideSectionFragment = {
     }
     secondaryButtonLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -9058,6 +9098,7 @@ export type SortingGuideAccordionsSectionFragment = {
     }
     primaryButtonLink: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -9135,6 +9176,7 @@ export type SortingGuideAccordionsSectionFragment = {
     }
     secondaryButtonLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -9253,6 +9295,7 @@ export type FormCtaBannerSectionFragment = {
   text?: string | null
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     email?: string | null
@@ -9517,6 +9560,7 @@ export type BoardMembersSectionFragment = {
     } | null
     links?: Array<{
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -9636,6 +9680,7 @@ type PageSections_ComponentSectionsBanner_Fragment = {
   }
   primaryButtonLink: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -9710,6 +9755,7 @@ type PageSections_ComponentSectionsBanner_Fragment = {
   }
   secondaryButtonLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -9810,6 +9856,7 @@ type PageSections_ComponentSectionsBoardMembers_Fragment = {
     } | null
     links?: Array<{
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -10008,6 +10055,7 @@ type PageSections_ComponentSectionsCardsList_Fragment = {
     subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -10417,6 +10465,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
   backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -10538,6 +10587,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -10615,6 +10665,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -10737,6 +10788,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -10814,6 +10866,7 @@ type PageSections_ComponentSectionsFaq_Fragment = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -10948,6 +11001,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
   }
   primaryButton?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -11022,6 +11076,7 @@ type PageSections_ComponentSectionsImageAndText_Fragment = {
   } | null
   secondaryButton?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -11120,6 +11175,7 @@ type PageSections_ComponentSectionsImageAndTextOverlapped_Fragment = {
   }
   readMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -11373,6 +11429,7 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
     }
     primaryButtonLink: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -11450,6 +11507,7 @@ type PageSections_ComponentSectionsSortingGuide_Fragment = {
     }
     secondaryButtonLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -11588,6 +11646,7 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
     }
     primaryButtonLink: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -11665,6 +11724,7 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
     }
     secondaryButtonLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -11770,6 +11830,7 @@ type PageSections_ComponentSectionsWasteCollectionPoints_Fragment = {
     address?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -11858,6 +11919,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
     variant: Enum_Componentitemswastesortingcardsitem_Variant
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -11957,6 +12019,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
     }
     primaryButtonLink: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -12034,6 +12097,7 @@ type PageSections_ComponentSectionsWasteSortingCards_Fragment = {
     }
     secondaryButtonLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -13289,6 +13353,7 @@ export type FaqEntityFragment = {
             }
             primaryButtonLink: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -13366,6 +13431,7 @@ export type FaqEntityFragment = {
             }
             secondaryButtonLink?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -13503,6 +13569,7 @@ export type FaqsQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -13580,6 +13647,7 @@ export type FaqsQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -13669,6 +13737,7 @@ export type FooterColumnItemFragment = {
   title: string
   links?: Array<{
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -13754,6 +13823,7 @@ export type FooterFragment = {
     title: string
     links?: Array<{
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -13832,6 +13902,7 @@ export type FooterFragment = {
   } | null> | null
   bottomLinks?: Array<{
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -13919,6 +13990,7 @@ export type FooterEntityFragment = {
       title: string
       links?: Array<{
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -13997,6 +14069,7 @@ export type FooterEntityFragment = {
     } | null> | null
     bottomLinks?: Array<{
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -14168,6 +14241,7 @@ export type SlideItemFragment = {
   }
   link?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -14247,6 +14321,7 @@ export type CardsListItemFragment = {
   title: string
   link: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -14326,6 +14401,7 @@ export type HeroMainTileFragment = {
   text?: string | null
   link?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -14405,6 +14481,7 @@ export type HeroSmallTileFragment = {
   icon?: string | null
   link?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -14485,6 +14562,7 @@ export type HomepageServiceTileFragment = {
   text?: string | null
   link?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -14584,6 +14662,7 @@ export type HeroHomepageSectionFragment = {
     }
     link?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -14665,6 +14744,7 @@ export type HeroHomepageSectionFragment = {
     text?: string | null
     link?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -14746,6 +14826,7 @@ export type HeroHomepageSectionFragment = {
     icon?: string | null
     link?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -14895,6 +14976,7 @@ export type ArticlesHomepageSectionFragment = {
   } | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -14979,6 +15061,7 @@ export type KoloHomepageSectionFragment = {
     title: string
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -15131,6 +15214,7 @@ export type KoloHomepageSectionFragment = {
   } | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -15215,6 +15299,7 @@ export type ServicesHomepageSectionFragment = {
     text?: string | null
     link?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -15293,6 +15378,7 @@ export type ServicesHomepageSectionFragment = {
   } | null> | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -15397,6 +15483,7 @@ export type HomepageEntityFragment = {
         }
         link?: {
           __typename?: 'ComponentItemsLink'
+          plausibleId?: string | null
           label?: string | null
           url?: string | null
           page?: {
@@ -15478,6 +15565,7 @@ export type HomepageEntityFragment = {
         text?: string | null
         link?: {
           __typename?: 'ComponentItemsLink'
+          plausibleId?: string | null
           label?: string | null
           url?: string | null
           page?: {
@@ -15559,6 +15647,7 @@ export type HomepageEntityFragment = {
         icon?: string | null
         link?: {
           __typename?: 'ComponentItemsLink'
+          plausibleId?: string | null
           label?: string | null
           url?: string | null
           page?: {
@@ -15707,6 +15796,7 @@ export type HomepageEntityFragment = {
       } | null
       showMoreLink?: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -15793,6 +15883,7 @@ export type HomepageEntityFragment = {
         title: string
         link: {
           __typename?: 'ComponentItemsLink'
+          plausibleId?: string | null
           label?: string | null
           url?: string | null
           page?: {
@@ -15945,6 +16036,7 @@ export type HomepageEntityFragment = {
       } | null
       showMoreLink?: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -16031,6 +16123,7 @@ export type HomepageEntityFragment = {
         text?: string | null
         link?: {
           __typename?: 'ComponentItemsLink'
+          plausibleId?: string | null
           label?: string | null
           url?: string | null
           page?: {
@@ -16109,6 +16202,7 @@ export type HomepageEntityFragment = {
       } | null> | null
       showMoreLink?: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -16226,6 +16320,7 @@ export type HomepageQuery = {
             }
             link?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -16307,6 +16402,7 @@ export type HomepageQuery = {
             text?: string | null
             link?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -16388,6 +16484,7 @@ export type HomepageQuery = {
             icon?: string | null
             link?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -16540,6 +16637,7 @@ export type HomepageQuery = {
           } | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -16626,6 +16724,7 @@ export type HomepageQuery = {
             title: string
             link: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -16778,6 +16877,7 @@ export type HomepageQuery = {
           } | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -16864,6 +16964,7 @@ export type HomepageQuery = {
             text?: string | null
             link?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -16942,6 +17043,7 @@ export type HomepageQuery = {
           } | null> | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -17026,6 +17128,7 @@ export type HomepageQuery = {
 export type MenuLinkFragment = {
   __typename?: 'ComponentMenuMenuLink'
   id: string
+  plausibleId?: string | null
   label?: string | null
   url?: string | null
   page?: {
@@ -17144,6 +17247,7 @@ export type MenuSectionFragment = {
   links?: Array<{
     __typename?: 'ComponentMenuMenuLink'
     id: string
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -17267,6 +17371,7 @@ export type MenuItemFragment = {
     links?: Array<{
       __typename?: 'ComponentMenuMenuLink'
       id: string
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -17379,6 +17484,7 @@ export type MenuItemFragment = {
   } | null> | null
   seeAllLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -17458,6 +17564,7 @@ export type MenuHeaderFragment = {
   id: string
   contactsLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -17532,6 +17639,7 @@ export type MenuHeaderFragment = {
   } | null
   searchLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -17623,6 +17731,7 @@ export type MenuFragment = {
       links?: Array<{
         __typename?: 'ComponentMenuMenuLink'
         id: string
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -17735,6 +17844,7 @@ export type MenuFragment = {
     } | null> | null
     seeAllLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -17816,6 +17926,7 @@ export type MenuFragment = {
     id: string
     contactsLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -17893,6 +18004,7 @@ export type MenuFragment = {
     } | null
     searchLink?: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -17990,6 +18102,7 @@ export type MenuEntityFragment = {
         links?: Array<{
           __typename?: 'ComponentMenuMenuLink'
           id: string
+          plausibleId?: string | null
           label?: string | null
           url?: string | null
           page?: {
@@ -18102,6 +18215,7 @@ export type MenuEntityFragment = {
       } | null> | null
       seeAllLink?: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -18183,6 +18297,7 @@ export type MenuEntityFragment = {
       id: string
       contactsLink?: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -18260,6 +18375,7 @@ export type MenuEntityFragment = {
       } | null
       searchLink?: {
         __typename?: 'ComponentItemsLink'
+        plausibleId?: string | null
         label?: string | null
         url?: string | null
         page?: {
@@ -18694,6 +18810,7 @@ export type PageEntityFragment = {
           } | null> | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -18817,6 +18934,7 @@ export type PageEntityFragment = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -18894,6 +19012,7 @@ export type PageEntityFragment = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -18996,6 +19115,7 @@ export type PageEntityFragment = {
             } | null
             links?: Array<{
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -19191,6 +19311,7 @@ export type PageEntityFragment = {
             subtext?: string | null
             link: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -19597,6 +19718,7 @@ export type PageEntityFragment = {
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -19721,6 +19843,7 @@ export type PageEntityFragment = {
                         }
                         primaryButtonLink: {
                           __typename?: 'ComponentItemsLink'
+                          plausibleId?: string | null
                           label?: string | null
                           url?: string | null
                           page?: {
@@ -19814,6 +19937,7 @@ export type PageEntityFragment = {
                         }
                         secondaryButtonLink?: {
                           __typename?: 'ComponentItemsLink'
+                          plausibleId?: string | null
                           label?: string | null
                           url?: string | null
                           page?: {
@@ -19952,6 +20076,7 @@ export type PageEntityFragment = {
                   }
                   primaryButtonLink: {
                     __typename?: 'ComponentItemsLink'
+                    plausibleId?: string | null
                     label?: string | null
                     url?: string | null
                     page?: {
@@ -20033,6 +20158,7 @@ export type PageEntityFragment = {
                   }
                   secondaryButtonLink?: {
                     __typename?: 'ComponentItemsLink'
+                    plausibleId?: string | null
                     label?: string | null
                     url?: string | null
                     page?: {
@@ -20164,6 +20290,7 @@ export type PageEntityFragment = {
           }
           primaryButton?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -20241,6 +20368,7 @@ export type PageEntityFragment = {
           } | null
           secondaryButton?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -20341,6 +20469,7 @@ export type PageEntityFragment = {
           }
           readMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -20588,6 +20717,7 @@ export type PageEntityFragment = {
             }
             primaryButtonLink: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -20665,6 +20795,7 @@ export type PageEntityFragment = {
             }
             secondaryButtonLink?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -20802,6 +20933,7 @@ export type PageEntityFragment = {
             }
             primaryButtonLink: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -20879,6 +21011,7 @@ export type PageEntityFragment = {
             }
             secondaryButtonLink?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -20981,6 +21114,7 @@ export type PageEntityFragment = {
             address?: string | null
             link: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -21068,6 +21202,7 @@ export type PageEntityFragment = {
             variant: Enum_Componentitemswastesortingcardsitem_Variant
             link: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -21167,6 +21302,7 @@ export type PageEntityFragment = {
             }
             primaryButtonLink: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -21244,6 +21380,7 @@ export type PageEntityFragment = {
             }
             secondaryButtonLink?: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -21732,6 +21869,7 @@ export type PagesQuery = {
               } | null> | null
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -21855,6 +21993,7 @@ export type PagesQuery = {
               }
               primaryButtonLink: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -21932,6 +22071,7 @@ export type PagesQuery = {
               }
               secondaryButtonLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -22034,6 +22174,7 @@ export type PagesQuery = {
                 } | null
                 links?: Array<{
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -22229,6 +22370,7 @@ export type PagesQuery = {
                 subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -22635,6 +22777,7 @@ export type PagesQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -22763,6 +22906,7 @@ export type PagesQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -22856,6 +23000,7 @@ export type PagesQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -22994,6 +23139,7 @@ export type PagesQuery = {
                       }
                       primaryButtonLink: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -23083,6 +23229,7 @@ export type PagesQuery = {
                       }
                       secondaryButtonLink?: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -23222,6 +23369,7 @@ export type PagesQuery = {
               }
               primaryButton?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -23299,6 +23447,7 @@ export type PagesQuery = {
               } | null
               secondaryButton?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -23399,6 +23548,7 @@ export type PagesQuery = {
               }
               readMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -23646,6 +23796,7 @@ export type PagesQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -23723,6 +23874,7 @@ export type PagesQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -23860,6 +24012,7 @@ export type PagesQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -23937,6 +24090,7 @@ export type PagesQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -24039,6 +24193,7 @@ export type PagesQuery = {
                 address?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -24126,6 +24281,7 @@ export type PagesQuery = {
                 variant: Enum_Componentitemswastesortingcardsitem_Variant
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -24225,6 +24381,7 @@ export type PagesQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -24302,6 +24459,7 @@ export type PagesQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -24810,6 +24968,7 @@ export type PageBySlugQuery = {
               } | null> | null
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -24933,6 +25092,7 @@ export type PageBySlugQuery = {
               }
               primaryButtonLink: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -25010,6 +25170,7 @@ export type PageBySlugQuery = {
               }
               secondaryButtonLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -25112,6 +25273,7 @@ export type PageBySlugQuery = {
                 } | null
                 links?: Array<{
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -25307,6 +25469,7 @@ export type PageBySlugQuery = {
                 subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -25713,6 +25876,7 @@ export type PageBySlugQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -25841,6 +26005,7 @@ export type PageBySlugQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -25934,6 +26099,7 @@ export type PageBySlugQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -26072,6 +26238,7 @@ export type PageBySlugQuery = {
                       }
                       primaryButtonLink: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -26161,6 +26328,7 @@ export type PageBySlugQuery = {
                       }
                       secondaryButtonLink?: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -26300,6 +26468,7 @@ export type PageBySlugQuery = {
               }
               primaryButton?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -26377,6 +26546,7 @@ export type PageBySlugQuery = {
               } | null
               secondaryButton?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -26477,6 +26647,7 @@ export type PageBySlugQuery = {
               }
               readMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -26724,6 +26895,7 @@ export type PageBySlugQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -26801,6 +26973,7 @@ export type PageBySlugQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -26938,6 +27111,7 @@ export type PageBySlugQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -27015,6 +27189,7 @@ export type PageBySlugQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -27117,6 +27292,7 @@ export type PageBySlugQuery = {
                 address?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -27204,6 +27380,7 @@ export type PageBySlugQuery = {
                 variant: Enum_Componentitemswastesortingcardsitem_Variant
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -27303,6 +27480,7 @@ export type PageBySlugQuery = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -27380,6 +27558,7 @@ export type PageBySlugQuery = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -27674,6 +27853,7 @@ type ServiceSections_ComponentSectionsCardsList_Fragment = {
     subtext?: string | null
     link: {
       __typename?: 'ComponentItemsLink'
+      plausibleId?: string | null
       label?: string | null
       url?: string | null
       page?: {
@@ -27811,6 +27991,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
   backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -27932,6 +28113,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                 }
                 primaryButtonLink: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -28009,6 +28191,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
                 }
                 secondaryButtonLink?: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -28131,6 +28314,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
           }
           primaryButtonLink: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -28208,6 +28392,7 @@ type ServiceSections_ComponentSectionsFaq_Fragment = {
           }
           secondaryButtonLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -28295,6 +28480,7 @@ type ServiceSections_ComponentSectionsFormCtaBanner_Fragment = {
   text?: string | null
   bannerLink: {
     __typename?: 'ComponentItemsFormCtaBannerLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     email?: string | null
@@ -28498,6 +28684,7 @@ export type ServiceEntityFragment = {
             subtext?: string | null
             link: {
               __typename?: 'ComponentItemsLink'
+              plausibleId?: string | null
               label?: string | null
               url?: string | null
               page?: {
@@ -28637,6 +28824,7 @@ export type ServiceEntityFragment = {
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -28761,6 +28949,7 @@ export type ServiceEntityFragment = {
                         }
                         primaryButtonLink: {
                           __typename?: 'ComponentItemsLink'
+                          plausibleId?: string | null
                           label?: string | null
                           url?: string | null
                           page?: {
@@ -28854,6 +29043,7 @@ export type ServiceEntityFragment = {
                         }
                         secondaryButtonLink?: {
                           __typename?: 'ComponentItemsLink'
+                          plausibleId?: string | null
                           label?: string | null
                           url?: string | null
                           page?: {
@@ -28992,6 +29182,7 @@ export type ServiceEntityFragment = {
                   }
                   primaryButtonLink: {
                     __typename?: 'ComponentItemsLink'
+                    plausibleId?: string | null
                     label?: string | null
                     url?: string | null
                     page?: {
@@ -29073,6 +29264,7 @@ export type ServiceEntityFragment = {
                   }
                   secondaryButtonLink?: {
                     __typename?: 'ComponentItemsLink'
+                    plausibleId?: string | null
                     label?: string | null
                     url?: string | null
                     page?: {
@@ -29163,6 +29355,7 @@ export type ServiceEntityFragment = {
           text?: string | null
           bannerLink: {
             __typename?: 'ComponentItemsFormCtaBannerLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             email?: string | null
@@ -29278,6 +29471,7 @@ export type ServicesQuery = {
                 subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -29417,6 +29611,7 @@ export type ServicesQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -29545,6 +29740,7 @@ export type ServicesQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -29638,6 +29834,7 @@ export type ServicesQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -29776,6 +29973,7 @@ export type ServicesQuery = {
                       }
                       primaryButtonLink: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -29865,6 +30063,7 @@ export type ServicesQuery = {
                       }
                       secondaryButtonLink?: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -29963,6 +30162,7 @@ export type ServicesQuery = {
               text?: string | null
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 email?: string | null
@@ -30112,6 +30312,7 @@ export type ServiceBySlugQuery = {
                 subtext?: string | null
                 link: {
                   __typename?: 'ComponentItemsLink'
+                  plausibleId?: string | null
                   label?: string | null
                   url?: string | null
                   page?: {
@@ -30251,6 +30452,7 @@ export type ServiceBySlugQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -30379,6 +30581,7 @@ export type ServiceBySlugQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -30472,6 +30675,7 @@ export type ServiceBySlugQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -30610,6 +30814,7 @@ export type ServiceBySlugQuery = {
                       }
                       primaryButtonLink: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -30699,6 +30904,7 @@ export type ServiceBySlugQuery = {
                       }
                       secondaryButtonLink?: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -30797,6 +31003,7 @@ export type ServiceBySlugQuery = {
               text?: string | null
               bannerLink: {
                 __typename?: 'ComponentItemsFormCtaBannerLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 email?: string | null
@@ -30956,6 +31163,7 @@ export type WorkshopEntityFragment = {
           backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -31080,6 +31288,7 @@ export type WorkshopEntityFragment = {
                         }
                         primaryButtonLink: {
                           __typename?: 'ComponentItemsLink'
+                          plausibleId?: string | null
                           label?: string | null
                           url?: string | null
                           page?: {
@@ -31173,6 +31382,7 @@ export type WorkshopEntityFragment = {
                         }
                         secondaryButtonLink?: {
                           __typename?: 'ComponentItemsLink'
+                          plausibleId?: string | null
                           label?: string | null
                           url?: string | null
                           page?: {
@@ -31311,6 +31521,7 @@ export type WorkshopEntityFragment = {
                   }
                   primaryButtonLink: {
                     __typename?: 'ComponentItemsLink'
+                    plausibleId?: string | null
                     label?: string | null
                     url?: string | null
                     page?: {
@@ -31392,6 +31603,7 @@ export type WorkshopEntityFragment = {
                   }
                   secondaryButtonLink?: {
                     __typename?: 'ComponentItemsLink'
+                    plausibleId?: string | null
                     label?: string | null
                     url?: string | null
                     page?: {
@@ -31564,6 +31776,7 @@ export type WorkshopsQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -31692,6 +31905,7 @@ export type WorkshopsQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -31785,6 +31999,7 @@ export type WorkshopsQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -31923,6 +32138,7 @@ export type WorkshopsQuery = {
                       }
                       primaryButtonLink: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -32012,6 +32228,7 @@ export type WorkshopsQuery = {
                       }
                       secondaryButtonLink?: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -32215,6 +32432,7 @@ export type WorkshopByIdQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -32343,6 +32561,7 @@ export type WorkshopByIdQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -32436,6 +32655,7 @@ export type WorkshopByIdQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -32574,6 +32794,7 @@ export type WorkshopByIdQuery = {
                       }
                       primaryButtonLink: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -32663,6 +32884,7 @@ export type WorkshopByIdQuery = {
                       }
                       secondaryButtonLink?: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -32847,6 +33069,7 @@ export type WorkshopBySlugQuery = {
               backgroundColorFaq: Enum_Componentsectionsfaq_Backgroundcolor
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -32975,6 +33198,7 @@ export type WorkshopBySlugQuery = {
                             }
                             primaryButtonLink: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -33068,6 +33292,7 @@ export type WorkshopBySlugQuery = {
                             }
                             secondaryButtonLink?: {
                               __typename?: 'ComponentItemsLink'
+                              plausibleId?: string | null
                               label?: string | null
                               url?: string | null
                               page?: {
@@ -33206,6 +33431,7 @@ export type WorkshopBySlugQuery = {
                       }
                       primaryButtonLink: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -33295,6 +33521,7 @@ export type WorkshopBySlugQuery = {
                       }
                       secondaryButtonLink?: {
                         __typename?: 'ComponentItemsLink'
+                        plausibleId?: string | null
                         label?: string | null
                         url?: string | null
                         page?: {
@@ -33574,6 +33801,7 @@ export const WorkshopSlugEntityFragmentDoc = gql`
 `
 export const LinkFragmentDoc = gql`
   fragment Link on ComponentItemsLink {
+    plausibleId
     label
     url
     page {
@@ -33964,6 +34192,7 @@ export const HomepageEntityFragmentDoc = gql`
 export const MenuLinkFragmentDoc = gql`
   fragment MenuLink on ComponentMenuMenuLink {
     id
+    plausibleId
     label
     url
     page {
@@ -35029,6 +35258,7 @@ export const WasteRemovalCardsSectionFragmentDoc = gql`
 `
 export const FormCtaBannerLinkFragmentDoc = gql`
   fragment FormCtaBannerLink on ComponentItemsFormCtaBannerLink {
+    plausibleId
     label
     url
     email

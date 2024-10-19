@@ -70,11 +70,8 @@ export const useGetLinkProps = () => {
       target = '_blank'
     }
 
-    // TODO: Create common link fragment which contains plausibleId as a field
-    // @ts-ignore
     const plausibleProps: LinkPlausibleProps | undefined = link?.plausibleId
-      ? // @ts-ignore
-        { id: link.plausibleId }
+      ? { id: link.plausibleId }
       : undefined
 
     return { children: label, href, target, plausibleProps }

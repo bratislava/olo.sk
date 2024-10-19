@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React from 'react'
 
 import CardBase from '@/src/components/common/Card/CardBase'
 import { IconName } from '@/src/components/common/Icon/Icon'
@@ -9,7 +9,7 @@ import cn from '@/src/utils/cn'
 
 export type BasicRowCardProps = {
   value?: string
-  label?: ReactNode
+  label?: string
   className?: string
   innerClassName?: string
 } & (
@@ -27,7 +27,7 @@ export type BasicRowCardProps = {
     }
   | {
       variant: 'icon-label'
-      label: ReactNode
+      label: string
       value?: never
       iconName: IconName | OloIconName
     }
@@ -51,7 +51,6 @@ const BasicRowCard = ({
         {variant === 'icon-value' ? (
           <div className="flex gap-3 lg:gap-4">
             <IconWrapper name={iconName} />
-
             <Typography variant="p-default">{value}</Typography>
           </div>
         ) : variant === 'label-value-horizontal' ? (
@@ -68,7 +67,7 @@ const BasicRowCard = ({
           </div>
         ) : variant === 'icon-label' ? (
           <div className="flex items-center justify-between">
-            {label}
+            <Typography variant="p-default-black">{label}</Typography>
             <IconWrapper name={iconName} />
           </div>
         ) : null}

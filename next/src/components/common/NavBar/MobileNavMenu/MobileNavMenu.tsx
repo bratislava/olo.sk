@@ -5,12 +5,10 @@ import { useEventListener, useScrollLock, useWindowSize } from 'usehooks-ts'
 
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
 import Icon from '@/src/components/common/Icon/Icon'
-import Link from '@/src/components/common/Link/Link'
 import MobileNavMenuItem from '@/src/components/common/NavBar/MobileNavMenu/MobileNavMenuItem'
 import { getParsedMenus } from '@/src/components/common/NavBar/NavMenu/getParsedMenus'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Divider from '@/src/components/common/Sidebar/Divider'
-import Typography from '@/src/components/common/Typography/Typography'
 import { LinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
@@ -69,21 +67,19 @@ const MobileNavMenu = ({ menus, contactsLink }: MobileNavMenuProps) => {
                 <Divider />
               </li>
               <li>
-                <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
-                  <BasicRowCard
-                    iconName="chevron-doprava"
-                    variant="icon-label"
-                    label={
-                      <Link href={getLinkProps(contactsLink).href} stretched>
-                        <div className="flex items-center gap-4">
-                          <Icon name="telefon" className="size-5" />
-                          <Typography variant="p-default-black">
-                            {getLinkProps(contactsLink).children}
-                          </Typography>
-                        </div>
-                      </Link>
-                    }
-                  />
+                <NavigationMenu.Link
+                  href={getLinkProps(contactsLink).href}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <div className="flex items-center gap-4">
+                    <Icon name="telefon" className="size-5" />
+                    <BasicRowCard
+                      iconName="chevron-doprava"
+                      variant="icon-label"
+                      label={getLinkProps(contactsLink).children}
+                      className="w-full"
+                    />
+                  </div>
                 </NavigationMenu.Link>
               </li>
             </>

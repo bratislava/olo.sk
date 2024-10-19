@@ -2,7 +2,6 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import React, { forwardRef } from 'react'
 
 import BasicRowCard from '@/src/components/common/Card/BasicRowCard'
-import Typography from '@/src/components/common/Typography/Typography'
 
 type MobileNavMenuTriggerProps = {
   label: string
@@ -19,11 +18,7 @@ const MobileNavMenuTrigger = forwardRef<HTMLButtonElement, MobileNavMenuTriggerP
         onPointerLeave={(event) => event.preventDefault()}
         className="w-full"
       >
-        <BasicRowCard
-          variant="icon-label"
-          label={<Typography variant="p-default-black">{label}</Typography>}
-          iconName="chevron-doprava"
-        />
+        <BasicRowCard variant="icon-label" label={label} iconName="chevron-doprava" />
       </NavigationMenu.Trigger>
     )
   },

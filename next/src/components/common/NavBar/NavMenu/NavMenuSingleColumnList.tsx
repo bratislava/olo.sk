@@ -27,7 +27,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
       )}
     >
       {links.map((link, index) => {
-        const { children, href, target } = getLinkProps(link)
+        const { children, href } = getLinkProps(link)
 
         const mostRecentWorkshopDate =
           formatMostRecentWorkshopDate(link?.workshop?.data?.attributes?.dates) ?? null
@@ -53,7 +53,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
             className={cn({ 'pt-5': index !== 0 })}
           />
         ) : (
-          <NavMenuLink key={link.id} href={href} target={target}>
+          <NavMenuLink key={link.id} {...getLinkProps(link)}>
             {children}
           </NavMenuLink>
         )

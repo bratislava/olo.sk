@@ -68,7 +68,7 @@ const Table = ({
   const { scrollFadeClassNames } = useHorizontalScrollFade({ ref: tableWrapperRef })
 
   return (
-    // TODO Table wrapping divs that enable horizontal scrolling are resued from RichtextTable - consider separating
+    // TODO Table wrapping divs that enable horizontal scrolling are reused from RichtextTable - consider separating
     <div className="lg:flex lg:justify-center">
       {/* 80rem = 1280px (max-width of SectionContainer), 4rem = 64px (its horizontal padding) */}
       <div className="grow lg:-mx-52 lg:max-w-[min(100vw-4rem,80rem-4rem)]">
@@ -84,8 +84,9 @@ const Table = ({
               <thead className="bg-background-secondary">
                 <tr className="divide-x divide-border-default">
                   {headerColumns.map((column) => (
+                    // Height works like min-height for table cells https://stackoverflow.com/questions/19432092/can-i-use-a-min-height-for-table-tr-or-td
                     // eslint-disable-next-line react/no-array-index-key
-                    <th key={column} scope="col" className="px-5 py-1 text-left">
+                    <th key={column} scope="col" className="h-14 px-5 py-1 text-left">
                       <Typography variant="p-default-bold">{column}</Typography>
                     </th>
                   ))}
@@ -102,8 +103,9 @@ const Table = ({
                   return (
                     <tr key={row.id} className="divide-x divide-border-default">
                       {cols.map((cell, colIndex) => (
+                        // Height works like min-height for table cells https://stackoverflow.com/questions/19432092/can-i-use-a-min-height-for-table-tr-or-td
                         // eslint-disable-next-line react/no-array-index-key
-                        <td key={colIndex} className="px-5 py-1">
+                        <td key={colIndex} className="h-14 px-5 py-1">
                           {cell}
                         </td>
                       ))}
@@ -152,48 +154,48 @@ const WasteCollectionDays = ({ section }: Props) => {
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
-    <SectionContainer background="primary" className="py-6 lg:py-18">
-      <div id={anchorId ?? undefined} className="flex flex-col gap-6 lg:gap-12">
+    <SectionContainer background="primary" className="py-6 lg:py-12">
+      <div id={anchorId ?? undefined} className="flex flex-col gap-6 lg:gap-8">
         <SectionHeader title={title} text={text} />
 
-        <SearchBar
-          ref={searchRef}
-          input={input}
-          setInput={setInput}
-          setSearchQuery={(value) =>
-            setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
-          }
-          isLoading={isFetching}
-        />
-        {isError ? (
-          // TODO display proper error
-          <Typography variant="p-default">{error?.message}</Typography>
-        ) : isPending ? (
-          <Typography variant="p-default">{t('common.loading')}</Typography>
-        ) : data?.hits.length ? (
-          <Table rows={data.hits} visibleColumns={visibleColumns} />
-        ) : (
-          // TODO translations - display proper message
-          // eslint-disable-next-line i18next/no-literal-string
-          <Typography>No hits</Typography>
-        )}
+        <div className="flex flex-col gap-6">
+          <SearchBar
+            ref={searchRef}
+            input={input}
+            setInput={setInput}
+            setSearchQuery={(value) =>
+              setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
+            }
+            isLoading={isFetching}
+          />
+          {isError ? (
+            // TODO display proper error
+            <Typography variant="p-default">{error?.message}</Typography>
+          ) : isPending ? (
+            <Typography variant="p-default">{t('common.loading')}</Typography>
+          ) : data?.hits.length ? (
+            <Table rows={data.hits} visibleColumns={visibleColumns} />
+          ) : (
+            <Typography>{t('globalSearch.noResults')}</Typography>
+          )}
 
-        {data?.estimatedTotalHits ? (
-          <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
-            <Typography>
-              {t('globalSearch.searchResultsFound.specific', {
-                from: (filters.page - 1) * filters.pageSize + 1,
-                to: Math.min(data.estimatedTotalHits, filters.page * filters.pageSize),
-                all: data.estimatedTotalHits,
-              })}
-            </Typography>
-            <PaginationWithInput
-              currentPage={filters.page}
-              totalCount={Math.ceil(data.estimatedTotalHits / filters.pageSize)}
-              onPageChange={(page) => setFilters((previousState) => ({ ...previousState, page }))}
-            />
-          </div>
-        ) : null}
+          {data?.estimatedTotalHits ? (
+            <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
+              <Typography>
+                {t('globalSearch.searchResultsFound.specific', {
+                  from: (filters.page - 1) * filters.pageSize + 1,
+                  to: Math.min(data.estimatedTotalHits, filters.page * filters.pageSize),
+                  all: data.estimatedTotalHits,
+                })}
+              </Typography>
+              <PaginationWithInput
+                currentPage={filters.page}
+                totalCount={Math.ceil(data.estimatedTotalHits / filters.pageSize)}
+                onPageChange={(page) => setFilters((previousState) => ({ ...previousState, page }))}
+              />
+            </div>
+          ) : null}
+        </div>
       </div>
     </SectionContainer>
   )

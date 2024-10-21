@@ -6,9 +6,11 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const openPositions = await fetchOpenPositions()
 
-    return res.json(openPositions)
+    return Array.isArray(openPositions)
+      ? res.json(openPositions)
+      : res.status(500).json({ code: openPositions.status, message: openPositions.message })
   } catch (error) {
-    return res.status(500).json({ statusCode: 500, message: 'Error fetching open positions' })
+    return res.status(500).json({ message: (error as Error).message })
   }
 }
 

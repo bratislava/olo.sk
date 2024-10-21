@@ -9365,6 +9365,7 @@ export type ArticlesSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -9850,6 +9851,7 @@ type PageSections_ComponentSectionsArticles_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -19211,6 +19213,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -22369,6 +22372,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -25567,6 +25571,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any

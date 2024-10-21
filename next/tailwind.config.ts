@@ -181,7 +181,9 @@ const config: Config = {
         4.5: '1.125rem', // 18px
         5.5: '1.375rem', // 22px
         13: '3.25rem', // 52px
+        15: '3.75rem', // 60px
         18: '4.5rem', // 72px
+        mobileNavBar: '3.75rem', // 60px
       },
       zIndex: {
         1: '1',

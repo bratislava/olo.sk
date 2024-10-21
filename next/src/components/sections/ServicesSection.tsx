@@ -29,6 +29,7 @@ const ServicesSection = ({ section }: Props) => {
 
   const { title, text } = section
 
+  // TODO consider replacing with meilisearch
   const { data: servicesData } = useQuery({
     queryKey: ['Services', locale],
     queryFn: () => client.Services({ locale }),

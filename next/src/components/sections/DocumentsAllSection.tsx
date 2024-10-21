@@ -61,16 +61,11 @@ const DocumentsAllSection = ({ section, className }: Props) => {
   const resultsCount = data?.estimatedTotalHits ?? 0
 
   // TODO consider extracting this to a hook (also in GlobalSearchSection)
-  const resultsCountMessage =
-    resultsCount < filters.pageSize
-      ? t('globalSearch.searchResultsFound.specific.singlepage', {
-          count: resultsCount,
-        })
-      : t('globalSearch.searchResultsFound.specific', {
-          from: (filters.page - 1) * filters.pageSize + 1,
-          to: Math.min(resultsCount, filters.page * filters.pageSize),
-          all: resultsCount,
-        })
+  const resultsCountMessage = t('globalSearch.searchResultsFound.specific', {
+    from: (filters.page - 1) * filters.pageSize + 1,
+    to: Math.min(resultsCount, filters.page * filters.pageSize),
+    all: resultsCount,
+  })
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer

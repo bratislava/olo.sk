@@ -42,21 +42,16 @@ export default {
           const parsedWasteCollectionDays = parseWasteCollectionDaysXlsx(file.path, importId)
 
           try {
-            for (const day of parsedWasteCollectionDays) {
-              // Query Engine API doesn't support relations in bulk options, so Entity Service API is used.
-              // https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/bulk-operations.html
-              await strapi.entityService.create('api::waste-collection-day.waste-collection-day', {
-                data: day,
-              })
-            }
+            // Using Query Engine API because it supports bulk insert
+            // Docs: https://docs-v4.strapi.io/dev-docs/api/query-engine/bulk-operations
+            await strapi.db.query('api::waste-collection-day.waste-collection-day').createMany({
+              data: parsedWasteCollectionDays,
+            })
+
             await meilisearch.updateContentTypeInMeiliSearch({
               contentType: 'api::waste-collection-day.waste-collection-day',
             })
           } catch (createWasteCollectionDaysError) {
-            // In case of failure to add some debtor we want to delete all the previously created entries, so we call the
-            // delete function but rethrow the error to be caught by the parent try/catch block.
-            await deleteWasteCollectionDays()
-
             throw createWasteCollectionDaysError
           }
 

@@ -1508,7 +1508,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.contacts',
         'sections.cards-list',
         'sections.waste-collection-days',
-        'sections.table',
         'sections.opening-times',
         'sections.branches',
         'sections.vacancies',

@@ -1502,7 +1502,7 @@ export type ComponentSectionsProcurements = {
   __typename?: 'ComponentSectionsProcurements'
   content?: Maybe<Scalars['String']['output']>
   id: Scalars['ID']['output']
-  tendersPerPage?: Maybe<Scalars['Int']['output']>
+  tendersPerPage: Scalars['Int']['output']
   title?: Maybe<Scalars['String']['output']>
 }
 
@@ -1565,14 +1565,6 @@ export type ComponentSectionsSortingGuideAccordionsSortingGuideAccordionsArgs = 
   filters?: InputMaybe<ComponentItemsSortingGuideAccordionItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
-}
-
-export type ComponentSectionsTable = {
-  __typename?: 'ComponentSectionsTable'
-  anchorId?: Maybe<Scalars['String']['output']>
-  id: Scalars['ID']['output']
-  text?: Maybe<Scalars['String']['output']>
-  title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentSectionsVacancies = {
@@ -2519,7 +2511,6 @@ export type GenericMorph =
   | ComponentSectionsServicesHomepageSection
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
-  | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteCollectionPoints
@@ -3552,7 +3543,6 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsServices
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
-  | ComponentSectionsTable
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteCollectionPoints
@@ -9786,7 +9776,7 @@ export type ProcurementsSectionFragment = {
   __typename?: 'ComponentSectionsProcurements'
   title?: string | null
   content?: string | null
-  tendersPerPage?: number | null
+  tendersPerPage: number
 }
 
 type PageSections_ComponentSectionsArticles_Fragment = {
@@ -11592,7 +11582,7 @@ type PageSections_ComponentSectionsProcurements_Fragment = {
   __typename: 'ComponentSectionsProcurements'
   title?: string | null
   content?: string | null
-  tendersPerPage?: number | null
+  tendersPerPage: number
 }
 
 type PageSections_ComponentSectionsRichtext_Fragment = {
@@ -12036,8 +12026,6 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
   } | null
 }
 
-type PageSections_ComponentSectionsTable_Fragment = { __typename: 'ComponentSectionsTable' }
-
 type PageSections_ComponentSectionsVacancies_Fragment = {
   __typename: 'ComponentSectionsVacancies'
   title?: string | null
@@ -12460,7 +12448,6 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsServices_Fragment
   | PageSections_ComponentSectionsSortingGuide_Fragment
   | PageSections_ComponentSectionsSortingGuideAccordions_Fragment
-  | PageSections_ComponentSectionsTable_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteCollectionDays_Fragment
   | PageSections_ComponentSectionsWasteCollectionPoints_Fragment
@@ -21007,7 +20994,7 @@ export type PageEntityFragment = {
           __typename: 'ComponentSectionsProcurements'
           title?: string | null
           content?: string | null
-          tendersPerPage?: number | null
+          tendersPerPage: number
         }
       | {
           __typename: 'ComponentSectionsRichtext'
@@ -21442,7 +21429,6 @@ export type PageEntityFragment = {
             } | null
           } | null
         }
-      | { __typename: 'ComponentSectionsTable' }
       | {
           __typename: 'ComponentSectionsVacancies'
           title?: string | null
@@ -24193,7 +24179,7 @@ export type PagesQuery = {
               __typename: 'ComponentSectionsProcurements'
               title?: string | null
               content?: string | null
-              tendersPerPage?: number | null
+              tendersPerPage: number
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -24628,7 +24614,6 @@ export type PagesQuery = {
                 } | null
               } | null
             }
-          | { __typename: 'ComponentSectionsTable' }
           | {
               __typename: 'ComponentSectionsVacancies'
               title?: string | null
@@ -27399,7 +27384,7 @@ export type PageBySlugQuery = {
               __typename: 'ComponentSectionsProcurements'
               title?: string | null
               content?: string | null
-              tendersPerPage?: number | null
+              tendersPerPage: number
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -27834,7 +27819,6 @@ export type PageBySlugQuery = {
                 } | null
               } | null
             }
-          | { __typename: 'ComponentSectionsTable' }
           | {
               __typename: 'ComponentSectionsVacancies'
               title?: string | null

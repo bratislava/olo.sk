@@ -2,7 +2,7 @@
  * Returns price in fixed format with two decimal places. Uses decimal point/comma depending on locale.
  * Note: We don't use `style: 'currency' to keep € symbol at the end for simplicity.
  * Example: 2.05 €
- * Inspired by PAAS-MPA app
+ * Inspired by PAAS-MPA app - https://github.com/bratislava/paas-mpa/blob/master/utils/formatPrice.ts
  *
  * @param price
  * @param locale

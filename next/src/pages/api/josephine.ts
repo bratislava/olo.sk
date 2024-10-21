@@ -10,16 +10,16 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
   const options = {
     timeframe:
-      isDefined(query?.timeframe) && typeof (query?.timeframe === 'string')
-        ? query?.timeframe.toString()
+      isDefined(query?.timeframe) && typeof (query.timeframe === 'string')
+        ? query.timeframe.toString()
         : '',
     currentPage:
-      isDefined(query?.currentPage) && !Number.isNaN(Number(query?.currentPage))
-        ? Number(query?.currentPage)
+      isDefined(query?.currentPage) && !Number.isNaN(Number(query.currentPage))
+        ? Number(query.currentPage)
         : 1,
     tendersPerPage:
-      isDefined(query?.tendersPerPage) && !Number.isNaN(Number(query?.tendersPerPage))
-        ? Number(query?.tendersPerPage)
+      isDefined(query?.tendersPerPage) && !Number.isNaN(Number(query.tendersPerPage))
+        ? Number(query.tendersPerPage)
         : DEFAULT_TENDERS_PER_PAGE,
   }
 

@@ -32,14 +32,15 @@ export type FetchProcurementsProps = {
 const getTenderTo = (tenderRounds: TenderRoundElement | TenderRoundElement[]) =>
   Array.isArray(tenderRounds)
     ? tenderRounds?.sort(
-        (tenderA, tenderB) =>
-          new Date(tenderA.tender_round_to).getTime() - new Date(tenderB.tender_round_to).getTime(),
-      )[0]?.tender_round_to
+      (tenderA, tenderB) =>
+        new Date(tenderA.tender_round_to).getTime() - new Date(tenderB.tender_round_to).getTime(),
+    )[0]?.tender_round_to
     : tenderRounds?.tender_round_to
 
 /**
  * Fetches and parses client data from the Josephine client.
  * It's wrapped into function to use it both directly and in API handler.
+ *
  * @param timeframe - ['running', 'ended', 'all'] used for different fetch calls to Josephine API
  * @param currentPage - used for paginations, index for the current page
  * @param tendersPerPage - number of items per page, used for pagination
@@ -54,7 +55,7 @@ export const fetchProcurements = async ({
   tendersPerPage = DEFAULT_TENDERS_PER_PAGE,
 }: FetchProcurementsProps) => {
   const postFix = timeframe && timeframe !== 'all' ? `/${timeframe}` : ''
-  const fetchUrl = `${process.env.NEXT_JOSEPHINE_URL}${process.env.NEXT_JOSEPHINE_API_TOKEN}${postFix}`
+  const fetchUrl = `${process.env.JOSEPHINE_URL}${process.env.JOSEPHINE_API_TOKEN}${postFix}`
   const response = await fetch(fetchUrl)
 
   const xml = await response.text()

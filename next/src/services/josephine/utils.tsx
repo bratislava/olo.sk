@@ -1,6 +1,7 @@
 import { Link } from 'react-aria-components'
 
 import { ProcurementObject } from '@/src/services/josephine/fetchProcurements'
+import { formatDate } from '@/src/utils/formatDate'
 import { formatPrice } from '@/src/utils/formatPrice'
 
 export const visibleColumns = [
@@ -58,14 +59,7 @@ export const getRows = (procurements: ProcurementObject, locale: string, detailS
         ? formatPrice(Number(tender.tender_predicted_value), locale)
         : ''
 
-    // format date
-    const formattedTenderFrom = new Date(tender.tender_rounds_mapped).toLocaleDateString('sk-SK', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-    })
+    const formattedTenderFrom = formatDate(tender.tender_rounds_mapped.toString())
 
     return {
       id: tender.tender_id,

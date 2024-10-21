@@ -6,6 +6,7 @@ import { useDebounceValue } from 'usehooks-ts'
 import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
 import SearchBar from '@/src/components/common/SearchBar/SearchBar'
 import Typography from '@/src/components/common/Typography/Typography'
+import Markdown from '@/src/components/formatting/Markdown'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import {
@@ -129,7 +130,8 @@ const Table = ({
 const WasteCollectionDays = ({ section }: Props) => {
   const { t } = useTranslation()
 
-  const { title, text, anchorId, wasteCollectionDaysType, visibleColumns } = section
+  const { title, text, anchorId, wasteCollectionDaysType, validityMessage, visibleColumns } =
+    section
 
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
@@ -156,7 +158,21 @@ const WasteCollectionDays = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-12">
       <div id={anchorId ?? undefined} className="flex flex-col gap-6 lg:gap-8">
-        <SectionHeader title={title} text={text} />
+        <SectionHeader
+          title={title}
+          text={text}
+          asRichtext
+          isFullWidth
+          additionalComponent={
+            // TODO implement separate reusable component, see also OpeningTimesChangeAlert
+            // TODO add warning icon
+            validityMessage ? (
+              <div className="flex flex-col gap-4 rounded-lg bg-warning-softBackground-default p-4">
+                <Markdown content={validityMessage} />
+              </div>
+            ) : null
+          }
+        />
 
         <div className="flex flex-col gap-6">
           <SearchBar

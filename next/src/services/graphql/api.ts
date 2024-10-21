@@ -1573,6 +1573,7 @@ export type ComponentSectionsWasteCollectionDays = {
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
+  validityMessage?: Maybe<Scalars['String']['output']>
   visibleColumns?: Maybe<Scalars['JSON']['output']>
   wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
 }
@@ -7693,6 +7694,7 @@ export type WasteCollectionDaysFragment = {
   text?: string | null
   anchorId?: string | null
   wasteCollectionDaysType?: string | null
+  validityMessage?: string | null
   visibleColumns?: any | null
 }
 
@@ -12015,6 +12017,7 @@ type PageSections_ComponentSectionsWasteCollectionDays_Fragment = {
   text?: string | null
   anchorId?: string | null
   wasteCollectionDaysType?: string | null
+  validityMessage?: string | null
   visibleColumns?: any | null
 }
 
@@ -21410,6 +21413,7 @@ export type PageEntityFragment = {
           text?: string | null
           anchorId?: string | null
           wasteCollectionDaysType?: string | null
+          validityMessage?: string | null
           visibleColumns?: any | null
         }
       | {
@@ -24589,6 +24593,7 @@ export type PagesQuery = {
               text?: string | null
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
+              validityMessage?: string | null
               visibleColumns?: any | null
             }
           | {
@@ -27788,6 +27793,7 @@ export type PageBySlugQuery = {
               text?: string | null
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
+              validityMessage?: string | null
               visibleColumns?: any | null
             }
           | {
@@ -35032,6 +35038,7 @@ export const WasteCollectionDaysFragmentDoc = gql`
     text
     anchorId
     wasteCollectionDaysType
+    validityMessage
     visibleColumns
   }
 `

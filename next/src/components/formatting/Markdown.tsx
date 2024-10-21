@@ -196,7 +196,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
         table: ({ children, node, ...props }) => (
           <RichTextTable {...props}>{children}</RichTextTable>
         ),
-        thead: ({ children, ...props }) => (
+        thead: ({ children, node, ...props }) => (
           <thead
             {...props}
             // ensures rounded-ness for top corners of the table
@@ -205,7 +205,7 @@ const Markdown = ({ content, className }: MarkdownProps) => {
             {children}
           </thead>
         ),
-        tbody: ({ children, ...props }) => (
+        tbody: ({ children, node, ...props }) => (
           <tbody className="rounded-b-lg" {...props}>
             {children}
           </tbody>
@@ -223,9 +223,12 @@ const Markdown = ({ content, className }: MarkdownProps) => {
             {children}
           </tr>
         ),
-        td: ({ children }) => <td className="px-5 py-1">{children}</td>,
-        th: ({ children }) => (
-          <th className="bg-background-secondary px-5 py-1 font-bold">{children}</th>
+        // TODO align
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        td: ({ children, align }) => <td className="px-5 py-1">{children}</td>,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        th: ({ children, align }) => (
+          <th className="bg-background-secondary px-5 py-1 text-left font-bold">{children}</th>
         ),
         hr: () => <hr className="my-8 border-t border-border-default" />,
       }}

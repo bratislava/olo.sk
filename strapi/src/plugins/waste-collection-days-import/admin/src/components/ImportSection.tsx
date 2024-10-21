@@ -78,13 +78,13 @@ const ImportSection = ({ type }: ImportSectionProps) => {
             title="Nahrávanie úspešné"
             action={
               success.data?.importId && (
-                <Link to={importLinks[type](success.data.importId)}>Zobraziť nahrané data</Link>
+                <Link to={importLinks[type](success.data.importId)}>Zobraziť nahrané dáta</Link>
               )
             }
             variant="success"
             onClose={() => setSuccess(null)}
           >
-            {success.data.message}
+            {success.data.message} za {success.data.executionTime}ms.
           </Alert>
         )}
         {error && (

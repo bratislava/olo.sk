@@ -50,6 +50,7 @@ const ArticlesHomepageSection = ({ section }: Props) => {
     ),
   ].slice(0, LATEST_ARTICLES_COUNT)
 
+  // TODO ArticlesSectionFiltered can be reused here
   return (
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="secondary" className="py-6 lg:py-12">

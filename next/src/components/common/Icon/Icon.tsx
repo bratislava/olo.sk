@@ -75,7 +75,11 @@ export const iconNameMap = {
 
 export type IconName = keyof typeof iconNameMap
 
-export const isBaIcon = (iconName: string): iconName is IconName => iconName in iconNameMap
+export const isBaIcon = (iconName: string | null | undefined): iconName is IconName => {
+  if (!iconName) return false
+
+  return iconName in iconNameMap
+}
 
 type IconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 

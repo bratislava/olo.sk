@@ -12,7 +12,7 @@ const RichtextSection = ({ section }: Props) => {
   const { content, backgroundColorRichtext } = section
 
   return (
-    <SectionContainer background={backgroundColorRichtext} className="py-12">
+    <SectionContainer background={backgroundColorRichtext} className="py-18">
       <Markdown content={content} />
     </SectionContainer>
   )

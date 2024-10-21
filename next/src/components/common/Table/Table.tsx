@@ -46,7 +46,7 @@ const Table = ({
                 <tr className="divide-x divide-border-default">
                   {headerColumns.map((column) => (
                     // eslint-disable-next-line react/no-array-index-key
-                    <th key={column} scope="col" className="px-6 py-4 text-left">
+                    <th key={column} scope="col" className="px-5 py-1 text-left">
                       <Typography variant="p-default-bold">{column}</Typography>
                     </th>
                   ))}
@@ -64,7 +64,7 @@ const Table = ({
                     <tr key={row.id} className="divide-x divide-border-default">
                       {cols.map((cell, colIndex) => (
                         // eslint-disable-next-line react/no-array-index-key
-                        <td key={colIndex} className="px-6 py-4">
+                        <td key={colIndex} className="px-5 py-1">
                           {cell}
                         </td>
                       ))}

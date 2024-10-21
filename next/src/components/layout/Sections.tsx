@@ -1,4 +1,6 @@
-import ArticlesSection from '@/src/components/sections/ArticlesSection'
+import React from 'react'
+
+import ArticlesSection from '@/src/components/sections/articles/ArticlesSection'
 import BannerSection from '@/src/components/sections/BannerSection'
 import BoardMembersSection from '@/src/components/sections/BoardMembersSection'
 import BranchesSection from '@/src/components/sections/BranchesSection'
@@ -149,12 +151,12 @@ const SectionContent = ({ section }: { section: Section }) => {
 
 const Sections = ({ sections }: Props) => {
   return (
-    <>
+    <div className="w-full">
       {sections.map((section, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <SectionContent key={index} section={section} />
       ))}
-    </>
+    </div>
   )
 }
 

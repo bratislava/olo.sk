@@ -2,13 +2,14 @@ import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
-import OloIcon, { OloIconName } from '@/src/components/common/Icon/OloIcon'
+import Icon, { IconName, isBaIcon } from '@/src/components/common/Icon/Icon'
+import OloIcon, { isOloIcon, OloIconName } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 
 type WorkshopCardProps = {
   title: string
   linkHref: string
-  iconName?: OloIconName
+  iconName?: OloIconName | IconName
   hasWhiteBackground?: boolean
   className?: string
 }
@@ -35,7 +36,14 @@ const WorkshopCard = ({
     >
       <div className="flex h-full flex-col items-start gap-6 p-4 lg:p-6">
         <div className="rounded-2xl bg-background-secondary p-4">
-          <OloIcon name={iconName} className="size-6" />
+          {
+            // TODO This should be extracted to a separate component
+            isBaIcon(iconName) ? (
+              <Icon name={iconName} className="size-6" />
+            ) : isOloIcon(iconName) ? (
+              <OloIcon name={iconName} className="size-6" />
+            ) : null
+          }
         </div>
         <div className="flex h-full flex-col items-start justify-between gap-4 self-stretch lg:gap-10">
           <Typography

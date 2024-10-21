@@ -33,7 +33,7 @@ const ProcurementsSection = ({ section, className }: Props) => {
     error: errorRunning,
     data: procurementsRunning,
   } = useQuery({
-    queryKey: ['Procurements running', tendersPerPage, currentPage], // TODO: add query key for pagination ['Procurement', currentPage]
+    queryKey: ['ProcurementsRunning', tendersPerPage, currentPage],
     queryFn: () => fetchProcurementsFromApiRunning('running', currentPage, tendersPerPage ?? 5),
     placeholderData: keepPreviousData,
   })
@@ -62,29 +62,30 @@ const ProcurementsSection = ({ section, className }: Props) => {
       ) : isErrorRunning ? (
         <Typography>{errorRunning.message}</Typography>
       ) : (
-        <div className="py-6">
-          <div className="pb-4">
-            <Typography variant="h4">{t('procurements.actual')}</Typography>
+        <>
+          <div className="py-6">
+            <div className="pb-4">
+              <Typography variant="h4">{t('procurements.actual')}</Typography>
+            </div>
+            <Table
+              rows={getRows(procurementsRunning, locale, t('procurements.detail'))}
+              visibleColumns={visibleColumns}
+              allColumns={allColumns}
+              headerAllColumns={headerAllColumns}
+            />
           </div>
-          <Table
-            rows={getRows(procurementsRunning, locale, t('procurements.detail'))}
-            visibleColumns={visibleColumns}
-            allColumns={allColumns}
-            headerAllColumns={headerAllColumns}
-          />
-        </div>
+
+          {tendersPerPage && procurementsRunning?.tendersCount && (
+            <div className="flex justify-end">
+              <PaginationWithInput
+                currentPage={currentPage}
+                totalCount={Math.round(procurementsRunning.tendersCount / tendersPerPage)}
+                onPageChange={(page) => setCurrentPage(page)}
+              />
+            </div>
+          )}
+        </>
       )}
-      <div className="flex justify-end">
-        <PaginationWithInput
-          currentPage={Number(currentPage)}
-          totalCount={
-            tendersPerPage && procurementsRunning?.tendersCount
-              ? Math.round(procurementsRunning.tendersCount / tendersPerPage)
-              : 0
-          }
-          onPageChange={(page) => setCurrentPage(page)}
-        />
-      </div>
     </SectionContainer>
   )
 }

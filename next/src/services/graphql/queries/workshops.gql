@@ -8,6 +8,7 @@ fragment WorkshopSlugEntity on WorkshopEntity {
   attributes {
     title
     slug
+    iconName
     dates {
       ...WorkshopDateItem
     }

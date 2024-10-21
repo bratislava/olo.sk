@@ -76,17 +76,18 @@ query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
   }
 }
 
-query ArticlesByTagIds($tagsIds: [ID]!) {
-  tags(filters: { id: { in: $tagsIds } }) {
+query ArticlesByTagIds($tagIds: [ID]!) {
+  articles(filters: { tags: { id: { in: $tagIds } } }) {
     data {
-      attributes {
-        title
-        articles {
-          data {
-            ...ArticleEntity
-          }
-        }
-      }
+      ...ArticleCardEntity
+    }
+  }
+}
+
+query ArticlesByCategoryIds($categoryIds: [ID]!) {
+  articles(filters: { articleCategory: { id: { in: $categoryIds } } }) {
+    data {
+      ...ArticleCardEntity
     }
   }
 }

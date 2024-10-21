@@ -151,15 +151,11 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
       ? t('globalSearch.searchResultsFound.all', {
           count: allResultsCount,
         })
-      : resultsCount[selectedKey] < filters.pageSize
-        ? t('globalSearch.searchResultsFound.specific.singlepage', {
-            count: resultsCount[selectedKey],
-          })
-        : t('globalSearch.searchResultsFound.specific', {
-            from: (currentPage - 1) * filters.pageSize + 1,
-            to: Math.min(resultsCount[selectedKey], currentPage * filters.pageSize),
-            all: resultsCount[selectedKey],
-          })
+      : t('globalSearch.searchResultsFound.specific', {
+          from: (currentPage - 1) * filters.pageSize + 1,
+          to: Math.min(resultsCount[selectedKey], currentPage * filters.pageSize),
+          all: resultsCount[selectedKey],
+        })
 
   return (
     <SectionContainer className="py-6 lg:py-12">

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Typography from '@/src/components/common/Typography/Typography'
+import Markdown from '@/src/components/formatting/Markdown'
 import { LinkFragment } from '@/src/services/graphql/api'
 import cn from '@/src/utils/cn'
 import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
@@ -9,19 +10,23 @@ import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 type SectionHeaderProps = {
   title?: string | null | undefined
   text?: string | null | undefined
+  asRichtext?: boolean
   isFullWidth?: boolean
   isCentered?: boolean
   showMoreLink?: LinkFragment | null | undefined
   className?: string
+  additionalComponent?: ReactNode
 }
 
 const SectionHeader = ({
   title,
   text,
+  asRichtext = false,
   isFullWidth = false,
   isCentered = false,
   showMoreLink,
   className,
+  additionalComponent = null,
 }: SectionHeaderProps) => {
   const { getLinkProps } = useGetLinkProps()
 
@@ -36,7 +41,7 @@ const SectionHeader = ({
         'lg:justify-start': !showMoreLink,
       })}
     >
-      {title || text ? (
+      {title || text || additionalComponent ? (
         <div
           className={cn(
             'flex w-full flex-col items-start gap-4',
@@ -49,7 +54,14 @@ const SectionHeader = ({
           )}
         >
           {title ? <Typography variant="h2">{title}</Typography> : null}
-          {text ? <Typography variant="p-default">{text}</Typography> : null}
+          {text ? (
+            asRichtext ? (
+              <Markdown content={text} />
+            ) : (
+              <Typography variant="p-default">{text}</Typography>
+            )
+          ) : null}
+          {additionalComponent}
         </div>
       ) : null}
 

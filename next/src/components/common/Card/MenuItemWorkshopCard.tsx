@@ -1,6 +1,9 @@
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+
 import CardBase from '@/src/components/common/Card/CardBase'
 import IconWrapper from '@/src/components/common/Icon/IconWrapper'
-import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
+import Link from '@/src/components/common/Link/Link'
+import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -23,8 +26,10 @@ const MenuItemWorkshopCard = ({
   iconName = 'live-help',
   className,
 }: MenuItemWorkshopCardProps) => {
+  const { setMobileMenuOpen } = useNavMenuContext()
+
   return (
-    <NavMenuLink href={linkHref} isCard className={cn(className)}>
+    <li className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex items-start gap-4">
           <div
@@ -39,19 +44,19 @@ const MenuItemWorkshopCard = ({
               'justify-center': !mostRecentWorkshopDate,
             })}
           >
-            <Typography
-              variant="h6"
-              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap"
-            >
-              {title}
-            </Typography>
+            <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
+              <Link variant="underlineOnHover" href={linkHref} stretched>
+                <Typography variant="h6">{title}</Typography>
+              </Link>
+            </NavigationMenu.Link>
+
             {mostRecentWorkshopDate ? (
               <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
             ) : null}
           </div>
         </div>
       </CardBase>
-    </NavMenuLink>
+    </li>
   )
 }
 

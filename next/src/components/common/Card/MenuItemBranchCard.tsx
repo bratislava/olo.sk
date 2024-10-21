@@ -1,8 +1,9 @@
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
-import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
+import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -24,9 +25,10 @@ const MenuItemBranchCard = ({
   className,
 }: MenuItemBranchCardProps) => {
   const { t } = useTranslation()
+  const { setMobileMenuOpen } = useNavMenuContext()
 
   return (
-    <NavMenuLink href={linkHref} isCard className={cn(className)}>
+    <li className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-2">
           <Typography
@@ -38,13 +40,16 @@ const MenuItemBranchCard = ({
 
           <div className="flex flex-col gap-4">
             {address ? <Typography variant="p-default">{address}</Typography> : null}
-            <Button variant="black-link" href={linkHref} asLink stretched>
-              {t('navBar.branchCard.showDetails')}
-            </Button>
+
+            <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
+              <Button variant="black-link" href={linkHref} asLink stretched>
+                {t('navBar.branchCard.showDetails')}
+              </Button>
+            </NavigationMenu.Link>
           </div>
         </div>
       </CardBase>
-    </NavMenuLink>
+    </li>
   )
 }
 

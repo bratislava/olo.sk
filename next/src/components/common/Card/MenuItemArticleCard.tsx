@@ -1,6 +1,9 @@
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+
 import CardBase from '@/src/components/common/Card/CardBase'
 import CardImage from '@/src/components/common/Card/CardImage'
-import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
+import Link from '@/src/components/common/Link/Link'
+import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Tag from '@/src/components/common/Tag/Tag'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -24,8 +27,10 @@ const MenuItemArticleCard = ({
   imgSrc,
   className,
 }: MenuItemArticleCardProps) => {
+  const { setMobileMenuOpen } = useNavMenuContext()
+
   return (
-    <NavMenuLink href={linkHref} isCard className={cn(className)}>
+    <li className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex flex-col items-start gap-4 lg:flex-row">
           <CardImage
@@ -36,16 +41,18 @@ const MenuItemArticleCard = ({
 
           <div className="flex flex-col justify-center gap-3">
             {tagText ? <Tag variant="without-bg" text={tagText} /> : null}
-            <Typography
-              variant="h6"
-              className_onlyWhenNecessary="lg:group-hover/CardBase:underline text-wrap lg:line-clamp-1"
-            >
-              {title}
-            </Typography>
+
+            <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
+              <Link variant="underlineOnHover" href={linkHref} stretched>
+                <Typography variant="h6" className_onlyWhenNecessary="lg:line-clamp-1">
+                  {title}
+                </Typography>
+              </Link>
+            </NavigationMenu.Link>
           </div>
         </div>
       </CardBase>
-    </NavMenuLink>
+    </li>
   )
 }
 

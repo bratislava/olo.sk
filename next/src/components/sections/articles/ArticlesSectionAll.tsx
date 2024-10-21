@@ -2,6 +2,7 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useRef, useState } from 'react'
 import { Selection, TagGroup, TagList } from 'react-aria-components'
+import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useDebounceValue } from 'usehooks-ts'
 
 import ArticleCard from '@/src/components/common/Card/ArticleCard'
@@ -38,6 +39,8 @@ const ArticlesSectionAll = ({ section }: Props) => {
 
   const { title, text } = section
 
+  // SEARCH INPUT
+
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
 
@@ -49,7 +52,7 @@ const ArticlesSectionAll = ({ section }: Props) => {
     searchRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [filters.page, filters.pageSize])
 
-  // SELECTION
+  // CATEGORY SELECTION
 
   const { data: articleCategoriesData } = useQuery({
     queryKey: ['ArticleCategories', locale],
@@ -82,6 +85,24 @@ const ArticlesSectionAll = ({ section }: Props) => {
     selection !== 'all' && selection.size === 1
       ? selection.values().next().value
       : selectionOptions[0].id
+
+  // URL QUERY PARAMS
+
+  const [routerQueryCategoryValue] = useQueryParam(
+    'articleCategory',
+    withDefault(StringParam, 'all'),
+  )
+  const [routerQuerySearchValue] = useQueryParam('search', withDefault(StringParam, ''))
+
+  useEffect(() => {
+    setSelection(new Set([routerQueryCategoryValue]))
+  }, [routerQueryCategoryValue])
+
+  useEffect(() => {
+    setInput(routerQuerySearchValue)
+  }, [routerQuerySearchValue])
+
+  // FETCHING
 
   useEffect(() => {
     setFilters((previousState) => ({

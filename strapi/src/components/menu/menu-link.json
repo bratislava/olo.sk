@@ -31,6 +31,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::workshop.workshop"
+    },
+    "plausibleId": {
+      "type": "string"
     }
   }
 }

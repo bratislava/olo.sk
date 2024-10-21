@@ -18,8 +18,10 @@ type NavMenuLinkProps = {
  */
 
 const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
-  ({ href, children, target, isCard = false, className }, ref) => {
+  ({ href, children, target, isCard = false, plausibleProps, className }, ref) => {
     const { setMobileMenuOpen } = useNavMenuContext()
+
+    // TODO: This component needs to be refactored to function properly with Plausible
 
     return (
       <li className={cn('flex w-full', className)}>
@@ -37,7 +39,8 @@ const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
               startIcon={<Icon name="sipka-doprava" />}
               hasLinkIcon={false}
               className="flex gap-4"
-              ref={ref} // Forward the ref to the Button
+              ref={ref}
+              plausibleProps={plausibleProps}
             >
               {children}
             </Button>

@@ -1,5 +1,6 @@
 fragment MenuLink on ComponentMenuMenuLink {
   id
+  plausibleId
   label
   url
   page {

@@ -3,6 +3,7 @@ resources:
   - scaler.yml
   - ./secrets/revalidate.secret.yml
   - ./secrets/nalgoo.secret.yml
+  - ./secrets/josephine.secret.yml
 
 configMapGenerator:
   - name: ${BUILD_REPOSITORY_NAME}-env

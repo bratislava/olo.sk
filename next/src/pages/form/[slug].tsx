@@ -110,9 +110,8 @@ const Page = ({ entity, general, navigation }: PageProps) => {
 
   const { title, subtext, formSlug } = entity.attributes
 
-  // TODO Remove dev from URL
   const iframeUrl = formSlug
-    ? `${process.env.NEXT_PUBLIC_CITY_ACCOUNT_URL ?? ''}mestske-sluzby/dev/${formSlug}?externa-sluzba=true`
+    ? `${process.env.NEXT_PUBLIC_CITY_ACCOUNT_URL ?? ''}mestske-sluzby/${formSlug}?externa-sluzba=true`
     : null
 
   return (

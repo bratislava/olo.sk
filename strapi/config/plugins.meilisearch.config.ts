@@ -50,7 +50,8 @@ const searchIndexSettings = {
     // Faq
     'faq.faqCategory',
     // Service
-    'service.serviceCategory',
+    'service.serviceCategories',
+    'service.serviceCategories.slug',
     // WasteCollectionDay
     'waste-collection-day.type',
   ],

@@ -110,9 +110,8 @@ const Page = ({ entity, general, navigation }: PageProps) => {
 
   const { title, subtext, formSlug } = entity.attributes
 
-  // TODO move city account url to env
   const iframeUrl = formSlug
-    ? `https://city-account-next.staging.bratislava.sk/mestske-sluzby/dev/${formSlug}?externa-sluzba=true`
+    ? `${process.env.NEXT_PUBLIC_CITY_ACCOUNT_URL ?? ''}mestske-sluzby/${formSlug}?externa-sluzba=true`
     : null
 
   return (

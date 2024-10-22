@@ -156,6 +156,7 @@ fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
   text
   anchorId
   wasteCollectionDaysType
+  validityMessage
   visibleColumns
 }
 

@@ -1,5 +1,5 @@
 {
-  "key": "plugin_content_manager_configuration_components::sections.waste-collection-days",
+  "key": "plugin_content_manager_configuration_components::sections.child-pages-cards-list",
   "value": {
     "settings": {
       "bulkable": true,
@@ -43,64 +43,37 @@
         },
         "list": {
           "label": "text",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "anchorId": {
-        "edit": {
-          "label": "anchorId",
-          "description": "Musí byť spárované s targetId v hlavičke",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "anchorId",
           "searchable": true,
           "sortable": true
         }
       },
-      "wasteCollectionDaysType": {
+      "backgroundColor": {
         "edit": {
-          "label": "Typ odvozu",
+          "label": "Pozadie",
           "description": "",
           "placeholder": "",
           "visible": true,
           "editable": true
         },
         "list": {
-          "label": "wasteCollectionDaysType",
+          "label": "backgroundColor",
           "searchable": true,
           "sortable": true
         }
       },
-      "validityMessage": {
+      "page": {
         "edit": {
-          "label": "Informácia o platnosti",
-          "description": "Zobrazí sa v oranžovom rámčeku",
+          "label": "Stránka",
+          "description": "",
           "placeholder": "",
           "visible": true,
-          "editable": true
+          "editable": true,
+          "mainField": "title"
         },
         "list": {
-          "label": "validityMessage",
-          "searchable": false,
-          "sortable": false
-        }
-      },
-      "visibleColumns": {
-        "edit": {
-          "label": "Viditeľné stĺpce",
-          "description": "Ak nie je vybraný žiaden stĺpec, zobrazia sa všetky",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "visibleColumns",
-          "searchable": false,
-          "sortable": false
+          "label": "page",
+          "searchable": true,
+          "sortable": true
         }
       }
     },
@@ -108,17 +81,14 @@
       "list": [
         "id",
         "title",
-        "anchorId"
+        "text",
+        "backgroundColor"
       ],
       "edit": [
         [
           {
             "name": "title",
-            "size": 8
-          },
-          {
-            "name": "anchorId",
-            "size": 4
+            "size": 12
           }
         ],
         [
@@ -129,25 +99,19 @@
         ],
         [
           {
-            "name": "wasteCollectionDaysType",
-            "size": 8
-          }
-        ],
-        [
-          {
-            "name": "validityMessage",
+            "name": "page",
             "size": 12
           }
         ],
         [
           {
-            "name": "visibleColumns",
-            "size": 12
+            "name": "backgroundColor",
+            "size": 6
           }
         ]
       ]
     },
-    "uid": "sections.waste-collection-days",
+    "uid": "sections.child-pages-cards-list",
     "isComponent": true
   },
   "type": "object",

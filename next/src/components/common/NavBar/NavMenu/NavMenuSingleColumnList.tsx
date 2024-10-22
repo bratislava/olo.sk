@@ -2,8 +2,6 @@ import { useTranslation } from 'next-i18next'
 
 import MenuItemBranchCard from '@/src/components/common/Card/MenuItemBranchCard'
 import MenuItemWorkshopCard from '@/src/components/common/Card/MenuItemWorkshopCard'
-import { isBaIcon } from '@/src/components/common/Icon/Icon'
-import { isOloIcon } from '@/src/components/common/Icon/OloIcon'
 import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
 import { NavMenuSectionProps } from '@/src/components/common/NavBar/NavMenu/NavMenuSection'
 import cn from '@/src/utils/cn'
@@ -16,14 +14,15 @@ export type NavMenuColumnListProps = {
   className?: string
 }
 
+// TODO: Fix focus rings for the cards
 const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColumnListProps) => {
-  const { getLinkProps } = useGetLinkProps()
   const { t } = useTranslation()
+  const { getLinkProps } = useGetLinkProps()
 
   return (
     <ul
       className={cn(
-        'flex flex-col gap-5 bg-background-primary',
+        'flex flex-col gap-4 bg-background-primary lg:gap-5',
         { 'divide-y divide-border-default': hasDividers },
         className,
       )}
@@ -44,14 +43,8 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
                 : ''
             }
             linkHref={href}
-            // TODO this logic should be extracted to a separate component
-            iconName={
-              isBaIcon(link.workshop.data.attributes.iconName) ||
-              isOloIcon(link.workshop.data.attributes.iconName)
-                ? link.workshop.data.attributes.iconName
-                : 'live-help'
-            }
-            className={cn({ 'pt-5': index !== 0 })}
+            iconName={link?.workshop?.data?.attributes?.iconName ?? 'live-help'}
+            className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : link.branch?.data?.attributes ? (
           <MenuItemBranchCard
@@ -59,7 +52,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
             title={children}
             subText={link?.branch?.data?.attributes?.address ?? ''}
             linkHref={href}
-            className={cn({ 'pt-5': index !== 0 })}
+            className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : (
           <NavMenuLink key={link.id} href={href} target={target}>

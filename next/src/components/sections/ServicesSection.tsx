@@ -1,17 +1,26 @@
 /* eslint-disable unicorn/prefer-spread */
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Selection, TagGroup, TagList } from 'react-aria-components'
+import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 
 import ServiceCard from '@/src/components/common/Card/ServiceCard'
 import Chip from '@/src/components/common/Chip/Chip'
+import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
+import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { client } from '@/src/services/graphql'
 import { ServicesSectionFragment } from '@/src/services/graphql/api'
+import {
+  getMeiliServicesQueryKey,
+  meiliServicesFetcher,
+  servicesDefaultFilters,
+} from '@/src/services/meili/fetchers/servicesFetcher'
 import { isDefined } from '@/src/utils/isDefined'
 import { useGetFullPath } from '@/src/utils/useGetFullPath'
+import { useRoutePreservedState } from '@/src/utils/useRoutePreservedState'
 
 type Props = {
   section: ServicesSectionFragment
@@ -29,11 +38,10 @@ const ServicesSection = ({ section }: Props) => {
 
   const { title, text } = section
 
-  // TODO consider replacing with meilisearch
-  const { data: servicesData } = useQuery({
-    queryKey: ['Services', locale],
-    queryFn: () => client.Services({ locale }),
-  })
+  const [filters, setFilters] = useRoutePreservedState(servicesDefaultFilters)
+
+  // CATEGORY SELECTION
+  // - TODO consider extracting to separate hook
 
   const { data: serviceCategoriesData } = useQuery({
     queryKey: ['ServiceCategories', locale],
@@ -46,9 +54,9 @@ const ServicesSection = ({ section }: Props) => {
     { id: 'all', title: t('servicesSection.selectionOptions.allServices') },
     ...(serviceCategoriesData?.serviceCategories?.data
       .map((category) => {
-        if (!category.attributes || !category.id) return null
+        if (!category.attributes) return null
 
-        return { id: category.id, title: category.attributes.title }
+        return { id: category.attributes.slug, title: category.attributes.title }
       })
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined) ?? []),
@@ -64,21 +72,37 @@ const ServicesSection = ({ section }: Props) => {
     else setSelection(newSelection)
   }
 
-  const servicesToRender =
-    servicesData?.services?.data
-      .filter((service) => {
-        if (!service.attributes) return null
+  const selectedKey: SelectionOption['id'] =
+    selection !== 'all' && selection.size === 1
+      ? selection.values().next().value
+      : selectionOptions[0].id
 
-        if (Array.from(new Set(selection)).includes('all')) return true
+  // URL QUERY PARAMS
 
-        return service.attributes.serviceCategories?.data.some((category) => {
-          if (!category.id) return null
+  const [routerQueryCategoryValue] = useQueryParam(
+    'serviceCategory',
+    withDefault(StringParam, 'all'),
+  )
 
-          return Array.from(new Set(selection)).includes(category.id)
-        })
-      })
-      // eslint-disable-next-line unicorn/no-array-callback-reference
-      .filter(isDefined) ?? []
+  useEffect(() => {
+    setSelection(new Set([routerQueryCategoryValue]))
+  }, [routerQueryCategoryValue])
+
+  // FETCHING
+
+  useEffect(() => {
+    setFilters((previousState) => ({
+      ...previousState,
+      page: 1,
+      categorySlugs: selectedKey === 'all' ? undefined : [selectedKey],
+    }))
+  }, [selectedKey, setFilters])
+
+  const { data, isPending, isError, error } = useQuery({
+    queryFn: () => meiliServicesFetcher(filters),
+    queryKey: getMeiliServicesQueryKey(filters),
+    placeholderData: keepPreviousData,
+  })
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -111,31 +135,57 @@ const ServicesSection = ({ section }: Props) => {
         <div className="flex flex-col gap-6">
           <SectionHeader title={title} text={text} />
 
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {servicesToRender
-              .map((service, index) => {
-                if (!service.attributes) return null
+          {isError ? (
+            // TODO display proper error
+            <Typography variant="p-default">{error?.message}</Typography>
+          ) : isPending ? (
+            <Typography variant="p-default">{t('common.loading')}</Typography>
+          ) : (
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+              {data?.hits
+                .map((service, index) => {
+                  if (!service.attributes) return null
 
-                const serviceCategories =
-                  // eslint-disable-next-line unicorn/no-array-callback-reference
-                  service.attributes.serviceCategories?.data.filter(isDefined) ?? []
+                  const serviceCategories =
+                    // eslint-disable-next-line unicorn/no-array-callback-reference
+                    service.attributes.serviceCategories?.data?.filter(isDefined) ?? []
 
-                return (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <li key={index}>
-                    <ServiceCard
-                      title={service.attributes.title}
-                      linkHref={getFullPath(service) ?? '#'}
-                      serviceCategories={serviceCategories}
-                      className="h-full"
-                    />
-                  </li>
-                )
-              })
-              // eslint-disable-next-line unicorn/no-array-callback-reference
-              .filter(isDefined)}
-          </ul>
+                  return (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <li key={index}>
+                      <ServiceCard
+                        title={service.attributes.title}
+                        linkHref={getFullPath(service) ?? '#'}
+                        serviceCategories={serviceCategories}
+                        className="h-full"
+                      />
+                    </li>
+                  )
+                })
+                // eslint-disable-next-line unicorn/no-array-callback-reference
+                .filter(isDefined)}
+            </ul>
+          )}
         </div>
+        {data?.estimatedTotalHits ? (
+          <>
+            {/* TODO separate this results count message and pagination into separate component */}
+            <div className="flex flex-wrap items-center justify-center gap-6 lg:justify-between">
+              <Typography>
+                {t('globalSearch.searchResultsFound.specific', {
+                  from: (filters.page - 1) * filters.pageSize + 1,
+                  to: Math.min(data.estimatedTotalHits, filters.page * filters.pageSize),
+                  all: data.estimatedTotalHits,
+                })}
+              </Typography>
+              <PaginationWithInput
+                currentPage={filters.page}
+                totalCount={Math.ceil(data.estimatedTotalHits / filters.pageSize)}
+                onPageChange={(page) => setFilters((previousState) => ({ ...previousState, page }))}
+              />
+            </div>
+          </>
+        ) : null}
       </div>
     </SectionContainer>
   )

@@ -34,6 +34,7 @@ export const meiliArticlesFetcher = (filters: ArticlesFilters, locale: string) =
       filter: [
         'type = "article"',
         `locale = ${locale}`,
+        // TODO investigate - we tried using IN syntax for filtering by tags an slugs, but it was not working
         filters.tagSlugs?.length
           ? // eslint-disable-next-line sonarjs/no-nested-template-literals
             filters.tagSlugs.map((tagSlug) => `article.tags.slug = ${tagSlug}`)

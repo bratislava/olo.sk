@@ -39,11 +39,7 @@ const searchIndexSettings = {
     'type',
     'locale', // TODO decide if needed
     // Article
-    'article.tags',
-    'article.tags.id',
     'article.tags.slug',
-    'article.articleCategory',
-    'article.articleCategory.id',
     'article.articleCategory.slug',
     // Document
     'document.documentCategory',

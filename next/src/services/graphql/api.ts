@@ -6509,7 +6509,10 @@ export type PickupDayHeaderSectionFragment = {
   carouselTitle: string
   tags?: {
     __typename?: 'TagRelationResponseCollection'
-    data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+    data: Array<{
+      __typename?: 'TagEntity'
+      attributes?: { __typename?: 'Tag'; slug: string } | null
+    }>
   } | null
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
@@ -6916,7 +6919,10 @@ type HeaderSections_ComponentHeaderSectionsPickupDay_Fragment = {
   carouselTitle: string
   tags?: {
     __typename?: 'TagRelationResponseCollection'
-    data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+    data: Array<{
+      __typename?: 'TagEntity'
+      attributes?: { __typename?: 'Tag'; slug: string } | null
+    }>
   } | null
   anchors?: Array<{
     __typename?: 'ComponentItemsAnchor'
@@ -12945,116 +12951,6 @@ export type ArticleBySlugQuery = {
   } | null
 }
 
-export type ArticlesByTagIdsQueryVariables = Exact<{
-  tagIds: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>
-}>
-
-export type ArticlesByTagIdsQuery = {
-  __typename?: 'Query'
-  articles?: {
-    __typename?: 'ArticleEntityResponseCollection'
-    data: Array<{
-      __typename: 'ArticleEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Article'
-        perex?: string | null
-        addedAt: any
-        slug: string
-        title: string
-        isCurrentChangeInOpeningHours?: boolean | null
-        coverMedia?: {
-          __typename?: 'UploadFileEntityResponse'
-          data?: {
-            __typename?: 'UploadFileEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'UploadFile'
-              url: string
-              width?: number | null
-              height?: number | null
-              caption?: string | null
-              alternativeText?: string | null
-              name: string
-            } | null
-          } | null
-        } | null
-        articleCategory?: {
-          __typename?: 'ArticleCategoryEntityResponse'
-          data?: {
-            __typename?: 'ArticleCategoryEntity'
-            id?: string | null
-            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
-          } | null
-        } | null
-        tags?: {
-          __typename?: 'TagRelationResponseCollection'
-          data: Array<{
-            __typename?: 'TagEntity'
-            id?: string | null
-            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
-          }>
-        } | null
-      } | null
-    }>
-  } | null
-}
-
-export type ArticlesByCategoryIdsQueryVariables = Exact<{
-  categoryIds: Array<InputMaybe<Scalars['ID']['input']>> | InputMaybe<Scalars['ID']['input']>
-}>
-
-export type ArticlesByCategoryIdsQuery = {
-  __typename?: 'Query'
-  articles?: {
-    __typename?: 'ArticleEntityResponseCollection'
-    data: Array<{
-      __typename: 'ArticleEntity'
-      id?: string | null
-      attributes?: {
-        __typename?: 'Article'
-        perex?: string | null
-        addedAt: any
-        slug: string
-        title: string
-        isCurrentChangeInOpeningHours?: boolean | null
-        coverMedia?: {
-          __typename?: 'UploadFileEntityResponse'
-          data?: {
-            __typename?: 'UploadFileEntity'
-            id?: string | null
-            attributes?: {
-              __typename?: 'UploadFile'
-              url: string
-              width?: number | null
-              height?: number | null
-              caption?: string | null
-              alternativeText?: string | null
-              name: string
-            } | null
-          } | null
-        } | null
-        articleCategory?: {
-          __typename?: 'ArticleCategoryEntityResponse'
-          data?: {
-            __typename?: 'ArticleCategoryEntity'
-            id?: string | null
-            attributes?: { __typename?: 'ArticleCategory'; title: string; slug: string } | null
-          } | null
-        } | null
-        tags?: {
-          __typename?: 'TagRelationResponseCollection'
-          data: Array<{
-            __typename?: 'TagEntity'
-            id?: string | null
-            attributes?: { __typename?: 'Tag'; title: string; slug: string } | null
-          }>
-        } | null
-      } | null
-    }>
-  } | null
-}
-
 export type LatestArticlesQueryVariables = Exact<{
   limit: Scalars['Int']['input']
   locale: Scalars['I18NLocaleCode']['input']
@@ -19023,7 +18919,10 @@ export type PageEntityFragment = {
           carouselTitle: string
           tags?: {
             __typename?: 'TagRelationResponseCollection'
-            data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+            data: Array<{
+              __typename?: 'TagEntity'
+              attributes?: { __typename?: 'Tag'; slug: string } | null
+            }>
           } | null
           anchors?: Array<{
             __typename?: 'ComponentItemsAnchor'
@@ -22179,7 +22078,10 @@ export type PagesQuery = {
               carouselTitle: string
               tags?: {
                 __typename?: 'TagRelationResponseCollection'
-                data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+                data: Array<{
+                  __typename?: 'TagEntity'
+                  attributes?: { __typename?: 'Tag'; slug: string } | null
+                }>
               } | null
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
@@ -25379,7 +25281,10 @@ export type PageBySlugQuery = {
               carouselTitle: string
               tags?: {
                 __typename?: 'TagRelationResponseCollection'
-                data: Array<{ __typename?: 'TagEntity'; id?: string | null }>
+                data: Array<{
+                  __typename?: 'TagEntity'
+                  attributes?: { __typename?: 'Tag'; slug: string } | null
+                }>
               } | null
               anchors?: Array<{
                 __typename?: 'ComponentItemsAnchor'
@@ -34863,7 +34768,9 @@ export const PickupDayHeaderSectionFragmentDoc = gql`
     carouselTitle
     tags {
       data {
-        id
+        attributes {
+          slug
+        }
       }
     }
     anchors {
@@ -36065,26 +35972,6 @@ export const ArticleBySlugDocument = gql`
   }
   ${ArticleEntityFragmentDoc}
 `
-export const ArticlesByTagIdsDocument = gql`
-  query ArticlesByTagIds($tagIds: [ID]!) {
-    articles(filters: { tags: { id: { in: $tagIds } } }) {
-      data {
-        ...ArticleCardEntity
-      }
-    }
-  }
-  ${ArticleCardEntityFragmentDoc}
-`
-export const ArticlesByCategoryIdsDocument = gql`
-  query ArticlesByCategoryIds($categoryIds: [ID]!) {
-    articles(filters: { articleCategory: { id: { in: $categoryIds } } }) {
-      data {
-        ...ArticleCardEntity
-      }
-    }
-  }
-  ${ArticleCardEntityFragmentDoc}
-`
 export const LatestArticlesDocument = gql`
   query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
     articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
@@ -36575,36 +36462,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
             ...wrappedRequestHeaders,
           }),
         'ArticleBySlug',
-        'query',
-        variables,
-      )
-    },
-    ArticlesByTagIds(
-      variables: ArticlesByTagIdsQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<ArticlesByTagIdsQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<ArticlesByTagIdsQuery>(ArticlesByTagIdsDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'ArticlesByTagIds',
-        'query',
-        variables,
-      )
-    },
-    ArticlesByCategoryIds(
-      variables: ArticlesByCategoryIdsQueryVariables,
-      requestHeaders?: GraphQLClientRequestHeaders,
-    ): Promise<ArticlesByCategoryIdsQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<ArticlesByCategoryIdsQuery>(ArticlesByCategoryIdsDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        'ArticlesByCategoryIds',
         'query',
         variables,
       )

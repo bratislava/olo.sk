@@ -55,7 +55,9 @@ fragment PickupDayHeaderSection on ComponentHeaderSectionsPickupDay {
   carouselTitle
   tags {
     data {
-      id
+      attributes {
+        slug
+      }
     }
   }
   anchors {
@@ -100,7 +102,7 @@ fragment HeaderSections on PageHeaderDynamicZone {
   ... on ComponentHeaderSectionsBranchMap {
     ...BranchMapHeaderSection
   }
-  
+
   ... on ComponentHeaderSectionsCareers {
     ...CareersHeaderSection
   }

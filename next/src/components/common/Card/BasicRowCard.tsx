@@ -1,22 +1,34 @@
+import React from 'react'
+
 import CardBase from '@/src/components/common/Card/CardBase'
-import Icon, { IconName, isBaIcon } from '@/src/components/common/Icon/Icon'
-import OloIcon, { isOloIcon, OloIconName } from '@/src/components/common/Icon/OloIcon'
+import { IconName } from '@/src/components/common/Icon/Icon'
+import IconWrapper from '@/src/components/common/Icon/IconWrapper'
+import { OloIconName } from '@/src/components/common/Icon/OloIcon'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
 export type BasicRowCardProps = {
-  value: string
+  value?: string
+  label?: string
   className?: string
   innerClassName?: string
 } & (
   | {
+      value: string
       variant: 'label-value-horizontal' | 'label-value-vertical'
       label: string
       iconName?: never
     }
   | {
+      value: string
       variant: 'icon-value'
       label?: never
+      iconName: IconName | OloIconName
+    }
+  | {
+      variant: 'icon-label'
+      label: string
+      value?: never
       iconName: IconName | OloIconName
     }
 )
@@ -38,14 +50,7 @@ const BasicRowCard = ({
       <div className={cn('py-3 lg:py-4', innerClassName)}>
         {variant === 'icon-value' ? (
           <div className="flex gap-3 lg:gap-4">
-            {
-              // TODO This should be extracted to a separate component
-              isBaIcon(iconName) ? (
-                <Icon name={iconName} className="size-5 lg:size-6" />
-              ) : isOloIcon(iconName) ? (
-                <OloIcon name={iconName} className="size-5 lg:size-6" />
-              ) : null
-            }
+            <IconWrapper name={iconName} />
             <Typography variant="p-default">{value}</Typography>
           </div>
         ) : variant === 'label-value-horizontal' ? (
@@ -59,6 +64,11 @@ const BasicRowCard = ({
           <div className="flex flex-col gap-1 lg:gap-2">
             <Typography variant="p-default-black">{label}</Typography>
             <Typography variant="p-default">{value}</Typography>
+          </div>
+        ) : variant === 'icon-label' ? (
+          <div className="flex items-center justify-between">
+            <Typography variant="p-default-black">{label}</Typography>
+            <IconWrapper name={iconName} />
           </div>
         ) : null}
       </div>

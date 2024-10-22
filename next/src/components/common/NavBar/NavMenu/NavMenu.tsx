@@ -19,17 +19,15 @@ type NavMenuProps = {
 }
 
 const NavMenu = ({ className }: NavMenuProps) => {
-  const pathname = usePathname()
-  const { menuValue, setMenuValue } = useNavMenuContext()
   const { t, i18n } = useTranslation()
-  const locale = i18n.language
-
+  const pathname = usePathname()
   const { getLinkProps } = useGetLinkProps()
 
+  const { menuValue, setMenuValue } = useNavMenuContext()
+
+  const locale = i18n.language
   const { data } = useQuery(generalQuery(locale))
-
   const menus = useMemo(() => getParsedMenus(data?.menu), [data?.menu])
-
   const { searchLink } = data?.menu?.data?.attributes?.menuHeader ?? {}
 
   useEffect(() => {

@@ -24,7 +24,12 @@ export const NavMenuContextProvider = ({ children }: PropsWithChildren<{}>) => {
 
   return (
     <NavMenuContext.Provider
-      value={{ menuValue, setMenuValue, isMobileMenuOpen, setMobileMenuOpen }}
+      value={{
+        menuValue,
+        setMenuValue,
+        isMobileMenuOpen,
+        setMobileMenuOpen,
+      }}
     >
       {children}
     </NavMenuContext.Provider>

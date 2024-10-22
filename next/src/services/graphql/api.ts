@@ -1573,6 +1573,7 @@ export type ComponentSectionsWasteCollectionDays = {
   id: Scalars['ID']['output']
   text?: Maybe<Scalars['String']['output']>
   title?: Maybe<Scalars['String']['output']>
+  validityMessage?: Maybe<Scalars['String']['output']>
   visibleColumns?: Maybe<Scalars['JSON']['output']>
   wasteCollectionDaysType?: Maybe<Scalars['String']['output']>
 }
@@ -7693,6 +7694,7 @@ export type WasteCollectionDaysFragment = {
   text?: string | null
   anchorId?: string | null
   wasteCollectionDaysType?: string | null
+  validityMessage?: string | null
   visibleColumns?: any | null
 }
 
@@ -9365,6 +9367,7 @@ export type ArticlesSectionFragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -9850,6 +9853,7 @@ type PageSections_ComponentSectionsArticles_Fragment = {
           __typename?: 'Workshop'
           title: string
           slug: string
+          iconName?: string | null
           dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
         } | null
       } | null
@@ -12013,6 +12017,7 @@ type PageSections_ComponentSectionsWasteCollectionDays_Fragment = {
   text?: string | null
   anchorId?: string | null
   wasteCollectionDaysType?: string | null
+  validityMessage?: string | null
   visibleColumns?: any | null
 }
 
@@ -19211,6 +19216,7 @@ export type PageEntityFragment = {
                   __typename?: 'Workshop'
                   title: string
                   slug: string
+                  iconName?: string | null
                   dates?: Array<{
                     __typename?: 'ComponentItemsWorkshopDate'
                     datetime: any
@@ -21407,6 +21413,7 @@ export type PageEntityFragment = {
           text?: string | null
           anchorId?: string | null
           wasteCollectionDaysType?: string | null
+          validityMessage?: string | null
           visibleColumns?: any | null
         }
       | {
@@ -22369,6 +22376,7 @@ export type PagesQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -24585,6 +24593,7 @@ export type PagesQuery = {
               text?: string | null
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
+              validityMessage?: string | null
               visibleColumns?: any | null
             }
           | {
@@ -25567,6 +25576,7 @@ export type PageBySlugQuery = {
                       __typename?: 'Workshop'
                       title: string
                       slug: string
+                      iconName?: string | null
                       dates?: Array<{
                         __typename?: 'ComponentItemsWorkshopDate'
                         datetime: any
@@ -27783,6 +27793,7 @@ export type PageBySlugQuery = {
               text?: string | null
               anchorId?: string | null
               wasteCollectionDaysType?: string | null
+              validityMessage?: string | null
               visibleColumns?: any | null
             }
           | {
@@ -35027,6 +35038,7 @@ export const WasteCollectionDaysFragmentDoc = gql`
     text
     anchorId
     wasteCollectionDaysType
+    validityMessage
     visibleColumns
   }
 `

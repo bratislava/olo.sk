@@ -39,6 +39,8 @@ spec:
                 name: ${BUILD_REPOSITORY_NAME}-revalidate-secret
             - secretRef:
                 name: ${BUILD_REPOSITORY_NAME}-nalgoo-secret
+            - secretRef:
+                name: ${BUILD_REPOSITORY_NAME}-josephine-secret
           readinessProbe:
             httpGet:
               path: /api/healthcheck

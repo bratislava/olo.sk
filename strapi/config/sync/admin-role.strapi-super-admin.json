@@ -1914,6 +1914,7 @@
           "slug",
           "iconName",
           "sections",
+          "sidebar",
           "dates.internalName",
           "dates.datetime"
         ]
@@ -1944,6 +1945,7 @@
           "slug",
           "iconName",
           "sections",
+          "sidebar",
           "dates.internalName",
           "dates.datetime"
         ]
@@ -1960,6 +1962,7 @@
           "slug",
           "iconName",
           "sections",
+          "sidebar",
           "dates.internalName",
           "dates.datetime"
         ]

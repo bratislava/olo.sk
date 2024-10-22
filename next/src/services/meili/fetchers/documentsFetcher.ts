@@ -1,4 +1,5 @@
 import { DocumentSearchEntityFragment } from '@/src/services/graphql/api'
+import { isDefined } from '@/src/utils/isDefined'
 
 import { meiliClient } from '../meiliClient'
 import { SearchIndexWrapped } from '../types'
@@ -8,6 +9,7 @@ export type DocumentsFilters = {
   search: string
   page: number
   pageSize: number
+  categorySlug?: string
 }
 
 export const documentsDefaultFilters: DocumentsFilters = {
@@ -27,7 +29,13 @@ export const meiliDocumentsFetcher = (filters: DocumentsFilters) => {
     .index('search_index')
     .search<SearchIndexWrapped<'document', any>>(filters.search, {
       ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
-      filter: ['type = "document"'],
+      filter: [
+        'type = "document"',
+        filters.categorySlug?.length
+          ? `document.documentCategory.slug = ${filters.categorySlug}`
+          : null,
+        // eslint-disable-next-line unicorn/no-array-callback-reference
+      ].filter(isDefined),
       attributesToRetrieve: [
         // Only properties that are required to display listing are retrieved
         'document.id',

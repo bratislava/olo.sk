@@ -1820,6 +1820,18 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
     iconName: Attribute.String
     sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.documents']>
+    sidebar: Attribute.DynamicZone<['sidebars.empty-sidebar']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
+      Attribute.SetMinMax<
+        {
+          max: 1
+        },
+        number
+      >
     dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime

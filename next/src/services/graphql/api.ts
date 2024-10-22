@@ -28,6 +28,7 @@ export type Scalars = {
   ServiceSectionsDynamicZoneInput: { input: any; output: any }
   Upload: { input: any; output: any }
   WorkshopSectionsDynamicZoneInput: { input: any; output: any }
+  WorkshopSidebarDynamicZoneInput: { input: any; output: any }
 }
 
 export type Article = {
@@ -4596,6 +4597,7 @@ export type Workshop = {
   iconName?: Maybe<Scalars['String']['output']>
   publishedAt?: Maybe<Scalars['DateTime']['output']>
   sections?: Maybe<Array<Maybe<WorkshopSectionsDynamicZone>>>
+  sidebar?: Maybe<Array<Maybe<WorkshopSidebarDynamicZone>>>
   slug: Scalars['String']['output']
   title: Scalars['String']['output']
   updatedAt?: Maybe<Scalars['DateTime']['output']>
@@ -4643,6 +4645,7 @@ export type WorkshopInput = {
   iconName?: InputMaybe<Scalars['String']['input']>
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>
   sections?: InputMaybe<Array<Scalars['WorkshopSectionsDynamicZoneInput']['input']>>
+  sidebar?: InputMaybe<Array<Scalars['WorkshopSidebarDynamicZoneInput']['input']>>
   slug?: InputMaybe<Scalars['String']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
@@ -4657,6 +4660,8 @@ export type WorkshopSectionsDynamicZone =
   | ComponentSectionsFaq
   | ComponentSectionsRichtext
   | Error
+
+export type WorkshopSidebarDynamicZone = ComponentSidebarsEmptySidebar | Error
 
 export type TagEntityFragment = {
   __typename?: 'TagEntity'
@@ -32195,6 +32200,9 @@ export type WorkshopEntityFragment = {
       | { __typename: 'Error' }
       | null
     > | null
+    sidebar?: Array<
+      { __typename: 'ComponentSidebarsEmptySidebar'; id: string } | { __typename: 'Error' } | null
+    > | null
     dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
   } | null
 }
@@ -32823,6 +32831,11 @@ export type WorkshopsQuery = {
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
             }
+          | { __typename: 'Error' }
+          | null
+        > | null
+        sidebar?: Array<
+          | { __typename: 'ComponentSidebarsEmptySidebar'; id: string }
           | { __typename: 'Error' }
           | null
         > | null
@@ -33481,6 +33494,11 @@ export type WorkshopByIdQuery = {
           | { __typename: 'Error' }
           | null
         > | null
+        sidebar?: Array<
+          | { __typename: 'ComponentSidebarsEmptySidebar'; id: string }
+          | { __typename: 'Error' }
+          | null
+        > | null
         dates?: Array<{ __typename?: 'ComponentItemsWorkshopDate'; datetime: any } | null> | null
       } | null
     } | null
@@ -34113,6 +34131,11 @@ export type WorkshopBySlugQuery = {
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
             }
+          | { __typename: 'Error' }
+          | null
+        > | null
+        sidebar?: Array<
+          | { __typename: 'ComponentSidebarsEmptySidebar'; id: string }
           | { __typename: 'Error' }
           | null
         > | null
@@ -35861,10 +35884,14 @@ export const WorkshopEntityFragmentDoc = gql`
       sections {
         ...PageSections
       }
+      sidebar {
+        ...PageSidebars
+      }
     }
   }
   ${WorkshopSlugEntityFragmentDoc}
   ${PageSectionsFragmentDoc}
+  ${PageSidebarsFragmentDoc}
 `
 export const TagsDocument = gql`
   query Tags {

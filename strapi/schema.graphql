@@ -4061,6 +4061,7 @@ type Workshop {
   iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZone]
+  sidebar: [WorkshopSidebarDynamicZone]
   slug: String!
   title: String!
   updatedAt: DateTime
@@ -4099,6 +4100,7 @@ input WorkshopInput {
   iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZoneInput!]
+  sidebar: [WorkshopSidebarDynamicZoneInput!]
   slug: String
   title: String
 }
@@ -4110,3 +4112,7 @@ type WorkshopRelationResponseCollection {
 union WorkshopSectionsDynamicZone = ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsRichtext | Error
 
 scalar WorkshopSectionsDynamicZoneInput
+
+union WorkshopSidebarDynamicZone = ComponentSidebarsEmptySidebar | Error
+
+scalar WorkshopSidebarDynamicZoneInput

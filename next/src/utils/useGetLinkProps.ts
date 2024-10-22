@@ -11,7 +11,7 @@ import { useGetFullPath } from '@/src/utils/useGetFullPath'
 export type LinkProps = {
   children: ReactNode
   href: string
-  target?: '_blank'
+  target?: '_blank' | '_self'
   // plausibleProps?: LinkPlausibleProps
 }
 

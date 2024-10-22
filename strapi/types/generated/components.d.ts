@@ -1,24 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi'
 
-export interface SidebarsEmptySidebar extends Schema.Component {
-  collectionName: 'components_sidebars_empty_sidebars'
-  info: {
-    displayName: 'Pr\u00E1zdny sidebar'
-  }
-  attributes: {}
-}
-
-export interface SidebarsContactsSidebar extends Schema.Component {
-  collectionName: 'components_sidebars_contacts_sidebars'
-  info: {
-    displayName: 'Kontakty'
-  }
-  attributes: {
-    contact: Attribute.Relation<'sidebars.contacts-sidebar', 'oneToOne', 'api::contact.contact'>
-    branch: Attribute.Relation<'sidebars.contacts-sidebar', 'oneToOne', 'api::branch.branch'>
-  }
-}
-
 export interface SharedSeo extends Schema.Component {
   collectionName: 'components_shared_seos'
   info: {
@@ -66,6 +47,25 @@ export interface SharedMetaSocial extends Schema.Component {
         maxLength: 65
       }>
     image: Attribute.Media<'images' | 'files' | 'videos'>
+  }
+}
+
+export interface SidebarsEmptySidebar extends Schema.Component {
+  collectionName: 'components_sidebars_empty_sidebars'
+  info: {
+    displayName: 'Pr\u00E1zdny sidebar'
+  }
+  attributes: {}
+}
+
+export interface SidebarsContactsSidebar extends Schema.Component {
+  collectionName: 'components_sidebars_contacts_sidebars'
+  info: {
+    displayName: 'Kontakty'
+  }
+  attributes: {
+    contact: Attribute.Relation<'sidebars.contacts-sidebar', 'oneToOne', 'api::contact.contact'>
+    branch: Attribute.Relation<'sidebars.contacts-sidebar', 'oneToOne', 'api::branch.branch'>
   }
 }
 
@@ -1243,10 +1243,10 @@ export interface HeaderSectionsBranchMap extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'sidebars.empty-sidebar': SidebarsEmptySidebar
-      'sidebars.contacts-sidebar': SidebarsContactsSidebar
       'shared.seo': SharedSeo
       'shared.meta-social': SharedMetaSocial
+      'sidebars.empty-sidebar': SidebarsEmptySidebar
+      'sidebars.contacts-sidebar': SidebarsContactsSidebar
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.waste-removal-cards': SectionsWasteRemovalCards

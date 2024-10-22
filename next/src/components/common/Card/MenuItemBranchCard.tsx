@@ -31,13 +31,14 @@ const MenuItemBranchCard = ({
         <div className="flex flex-col items-start gap-2">
           <Typography
             variant="h6"
-            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
+            className_onlyWhenNecessary="text-wrap lg:group-hover/CardBase:underline"
           >
             {title}
           </Typography>
+
           <div className="flex flex-col gap-4">
             {address ? <Typography variant="p-default">{address}</Typography> : null}
-            <Button variant="black-link" asLink stretched>
+            <Button variant="black-link" href={linkHref} asLink stretched>
               {t('navBar.branchCard.showDetails')}
             </Button>
           </div>

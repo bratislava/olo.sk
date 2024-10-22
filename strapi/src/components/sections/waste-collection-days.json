@@ -10,13 +10,16 @@
       "type": "string"
     },
     "text": {
-      "type": "text"
+      "type": "richtext"
     },
     "anchorId": {
       "type": "string"
     },
     "wasteCollectionDaysType": {
       "type": "string"
+    },
+    "validityMessage": {
+      "type": "richtext"
     },
     "visibleColumns": {
       "type": "customField",

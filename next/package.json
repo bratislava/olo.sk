@@ -14,7 +14,7 @@
     "lint:fix": "yarn lint --fix",
     "prettier": "prettier --write .",
     "gen": "graphql-codegen && prettier --write src/services/graphql/api.ts",
-    "openapi-gen": "dotenv -- cross-var openapi-generator-cli generate -i %NEXT_NALGOO_URL%?api_key=%NEXT_NALGOO_API_KEY% -g typescript-axios -o ./src/services/openapi-nalgoo",
+    "openapi-gen": "dotenv -- cross-var openapi-generator-cli generate -i %NEXT_NALGOO_URL%?api_key=%NEXT_PUBLIC_NALGOO_API_KEY% -g typescript-axios -o ./src/services/openapi-nalgoo",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "parse-translations": "i18next",

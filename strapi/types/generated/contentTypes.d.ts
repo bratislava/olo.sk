@@ -1520,7 +1520,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.image-and-text-overlapped',
         'sections.sorting-guide',
         'sections.sorting-guide-accordions',
-        'sections.procurements',
+        'sections.tenders',
         'sections.global-search',
         'sections.workshops',
         'sections.waste-collection-points',

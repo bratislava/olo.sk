@@ -1,6 +1,6 @@
 import { Link } from 'react-aria-components'
 
-import { ProcurementObject } from '@/src/services/josephine/fetchProcurements'
+import { TendersObject } from '@/src/services/josephine/fetchTenders'
 import { formatDate } from '@/src/utils/formatDate'
 import { formatPrice } from '@/src/utils/formatPrice'
 
@@ -27,17 +27,17 @@ export const allColumns = [
 ]
 
 /**
- * data modification for Procurements object
- * @param procurements - object from the fetch from Josephine
+ * data modification for Tenders object
+ * @param tenders - object from the fetch from Josephine
  * @param locale
  * @param detailString - translated string
  * @return Simplified object for Tenders
  *
  */
-export const getRows = (procurements: ProcurementObject, locale: string, detailString: string) => {
-  if (!procurements?.tenders || !allColumns) return []
+export const getRows = (tenders: TendersObject, locale: string, detailString: string) => {
+  if (!tenders?.tenders || !allColumns) return []
 
-  return procurements?.tenders.map((tender) => {
+  return tenders?.tenders.map((tender) => {
     const tenderAttributes = Object.fromEntries(
       Object.entries(tender).filter((tenderEntry: [key: string, value: string]) =>
         allColumns.includes(tenderEntry[0]),

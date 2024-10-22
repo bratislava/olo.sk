@@ -12,12 +12,12 @@ interface ModifiedTender extends Tender {
   tender_rounds_mapped: Date
 }
 
-export type ProcurementObject = {
+export type TendersObject = {
   tendersCount: number
   tenders: ModifiedTender[]
 }
 
-export type FetchProcurementsProps = {
+export type FetchTendersProps = {
   timeframe: string
   currentPage?: number
   tendersPerPage?: number
@@ -49,17 +49,17 @@ const getTenderTo = (tenderRounds: TenderRoundElement | TenderRoundElement[]) =>
  *
  */
 
-export const fetchProcurements = async ({
+export const fetchTenders = async ({
   timeframe,
   currentPage = 1,
   tendersPerPage = DEFAULT_TENDERS_PER_PAGE,
-}: FetchProcurementsProps) => {
+}: FetchTendersProps) => {
   const postFix = timeframe && timeframe !== 'all' ? `/${timeframe}` : ''
   const fetchUrl = `${process.env.JOSEPHINE_URL}${process.env.JOSEPHINE_API_TOKEN}${postFix}`
   const response = await fetch(fetchUrl)
 
   const xml = await response.text()
-  let obj: ProcurementObject = { tenders: [], tendersCount: 0 }
+  let obj: TendersObject = { tenders: [], tendersCount: 0 }
 
   // https://github.com/Leonidas-from-XIV/node-xml2js?tab=readme-ov-file#options
   parseString(xml, { explicitArray: false, trim: true }, (err, result: JosephineObject) => {
@@ -88,5 +88,5 @@ export const fetchProcurements = async ({
     }
   })
 
-  return obj as ProcurementObject
+  return obj as TendersObject
 }

@@ -429,7 +429,7 @@ fragment GlobalSearchSection on ComponentSectionsGlobalSearch {
   title
 }
 
-fragment ProcurementsSection on ComponentSectionsProcurements {
+fragment TendersSection on ComponentSectionsTenders {
   title
   content
   tendersPerPage
@@ -558,7 +558,7 @@ fragment PageSections on PageSectionsDynamicZone {
     ...GlobalSearchSection
   }
 
-  ... on ComponentSectionsProcurements {
-    ...ProcurementsSection
+  ... on ComponentSectionsTenders {
+    ...TendersSection
   }
 }

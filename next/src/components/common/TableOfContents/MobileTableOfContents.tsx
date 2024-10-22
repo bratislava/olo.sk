@@ -8,6 +8,7 @@ const HEADER_OFFSET = 90
 
 type Props = {
   rootId: string
+  domAttribute: string
 }
 
 /**
@@ -15,9 +16,9 @@ type Props = {
  *
  */
 
-const MobileTableOfContents = ({ rootId }: Props) => {
+const MobileTableOfContents = ({ rootId, domAttribute }: Props) => {
   const { t } = useTranslation()
-  const headings = useHeadings(rootId)
+  const headings = useHeadings(rootId, domAttribute)
 
   return (
     <div className="border-b border-border-default">

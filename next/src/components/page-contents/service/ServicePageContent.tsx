@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import DesktopTableOfContents from '@/src/components/common/TableOfContents/DesktopTableOfContents'
 import MobileTableOfContents from '@/src/components/common/TableOfContents/MobileTableOfContents'
+import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
 import { ServiceEntityFragment } from '@/src/services/graphql/api'
@@ -9,6 +10,9 @@ import { generateImageSizes } from '@/src/utils/generateImageSizes'
 import { isDefined } from '@/src/utils/isDefined'
 
 const SERVICE_PAGE_ROOT = 'service-page-content'
+
+// used in all sections that needs to be skipped for heading in table of content
+export const ATTRIBUTE_TABLE_OF_CONTENT = 'add'
 
 type Props = {
   service: ServiceEntityFragment
@@ -21,7 +25,10 @@ const ServicePageContent = ({ service }: Props) => {
     <>
       {/* Screen Mobile */}
       <div className="lg:hidden">
-        <MobileTableOfContents rootId={SERVICE_PAGE_ROOT} />
+        <MobileTableOfContents
+          rootId={SERVICE_PAGE_ROOT}
+          domAttribute={ATTRIBUTE_TABLE_OF_CONTENT}
+        />
       </div>
       <SectionContainer className="py-6 md:px-0 lg:py-12">
         <div className="flex flex-col items-start gap-4 md:flex-row lg:gap-8">
@@ -29,6 +36,11 @@ const ServicePageContent = ({ service }: Props) => {
             id={SERVICE_PAGE_ROOT}
             className="order-2 flex w-full shrink flex-col md:order-1 md:w-[50rem]"
           >
+            <div data-toc="add">
+              <div>
+                <Typography variant="h2">Testing heading</Typography>
+              </div>
+            </div>
             {/* TODO fix y-paddings so we don't change it from here */}
             <div className="flex flex-col gap-12 [&>*]:py-0 [&>*]:lg:py-0 [&>div>*]:px-0 [&>div>*]:lg:px-0">
               {image?.data?.attributes?.url ? (
@@ -48,7 +60,10 @@ const ServicePageContent = ({ service }: Props) => {
           <div className="order-1 shrink grow max-md:w-full md:max-w-80 lg:order-2">
             {/* Screen Desktop */}
             <div className="hidden lg:block">
-              <DesktopTableOfContents rootId={SERVICE_PAGE_ROOT} />
+              <DesktopTableOfContents
+                rootId={SERVICE_PAGE_ROOT}
+                domAttribute={ATTRIBUTE_TABLE_OF_CONTENT}
+              />
             </div>
           </div>
         </div>

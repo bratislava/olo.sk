@@ -2,8 +2,14 @@ import { useIsClient } from 'usehooks-ts'
 
 type HeadingLevels = 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
-const useHeadings = (rootId: string) => {
-  const queryList = `#${rootId} h2, #${rootId} h3, #${rootId} h4, #${rootId} h5, #${rootId} h6`
+const useHeadings = (rootId: string, domAttribute: string) => {
+  const getQueryList = (headingLevels: HeadingLevels[]) => {
+    return headingLevels
+      .map((level) => `#${rootId} div[data-toc=${domAttribute}] ${level}`)
+      .join(', ')
+  }
+
+  const queryList = getQueryList(['h2', 'h3', 'h4', 'h5', 'h6'])
   const isClient = useIsClient()
 
   const getHeadings = () => {

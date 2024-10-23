@@ -30,7 +30,8 @@ const WasteCollectionDaysSectionContent = ({ wasteCollectionDaysType, visibleCol
   const searchRef = useRef<null | HTMLInputElement>(null)
 
   useEffect(() => {
-    searchRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Using "block: 'nearest'" to prevent scrolling on tab change
+    searchRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }, [filters.page, filters.pageSize])
 
   useEffect(() => {

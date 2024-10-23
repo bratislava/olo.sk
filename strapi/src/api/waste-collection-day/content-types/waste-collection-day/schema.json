@@ -21,9 +21,6 @@
     "registrationNumber": {
       "type": "string"
     },
-    "validity": {
-      "type": "string"
-    },
     "evenWeek": {
       "type": "string"
     },
@@ -37,8 +34,7 @@
       "type": "text"
     },
     "importId": {
-      "type": "string",
-      "private": true
+      "type": "string"
     }
   }
 }

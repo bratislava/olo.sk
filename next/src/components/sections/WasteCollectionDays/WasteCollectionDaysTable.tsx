@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import React, { useRef } from 'react'
 
 import Typography from '@/src/components/common/Typography/Typography'
@@ -12,10 +13,11 @@ const WasteCollectionDaysTable = ({
   rows: WasteCollectionDayEntityFragment[]
   visibleColumns: string[] | null | undefined // WasteCollectionDaysFragment[ 'visibleColumns' ] is unfortunately typed as any, but docs say it should be string[]
 }) => {
+  const { t } = useTranslation()
+
   const allColumns = [
     'address',
     'registrationNumber',
-    'validity',
     'evenWeek',
     'oddWeek',
     'collectionDates',
@@ -26,17 +28,16 @@ const WasteCollectionDaysTable = ({
     ? allColumns.filter((value) => visibleColumns.includes(value))
     : allColumns
 
-  // TODO translations
   // Type has to be specified to satisfy Typescript so "headerAllColumns[column]" can be used
   const headerAllColumns: { [key: string]: string } = {
-    address: 'Adresa',
-    registrationNumber: 'Evidenčné číslo',
-    validity: 'Platnosť',
-    evenWeek: 'Párny týždeň',
-    oddWeek: 'Nepárny týždeň',
-    collectionDates: 'Dátumy odvozov',
-    note: 'Poznámka',
-  }
+    address: t('wasteCollectionDaysTable.header.address'),
+    // eslint-disable-next-line no-secrets/no-secrets
+    registrationNumber: t('wasteCollectionDaysTable.header.registrationNumber'),
+    evenWeek: t('wasteCollectionDaysTable.header.evenWeek'),
+    oddWeek: t('wasteCollectionDaysTable.header.oddWeek'),
+    collectionDates: t('wasteCollectionDaysTable.header.collectionDates'),
+    note: t('wasteCollectionDaysTable.header.note'),
+  } satisfies Record<(typeof allColumns)[number], string>
 
   const headerColumns = visibleColumns?.length
     ? visibleColumns.map((column) =>

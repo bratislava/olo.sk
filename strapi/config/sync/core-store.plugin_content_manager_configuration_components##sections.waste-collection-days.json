@@ -64,7 +64,7 @@
       "wasteCollectionDaysType": {
         "edit": {
           "label": "Typ odvozu",
-          "description": "Zadajte hodnotu z prvého stĺpca narhávanej tabuľky (Typ odvozu). Pre zobrazenie sezónnej platnosti v taboch, zadefinujte taby oddelené čiarkou \"Názov prvého tabu: Typ odvozu 1, Názov druhého tabu: Typ odvozu 2\" (bez použitia úvodzoviek).",
+          "description": "Zadajte hodnotu z prvého stĺpca nahrávanej tabuľky (Typ odvozu). Pre zobrazenie sezónnej platnosti v taboch, zadefinujte taby oddelené bodkočiarkou \"Názov prvého tabu: Typ odvozu 1; Názov druhého tabu: Typ odvozu 2\" (bez použitia úvodzoviek).",
           "placeholder": "",
           "visible": true,
           "editable": true

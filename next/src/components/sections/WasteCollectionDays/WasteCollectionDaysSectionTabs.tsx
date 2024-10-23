@@ -15,7 +15,7 @@ const WasteCollectionDaysSectionTabs = ({ wasteCollectionDaysType, visibleColumn
   // We expect the wasteCollectionDaysType to be a string like "Tab Label: wasteType1, Tab Label: wasteType2"
   const tabs =
     wasteCollectionDaysType
-      ?.split(',')
+      ?.split(';')
       .map((type) => type.trim())
       .map((type) => {
         const [tabLabel, wasteType] = type.split(':')
@@ -26,6 +26,7 @@ const WasteCollectionDaysSectionTabs = ({ wasteCollectionDaysType, visibleColumn
   return (
     <Tabs className="flex flex-col gap-6">
       <TabList
+        aria-label={t('wasteCollectionDaysSectionTabs.aria.tabListName')}
         // "py-2 -my-2" is used to make focus ring visible
         className="negative-x-spacing -my-2 flex gap-x-4 overflow-auto overflow-y-hidden py-2 scrollbar-hide"
       >

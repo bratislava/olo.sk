@@ -19,8 +19,8 @@ const WasteCollectionDays = ({ section }: Props) => {
   const { title, text, anchorId, wasteCollectionDaysType, validityMessage, visibleColumns } =
     section
 
-  // See WasteCollectionDaysSectionTabs for string format explanation
-  const isWithTabs = wasteCollectionDaysType?.includes(',')
+  // See WasteCollectionDaysSectionTabs for expected string format
+  const isWithTabs = wasteCollectionDaysType?.includes(';')
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer

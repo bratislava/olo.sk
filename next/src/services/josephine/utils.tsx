@@ -1,5 +1,4 @@
-import { Link } from 'react-aria-components'
-
+import Link from '@/src/components/common/Link/Link'
 import { ProcurementObject } from '@/src/services/josephine/fetchProcurements'
 import { formatDate } from '@/src/utils/formatDate'
 import { formatPrice } from '@/src/utils/formatPrice'
@@ -45,12 +44,7 @@ export const getRows = (procurements: ProcurementObject, locale: string, detailS
     )
 
     const detailLink = (
-      <Link
-        className="underline"
-        href={tender.tender_link}
-        target="_blank"
-        aria-label={detailString}
-      >
+      <Link variant="underlined" href={tender.tender_link} target="_blank">
         {detailString}
       </Link>
     )

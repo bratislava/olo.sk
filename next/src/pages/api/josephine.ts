@@ -5,8 +5,8 @@ import { isDefined } from '@/src/utils/isDefined'
 
 export const DEFAULT_TENDERS_PER_PAGE = 5
 
-const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
-  const { query } = _req
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { query } = req
 
   const options = {
     timeframe:

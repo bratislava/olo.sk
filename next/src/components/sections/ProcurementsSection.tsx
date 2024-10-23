@@ -28,7 +28,7 @@ const ProcurementsSection = ({ section, className }: Props) => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const {
-    isPending: pendingRunning,
+    isPending: isPendingRunning,
     isError: isErrorRunning,
     error: errorRunning,
     data: procurementsRunning,
@@ -57,16 +57,14 @@ const ProcurementsSection = ({ section, className }: Props) => {
         <Markdown content={content} />
       </div>
 
-      {pendingRunning ? (
+      {isPendingRunning ? (
         <Typography variant="p-default">{t('common.loading')}</Typography>
       ) : isErrorRunning ? (
         <Typography>{errorRunning.message}</Typography>
       ) : (
         <>
-          <div className="py-6">
-            <div className="pb-4">
-              <Typography variant="h4">{t('procurements.actual')}</Typography>
-            </div>
+          <div className="flex flex-col gap-4 py-6">
+            <Typography variant="h4">{t('procurements.actual')}</Typography>
             <Table
               rows={getRows(procurementsRunning, locale, t('procurements.detail'))}
               visibleColumns={visibleColumns}
@@ -75,11 +73,11 @@ const ProcurementsSection = ({ section, className }: Props) => {
             />
           </div>
 
-          {tendersPerPage && procurementsRunning?.tendersCount && (
+          {tendersPerPage && procurementsRunning?.allTendersCount && (
             <div className="flex justify-end">
               <PaginationWithInput
                 currentPage={currentPage}
-                totalCount={Math.round(procurementsRunning.tendersCount / tendersPerPage)}
+                totalCount={Math.round(procurementsRunning.allTendersCount / tendersPerPage)}
                 onPageChange={(page) => setCurrentPage(page)}
               />
             </div>

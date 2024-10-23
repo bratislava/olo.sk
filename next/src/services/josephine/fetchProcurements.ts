@@ -13,7 +13,7 @@ interface ModifiedTender extends Tender {
 }
 
 export type ProcurementObject = {
-  tendersCount: number
+  allTendersCount: number
   tenders: ModifiedTender[]
 }
 
@@ -32,9 +32,9 @@ export type FetchProcurementsProps = {
 const getTenderTo = (tenderRounds: TenderRoundElement | TenderRoundElement[]) =>
   Array.isArray(tenderRounds)
     ? tenderRounds?.sort(
-        (tenderA, tenderB) =>
-          new Date(tenderA.tender_round_to).getTime() - new Date(tenderB.tender_round_to).getTime(),
-      )[0]?.tender_round_to
+      (tenderA, tenderB) =>
+        new Date(tenderA.tender_round_to).getTime() - new Date(tenderB.tender_round_to).getTime(),
+    )[0]?.tender_round_to
     : tenderRounds?.tender_round_to
 
 /**
@@ -44,7 +44,7 @@ const getTenderTo = (tenderRounds: TenderRoundElement | TenderRoundElement[]) =>
  * @param timeframe - ['running', 'ended', 'all'] used for different fetch calls to Josephine API
  * @param currentPage - used for paginations, index for the current page
  * @param tendersPerPage - number of items per page, used for pagination
- * @return tendersCounts - number of all objects, used for pagination
+ * @return allTendersCounts - number of all objects, used for pagination
  * @return tenders - actual data from the fetch
  *
  */
@@ -59,7 +59,7 @@ export const fetchProcurements = async ({
   const response = await fetch(fetchUrl)
 
   const xml = await response.text()
-  let obj: ProcurementObject = { tenders: [], tendersCount: 0 }
+  let obj: ProcurementObject = { tenders: [], allTendersCount: 0 }
 
   // https://github.com/Leonidas-from-XIV/node-xml2js?tab=readme-ov-file#options
   parseString(xml, { explicitArray: false, trim: true }, (err, result: JosephineObject) => {
@@ -84,7 +84,7 @@ export const fetchProcurements = async ({
 
     obj = {
       tenders: [...(tendersFiltered as ModifiedTender[])],
-      tendersCount: result?.tenders?.tender?.length,
+      allTendersCount: result?.tenders?.tender?.length,
     }
   })
 

@@ -228,7 +228,7 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                         {Array.isArray(positionBenefit) &&
                           positionBenefit.map((benefit) => (
                             <div key={benefit.key} className="flex items-center gap-4">
-                              <div className="w-10">{benefit.icon ?? benefit.icon}</div>
+                              <div className="size-8 shrink-0 lg:size-10">{benefit.icon}</div>
                               <Typography variant="p-default">{benefit.text}</Typography>
                             </div>
                           ))}

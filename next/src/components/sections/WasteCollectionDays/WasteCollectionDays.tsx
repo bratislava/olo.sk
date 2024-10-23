@@ -3,6 +3,7 @@ import React from 'react'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import WasteCollectionDaysSectionContent from '@/src/components/sections/WasteCollectionDays/WasteCollectionDaysSectionContent'
+import WasteCollectionDaysSectionTabs from '@/src/components/sections/WasteCollectionDays/WasteCollectionDaysSectionTabs'
 import WasteCollectionDaysValidityMessage from '@/src/components/sections/WasteCollectionDays/WasteCollectionDaysValidityMessage'
 import { WasteCollectionDaysFragment } from '@/src/services/graphql/api'
 
@@ -17,6 +18,9 @@ type Props = {
 const WasteCollectionDays = ({ section }: Props) => {
   const { title, text, anchorId, wasteCollectionDaysType, validityMessage, visibleColumns } =
     section
+
+  // See WasteCollectionDaysSectionTabs for string format explanation
+  const isWithTabs = wasteCollectionDaysType?.includes(',')
 
   return (
     // TODO padding-y should probably be managed by the SectionContainer
@@ -33,11 +37,17 @@ const WasteCollectionDays = ({ section }: Props) => {
             ) : null
           }
         />
-
-        <WasteCollectionDaysSectionContent
-          wasteCollectionDaysType={wasteCollectionDaysType}
-          visibleColumns={visibleColumns}
-        />
+        {isWithTabs ? (
+          <WasteCollectionDaysSectionTabs
+            wasteCollectionDaysType={wasteCollectionDaysType}
+            visibleColumns={visibleColumns}
+          />
+        ) : (
+          <WasteCollectionDaysSectionContent
+            wasteCollectionDaysType={wasteCollectionDaysType}
+            visibleColumns={visibleColumns}
+          />
+        )}
       </div>
     </SectionContainer>
   )

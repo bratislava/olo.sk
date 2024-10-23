@@ -31,7 +31,7 @@ export const meiliWasteCollectionDaysFetcher = (
       ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
       filter: [
         'type = "waste-collection-day"',
-        wasteCollectionDaysType ? `waste-collection-day.type = ${wasteCollectionDaysType}` : '',
+        wasteCollectionDaysType ? `waste-collection-day.type = "${wasteCollectionDaysType}"` : '',
       ],
       sort: ['waste-collection-day.address:asc'],
     })

@@ -20,8 +20,6 @@ const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
   ({ href, children, target, plausibleProps, className }, ref) => {
     const { setMobileMenuOpen } = useNavMenuContext()
 
-    // TODO: This component needs to be refactored to function properly with Plausible
-
     return (
       <li className={cn('flex w-full', className)}>
         <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>

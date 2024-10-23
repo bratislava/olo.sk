@@ -5,6 +5,7 @@ import { useGetLinkProps } from '@/src/utils/useGetLinkProps'
 
 const NavMenuTwoColumnList = ({ links, hasDividers, className }: NavMenuColumnListProps) => {
   const { getLinkProps } = useGetLinkProps()
+
   const middleIndex = Math.floor(links.length / 2)
 
   return (
@@ -16,8 +17,6 @@ const NavMenuTwoColumnList = ({ links, hasDividers, className }: NavMenuColumnLi
       )}
     >
       {links.map((link, index) => {
-        const linkProps = getLinkProps(link)
-
         return (
           <div
             key={link.id}
@@ -25,7 +24,10 @@ const NavMenuTwoColumnList = ({ links, hasDividers, className }: NavMenuColumnLi
               'border-r border-border-default pr-8': index <= middleIndex,
             })}
           >
-            <NavMenuLink {...linkProps} className={cn('pb-5', { 'pb-0': index === middleIndex })} />
+            <NavMenuLink
+              {...getLinkProps(link)}
+              className={cn('pb-5', { 'pb-0': index === middleIndex })}
+            />
           </div>
         )
       })}

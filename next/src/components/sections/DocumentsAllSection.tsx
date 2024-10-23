@@ -40,8 +40,8 @@ const DocumentsAllSection = ({ section, className }: Props) => {
   const { t, i18n } = useTranslation()
   const locale = i18n.language
 
-  const { title, text } = section ?? {}
   const { getFullPath } = useGetFullPath()
+  const { title, text } = section ?? {}
 
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
@@ -79,18 +79,22 @@ const DocumentsAllSection = ({ section, className }: Props) => {
 
   // SELECTION
 
-  // TODO: Create defaultSearchOption instead of using selectionOptions[0].id
-  const [selection, setSelection] = useState<Selection>(new Set([selectionOptions[0].id]))
+  const defaultSelectionOption: SelectionOption = {
+    id: 'all',
+    title: t('documentsAllSection.selectionOptions.allDocuments'),
+  }
+
+  const [selection, setSelection] = useState<Selection>(new Set([defaultSelectionOption.id]))
 
   const handleSelectionChange = (newSelection: Selection) => {
-    if (new Set(newSelection).size === 0) setSelection(new Set([selectionOptions[0].id]))
+    if (new Set(newSelection).size === 0) setSelection(new Set([defaultSelectionOption.id]))
     else setSelection(newSelection)
   }
 
   const selectedKey: SelectionOption['id'] =
     selection !== 'all' && selection.size === 1
       ? selection.values().next().value
-      : selectionOptions[0].id
+      : defaultSelectionOption.id
 
   // Extract URL query params
   const [routerQueryCategoryValue] = useQueryParam(
@@ -185,7 +189,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
                     <li key={document.id}>
                       <SearchResultRowCard
                         title={document.attributes.title}
-                        linkHref={getFullPath(document) ?? '#'}
+                        linkHref={getFullPath(document)}
                         type="documents"
                         className="focus-within:rounded-lg"
                         metadata={[

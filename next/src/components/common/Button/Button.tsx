@@ -1,5 +1,4 @@
 import NextLink from 'next/link'
-import { usePlausible } from 'next-plausible'
 import { ComponentProps, forwardRef, ReactNode, RefObject } from 'react'
 import { AriaButtonProps } from 'react-aria'
 import { Button as RACButton, ButtonProps as RACButtonProps } from 'react-aria-components'
@@ -55,7 +54,7 @@ export type ButtonProps = Omit<RACButtonProps, 'className' | 'style'> & {
   href?: never
   target?: never
   hasLinkIcon?: never
-  plausibleProps?: LinkPlausibleProps
+  plausibleProps?: never
 }
 
 export type AnchorProps = Omit<AriaButtonProps<'a'>, 'children'> &
@@ -94,8 +93,6 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
     ref,
     // eslint-disable-next-line sonarjs/cognitive-complexity
   ) => {
-    const plausible = usePlausible()
-
     const isLoadingOrDisabled = isLoading || isDisabled
 
     const isSolidVariant = variant.endsWith('-solid')
@@ -256,9 +253,6 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, PolymorphicProp
         ref={ref as RefObject<HTMLButtonElement>}
         isDisabled={isLoadingOrDisabled}
         className={styles}
-        onPress={() =>
-          rest.plausibleProps && plausible('Link click', { props: rest.plausibleProps })
-        }
         {...rest}
       >
         {!isLoading && startIcon}

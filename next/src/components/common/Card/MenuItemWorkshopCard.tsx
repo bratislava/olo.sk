@@ -2,7 +2,7 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
 import CardBase from '@/src/components/common/Card/CardBase'
 import IconWrapper from '@/src/components/common/Icon/IconWrapper'
-import Link from '@/src/components/common/Link/Link'
+import Link, { LinkPlausibleProps } from '@/src/components/common/Link/Link'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -12,6 +12,7 @@ type MenuItemWorkshopCardProps = {
   linkHref: string
   subText?: string
   iconName?: string
+  plausibleProps?: LinkPlausibleProps | undefined
   className?: string
 }
 
@@ -24,6 +25,7 @@ const MenuItemWorkshopCard = ({
   subText: mostRecentWorkshopDate,
   linkHref,
   iconName = 'live-help',
+  plausibleProps,
   className,
 }: MenuItemWorkshopCardProps) => {
   const { setMobileMenuOpen } = useNavMenuContext()
@@ -45,7 +47,12 @@ const MenuItemWorkshopCard = ({
             })}
           >
             <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
-              <Link variant="underlineOnHover" href={linkHref} stretched>
+              <Link
+                variant="underlineOnHover"
+                href={linkHref}
+                stretched
+                plausibleProps={plausibleProps}
+              >
                 <Typography variant="h6">{title}</Typography>
               </Link>
             </NavigationMenu.Link>

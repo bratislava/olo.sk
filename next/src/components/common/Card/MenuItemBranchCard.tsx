@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 
 import Button from '@/src/components/common/Button/Button'
 import CardBase from '@/src/components/common/Card/CardBase'
+import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
@@ -11,6 +12,7 @@ type MenuItemBranchCardProps = {
   title: string
   subText?: string
   linkHref: string
+  plausibleProps?: LinkPlausibleProps | undefined
   className?: string
 }
 
@@ -22,6 +24,7 @@ const MenuItemBranchCard = ({
   title,
   subText: address,
   linkHref,
+  plausibleProps,
   className,
 }: MenuItemBranchCardProps) => {
   const { t } = useTranslation()
@@ -42,7 +45,13 @@ const MenuItemBranchCard = ({
             {address ? <Typography variant="p-default">{address}</Typography> : null}
 
             <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
-              <Button variant="black-link" href={linkHref} asLink stretched>
+              <Button
+                variant="black-link"
+                href={linkHref}
+                asLink
+                stretched
+                plausibleProps={plausibleProps}
+              >
                 {t('navBar.branchCard.showDetails')}
               </Button>
             </NavigationMenu.Link>

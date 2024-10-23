@@ -14,7 +14,6 @@ export type NavMenuColumnListProps = {
   className?: string
 }
 
-// TODO: Fix focus rings for the cards
 const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColumnListProps) => {
   const { t } = useTranslation()
   const { getLinkProps } = useGetLinkProps()
@@ -28,7 +27,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
       )}
     >
       {links.map((link, index) => {
-        const { children, href } = getLinkProps(link)
+        const { children, href, plausibleProps } = getLinkProps(link)
 
         const mostRecentWorkshopDate =
           formatMostRecentWorkshopDate(link?.workshop?.data?.attributes?.dates) ?? null
@@ -44,6 +43,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
             }
             linkHref={href}
             iconName={link?.workshop?.data?.attributes?.iconName ?? 'live-help'}
+            plausibleProps={plausibleProps}
             className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : link.branch?.data?.attributes ? (
@@ -52,6 +52,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
             title={children}
             subText={link?.branch?.data?.attributes?.address ?? ''}
             linkHref={href}
+            plausibleProps={plausibleProps}
             className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : (

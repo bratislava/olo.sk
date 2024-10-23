@@ -25,6 +25,15 @@ export default {
         'contentState.todo': 'TODO',
         'contentState.inProgress': 'IN PROGRESS',
         'contentState.finalising': 'FINALISING',
+        'contentState.inReview': 'IN REVIEW',
+        'contentState.done': 'DONE',
+      },
+      en: {
+        // Used in page.contentState field
+        'contentState.todo': 'TODO',
+        'contentState.inProgress': 'IN PROGRESS',
+        'contentState.finalising': 'FINALISING',
+        'contentState.inReview': 'IN REVIEW',
         'contentState.done': 'DONE',
       },
     },

@@ -26,7 +26,6 @@ const WasteCollectionDaysSectionTabs = ({ wasteCollectionDaysType, visibleColumn
   return (
     <Tabs className="flex flex-col gap-6">
       <TabList
-        aria-label={t('HomepageTabs.aria.tabListName')}
         // "py-2 -my-2" is used to make focus ring visible
         className="negative-x-spacing -my-2 flex gap-x-4 overflow-auto overflow-y-hidden py-2 scrollbar-hide"
       >

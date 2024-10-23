@@ -2147,6 +2147,7 @@ export enum Enum_Page_Contentstate {
   ContentStateDone = 'contentState_done',
   ContentStateFinalising = 'contentState_finalising',
   ContentStateInProgress = 'contentState_inProgress',
+  ContentStateInReview = 'contentState_inReview',
   ContentStateTodo = 'contentState_todo',
 }
 
@@ -4535,12 +4536,12 @@ export type WasteCollectionDay = {
   collectionDates?: Maybe<Scalars['String']['output']>
   createdAt?: Maybe<Scalars['DateTime']['output']>
   evenWeek?: Maybe<Scalars['String']['output']>
+  importId?: Maybe<Scalars['String']['output']>
   note?: Maybe<Scalars['String']['output']>
   oddWeek?: Maybe<Scalars['String']['output']>
   registrationNumber?: Maybe<Scalars['String']['output']>
   type?: Maybe<Scalars['String']['output']>
   updatedAt?: Maybe<Scalars['DateTime']['output']>
-  validity?: Maybe<Scalars['String']['output']>
 }
 
 export type WasteCollectionDayEntity = {
@@ -4575,7 +4576,6 @@ export type WasteCollectionDayFiltersInput = {
   registrationNumber?: InputMaybe<StringFilterInput>
   type?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
-  validity?: InputMaybe<StringFilterInput>
 }
 
 export type WasteCollectionDayInput = {
@@ -4587,7 +4587,6 @@ export type WasteCollectionDayInput = {
   oddWeek?: InputMaybe<Scalars['String']['input']>
   registrationNumber?: InputMaybe<Scalars['String']['input']>
   type?: InputMaybe<Scalars['String']['input']>
-  validity?: InputMaybe<Scalars['String']['input']>
 }
 
 export type Workshop = {
@@ -31577,7 +31576,6 @@ export type WasteCollectionDayEntityFragment = {
     type?: string | null
     address?: string | null
     registrationNumber?: string | null
-    validity?: string | null
     evenWeek?: string | null
     oddWeek?: string | null
     collectionDates?: string | null
@@ -35869,7 +35867,6 @@ export const WasteCollectionDayEntityFragmentDoc = gql`
       type
       address
       registrationNumber
-      validity
       evenWeek
       oddWeek
       collectionDates

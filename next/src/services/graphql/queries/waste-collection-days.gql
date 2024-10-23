@@ -4,7 +4,6 @@ fragment WasteCollectionDayEntity on WasteCollectionDayEntity {
     type
     address
     registrationNumber
-    validity
     evenWeek
     oddWeek
     collectionDates

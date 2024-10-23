@@ -17,7 +17,6 @@ export const parseWasteCollectionDaysXlsx = (filePath: string, importId: string)
       'Typ odvozu',
       'Adresa',
       'Evidenčné číslo',
-      'Platnosť',
       'Párny týždeň',
       'Nepárny týždeň',
       'Dátumy odvozov',
@@ -36,22 +35,13 @@ export const parseWasteCollectionDaysXlsx = (filePath: string, importId: string)
   return dataWithoutHeader
     .filter((row) => row.length !== 0 /* Filter empty rows */)
     .map((row, index) => {
-      const [
-        type,
-        address,
-        registrationNumber,
-        validity,
-        evenWeek,
-        oddWeek,
-        collectionDates,
-        note,
-      ] = row.map(String)
+      const [type, address, registrationNumber, evenWeek, oddWeek, collectionDates, note] =
+        row.map(String)
 
       return {
         type,
         address,
         registrationNumber,
-        validity,
         evenWeek,
         oddWeek,
         collectionDates,

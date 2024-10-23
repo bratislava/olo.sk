@@ -1560,6 +1560,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'contentState.todo',
         'contentState.inProgress',
         'contentState.finalising',
+        'contentState.inReview',
         'contentState.done',
       ]
     > &
@@ -1781,12 +1782,11 @@ export interface ApiWasteCollectionDayWasteCollectionDay extends Schema.Collecti
     type: Attribute.String
     address: Attribute.String
     registrationNumber: Attribute.String
-    validity: Attribute.String
     evenWeek: Attribute.String
     oddWeek: Attribute.String
     collectionDates: Attribute.Text
     note: Attribute.Text
-    importId: Attribute.String & Attribute.Private
+    importId: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<

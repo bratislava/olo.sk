@@ -174,7 +174,6 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                     />
                   </div>
                   <div className="prose max-w-fit divide-y-1 divide-border-default prose-h2:mt-10 prose-p:last:mb-0 prose-ul:my-0 prose-li:list-disc">
-                    {/* <Typography variant="h2">{t('career.aboutCompany')}</Typography> */}
                     <div className="pb-10">
                       <Typography variant="h2">{t('career.positionInformation')}</Typography>
                       <Typography variant="h4">{t('career.positionResponsibilities')}</Typography>

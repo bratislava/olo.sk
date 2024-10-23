@@ -18,6 +18,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
+        {/* Favicon files generated with https://realfavicongenerator.net/ */}
         <link rel="icon" type="image/png" href="favicon/favicon-48x48.png" sizes="48x48" />
         <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
         <link rel="shortcut icon" href="favicon/favicon.ico" />

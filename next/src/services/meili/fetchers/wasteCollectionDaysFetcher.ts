@@ -13,7 +13,7 @@ export type WasteCollectionDaysFilters = {
 export const wasteCollectionDaysDefaultFilters: WasteCollectionDaysFilters = {
   search: '',
   page: 1,
-  pageSize: 5,
+  pageSize: 10,
 }
 
 export const getMeiliWasteCollectionDaysQueryKey = (

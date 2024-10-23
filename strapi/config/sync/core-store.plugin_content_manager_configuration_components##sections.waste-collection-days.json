@@ -43,14 +43,14 @@
         },
         "list": {
           "label": "text",
-          "searchable": true,
-          "sortable": true
+          "searchable": false,
+          "sortable": false
         }
       },
       "anchorId": {
         "edit": {
           "label": "anchorId",
-          "description": "",
+          "description": "Musí byť spárované s targetId v hlavičke",
           "placeholder": "",
           "visible": true,
           "editable": true
@@ -75,6 +75,20 @@
           "sortable": true
         }
       },
+      "validityMessage": {
+        "edit": {
+          "label": "Informácia o platnosti",
+          "description": "Zobrazí sa v oranžovom rámčeku",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "validityMessage",
+          "searchable": false,
+          "sortable": false
+        }
+      },
       "visibleColumns": {
         "edit": {
           "label": "Viditeľné stĺpce",
@@ -91,12 +105,20 @@
       }
     },
     "layouts": {
-      "list": ["id", "title", "text", "anchorId"],
+      "list": [
+        "id",
+        "title",
+        "anchorId"
+      ],
       "edit": [
         [
           {
             "name": "title",
-            "size": 12
+            "size": 8
+          },
+          {
+            "name": "anchorId",
+            "size": 4
           }
         ],
         [
@@ -113,8 +135,8 @@
         ],
         [
           {
-            "name": "anchorId",
-            "size": 6
+            "name": "validityMessage",
+            "size": 12
           }
         ],
         [

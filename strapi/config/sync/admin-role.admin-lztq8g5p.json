@@ -456,13 +456,11 @@
         "fields": [
           "title",
           "slug",
-          "identificationNumber",
-          "supplier",
-          "priceWithoutTax",
           "documentCategory",
           "files.title",
           "files.media",
-          "description"
+          "description",
+          "tags"
         ]
       },
       "conditions": []
@@ -489,13 +487,11 @@
         "fields": [
           "title",
           "slug",
-          "identificationNumber",
-          "supplier",
-          "priceWithoutTax",
           "documentCategory",
           "files.title",
           "files.media",
-          "description"
+          "description",
+          "tags"
         ]
       },
       "conditions": []
@@ -508,13 +504,11 @@
         "fields": [
           "title",
           "slug",
-          "identificationNumber",
-          "supplier",
-          "priceWithoutTax",
           "documentCategory",
           "files.title",
           "files.media",
-          "description"
+          "description",
+          "tags"
         ]
       },
       "conditions": []
@@ -1734,7 +1728,8 @@
         "fields": [
           "title",
           "slug",
-          "articles"
+          "articles",
+          "documents"
         ],
         "locales": [
           "sk"
@@ -1772,7 +1767,8 @@
         "fields": [
           "title",
           "slug",
-          "articles"
+          "articles",
+          "documents"
         ],
         "locales": [
           "sk"
@@ -1788,7 +1784,8 @@
         "fields": [
           "title",
           "slug",
-          "articles"
+          "articles",
+          "documents"
         ],
         "locales": [
           "sk"
@@ -1868,6 +1865,7 @@
         "fields": [
           "title",
           "slug",
+          "iconName",
           "sections",
           "dates.internalName",
           "dates.datetime"
@@ -1897,6 +1895,7 @@
         "fields": [
           "title",
           "slug",
+          "iconName",
           "sections",
           "dates.internalName",
           "dates.datetime"
@@ -1912,6 +1911,7 @@
         "fields": [
           "title",
           "slug",
+          "iconName",
           "sections",
           "dates.internalName",
           "dates.datetime"

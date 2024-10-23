@@ -10,6 +10,7 @@ import { LATEST_ARTICLES_COUNT } from '@/src/components/common/NavBar/NavMenu/Na
 import PageLayout from '@/src/components/layout/PageLayout'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import Sections from '@/src/components/layout/Sections'
+import Sidebars from '@/src/components/layout/Sidebars'
 import HeaderTitleText from '@/src/components/sections/headers/HeaderTitleText'
 import { GeneralContextProvider } from '@/src/providers/GeneralContextProvider'
 import { client } from '@/src/services/graphql'
@@ -17,6 +18,7 @@ import { GeneralQuery, WorkshopEntityFragment } from '@/src/services/graphql/api
 import { fetchNavigation } from '@/src/services/navigation/fetchNavigation'
 import { navigationConfig } from '@/src/services/navigation/navigationConfig'
 import { NavigationObject } from '@/src/services/navigation/typesNavigation'
+import cn from '@/src/utils/cn'
 import { NOT_FOUND } from '@/src/utils/conts'
 import { getPageBreadcrumbs } from '@/src/utils/getPageBreadcrumbs'
 import { isDefined } from '@/src/utils/isDefined'
@@ -115,6 +117,9 @@ const Page = ({ entity, general, navigation }: PageProps) => {
 
   const { title, sections } = entity.attributes
 
+  // Sidebar has always max 1 element
+  const [sidebar] = entity.attributes.sidebar ?? []
+
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
       {/* TODO common Head/Seo component */}
@@ -127,9 +132,20 @@ const Page = ({ entity, general, navigation }: PageProps) => {
           <Breadcrumbs breadcrumbs={breadcrumbs} />
           <HeaderTitleText title={title} />
         </SectionContainer>
-        {/* TODO fix y-padding so we don't change it from here */}
-        <div className="flex flex-col py-6 lg:py-12 [&>*]:py-3 [&>*]:lg:py-6">
+        {/* TODO this was very quickly implemented sidebar layout, should be revisited and simplified, better setup for spacings etc. */}
+        <div
+          className={cn({
+            // classes copied from SectionContainer
+            'mx-auto flex max-w-screen-xl flex-col items-start md:flex-row lg:gap-8': sidebar,
+          })}
+        >
           <Sections sections={sections?.filter(isDefined) ?? []} />
+
+          {sidebar ? (
+            <div className="w-full shrink-0 grow pr-4 max-lg:px-4 md:max-w-80 lg:pr-8">
+              <Sidebars sidebar={sidebar} />
+            </div>
+          ) : null}
         </div>
       </PageLayout>
     </GeneralContextProvider>

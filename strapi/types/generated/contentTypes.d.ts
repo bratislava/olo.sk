@@ -977,9 +977,6 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::document.document', 'title'> & Attribute.Required
-    identificationNumber: Attribute.String
-    supplier: Attribute.String
-    priceWithoutTax: Attribute.String
     documentCategory: Attribute.Relation<
       'api::document.document',
       'manyToOne',
@@ -994,6 +991,7 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
         number
       >
     description: Attribute.Text
+    tags: Attribute.Relation<'api::document.document', 'manyToMany', 'api::tag.tag'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1731,6 +1729,7 @@ export interface ApiTagTag extends Schema.CollectionType {
     singularName: 'tag'
     pluralName: 'tags'
     displayName: 'Tagy'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1756,6 +1755,7 @@ export interface ApiTagTag extends Schema.CollectionType {
         }
       }>
     articles: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::article.article'>
+    documents: Attribute.Relation<'api::tag.tag', 'manyToMany', 'api::document.document'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1818,7 +1818,20 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
+    iconName: Attribute.String
     sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.documents']>
+    sidebar: Attribute.DynamicZone<['sidebars.empty-sidebar']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
+      Attribute.SetMinMax<
+        {
+          max: 1
+        },
+        number
+      >
     dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime

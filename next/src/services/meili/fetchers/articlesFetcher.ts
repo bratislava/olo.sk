@@ -1,4 +1,5 @@
 import { ArticleCardEntityFragment } from '@/src/services/graphql/api'
+import { isDefined } from '@/src/utils/isDefined'
 
 import { meiliClient } from '../meiliClient'
 import { ArticleMeili, SearchIndexWrapped } from '../types'
@@ -8,6 +9,8 @@ export type ArticlesFilters = {
   search: string
   page: number
   pageSize: number
+  categorySlugs?: string[]
+  tagSlugs?: string[]
 }
 
 export const articlesDefaultFilters: ArticlesFilters = {
@@ -28,7 +31,22 @@ export const meiliArticlesFetcher = (filters: ArticlesFilters, locale: string) =
     .index('search_index')
     .search<SearchIndexWrapped<'article', ArticleMeili>>(filters.search, {
       ...getMeilisearchPageOptions({ page: filters.page, pageSize: filters.pageSize }),
-      filter: ['type = "article"', `locale = ${locale}`],
+      filter: [
+        'type = "article"',
+        `locale = ${locale}`,
+        // TODO investigate - we tried using IN syntax for filtering by tags an slugs, but it was not working
+        filters.tagSlugs?.length
+          ? // eslint-disable-next-line sonarjs/no-nested-template-literals
+            filters.tagSlugs.map((tagSlug) => `article.tags.slug = ${tagSlug}`)
+          : null,
+        filters.categorySlugs?.length
+          ? // eslint-disable-next-line sonarjs/no-nested-template-literals
+            filters.categorySlugs.map(
+              (categorySlug) => `article.articleCategory.slug = ${categorySlug}`,
+            )
+          : null,
+        // eslint-disable-next-line unicorn/no-array-callback-reference
+      ].filter(isDefined),
       sort: ['article.publishedAtTimestamp:desc'],
       attributesToRetrieve: [
         // Only properties that are required to display listing are retrieved

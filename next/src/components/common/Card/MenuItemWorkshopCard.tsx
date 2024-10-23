@@ -1,6 +1,9 @@
+import * as NavigationMenu from '@radix-ui/react-navigation-menu'
+
 import CardBase from '@/src/components/common/Card/CardBase'
-import OloIcon, { OloIconName } from '@/src/components/common/Icon/OloIcon'
-import NavMenuLink from '@/src/components/common/NavBar/NavMenu/NavMenuLink'
+import IconWrapper from '@/src/components/common/Icon/IconWrapper'
+import Link from '@/src/components/common/Link/Link'
+import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
 
@@ -8,7 +11,7 @@ type MenuItemWorkshopCardProps = {
   title: string
   linkHref: string
   subText?: string
-  iconName?: OloIconName
+  iconName?: string
   className?: string
 }
 
@@ -23,31 +26,37 @@ const MenuItemWorkshopCard = ({
   iconName = 'live-help',
   className,
 }: MenuItemWorkshopCardProps) => {
+  const { setMobileMenuOpen } = useNavMenuContext()
+
   return (
-    <NavMenuLink href={linkHref} isCard className={cn(className)}>
+    <li className={cn(className)}>
       <CardBase variant="unstyled">
         <div className="flex items-start gap-4">
-          <div className="rounded-[20px] bg-background-secondary p-4">
-            <OloIcon name={iconName} className="size-6" />
+          <div
+            // 1.25rem = 20px
+            className="rounded-[1.25rem] bg-background-secondary p-4"
+          >
+            <IconWrapper name={iconName} className="size-6" />
           </div>
+
           <div
             className={cn('flex flex-col items-start gap-2 self-stretch', {
               'justify-center': !mostRecentWorkshopDate,
             })}
           >
-            <Typography
-              variant="h6"
-              className_onlyWhenNecessary="line-clamp-1 group-hover/CardBase:underline"
-            >
-              {title}
-            </Typography>
+            <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
+              <Link variant="underlineOnHover" href={linkHref} stretched>
+                <Typography variant="h6">{title}</Typography>
+              </Link>
+            </NavigationMenu.Link>
+
             {mostRecentWorkshopDate ? (
               <Typography variant="p-small">{mostRecentWorkshopDate}</Typography>
             ) : null}
           </div>
         </div>
       </CardBase>
-    </NavMenuLink>
+    </li>
   )
 }
 

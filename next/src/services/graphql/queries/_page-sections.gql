@@ -156,6 +156,7 @@ fragment WasteCollectionDays on ComponentSectionsWasteCollectionDays {
   text
   anchorId
   wasteCollectionDaysType
+  validityMessage
   visibleColumns
 }
 
@@ -315,6 +316,19 @@ fragment SortingGuideAccordionsSection on ComponentSectionsSortingGuideAccordion
 fragment ArticlesSection on ComponentSectionsArticles {
   title
   text
+  categories {
+    data {
+      ...ArticleCategoryEntity
+    }
+  }
+  tags {
+    data {
+      ...TagEntity
+    }
+  }
+  showMoreLink {
+    ...Link
+  }
 }
 
 fragment CardSliderSection on ComponentSectionsCardSlider {

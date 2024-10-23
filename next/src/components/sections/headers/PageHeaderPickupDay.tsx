@@ -8,8 +8,13 @@ import ResponsiveCarousel from '@/src/components/common/Carousel/ResponsiveCarou
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import { PageHeaderBasicProps } from '@/src/components/sections/headers/PageHeaderBasic'
-import { client } from '@/src/services/graphql'
 import { PickupDayHeaderSectionFragment } from '@/src/services/graphql/api'
+import {
+  articlesDefaultFilters,
+  ArticlesFilters,
+  getMeiliArticlesQueryKey,
+  meiliArticlesFetcher,
+} from '@/src/services/meili/fetchers/articlesFetcher'
 import cn from '@/src/utils/cn'
 import { getCurrentWeekOfYear } from '@/src/utils/getCurrentWeekOfYear'
 import { isCurrentWeekEven } from '@/src/utils/isCurrentWeekEven'
@@ -28,7 +33,8 @@ type Props = Pick<PageHeaderBasicProps, 'title'> & {
  */
 
 const PageHeaderPickupDay = ({ title, header }: Props) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
 
   const { getFullPath } = useGetFullPath()
   const { getLinkProps } = useGetLinkProps()
@@ -38,19 +44,21 @@ const PageHeaderPickupDay = ({ title, header }: Props) => {
   const filteredAnchors = anchors?.filter(isDefined) ?? []
 
   // eslint-disable-next-line unicorn/no-array-callback-reference
-  const filteredTagIds = tags?.data.map((tag) => tag.id).filter(isDefined) ?? []
+  const filteredTagSlugs = tags?.data.map((tag) => tag.attributes?.slug).filter(isDefined) ?? []
 
-  const { data: articlesByTagsData } = useQuery({
-    queryKey: ['ArticlesByTagIds', { tagsIds: filteredTagIds }],
-    queryFn: () => client.ArticlesByTagIds({ tagsIds: filteredTagIds }),
+  const filters: ArticlesFilters = {
+    ...articlesDefaultFilters,
+    pageSize: LATEST_ARTICLES_COUNT,
+    tagSlugs: filteredTagSlugs,
+  }
+
+  const { data: articlesData } = useQuery({
+    queryKey: getMeiliArticlesQueryKey(filters, locale),
+    queryFn: () => meiliArticlesFetcher(filters, locale),
   })
 
   const filteredArticles =
-    articlesByTagsData?.tags?.data
-      // eslint-disable-next-line unicorn/no-array-callback-reference
-      .filter(isDefined)
-      // without flattening, we would get an array of articles for each tag
-      .flatMap((tag) => tag.attributes?.articles?.data)
+    articlesData?.hits
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined) ?? []
 

@@ -46,7 +46,11 @@ export const oloIconNameMap = {
 
 export type OloIconName = keyof typeof oloIconNameMap
 
-export const isOloIcon = (iconName: string): iconName is OloIconName => iconName in oloIconNameMap
+export const isOloIcon = (iconName: string | null | undefined): iconName is OloIconName => {
+  if (!iconName) return false
+
+  return iconName in oloIconNameMap
+}
 
 type OloIconType = React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 

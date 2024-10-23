@@ -12,6 +12,21 @@
     },
     "text": {
       "type": "text"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article-category.article-category"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
+    },
+    "showMoreLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "items.link"
     }
   }
 }

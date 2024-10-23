@@ -8,44 +8,38 @@ import cn from '@/src/utils/cn'
 import { LinkProps } from '@/src/utils/useGetLinkProps'
 
 type NavMenuLinkProps = {
-  isCard?: boolean
   className?: string
 } & NavigationMenu.NavigationMenuLinkProps &
   Omit<LinkProps, 'children'> // To be able to spread link props
 
 /**
- * Based on: // https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
+ * Based on: https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing
  */
 
 const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
-  ({ href, children, target, isCard = false, plausibleProps, className }, ref) => {
+  ({ href, children, target, plausibleProps, className }, ref) => {
     const { setMobileMenuOpen } = useNavMenuContext()
 
     // TODO: This component needs to be refactored to function properly with Plausible
 
     return (
       <li className={cn('flex w-full', className)}>
-        {isCard ? (
-          <NavigationMenu.Link href={href} onClick={() => setMobileMenuOpen(false)}>
+        <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
+          {/* TODO: Should ideally be extracted as a separate variant */}
+          <Button
+            ref={ref}
+            href={href}
+            target={target}
+            variant="unstyled"
+            asLink
+            startIcon={<Icon name="sipka-doprava" />}
+            hasLinkIcon={false}
+            plausibleProps={plausibleProps}
+            className="flex gap-4"
+          >
             {children}
-          </NavigationMenu.Link>
-        ) : (
-          <NavigationMenu.Link asChild>
-            <Button
-              href={href}
-              target={target}
-              variant="unstyled"
-              asLink
-              startIcon={<Icon name="sipka-doprava" />}
-              hasLinkIcon={false}
-              className="flex gap-4"
-              ref={ref}
-              plausibleProps={plausibleProps}
-            >
-              {children}
-            </Button>
-          </NavigationMenu.Link>
-        )}
+          </Button>
+        </NavigationMenu.Link>
       </li>
     )
   },

@@ -33,7 +33,7 @@ const config: Config = {
     require('tailwind-scrollbar-hide'),
     require('@tailwindcss/typography'),
     pluginRAC,
-    // require('tailwindcss-animate'),
+    require('tailwindcss-animate'),
   ],
   corePlugins: {
     container: false,
@@ -181,13 +181,40 @@ const config: Config = {
         4.5: '1.125rem', // 18px
         5.5: '1.375rem', // 22px
         13: '3.25rem', // 52px
+        15: '3.75rem', // 60px
         18: '4.5rem', // 72px
+        mobileNavBar: '3.7rem', // 59.52px - excluding the border
       },
       zIndex: {
         1: '1',
       },
       aspectRatio: {
         heroSliderMedia: '612/322',
+      },
+      // Animation-related code inspired by bratislava.sk: https://github.com/bratislava/bratislava.sk/blob/master/next/tailwind.config.js
+      keyframes: {
+        enterFromRight: {
+          from: { opacity: '0', transform: 'translateX(200px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        exitToRight: {
+          from: { opacity: '1', transform: 'translateX(0)' },
+          to: { opacity: '0', transform: 'translateX(200px)' },
+        },
+        fadeIn: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        fadeOut: {
+          from: { opacity: '1' },
+          to: { opacity: '0' },
+        },
+      },
+      animation: {
+        enterFromRight: 'enterFromRight 250ms ease',
+        exitToRight: 'exitToRight 250ms ease',
+        fadeIn: 'fadeIn 200ms ease',
+        fadeOut: 'fadeOut 200ms ease',
       },
     },
   },

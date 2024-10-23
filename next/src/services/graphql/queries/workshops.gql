@@ -8,6 +8,7 @@ fragment WorkshopSlugEntity on WorkshopEntity {
   attributes {
     title
     slug
+    iconName
     dates {
       ...WorkshopDateItem
     }
@@ -19,6 +20,9 @@ fragment WorkshopEntity on WorkshopEntity {
   attributes {
     sections {
       ...PageSections
+    }
+    sidebar {
+      ...PageSidebars
     }
   }
 }

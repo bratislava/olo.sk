@@ -39,14 +39,15 @@ const searchIndexSettings = {
     'type',
     'locale', // TODO decide if needed
     // Article
-    'article.tags',
-    'article.articleCategory',
+    'article.tags.slug',
+    'article.articleCategory.slug',
     // Document
     'document.documentCategory',
     // Faq
     'faq.faqCategory',
     // Service
-    'service.serviceCategory',
+    'service.serviceCategories',
+    'service.serviceCategories.slug',
     // WasteCollectionDay
     'waste-collection-day.type',
   ],
@@ -85,7 +86,7 @@ const meilisearchConfig = {
     indexName: 'search_index',
     entriesQuery: {
       locale: 'all',
-      populate: ['articleCategory', 'coverMedia'],
+      populate: ['articleCategory', 'tags', 'coverMedia'],
     },
     settings: searchIndexSettings,
     transformEntry: ({ entry }) =>

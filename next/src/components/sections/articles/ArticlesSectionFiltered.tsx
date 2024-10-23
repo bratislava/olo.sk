@@ -41,8 +41,6 @@ const ArticlesSectionFiltered = ({ section }: Props) => {
 
   const filteredTagSlugs =
     tags?.data
-      // eslint-disable-next-line unicorn/no-array-callback-reference
-      .filter(isDefined)
       .map((tag) => tag?.attributes?.slug)
       // eslint-disable-next-line unicorn/no-array-callback-reference
       .filter(isDefined) ?? []

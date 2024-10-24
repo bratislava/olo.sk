@@ -8,18 +8,18 @@ import Typography from '@/src/components/common/Typography/Typography'
 import Markdown from '@/src/components/formatting/Markdown'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import { ProcurementsSectionFragment } from '@/src/services/graphql/api'
-import { fetchProcurementsFromApiRunning } from '@/src/services/josephine/fetchProcurementsFromApi'
+import { TendersSectionFragment } from '@/src/services/graphql/api'
+import { fetchTendersFromApiRunning } from '@/src/services/josephine/fetchTendersFromApi'
 import { allColumns, getRows, visibleColumns } from '@/src/services/josephine/utils'
 import cn from '@/src/utils/cn'
 
 type Props = {
-  section: ProcurementsSectionFragment | null | undefined
+  section: TendersSectionFragment | null | undefined
   className?: string
 }
 
-// TODO: add ended Procurements if needed
-const ProcurementsSection = ({ section, className }: Props) => {
+// TODO: add ended Tenders if needed
+const TendersSection = ({ section, className }: Props) => {
   const { title, content, tendersPerPage } = section ?? {}
 
   const { i18n, t } = useTranslation()
@@ -31,23 +31,23 @@ const ProcurementsSection = ({ section, className }: Props) => {
     isPending: isPendingRunning,
     isError: isErrorRunning,
     error: errorRunning,
-    data: procurementsRunning,
+    data: tendersRunning,
   } = useQuery({
-    queryKey: ['ProcurementsRunning', tendersPerPage, currentPage],
-    queryFn: () => fetchProcurementsFromApiRunning('running', currentPage, tendersPerPage ?? 5),
+    queryKey: ['TendersRunning', tendersPerPage, currentPage],
+    queryFn: () => fetchTendersFromApiRunning('running', currentPage, tendersPerPage ?? 5),
     placeholderData: keepPreviousData,
   })
 
   // Type has to be specified to satisfy Typescript so "headerAllColumns[column]" can be used
   const headerAllColumns: { [key: string]: string } = {
-    tender_name: t('procurements.tenderName'),
-    tender_public_name: t('procurements.type'),
-    tender_number: t('procurements.voNumber'),
-    tender_ted_number: t('procurements.euNumber'),
-    tender_reference_number: t('procurements.voNumber2'),
-    tender_predicted_value: t('procurements.value'),
-    tender_from: t('procurements.deadline'),
-    tender_link: t('procurements.detail'),
+    tender_name: t('tenders.tenderName'),
+    tender_public_name: t('tenders.type'),
+    tender_number: t('tenders.voNumber'),
+    tender_ted_number: t('tenders.euNumber'),
+    tender_reference_number: t('tenders.voNumber2'),
+    tender_predicted_value: t('tenders.value'),
+    tender_from: t('tenders.deadline'),
+    tender_link: t('tenders.detail'),
   }
 
   return (
@@ -64,20 +64,21 @@ const ProcurementsSection = ({ section, className }: Props) => {
       ) : (
         <>
           <div className="flex flex-col gap-4 py-6">
-            <Typography variant="h4">{t('procurements.actual')}</Typography>
+            <Typography variant="h4">{t('tenders.actual')}</Typography>
+
             <Table
-              rows={getRows(procurementsRunning, locale, t('procurements.detail'))}
+              rows={getRows(tendersRunning, locale, t('tenders.detail'))}
               visibleColumns={visibleColumns}
               allColumns={allColumns}
               headerAllColumns={headerAllColumns}
             />
           </div>
 
-          {tendersPerPage && procurementsRunning?.allTendersCount && (
+          {tendersPerPage && tendersRunning?.allTendersCount && (
             <div className="flex justify-end">
               <PaginationWithInput
                 currentPage={currentPage}
-                totalCount={Math.round(procurementsRunning.allTendersCount / tendersPerPage)}
+                totalCount={Math.round(tendersRunning.allTendersCount / tendersPerPage)}
                 onPageChange={(page) => setCurrentPage(page)}
               />
             </div>
@@ -88,4 +89,4 @@ const ProcurementsSection = ({ section, className }: Props) => {
   )
 }
 
-export default ProcurementsSection
+export default TendersSection

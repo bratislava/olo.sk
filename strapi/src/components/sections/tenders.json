@@ -1,5 +1,5 @@
 {
-  "collectionName": "components_sections_procurements",
+  "collectionName": "components_sections_tenders",
   "info": {
     "displayName": "Verejné obstarávania",
     "description": ""
@@ -9,12 +9,11 @@
     "title": {
       "type": "string"
     },
+    "tendersPerPage": {
+      "type": "integer"
+    },
     "content": {
       "type": "richtext"
-    },
-    "tendersPerPage": {
-      "type": "integer",
-      "required": true
     }
   }
 }

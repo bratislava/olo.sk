@@ -1,4 +1,4 @@
-export const fetchProcurementsFromApiRunning = async (
+export const fetchTendersFromApiRunning = async (
   timeframe: string, // more about possible fetch options can be found in Josephine documentation
   currentPage: number,
   tendersPerPage: number,

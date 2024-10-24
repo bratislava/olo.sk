@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { fetchProcurements } from '@/src/services/josephine/fetchProcurements'
+import { fetchTenders } from '@/src/services/josephine/fetchTenders'
 import { isDefined } from '@/src/utils/isDefined'
 
 export const DEFAULT_TENDERS_PER_PAGE = 5
@@ -25,9 +25,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (!options.timeframe) return res.status(500).json({ message: 'Invalid fetch options' })
 
-  const procurements = await fetchProcurements(options)
+  const tenders = await fetchTenders(options)
 
-  return res.json(procurements)
+  return res.json(tenders)
 }
 
 export default handler

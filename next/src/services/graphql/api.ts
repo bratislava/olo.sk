@@ -1499,14 +1499,6 @@ export type ComponentSectionsOrderedCardsCardsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
-export type ComponentSectionsProcurements = {
-  __typename?: 'ComponentSectionsProcurements'
-  content?: Maybe<Scalars['String']['output']>
-  id: Scalars['ID']['output']
-  tendersPerPage: Scalars['Int']['output']
-  title?: Maybe<Scalars['String']['output']>
-}
-
 export type ComponentSectionsRichtext = {
   __typename?: 'ComponentSectionsRichtext'
   backgroundColor: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -1566,6 +1558,14 @@ export type ComponentSectionsSortingGuideAccordionsSortingGuideAccordionsArgs = 
   filters?: InputMaybe<ComponentItemsSortingGuideAccordionItemFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+}
+
+export type ComponentSectionsTenders = {
+  __typename?: 'ComponentSectionsTenders'
+  content?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  tendersPerPage?: Maybe<Scalars['Int']['output']>
+  title?: Maybe<Scalars['String']['output']>
 }
 
 export type ComponentSectionsVacancies = {
@@ -2508,12 +2508,12 @@ export type GenericMorph =
   | ComponentSectionsKoloHomepageSection
   | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
-  | ComponentSectionsProcurements
   | ComponentSectionsRichtext
   | ComponentSectionsServices
   | ComponentSectionsServicesHomepageSection
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
+  | ComponentSectionsTenders
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteCollectionPoints
@@ -3541,11 +3541,11 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
-  | ComponentSectionsProcurements
   | ComponentSectionsRichtext
   | ComponentSectionsServices
   | ComponentSectionsSortingGuide
   | ComponentSectionsSortingGuideAccordions
+  | ComponentSectionsTenders
   | ComponentSectionsVacancies
   | ComponentSectionsWasteCollectionDays
   | ComponentSectionsWasteCollectionPoints
@@ -9784,11 +9784,11 @@ export type GlobalSearchSectionFragment = {
   title?: string | null
 }
 
-export type ProcurementsSectionFragment = {
-  __typename?: 'ComponentSectionsProcurements'
+export type TendersSectionFragment = {
+  __typename?: 'ComponentSectionsTenders'
   title?: string | null
   content?: string | null
-  tendersPerPage: number
+  tendersPerPage?: number | null
 }
 
 type PageSections_ComponentSectionsArticles_Fragment = {
@@ -11590,13 +11590,6 @@ type PageSections_ComponentSectionsOrderedCards_Fragment = {
   } | null>
 }
 
-type PageSections_ComponentSectionsProcurements_Fragment = {
-  __typename: 'ComponentSectionsProcurements'
-  title?: string | null
-  content?: string | null
-  tendersPerPage: number
-}
-
 type PageSections_ComponentSectionsRichtext_Fragment = {
   __typename: 'ComponentSectionsRichtext'
   content?: string | null
@@ -12038,6 +12031,13 @@ type PageSections_ComponentSectionsSortingGuideAccordions_Fragment = {
   } | null
 }
 
+type PageSections_ComponentSectionsTenders_Fragment = {
+  __typename: 'ComponentSectionsTenders'
+  title?: string | null
+  content?: string | null
+  tendersPerPage?: number | null
+}
+
 type PageSections_ComponentSectionsVacancies_Fragment = {
   __typename: 'ComponentSectionsVacancies'
   title?: string | null
@@ -12456,11 +12456,11 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOpeningTimes_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
-  | PageSections_ComponentSectionsProcurements_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_ComponentSectionsServices_Fragment
   | PageSections_ComponentSectionsSortingGuide_Fragment
   | PageSections_ComponentSectionsSortingGuideAccordions_Fragment
+  | PageSections_ComponentSectionsTenders_Fragment
   | PageSections_ComponentSectionsVacancies_Fragment
   | PageSections_ComponentSectionsWasteCollectionDays_Fragment
   | PageSections_ComponentSectionsWasteCollectionPoints_Fragment
@@ -20897,12 +20897,6 @@ export type PageEntityFragment = {
           } | null>
         }
       | {
-          __typename: 'ComponentSectionsProcurements'
-          title?: string | null
-          content?: string | null
-          tendersPerPage: number
-        }
-      | {
           __typename: 'ComponentSectionsRichtext'
           content?: string | null
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -21334,6 +21328,12 @@ export type PageEntityFragment = {
               } | null
             } | null
           } | null
+        }
+      | {
+          __typename: 'ComponentSectionsTenders'
+          title?: string | null
+          content?: string | null
+          tendersPerPage?: number | null
         }
       | {
           __typename: 'ComponentSectionsVacancies'
@@ -24086,12 +24086,6 @@ export type PagesQuery = {
               } | null>
             }
           | {
-              __typename: 'ComponentSectionsProcurements'
-              title?: string | null
-              content?: string | null
-              tendersPerPage: number
-            }
-          | {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -24523,6 +24517,12 @@ export type PagesQuery = {
                   } | null
                 } | null
               } | null
+            }
+          | {
+              __typename: 'ComponentSectionsTenders'
+              title?: string | null
+              content?: string | null
+              tendersPerPage?: number | null
             }
           | {
               __typename: 'ComponentSectionsVacancies'
@@ -27295,12 +27295,6 @@ export type PageBySlugQuery = {
               } | null>
             }
           | {
-              __typename: 'ComponentSectionsProcurements'
-              title?: string | null
-              content?: string | null
-              tendersPerPage: number
-            }
-          | {
               __typename: 'ComponentSectionsRichtext'
               content?: string | null
               backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -27732,6 +27726,12 @@ export type PageBySlugQuery = {
                   } | null
                 } | null
               } | null
+            }
+          | {
+              __typename: 'ComponentSectionsTenders'
+              title?: string | null
+              content?: string | null
+              tendersPerPage?: number | null
             }
           | {
               __typename: 'ComponentSectionsVacancies'
@@ -35476,8 +35476,8 @@ export const GlobalSearchSectionFragmentDoc = gql`
     title
   }
 `
-export const ProcurementsSectionFragmentDoc = gql`
-  fragment ProcurementsSection on ComponentSectionsProcurements {
+export const TendersSectionFragmentDoc = gql`
+  fragment TendersSection on ComponentSectionsTenders {
     title
     content
     tendersPerPage
@@ -35573,8 +35573,8 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsGlobalSearch {
       ...GlobalSearchSection
     }
-    ... on ComponentSectionsProcurements {
-      ...ProcurementsSection
+    ... on ComponentSectionsTenders {
+      ...TendersSection
     }
   }
   ${RichtextSectionFragmentDoc}
@@ -35606,7 +35606,7 @@ export const PageSectionsFragmentDoc = gql`
   ${BoardMembersSectionFragmentDoc}
   ${VacanciesSectionFragmentDoc}
   ${GlobalSearchSectionFragmentDoc}
-  ${ProcurementsSectionFragmentDoc}
+  ${TendersSectionFragmentDoc}
 `
 export const ContactsSidebarFragmentDoc = gql`
   fragment ContactsSidebar on ComponentSidebarsContactsSidebar {

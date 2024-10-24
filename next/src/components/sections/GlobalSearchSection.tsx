@@ -200,12 +200,6 @@ const GlobalSearchSectionContent = ({ section }: Props) => {
               <Typography>{resultsCountMessage}</Typography>
             </div>
           </div>
-          {/* TODO ERROR DISPLAY ------------------------------------------------------------ */}
-          {/* {isError ? (
-          <Typography variant="p-default">{error?.message}</Typography>
-        ) : isPending ? (
-          <Typography variant="p-default">{t('common.loading')}</Typography>
-        ) : null} */}
           {selectedKey === 'allResults' ? (
             <div className="flex flex-col gap-8">
               {searchOptions.map((option) => {

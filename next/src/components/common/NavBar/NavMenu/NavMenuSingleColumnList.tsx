@@ -27,7 +27,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
       )}
     >
       {links.map((link, index) => {
-        const { children, href, plausibleProps } = getLinkProps(link)
+        const { children } = getLinkProps(link)
 
         const mostRecentWorkshopDate =
           formatMostRecentWorkshopDate(link?.workshop?.data?.attributes?.dates) ?? null
@@ -41,9 +41,8 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
                 ? t('navBar.workshopCard.messageMostRecentDate', { mostRecentWorkshopDate })
                 : ''
             }
-            linkHref={href}
             iconName={link?.workshop?.data?.attributes?.iconName ?? 'live-help'}
-            plausibleProps={plausibleProps}
+            {...getLinkProps(link)}
             className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : link.branch?.data?.attributes ? (
@@ -51,8 +50,7 @@ const NavMenuSingleColumnList = ({ links, hasDividers, className }: NavMenuColum
             key={link.id}
             title={children}
             subText={link?.branch?.data?.attributes?.address ?? ''}
-            linkHref={href}
-            plausibleProps={plausibleProps}
+            {...getLinkProps(link)}
             className={cn({ 'pt-4 lg:pt-5': index !== 0 })}
           />
         ) : (

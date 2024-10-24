@@ -2,19 +2,18 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 
 import CardBase from '@/src/components/common/Card/CardBase'
 import IconWrapper from '@/src/components/common/Icon/IconWrapper'
-import Link, { LinkPlausibleProps } from '@/src/components/common/Link/Link'
+import Link from '@/src/components/common/Link/Link'
 import { useNavMenuContext } from '@/src/components/common/NavBar/NavMenu/NavMenuContextProvider'
 import Typography from '@/src/components/common/Typography/Typography'
 import cn from '@/src/utils/cn'
+import { LinkProps } from '@/src/utils/useGetLinkProps'
 
 type MenuItemWorkshopCardProps = {
   title: string
-  linkHref: string
   subText?: string
   iconName?: string
-  plausibleProps?: LinkPlausibleProps | undefined
   className?: string
-}
+} & Omit<LinkProps, 'children'>
 
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1949-19741&m=dev
@@ -23,8 +22,9 @@ type MenuItemWorkshopCardProps = {
 const MenuItemWorkshopCard = ({
   title,
   subText: mostRecentWorkshopDate,
-  linkHref,
   iconName = 'live-help',
+  href,
+  target,
   plausibleProps,
   className,
 }: MenuItemWorkshopCardProps) => {
@@ -49,9 +49,10 @@ const MenuItemWorkshopCard = ({
             <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
               <Link
                 variant="underlineOnHover"
-                href={linkHref}
-                stretched
+                href={href}
+                target={target}
                 plausibleProps={plausibleProps}
+                stretched
               >
                 <Typography variant="h6">{title}</Typography>
               </Link>

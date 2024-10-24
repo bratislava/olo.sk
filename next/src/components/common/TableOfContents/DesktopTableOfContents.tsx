@@ -8,7 +8,6 @@ const HEADER_OFFSET = 130
 
 type Props = {
   rootId: string
-  domAttribute: string
 }
 
 /**
@@ -16,10 +15,10 @@ type Props = {
  *
  */
 
-const DesktopTableOfContents = ({ rootId, domAttribute }: Props) => {
+const DesktopTableOfContents = ({ rootId }: Props) => {
   const { t } = useTranslation()
 
-  const headings = useHeadings(rootId, domAttribute)
+  const headings = useHeadings(rootId)
 
   return (
     <div className="flex flex-col divide-y divide-border-default overflow-hidden rounded-lg border border-border-default">

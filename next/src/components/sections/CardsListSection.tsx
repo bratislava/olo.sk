@@ -1,6 +1,5 @@
-import React from 'react'
-
 import ListingCard from '@/src/components/common/Card/ListingCard'
+import { ATTRIBUTE_TABLE_OF_CONTENT } from '@/src/components/common/TableOfContents/useHeadings'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
 import { CardsListSectionFragment } from '@/src/services/graphql/api'
@@ -25,7 +24,7 @@ const CardsListSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background="primary" className="py-6 lg:py-18">
       <div className="flex flex-col gap-6">
-        <SectionHeader title={title} text={text} />
+        <SectionHeader title={title} text={text} dataAttribute={`${ATTRIBUTE_TABLE_OF_CONTENT}`} />
         <ul
           className={cn('grid grid-cols-1 gap-4', {
             'md:grid-cols-2': columnCount === 2,

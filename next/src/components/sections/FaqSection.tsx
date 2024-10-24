@@ -1,5 +1,3 @@
-import React from 'react'
-
 import FaqGroup from '@/src/components/common/FaqGroup/FaqGroup'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
@@ -38,7 +36,12 @@ const FaqSection = ({ section }: Props) => {
     // TODO padding-y should probably be managed by the SectionContainer
     <SectionContainer background={backgroundColorFaq} className="py-6 lg:py-18">
       <div className="flex flex-col gap-6">
-        <SectionHeader title={title} text={text} showMoreLink={showMoreLink} />
+        <SectionHeader
+          dataAttribute="toc-heading"
+          title={title}
+          text={text}
+          showMoreLink={showMoreLink}
+        />
 
         <FaqGroup
           faqs={faqsToRender}

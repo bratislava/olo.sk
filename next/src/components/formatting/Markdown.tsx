@@ -7,6 +7,7 @@ import supersub from 'remark-supersub'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
 import Link from '@/src/components/common/Link/Link'
+import { ATTRIBUTE_TABLE_OF_CONTENT } from '@/src/components/common/TableOfContents/useHeadings'
 import Typography from '@/src/components/common/Typography/Typography'
 import { useTransformOloMarkdownLinks } from '@/src/components/formatting/useTransformOloMarkdownLinks'
 import cn from '@/src/utils/cn'
@@ -74,10 +75,10 @@ const Markdown = ({ content, className }: MarkdownProps) => {
     transformAsync()
   }, [content, transformOloMarkdownLinks])
 
-  // adding className to wrapping div in order to use data-toc
+  // adding className to wrapping div in order to use data-toc (attribute for Table of Content)
   // https://github.com/remarkjs/react-markdown/issues/172
   return (
-    <div className={cn(styles.markdown, className)} data-toc="add">
+    <div className={cn(styles.markdown, className)} data-attribute={ATTRIBUTE_TABLE_OF_CONTENT}>
       <ReactMarkdown
         remarkPlugins={[
           remarkUnwrapImages,

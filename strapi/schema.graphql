@@ -1595,6 +1595,7 @@ input ComponentSectionsHeroHomepageSectionInput {
 type ComponentSectionsIframeSection {
   id: ID!
   iframeTitle: String!
+  isCompact: Boolean
   isFullScreen: Boolean
   text: String
   title: String
@@ -1604,6 +1605,7 @@ type ComponentSectionsIframeSection {
 input ComponentSectionsIframeSectionFiltersInput {
   and: [ComponentSectionsIframeSectionFiltersInput]
   iframeTitle: StringFilterInput
+  isCompact: BooleanFilterInput
   isFullScreen: BooleanFilterInput
   not: ComponentSectionsIframeSectionFiltersInput
   or: [ComponentSectionsIframeSectionFiltersInput]
@@ -1615,6 +1617,7 @@ input ComponentSectionsIframeSectionFiltersInput {
 input ComponentSectionsIframeSectionInput {
   id: ID
   iframeTitle: String
+  isCompact: Boolean
   isFullScreen: Boolean
   text: String
   title: String

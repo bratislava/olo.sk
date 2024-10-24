@@ -118,8 +118,8 @@ const DocumentsAllSection = ({ section, className }: Props) => {
   // FILTERED RESULTS
 
   const { data, isPending, isError, error, isFetching } = useQuery({
-    queryFn: () => meiliDocumentsFetcher(filters),
     queryKey: getMeiliDocumentsQueryKey(filters),
+    queryFn: () => meiliDocumentsFetcher(filters),
     placeholderData: keepPreviousData,
   })
 
@@ -148,7 +148,6 @@ const DocumentsAllSection = ({ section, className }: Props) => {
           className="w-full"
         />
 
-        {/* TODO Category select */}
         <TagGroup
           aria-label={t('documentsAllSection.selectionOptions.aria')}
           selectionMode="single"
@@ -164,7 +163,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
                   id={option.id}
                   variant="single-choice"
                   size="large"
-                  data-cy={`${option.title}-tab`}
+                  // data-cy={`${option.title}-tab`}
                 >
                   {option.title}
                 </Chip>

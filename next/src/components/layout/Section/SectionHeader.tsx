@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import Button from '@/src/components/common/Button/Button'
 import Typography from '@/src/components/common/Typography/Typography'
@@ -16,6 +16,7 @@ type SectionHeaderProps = {
   showMoreLink?: LinkFragment | null | undefined
   className?: string
   additionalComponent?: ReactNode
+  dataAttribute?: string
 }
 
 const SectionHeader = ({
@@ -27,6 +28,7 @@ const SectionHeader = ({
   showMoreLink,
   className,
   additionalComponent = null,
+  dataAttribute = '',
 }: SectionHeaderProps) => {
   const { getLinkProps } = useGetLinkProps()
 
@@ -36,6 +38,7 @@ const SectionHeader = ({
 
   return (
     <div
+      data-attribute={dataAttribute}
       className={cn('flex items-center lg:justify-end', {
         'flex items-start gap-y-6 max-lg:flex-col lg:justify-between': title,
         'lg:justify-start': !showMoreLink,

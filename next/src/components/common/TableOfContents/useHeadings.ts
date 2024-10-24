@@ -1,6 +1,6 @@
 import { useIsClient } from 'usehooks-ts'
 
-export type HeadingLevels = 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+type HeadingLevels = 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 // used in section wrapper that needs to be used for heading in table of content
 export const ATTRIBUTE_TABLE_OF_CONTENT = 'toc'

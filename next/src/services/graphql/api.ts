@@ -9353,6 +9353,7 @@ export type ArticlesSectionFragment = {
   } | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -9841,6 +9842,7 @@ type PageSections_ComponentSectionsArticles_Fragment = {
   } | null
   showMoreLink?: {
     __typename?: 'ComponentItemsLink'
+    plausibleId?: string | null
     label?: string | null
     url?: string | null
     page?: {
@@ -19170,6 +19172,7 @@ export type PageEntityFragment = {
           } | null
           showMoreLink?: {
             __typename?: 'ComponentItemsLink'
+            plausibleId?: string | null
             label?: string | null
             url?: string | null
             page?: {
@@ -22354,6 +22357,7 @@ export type PagesQuery = {
               } | null
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {
@@ -25578,6 +25582,7 @@ export type PageBySlugQuery = {
               } | null
               showMoreLink?: {
                 __typename?: 'ComponentItemsLink'
+                plausibleId?: string | null
                 label?: string | null
                 url?: string | null
                 page?: {

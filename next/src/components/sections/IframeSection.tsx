@@ -17,7 +17,7 @@ type IframeSectionProps = {
 
 const IframeSection = ({ section, className }: IframeSectionProps) => {
   const { height } = useWindowSize()
-  const { title, text, iframeTitle, url, isFullScreen } = section ?? {}
+  const { title, text, iframeTitle, url, isFullScreen, isCompact } = section ?? {}
 
   return (
     // TODO: Padding-y should probably be managed by the SectionContainer
@@ -38,7 +38,7 @@ const IframeSection = ({ section, className }: IframeSectionProps) => {
           referrerPolicy="strict-origin-when-cross-origin"
           allow="fullscreen"
           // 50rem = 800px
-          className="max-h-screen min-h-[50rem]"
+          className={cn('max-h-screen min-h-[50rem]', { 'aspect-square min-h-0': isCompact })}
         />
       </div>
     </SectionContainer>

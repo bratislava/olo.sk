@@ -23,6 +23,10 @@
     "isFullScreen": {
       "type": "boolean",
       "default": false
+    },
+    "isCompact": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

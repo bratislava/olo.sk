@@ -1,16 +1,18 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useRef, useState } from 'react'
+import { Selection, TagGroup, TagList } from 'react-aria-components'
+import { StringParam, useQueryParam, withDefault } from 'use-query-params'
 import { useDebounceValue } from 'usehooks-ts'
 
 import SearchResultRowCard from '@/src/components/common/Card/SearchResultRowCard'
-import Input from '@/src/components/common/Input/Input'
+import Chip from '@/src/components/common/Chip/Chip'
 import PaginationWithInput from '@/src/components/common/Pagination/PaginationWithInput'
 import SearchBar from '@/src/components/common/SearchBar/SearchBar'
 import Typography from '@/src/components/common/Typography/Typography'
 import SectionContainer from '@/src/components/layout/Section/SectionContainer'
 import SectionHeader from '@/src/components/layout/Section/SectionHeader'
-import PlaceholderWrapper from '@/src/components/placeholder/PlaceholderWrapper'
+import { client } from '@/src/services/graphql'
 import { DocumentsSectionFragment } from '@/src/services/graphql/api'
 import {
   documentsDefaultFilters,
@@ -28,21 +30,24 @@ type Props = {
   className?: string
 }
 
+type SelectionOption = { id: string; title: string }
+
 /**
  * Figma: https://www.figma.com/design/2qF09hDT9QNcpdztVMNAY4/OLO-Web?node-id=1748-27133&m=dev
  */
 
 const DocumentsAllSection = ({ section, className }: Props) => {
-  const { t } = useTranslation()
-  const { title, text } = section ?? {}
+  const { t, i18n } = useTranslation()
+  const locale = i18n.language
+
   const { getFullPath } = useGetFullPath()
+  const { title, text } = section ?? {}
 
   const [input, setInput] = useState('')
   const [debouncedInput] = useDebounceValue(input, 300)
+  const searchRef = useRef<null | HTMLInputElement>(null)
 
   const [filters, setFilters] = useRoutePreservedState(documentsDefaultFilters)
-
-  const searchRef = useRef<null | HTMLInputElement>(null)
 
   useEffect(() => {
     searchRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -52,9 +57,69 @@ const DocumentsAllSection = ({ section, className }: Props) => {
     setFilters((previousState) => ({ ...previousState, search: debouncedInput, page: 1 }))
   }, [debouncedInput, setFilters])
 
+  // CATEGORIES
+
+  const { data: documentCategoriesData } = useQuery({
+    queryKey: ['DocumentCategories', locale],
+    queryFn: () => client.DocumentCategories({ locale }),
+  })
+
+  // Get category names
+  const selectionOptions: SelectionOption[] = [
+    { id: 'all', title: t('documentsAllSection.selectionOptions.allDocuments') },
+    ...(documentCategoriesData?.documentCategories?.data
+      .map((category) => {
+        if (!category.attributes) return null
+
+        return { id: category.attributes.slug, title: category.attributes.title }
+      })
+      // eslint-disable-next-line unicorn/no-array-callback-reference
+      .filter(isDefined) ?? []),
+  ]
+
+  // SELECTION
+
+  const defaultSelectionOption: SelectionOption = {
+    id: 'all',
+    title: t('documentsAllSection.selectionOptions.allDocuments'),
+  }
+
+  const [selection, setSelection] = useState<Selection>(new Set([defaultSelectionOption.id]))
+
+  const handleSelectionChange = (newSelection: Selection) => {
+    if (new Set(newSelection).size === 0) setSelection(new Set([defaultSelectionOption.id]))
+    else setSelection(newSelection)
+  }
+
+  const selectedKey: SelectionOption['id'] =
+    selection !== 'all' && selection.size === 1
+      ? selection.values().next().value
+      : defaultSelectionOption.id
+
+  // Extract URL query params
+  const [routerQueryCategoryValue] = useQueryParam(
+    'documentCategory',
+    withDefault(StringParam, 'all'),
+  )
+
+  useEffect(() => {
+    setSelection(new Set([routerQueryCategoryValue]))
+  }, [routerQueryCategoryValue])
+
+  // Adjust filters after selection change
+  useEffect(() => {
+    setFilters((previousState) => ({
+      ...previousState,
+      page: 1,
+      categorySlug: selectedKey === 'all' ? undefined : selectedKey,
+    }))
+  }, [selectedKey, setFilters])
+
+  // FILTERED RESULTS
+
   const { data, isPending, isError, error, isFetching } = useQuery({
-    queryFn: () => meiliDocumentsFetcher(filters),
     queryKey: getMeiliDocumentsQueryKey(filters),
+    queryFn: () => meiliDocumentsFetcher(filters),
     placeholderData: keepPreviousData,
   })
 
@@ -72,30 +137,40 @@ const DocumentsAllSection = ({ section, className }: Props) => {
     <SectionContainer className={cn('py-6 lg:py-18', className)}>
       <div className="flex flex-col gap-6">
         <SectionHeader title={title} text={text} />
+        <SearchBar
+          ref={searchRef}
+          input={input}
+          setInput={setInput}
+          setSearchQuery={(value) =>
+            setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
+          }
+          isLoading={isFetching}
+          className="w-full"
+        />
 
-        <div className="grid grid-cols-3 gap-4">
-          <SearchBar
-            ref={searchRef}
-            input={input}
-            setInput={setInput}
-            setSearchQuery={(value) =>
-              setFilters((previousState) => ({ ...previousState, search: value, page: 1 }))
-            }
-            isLoading={isFetching}
-            className="col-span-2"
-          />
-          {/* TODO Category select */}
-          <PlaceholderWrapper className="rounded border-action-background-default opacity-100">
-            <Input
-              value=""
-              onChange={() => {}}
-              className="col-span-1"
-              aria-label="Kategoria"
-              disabled
-              placeholder={t('documentsAllSection.filters.chooseCategory')}
-            />
-          </PlaceholderWrapper>
-        </div>
+        <TagGroup
+          aria-label={t('documentsAllSection.selectionOptions.aria')}
+          selectionMode="single"
+          selectedKeys={selection}
+          onSelectionChange={handleSelectionChange}
+        >
+          <TagList className="max-md:negative-x-spacing -m-1.5 flex gap-x-2 overflow-auto p-1.5 scrollbar-hide max-md:flex-nowrap lg:gap-x-4">
+            {selectionOptions.map((option, index) => {
+              return (
+                <Chip
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  id={option.id}
+                  variant="single-choice"
+                  size="large"
+                  // data-cy={`${option.title}-tab`}
+                >
+                  {option.title}
+                </Chip>
+              )
+            })}
+          </TagList>
+        </TagGroup>
 
         {isError ? (
           // TODO display proper error
@@ -113,7 +188,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
                     <li key={document.id}>
                       <SearchResultRowCard
                         title={document.attributes.title}
-                        linkHref={getFullPath(document) ?? '#'}
+                        linkHref={getFullPath(document)}
                         type="documents"
                         className="focus-within:rounded-lg"
                         metadata={[
@@ -141,7 +216,9 @@ const DocumentsAllSection = ({ section, className }: Props) => {
                   }
                 />
               </div>
-            ) : null}
+            ) : (
+              <Typography>{t('globalSearch.noResults')}</Typography>
+            )}
           </div>
         )}
       </div>

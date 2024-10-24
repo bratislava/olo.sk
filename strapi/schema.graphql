@@ -2568,6 +2568,7 @@ enum ENUM_PAGE_CONTENTSTATE {
   contentState_done
   contentState_finalising
   contentState_inProgress
+  contentState_inReview
   contentState_todo
 }
 
@@ -4022,12 +4023,12 @@ type WasteCollectionDay {
   collectionDates: String
   createdAt: DateTime
   evenWeek: String
+  importId: String
   note: String
   oddWeek: String
   registrationNumber: String
   type: String
   updatedAt: DateTime
-  validity: String
 }
 
 type WasteCollectionDayEntity {
@@ -4059,7 +4060,6 @@ input WasteCollectionDayFiltersInput {
   registrationNumber: StringFilterInput
   type: StringFilterInput
   updatedAt: DateTimeFilterInput
-  validity: StringFilterInput
 }
 
 input WasteCollectionDayInput {
@@ -4071,7 +4071,6 @@ input WasteCollectionDayInput {
   oddWeek: String
   registrationNumber: String
   type: String
-  validity: String
 }
 
 type WasteCollectionDayRelationResponseCollection {
@@ -4084,6 +4083,7 @@ type Workshop {
   iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZone]
+  sidebar: [WorkshopSidebarDynamicZone]
   slug: String!
   title: String!
   updatedAt: DateTime
@@ -4122,6 +4122,7 @@ input WorkshopInput {
   iconName: String
   publishedAt: DateTime
   sections: [WorkshopSectionsDynamicZoneInput!]
+  sidebar: [WorkshopSidebarDynamicZoneInput!]
   slug: String
   title: String
 }
@@ -4133,3 +4134,7 @@ type WorkshopRelationResponseCollection {
 union WorkshopSectionsDynamicZone = ComponentSectionsDocuments | ComponentSectionsFaq | ComponentSectionsRichtext | Error
 
 scalar WorkshopSectionsDynamicZoneInput
+
+union WorkshopSidebarDynamicZone = ComponentSidebarsEmptySidebar | Error
+
+scalar WorkshopSidebarDynamicZoneInput

@@ -27,16 +27,16 @@ export interface SharedSeo extends Schema.Component {
   }
   attributes: {
     metaTitle: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60
-      }>
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      maxLength: 60
+    }>
     metaDescription: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 50
-        maxLength: 160
-      }>
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 50
+      maxLength: 160
+    }>
     metaImage: Attribute.Media<'images' | 'files' | 'videos'>
     metaSocial: Attribute.Component<'shared.meta-social', true>
     keywords: Attribute.Text
@@ -56,648 +56,16 @@ export interface SharedMetaSocial extends Schema.Component {
   attributes: {
     socialNetwork: Attribute.Enumeration<['Facebook', 'Twitter']> & Attribute.Required
     title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 60
-      }>
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      maxLength: 60
+    }>
     description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 65
-      }>
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      maxLength: 65
+    }>
     image: Attribute.Media<'images' | 'files' | 'videos'>
-  }
-}
-
-export interface SectionsWorkshops extends Schema.Component {
-  collectionName: 'components_sections_workshops'
-  info: {
-    displayName: 'Workshopy'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    workshops: Attribute.Relation<'sections.workshops', 'oneToMany', 'api::workshop.workshop'>
-  }
-}
-
-export interface SectionsWasteSortingCards extends Schema.Component {
-  collectionName: 'components_sections_waste_sorting_cards'
-  info: {
-    displayName: 'Komodity'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    cards: Attribute.Component<'items.waste-sorting-cards-item', true>
-    banner: Attribute.Component<'sections.banner'>
-  }
-}
-
-export interface SectionsWasteRemovalCards extends Schema.Component {
-  collectionName: 'components_sections_waste_removal_cards'
-  info: {
-    displayName: 'Karty (odvoz odpadu kontajnerom)'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    cards: Attribute.Component<'items.card-slider-card', true>
-  }
-}
-
-export interface SectionsWasteCollectionPoints extends Schema.Component {
-  collectionName: 'components_sections_waste_collection_points'
-  info: {
-    displayName: 'Zbern\u00E9 miesta'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    cards: Attribute.Component<'items.location-cards-item', true>
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-  }
-}
-
-export interface SectionsWasteCollectionDays extends Schema.Component {
-  collectionName: 'components_sections_waste_collection_days'
-  info: {
-    displayName: 'Odvozov\u00E9 dni'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.RichText
-    anchorId: Attribute.String
-    wasteCollectionDaysType: Attribute.String
-    validityMessage: Attribute.RichText
-    visibleColumns: Attribute.JSON &
-      Attribute.CustomField<
-        'plugin::multi-select.multi-select',
-        [
-          'Adresa:address',
-          'Eviden\u010Dn\u00E9 \u010D\u00EDslo:registrationNumber',
-          'Platnos\u0165:validity',
-          'P\u00E1rny t\u00FD\u017Ede\u0148:evenWeek',
-          'Nep\u00E1rny t\u00FD\u017Ede\u0148:oddWeek',
-          'D\u00E1tumy odvozov:collectionDates',
-          'Pozn\u00E1mka:note',
-        ]
-      >
-  }
-}
-
-export interface SectionsVacancies extends Schema.Component {
-  collectionName: 'components_sections_vacancies'
-  info: {
-    displayName: 'Pracovn\u00E9 poz\u00EDcie'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
-  }
-}
-
-export interface SectionsTenders extends Schema.Component {
-  collectionName: 'components_sections_tenders'
-  info: {
-    displayName: 'Verejn\u00E9 obstar\u00E1vania'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    tendersPerPage: Attribute.Integer
-    content: Attribute.RichText
-  }
-}
-
-export interface SectionsSortingGuide extends Schema.Component {
-  collectionName: 'components_sections_sorting_guides'
-  info: {
-    displayName: 'Triedenie'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    sortingGuide: Attribute.Component<'items.sorting-guide'>
-    banner: Attribute.Component<'sections.banner'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true
-        }
-      }>
-  }
-}
-
-export interface SectionsSortingGuideAccordions extends Schema.Component {
-  collectionName: 'components_sections_sorting_guide_accordions'
-  info: {
-    displayName: 'Triedenie (akorde\u00F3ny)'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    sortingGuideAccordions: Attribute.Component<'items.sorting-guide-accordion-item', true>
-    banner: Attribute.Component<'sections.banner'>
-  }
-}
-
-export interface SectionsServices extends Schema.Component {
-  collectionName: 'components_sections_services'
-  info: {
-    displayName: 'Slu\u017Eby'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.String
-  }
-}
-
-export interface SectionsServicesHomepageSection extends Schema.Component {
-  collectionName: 'components_sections_services_homepage_sections'
-  info: {
-    displayName: 'services homepage section'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    tiles: Attribute.Component<'items.homepage-service-tile', true> &
-      Attribute.SetMinMax<
-        {
-          max: 3
-        },
-        number
-      >
-    showMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SectionsRichtext extends Schema.Component {
-  collectionName: 'components_sections_richtexts'
-  info: {
-    displayName: 'Richtext'
-    description: ''
-  }
-  attributes: {
-    content: Attribute.RichText
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-  }
-}
-
-export interface SectionsOrderedCards extends Schema.Component {
-  collectionName: 'components_sections_ordered_cards'
-  info: {
-    displayName: 'Karty na \u017Eltom pozad\u00ED'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    variant: Attribute.Enumeration<['numbers', 'icons']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'numbers'>
-    cards: Attribute.Component<'items.ordered-cards-item', true> &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 1
-        },
-        number
-      >
-  }
-}
-
-export interface SectionsOpeningTimes extends Schema.Component {
-  collectionName: 'components_sections_opening_times'
-  info: {
-    displayName: 'Otv\u00E1racie hodiny'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    openingTimes: Attribute.Component<'items.opening-times-item', true> &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 1
-        },
-        number
-      >
-    branchLocation: Attribute.Relation<'sections.opening-times', 'oneToOne', 'api::branch.branch'>
-  }
-}
-
-export interface SectionsKoloHomepageSection extends Schema.Component {
-  collectionName: 'components_sections_kolo_homepage_sections'
-  info: {
-    displayName: 'kolo homepage section'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    mainCards: Attribute.Component<'items.cards-list-item', true> &
-      Attribute.SetMinMax<
-        {
-          max: 2
-        },
-        number
-      >
-    branchesTitle: Attribute.String
-    branches: Attribute.Relation<
-      'sections.kolo-homepage-section',
-      'oneToMany',
-      'api::branch.branch'
-    >
-    showMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SectionsImageAndText extends Schema.Component {
-  collectionName: 'components_sections_image_and_texts'
-  info: {
-    displayName: 'Text s obr\u00E1zkom'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    imagePosition: Attribute.Enumeration<['left', 'right']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'left'>
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-    image: Attribute.Media<'images'> & Attribute.Required
-    primaryButton: Attribute.Component<'items.link'>
-    secondaryButton: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SectionsImageAndTextOverlapped extends Schema.Component {
-  collectionName: 'components_sections_image_and_text_overlappeds'
-  info: {
-    displayName: 'Text s obr\u00E1zkom (prekryt\u00FD)'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    imagePosition: Attribute.Enumeration<['left', 'right', 'left-shifted', 'right-shifted']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'left'>
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-    image: Attribute.Media<'images'> & Attribute.Required
-    readMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SectionsIframeSection extends Schema.Component {
-  collectionName: 'components_sections_iframe_sections'
-  info: {
-    displayName: 'Iframe'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    iframeTitle: Attribute.String & Attribute.Required
-    url: Attribute.String & Attribute.Required
-    isFullScreen: Attribute.Boolean & Attribute.DefaultTo<false>
-  }
-}
-
-export interface SectionsHeroHomepageSection extends Schema.Component {
-  collectionName: 'components_sections_hero_homepage_sections'
-  info: {
-    displayName: 'hero homepage section'
-  }
-  attributes: {
-    slides: Attribute.Component<'items.slide', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true
-        }
-      }>
-    mainTiles: Attribute.Component<'items.hero-main-tile', true> &
-      Attribute.SetMinMax<
-        {
-          max: 2
-        },
-        number
-      >
-    smallTiles: Attribute.Component<'items.hero-small-tile', true> &
-      Attribute.SetMinMax<
-        {
-          max: 6
-        },
-        number
-      >
-  }
-}
-
-export interface SectionsGlobalSearch extends Schema.Component {
-  collectionName: 'components_sections_global_searches'
-  info: {
-    displayName: 'Vyh\u013Ead\u00E1vanie'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-  }
-}
-
-export interface SectionsFormCtaBanner extends Schema.Component {
-  collectionName: 'components_sections_form_cta_banners'
-  info: {
-    displayName: 'Formul\u00E1rov\u00FD CTA banner'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    bannerLink: Attribute.Component<'items.form-cta-banner-link'> & Attribute.Required
-  }
-}
-
-export interface SectionsFiles extends Schema.Component {
-  collectionName: 'components_sections_files'
-  info: {
-    displayName: 'S\u00FAbory'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    files: Attribute.Component<'items.file-item', true> &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 1
-        },
-        number
-      >
-  }
-}
-
-export interface SectionsFaq extends Schema.Component {
-  collectionName: 'components_sections_faqs'
-  info: {
-    displayName: 'FAQ'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String & Attribute.DefaultTo<'\u010Casto kladen\u00E9 ot\u00E1zky'>
-    text: Attribute.Text
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-    faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
-    faqCategories: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq-category.faq-category'>
-    showMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SectionsFaqCategories extends Schema.Component {
-  collectionName: 'components_sections_faq_categories'
-  info: {
-    displayName: 'FAQ kateg\u00F3rie'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    faqCategories: Attribute.Relation<
-      'sections.faq-categories',
-      'oneToMany',
-      'api::faq-category.faq-category'
-    >
-  }
-}
-
-export interface SectionsDocuments extends Schema.Component {
-  collectionName: 'components_sections_documents'
-  info: {
-    displayName: 'Dokumenty'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    documents: Attribute.Relation<'sections.documents', 'oneToMany', 'api::document.document'>
-  }
-}
-
-export interface SectionsDivider extends Schema.Component {
-  collectionName: 'components_sections_dividers'
-  info: {
-    displayName: 'Divider'
-    description: ''
-  }
-  attributes: {
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-  }
-}
-
-export interface SectionsContacts extends Schema.Component {
-  collectionName: 'components_sections_contacts'
-  info: {
-    displayName: 'Kontakty'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    contacts: Attribute.Component<'items.contacts-contact', true>
-    openingTimes: Attribute.Component<'items.contacts-opening-time', true>
-    branches: Attribute.Component<'items.contacts-branch', true>
-  }
-}
-
-export interface SectionsColumns extends Schema.Component {
-  collectionName: 'components_sections_columns'
-  info: {
-    displayName: 'St\u013Apce (nadpis, text, obr\u00E1zok)'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-    items: Attribute.Component<'items.columns-item', true> &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 1
-        },
-        number
-      >
-  }
-}
-
-export interface SectionsColumnsList extends Schema.Component {
-  collectionName: 'components_sections_columns_lists'
-  info: {
-    displayName: 'St\u013Apce so zoznamom (ikonka + text)'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
-    leftColumn: Attribute.Component<'items.columns-list-item', true>
-    rightColumn: Attribute.Component<'items.columns-list-item', true>
-  }
-}
-
-export interface SectionsChildPagesCardsList extends Schema.Component {
-  collectionName: 'components_sections_child_pages_cards_lists'
-  info: {
-    displayName: 'Karty (zoznam dc\u00E9rskych str\u00E1nok)'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-    page: Attribute.Relation<'sections.child-pages-cards-list', 'oneToOne', 'api::page.page'>
-  }
-}
-
-export interface SectionsCardsList extends Schema.Component {
-  collectionName: 'components_sections_cards_lists'
-  info: {
-    displayName: 'Odkazy'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    linkLabelOverride: Attribute.Text
-    columnCount: Attribute.Integer &
-      Attribute.SetMinMax<
-        {
-          min: 2
-          max: 4
-        },
-        number
-      > &
-      Attribute.DefaultTo<3>
-    cards: Attribute.Component<'items.cards-list-item', true>
-  }
-}
-
-export interface SectionsCardSlider extends Schema.Component {
-  collectionName: 'components_sections_card_sliders'
-  info: {
-    displayName: 'Karty (slider)'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'primary'>
-    cards: Attribute.Component<'items.card-slider-card', true> & Attribute.Required
-  }
-}
-
-export interface SectionsBranches extends Schema.Component {
-  collectionName: 'components_sections_branches'
-  info: {
-    displayName: 'Pobo\u010Dky'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
-  }
-}
-
-export interface SectionsBoardMembers extends Schema.Component {
-  collectionName: 'components_sections_board_members'
-  info: {
-    displayName: 'Spr\u00E1vna rada'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    boardMembers: Attribute.Component<'items.board-members-item', true>
-  }
-}
-
-export interface SectionsBanner extends Schema.Component {
-  collectionName: 'components_sections_banners'
-  info: {
-    displayName: 'Banner'
-  }
-  attributes: {
-    title: Attribute.String & Attribute.Required
-    text: Attribute.Text
-    variant: Attribute.Enumeration<['background-grey', 'background-black']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'background-grey'>
-    image: Attribute.Media<'images'> & Attribute.Required
-    primaryButtonLink: Attribute.Component<'items.link'> & Attribute.Required
-    secondaryButtonLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SectionsArticles extends Schema.Component {
-  collectionName: 'components_sections_articles'
-  info: {
-    displayName: '\u010Cl\u00E1nky'
-    description: ''
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    categories: Attribute.Relation<
-      'sections.articles',
-      'oneToMany',
-      'api::article-category.article-category'
-    >
-    tags: Attribute.Relation<'sections.articles', 'oneToMany', 'api::tag.tag'>
-    showMoreLink: Attribute.Component<'items.link'>
-  }
-}
-
-export interface SectionsArticlesHomepageSection extends Schema.Component {
-  collectionName: 'components_sections_articles_homepage_sections'
-  info: {
-    displayName: 'articles homepage section'
-  }
-  attributes: {
-    title: Attribute.String
-    text: Attribute.Text
-    articles: Attribute.Relation<
-      'sections.articles-homepage-section',
-      'oneToMany',
-      'api::article.article'
-    >
-    showMoreLink: Attribute.Component<'items.link'>
   }
 }
 
@@ -711,15 +79,15 @@ export interface MenuMenuSection extends Schema.Component {
     label: Attribute.String & Attribute.Required
     links: Attribute.Component<'menu.menu-link', true>
     colSpan: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0
-          max: 3
-        },
-        number
-      > &
-      Attribute.DefaultTo<1>
+    Attribute.Required &
+    Attribute.SetMinMax<
+      {
+        min: 0
+        max: 3
+      },
+      number
+    > &
+    Attribute.DefaultTo<1>
     multicolumnBehaviour: Attribute.Enumeration<['fullwidth', 'split equally']>
     hasDividers: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
     specialSectionType: Attribute.Enumeration<['latest articles']>
@@ -788,8 +156,8 @@ export interface ItemsWasteSortingCardsItem extends Schema.Component {
         'christmasTrees',
       ]
     > &
-      Attribute.Required &
-      Attribute.DefaultTo<'mixed'>
+    Attribute.Required &
+    Attribute.DefaultTo<'mixed'>
     link: Attribute.Component<'items.link'> & Attribute.Required
   }
 }
@@ -855,8 +223,8 @@ export interface ItemsSortingGuideAccordionItem extends Schema.Component {
         'christmasTrees',
       ]
     > &
-      Attribute.Required &
-      Attribute.DefaultTo<'paper'>
+    Attribute.Required &
+    Attribute.DefaultTo<'paper'>
     sortingGuide: Attribute.Component<'items.sorting-guide'>
   }
 }
@@ -871,8 +239,8 @@ export interface ItemsSlide extends Schema.Component {
     title: Attribute.Text & Attribute.Required
     text: Attribute.Text
     backgroundColor: Attribute.String &
-      Attribute.Required &
-      Attribute.CustomField<'plugin::color-picker.color'>
+    Attribute.Required &
+    Attribute.CustomField<'plugin::color-picker.color'>
     media: Attribute.Media<'images'> & Attribute.Required
     link: Attribute.Component<'items.link'>
   }
@@ -1147,6 +515,637 @@ export interface ItemsAnchor extends Schema.Component {
   }
 }
 
+export interface SectionsWorkshops extends Schema.Component {
+  collectionName: 'components_sections_workshops'
+  info: {
+    displayName: 'Workshopy'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    workshops: Attribute.Relation<'sections.workshops', 'oneToMany', 'api::workshop.workshop'>
+  }
+}
+
+export interface SectionsWasteSortingCards extends Schema.Component {
+  collectionName: 'components_sections_waste_sorting_cards'
+  info: {
+    displayName: 'Komodity'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.waste-sorting-cards-item', true>
+    banner: Attribute.Component<'sections.banner'>
+  }
+}
+
+export interface SectionsWasteRemovalCards extends Schema.Component {
+  collectionName: 'components_sections_waste_removal_cards'
+  info: {
+    displayName: 'Karty (odvoz odpadu kontajnerom)'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.card-slider-card', true>
+  }
+}
+
+export interface SectionsWasteCollectionPoints extends Schema.Component {
+  collectionName: 'components_sections_waste_collection_points'
+  info: {
+    displayName: 'Zbern\u00E9 miesta'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    cards: Attribute.Component<'items.location-cards-item', true>
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+  }
+}
+
+export interface SectionsWasteCollectionDays extends Schema.Component {
+  collectionName: 'components_sections_waste_collection_days'
+  info: {
+    displayName: 'Odvozov\u00E9 dni'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.RichText
+    anchorId: Attribute.String
+    wasteCollectionDaysType: Attribute.String
+    validityMessage: Attribute.RichText
+    visibleColumns: Attribute.JSON &
+    Attribute.CustomField<
+      'plugin::multi-select.multi-select',
+      [
+        'Adresa:address',
+        'Eviden\u010Dn\u00E9 \u010D\u00EDslo:registrationNumber',
+        'P\u00E1rny t\u00FD\u017Ede\u0148:evenWeek',
+        'Nep\u00E1rny t\u00FD\u017Ede\u0148:oddWeek',
+        'D\u00E1tumy odvozov:collectionDates',
+        'Pozn\u00E1mka:note',
+      ]
+    >
+  }
+}
+
+export interface SectionsVacancies extends Schema.Component {
+  collectionName: 'components_sections_vacancies'
+  info: {
+    displayName: 'Pracovn\u00E9 poz\u00EDcie'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
+  }
+}
+
+export interface SectionsTenders extends Schema.Component {
+  collectionName: 'components_sections_tenders'
+  info: {
+    displayName: 'Verejn\u00E9 obstar\u00E1vania'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    tendersPerPage: Attribute.Integer
+    content: Attribute.RichText
+  }
+}
+
+export interface SectionsSortingGuide extends Schema.Component {
+  collectionName: 'components_sections_sorting_guides'
+  info: {
+    displayName: 'Triedenie'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    sortingGuide: Attribute.Component<'items.sorting-guide'>
+    banner: Attribute.Component<'sections.banner'> &
+    Attribute.SetPluginOptions<{
+      i18n: {
+        localized: true
+      }
+    }>
+  }
+}
+
+export interface SectionsSortingGuideAccordions extends Schema.Component {
+  collectionName: 'components_sections_sorting_guide_accordions'
+  info: {
+    displayName: 'Triedenie (akorde\u00F3ny)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    sortingGuideAccordions: Attribute.Component<'items.sorting-guide-accordion-item', true>
+    banner: Attribute.Component<'sections.banner'>
+  }
+}
+
+export interface SectionsServices extends Schema.Component {
+  collectionName: 'components_sections_services'
+  info: {
+    displayName: 'Slu\u017Eby'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.String
+  }
+}
+
+export interface SectionsServicesHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_services_homepage_sections'
+  info: {
+    displayName: 'services homepage section'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    tiles: Attribute.Component<'items.homepage-service-tile', true> &
+    Attribute.SetMinMax<
+      {
+        max: 3
+      },
+      number
+    >
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsRichtext extends Schema.Component {
+  collectionName: 'components_sections_richtexts'
+  info: {
+    displayName: 'Richtext'
+    description: ''
+  }
+  attributes: {
+    content: Attribute.RichText
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+  }
+}
+
+export interface SectionsOrderedCards extends Schema.Component {
+  collectionName: 'components_sections_ordered_cards'
+  info: {
+    displayName: 'Karty na \u017Eltom pozad\u00ED'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    variant: Attribute.Enumeration<['numbers', 'icons']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'numbers'>
+    cards: Attribute.Component<'items.ordered-cards-item', true> &
+    Attribute.Required &
+    Attribute.SetMinMax<
+      {
+        min: 1
+      },
+      number
+    >
+  }
+}
+
+export interface SectionsOpeningTimes extends Schema.Component {
+  collectionName: 'components_sections_opening_times'
+  info: {
+    displayName: 'Otv\u00E1racie hodiny'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    openingTimes: Attribute.Component<'items.opening-times-item', true> &
+    Attribute.Required &
+    Attribute.SetMinMax<
+      {
+        min: 1
+      },
+      number
+    >
+    branchLocation: Attribute.Relation<'sections.opening-times', 'oneToOne', 'api::branch.branch'>
+  }
+}
+
+export interface SectionsKoloHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_kolo_homepage_sections'
+  info: {
+    displayName: 'kolo homepage section'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    mainCards: Attribute.Component<'items.cards-list-item', true> &
+    Attribute.SetMinMax<
+      {
+        max: 2
+      },
+      number
+    >
+    branchesTitle: Attribute.String
+    branches: Attribute.Relation<
+      'sections.kolo-homepage-section',
+      'oneToMany',
+      'api::branch.branch'
+    >
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsImageAndText extends Schema.Component {
+  collectionName: 'components_sections_image_and_texts'
+  info: {
+    displayName: 'Text s obr\u00E1zkom'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    imagePosition: Attribute.Enumeration<['left', 'right']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'left'>
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+    image: Attribute.Media<'images'> & Attribute.Required
+    primaryButton: Attribute.Component<'items.link'>
+    secondaryButton: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsImageAndTextOverlapped extends Schema.Component {
+  collectionName: 'components_sections_image_and_text_overlappeds'
+  info: {
+    displayName: 'Text s obr\u00E1zkom (prekryt\u00FD)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    imagePosition: Attribute.Enumeration<['left', 'right', 'left-shifted', 'right-shifted']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'left'>
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+    image: Attribute.Media<'images'> & Attribute.Required
+    readMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsIframeSection extends Schema.Component {
+  collectionName: 'components_sections_iframe_sections'
+  info: {
+    displayName: 'Iframe'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    iframeTitle: Attribute.String & Attribute.Required
+    url: Attribute.String & Attribute.Required
+    isFullScreen: Attribute.Boolean & Attribute.DefaultTo<false>
+  }
+}
+
+export interface SectionsHeroHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_hero_homepage_sections'
+  info: {
+    displayName: 'hero homepage section'
+  }
+  attributes: {
+    slides: Attribute.Component<'items.slide', true> &
+    Attribute.SetPluginOptions<{
+      i18n: {
+        localized: true
+      }
+    }>
+    mainTiles: Attribute.Component<'items.hero-main-tile', true> &
+    Attribute.SetMinMax<
+      {
+        max: 2
+      },
+      number
+    >
+    smallTiles: Attribute.Component<'items.hero-small-tile', true> &
+    Attribute.SetMinMax<
+      {
+        max: 6
+      },
+      number
+    >
+  }
+}
+
+export interface SectionsGlobalSearch extends Schema.Component {
+  collectionName: 'components_sections_global_searches'
+  info: {
+    displayName: 'Vyh\u013Ead\u00E1vanie'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+  }
+}
+
+export interface SectionsFormCtaBanner extends Schema.Component {
+  collectionName: 'components_sections_form_cta_banners'
+  info: {
+    displayName: 'Formul\u00E1rov\u00FD CTA banner'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    bannerLink: Attribute.Component<'items.form-cta-banner-link'> & Attribute.Required
+  }
+}
+
+export interface SectionsFiles extends Schema.Component {
+  collectionName: 'components_sections_files'
+  info: {
+    displayName: 'S\u00FAbory'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    files: Attribute.Component<'items.file-item', true> &
+    Attribute.Required &
+    Attribute.SetMinMax<
+      {
+        min: 1
+      },
+      number
+    >
+  }
+}
+
+export interface SectionsFaq extends Schema.Component {
+  collectionName: 'components_sections_faqs'
+  info: {
+    displayName: 'FAQ'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String & Attribute.DefaultTo<'\u010Casto kladen\u00E9 ot\u00E1zky'>
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+    faqs: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq.faq'>
+    faqCategories: Attribute.Relation<'sections.faq', 'oneToMany', 'api::faq-category.faq-category'>
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsFaqCategories extends Schema.Component {
+  collectionName: 'components_sections_faq_categories'
+  info: {
+    displayName: 'FAQ kateg\u00F3rie'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    faqCategories: Attribute.Relation<
+      'sections.faq-categories',
+      'oneToMany',
+      'api::faq-category.faq-category'
+    >
+  }
+}
+
+export interface SectionsDocuments extends Schema.Component {
+  collectionName: 'components_sections_documents'
+  info: {
+    displayName: 'Dokumenty'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    showAll: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
+    documents: Attribute.Relation<'sections.documents', 'oneToMany', 'api::document.document'>
+  }
+}
+
+export interface SectionsDivider extends Schema.Component {
+  collectionName: 'components_sections_dividers'
+  info: {
+    displayName: 'Divider'
+    description: ''
+  }
+  attributes: {
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+  }
+}
+
+export interface SectionsContacts extends Schema.Component {
+  collectionName: 'components_sections_contacts'
+  info: {
+    displayName: 'Kontakty'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    contacts: Attribute.Component<'items.contacts-contact', true>
+    openingTimes: Attribute.Component<'items.contacts-opening-time', true>
+    branches: Attribute.Component<'items.contacts-branch', true>
+  }
+}
+
+export interface SectionsColumns extends Schema.Component {
+  collectionName: 'components_sections_columns'
+  info: {
+    displayName: 'St\u013Apce (nadpis, text, obr\u00E1zok)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+    items: Attribute.Component<'items.columns-item', true> &
+    Attribute.Required &
+    Attribute.SetMinMax<
+      {
+        min: 1
+      },
+      number
+    >
+  }
+}
+
+export interface SectionsColumnsList extends Schema.Component {
+  collectionName: 'components_sections_columns_lists'
+  info: {
+    displayName: 'St\u013Apce so zoznamom (ikonka + text)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']>
+    leftColumn: Attribute.Component<'items.columns-list-item', true>
+    rightColumn: Attribute.Component<'items.columns-list-item', true>
+  }
+}
+
+export interface SectionsChildPagesCardsList extends Schema.Component {
+  collectionName: 'components_sections_child_pages_cards_lists'
+  info: {
+    displayName: 'Karty (zoznam dc\u00E9rskych str\u00E1nok)'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+    page: Attribute.Relation<'sections.child-pages-cards-list', 'oneToOne', 'api::page.page'>
+  }
+}
+
+export interface SectionsCardsList extends Schema.Component {
+  collectionName: 'components_sections_cards_lists'
+  info: {
+    displayName: 'Odkazy'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    linkLabelOverride: Attribute.Text
+    columnCount: Attribute.Integer &
+    Attribute.SetMinMax<
+      {
+        min: 2
+        max: 4
+      },
+      number
+    > &
+    Attribute.DefaultTo<3>
+    cards: Attribute.Component<'items.cards-list-item', true>
+  }
+}
+
+export interface SectionsCardSlider extends Schema.Component {
+  collectionName: 'components_sections_card_sliders'
+  info: {
+    displayName: 'Karty (slider)'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    backgroundColor: Attribute.Enumeration<['primary', 'secondary', 'tertiary']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'primary'>
+    cards: Attribute.Component<'items.card-slider-card', true> & Attribute.Required
+  }
+}
+
+export interface SectionsBranches extends Schema.Component {
+  collectionName: 'components_sections_branches'
+  info: {
+    displayName: 'Pobo\u010Dky'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    branches: Attribute.Relation<'sections.branches', 'oneToMany', 'api::branch.branch'>
+  }
+}
+
+export interface SectionsBoardMembers extends Schema.Component {
+  collectionName: 'components_sections_board_members'
+  info: {
+    displayName: 'Spr\u00E1vna rada'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    boardMembers: Attribute.Component<'items.board-members-item', true>
+  }
+}
+
+export interface SectionsBanner extends Schema.Component {
+  collectionName: 'components_sections_banners'
+  info: {
+    displayName: 'Banner'
+  }
+  attributes: {
+    title: Attribute.String & Attribute.Required
+    text: Attribute.Text
+    variant: Attribute.Enumeration<['background-grey', 'background-black']> &
+    Attribute.Required &
+    Attribute.DefaultTo<'background-grey'>
+    image: Attribute.Media<'images'> & Attribute.Required
+    primaryButtonLink: Attribute.Component<'items.link'> & Attribute.Required
+    secondaryButtonLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsArticles extends Schema.Component {
+  collectionName: 'components_sections_articles'
+  info: {
+    displayName: '\u010Cl\u00E1nky'
+    description: ''
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    categories: Attribute.Relation<
+      'sections.articles',
+      'oneToMany',
+      'api::article-category.article-category'
+    >
+    tags: Attribute.Relation<'sections.articles', 'oneToMany', 'api::tag.tag'>
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
+export interface SectionsArticlesHomepageSection extends Schema.Component {
+  collectionName: 'components_sections_articles_homepage_sections'
+  info: {
+    displayName: 'articles homepage section'
+  }
+  attributes: {
+    title: Attribute.String
+    text: Attribute.Text
+    articles: Attribute.Relation<
+      'sections.articles-homepage-section',
+      'oneToMany',
+      'api::article.article'
+    >
+    showMoreLink: Attribute.Component<'items.link'>
+  }
+}
+
 export interface HeaderSectionsSideImage extends Schema.Component {
   collectionName: 'components_header_sections_side_images'
   info: {
@@ -1262,6 +1261,37 @@ declare module '@strapi/types' {
       'sidebars.contacts-sidebar': SidebarsContactsSidebar
       'shared.seo': SharedSeo
       'shared.meta-social': SharedMetaSocial
+      'menu.menu-section': MenuMenuSection
+      'menu.menu-link': MenuMenuLink
+      'menu.menu-item': MenuMenuItem
+      'items.workshop-date': ItemsWorkshopDate
+      'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
+      'items.sorting-guide': ItemsSortingGuide
+      'items.sorting-guide-item': ItemsSortingGuideItem
+      'items.sorting-guide-alert-message': ItemsSortingGuideAlertMessage
+      'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
+      'items.slide': ItemsSlide
+      'items.ordered-cards-item': ItemsOrderedCardsItem
+      'items.opening-times-item': ItemsOpeningTimesItem
+      'items.opening-hours-item': ItemsOpeningHoursItem
+      'items.menu-header': ItemsMenuHeader
+      'items.location-cards-item': ItemsLocationCardsItem
+      'items.link': ItemsLink
+      'items.homepage-service-tile': ItemsHomepageServiceTile
+      'items.hero-small-tile': ItemsHeroSmallTile
+      'items.hero-main-tile': ItemsHeroMainTile
+      'items.form-cta-banner-link': ItemsFormCtaBannerLink
+      'items.footer-column': ItemsFooterColumn
+      'items.file-item': ItemsFileItem
+      'items.contacts-opening-time': ItemsContactsOpeningTime
+      'items.contacts-contact': ItemsContactsContact
+      'items.contacts-branch': ItemsContactsBranch
+      'items.columns-list-item': ItemsColumnsListItem
+      'items.columns-item': ItemsColumnsItem
+      'items.cards-list-item': ItemsCardsListItem
+      'items.card-slider-card': ItemsCardSliderCard
+      'items.board-members-item': ItemsBoardMembersItem
+      'items.anchor': ItemsAnchor
       'sections.workshops': SectionsWorkshops
       'sections.waste-sorting-cards': SectionsWasteSortingCards
       'sections.waste-removal-cards': SectionsWasteRemovalCards
@@ -1299,37 +1329,6 @@ declare module '@strapi/types' {
       'sections.banner': SectionsBanner
       'sections.articles': SectionsArticles
       'sections.articles-homepage-section': SectionsArticlesHomepageSection
-      'menu.menu-section': MenuMenuSection
-      'menu.menu-link': MenuMenuLink
-      'menu.menu-item': MenuMenuItem
-      'items.workshop-date': ItemsWorkshopDate
-      'items.waste-sorting-cards-item': ItemsWasteSortingCardsItem
-      'items.sorting-guide': ItemsSortingGuide
-      'items.sorting-guide-item': ItemsSortingGuideItem
-      'items.sorting-guide-alert-message': ItemsSortingGuideAlertMessage
-      'items.sorting-guide-accordion-item': ItemsSortingGuideAccordionItem
-      'items.slide': ItemsSlide
-      'items.ordered-cards-item': ItemsOrderedCardsItem
-      'items.opening-times-item': ItemsOpeningTimesItem
-      'items.opening-hours-item': ItemsOpeningHoursItem
-      'items.menu-header': ItemsMenuHeader
-      'items.location-cards-item': ItemsLocationCardsItem
-      'items.link': ItemsLink
-      'items.homepage-service-tile': ItemsHomepageServiceTile
-      'items.hero-small-tile': ItemsHeroSmallTile
-      'items.hero-main-tile': ItemsHeroMainTile
-      'items.form-cta-banner-link': ItemsFormCtaBannerLink
-      'items.footer-column': ItemsFooterColumn
-      'items.file-item': ItemsFileItem
-      'items.contacts-opening-time': ItemsContactsOpeningTime
-      'items.contacts-contact': ItemsContactsContact
-      'items.contacts-branch': ItemsContactsBranch
-      'items.columns-list-item': ItemsColumnsListItem
-      'items.columns-item': ItemsColumnsItem
-      'items.cards-list-item': ItemsCardsListItem
-      'items.card-slider-card': ItemsCardSliderCard
-      'items.board-members-item': ItemsBoardMembersItem
-      'items.anchor': ItemsAnchor
       'header-sections.side-image': HeaderSectionsSideImage
       'header-sections.pickup-day': HeaderSectionsPickupDay
       'header-sections.image': HeaderSectionsImage

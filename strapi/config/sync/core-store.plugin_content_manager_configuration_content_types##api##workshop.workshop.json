@@ -21,7 +21,7 @@
       },
       "title": {
         "edit": {
-          "label": "Nadpi",
+          "label": "Nadpis",
           "description": "",
           "placeholder": "",
           "visible": true,
@@ -47,6 +47,20 @@
           "sortable": true
         }
       },
+      "iconName": {
+        "edit": {
+          "label": "iconName",
+          "description": "Zadajte názov ikonky zo Strapi manuálu",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "iconName",
+          "searchable": true,
+          "sortable": true
+        }
+      },
       "sections": {
         "edit": {
           "label": "Sekcie",
@@ -57,6 +71,20 @@
         },
         "list": {
           "label": "sections",
+          "searchable": false,
+          "sortable": false
+        }
+      },
+      "sidebar": {
+        "edit": {
+          "label": "Sidebar",
+          "description": "",
+          "placeholder": "",
+          "visible": true,
+          "editable": true
+        },
+        "list": {
+          "label": "sidebar",
           "searchable": false,
           "sortable": false
         }
@@ -73,20 +101,6 @@
           "label": "dates",
           "searchable": false,
           "sortable": false
-        }
-      },
-      "iconName": {
-        "edit": {
-          "label": "iconName",
-          "description": "Zadajte názov ikonky zo Strapi manuálu",
-          "placeholder": "",
-          "visible": true,
-          "editable": true
-        },
-        "list": {
-          "label": "iconName",
-          "searchable": true,
-          "sortable": true
         }
       },
       "createdAt": {
@@ -171,6 +185,12 @@
         [
           {
             "name": "sections",
+            "size": 12
+          }
+        ],
+        [
+          {
+            "name": "sidebar",
             "size": 12
           }
         ],

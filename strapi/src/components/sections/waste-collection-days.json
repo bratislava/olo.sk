@@ -26,7 +26,6 @@
       "options": [
         "Adresa:address",
         "Evidenčné číslo:registrationNumber",
-        "Platnosť:validity",
         "Párny týždeň:evenWeek",
         "Nepárny týždeň:oddWeek",
         "Dátumy odvozov:collectionDates",

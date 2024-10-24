@@ -163,6 +163,7 @@
         "contentState.todo",
         "contentState.inProgress",
         "contentState.finalising",
+        "contentState.inReview",
         "contentState.done"
       ],
       "default": "contentState.todo",

@@ -133,5 +133,12 @@
   "tenders.type": "Druh postupu",
   "tenders.value": "Predpokladaná hodnota",
   "tenders.voNumber": "Číslo spisu VO",
-  "tenders.voNumber2": "Číslo z vestníka VO"
+  "tenders.voNumber2": "Číslo z vestníka VO",
+  "wasteCollectionDaysSectionTabs.aria.tabListName": "",
+  "wasteCollectionDaysTable.header.address": "Adresa",
+  "wasteCollectionDaysTable.header.collectionDates": "Dátumy odvozov",
+  "wasteCollectionDaysTable.header.evenWeek": "Párny týždeň",
+  "wasteCollectionDaysTable.header.note": "Note",
+  "wasteCollectionDaysTable.header.oddWeek": "Nepárny týždeň",
+  "wasteCollectionDaysTable.header.registrationNumber": "Evidenčné číslo"
 }

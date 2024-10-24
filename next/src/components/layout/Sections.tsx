@@ -25,7 +25,7 @@ import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuid
 import SortingGuideSection from '@/src/components/sections/SortingGuideSection'
 import TendersSection from '@/src/components/sections/TendersSection'
 import VacanciesSection from '@/src/components/sections/VacanciesSection'
-import WasteCollectionDays from '@/src/components/sections/WasteCollectionDays'
+import WasteCollectionDays from '@/src/components/sections/WasteCollectionDays/WasteCollectionDays'
 import WasteCollectionPointsSection from '@/src/components/sections/WasteCollectionPointsSection'
 import WasteRemovalCardsSection from '@/src/components/sections/WasteRemovalCardsSection'
 import WasteSortingCardsSection from '@/src/components/sections/WasteSortingCardsSection'

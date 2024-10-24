@@ -141,17 +141,17 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
               id="career-section-content"
               className="relative mx-auto max-w-screen-xl bg-background-primary px-0 py-6 lg:py-12"
             >
-              <div className="flex flex-col items-start gap-4 md:flex-row lg:gap-8">
-                <div className="order-2 flex w-full shrink flex-col md:order-1 md:w-[50rem]">
-                  <div className="grid grid-cols-1 rounded-lg border border-border-default md:grid-cols-2 md:grid-rows-2">
+              <div className="flex flex-col items-start gap-4 lg:flex-row lg:gap-8">
+                <div className="order-2 flex w-full shrink flex-col lg:order-1 lg:w-[50rem]">
+                  <div className="grid grid-cols-1 rounded-lg border border-border-default lg:grid-cols-2 lg:grid-rows-2">
                     <CareerRowCard
-                      className="border-b border-border-default md:border-r"
+                      className="border-b border-border-default py-7 lg:border-r"
                       icon={<OloIcon name="career-place" />}
                       label={t('career.address')}
                       value={positionDetail?.region_description?.replaceAll(HTML_REGEX, '') ?? ''}
                     />
                     <CareerRowCard
-                      className="border-b border-border-default"
+                      className="border-b border-border-default py-7"
                       icon={<OloIcon name="career-calendar" />}
                       label={t('career.contractType')}
                       value={
@@ -160,19 +160,20 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                       }
                     />
                     <CareerRowCard
-                      className="border-b border-border-default md:border-b-0 md:border-r"
+                      className="border-b border-border-default py-8 lg:border-b-0 lg:border-r"
                       icon={<OloIcon name="career-time" />}
                       label={t('career.start')}
                       value={positionDetail.date_start ?? ''}
                     />
                     <CareerRowCard
+                      className="py-8"
                       icon={<OloIcon name="career-salary" />}
                       label={t('career.salary')}
                       value={getSalary(positionDetail.salary_text)[0]}
                       toolTipText={getSalary(positionDetail.salary_text)[1]}
                     />
                   </div>
-                  <div className="prose divide-y-1 divide-border-default prose-h2:mt-10 prose-p:last:mb-0 prose-ul:my-0 prose-li:list-disc">
+                  <div className="prose max-w-fit divide-y-1 divide-border-default prose-h2:mt-10 prose-p:last:mb-0 prose-ul:my-0 prose-li:list-disc">
                     <div className="pb-10">
                       <Typography variant="h2">{t('career.positionInformation')}</Typography>
                       <Typography variant="h4">{t('career.positionResponsibilities')}</Typography>
@@ -227,7 +228,7 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                         {Array.isArray(positionBenefit) &&
                           positionBenefit.map((benefit) => (
                             <div key={benefit.key} className="flex items-center gap-4">
-                              <div className="w-10">{benefit.icon ?? benefit.icon}</div>
+                              <div className="size-8 shrink-0 lg:size-10">{benefit.icon}</div>
                               <Typography variant="p-default">{benefit.text}</Typography>
                             </div>
                           ))}
@@ -235,8 +236,8 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                     </div>
                   </div>
                 </div>
-                <SidebarCareer className="order-1 w-full p-0 md:order-2 md:w-auto md:p-0">
-                  <div className="px-5 py-4">
+                <SidebarCareer className="order-1 w-full grow px-5 lg:order-2 lg:w-auto lg:py-0">
+                  <div className="pb-4 pt-5">
                     <div className="pb-2">
                       <Typography variant="p-default-black">{t('career.contact')}</Typography>
                     </div>
@@ -248,10 +249,11 @@ const Page = ({ entity: positionDetail, navigation, general }: PageProps) => {
                       {positionDetail.user_consultant?.email}
                     </Typography>
                   </div>
-                  <div className="flex flex-col gap-3 px-5 pb-4 pt-5">
+                  <div className="flex flex-col gap-3 pb-4 pt-5">
                     <Typography variant="p-default-black">{t('career.interested')}</Typography>
                     <Button
                       variant="category-solid"
+                      className="w-full"
                       href={positionDetail.apply_url}
                       startIcon={<Icon name="karty-a-preukazy" />}
                       hasLinkIcon={false}

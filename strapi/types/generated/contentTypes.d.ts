@@ -1561,6 +1561,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         'contentState.todo',
         'contentState.inProgress',
         'contentState.finalising',
+        'contentState.inReview',
         'contentState.done',
       ]
     > &
@@ -1782,12 +1783,11 @@ export interface ApiWasteCollectionDayWasteCollectionDay extends Schema.Collecti
     type: Attribute.String
     address: Attribute.String
     registrationNumber: Attribute.String
-    validity: Attribute.String
     evenWeek: Attribute.String
     oddWeek: Attribute.String
     collectionDates: Attribute.Text
     note: Attribute.Text
-    importId: Attribute.String & Attribute.Private
+    importId: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     createdBy: Attribute.Relation<
@@ -1821,6 +1821,18 @@ export interface ApiWorkshopWorkshop extends Schema.CollectionType {
     slug: Attribute.UID<'api::workshop.workshop', 'title'> & Attribute.Required
     iconName: Attribute.String
     sections: Attribute.DynamicZone<['sections.richtext', 'sections.faq', 'sections.documents']>
+    sidebar: Attribute.DynamicZone<['sidebars.empty-sidebar']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
+      }> &
+      Attribute.SetMinMax<
+        {
+          max: 1
+        },
+        number
+      >
     dates: Attribute.Component<'items.workshop-date', true>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime

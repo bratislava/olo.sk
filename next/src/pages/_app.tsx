@@ -35,7 +35,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         domain="testing.bratislava.sk"
         taggedEvents
         // uncomment for local testing, needs to be run with `yarn build && yarn start`
-        trackLocalhost
+        // trackLocalhost
       >
         <BAQueryClientProvider>
           <HydrationBoundary state={pageProps.dehydratedState}>

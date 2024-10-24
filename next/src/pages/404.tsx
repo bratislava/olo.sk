@@ -2,6 +2,7 @@ import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
@@ -49,6 +50,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 const NotFoundPage = ({ general, navigation }: PageProps) => {
   const { t } = useTranslation()
 
+  const router = useRouter()
+
   return (
     <GeneralContextProvider general={general} navigation={navigation}>
       <Head>
@@ -78,14 +81,7 @@ const NotFoundPage = ({ general, navigation }: PageProps) => {
                 >
                   {t('notFound.toTheMainPage')}
                 </Button>
-                <Button
-                  variant="category-outline"
-                  asLink
-                  hasLinkIcon={false}
-                  fullWidthMobile
-                  // TODO: link
-                  href="/"
-                >
+                <Button variant="category-outline" fullWidthMobile onPress={() => router.back()}>
                   {t('notFound.toThePreviousPage')}
                 </Button>
               </div>

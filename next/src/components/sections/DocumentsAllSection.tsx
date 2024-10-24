@@ -154,7 +154,7 @@ const DocumentsAllSection = ({ section, className }: Props) => {
           selectedKeys={selection}
           onSelectionChange={handleSelectionChange}
         >
-          <TagList className="max-md:negative-x-spacing -m-1.5 flex gap-x-2 overflow-auto p-1.5 scrollbar-hide max-md:flex-nowrap lg:gap-x-4">
+          <TagList className="negative-x-spacing -m-1.5 flex flex-nowrap gap-x-2 overflow-auto p-1.5 scrollbar-hide lg:flex-wrap lg:gap-4">
             {selectionOptions.map((option, index) => {
               return (
                 <Chip

@@ -21,6 +21,9 @@ fragment WorkshopEntity on WorkshopEntity {
     sections {
       ...PageSections
     }
+    sidebar {
+      ...PageSidebars
+    }
   }
 }
 

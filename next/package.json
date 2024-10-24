@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@graphql-codegen/cli": "^5.0.2",
-    "@iframe-resizer/react": "^5.2.1",
+    "@iframe-resizer/react": "^5.3.2",
     "@internationalized/date": "3.5.5",
     "@js-joda/core": "^5.6.2",
     "@radix-ui/react-navigation-menu": "^1.2.0",
@@ -72,6 +72,7 @@
     "string-replace-async": "^3.0.2",
     "tailwind-merge": "2.5.2",
     "tailwind-scrollbar-hide": "1.1.7",
+    "tailwindcss-animate": "^1.0.7",
     "tailwindcss-react-aria-components": "1.1.5",
     "use-query-params": "^2.2.1",
     "usehooks-ts": "^3.1.0"

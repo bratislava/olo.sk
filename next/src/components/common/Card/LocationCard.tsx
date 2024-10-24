@@ -34,25 +34,20 @@ const LocationCard = ({
       hasWhiteSectionBackground={hasWhiteBackground}
       className={className}
     >
-      <div className="flex flex-col items-start gap-6 p-6">
-        <div className="rounded-full bg-background-secondary p-4">
-          <OloIcon
-            name={iconName}
-            className="text-action-background size-6 fill-action-background-default"
-          />
-        </div>
-        <div className="flex flex-col gap-2 self-stretch lg:gap-3">
-          <Typography
-            variant="h5"
-            className_onlyWhenNecessary="line-clamp-3 group-hover/CardBase:underline"
-          >
-            {title}
-          </Typography>
-          {address ? (
-            <Typography variant="p-default" className_onlyWhenNecessary="line-clamp-3">
-              {address}
+      <div className="flex h-full flex-col justify-between gap-6 p-6">
+        <div className="flex flex-col items-start gap-6">
+          <div className="rounded-full bg-background-secondary p-4">
+            <OloIcon
+              name={iconName}
+              className="text-action-background size-6 fill-action-background-default"
+            />
+          </div>
+          <div className="flex flex-col gap-2 self-stretch lg:gap-3">
+            <Typography variant="h5" className_onlyWhenNecessary="group-hover/CardBase:underline">
+              {title}
             </Typography>
-          ) : null}
+            {address ? <Typography variant="p-default">{address}</Typography> : null}
+          </div>
         </div>
         <Button variant="category-outline" href={linkHref} asLink stretched fullWidth>
           {t('common.findOutMore')}

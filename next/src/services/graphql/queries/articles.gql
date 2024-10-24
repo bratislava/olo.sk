@@ -76,22 +76,6 @@ query ArticleBySlug($slug: String!, $locale: I18NLocaleCode!) {
   }
 }
 
-query ArticlesByTagIds($tagIds: [ID]!) {
-  articles(filters: { tags: { id: { in: $tagIds } } }) {
-    data {
-      ...ArticleCardEntity
-    }
-  }
-}
-
-query ArticlesByCategoryIds($categoryIds: [ID]!) {
-  articles(filters: { articleCategory: { id: { in: $categoryIds } } }) {
-    data {
-      ...ArticleCardEntity
-    }
-  }
-}
-
 query LatestArticles($limit: Int!, $locale: I18NLocaleCode!) {
   articles(sort: "addedAt:desc", pagination: { limit: $limit }, locale: $locale) {
     data {

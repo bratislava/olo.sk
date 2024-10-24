@@ -1,4 +1,5 @@
 fragment Link on ComponentItemsLink {
+  plausibleId
   label
   url
   page {
@@ -34,6 +35,7 @@ fragment Link on ComponentItemsLink {
 }
 
 fragment FormCtaBannerLink on ComponentItemsFormCtaBannerLink {
+  plausibleId
   label
   url
   email

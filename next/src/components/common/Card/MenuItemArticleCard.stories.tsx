@@ -14,7 +14,7 @@ type Story = StoryObj<typeof MenuItemArticleCardComponent>
 export const MenuItemArticleCard: Story = {
   args: {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     tagText: 'category',
   },
   render: (args) => <MenuItemArticleCardComponent {...args} />,
@@ -23,17 +23,17 @@ export const MenuItemArticleCard: Story = {
 const articlesCardRowsData = [
   {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     tagText: 'category',
   },
   {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     tagText: 'category',
   },
   {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     tagText: 'category',
   },
 ]

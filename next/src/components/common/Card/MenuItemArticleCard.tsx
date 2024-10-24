@@ -10,7 +10,7 @@ import cn from '@/src/utils/cn'
 
 type MenuItemArticleCardProps = {
   title: string
-  linkHref: string
+  href: string
   tagText?: string
   imgSrc?: string
   className?: string
@@ -22,7 +22,7 @@ type MenuItemArticleCardProps = {
 
 const MenuItemArticleCard = ({
   title,
-  linkHref,
+  href,
   tagText,
   imgSrc,
   className,
@@ -43,7 +43,7 @@ const MenuItemArticleCard = ({
             {tagText ? <Tag variant="without-bg" text={tagText} /> : null}
 
             <NavigationMenu.Link asChild onClick={() => setMobileMenuOpen(false)}>
-              <Link variant="underlineOnHover" href={linkHref} stretched>
+              <Link variant="underlineOnHover" href={href} stretched>
                 <Typography variant="h6" className_onlyWhenNecessary="lg:line-clamp-1">
                   {title}
                 </Typography>

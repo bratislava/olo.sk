@@ -14,7 +14,7 @@ type Story = StoryObj<typeof MenuItemWorkshopCardComponent>
 export const MenuItemWorkshopCard: Story = {
   args: {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     subText: 'Najbližší termín: 21. február 2024 o 9:00',
   },
   render: (args) => <MenuItemWorkshopCardComponent {...args} />,
@@ -23,17 +23,17 @@ export const MenuItemWorkshopCard: Story = {
 const workshopCardRowsData = [
   {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     subText: 'Najbližší termín: 21. február 2024 o 9:00',
   },
   {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     subText: 'Najbližší termín: 26. február 2024 o 10:00',
   },
   {
     title: 'Title',
-    linkHref: '#',
+    href: '#',
     subText: 'Najbližší termín: 18. marec 2024 o 10:00',
   },
 ]

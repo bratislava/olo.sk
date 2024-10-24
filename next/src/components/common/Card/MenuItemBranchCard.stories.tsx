@@ -14,7 +14,7 @@ type Story = StoryObj<typeof MenuItemBranchCardComponent>
 export const MenuItemBranchCard: Story = {
   args: {
     title: 'KOLO Pestovateľská',
-    linkHref: '#',
+    href: '#',
     subText: 'Pestovateľská 13, 821 04 Bratislava',
   },
   render: (args) => <MenuItemBranchCardComponent {...args} />,
@@ -23,12 +23,12 @@ export const MenuItemBranchCard: Story = {
 const branchCardRowsData = [
   {
     title: 'KOLO Pestovateľská',
-    linkHref: '#',
+    href: '#',
     subText: 'Pestovateľská 13, 821 04 Bratislava',
   },
   {
     title: 'KOLO Jurigovo námestie',
-    linkHref: '#',
+    href: '#',
     subText: 'Jurigovo námestie, 841 04 Karlova Ves',
   },
 ]

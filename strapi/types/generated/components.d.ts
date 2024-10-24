@@ -725,6 +725,7 @@ export interface MenuMenuLink extends Schema.Component {
     branch: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::branch.branch'>
     service: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'menu.menu-link', 'oneToOne', 'api::workshop.workshop'>
+    plausibleId: Attribute.String
   }
 }
 
@@ -944,6 +945,7 @@ export interface ItemsLink extends Schema.Component {
     document: Attribute.Relation<'items.link', 'oneToOne', 'api::document.document'>
     service: Attribute.Relation<'items.link', 'oneToOne', 'api::service.service'>
     workshop: Attribute.Relation<'items.link', 'oneToOne', 'api::workshop.workshop'>
+    plausibleId: Attribute.String
   }
 }
 
@@ -992,6 +994,7 @@ export interface ItemsFormCtaBannerLink extends Schema.Component {
     url: Attribute.String
     email: Attribute.Email
     form: Attribute.Relation<'items.form-cta-banner-link', 'oneToOne', 'api::form.form'>
+    plausibleId: Attribute.String
   }
 }
 

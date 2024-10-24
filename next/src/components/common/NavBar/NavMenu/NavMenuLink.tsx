@@ -17,7 +17,7 @@ type NavMenuLinkProps = {
  */
 
 const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
-  ({ href, children, target, className }, ref) => {
+  ({ href, children, target, plausibleProps, className }, ref) => {
     const { setMobileMenuOpen } = useNavMenuContext()
 
     return (
@@ -32,6 +32,7 @@ const NavMenuLink = forwardRef<HTMLAnchorElement, NavMenuLinkProps>(
             asLink
             startIcon={<Icon name="sipka-doprava" />}
             hasLinkIcon={false}
+            plausibleProps={plausibleProps}
             className="flex gap-4"
           >
             {children}

@@ -14,7 +14,6 @@ type NavMenuLatestArticlesListProps = {
   className?: string
 }
 
-// TODO: Fix focus rings for the cards
 const NavMenuLatestArticlesList = ({ hasDividers, className }: NavMenuLatestArticlesListProps) => {
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -41,7 +40,7 @@ const NavMenuLatestArticlesList = ({ hasDividers, className }: NavMenuLatestArti
             <MenuItemArticleCard
               key={article.id}
               title={title}
-              linkHref={getFullPath(article) ?? '#'}
+              href={getFullPath(article)}
               imgSrc={coverMedia?.data?.attributes?.url}
               tagText={articleCategory?.data?.attributes?.title ?? ''}
               className={cn({ 'pt-4 lg:pt-5': index !== 0 })}

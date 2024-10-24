@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-// import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
+import { LinkPlausibleProps } from '@/src/components/common/Link/Link'
 import {
   FormCtaBannerLinkFragment,
   LinkFragment,
@@ -12,7 +12,7 @@ export type LinkProps = {
   children: ReactNode
   href: string
   target?: '_blank' | '_self'
-  // plausibleProps?: LinkPlausibleProps
+  plausibleProps?: LinkPlausibleProps
 }
 
 // eslint-disable-next-line const-case/uppercase
@@ -70,11 +70,11 @@ export const useGetLinkProps = () => {
       target = href.startsWith('http') ? '_blank' : '_self'
     }
 
-    // const plausibleProps: LinkPlausibleProps | undefined = link?.plausibleId
-    //   ? { id: link.plausibleId }
-    //   : undefined
+    const plausibleProps: LinkPlausibleProps | undefined = link?.plausibleId
+      ? { id: link.plausibleId }
+      : undefined
 
-    return { children: label, href, target }
+    return { children: label, href, target, plausibleProps }
   }
 
   return { getLinkProps }

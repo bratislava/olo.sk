@@ -10,7 +10,7 @@ type Props = PickupDayHeaderSectionFragment & {
 }
 
 const meta: Meta<Props> = {
-  title: 'Page Headers/Odvozový deň',
+  title: 'Page Headers/Odvozové dni',
   args: {
     title: 'Nevyviezli mi odpad',
     carouselTitle: 'Články',
@@ -25,7 +25,7 @@ const meta: Meta<Props> = {
 type Story = StoryObj<Props>
 
 export const PageHeaderPickupDay: Story = {
-  name: 'Odvozový deň',
+  name: 'Odvozové dni',
   render: (args: Props) => (
     <BAQueryClientProvider>
       <PageHeaderPickupDayComponent

@@ -1131,17 +1131,17 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@babel/runtime@^7.24.7":
-  version "7.24.8"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.8.tgz#5d958c3827b13cc6d05e038c07fb2e5e3420d82e"
-  integrity sha512-5F7SDGs1T72ZczbRwbGO9lQi0NLjQxzl6i4lJxLxfW9U5UluCSyEJeniWvnhl3/euNiqQVbo8zruhsDfid0esA==
-  dependencies:
-    regenerator-runtime "^0.14.0"
-
 "@babel/runtime@^7.24.8":
   version "7.25.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.25.4.tgz#6ef37d678428306e7d75f054d5b1bdb8cf8aa8ee"
   integrity sha512-DSgLeL/FNcpXuzav5wfYvHCGvynXkJbn3Zvc3823AEe9nPwW9IK4UoCSS5yGymmQzN0pCPvivtgS6/8U2kkm1w==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
+"@babel/runtime@^7.25.7":
+  version "7.25.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.25.7.tgz#7ffb53c37a8f247c8c4d335e89cdf16a2e0d0fb6"
+  integrity sha512-FjoyLe754PMiYsFaN5C94ttGiOmBNYTf6pLr4xXHAT5uctHb092PBszndLDR5XA/jghQvn4n7JMHl7dmTgbm9w==
   dependencies:
     regenerator-runtime "^0.14.0"
 
@@ -1992,19 +1992,18 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.2.4.tgz#4f3059423823bd8176132ceea9447dee101dfac1"
   integrity sha512-Ttl/jHpxfS3st5sxwICYfk4pOH0WrLI1SpW283GgQL7sCWU7EHIOhX4b4fkIxr3tkfzwg8+FNojtzsIEE7Ecgg==
 
-"@iframe-resizer/core@5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@iframe-resizer/core/-/core-5.2.1.tgz#81c5dc942ddce7b7f53cddae931461abdc5c5cbc"
-  integrity sha512-etPA5NfB+K9bALYME/d2k5AYdIKShUNyvJjMQ3HmHKHV4jNIxnqkzN0u6agsOUlwS7fMrRqy0btX0d3becf6Zw==
+"@iframe-resizer/core@5.3.2":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@iframe-resizer/core/-/core-5.3.2.tgz#0c7f10341bcf18236756b291a16588ffe7fcb2da"
+  integrity sha512-is6VXW1m/9y7ZUwyjUuHu5101TPFa69Rv8jNY0HrT5svwb1ICPZKeaoVzDw0TTBBa5eE7XfEFcXCeiP6UR9W3w==
 
-"@iframe-resizer/react@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@iframe-resizer/react/-/react-5.2.1.tgz#1c1d467720fa8565f9a273466f66c8b5c05f16ec"
-  integrity sha512-9y//81lit01jMQwT6nfeOdSh48tnS4luXaIcRkqa5oZdsAMnT0zAlGdnOh8yEjHLPmsBDsct5StY+wPlZOnyBg==
+"@iframe-resizer/react@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@iframe-resizer/react/-/react-5.3.2.tgz#b518c4c38215f2237d3469901a5933492ab7f51e"
+  integrity sha512-RGPMYj69Kfzpvonfx0pj5JrKc152DNB8MGum2AoXdupjyaKzLJ4Bvi0NHV8ic4xSHlsMb3eqFXYNRekcACcWxA==
   dependencies:
-    "@babel/runtime" "^7.24.7"
-    "@iframe-resizer/core" "5.2.1"
-    warning "^4.0.3"
+    "@babel/runtime" "^7.25.7"
+    "@iframe-resizer/core" "5.3.2"
 
 "@img/sharp-darwin-arm64@0.33.3":
   version "0.33.3"
@@ -15499,6 +15498,11 @@ tailwind-scrollbar-hide@1.1.7:
   resolved "https://registry.yarnpkg.com/tailwind-scrollbar-hide/-/tailwind-scrollbar-hide-1.1.7.tgz#90b481fb2e204030e3919427416650c54f56f847"
   integrity sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==
 
+tailwindcss-animate@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz#318b692c4c42676cc9e67b19b78775742388bef4"
+  integrity sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==
+
 tailwindcss-react-aria-components@1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/tailwindcss-react-aria-components/-/tailwindcss-react-aria-components-1.1.5.tgz#4a64104dcd43efb1bbfadd958b61205735dc8a3b"
@@ -16461,13 +16465,6 @@ walk-sync@^2.2.0:
     ensure-posix-path "^1.1.0"
     matcher-collection "^2.0.0"
     minimatch "^3.0.4"
-
-warning@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
-  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
-  dependencies:
-    loose-envify "^1.0.0"
 
 watchpack@^2.2.0, watchpack@^2.4.1:
   version "2.4.1"

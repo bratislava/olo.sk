@@ -28,6 +28,16 @@
       "type": "dynamiczone",
       "components": ["sections.richtext", "sections.faq", "sections.documents"]
     },
+    "sidebar": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": ["sidebars.empty-sidebar"],
+      "max": 1
+    },
     "dates": {
       "displayName": "workshopDate",
       "type": "component",

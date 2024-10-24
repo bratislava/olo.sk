@@ -11,7 +11,7 @@ import { useGetFullPath } from '@/src/utils/useGetFullPath'
 export type LinkProps = {
   children: ReactNode
   href: string
-  target?: '_blank'
+  target?: '_blank' | '_self'
   // plausibleProps?: LinkPlausibleProps
 }
 
@@ -33,7 +33,7 @@ export const useGetLinkProps = () => {
   ) => {
     let href = '#'
     let label = link?.label ?? ''
-    let target: '_blank' | undefined
+    let target: '_blank' | '_self' | undefined
 
     if (!link) {
       return { children: label, href } // TODO
@@ -67,7 +67,7 @@ export const useGetLinkProps = () => {
     } else if (link?.url) {
       label = link.label ?? link.url
       href = link.url
-      target = '_blank'
+      target = href.startsWith('http') ? '_blank' : '_self'
     }
 
     // const plausibleProps: LinkPlausibleProps | undefined = link?.plausibleId

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_procurements",
+  "info": {
+    "displayName": "Verejné obstarávania",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "tendersPerPage": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

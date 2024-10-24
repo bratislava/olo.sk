@@ -1499,6 +1499,14 @@ export type ComponentSectionsOrderedCardsCardsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
 }
 
+export type ComponentSectionsProcurements = {
+  __typename?: 'ComponentSectionsProcurements'
+  content?: Maybe<Scalars['String']['output']>
+  id: Scalars['ID']['output']
+  tendersPerPage: Scalars['Int']['output']
+  title?: Maybe<Scalars['String']['output']>
+}
+
 export type ComponentSectionsRichtext = {
   __typename?: 'ComponentSectionsRichtext'
   backgroundColor: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -2500,6 +2508,7 @@ export type GenericMorph =
   | ComponentSectionsKoloHomepageSection
   | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
+  | ComponentSectionsProcurements
   | ComponentSectionsRichtext
   | ComponentSectionsServices
   | ComponentSectionsServicesHomepageSection
@@ -3532,6 +3541,7 @@ export type PageSectionsDynamicZone =
   | ComponentSectionsImageAndTextOverlapped
   | ComponentSectionsOpeningTimes
   | ComponentSectionsOrderedCards
+  | ComponentSectionsProcurements
   | ComponentSectionsRichtext
   | ComponentSectionsServices
   | ComponentSectionsSortingGuide
@@ -9774,6 +9784,13 @@ export type GlobalSearchSectionFragment = {
   title?: string | null
 }
 
+export type ProcurementsSectionFragment = {
+  __typename?: 'ComponentSectionsProcurements'
+  title?: string | null
+  content?: string | null
+  tendersPerPage: number
+}
+
 type PageSections_ComponentSectionsArticles_Fragment = {
   __typename: 'ComponentSectionsArticles'
   title?: string | null
@@ -11573,6 +11590,13 @@ type PageSections_ComponentSectionsOrderedCards_Fragment = {
   } | null>
 }
 
+type PageSections_ComponentSectionsProcurements_Fragment = {
+  __typename: 'ComponentSectionsProcurements'
+  title?: string | null
+  content?: string | null
+  tendersPerPage: number
+}
+
 type PageSections_ComponentSectionsRichtext_Fragment = {
   __typename: 'ComponentSectionsRichtext'
   content?: string | null
@@ -12432,6 +12456,7 @@ export type PageSectionsFragment =
   | PageSections_ComponentSectionsImageAndTextOverlapped_Fragment
   | PageSections_ComponentSectionsOpeningTimes_Fragment
   | PageSections_ComponentSectionsOrderedCards_Fragment
+  | PageSections_ComponentSectionsProcurements_Fragment
   | PageSections_ComponentSectionsRichtext_Fragment
   | PageSections_ComponentSectionsServices_Fragment
   | PageSections_ComponentSectionsSortingGuide_Fragment
@@ -20872,6 +20897,12 @@ export type PageEntityFragment = {
           } | null>
         }
       | {
+          __typename: 'ComponentSectionsProcurements'
+          title?: string | null
+          content?: string | null
+          tendersPerPage: number
+        }
+      | {
           __typename: 'ComponentSectionsRichtext'
           content?: string | null
           backgroundColorRichtext: Enum_Componentsectionsrichtext_Backgroundcolor
@@ -24053,6 +24084,12 @@ export type PagesQuery = {
                 text?: string | null
                 iconName?: string | null
               } | null>
+            }
+          | {
+              __typename: 'ComponentSectionsProcurements'
+              title?: string | null
+              content?: string | null
+              tendersPerPage: number
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -27256,6 +27293,12 @@ export type PageBySlugQuery = {
                 text?: string | null
                 iconName?: string | null
               } | null>
+            }
+          | {
+              __typename: 'ComponentSectionsProcurements'
+              title?: string | null
+              content?: string | null
+              tendersPerPage: number
             }
           | {
               __typename: 'ComponentSectionsRichtext'
@@ -35433,6 +35476,13 @@ export const GlobalSearchSectionFragmentDoc = gql`
     title
   }
 `
+export const ProcurementsSectionFragmentDoc = gql`
+  fragment ProcurementsSection on ComponentSectionsProcurements {
+    title
+    content
+    tendersPerPage
+  }
+`
 export const PageSectionsFragmentDoc = gql`
   fragment PageSections on PageSectionsDynamicZone {
     __typename
@@ -35523,6 +35573,9 @@ export const PageSectionsFragmentDoc = gql`
     ... on ComponentSectionsGlobalSearch {
       ...GlobalSearchSection
     }
+    ... on ComponentSectionsProcurements {
+      ...ProcurementsSection
+    }
   }
   ${RichtextSectionFragmentDoc}
   ${OrderedCardsSectionFragmentDoc}
@@ -35553,6 +35606,7 @@ export const PageSectionsFragmentDoc = gql`
   ${BoardMembersSectionFragmentDoc}
   ${VacanciesSectionFragmentDoc}
   ${GlobalSearchSectionFragmentDoc}
+  ${ProcurementsSectionFragmentDoc}
 `
 export const ContactsSidebarFragmentDoc = gql`
   fragment ContactsSidebar on ComponentSidebarsContactsSidebar {

@@ -21,6 +21,7 @@ import ImageAndTextOverlappedSection from '@/src/components/sections/ImageAndTex
 import ImageAndTextSection from '@/src/components/sections/ImageAndTextSection'
 import OpeningTimesSection from '@/src/components/sections/OpeningTimesSection'
 import OrderedCardsSection from '@/src/components/sections/OrderedCardsSection'
+import ProcurementsSection from '@/src/components/sections/ProcurementsSection'
 import RichtextSection from '@/src/components/sections/RichtextSection'
 import ServicesSection from '@/src/components/sections/ServicesSection'
 import SortingGuideAccordionsSection from '@/src/components/sections/SortingGuideAccordionsSection'
@@ -136,6 +137,9 @@ const SectionContent = ({ section }: { section: Section }) => {
 
     case 'ComponentSectionsVacancies':
       return <VacanciesSection section={section} />
+
+    case 'ComponentSectionsProcurements':
+      return <ProcurementsSection section={section} />
 
     case 'ComponentSectionsGlobalSearch':
       return <GlobalSearchSection section={section} />
